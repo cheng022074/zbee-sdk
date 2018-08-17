@@ -1,0 +1,17 @@
+<class description="矩形计算工具">
+    <constructor description="矩形构造器" implement="math.region.rect.constructor">
+        <param name="xy" type="object" description="圆心坐标"/>
+        <param name="size" type="object" description="尺寸"/>
+    </constructor>
+    <properties>
+        <property description="获得最左边的横坐标" name="left" type="number" getter="math.region.rect.properties.left"/>
+        <property description="获得最右边的横坐标" name="right" type="number" getter="math.region.rect.properties.right"/>
+        <property description="获得最顶边的纵坐标" name="top" type="number" getter="math.region.rect.properties.top"/>
+        <property description="获得最底边的纵坐标" name="bottom" type="number" getter="math.region.rect.properties.bottom"/>
+    </properties>
+    <methods>
+        <method description="判断坐标是否包含在当前矩形的范围内" name="contains" implement="math.region.rect.methods.contains" type="boolean">
+            <param name="xy" type="object" description="坐标"/>
+        </method>
+    </methods>
+</class>

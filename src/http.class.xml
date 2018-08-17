@@ -1,0 +1,20 @@
+<class description="HTTP 请求工具类">
+    <methods>
+        <method static="yes" description="发起 GET 请求并获得返回数据" name="get" implement="http.methods.get" type="Promise">
+            <param name="uri" type="string" description="请求名称"/>
+            <param name="params" type="object" description="请求配置信息"/>
+        </method>
+        <method static="yes" description="发起 POST 请求并获得返回数据" name="post" implement="http.methods.post" type="Promise">
+            <param name="uri" type="string" description="请求名称"/>
+            <param name="params" type="object" description="请求配置信息"/>
+        </method>
+        <method static="yes" description="发起 PUT 请求并获得返回数据" name="put" implement="http.methods.put" type="Promise">
+            <param name="uri" type="string" description="请求名称"/>
+            <param name="params" type="object" description="请求配置信息"/>
+        </method>
+        <method static="yes" description="发起 DELETE 请求并获得返回数据" name="delete" implement="http.methods.delete" type="Promise">
+            <param name="uri" type="string" description="请求名称"/>
+            <param name="params" type="object" description="请求配置信息"/>
+        </method>
+    </methods>
+</class>

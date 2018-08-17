@@ -1,0 +1,6 @@
+{
+    "moveDistance":8,
+    "minDistance": 80,
+    "maxOffset": 35,
+    "maxDuration": 1000
+}

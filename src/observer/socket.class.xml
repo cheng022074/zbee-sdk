@@ -1,0 +1,15 @@
+<class description="基于 Socket 的观察者模式">
+    <constructor description="实例化观察者" implement="observer.socket.constructor">
+        <param name="server" type="Server" description="所绑定的 Web 服务"/>
+    </constructor>
+    <methods>
+        <method description="监控来自于客户端的事件发布" name="watch" implement="observer.socket.methods.watch">
+            <param name="fn" type="function" description="函数"/>
+            <param name="scope" optional="yes" type="mixed" description="函数的作用域"/>
+        </method>
+        <method description="向所有绑定的当前 Socket 的客户端发布事件" name="dispatchEvent" implement="observer.socket.methods.dispatchEvent">
+            <param name="eventName" type="string" description="事件名称"/>
+            <param name="...args" optional="yes" type="array" description="事件参数"/>
+        </method>
+    </methods>
+</class>

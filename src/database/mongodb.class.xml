@@ -1,0 +1,11 @@
+<class description="MongoDB 数据库管理类">
+    <properties>
+        <property static="yes" description="获得所有已经实例化的数据库连接" name="databases" type="Map" getter="database.mongodb.properties.databases"/>
+    </properties>
+    <methods>
+        <method static="yes" description="打开一个数据库连接，并返回标识名称" name="open" implement="database.mongodb.methods.open" type="mongodb.Db">
+            <param name="name" type="string" optional="yes" description="连接标识名称"/>
+        </method>
+        <method static="yes" description="关闭所有已打开的数据库连接" name="close" implement="database.mongodb.methods.close"/>
+    </methods>
+</class>

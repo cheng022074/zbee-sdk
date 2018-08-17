@@ -1,0 +1,25 @@
+<class description="圆的计算工具">
+    <constructor description="使用圆心与半径构建一个圆" implement="math.region.circle.constructor">
+        <param name="xy" type="object" description="圆心坐标"/>
+        <param name="radius" type="number" description="圆的半径"/>
+    </constructor>
+    <methods>
+        <method description="判断是否与矩形相交" name="intersectToRect" implement="math.region.circle.methods.intersect.rect" type="boolean">
+            <param name="region" type="region.Rect" description="矩形区域"/>
+        </method>
+        <method description="判断是否与圆形相交" name="intersectToCircle" implement="math.region.circle.methods.intersect.circle" type="boolean">
+            <param name="region" type="region.Circle" description="圆形区域"/>
+        </method>
+        <method description="判断坐标是否包含在当前圆的范围内" name="contains" implement="math.region.circle.methods.contains" type="boolean">
+            <param name="xy" type="object" description="坐标"/>
+        </method>
+        <method description="根据给定的纵坐标获取横坐标" name="getBorderX" implement="math.region.circle.methods.getBorderX" type="number">
+            <param name="y" type="number" description="纵坐标"/>
+            <param optional="yes" name="clockwise" type="boolean" description="是否顺时针"/>
+        </method>
+        <method description="根据给定的横坐标获取纵坐标" name="getBorderY" implement="math.region.circle.methods.getBorderY" type="number">
+            <param name="x" type="number" description="横坐标"/>
+            <param optional="yes" name="clockwise" type="boolean" description="是否顺时针"/>
+        </method>
+    </methods>
+</class>

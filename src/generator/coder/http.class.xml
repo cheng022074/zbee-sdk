@@ -1,0 +1,9 @@
+<class description="基于HTTP请求的应用标签">
+    <constructor description="标准标签构建" implement="generator.coder.constructor"/>
+    <properties>
+        <property description="需要创建的文件名称" name="generates" type="array" getter="generator.coder.properties.generates"/>
+        <property description="标签引用的文件名称" name="imports" type="array" getter="generator.coder.http.properties.imports"/>
+        <property description="生成的代码" name="code" type="string" getter="generator.coder.http.properties.code"/>
+        <property description="生成的初始化代码" name="initCode" type="string" getter="generator.coder.properties.code.init"/>
+    </properties>
+</class>

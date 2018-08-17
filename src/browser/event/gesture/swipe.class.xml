@@ -1,0 +1,13 @@
+<class description="滑动事件">
+    <properties>
+        <property static="yes" description="支持事件列表" name="handledEvents " type="array" getter="browser.event.gesture.swipe.properties.handleEvents"/>
+    </properties>
+    <methods>
+        <method static="yes" description="安装事件" name="install" implement="browser.event.gesture.swipe.methods.install">
+            <param name="el" type="HTMLElement" description="页面元素"/>
+        </method>
+        <method static="yes" description="卸载事件" name="uninstall" implement="browser.event.gesture.swipe.methods.uninstall">
+            <param name="el" type="HTMLElement" description="页面元素"/>
+        </method>
+    </methods>
+</class>

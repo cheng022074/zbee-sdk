@@ -1,0 +1,14 @@
+<class description="点击事件">
+    <properties>
+        <property static="yes" description="支持事件列表" name="handledEvents " type="array" getter="browser.event.gesture.tap.properties.handleEvents"/>
+    </properties>
+    <methods>
+        <method static="yes" description="安装事件" name="install" implement="browser.event.gesture.tap.methods.install">
+            <param name="el" type="HTMLElement" description="页面元素"/>
+            <param name="config" type="object" description="事件初始化参数"/>
+        </method>
+        <method static="yes" description="卸载事件" name="uninstall" implement="browser.event.gesture.tap.methods.uninstall">
+            <param name="el" type="HTMLElement" description="页面元素"/>
+        </method>
+    </methods>
+</class>

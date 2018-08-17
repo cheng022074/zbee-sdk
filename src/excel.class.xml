@@ -1,0 +1,8 @@
+<class description="对于 Excel 进一步封装，提供有效的数据识别工具">
+    <constructor description="通过一个 Excel 文件路径构建" implement="excel.constructor">
+        <param name="path" type="string" description="Excel 文件路径"/>
+    </constructor>
+    <properties>
+        <property description="获得当前 Excel 中所有的工作表对象列表" name="sheets" type="Map" getter="excel.properties.sheets"/>
+    </properties>
+</class>

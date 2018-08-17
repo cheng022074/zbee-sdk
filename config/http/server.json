@@ -1,0 +1,8 @@
+{
+    "default":{
+        "services":{
+            "/":"debug::http.service.Index"
+        },
+        "listen":3000
+    }
+}

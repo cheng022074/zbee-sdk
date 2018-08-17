@@ -1,0 +1,10 @@
+<class description="数据库管理程序">
+    <methods>
+        <method static="yes" description="打开一个数据库连接" name="open" implement="database.methods.open">
+            <param name="name" type="string" optional="yes" description="连接标识名称"/>
+        </method>
+        <method static="yes" description="关闭一个数据库连接" name="close" implement="database.methods.close">
+            <param name="name" type="string" optional="yes" description="连接标识名称"/>
+        </method>
+    </methods>
+</class>

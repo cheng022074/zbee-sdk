@@ -1,0 +1,16 @@
+<class description="基于 Socket 的观察者模式">
+    <constructor description="实例化观察者" implement="observer.socket.client.constructor">
+        <param name="url" type="string" description="所绑定的事件分发服务地址"/>
+    </constructor>
+    <methods>
+        <method description="添加事件侦听" name="addEventListener" implement="observer.socket.client.methods.addEventListener">
+            <param name="eventName" type="string" description="事件名称"/>
+            <param name="fn" type="function" description="函数"/>
+            <param name="scope" optional="yes" type="mixed" description="函数的作用域"/>
+        </method>
+        <method description="向 Socket 的服务端发布事件" name="dispatchEvent" implement="observer.socket.client.methods.dispatchEvent">
+            <param name="eventName" type="string" description="事件名称"/>
+            <param name="...args" optional="yes" type="array" description="事件参数"/>
+        </method>
+    </methods>
+</class>

@@ -1,0 +1,10 @@
+{
+    "default":{
+        "host":"116.62.209.247",
+        "auto":true,
+        "port":2018,
+        "database":"fontre",
+        "user":"fontre",
+        "password":"123456"
+    }
+}

@@ -1,0 +1,56 @@
+<document name="HTTP 请求管理">
+    <describe name="GET 请求">
+        <it name="返回所有经销商列表">
+            <set name="http" target="http"/>
+            <call-function var="data" name="get" target="http">
+                <param value="carconfig/dealer/list"/>
+            </call-function>
+            <out value="${data}"/>
+        </it>
+         <it name="返回北京市经销商列表">
+            <set name="http" target="http"/>
+            <call-function var="data" name="get" target="http">
+                <param value="carconfig/dealer/list"/>
+                <param>
+                <![CDATA[
+                    {
+                        query:{
+                           provinceid:'110000'
+                        }
+                    }
+                ]]>
+                </param>
+            </call-function>
+            <out value="${data}"/>
+        </it>
+        <it name="返回所有省份列表">
+            <set name="http" target="http"/>
+            <call-function var="data" name="get" target="http">
+                <param value="carconfig/location/provinces"/>
+            </call-function>
+            <out value="${data}"/>
+        </it>
+    </describe>
+    <describe name="POST 请求">
+        <it name="预约试驾">
+            <set name="http" target="http"/>
+            <call-function var="data" name="post" target="http">
+                <param value="carconfig/trialDrive/order"/>
+                <param>
+                <![CDATA[
+                    {
+                        body:{
+                            contactName:'大国崛起',
+                            contactMobile:'1395xxx2547121',
+                            dealerId:'2730100',
+                            serviceType:1,
+                            bookingTime:new Date().toJSON()
+                        }
+                    }
+                ]]>
+                </param>
+            </call-function>
+            <out value="${data}"/>
+        </it>
+    </describe>
+</document>

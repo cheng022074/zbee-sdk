@@ -1,0 +1,30 @@
+<document name="MongoDB 数据库连接管理">
+    <describe name="MongoDB 数据库连接管理">
+        <it name="打开一个 MongoDB 数据库连接并关闭">
+            <set name="mongo" target="database.mongo"/>
+            <call-function name="open" target="mongo"/>
+            <call-function name="close" target="mongo"/>
+        </it>
+    </describe>
+    <describe name="MongoDB 数据查询">
+        <it name="查询一张表所有数据">
+            <set name="mongo" target="database.mongo"/>
+            <call-function name="open" target="mongo"/>
+            <call-function var="data" name="database.mongo.find">
+                <param>
+                <![CDATA[
+                    {
+                        collection:'users',
+                        fields:[
+                            'nickname',
+                            'sex'
+                        ]
+                    }
+                ]]>
+                </param>
+            </call-function>
+            <out value="${data}"/>
+            <call-function name="close" target="mongo"/>
+        </it>
+    </describe>
+</document>
