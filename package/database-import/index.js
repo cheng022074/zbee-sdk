@@ -236,7 +236,7 @@ exports['src::is.object.simple'] = (() => {
 
 
 
-    let __first_executed_1534473867458__ = false;
+    let __first_executed_1534494168907__ = false;
 
 
     function main(data) {
@@ -275,7 +275,7 @@ exports['src::is.type'] = (() => {
 
 
 
-    let __first_executed_1534473867457__ = false;
+    let __first_executed_1534494168907__ = false;
 
 
     function main(data, type) {
@@ -314,7 +314,7 @@ exports['src::is.string'] = (() => {
 
 
 
-    let __first_executed_1534473867464__ = false;
+    let __first_executed_1534494168914__ = false;
 
 
     function main(data) {
@@ -325,10 +325,10 @@ exports['src::is.string'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534473867464__) {
+        if (!__first_executed_1534494168914__) {
             isType = include('is.type');
 
-            __first_executed_1534473867464__ = true;
+            __first_executed_1534494168914__ = true;
         }
 
 
@@ -359,7 +359,7 @@ exports['src::excel.constructor'] = (() => {
 
 
 
-    let __first_executed_1534473867814__ = false;
+    let __first_executed_1534494169245__ = false;
 
 
     function main(path) {
@@ -404,7 +404,7 @@ exports['src::object.setOnce'] = (() => {
 
 
 
-    let __first_executed_1534473867814__ = false;
+    let __first_executed_1534494169245__ = false;
 
 
     function main(target, name, fn, scope) {
@@ -449,7 +449,7 @@ exports['src::excel.sheet.constructor'] = (() => {
 
 
 
-    let __first_executed_1534473867814__ = false;
+    let __first_executed_1534494169245__ = false;
 
 
     function main(sheet) {
@@ -488,7 +488,7 @@ exports['src::excel.sheet.properties.endCellAddress'] = (() => {
 
 
 
-    let __first_executed_1534473867814__ = false;
+    let __first_executed_1534494169245__ = false;
 
 
 
@@ -529,7 +529,7 @@ exports['src::excel.sheet.methods.address'] = (() => {
 
 
 
-    let __first_executed_1534473867814__ = false;
+    let __first_executed_1534494169246__ = false;
 
 
 
@@ -547,10 +547,10 @@ exports['src::excel.sheet.methods.address'] = (() => {
     }
     return function(address) {
 
-        if (!__first_executed_1534473867814__) {
+        if (!__first_executed_1534494169246__) {
             getEndCellAddress = include('excel.sheet.properties.endCellAddress');
 
-            __first_executed_1534473867814__ = true;
+            __first_executed_1534494169246__ = true;
         }
 
 
@@ -581,7 +581,7 @@ exports['src::excel.sheet.methods.getTitles'] = (() => {
 
 
 
-    let __first_executed_1534473867814__ = false;
+    let __first_executed_1534494169246__ = false;
 
 
     function main(address) {
@@ -623,10 +623,10 @@ exports['src::excel.sheet.methods.getTitles'] = (() => {
     }
     return function(address = 'A1') {
 
-        if (!__first_executed_1534473867814__) {
+        if (!__first_executed_1534494169246__) {
             getAddress = include('excel.sheet.methods.address');
 
-            __first_executed_1534473867814__ = true;
+            __first_executed_1534494169246__ = true;
         }
 
 
@@ -657,7 +657,7 @@ exports['src::excel.sheet.methods.getRecords'] = (() => {
 
 
 
-    let __first_executed_1534473867814__ = false;
+    let __first_executed_1534494169246__ = false;
 
 
     function main(address) {
@@ -706,10 +706,10 @@ exports['src::excel.sheet.methods.getRecords'] = (() => {
     }
     return function(address = 'A2') {
 
-        if (!__first_executed_1534473867814__) {
+        if (!__first_executed_1534494169246__) {
             getAddress = include('excel.sheet.methods.address');
 
-            __first_executed_1534473867814__ = true;
+            __first_executed_1534494169246__ = true;
         }
 
 
@@ -761,7 +761,7 @@ exports['src::excel.properties.sheets'] = (() => {
 
 
 
-    let __first_executed_1534473867815__ = false;
+    let __first_executed_1534494169246__ = false;
 
 
 
@@ -791,11 +791,11 @@ exports['src::excel.properties.sheets'] = (() => {
     }
     return function() {
 
-        if (!__first_executed_1534473867815__) {
+        if (!__first_executed_1534494169246__) {
             once = include('object.setOnce');
             Sheet = include('excel.sheet');
 
-            __first_executed_1534473867815__ = true;
+            __first_executed_1534494169246__ = true;
         }
 
 
@@ -844,7 +844,7 @@ exports['src::data.recordset.init'] = (() => {
 
 
 
-    let __first_executed_1534473867815__ = false;
+    let __first_executed_1534494169247__ = false;
 
 
     function main(records, titles) {
@@ -898,7 +898,7 @@ exports['src::excel.get'] = (() => {
 
 
 
-    let __first_executed_1534473867815__ = false;
+    let __first_executed_1534494169247__ = false;
 
 
     function main(name) {
@@ -978,13 +978,13 @@ exports['src::excel.get'] = (() => {
     }
     return function(name = 'default') {
 
-        if (!__first_executed_1534473867815__) {
+        if (!__first_executed_1534494169247__) {
             isObject = include('is.object.simple');
             isString = include('is.string');
             Excel = include('excel');
             init = include('data.recordset.init');
 
-            __first_executed_1534473867815__ = true;
+            __first_executed_1534494169247__ = true;
         }
 
 

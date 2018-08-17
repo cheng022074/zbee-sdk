@@ -74,11 +74,14 @@ function main(uri , method , params){
             body
         } = params;
 
+        const requestTimeout = timeout;
+
         return assign({
             uri:append(join(rootPath , apply(uri , path)) , {
                 _dc:Date.now()
             }),
             timeout,
+            requestTimeout,
             method,
             headers,
             qs:query,

@@ -236,10 +236,10 @@ exports['src::database.properties.databases'] = (() => {
 
 
 
-    let __once_1534473867740_value__,
-        __once_1534473867740_locked__ = false;
+    let __once_1534494169175_value__,
+        __once_1534494169175_locked__ = false;
 
-    let __first_executed_1534473867740__ = false;
+    let __first_executed_1534494169175__ = false;
 
 
     function main() {
@@ -251,15 +251,15 @@ exports['src::database.properties.databases'] = (() => {
     return function() {
 
 
-        if (__once_1534473867740_locked__) {
+        if (__once_1534494169175_locked__) {
 
-            return __once_1534473867740_value__;
+            return __once_1534494169175_value__;
 
         }
 
-        __once_1534473867740_locked__ = true;
+        __once_1534494169175_locked__ = true;
 
-        return __once_1534473867740_value__ = main.call((function() {
+        return __once_1534494169175_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -286,7 +286,7 @@ exports['src::database.connection.type'] = (() => {
 
 
 
-    let __first_executed_1534473867740__ = false;
+    let __first_executed_1534494169175__ = false;
 
 
     function main(name) {
@@ -336,7 +336,7 @@ exports['src::database.connection.config'] = (() => {
 
 
 
-    let __first_executed_1534473867740__ = false;
+    let __first_executed_1534494169175__ = false;
 
 
     function main(name) {
@@ -388,7 +388,7 @@ exports['src::is.type'] = (() => {
 
 
 
-    let __first_executed_1534473867457__ = false;
+    let __first_executed_1534494168907__ = false;
 
 
     function main(data, type) {
@@ -427,7 +427,7 @@ exports['src::is.defined'] = (() => {
 
 
 
-    let __first_executed_1534473867740__ = false;
+    let __first_executed_1534494169175__ = false;
 
 
     function main(data) {
@@ -438,10 +438,10 @@ exports['src::is.defined'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534473867740__) {
+        if (!__first_executed_1534494169175__) {
             isType = include('is.type');
 
-            __first_executed_1534473867740__ = true;
+            __first_executed_1534494169175__ = true;
         }
 
 
@@ -472,7 +472,7 @@ exports['src::database.mongodb.open'] = (() => {
 
 
 
-    let __first_executed_1534473867741__ = false;
+    let __first_executed_1534494169175__ = false;
 
 
 
@@ -517,11 +517,11 @@ exports['src::database.mongodb.open'] = (() => {
     }
     return async function(map, name, config) {
 
-        if (!__first_executed_1534473867741__) {
+        if (!__first_executed_1534494169175__) {
             isDefined = include('is.defined');
             getMap = include('database.properties.databases');
 
-            __first_executed_1534473867741__ = true;
+            __first_executed_1534494169175__ = true;
         }
 
 
@@ -552,7 +552,7 @@ exports['src::database.methods.open'] = (() => {
 
 
 
-    let __first_executed_1534473867741__ = false;
+    let __first_executed_1534494169175__ = false;
 
 
     async function main(name) {
@@ -584,13 +584,13 @@ exports['src::database.methods.open'] = (() => {
     }
     return async function(name = 'default') {
 
-        if (!__first_executed_1534473867741__) {
+        if (!__first_executed_1534494169175__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             getConnectionConfig = include('database.connection.config');
             databaseMongodbOpen = include('database.mongodb.open');
 
-            __first_executed_1534473867741__ = true;
+            __first_executed_1534494169175__ = true;
         }
 
 
@@ -621,7 +621,7 @@ exports['src::database.methods.close'] = (() => {
 
 
 
-    let __first_executed_1534473867741__ = false;
+    let __first_executed_1534494169175__ = false;
 
 
     async function main(name) {
@@ -641,10 +641,10 @@ exports['src::database.methods.close'] = (() => {
     }
     return async function(name = 'default') {
 
-        if (!__first_executed_1534473867741__) {
+        if (!__first_executed_1534494169175__) {
             getMap = include('database.properties.databases');
 
-            __first_executed_1534473867741__ = true;
+            __first_executed_1534494169175__ = true;
         }
 
 
@@ -692,7 +692,7 @@ exports['src::database.mongodb.collectionNames'] = (() => {
 
 
 
-    let __first_executed_1534473867741__ = false;
+    let __first_executed_1534494169176__ = false;
 
 
     async function main(db) {
@@ -747,7 +747,7 @@ exports['src::database.collectionNames'] = (() => {
 
 
 
-    let __first_executed_1534473867741__ = false;
+    let __first_executed_1534494169176__ = false;
 
 
     async function main(connection) {
@@ -765,12 +765,12 @@ exports['src::database.collectionNames'] = (() => {
     }
     return async function(connection = 'default') {
 
-        if (!__first_executed_1534473867741__) {
+        if (!__first_executed_1534494169176__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             databaseMongodbCollectionNames = include('database.mongodb.collectionNames');
 
-            __first_executed_1534473867741__ = true;
+            __first_executed_1534494169176__ = true;
         }
 
 
@@ -801,7 +801,7 @@ exports['src::database.mongodb.collection.find'] = (() => {
 
 
 
-    let __first_executed_1534473867741__ = false;
+    let __first_executed_1534494169176__ = false;
 
 
     async function main({
@@ -849,7 +849,7 @@ exports['src::database.collection.find'] = (() => {
 
 
 
-    let __first_executed_1534473867741__ = false;
+    let __first_executed_1534494169176__ = false;
 
 
     async function main({
@@ -876,12 +876,12 @@ exports['src::database.collection.find'] = (() => {
         connection = 'default'
     }) {
 
-        if (!__first_executed_1534473867741__) {
+        if (!__first_executed_1534494169176__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             databaseMongodbCollectionFind = include('database.mongodb.collection.find');
 
-            __first_executed_1534473867741__ = true;
+            __first_executed_1534494169176__ = true;
         }
 
 
@@ -915,7 +915,7 @@ exports['src::is.directory'] = (() => {
 
 
 
-    let __first_executed_1534473867741__ = false;
+    let __first_executed_1534494169176__ = false;
 
 
     function main(path) {
@@ -959,7 +959,7 @@ exports['src::directory.create'] = (() => {
 
 
 
-    let __first_executed_1534473867741__ = false;
+    let __first_executed_1534494169176__ = false;
 
 
 
@@ -986,10 +986,10 @@ exports['src::directory.create'] = (() => {
     }
     return function(path) {
 
-        if (!__first_executed_1534473867741__) {
+        if (!__first_executed_1534494169176__) {
             isDirectory = include('is.directory');
 
-            __first_executed_1534473867741__ = true;
+            __first_executed_1534494169176__ = true;
         }
 
 
@@ -1020,7 +1020,7 @@ exports['src::file.write'] = (() => {
 
 
 
-    let __first_executed_1534473867742__ = false;
+    let __first_executed_1534494169176__ = false;
 
 
     function main(path, data) {
@@ -1039,10 +1039,10 @@ exports['src::file.write'] = (() => {
     }
     return function(path, data) {
 
-        if (!__first_executed_1534473867742__) {
+        if (!__first_executed_1534494169176__) {
             create = include('directory.create');
 
-            __first_executed_1534473867742__ = true;
+            __first_executed_1534494169176__ = true;
         }
 
 
@@ -1073,7 +1073,7 @@ exports['src::is.array'] = (() => {
 
 
 
-    let __first_executed_1534473867465__ = false;
+    let __first_executed_1534494168915__ = false;
 
 
     function main(data) {
@@ -1084,10 +1084,10 @@ exports['src::is.array'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534473867465__) {
+        if (!__first_executed_1534494168915__) {
             isType = include('is.type');
 
-            __first_executed_1534473867465__ = true;
+            __first_executed_1534494168915__ = true;
         }
 
 
@@ -1118,7 +1118,7 @@ exports['src::is.object.simple'] = (() => {
 
 
 
-    let __first_executed_1534473867458__ = false;
+    let __first_executed_1534494168907__ = false;
 
 
     function main(data) {
@@ -1157,7 +1157,7 @@ exports['src::script.format'] = (() => {
 
 
 
-    let __first_executed_1534473867742__ = false;
+    let __first_executed_1534494169176__ = false;
 
 
     function main(data) {
@@ -1211,7 +1211,7 @@ exports['src::is.file'] = (() => {
 
 
 
-    let __first_executed_1534473867742__ = false;
+    let __first_executed_1534494169177__ = false;
 
 
     function main(path) {
@@ -1255,7 +1255,7 @@ exports['src::file.read.text'] = (() => {
 
 
 
-    let __first_executed_1534473867742__ = false;
+    let __first_executed_1534494169177__ = false;
 
 
     function main(path) {
@@ -1273,10 +1273,10 @@ exports['src::file.read.text'] = (() => {
     }
     return function(path) {
 
-        if (!__first_executed_1534473867742__) {
+        if (!__first_executed_1534494169177__) {
             isFile = include('is.file');
 
-            __first_executed_1534473867742__ = true;
+            __first_executed_1534494169177__ = true;
         }
 
 
@@ -1307,7 +1307,7 @@ exports['src::template.apply'] = (() => {
 
 
 
-    let __first_executed_1534473867742__ = false;
+    let __first_executed_1534494169177__ = false;
 
 
 
@@ -1355,10 +1355,10 @@ exports['src::template.apply'] = (() => {
     }
     return function(name, data = {}) {
 
-        if (!__first_executed_1534473867742__) {
+        if (!__first_executed_1534494169177__) {
             read = include('file.read.text');
 
-            __first_executed_1534473867742__ = true;
+            __first_executed_1534494169177__ = true;
         }
 
 
@@ -1389,7 +1389,7 @@ exports['src::database.collection.stringify'] = (() => {
 
 
 
-    let __first_executed_1534473867742__ = false;
+    let __first_executed_1534494169177__ = false;
 
 
 
@@ -1532,14 +1532,14 @@ exports['src::database.collection.stringify'] = (() => {
     }
     return function(data, name = 'default') {
 
-        if (!__first_executed_1534473867742__) {
+        if (!__first_executed_1534494169177__) {
             isArray = include('is.array');
             isObject = include('is.object.simple');
             format = include('script.format');
             templateDatabaseBackup = include('template::database.backup');
             apply = include('template.apply');
 
-            __first_executed_1534473867742__ = true;
+            __first_executed_1534494169177__ = true;
         }
 
 
@@ -1570,7 +1570,7 @@ exports['src::database.mongodb.stringify.ObjectID'] = (() => {
 
 
 
-    let __first_executed_1534473867742__ = false;
+    let __first_executed_1534494169177__ = false;
 
 
     function main(id) {
@@ -1609,7 +1609,7 @@ exports['src::database.stringify.Date'] = (() => {
 
 
 
-    let __first_executed_1534473867742__ = false;
+    let __first_executed_1534494169177__ = false;
 
 
     function main(date) {
@@ -1648,7 +1648,7 @@ exports['src::is.Date'] = (() => {
 
 
 
-    let __first_executed_1534473867743__ = false;
+    let __first_executed_1534494169177__ = false;
 
 
     function main(data) {
@@ -1688,7 +1688,7 @@ exports['src::database.datatype'] = (() => {
 
 
 
-    let __first_executed_1534473867743__ = false;
+    let __first_executed_1534494169177__ = false;
 
 
     function main(data) {
@@ -1702,10 +1702,10 @@ exports['src::database.datatype'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534473867743__) {
+        if (!__first_executed_1534494169177__) {
             isDate = include('is.Date');
 
-            __first_executed_1534473867743__ = true;
+            __first_executed_1534494169177__ = true;
         }
 
 
@@ -1736,7 +1736,7 @@ exports['src::database.mongodb.datatype'] = (() => {
 
 
 
-    let __first_executed_1534473867743__ = false;
+    let __first_executed_1534494169178__ = false;
 
 
     function main(data) {
@@ -1756,10 +1756,10 @@ exports['src::database.mongodb.datatype'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534473867743__) {
+        if (!__first_executed_1534494169178__) {
             getDataType = include('database.datatype');
 
-            __first_executed_1534473867743__ = true;
+            __first_executed_1534494169178__ = true;
         }
 
 
@@ -1796,7 +1796,7 @@ exports['src::date.format'] = (() => {
 
 
 
-    let __first_executed_1534473867743__ = false;
+    let __first_executed_1534494169178__ = false;
 
 
 
@@ -1837,7 +1837,7 @@ exports['src::job.start'] = (() => {
 
 
 
-    let __first_executed_1534473867743__ = false;
+    let __first_executed_1534494169178__ = false;
 
 
 
