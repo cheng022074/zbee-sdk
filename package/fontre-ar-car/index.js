@@ -198,10 +198,10 @@ exports['src::browser.event.init'] = (() => {
 
 
 
-    let __once_1534494168906_value__,
-        __once_1534494168906_locked__ = false;
+    let __once_1534494806870_value__,
+        __once_1534494806870_locked__ = false;
 
-    let __first_executed_1534494168906__ = false;
+    let __first_executed_1534494806870__ = false;
 
 
 
@@ -227,15 +227,15 @@ exports['src::browser.event.init'] = (() => {
     return function(target = window) {
 
 
-        if (__once_1534494168906_locked__) {
+        if (__once_1534494806870_locked__) {
 
-            return __once_1534494168906_value__;
+            return __once_1534494806870_value__;
 
         }
 
-        __once_1534494168906_locked__ = true;
+        __once_1534494806870_locked__ = true;
 
-        return __once_1534494168906_value__ = main.call((function() {
+        return __once_1534494806870_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -262,7 +262,7 @@ exports['src::is.type'] = (() => {
 
 
 
-    let __first_executed_1534494168907__ = false;
+    let __first_executed_1534494806870__ = false;
 
 
     function main(data, type) {
@@ -301,7 +301,7 @@ exports['src::is.function'] = (() => {
 
 
 
-    let __first_executed_1534494168907__ = false;
+    let __first_executed_1534494806871__ = false;
 
 
     function main(data) {
@@ -312,10 +312,10 @@ exports['src::is.function'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534494168907__) {
+        if (!__first_executed_1534494806871__) {
             isType = include('is.type');
 
-            __first_executed_1534494168907__ = true;
+            __first_executed_1534494806871__ = true;
         }
 
 
@@ -346,7 +346,7 @@ exports['src::is.object.simple'] = (() => {
 
 
 
-    let __first_executed_1534494168907__ = false;
+    let __first_executed_1534494806871__ = false;
 
 
     function main(data) {
@@ -391,10 +391,10 @@ exports['src::vue.plugin.gestures'] = (() => {
     let plugins;
 
 
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806871_value__,
+        __once_1534494806871_locked__ = false;
 
-    let __first_executed_1534494168908__ = false;
+    let __first_executed_1534494806871__ = false;
 
 
 
@@ -534,24 +534,24 @@ exports['src::vue.plugin.gestures'] = (() => {
     };
     return function() {
 
-        if (!__first_executed_1534494168908__) {
+        if (!__first_executed_1534494806871__) {
             isFunction = include('is.function');
             isObject = include('is.object.simple');
             configVue = include('config::vue');
             plugins = config('vue', 'gestures');
-            __first_executed_1534494168908__ = true;
+            __first_executed_1534494806871__ = true;
         }
 
 
-        if (__once_1534494168908_locked__) {
+        if (__once_1534494806871_locked__) {
 
-            return __once_1534494168908_value__;
+            return __once_1534494806871_value__;
 
         }
 
-        __once_1534494168908_locked__ = true;
+        __once_1534494806871_locked__ = true;
 
-        return __once_1534494168908_value__ = main.call((function() {
+        return __once_1534494806871_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -578,10 +578,10 @@ exports['src::browser.event.gesture.tap.properties.handleEvents'] = (() => {
 
 
 
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806871_value__,
+        __once_1534494806871_locked__ = false;
 
-    let __first_executed_1534494168908__ = false;
+    let __first_executed_1534494806871__ = false;
 
 
     function main() {
@@ -597,15 +597,15 @@ exports['src::browser.event.gesture.tap.properties.handleEvents'] = (() => {
     return function() {
 
 
-        if (__once_1534494168908_locked__) {
+        if (__once_1534494806871_locked__) {
 
-            return __once_1534494168908_value__;
+            return __once_1534494806871_value__;
 
         }
 
-        __once_1534494168908_locked__ = true;
+        __once_1534494806871_locked__ = true;
 
-        return __once_1534494168908_value__ = main.call((function() {
+        return __once_1534494806871_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -632,10 +632,10 @@ exports['src::os.name'] = (() => {
 
 
 
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806871_value__,
+        __once_1534494806871_locked__ = false;
 
-    let __first_executed_1534494168908__ = false;
+    let __first_executed_1534494806871__ = false;
 
 
     function main() {
@@ -675,15 +675,15 @@ exports['src::os.name'] = (() => {
     return function() {
 
 
-        if (__once_1534494168908_locked__) {
+        if (__once_1534494806871_locked__) {
 
-            return __once_1534494168908_value__;
+            return __once_1534494806871_value__;
 
         }
 
-        __once_1534494168908_locked__ = true;
+        __once_1534494806871_locked__ = true;
 
-        return __once_1534494168908_value__ = main.call((function() {
+        return __once_1534494806871_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -710,10 +710,10 @@ exports['src::browser.embed.name'] = (() => {
 
 
 
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806871_value__,
+        __once_1534494806871_locked__ = false;
 
-    let __first_executed_1534494168908__ = false;
+    let __first_executed_1534494806871__ = false;
 
 
     function main() {
@@ -731,15 +731,15 @@ exports['src::browser.embed.name'] = (() => {
     return function() {
 
 
-        if (__once_1534494168908_locked__) {
+        if (__once_1534494806871_locked__) {
 
-            return __once_1534494168908_value__;
+            return __once_1534494806871_value__;
 
         }
 
-        __once_1534494168908_locked__ = true;
+        __once_1534494806871_locked__ = true;
 
-        return __once_1534494168908_value__ = main.call((function() {
+        return __once_1534494806871_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -766,10 +766,10 @@ exports['src::browser.support.touch'] = (() => {
 
 
 
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806871_value__,
+        __once_1534494806871_locked__ = false;
 
-    let __first_executed_1534494168908__ = false;
+    let __first_executed_1534494806871__ = false;
 
 
     function main() {
@@ -789,23 +789,23 @@ exports['src::browser.support.touch'] = (() => {
     }
     return function() {
 
-        if (!__first_executed_1534494168908__) {
+        if (!__first_executed_1534494806871__) {
             osName = include('os.name');
             getName = include('browser.embed.name');
 
-            __first_executed_1534494168908__ = true;
+            __first_executed_1534494806871__ = true;
         }
 
 
-        if (__once_1534494168908_locked__) {
+        if (__once_1534494806871_locked__) {
 
-            return __once_1534494168908_value__;
+            return __once_1534494806871_value__;
 
         }
 
-        __once_1534494168908_locked__ = true;
+        __once_1534494806871_locked__ = true;
 
-        return __once_1534494168908_value__ = main.call((function() {
+        return __once_1534494806871_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -832,7 +832,7 @@ exports['src::browser.event.pointer'] = (() => {
 
 
 
-    let __first_executed_1534494168908__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(e, valid) {
@@ -862,10 +862,10 @@ exports['src::browser.event.pointer'] = (() => {
     }
     return function(e, valid = false) {
 
-        if (!__first_executed_1534494168908__) {
+        if (!__first_executed_1534494806872__) {
             isTouch = include('browser.support.touch');
 
-            __first_executed_1534494168908__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -896,7 +896,7 @@ exports['src::array.removeByIndex'] = (() => {
 
 
 
-    let __first_executed_1534494168908__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(data, index) {
@@ -942,10 +942,10 @@ exports['src::map.event.listener'] = (() => {
 
 
 
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806872_value__,
+        __once_1534494806872_locked__ = false;
 
-    let __first_executed_1534494168908__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main() {
@@ -1037,22 +1037,22 @@ exports['src::map.event.listener'] = (() => {
     }
     return function() {
 
-        if (!__first_executed_1534494168908__) {
+        if (!__first_executed_1534494806872__) {
             remove = include('array.removeByIndex');
 
-            __first_executed_1534494168908__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
-        if (__once_1534494168908_locked__) {
+        if (__once_1534494806872_locked__) {
 
-            return __once_1534494168908_value__;
+            return __once_1534494806872_value__;
 
         }
 
-        __once_1534494168908_locked__ = true;
+        __once_1534494806872_locked__ = true;
 
-        return __once_1534494168908_value__ = main.call((function() {
+        return __once_1534494806872_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -1079,7 +1079,7 @@ exports['src::browser.html.event.listener.add'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(target, event, fn, scope) {
@@ -1090,10 +1090,10 @@ exports['src::browser.html.event.listener.add'] = (() => {
     }
     return function(target, event, fn, scope) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             getMap = include('map.event.listener');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -1124,7 +1124,7 @@ exports['src::browser.html.element.addWindowEventListener'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(el, event, fn) {
@@ -1135,10 +1135,10 @@ exports['src::browser.html.element.addWindowEventListener'] = (() => {
     }
     return function(el, event, fn) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             addEventListener = include('browser.html.event.listener.add');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -1169,7 +1169,7 @@ exports['src::math.point.distance'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(point1, point2) {
@@ -1213,7 +1213,7 @@ exports['src::browser.html.event.listener.remove'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(target, event, fn, scope) {
@@ -1228,10 +1228,10 @@ exports['src::browser.html.event.listener.remove'] = (() => {
     }
     return function(target, event, fn, scope) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             getMap = include('map.event.listener');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -1262,7 +1262,7 @@ exports['src::browser.html.element.removeWindowEventListener'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(el, event, fn) {
@@ -1273,10 +1273,10 @@ exports['src::browser.html.element.removeWindowEventListener'] = (() => {
     }
     return function(el, event, fn) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             removeEventListener = include('browser.html.event.listener.remove');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -1307,7 +1307,7 @@ exports['src::browser.event.dispatch'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(target, name, detail) {
@@ -1349,10 +1349,10 @@ exports['src::object.data.name.signature'] = (() => {
 
 
 
-    let __once_1534494168909_value__,
-        __once_1534494168909_locked__ = false;
+    let __once_1534494806872_value__,
+        __once_1534494806872_locked__ = false;
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main() {
@@ -1364,15 +1364,15 @@ exports['src::object.data.name.signature'] = (() => {
     return function() {
 
 
-        if (__once_1534494168909_locked__) {
+        if (__once_1534494806872_locked__) {
 
-            return __once_1534494168909_value__;
+            return __once_1534494806872_value__;
 
         }
 
-        __once_1534494168909_locked__ = true;
+        __once_1534494806872_locked__ = true;
 
-        return __once_1534494168909_value__ = main.call((function() {
+        return __once_1534494806872_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -1399,7 +1399,7 @@ exports['src::object.data.name'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(name) {
@@ -1410,10 +1410,10 @@ exports['src::object.data.name'] = (() => {
     }
     return function(name) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             signature = include('object.data.name.signature');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -1444,7 +1444,7 @@ exports['src::object.data.get'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(target, name) {
@@ -1455,10 +1455,10 @@ exports['src::object.data.get'] = (() => {
     }
     return function(target, name) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             getName = include('object.data.name');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -1489,7 +1489,7 @@ exports['src::object.data.set'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(target, name, value) {
@@ -1500,10 +1500,10 @@ exports['src::object.data.set'] = (() => {
     }
     return function(target, name, value) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             getName = include('object.data.name');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -1534,7 +1534,7 @@ exports['src::browser.event.gesture.tap.methods.onEnd'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(e) {
@@ -1577,14 +1577,14 @@ exports['src::browser.event.gesture.tap.methods.onEnd'] = (() => {
     }
     return function(e) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             disabled = include('browser.event.gesture.tap.methods.disabled');
             dispatch = include('browser.event.dispatch');
             getEvent = include('browser.event.pointer');
             get = include('object.data.get');
             set = include('object.data.set');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -1615,10 +1615,10 @@ exports['src::browser.event.pointer.move'] = (() => {
 
 
 
-    let __once_1534494168909_value__,
-        __once_1534494168909_locked__ = false;
+    let __once_1534494806872_value__,
+        __once_1534494806872_locked__ = false;
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main() {
@@ -1629,22 +1629,22 @@ exports['src::browser.event.pointer.move'] = (() => {
     }
     return function() {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             isTouch = include('browser.support.touch');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
-        if (__once_1534494168909_locked__) {
+        if (__once_1534494806872_locked__) {
 
-            return __once_1534494168909_value__;
+            return __once_1534494806872_value__;
 
         }
 
-        __once_1534494168909_locked__ = true;
+        __once_1534494806872_locked__ = true;
 
-        return __once_1534494168909_value__ = main.call((function() {
+        return __once_1534494806872_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -1671,10 +1671,10 @@ exports['src::browser.event.pointer.up'] = (() => {
 
 
 
-    let __once_1534494168909_value__,
-        __once_1534494168909_locked__ = false;
+    let __once_1534494806872_value__,
+        __once_1534494806872_locked__ = false;
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main() {
@@ -1685,22 +1685,22 @@ exports['src::browser.event.pointer.up'] = (() => {
     }
     return function() {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             isTouch = include('browser.support.touch');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
-        if (__once_1534494168909_locked__) {
+        if (__once_1534494806872_locked__) {
 
-            return __once_1534494168909_value__;
+            return __once_1534494806872_value__;
 
         }
 
-        __once_1534494168909_locked__ = true;
+        __once_1534494806872_locked__ = true;
 
-        return __once_1534494168909_value__ = main.call((function() {
+        return __once_1534494806872_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -1727,7 +1727,7 @@ exports['src::object.data.remove'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806872__ = false;
 
 
     function main(target, name) {
@@ -1738,10 +1738,10 @@ exports['src::object.data.remove'] = (() => {
     }
     return function(target, name) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806872__) {
             getName = include('object.data.name');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806872__ = true;
         }
 
 
@@ -1772,7 +1772,7 @@ exports['src::browser.event.gesture.tap.methods.disabled'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806873__ = false;
 
 
     function main(el) {
@@ -1793,7 +1793,7 @@ exports['src::browser.event.gesture.tap.methods.disabled'] = (() => {
     }
     return function(el) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806873__) {
             removeEventListener = include('browser.html.element.removeWindowEventListener');
             onMove = include('browser.event.gesture.tap.methods.onMove');
             onEnd = include('browser.event.gesture.tap.methods.onEnd');
@@ -1803,7 +1803,7 @@ exports['src::browser.event.gesture.tap.methods.disabled'] = (() => {
             remove = include('object.data.remove');
             tap = include('browser.event.gesture.tap');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806873__ = true;
         }
 
 
@@ -1834,7 +1834,7 @@ exports['src::browser.scale'] = (() => {
 
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806873__ = false;
 
 
     function main() {
@@ -1853,10 +1853,10 @@ exports['src::browser.scale'] = (() => {
     }
     return function() {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806873__) {
             osName = include('os.name');
 
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806873__ = true;
         }
 
 
@@ -1892,7 +1892,7 @@ exports['src::browser.event.gesture.tap.methods.onMove'] = (() => {
     let moveDistance;
 
 
-    let __first_executed_1534494168909__ = false;
+    let __first_executed_1534494806873__ = false;
 
 
     function main(e) {
@@ -1919,7 +1919,7 @@ exports['src::browser.event.gesture.tap.methods.onMove'] = (() => {
     }
     return function(e) {
 
-        if (!__first_executed_1534494168909__) {
+        if (!__first_executed_1534494806873__) {
             getEvent = include('browser.event.pointer');
             getDistance = include('math.point.distance');
             disabled = include('browser.event.gesture.tap.methods.disabled');
@@ -1928,7 +1928,7 @@ exports['src::browser.event.gesture.tap.methods.onMove'] = (() => {
             dispatch = include('browser.event.dispatch');
             configGestureTap = include('config::gesture.tap');
             moveDistance = config('gesture.tap', 'moveDistance');
-            __first_executed_1534494168909__ = true;
+            __first_executed_1534494806873__ = true;
         }
 
 
@@ -1959,7 +1959,7 @@ exports['src::browser.event.gesture.tap.methods.enabled'] = (() => {
 
 
 
-    let __first_executed_1534494168910__ = false;
+    let __first_executed_1534494806873__ = false;
 
 
     function main(el) {
@@ -1972,14 +1972,14 @@ exports['src::browser.event.gesture.tap.methods.enabled'] = (() => {
     }
     return function(el) {
 
-        if (!__first_executed_1534494168910__) {
+        if (!__first_executed_1534494806873__) {
             addEventListener = include('browser.html.element.addWindowEventListener');
             onMove = include('browser.event.gesture.tap.methods.onMove');
             onEnd = include('browser.event.gesture.tap.methods.onEnd');
             getMoveEventName = include('browser.event.pointer.move');
             getUpEventName = include('browser.event.pointer.up');
 
-            __first_executed_1534494168910__ = true;
+            __first_executed_1534494806873__ = true;
         }
 
 
@@ -2010,7 +2010,7 @@ exports['src::object.data.has'] = (() => {
 
 
 
-    let __first_executed_1534494168910__ = false;
+    let __first_executed_1534494806873__ = false;
 
 
     function main(target, name) {
@@ -2021,10 +2021,10 @@ exports['src::object.data.has'] = (() => {
     }
     return function(target, name) {
 
-        if (!__first_executed_1534494168910__) {
+        if (!__first_executed_1534494806873__) {
             getName = include('object.data.name');
 
-            __first_executed_1534494168910__ = true;
+            __first_executed_1534494806873__ = true;
         }
 
 
@@ -2055,7 +2055,7 @@ exports['src::browser.event.gesture.tap.methods.onStart'] = (() => {
     let timeout;
 
 
-    let __first_executed_1534494168910__ = false;
+    let __first_executed_1534494806873__ = false;
 
 
     function main(e) {
@@ -2108,7 +2108,7 @@ exports['src::browser.event.gesture.tap.methods.onStart'] = (() => {
     }
     return function(e) {
 
-        if (!__first_executed_1534494168910__) {
+        if (!__first_executed_1534494806873__) {
             getEvent = include('browser.event.pointer');
             enabled = include('browser.event.gesture.tap.methods.enabled');
             set = include('object.data.set');
@@ -2117,7 +2117,7 @@ exports['src::browser.event.gesture.tap.methods.onStart'] = (() => {
             tap = include('browser.event.gesture.tap');
             configGestureTap = include('config::gesture.tap');
             timeout = config('gesture.tap', 'timeout');
-            __first_executed_1534494168910__ = true;
+            __first_executed_1534494806873__ = true;
         }
 
 
@@ -2148,10 +2148,10 @@ exports['src::browser.event.pointer.down'] = (() => {
 
 
 
-    let __once_1534494168910_value__,
-        __once_1534494168910_locked__ = false;
+    let __once_1534494806873_value__,
+        __once_1534494806873_locked__ = false;
 
-    let __first_executed_1534494168910__ = false;
+    let __first_executed_1534494806873__ = false;
 
 
     function main() {
@@ -2162,22 +2162,22 @@ exports['src::browser.event.pointer.down'] = (() => {
     }
     return function() {
 
-        if (!__first_executed_1534494168910__) {
+        if (!__first_executed_1534494806873__) {
             isTouch = include('browser.support.touch');
 
-            __first_executed_1534494168910__ = true;
+            __first_executed_1534494806873__ = true;
         }
 
 
-        if (__once_1534494168910_locked__) {
+        if (__once_1534494806873_locked__) {
 
-            return __once_1534494168910_value__;
+            return __once_1534494806873_value__;
 
         }
 
-        __once_1534494168910_locked__ = true;
+        __once_1534494806873_locked__ = true;
 
-        return __once_1534494168910_value__ = main.call((function() {
+        return __once_1534494806873_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -2204,7 +2204,7 @@ exports['src::browser.event.gesture.tap.methods.install'] = (() => {
 
 
 
-    let __first_executed_1534494168910__ = false;
+    let __first_executed_1534494806873__ = false;
 
 
     function main(el, config) {
@@ -2227,12 +2227,12 @@ exports['src::browser.event.gesture.tap.methods.install'] = (() => {
     }
     return function(el, config) {
 
-        if (!__first_executed_1534494168910__) {
+        if (!__first_executed_1534494806873__) {
             onStart = include('browser.event.gesture.tap.methods.onStart');
             getEventName = include('browser.event.pointer.down');
             set = include('object.data.set');
 
-            __first_executed_1534494168910__ = true;
+            __first_executed_1534494806873__ = true;
         }
 
 
@@ -2263,7 +2263,7 @@ exports['src::browser.event.gesture.tap.methods.uninstall'] = (() => {
 
 
 
-    let __first_executed_1534494168910__ = false;
+    let __first_executed_1534494806873__ = false;
 
 
     function main(el) {
@@ -2274,11 +2274,11 @@ exports['src::browser.event.gesture.tap.methods.uninstall'] = (() => {
     }
     return function(el) {
 
-        if (!__first_executed_1534494168910__) {
+        if (!__first_executed_1534494806873__) {
             onStart = include('browser.event.gesture.tap.methods.onStart');
             getEventName = include('browser.event.pointer.down');
 
-            __first_executed_1534494168910__ = true;
+            __first_executed_1534494806873__ = true;
         }
 
 
@@ -2329,10 +2329,10 @@ exports['src::browser.event.gesture.swipe.properties.handleEvents'] = (() => {
 
 
 
-    let __once_1534494168913_value__,
-        __once_1534494168913_locked__ = false;
+    let __once_1534494806876_value__,
+        __once_1534494806876_locked__ = false;
 
-    let __first_executed_1534494168913__ = false;
+    let __first_executed_1534494806876__ = false;
 
 
     function main() {
@@ -2348,15 +2348,15 @@ exports['src::browser.event.gesture.swipe.properties.handleEvents'] = (() => {
     return function() {
 
 
-        if (__once_1534494168913_locked__) {
+        if (__once_1534494806876_locked__) {
 
-            return __once_1534494168913_value__;
+            return __once_1534494806876_value__;
 
         }
 
-        __once_1534494168913_locked__ = true;
+        __once_1534494806876_locked__ = true;
 
-        return __once_1534494168913_value__ = main.call((function() {
+        return __once_1534494806876_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -2390,7 +2390,7 @@ exports['src::browser.event.gesture.swipe.methods.onEnd'] = (() => {
     let maxDuration, moveDistance, minDistance, maxOffset;
 
 
-    let __first_executed_1534494168913__ = false;
+    let __first_executed_1534494806876__ = false;
 
 
     function main(e) {
@@ -2454,7 +2454,7 @@ exports['src::browser.event.gesture.swipe.methods.onEnd'] = (() => {
     }
     return function(e) {
 
-        if (!__first_executed_1534494168913__) {
+        if (!__first_executed_1534494806876__) {
             cancel = include('browser.event.gesture.swipe.methods.cancel');
             disabled = include('browser.event.gesture.swipe.methods.disabled');
             dispatch = include('browser.event.dispatch');
@@ -2469,7 +2469,7 @@ exports['src::browser.event.gesture.swipe.methods.onEnd'] = (() => {
             moveDistance = config('gesture.swipe', 'moveDistance');
             minDistance = config('gesture.swipe', 'minDistance');
             maxOffset = config('gesture.swipe', 'maxOffset');
-            __first_executed_1534494168913__ = true;
+            __first_executed_1534494806876__ = true;
         }
 
 
@@ -2500,7 +2500,7 @@ exports['src::browser.event.gesture.swipe.methods.disabled'] = (() => {
 
 
 
-    let __first_executed_1534494168913__ = false;
+    let __first_executed_1534494806876__ = false;
 
 
     function main(el) {
@@ -2523,7 +2523,7 @@ exports['src::browser.event.gesture.swipe.methods.disabled'] = (() => {
     }
     return function(el) {
 
-        if (!__first_executed_1534494168913__) {
+        if (!__first_executed_1534494806876__) {
             removeEventListener = include('browser.html.element.removeWindowEventListener');
             onMove = include('browser.event.gesture.swipe.methods.onMove');
             onEnd = include('browser.event.gesture.swipe.methods.onEnd');
@@ -2532,7 +2532,7 @@ exports['src::browser.event.gesture.swipe.methods.disabled'] = (() => {
             get = include('object.data.get');
             remove = include('object.data.remove');
 
-            __first_executed_1534494168913__ = true;
+            __first_executed_1534494806876__ = true;
         }
 
 
@@ -2563,7 +2563,7 @@ exports['src::browser.event.gesture.swipe.methods.cancel'] = (() => {
 
 
 
-    let __first_executed_1534494168913__ = false;
+    let __first_executed_1534494806876__ = false;
 
 
     function main(el, event, e) {
@@ -2579,11 +2579,11 @@ exports['src::browser.event.gesture.swipe.methods.cancel'] = (() => {
     }
     return function(el, event, e) {
 
-        if (!__first_executed_1534494168913__) {
+        if (!__first_executed_1534494806876__) {
             disabled = include('browser.event.gesture.swipe.methods.disabled');
             dispatch = include('browser.event.dispatch');
 
-            __first_executed_1534494168913__ = true;
+            __first_executed_1534494806876__ = true;
         }
 
 
@@ -2614,7 +2614,7 @@ exports['src::browser.event.gesture.swipe.methods.onMove'] = (() => {
     let maxDuration, moveDistance, minDistance, maxOffset;
 
 
-    let __first_executed_1534494168913__ = false;
+    let __first_executed_1534494806876__ = false;
 
 
     function main(e) {
@@ -2689,7 +2689,7 @@ exports['src::browser.event.gesture.swipe.methods.onMove'] = (() => {
     }
     return function(e) {
 
-        if (!__first_executed_1534494168913__) {
+        if (!__first_executed_1534494806876__) {
             getEvent = include('browser.event.pointer');
             cancel = include('browser.event.gesture.swipe.methods.cancel');
             get = include('object.data.get');
@@ -2707,7 +2707,7 @@ exports['src::browser.event.gesture.swipe.methods.onMove'] = (() => {
             moveDistance = config('gesture.swipe', 'moveDistance');
             minDistance = config('gesture.swipe', 'minDistance');
             maxOffset = config('gesture.swipe', 'maxOffset');
-            __first_executed_1534494168913__ = true;
+            __first_executed_1534494806876__ = true;
         }
 
 
@@ -2738,7 +2738,7 @@ exports['src::browser.event.gesture.swipe.methods.enabled'] = (() => {
 
 
 
-    let __first_executed_1534494168913__ = false;
+    let __first_executed_1534494806876__ = false;
 
 
     function main(el) {
@@ -2751,14 +2751,14 @@ exports['src::browser.event.gesture.swipe.methods.enabled'] = (() => {
     }
     return function(el) {
 
-        if (!__first_executed_1534494168913__) {
+        if (!__first_executed_1534494806876__) {
             addEventListener = include('browser.html.element.addWindowEventListener');
             onMove = include('browser.event.gesture.swipe.methods.onMove');
             onEnd = include('browser.event.gesture.swipe.methods.onEnd');
             getMoveEventName = include('browser.event.pointer.move');
             getUpEventName = include('browser.event.pointer.up');
 
-            __first_executed_1534494168913__ = true;
+            __first_executed_1534494806876__ = true;
         }
 
 
@@ -2789,7 +2789,7 @@ exports['src::browser.event.gesture.swipe.methods.onStart'] = (() => {
 
 
 
-    let __first_executed_1534494168913__ = false;
+    let __first_executed_1534494806876__ = false;
 
 
     function main(e) {
@@ -2821,12 +2821,12 @@ exports['src::browser.event.gesture.swipe.methods.onStart'] = (() => {
     }
     return function(e) {
 
-        if (!__first_executed_1534494168913__) {
+        if (!__first_executed_1534494806876__) {
             getEvent = include('browser.event.pointer');
             enabled = include('browser.event.gesture.swipe.methods.enabled');
             set = include('object.data.set');
 
-            __first_executed_1534494168913__ = true;
+            __first_executed_1534494806876__ = true;
         }
 
 
@@ -2857,7 +2857,7 @@ exports['src::browser.event.gesture.swipe.methods.install'] = (() => {
 
 
 
-    let __first_executed_1534494168914__ = false;
+    let __first_executed_1534494806877__ = false;
 
 
     function main(el) {
@@ -2868,11 +2868,11 @@ exports['src::browser.event.gesture.swipe.methods.install'] = (() => {
     }
     return function(el) {
 
-        if (!__first_executed_1534494168914__) {
+        if (!__first_executed_1534494806877__) {
             onStart = include('browser.event.gesture.swipe.methods.onStart');
             getEventName = include('browser.event.pointer.down');
 
-            __first_executed_1534494168914__ = true;
+            __first_executed_1534494806877__ = true;
         }
 
 
@@ -2903,7 +2903,7 @@ exports['src::browser.event.gesture.swipe.methods.uninstall'] = (() => {
 
 
 
-    let __first_executed_1534494168914__ = false;
+    let __first_executed_1534494806877__ = false;
 
 
     function main(el) {
@@ -2962,7 +2962,7 @@ exports['src::browser.html.element.style.set'] = (() => {
 
 
 
-    let __first_executed_1534494168914__ = false;
+    let __first_executed_1534494806877__ = false;
 
 
     function main(el, prop, value) {
@@ -3001,7 +3001,7 @@ exports['src::browser.html.element.style.get'] = (() => {
 
 
 
-    let __first_executed_1534494169372__ = false;
+    let __first_executed_1534494807352__ = false;
 
 
     function main(el, prop) {

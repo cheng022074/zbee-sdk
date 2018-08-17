@@ -71,25 +71,37 @@ function main(uri , method , params){
         let {
             query,
             path,
-            body
+            body,
+            timeout:userTimeout
         } = params;
-
-        const requestTimeout = timeout;
 
         return assign({
             uri:append(join(rootPath , apply(uri , path)) , {
                 _dc:Date.now()
             }),
             timeout,
-            requestTimeout,
+            requestTimeout:timeout || 0,
             method,
             headers,
             qs:query,
             transform:transform(responseType)
-        } , process_body(body , requestType));
+        } , process_body(body , requestType) , process_timeout(userTimeout));
     }
 
     throw new Error('试图请求未注册的路径') ;
+}
+
+function process_timeout(timeout){
+
+    if(timeout){
+
+        return {
+            timeout,
+            requestTimeout:timeout
+        } ;
+    }
+
+    return {} ;
 }
 
 function process_body(body , type){

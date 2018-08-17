@@ -236,10 +236,10 @@ exports['src::environment.name'] = (() => {
 
 
 
-    let __once_1534494169109_value__,
-        __once_1534494169109_locked__ = false;
+    let __once_1534494807075_value__,
+        __once_1534494807075_locked__ = false;
 
-    let __first_executed_1534494169109__ = false;
+    let __first_executed_1534494807075__ = false;
 
 
     function main() {
@@ -269,15 +269,15 @@ exports['src::environment.name'] = (() => {
     return function() {
 
 
-        if (__once_1534494169109_locked__) {
+        if (__once_1534494807075_locked__) {
 
-            return __once_1534494169109_value__;
+            return __once_1534494807075_value__;
 
         }
 
-        __once_1534494169109_locked__ = true;
+        __once_1534494807075_locked__ = true;
 
-        return __once_1534494169109_value__ = main.call((function() {
+        return __once_1534494807075_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -304,10 +304,10 @@ exports['src::fork.path'] = (() => {
 
 
 
-    let __once_1534494169110_value__,
-        __once_1534494169110_locked__ = false;
+    let __once_1534494807075_value__,
+        __once_1534494807075_locked__ = false;
 
-    let __first_executed_1534494169110__ = false;
+    let __first_executed_1534494807075__ = false;
 
 
     function main() {
@@ -341,22 +341,22 @@ exports['src::fork.path'] = (() => {
     }
     return function() {
 
-        if (!__first_executed_1534494169110__) {
+        if (!__first_executed_1534494807075__) {
             getName = include('environment.name');
 
-            __first_executed_1534494169110__ = true;
+            __first_executed_1534494807075__ = true;
         }
 
 
-        if (__once_1534494169110_locked__) {
+        if (__once_1534494807075_locked__) {
 
-            return __once_1534494169110_value__;
+            return __once_1534494807075_value__;
 
         }
 
-        __once_1534494169110_locked__ = true;
+        __once_1534494807075_locked__ = true;
 
-        return __once_1534494169110_value__ = main.call((function() {
+        return __once_1534494807075_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -383,7 +383,7 @@ exports['src::fork.process'] = (() => {
 
 
 
-    let __first_executed_1534494169110__ = false;
+    let __first_executed_1534494807075__ = false;
 
 
     function main(name, ...args) {
@@ -408,10 +408,10 @@ exports['src::fork.process'] = (() => {
     }
     return function(name, ...args) {
 
-        if (!__first_executed_1534494169110__) {
+        if (!__first_executed_1534494807075__) {
             getPath = include('fork.path');
 
-            __first_executed_1534494169110__ = true;
+            __first_executed_1534494807075__ = true;
         }
 
 
@@ -442,7 +442,7 @@ exports['src::fork.worker'] = (() => {
 
 
 
-    let __first_executed_1534494169112__ = false;
+    let __first_executed_1534494807075__ = false;
 
 
     function main(name) {
@@ -471,10 +471,10 @@ exports['src::fork.worker'] = (() => {
     }
     return function(name) {
 
-        if (!__first_executed_1534494169112__) {
+        if (!__first_executed_1534494807075__) {
             getPath = include('fork.path');
 
-            __first_executed_1534494169112__ = true;
+            __first_executed_1534494807075__ = true;
         }
 
 

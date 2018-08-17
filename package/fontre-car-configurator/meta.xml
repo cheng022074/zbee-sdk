@@ -7,10 +7,10 @@
     
     
     
-    let __once_1534494168906_value__,
-        __once_1534494168906_locked__ = false;
+    let __once_1534494806870_value__,
+        __once_1534494806870_locked__ = false;
     
-    let __first_executed_1534494168906__ = false ;
+    let __first_executed_1534494806870__ = false ;
     
     
     
@@ -36,15 +36,15 @@ function main(target){
     return function(target = window){
         
         
-        if(__once_1534494168906_locked__){
+        if(__once_1534494806870_locked__){
 
-            return __once_1534494168906_value__ ;
+            return __once_1534494806870_value__ ;
 
         }
         
-        __once_1534494168906_locked__ = true ;
+        __once_1534494806870_locked__ = true ;
         
-        return  __once_1534494168906_value__ = main.call((function(){
+        return  __once_1534494806870_value__ = main.call((function(){
 
             let me = this,
                 target;
@@ -73,10 +73,10 @@ function main(target){
     
     
     
-    let __once_1534494169370_value__,
-        __once_1534494169370_locked__ = false;
+    let __once_1534494807350_value__,
+        __once_1534494807350_locked__ = false;
     
-    let __first_executed_1534494169370__ = false ;
+    let __first_executed_1534494807350__ = false ;
     
     
     function main(){
@@ -91,15 +91,15 @@ return [
     return function(){
         
         
-        if(__once_1534494169370_locked__){
+        if(__once_1534494807350_locked__){
 
-            return __once_1534494169370_value__ ;
+            return __once_1534494807350_value__ ;
 
         }
 
-        __once_1534494169370_locked__ = true ;
+        __once_1534494807350_locked__ = true ;
         
-        return __once_1534494169370_value__ =  main.call((function(){
+        return __once_1534494807350_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -128,10 +128,10 @@ return [
     
     
     
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806871_value__,
+        __once_1534494806871_locked__ = false;
     
-    let __first_executed_1534494168908__ = false ;
+    let __first_executed_1534494806871__ = false ;
     
     
     function main(){
@@ -171,15 +171,15 @@ return name ;
     return function(){
         
         
-        if(__once_1534494168908_locked__){
+        if(__once_1534494806871_locked__){
 
-            return __once_1534494168908_value__ ;
+            return __once_1534494806871_value__ ;
 
         }
 
-        __once_1534494168908_locked__ = true ;
+        __once_1534494806871_locked__ = true ;
         
-        return __once_1534494168908_value__ =  main.call((function(){
+        return __once_1534494806871_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -208,10 +208,10 @@ return name ;
     
     
     
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806871_value__,
+        __once_1534494806871_locked__ = false;
     
-    let __first_executed_1534494168908__ = false ;
+    let __first_executed_1534494806871__ = false ;
     
     
     function main(){
@@ -229,15 +229,15 @@ return NAMES[(navigator.userAgent.toLowerCase().match(/ue4|unity/) || ['other'])
     return function(){
         
         
-        if(__once_1534494168908_locked__){
+        if(__once_1534494806871_locked__){
 
-            return __once_1534494168908_value__ ;
+            return __once_1534494806871_value__ ;
 
         }
 
-        __once_1534494168908_locked__ = true ;
+        __once_1534494806871_locked__ = true ;
         
-        return __once_1534494168908_value__ =  main.call((function(){
+        return __once_1534494806871_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -266,10 +266,10 @@ return NAMES[(navigator.userAgent.toLowerCase().match(/ue4|unity/) || ['other'])
     
     
     
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806871_value__,
+        __once_1534494806871_locked__ = false;
     
-    let __first_executed_1534494168908__ = false ;
+    let __first_executed_1534494806871__ = false ;
     
     
     function main(){
@@ -289,23 +289,23 @@ const isTouch = window.hasOwnProperty('ontouchstart');
     }
     return function(){
         
-        if(!__first_executed_1534494168908__){
+        if(!__first_executed_1534494806871__){
             osName = include('os.name');
 getName = include('browser.embed.name');
             
-            __first_executed_1534494168908__ = true ;
+            __first_executed_1534494806871__ = true ;
         }
         
         
-        if(__once_1534494168908_locked__){
+        if(__once_1534494806871_locked__){
 
-            return __once_1534494168908_value__ ;
+            return __once_1534494806871_value__ ;
 
         }
 
-        __once_1534494168908_locked__ = true ;
+        __once_1534494806871_locked__ = true ;
         
-        return __once_1534494168908_value__ =  main.call((function(){
+        return __once_1534494806871_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -334,7 +334,7 @@ getName = include('browser.embed.name');
     
     
     
-    let __first_executed_1534494168908__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(e,valid){
@@ -364,10 +364,10 @@ return e ;
     }
     return function(e,valid = false){
         
-        if(!__first_executed_1534494168908__){
+        if(!__first_executed_1534494806872__){
             isTouch = include('browser.support.touch');
             
-            __first_executed_1534494168908__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -400,7 +400,7 @@ return e ;
     
     
     
-    let __first_executed_1534494168908__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(data,index){
@@ -448,10 +448,10 @@ return false ;
     
     
     
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806872_value__,
+        __once_1534494806872_locked__ = false;
     
-    let __first_executed_1534494168908__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(){
@@ -543,22 +543,22 @@ return new Map() ;
     }
     return function(){
         
-        if(!__first_executed_1534494168908__){
+        if(!__first_executed_1534494806872__){
             remove = include('array.removeByIndex');
             
-            __first_executed_1534494168908__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
-        if(__once_1534494168908_locked__){
+        if(__once_1534494806872_locked__){
 
-            return __once_1534494168908_value__ ;
+            return __once_1534494806872_value__ ;
 
         }
 
-        __once_1534494168908_locked__ = true ;
+        __once_1534494806872_locked__ = true ;
         
-        return __once_1534494168908_value__ =  main.call((function(){
+        return __once_1534494806872_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -587,7 +587,7 @@ return new Map() ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(target,event,fn,scope){
@@ -598,10 +598,10 @@ target.addEventListener(event , getMap().get(fn , scope)) ;
     }
     return function(target,event,fn,scope){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             getMap = include('map.event.listener');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -634,7 +634,7 @@ target.addEventListener(event , getMap().get(fn , scope)) ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(el,event,fn){
@@ -645,10 +645,10 @@ addEventListener(window , event , fn , el) ;
     }
     return function(el,event,fn){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             addEventListener = include('browser.html.event.listener.add');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -681,7 +681,7 @@ addEventListener(window , event , fn , el) ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(point1,point2){
@@ -727,7 +727,7 @@ return sqrt(pow(point1.x - point2.x , 2) + pow(point1.y - point2.y , 2) , 2);
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(target,event,fn,scope){
@@ -742,10 +742,10 @@ map.remove(fn , scope) ;
     }
     return function(target,event,fn,scope){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             getMap = include('map.event.listener');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -778,7 +778,7 @@ map.remove(fn , scope) ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(el,event,fn){
@@ -789,10 +789,10 @@ removeEventListener(window , event , fn , el) ;
     }
     return function(el,event,fn){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             removeEventListener = include('browser.html.event.listener.remove');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -825,7 +825,7 @@ removeEventListener(window , event , fn , el) ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(target,name,detail){
@@ -869,10 +869,10 @@ target.dispatchEvent(new CustomEvent(name , {
     
     
     
-    let __once_1534494168909_value__,
-        __once_1534494168909_locked__ = false;
+    let __once_1534494806872_value__,
+        __once_1534494806872_locked__ = false;
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(){
@@ -884,15 +884,15 @@ return `zbee-key-${Date.now()}` ;
     return function(){
         
         
-        if(__once_1534494168909_locked__){
+        if(__once_1534494806872_locked__){
 
-            return __once_1534494168909_value__ ;
+            return __once_1534494806872_value__ ;
 
         }
 
-        __once_1534494168909_locked__ = true ;
+        __once_1534494806872_locked__ = true ;
         
-        return __once_1534494168909_value__ =  main.call((function(){
+        return __once_1534494806872_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -921,7 +921,7 @@ return `zbee-key-${Date.now()}` ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(name){
@@ -932,10 +932,10 @@ return `${signature()}-${name}` ;
     }
     return function(name){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             signature = include('object.data.name.signature');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -968,7 +968,7 @@ return `${signature()}-${name}` ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(target,name){
@@ -979,10 +979,10 @@ return target[getName(name)] ;
     }
     return function(target,name){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             getName = include('object.data.name');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -1015,7 +1015,7 @@ return target[getName(name)] ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(target,name,value){
@@ -1026,10 +1026,10 @@ target[getName(name)] = value ;
     }
     return function(target,name,value){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             getName = include('object.data.name');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -1062,7 +1062,7 @@ target[getName(name)] = value ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806873__ = false ;
     
     
     function main(){
@@ -1081,10 +1081,10 @@ return window.devicePixelRatio ;
     }
     return function(){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806873__){
             osName = include('os.name');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806873__ = true ;
         }
         
         
@@ -1125,7 +1125,7 @@ return window.devicePixelRatio ;
     let maxDuration,tapDistance;
     
     
-    let __first_executed_1534494169370__ = false ;
+    let __first_executed_1534494807350__ = false ;
     
     
     function main(e){
@@ -1203,7 +1203,7 @@ if(time - get(el , 'doubletap:startTime') > maxDuration){
     }
     return function(e){
         
-        if(!__first_executed_1534494169370__){
+        if(!__first_executed_1534494807350__){
             disabled = include('browser.event.gesture.tap.double.methods.disabled');
 dispatch = include('browser.event.dispatch');
 getEvent = include('browser.event.pointer');
@@ -1215,7 +1215,7 @@ configGestureDoubletap = include('config::gesture.doubletap');
 configGestureDoubletap = include('config::gesture.doubletap');
             maxDuration = config('gesture.doubletap' , 'maxDuration');
 tapDistance = config('gesture.doubletap' , 'tapDistance');
-            __first_executed_1534494169370__ = true ;
+            __first_executed_1534494807350__ = true ;
         }
         
         
@@ -1248,10 +1248,10 @@ tapDistance = config('gesture.doubletap' , 'tapDistance');
     
     
     
-    let __once_1534494168909_value__,
-        __once_1534494168909_locked__ = false;
+    let __once_1534494806872_value__,
+        __once_1534494806872_locked__ = false;
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(){
@@ -1262,22 +1262,22 @@ return isTouch() ? 'touchmove' : 'pointermove' ;
     }
     return function(){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             isTouch = include('browser.support.touch');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
-        if(__once_1534494168909_locked__){
+        if(__once_1534494806872_locked__){
 
-            return __once_1534494168909_value__ ;
+            return __once_1534494806872_value__ ;
 
         }
 
-        __once_1534494168909_locked__ = true ;
+        __once_1534494806872_locked__ = true ;
         
-        return __once_1534494168909_value__ =  main.call((function(){
+        return __once_1534494806872_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -1306,10 +1306,10 @@ return isTouch() ? 'touchmove' : 'pointermove' ;
     
     
     
-    let __once_1534494168909_value__,
-        __once_1534494168909_locked__ = false;
+    let __once_1534494806872_value__,
+        __once_1534494806872_locked__ = false;
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(){
@@ -1320,22 +1320,22 @@ return isTouch() ? 'touchend' : 'pointerup' ;
     }
     return function(){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             isTouch = include('browser.support.touch');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
-        if(__once_1534494168909_locked__){
+        if(__once_1534494806872_locked__){
 
-            return __once_1534494168909_value__ ;
+            return __once_1534494806872_value__ ;
 
         }
 
-        __once_1534494168909_locked__ = true ;
+        __once_1534494806872_locked__ = true ;
         
-        return __once_1534494168909_value__ =  main.call((function(){
+        return __once_1534494806872_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -1364,7 +1364,7 @@ return isTouch() ? 'touchend' : 'pointerup' ;
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(target,name){
@@ -1375,10 +1375,10 @@ delete target[getName(name)] ;
     }
     return function(target,name){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             getName = include('object.data.name');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -1411,7 +1411,7 @@ delete target[getName(name)] ;
     
     
     
-    let __first_executed_1534494169370__ = false ;
+    let __first_executed_1534494807350__ = false ;
     
     
     function main(el){
@@ -1438,7 +1438,7 @@ remove(el , 'doubletap:singleTapTimer') ;
     }
     return function(el){
         
-        if(!__first_executed_1534494169370__){
+        if(!__first_executed_1534494807350__){
             removeEventListener = include('browser.html.element.removeWindowEventListener');
 onMove = include('browser.event.gesture.tap.double.methods.onMove');
 onEnd = include('browser.event.gesture.tap.double.methods.onEnd');
@@ -1447,7 +1447,7 @@ getUpEventName = include('browser.event.pointer.up');
 get = include('object.data.get');
 remove = include('object.data.remove');
             
-            __first_executed_1534494169370__ = true ;
+            __first_executed_1534494807350__ = true ;
         }
         
         
@@ -1480,7 +1480,7 @@ remove = include('object.data.remove');
     let moveDistance;
     
     
-    let __first_executed_1534494169370__ = false ;
+    let __first_executed_1534494807350__ = false ;
     
     
     function main(e){
@@ -1502,7 +1502,7 @@ if(Math.round(Math.abs(getDistance({
     }
     return function(e){
         
-        if(!__first_executed_1534494169370__){
+        if(!__first_executed_1534494807350__){
             getEvent = include('browser.event.pointer');
 getDistance = include('math.point.distance');
 disabled = include('browser.event.gesture.tap.double.methods.disabled');
@@ -1510,7 +1510,7 @@ scale = include('browser.scale');
 get = include('object.data.get');
 configGestureDoubletap = include('config::gesture.doubletap');
             moveDistance = config('gesture.doubletap' , 'moveDistance');
-            __first_executed_1534494169370__ = true ;
+            __first_executed_1534494807350__ = true ;
         }
         
         
@@ -1543,7 +1543,7 @@ configGestureDoubletap = include('config::gesture.doubletap');
     
     
     
-    let __first_executed_1534494169370__ = false ;
+    let __first_executed_1534494807350__ = false ;
     
     
     function main(el){
@@ -1556,14 +1556,14 @@ addEventListener(el , getUpEventName() , onEnd) ;
     }
     return function(el){
         
-        if(!__first_executed_1534494169370__){
+        if(!__first_executed_1534494807350__){
             addEventListener = include('browser.html.element.addWindowEventListener');
 onMove = include('browser.event.gesture.tap.double.methods.onMove');
 onEnd = include('browser.event.gesture.tap.double.methods.onEnd');
 getMoveEventName = include('browser.event.pointer.move');
 getUpEventName = include('browser.event.pointer.up');
             
-            __first_executed_1534494169370__ = true ;
+            __first_executed_1534494807350__ = true ;
         }
         
         
@@ -1596,7 +1596,7 @@ getUpEventName = include('browser.event.pointer.up');
     
     
     
-    let __first_executed_1534494168910__ = false ;
+    let __first_executed_1534494806873__ = false ;
     
     
     function main(target,name){
@@ -1607,10 +1607,10 @@ return target.hasOwnProperty(getName(name)) ;
     }
     return function(target,name){
         
-        if(!__first_executed_1534494168910__){
+        if(!__first_executed_1534494806873__){
             getName = include('object.data.name');
             
-            __first_executed_1534494168910__ = true ;
+            __first_executed_1534494806873__ = true ;
         }
         
         
@@ -1643,7 +1643,7 @@ return target.hasOwnProperty(getName(name)) ;
     
     
     
-    let __first_executed_1534494169370__ = false ;
+    let __first_executed_1534494807350__ = false ;
     
     
     function main(e){
@@ -1680,14 +1680,14 @@ enabled(el) ;
     }
     return function(e){
         
-        if(!__first_executed_1534494169370__){
+        if(!__first_executed_1534494807350__){
             getEvent = include('browser.event.pointer');
 enabled = include('browser.event.gesture.tap.double.methods.enabled');
 set = include('object.data.set');
 get = include('object.data.get');
 has = include('object.data.has');
             
-            __first_executed_1534494169370__ = true ;
+            __first_executed_1534494807350__ = true ;
         }
         
         
@@ -1720,10 +1720,10 @@ has = include('object.data.has');
     
     
     
-    let __once_1534494168910_value__,
-        __once_1534494168910_locked__ = false;
+    let __once_1534494806873_value__,
+        __once_1534494806873_locked__ = false;
     
-    let __first_executed_1534494168910__ = false ;
+    let __first_executed_1534494806873__ = false ;
     
     
     function main(){
@@ -1734,22 +1734,22 @@ return isTouch() ? 'touchstart' : 'pointerdown' ;
     }
     return function(){
         
-        if(!__first_executed_1534494168910__){
+        if(!__first_executed_1534494806873__){
             isTouch = include('browser.support.touch');
             
-            __first_executed_1534494168910__ = true ;
+            __first_executed_1534494806873__ = true ;
         }
         
         
-        if(__once_1534494168910_locked__){
+        if(__once_1534494806873_locked__){
 
-            return __once_1534494168910_value__ ;
+            return __once_1534494806873_value__ ;
 
         }
 
-        __once_1534494168910_locked__ = true ;
+        __once_1534494806873_locked__ = true ;
         
-        return __once_1534494168910_value__ =  main.call((function(){
+        return __once_1534494806873_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -1778,7 +1778,7 @@ return isTouch() ? 'touchstart' : 'pointerdown' ;
     
     
     
-    let __first_executed_1534494169370__ = false ;
+    let __first_executed_1534494807351__ = false ;
     
     
     function main(el){
@@ -1789,11 +1789,11 @@ el.addEventListener(getEventName() , onStart) ;
     }
     return function(el){
         
-        if(!__first_executed_1534494169370__){
+        if(!__first_executed_1534494807351__){
             onStart = include('browser.event.gesture.tap.double.methods.onStart');
 getEventName = include('browser.event.pointer.down');
             
-            __first_executed_1534494169370__ = true ;
+            __first_executed_1534494807351__ = true ;
         }
         
         
@@ -1826,7 +1826,7 @@ getEventName = include('browser.event.pointer.down');
     
     
     
-    let __first_executed_1534494169371__ = false ;
+    let __first_executed_1534494807351__ = false ;
     
     
     function main(el){
@@ -1837,11 +1837,11 @@ el.removeEventListener(getEventName() , onStart) ;
     }
     return function(el){
         
-        if(!__first_executed_1534494169371__){
+        if(!__first_executed_1534494807351__){
             onStart = include('browser.event.gesture.tap.double.methods.onStart');
 getEventName = include('browser.event.pointer.down');
             
-            __first_executed_1534494169371__ = true ;
+            __first_executed_1534494807351__ = true ;
         }
         
         
@@ -1895,10 +1895,10 @@ static install(){
     
     
     
-    let __once_1534494168908_value__,
-        __once_1534494168908_locked__ = false;
+    let __once_1534494806871_value__,
+        __once_1534494806871_locked__ = false;
     
-    let __first_executed_1534494168908__ = false ;
+    let __first_executed_1534494806871__ = false ;
     
     
     function main(){
@@ -1914,15 +1914,15 @@ return [
     return function(){
         
         
-        if(__once_1534494168908_locked__){
+        if(__once_1534494806871_locked__){
 
-            return __once_1534494168908_value__ ;
+            return __once_1534494806871_value__ ;
 
         }
 
-        __once_1534494168908_locked__ = true ;
+        __once_1534494806871_locked__ = true ;
         
-        return __once_1534494168908_value__ =  main.call((function(){
+        return __once_1534494806871_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -1951,7 +1951,7 @@ return [
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806872__ = false ;
     
     
     function main(e){
@@ -1994,14 +1994,14 @@ if(defer){
     }
     return function(e){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806872__){
             disabled = include('browser.event.gesture.tap.methods.disabled');
 dispatch = include('browser.event.dispatch');
 getEvent = include('browser.event.pointer');
 get = include('object.data.get');
 set = include('object.data.set');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806872__ = true ;
         }
         
         
@@ -2034,7 +2034,7 @@ set = include('object.data.set');
     
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806873__ = false ;
     
     
     function main(el){
@@ -2055,7 +2055,7 @@ tap.locked = false ;
     }
     return function(el){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806873__){
             removeEventListener = include('browser.html.element.removeWindowEventListener');
 onMove = include('browser.event.gesture.tap.methods.onMove');
 onEnd = include('browser.event.gesture.tap.methods.onEnd');
@@ -2065,7 +2065,7 @@ get = include('object.data.get');
 remove = include('object.data.remove');
 tap = include('browser.event.gesture.tap');
             
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806873__ = true ;
         }
         
         
@@ -2105,7 +2105,7 @@ tap = include('browser.event.gesture.tap');
     let moveDistance;
     
     
-    let __first_executed_1534494168909__ = false ;
+    let __first_executed_1534494806873__ = false ;
     
     
     function main(e){
@@ -2132,7 +2132,7 @@ if(Math.round(Math.abs(getDistance({
     }
     return function(e){
         
-        if(!__first_executed_1534494168909__){
+        if(!__first_executed_1534494806873__){
             getEvent = include('browser.event.pointer');
 getDistance = include('math.point.distance');
 disabled = include('browser.event.gesture.tap.methods.disabled');
@@ -2141,7 +2141,7 @@ get = include('object.data.get');
 dispatch = include('browser.event.dispatch');
 configGestureTap = include('config::gesture.tap');
             moveDistance = config('gesture.tap' , 'moveDistance');
-            __first_executed_1534494168909__ = true ;
+            __first_executed_1534494806873__ = true ;
         }
         
         
@@ -2174,7 +2174,7 @@ configGestureTap = include('config::gesture.tap');
     
     
     
-    let __first_executed_1534494168910__ = false ;
+    let __first_executed_1534494806873__ = false ;
     
     
     function main(el){
@@ -2187,14 +2187,14 @@ addEventListener(el , getUpEventName() , onEnd) ;
     }
     return function(el){
         
-        if(!__first_executed_1534494168910__){
+        if(!__first_executed_1534494806873__){
             addEventListener = include('browser.html.element.addWindowEventListener');
 onMove = include('browser.event.gesture.tap.methods.onMove');
 onEnd = include('browser.event.gesture.tap.methods.onEnd');
 getMoveEventName = include('browser.event.pointer.move');
 getUpEventName = include('browser.event.pointer.up');
             
-            __first_executed_1534494168910__ = true ;
+            __first_executed_1534494806873__ = true ;
         }
         
         
@@ -2227,7 +2227,7 @@ getUpEventName = include('browser.event.pointer.up');
     let timeout;
     
     
-    let __first_executed_1534494168910__ = false ;
+    let __first_executed_1534494806873__ = false ;
     
     
     function main(e){
@@ -2280,7 +2280,7 @@ enabled(el) ;
     }
     return function(e){
         
-        if(!__first_executed_1534494168910__){
+        if(!__first_executed_1534494806873__){
             getEvent = include('browser.event.pointer');
 enabled = include('browser.event.gesture.tap.methods.enabled');
 set = include('object.data.set');
@@ -2289,7 +2289,7 @@ has = include('object.data.has');
 tap = include('browser.event.gesture.tap');
 configGestureTap = include('config::gesture.tap');
             timeout = config('gesture.tap' , 'timeout');
-            __first_executed_1534494168910__ = true ;
+            __first_executed_1534494806873__ = true ;
         }
         
         
@@ -2322,7 +2322,7 @@ configGestureTap = include('config::gesture.tap');
     
     
     
-    let __first_executed_1534494168910__ = false ;
+    let __first_executed_1534494806873__ = false ;
     
     
     function main(el,config){
@@ -2345,12 +2345,12 @@ el.addEventListener(getEventName() , onStart) ;
     }
     return function(el,config){
         
-        if(!__first_executed_1534494168910__){
+        if(!__first_executed_1534494806873__){
             onStart = include('browser.event.gesture.tap.methods.onStart');
 getEventName = include('browser.event.pointer.down');
 set = include('object.data.set');
             
-            __first_executed_1534494168910__ = true ;
+            __first_executed_1534494806873__ = true ;
         }
         
         
@@ -2383,7 +2383,7 @@ set = include('object.data.set');
     
     
     
-    let __first_executed_1534494168910__ = false ;
+    let __first_executed_1534494806873__ = false ;
     
     
     function main(el){
@@ -2394,11 +2394,11 @@ el.removeEventListener(getEventName() , onStart) ;
     }
     return function(el){
         
-        if(!__first_executed_1534494168910__){
+        if(!__first_executed_1534494806873__){
             onStart = include('browser.event.gesture.tap.methods.onStart');
 getEventName = include('browser.event.pointer.down');
             
-            __first_executed_1534494168910__ = true ;
+            __first_executed_1534494806873__ = true ;
         }
         
         
@@ -2452,10 +2452,10 @@ static install(){
     
     
     
-    let __once_1534494168912_value__,
-        __once_1534494168912_locked__ = false;
+    let __once_1534494806875_value__,
+        __once_1534494806875_locked__ = false;
     
-    let __first_executed_1534494168912__ = false ;
+    let __first_executed_1534494806875__ = false ;
     
     
     function main(){
@@ -2471,15 +2471,15 @@ return [
     return function(){
         
         
-        if(__once_1534494168912_locked__){
+        if(__once_1534494806875_locked__){
 
-            return __once_1534494168912_value__ ;
+            return __once_1534494806875_value__ ;
 
         }
 
-        __once_1534494168912_locked__ = true ;
+        __once_1534494806875_locked__ = true ;
         
-        return __once_1534494168912_value__ =  main.call((function(){
+        return __once_1534494806875_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -2508,7 +2508,7 @@ return [
     
     
     
-    let __first_executed_1534494168912__ = false ;
+    let __first_executed_1534494806875__ = false ;
     
     
     function main(el,axis){
@@ -2541,10 +2541,10 @@ let info = get(el , 'drag:info'),
     }
     return function(el,axis){
         
-        if(!__first_executed_1534494168912__){
+        if(!__first_executed_1534494806875__){
             get = include('object.data.get');
             
-            __first_executed_1534494168912__ = true ;
+            __first_executed_1534494806875__ = true ;
         }
         
         
@@ -2577,7 +2577,7 @@ let info = get(el , 'drag:info'),
     
     
     
-    let __first_executed_1534494168912__ = false ;
+    let __first_executed_1534494806875__ = false ;
     
     
     function main(el,axis,updatePrevious){
@@ -2629,10 +2629,10 @@ let info = get(el , 'drag:info'),
     }
     return function(el,axis,updatePrevious){
         
-        if(!__first_executed_1534494168912__){
+        if(!__first_executed_1534494806875__){
             get = include('object.data.get');
             
-            __first_executed_1534494168912__ = true ;
+            __first_executed_1534494806875__ = true ;
         }
         
         
@@ -2665,7 +2665,7 @@ let info = get(el , 'drag:info'),
     
     
     
-    let __first_executed_1534494168912__ = false ;
+    let __first_executed_1534494806875__ = false ;
     
     
     function main(e){
@@ -2703,7 +2703,7 @@ dispatch(el , 'touch:drag' , {
     }
     return function(e){
         
-        if(!__first_executed_1534494168912__){
+        if(!__first_executed_1534494806875__){
             get = include('object.data.get');
 set = include('object.data.set');
 has = include('object.data.has');
@@ -2711,7 +2711,7 @@ updateInfo = include('browser.event.gesture.drag.methods.updateInfo');
 getEvent = include('browser.event.pointer');
 dispatch = include('browser.event.dispatch');
             
-            __first_executed_1534494168912__ = true ;
+            __first_executed_1534494806875__ = true ;
         }
         
         
@@ -2744,7 +2744,7 @@ dispatch = include('browser.event.dispatch');
     
     
     
-    let __first_executed_1534494168912__ = false ;
+    let __first_executed_1534494806875__ = false ;
     
     
     function main(axis,info){
@@ -2790,7 +2790,7 @@ if (duration > 0) {
     
     
     
-    let __first_executed_1534494168912__ = false ;
+    let __first_executed_1534494806875__ = false ;
     
     
     function main(e){
@@ -2839,7 +2839,7 @@ remove(el , 'drag:startPoint') ;
     }
     return function(e){
         
-        if(!__first_executed_1534494168912__){
+        if(!__first_executed_1534494806875__){
             get = include('object.data.get');
 set = include('object.data.set');
 remove = include('object.data.remove');
@@ -2853,7 +2853,7 @@ onEnd = include('browser.event.gesture.drag.methods.onEnd');
 dispatch = include('browser.event.dispatch');
 removeEventListener = include('browser.html.element.removeWindowEventListener');
             
-            __first_executed_1534494168912__ = true ;
+            __first_executed_1534494806875__ = true ;
         }
         
         
@@ -2892,7 +2892,7 @@ removeEventListener = include('browser.html.element.removeWindowEventListener');
     let minDistance;
     
     
-    let __first_executed_1534494168912__ = false ;
+    let __first_executed_1534494806875__ = false ;
     
     
     function main(e){
@@ -2939,7 +2939,7 @@ if (Math.round(distance(get(el , 'drag:startPoint') , point) * scale()) >= minDi
     }
     return function(e){
         
-        if(!__first_executed_1534494168912__){
+        if(!__first_executed_1534494806875__){
             set = include('object.data.set');
 get = include('object.data.get');
 getEvent = include('browser.event.pointer');
@@ -2956,7 +2956,7 @@ distance = include('math.point.distance');
 dispatch = include('browser.event.dispatch');
 configGestureDrag = include('config::gesture.drag');
             minDistance = config('gesture.drag' , 'minDistance');
-            __first_executed_1534494168912__ = true ;
+            __first_executed_1534494806875__ = true ;
         }
         
         
@@ -2989,7 +2989,7 @@ configGestureDrag = include('config::gesture.drag');
     
     
     
-    let __first_executed_1534494168912__ = false ;
+    let __first_executed_1534494806876__ = false ;
     
     
     function main(e){
@@ -3048,14 +3048,14 @@ addEventListener(el , getEventName() , onMove) ;
     }
     return function(e){
         
-        if(!__first_executed_1534494168912__){
+        if(!__first_executed_1534494806876__){
             set = include('object.data.set');
 getEvent = include('browser.event.pointer');
 addEventListener = include('browser.html.element.addWindowEventListener');
 onMove = include('browser.event.gesture.drag.methods.onMove');
 getEventName = include('browser.event.pointer.move');
             
-            __first_executed_1534494168912__ = true ;
+            __first_executed_1534494806876__ = true ;
         }
         
         
@@ -3088,7 +3088,7 @@ getEventName = include('browser.event.pointer.move');
     
     
     
-    let __first_executed_1534494168912__ = false ;
+    let __first_executed_1534494806876__ = false ;
     
     
     function main(el){
@@ -3099,11 +3099,11 @@ el.addEventListener(getEventName() , onStart) ;
     }
     return function(el){
         
-        if(!__first_executed_1534494168912__){
+        if(!__first_executed_1534494806876__){
             onStart = include('browser.event.gesture.drag.methods.onStart');
 getEventName = include('browser.event.pointer.down');
             
-            __first_executed_1534494168912__ = true ;
+            __first_executed_1534494806876__ = true ;
         }
         
         
@@ -3136,7 +3136,7 @@ getEventName = include('browser.event.pointer.down');
     
     
     
-    let __first_executed_1534494168913__ = false ;
+    let __first_executed_1534494806876__ = false ;
     
     
     function main(el){
@@ -3147,11 +3147,11 @@ el.removeEventListener(getEventName() , onStart) ;
     }
     return function(el){
         
-        if(!__first_executed_1534494168913__){
+        if(!__first_executed_1534494806876__){
             onStart = include('browser.event.gesture.drag.methods.onStart');
 getEventName = include('browser.event.pointer.down');
             
-            __first_executed_1534494168913__ = true ;
+            __first_executed_1534494806876__ = true ;
         }
         
         
@@ -3205,7 +3205,7 @@ static install(){
     
     
     
-    let __first_executed_1534494168907__ = false ;
+    let __first_executed_1534494806870__ = false ;
     
     
     function main(data,type){
@@ -3246,7 +3246,7 @@ static install(){
     
     
     
-    let __first_executed_1534494168907__ = false ;
+    let __first_executed_1534494806871__ = false ;
     
     
     function main(data){
@@ -3257,10 +3257,10 @@ return isType(data , 'function') ;
     }
     return function(data){
         
-        if(!__first_executed_1534494168907__){
+        if(!__first_executed_1534494806871__){
             isType = include('is.type');
             
-            __first_executed_1534494168907__ = true ;
+            __first_executed_1534494806871__ = true ;
         }
         
         
@@ -3293,7 +3293,7 @@ return isType(data , 'function') ;
     
     
     
-    let __first_executed_1534494168914__ = false ;
+    let __first_executed_1534494806877__ = false ;
     
     
     function main(data){
@@ -3304,10 +3304,10 @@ return isType(data , 'string') ;
     }
     return function(data){
         
-        if(!__first_executed_1534494168914__){
+        if(!__first_executed_1534494806877__){
             isType = include('is.type');
             
-            __first_executed_1534494168914__ = true ;
+            __first_executed_1534494806877__ = true ;
         }
         
         
@@ -3340,7 +3340,7 @@ return isType(data , 'string') ;
     
     
     
-    let __first_executed_1534494168907__ = false ;
+    let __first_executed_1534494806871__ = false ;
     
     
     function main(data){
@@ -3381,7 +3381,7 @@ return data instanceof Object && data.constructor === Object;
     
     
     
-    let __first_executed_1534494169371__ = false ;
+    let __first_executed_1534494807351__ = false ;
     
     
     function main(el){
@@ -3452,7 +3452,7 @@ return {
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806878__ = false ;
     
     
     function main(data){
@@ -3463,10 +3463,10 @@ return {
     }
     return function(data){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806878__){
             isType = include('is.type');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806878__ = true ;
         }
         
         
@@ -3499,7 +3499,7 @@ return {
     
     
     
-    let __first_executed_1534494169371__ = false ;
+    let __first_executed_1534494807351__ = false ;
     
     
     function main(el,prop,inline){
@@ -3540,11 +3540,11 @@ if(inline){
     }
     return function(el,prop,inline = false){
         
-        if(!__first_executed_1534494169371__){
+        if(!__first_executed_1534494807351__){
             isArray = include('is.array');
 getStyle = include('browser.html.element.getStyle');
             
-            __first_executed_1534494169371__ = true ;
+            __first_executed_1534494807351__ = true ;
         }
         
         
@@ -3577,7 +3577,7 @@ getStyle = include('browser.html.element.getStyle');
     
     
     
-    let __first_executed_1534494169371__ = false ;
+    let __first_executed_1534494807351__ = false ;
     
     
     function main(data){
@@ -3588,10 +3588,10 @@ return isType(data , 'number') && isFinite(data);
     }
     return function(data){
         
-        if(!__first_executed_1534494169371__){
+        if(!__first_executed_1534494807351__){
             isType = include('is.type');
             
-            __first_executed_1534494169371__ = true ;
+            __first_executed_1534494807351__ = true ;
         }
         
         
@@ -3624,7 +3624,7 @@ return isType(data , 'number') && isFinite(data);
     
     
     
-    let __first_executed_1534494169371__ = false ;
+    let __first_executed_1534494807351__ = false ;
     
     
     function main(el,x,y){
@@ -3668,12 +3668,12 @@ return {
     }
     return function(el,x,y){
         
-        if(!__first_executed_1534494169371__){
+        if(!__first_executed_1534494807351__){
             getStyle = include('browser.html.element.getStyle');
 getXY = include('browser.html.element.getXY');
 isNumber = include('is.number');
             
-            __first_executed_1534494169371__ = true ;
+            __first_executed_1534494807351__ = true ;
         }
         
         
@@ -3706,7 +3706,7 @@ isNumber = include('is.number');
     
     
     
-    let __first_executed_1534494169371__ = false ;
+    let __first_executed_1534494807351__ = false ;
     
     
     function main(el,x,y){
@@ -3725,10 +3725,10 @@ return {
     }
     return function(el,x,y){
         
-        if(!__first_executed_1534494169371__){
+        if(!__first_executed_1534494807351__){
             translateXY = include('browser.html.element.translateXY');
             
-            __first_executed_1534494169371__ = true ;
+            __first_executed_1534494807351__ = true ;
         }
         
         
@@ -3761,7 +3761,7 @@ return {
     
     
     
-    let __first_executed_1534494169371__ = false ;
+    let __first_executed_1534494807351__ = false ;
     
     
     function main(el,prop,value){
@@ -3772,10 +3772,10 @@ return getStyle(el , prop) === value ;
     }
     return function(el,prop,value){
         
-        if(!__first_executed_1534494169371__){
+        if(!__first_executed_1534494807351__){
             getStyle = include('browser.html.element.getStyle');
             
-            __first_executed_1534494169371__ = true ;
+            __first_executed_1534494807351__ = true ;
         }
         
         
@@ -3808,7 +3808,7 @@ return getStyle(el , prop) === value ;
     
     
     
-    let __first_executed_1534494169371__ = false ;
+    let __first_executed_1534494807351__ = false ;
     
     
     function main(el,prop,value){
@@ -3831,11 +3831,11 @@ if(isString(prop)){
     }
     return function(el,prop,value){
         
-        if(!__first_executed_1534494169371__){
+        if(!__first_executed_1534494807351__){
             isString = include('is.string');
 setStyle = include('browser.html.element.setStyle');
             
-            __first_executed_1534494169371__ = true ;
+            __first_executed_1534494807351__ = true ;
         }
         
         
@@ -3868,7 +3868,7 @@ setStyle = include('browser.html.element.setStyle');
     
     
     
-    let __first_executed_1534494169175__ = false ;
+    let __first_executed_1534494807139__ = false ;
     
     
     function main(data){
@@ -3879,10 +3879,10 @@ return !isType(data , 'undefined') ;
     }
     return function(data){
         
-        if(!__first_executed_1534494169175__){
+        if(!__first_executed_1534494807139__){
             isType = include('is.type');
             
-            __first_executed_1534494169175__ = true ;
+            __first_executed_1534494807139__ = true ;
         }
         
         
@@ -3915,7 +3915,7 @@ return !isType(data , 'undefined') ;
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(el,pos,zIndex,x,y){
@@ -3946,13 +3946,13 @@ if(el !== document && el !== document.body){
     }
     return function(el,pos,zIndex,x,y){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             isStyle = include('browser.html.element.isStyle');
 setStyle = include('browser.html.element.setStyle');
 isDefined = include('is.defined');
 setXY = include('browser.html.element.setXY');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -3985,7 +3985,7 @@ setXY = include('browser.html.element.setXY');
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(el,x,y){
@@ -4010,11 +4010,11 @@ style.left = `${left}px` ;
     }
     return function(el,x,y){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             translatePoints = include('browser.html.element.translatePoints');
 position = include('browser.html.element.position');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -4047,7 +4047,7 @@ position = include('browser.html.element.position');
     
     
     
-    let __first_executed_1534494168914__ = false ;
+    let __first_executed_1534494806877__ = false ;
     
     
     function main(el,prop,value){
@@ -4088,7 +4088,7 @@ el.style.setProperty(prop , value) ;
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(el,prop){
@@ -4134,7 +4134,7 @@ if(cs){
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806878__ = false ;
     
     
     function main(data,allowEmptyString){
@@ -4145,10 +4145,10 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
     }
     return function(data,allowEmptyString = false){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806878__){
             isArray = include('is.array');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806878__ = true ;
         }
         
         
@@ -4181,7 +4181,7 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(data){
@@ -4205,11 +4205,11 @@ return [
     }
     return function(data){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             isEmpty = include('is.empty');
 isString = include('is.string');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -4242,7 +4242,7 @@ isString = include('is.string');
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(vue){
@@ -4264,10 +4264,10 @@ return result ;
     }
     return function(vue){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             from = include('array.from');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -4300,7 +4300,7 @@ return result ;
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806878__ = false ;
     
     
     
@@ -4383,7 +4383,7 @@ function main(data , key){
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806878__ = false ;
     
     
     
@@ -4399,10 +4399,10 @@ function main(target , splitRe){
  }
     return function(target,splitRe){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806878__){
             isEmpty = include('is.empty');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806878__ = true ;
         }
         
         
@@ -4435,7 +4435,7 @@ function main(target , splitRe){
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(node,property,isSelf){
@@ -4496,11 +4496,11 @@ return {
     }
     return function(node,property,isSelf = false){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             get = include('object.get');
 split = include('string.split');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -4533,7 +4533,7 @@ split = include('string.split');
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806877__ = false ;
     
     
     function main(data){
@@ -4544,10 +4544,10 @@ return Object.prototype.toString.call(data) === '[object Object]' ;
     }
     return function(data){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806877__){
             isType = include('is.type');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806877__ = true ;
         }
         
         
@@ -4580,7 +4580,7 @@ return Object.prototype.toString.call(data) === '[object Object]' ;
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806878__ = false ;
     
     
     
@@ -4616,11 +4616,11 @@ function main(target , key , value){
 }
     return function(target,key,value){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806878__){
             isObject = include('is.object');
 split = include('string.split');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806878__ = true ;
         }
         
         
@@ -4653,7 +4653,7 @@ split = include('string.split');
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(el){
@@ -4683,10 +4683,10 @@ return el.offsetWidth ;
     }
     return function(el){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             isStyle = include('browser.html.element.isStyle');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -4719,7 +4719,7 @@ return el.offsetWidth ;
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(el){
@@ -4755,10 +4755,10 @@ return el.offsetHeight ;
     }
     return function(el){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             isStyle = include('browser.html.element.isStyle');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -4791,7 +4791,7 @@ return el.offsetHeight ;
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(el){
@@ -4805,11 +4805,11 @@ return{
     }
     return function(el){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             getWidth = include('browser.html.element.getWidth');
 getHeight = include('browser.html.element.getHeight');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -4842,7 +4842,7 @@ getHeight = include('browser.html.element.getHeight');
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(el){
@@ -4870,11 +4870,11 @@ return {
     }
     return function(el){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             getXY = include('browser.html.element.getXY');
 getSize = include('browser.html.element.getSize');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -4907,7 +4907,7 @@ getSize = include('browser.html.element.getSize');
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806877__ = false ;
     
     
     
@@ -4940,10 +4940,10 @@ function get_keys(data , rootKey = ''){
 }
     return function(data){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806877__){
             isObject = include('is.object');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806877__ = true ;
         }
         
         
@@ -4976,7 +4976,7 @@ function get_keys(data , rootKey = ''){
     
     
     
-    let __first_executed_1534494169372__ = false ;
+    let __first_executed_1534494807352__ = false ;
     
     
     function main(value1,value2){
@@ -5003,11 +5003,11 @@ return true ;
     }
     return function(value1,value2){
         
-        if(!__first_executed_1534494169372__){
+        if(!__first_executed_1534494807352__){
             keys = include('object.keys');
 get = include('object.get');
             
-            __first_executed_1534494169372__ = true ;
+            __first_executed_1534494807352__ = true ;
         }
         
         
@@ -5040,7 +5040,7 @@ get = include('object.get');
     
     
     
-    let __first_executed_1534494168914__ = false ;
+    let __first_executed_1534494806877__ = false ;
     
     
     function main(url,data){
@@ -5085,7 +5085,7 @@ return url.replace(/\:([a-z]+)/g , (match , name) =>{
     
     
     
-    let __first_executed_1534494168914__ = false ;
+    let __first_executed_1534494806877__ = false ;
     
     
     function main(url){
@@ -5126,7 +5126,7 @@ return /^https?\:\/{2}/.test(url) ;
     
     
     
-    let __first_executed_1534494168914__ = false ;
+    let __first_executed_1534494806877__ = false ;
     
     
     
@@ -5161,10 +5161,10 @@ function main(...urls){
 }
     return function(...urls){
         
-        if(!__first_executed_1534494168914__){
+        if(!__first_executed_1534494806877__){
             isAbsolute = include('url.isAbsolute');
             
-            __first_executed_1534494168914__ = true ;
+            __first_executed_1534494806877__ = true ;
         }
         
         
@@ -5197,7 +5197,7 @@ function main(...urls){
     
     
     
-    let __first_executed_1534494168914__ = false ;
+    let __first_executed_1534494806877__ = false ;
     
     
     function main(url,data){
@@ -5229,10 +5229,10 @@ return `${url}?${querystring}` ;
     }
     return function(url,data){
         
-        if(!__first_executed_1534494168914__){
+        if(!__first_executed_1534494806877__){
             isString = include('is.string');
             
-            __first_executed_1534494168914__ = true ;
+            __first_executed_1534494806877__ = true ;
         }
         
         
@@ -5265,7 +5265,7 @@ return `${url}?${querystring}` ;
     
     
     
-    let __first_executed_1534494168914__ = false ;
+    let __first_executed_1534494806877__ = false ;
     
     
     
@@ -5320,7 +5320,7 @@ function main(){
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806878__ = false ;
     
     
     function main(dest,source){
@@ -5338,12 +5338,12 @@ return dest ;
     }
     return function(dest,source){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806878__){
             getKeys = include('object.keys');
 set = include('object.set');
 get = include('object.get');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806878__ = true ;
         }
         
         
@@ -5385,7 +5385,7 @@ get = include('object.get');
     let http;
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806878__ = false ;
     
     
     
@@ -5433,25 +5433,37 @@ function main(uri , method , params){
         let {
             query,
             path,
-            body
+            body,
+            timeout:userTimeout
         } = params;
-
-        const requestTimeout = timeout;
 
         return assign({
             uri:append(join(rootPath , apply(uri , path)) , {
                 _dc:Date.now()
             }),
             timeout,
-            requestTimeout,
+            requestTimeout:timeout || 0,
             method,
             headers,
             qs:query,
             transform:transform(responseType)
-        } , process_body(body , requestType));
+        } , process_body(body , requestType) , process_timeout(userTimeout));
     }
 
     throw new Error('试图请求未注册的路径') ;
+}
+
+function process_timeout(timeout){
+
+    if(timeout){
+
+        return {
+            timeout,
+            requestTimeout:timeout
+        } ;
+    }
+
+    return {} ;
 }
 
 function process_body(body , type){
@@ -5570,7 +5582,7 @@ function transform(type){
 }
     return function(uri,method,params){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806878__){
             apply = include('url.template.apply');
 isObject = include('is.object.simple');
 isString = include('is.string');
@@ -5580,7 +5592,7 @@ parse = include('xml.parse');
 assign = include('object.assign');
 configHttp = include('config::http');
             http = config('http');
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806878__ = true ;
         }
         
         
@@ -5613,7 +5625,7 @@ configHttp = include('config::http');
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806878__ = false ;
     
     
     function main(uri,params){
@@ -5624,10 +5636,10 @@ return require('request-promise')(parse(uri , 'get' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806878__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806878__ = true ;
         }
         
         
@@ -5660,7 +5672,7 @@ return require('request-promise')(parse(uri , 'get' , params)) ;
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806878__ = false ;
     
     
     function main(uri,params){
@@ -5671,10 +5683,10 @@ return require('request-promise')(parse(uri , 'post' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806878__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806878__ = true ;
         }
         
         
@@ -5707,7 +5719,7 @@ return require('request-promise')(parse(uri , 'post' , params)) ;
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806879__ = false ;
     
     
     function main(uri,params){
@@ -5718,10 +5730,10 @@ return require('request-promise')(parse(uri , 'put' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806879__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806879__ = true ;
         }
         
         
@@ -5754,7 +5766,7 @@ return require('request-promise')(parse(uri , 'put' , params)) ;
     
     
     
-    let __first_executed_1534494168915__ = false ;
+    let __first_executed_1534494806879__ = false ;
     
     
     function main(uri,params){
@@ -5765,10 +5777,10 @@ return require('request-promise')(parse(uri , 'delete' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494168915__){
+        if(!__first_executed_1534494806879__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494168915__ = true ;
+            __first_executed_1534494806879__ = true ;
         }
         
         
