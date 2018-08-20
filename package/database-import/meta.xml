@@ -7,8 +7,9 @@
     
     
     
-    let __first_executed_1534494806871__ = false ;
     
+    
+
     
     function main(data){
 
@@ -48,8 +49,9 @@ return data instanceof Object && data.constructor === Object;
     
     
     
-    let __first_executed_1534494806870__ = false ;
     
+    
+
     
     function main(data,type){
 
@@ -89,8 +91,11 @@ return data instanceof Object && data.constructor === Object;
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     function main(data){
 
@@ -100,10 +105,10 @@ return isType(data , 'string') ;
     }
     return function(data){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isType = include('is.type');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -136,8 +141,9 @@ return isType(data , 'string') ;
     
     
     
-    let __first_executed_1534494807215__ = false ;
     
+    
+
     
     function main(path){
 
@@ -184,8 +190,9 @@ this.data = readFile(path , {
     
     
     
-    let __first_executed_1534494807215__ = false ;
     
+    
+
     
     function main(target,name,fn,scope){
 
@@ -231,8 +238,9 @@ return target[name] ;
     
     
     
-    let __first_executed_1534494807215__ = false ;
     
+    
+
     
     function main(sheet){
 
@@ -272,8 +280,9 @@ this.data = sheet ;
     
     
     
-    let __first_executed_1534494807215__ = false ;
     
+    
+
     
     
 
@@ -315,8 +324,11 @@ function main(){
     
     
     
-    let __first_executed_1534494807215__ = false ;
     
+    
+    let __first_executed_1534734659363__ = false ;
+    
+
     
     
 
@@ -333,10 +345,10 @@ function main(address){
 }
     return function(address){
         
-        if(!__first_executed_1534494807215__){
+        if(!__first_executed_1534734659363__){
             getEndCellAddress = include('excel.sheet.properties.endCellAddress');
             
-            __first_executed_1534494807215__ = true ;
+            __first_executed_1534734659363__ = true ;
         }
         
         
@@ -369,8 +381,11 @@ function main(address){
     
     
     
-    let __first_executed_1534494807215__ = false ;
     
+    
+    let __first_executed_1534734659363__ = false ;
+    
+
     
     function main(address){
 
@@ -411,10 +426,10 @@ return titles ;
     }
     return function(address = 'A1'){
         
-        if(!__first_executed_1534494807215__){
+        if(!__first_executed_1534734659363__){
             getAddress = include('excel.sheet.methods.address');
             
-            __first_executed_1534494807215__ = true ;
+            __first_executed_1534734659363__ = true ;
         }
         
         
@@ -447,8 +462,11 @@ return titles ;
     
     
     
-    let __first_executed_1534494807215__ = false ;
     
+    
+    let __first_executed_1534734659363__ = false ;
+    
+
     
     function main(address){
 
@@ -496,10 +514,10 @@ return records ;
     }
     return function(address = 'A2'){
         
-        if(!__first_executed_1534494807215__){
+        if(!__first_executed_1534734659363__){
             getAddress = include('excel.sheet.methods.address');
             
-            __first_executed_1534494807215__ = true ;
+            __first_executed_1534734659363__ = true ;
         }
         
         
@@ -554,8 +572,11 @@ getTitles(){
     
     
     
-    let __first_executed_1534494807216__ = false ;
     
+    
+    let __first_executed_1534734659364__ = false ;
+    
+
     
     
 
@@ -584,11 +605,11 @@ function main(){
 }
     return function(){
         
-        if(!__first_executed_1534494807216__){
+        if(!__first_executed_1534734659364__){
             once = include('object.setOnce');
 Sheet = include('excel.sheet');
             
-            __first_executed_1534494807216__ = true ;
+            __first_executed_1534734659364__ = true ;
         }
         
         
@@ -641,8 +662,9 @@ Sheet = include('excel.sheet');
     
     
     
-    let __first_executed_1534494807216__ = false ;
     
+    
+
     
     function main(records,titles){
 
@@ -697,8 +719,11 @@ return result ;
     
     
     
-    let __first_executed_1534494807216__ = false ;
     
+    
+    let __first_executed_1534734659365__ = false ;
+    
+
     
     function main(name){
 
@@ -779,13 +804,13 @@ return [] ;
     }
     return function(name = 'default'){
         
-        if(!__first_executed_1534494807216__){
+        if(!__first_executed_1534734659365__){
             isObject = include('is.object.simple');
 isString = include('is.string');
 Excel = include('excel');
 init = include('data.recordset.init');
             
-            __first_executed_1534494807216__ = true ;
+            __first_executed_1534734659365__ = true ;
         }
         
         

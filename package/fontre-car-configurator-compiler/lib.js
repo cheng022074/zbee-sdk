@@ -6,14 +6,15 @@ exports['src::url.template.apply'] = (() =>{
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+
     
     function main(url,data){
 
         
 
-return url.replace(/\:([a-z]+)/g , (match , name) =>{
+return url.replace(/\:([^\\\/\d]+)/g , (match , name) =>{
 
     return data[name] || '' ;
 
@@ -49,8 +50,9 @@ exports['src::is.object.simple'] = (() =>{
     
     
     
-    let __first_executed_1534494806871__ = false ;
     
+    
+
     
     function main(data){
 
@@ -88,8 +90,9 @@ exports['src::is.type'] = (() =>{
     
     
     
-    let __first_executed_1534494806870__ = false ;
     
+    
+
     
     function main(data,type){
 
@@ -127,8 +130,11 @@ exports['src::is.string'] = (() =>{
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     function main(data){
 
@@ -138,10 +144,10 @@ return isType(data , 'string') ;
     }
     return function(data){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isType = include('is.type');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -172,8 +178,9 @@ exports['src::url.isAbsolute'] = (() =>{
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+
     
     function main(url){
 
@@ -211,8 +218,11 @@ exports['src::url.join'] = (() =>{
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     
 
@@ -246,10 +256,10 @@ function main(...urls){
 }
     return function(...urls){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isAbsolute = include('url.isAbsolute');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -280,8 +290,11 @@ exports['src::url.append'] = (() =>{
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     function main(url,data){
 
@@ -312,10 +325,10 @@ return `${url}?${querystring}` ;
     }
     return function(url,data){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isString = include('is.string');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -346,8 +359,9 @@ exports['src::xml.parse'] = (() =>{
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+
     
     
 
@@ -399,8 +413,11 @@ exports['src::is.object'] = (() =>{
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     function main(data){
 
@@ -410,10 +427,10 @@ return Object.prototype.toString.call(data) === '[object Object]' ;
     }
     return function(data){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isType = include('is.type');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -444,8 +461,11 @@ exports['src::object.keys'] = (() =>{
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     
 
@@ -477,10 +497,10 @@ function get_keys(data , rootKey = ''){
 }
     return function(data){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isObject = include('is.object');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -511,8 +531,11 @@ exports['src::is.array'] = (() =>{
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(data){
 
@@ -522,10 +545,10 @@ exports['src::is.array'] = (() =>{
     }
     return function(data){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             isType = include('is.type');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -556,8 +579,11 @@ exports['src::is.empty'] = (() =>{
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(data,allowEmptyString){
 
@@ -567,10 +593,10 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
     }
     return function(data,allowEmptyString = false){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             isArray = include('is.array');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -601,8 +627,11 @@ exports['src::string.split'] = (() =>{
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     
 
@@ -617,10 +646,10 @@ function main(target , splitRe){
  }
     return function(target,splitRe){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             isEmpty = include('is.empty');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -651,8 +680,11 @@ exports['src::object.set'] = (() =>{
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     
 
@@ -687,11 +719,11 @@ function main(target , key , value){
 }
     return function(target,key,value){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             isObject = include('is.object');
 split = include('string.split');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -722,8 +754,9 @@ exports['src::object.get'] = (() =>{
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+
     
     
 
@@ -803,8 +836,11 @@ exports['src::object.assign'] = (() =>{
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(dest,source){
 
@@ -821,12 +857,12 @@ return dest ;
     }
     return function(dest,source){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             getKeys = include('object.keys');
 set = include('object.set');
 get = include('object.get');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -864,8 +900,11 @@ exports['src::http.params.parse'] = (() =>{
     let http;
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     
 
@@ -1061,7 +1100,7 @@ function transform(type){
 }
     return function(uri,method,params){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             apply = include('url.template.apply');
 isObject = include('is.object.simple');
 isString = include('is.string');
@@ -1071,7 +1110,7 @@ parse = include('xml.parse');
 assign = include('object.assign');
 configHttp = include('config::http');
             http = config('http');
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1102,8 +1141,11 @@ exports['src::http.methods.get'] = (() =>{
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(uri,params){
 
@@ -1113,10 +1155,10 @@ return require('request-promise')(parse(uri , 'get' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1147,8 +1189,11 @@ exports['src::http.methods.post'] = (() =>{
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(uri,params){
 
@@ -1158,10 +1203,10 @@ return require('request-promise')(parse(uri , 'post' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1192,8 +1237,11 @@ exports['src::http.methods.put'] = (() =>{
     
     
     
-    let __first_executed_1534494806879__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(uri,params){
 
@@ -1203,10 +1251,10 @@ return require('request-promise')(parse(uri , 'put' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494806879__){
+        if(!__first_executed_1534734659040__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494806879__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1237,8 +1285,11 @@ exports['src::http.methods.delete'] = (() =>{
     
     
     
-    let __first_executed_1534494806879__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(uri,params){
 
@@ -1248,10 +1299,10 @@ return require('request-promise')(parse(uri , 'delete' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494806879__){
+        if(!__first_executed_1534734659040__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494806879__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1302,8 +1353,9 @@ exports['src::is.directory'] = (() =>{
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+
     
     function main(path){
 
@@ -1346,8 +1398,9 @@ exports['src::is.file'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+
     
     function main(path){
 
@@ -1390,8 +1443,11 @@ exports['src::directory.create'] = (() =>{
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+    let __first_executed_1534734659292__ = false ;
+    
+
     
     
 
@@ -1417,10 +1473,10 @@ function main(path){
 }
     return function(path){
         
-        if(!__first_executed_1534494807140__){
+        if(!__first_executed_1534734659292__){
             isDirectory = include('is.directory');
             
-            __first_executed_1534494807140__ = true ;
+            __first_executed_1534734659292__ = true ;
         }
         
         
@@ -1451,8 +1507,11 @@ exports['src::file.write'] = (() =>{
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+    let __first_executed_1534734659292__ = false ;
+    
+
     
     function main(path,data){
 
@@ -1471,10 +1530,10 @@ writeFileSync(path , data) ;
     }
     return function(path,data){
         
-        if(!__first_executed_1534494807140__){
+        if(!__first_executed_1534734659292__){
             create = include('directory.create');
             
-            __first_executed_1534494807140__ = true ;
+            __first_executed_1534734659292__ = true ;
         }
         
         
@@ -1505,8 +1564,11 @@ exports['src::file.write.json'] = (() =>{
     
     
     
-    let __first_executed_1534494807262__ = false ;
     
+    
+    let __first_executed_1534734659416__ = false ;
+    
+
     
     function main(path,data){
 
@@ -1516,10 +1578,10 @@ write(path , JSON.stringify(data , null , 2)) ;
     }
     return function(path,data){
         
-        if(!__first_executed_1534494807262__){
+        if(!__first_executed_1534734659416__){
             write = include('file.write');
             
-            __first_executed_1534494807262__ = true ;
+            __first_executed_1534734659416__ = true ;
         }
         
         
@@ -1550,8 +1612,11 @@ exports['src::file.write.html'] = (() =>{
     
     
     
-    let __first_executed_1534494807262__ = false ;
     
+    
+    let __first_executed_1534734659416__ = false ;
+    
+
     
     function main(path,doc){
 
@@ -1565,10 +1630,10 @@ write(path , html(`<!DOCTYPE html>\n${doc.documentElement.outerHTML}`)) ;
     }
     return function(path,doc){
         
-        if(!__first_executed_1534494807262__){
+        if(!__first_executed_1534734659416__){
             write = include('file.write');
             
-            __first_executed_1534494807262__ = true ;
+            __first_executed_1534734659416__ = true ;
         }
         
         
@@ -1599,8 +1664,11 @@ exports['src::file.read.text'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+    let __first_executed_1534734659293__ = false ;
+    
+
     
     function main(path){
 
@@ -1617,10 +1685,10 @@ if(isFile(path)){
     }
     return function(path){
         
-        if(!__first_executed_1534494807141__){
+        if(!__first_executed_1534734659293__){
             isFile = include('is.file');
             
-            __first_executed_1534494807141__ = true ;
+            __first_executed_1534734659293__ = true ;
         }
         
         
@@ -1651,8 +1719,11 @@ exports['src::template.apply'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+    let __first_executed_1534734659293__ = false ;
+    
+
     
     
 
@@ -1699,10 +1770,10 @@ exports['src::template.apply'] = (() =>{
  }
     return function(name,data = {}){
         
-        if(!__first_executed_1534494807141__){
+        if(!__first_executed_1534734659293__){
             read = include('file.read.text');
             
-            __first_executed_1534494807141__ = true ;
+            __first_executed_1534734659293__ = true ;
         }
         
         
@@ -1733,8 +1804,9 @@ exports['src::html.parse'] = (() =>{
     
     
     
-    let __first_executed_1534494807262__ = false ;
     
+    
+
     
     function main(html){
 
@@ -1783,8 +1855,11 @@ exports['src::html.load'] = (() =>{
     
     
     
-    let __first_executed_1534494807263__ = false ;
     
+    
+    let __first_executed_1534734659416__ = false ;
+    
+
     
     function main(path){
 
@@ -1794,11 +1869,11 @@ return parse(read(path)) ;
     }
     return function(path){
         
-        if(!__first_executed_1534494807263__){
+        if(!__first_executed_1534734659416__){
             parse = include('html.parse');
 read = include('file.read.text');
             
-            __first_executed_1534494807263__ = true ;
+            __first_executed_1534734659416__ = true ;
         }
         
         

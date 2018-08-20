@@ -6,11 +6,12 @@ exports['src::database.properties.databases'] = (() =>{
     
     
     
-    let __once_1534494807138_value__,
-        __once_1534494807138_locked__ = false;
+    let __once_1534734659291_value__,
+        __once_1534734659291_locked__ = false;
     
-    let __first_executed_1534494807138__ = false ;
     
+    
+
     
     function main(){
 
@@ -21,15 +22,15 @@ return new Map() ;
     return function(){
         
         
-        if(__once_1534494807138_locked__){
+        if(__once_1534734659291_locked__){
 
-            return __once_1534494807138_value__ ;
+            return __once_1534734659291_value__ ;
 
         }
 
-        __once_1534494807138_locked__ = true ;
+        __once_1534734659291_locked__ = true ;
         
-        return __once_1534494807138_value__ =  main.call((function(){
+        return __once_1534734659291_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -56,8 +57,9 @@ exports['src::database.connection.type'] = (() =>{
     
     
     
-    let __first_executed_1534494807139__ = false ;
     
+    
+
     
     function main(name){
 
@@ -106,8 +108,9 @@ exports['src::database.connection.config'] = (() =>{
     
     
     
-    let __first_executed_1534494807139__ = false ;
     
+    
+
     
     function main(name){
 
@@ -158,8 +161,9 @@ exports['src::is.type'] = (() =>{
     
     
     
-    let __first_executed_1534494806870__ = false ;
     
+    
+
     
     function main(data,type){
 
@@ -197,8 +201,11 @@ exports['src::is.defined'] = (() =>{
     
     
     
-    let __first_executed_1534494807139__ = false ;
     
+    
+    let __first_executed_1534734659291__ = false ;
+    
+
     
     function main(data){
 
@@ -208,10 +215,10 @@ return !isType(data , 'undefined') ;
     }
     return function(data){
         
-        if(!__first_executed_1534494807139__){
+        if(!__first_executed_1534734659291__){
             isType = include('is.type');
             
-            __first_executed_1534494807139__ = true ;
+            __first_executed_1534734659291__ = true ;
         }
         
         
@@ -242,8 +249,11 @@ exports['src::database.mongodb.open'] = (() =>{
     
     
     
-    let __first_executed_1534494807139__ = false ;
     
+    
+    let __first_executed_1534734659291__ = false ;
+    
+
     
     
 
@@ -287,11 +297,11 @@ class DB{
 }
     return async function(map,name,config){
         
-        if(!__first_executed_1534494807139__){
+        if(!__first_executed_1534734659291__){
             isDefined = include('is.defined');
 getMap = include('database.properties.databases');
             
-            __first_executed_1534494807139__ = true ;
+            __first_executed_1534734659291__ = true ;
         }
         
         
@@ -322,8 +332,11 @@ exports['src::database.methods.open'] = (() =>{
     
     
     
-    let __first_executed_1534494807139__ = false ;
     
+    
+    let __first_executed_1534734659291__ = false ;
+    
+
     
     async function main(name){
 
@@ -354,13 +367,13 @@ if(databaseConfig){
     }
     return async function(name = 'default'){
         
-        if(!__first_executed_1534494807139__){
+        if(!__first_executed_1534734659291__){
             getMap = include('database.properties.databases');
 getConnectionType = include('database.connection.type');
 getConnectionConfig = include('database.connection.config');
 databaseMongodbOpen = include('database.mongodb.open');
             
-            __first_executed_1534494807139__ = true ;
+            __first_executed_1534734659291__ = true ;
         }
         
         
@@ -391,8 +404,11 @@ exports['src::database.methods.close'] = (() =>{
     
     
     
-    let __first_executed_1534494807139__ = false ;
     
+    
+    let __first_executed_1534734659291__ = false ;
+    
+
     
     async function main(name){
 
@@ -411,10 +427,10 @@ if(database){
     }
     return async function(name = 'default'){
         
-        if(!__first_executed_1534494807139__){
+        if(!__first_executed_1534734659291__){
             getMap = include('database.properties.databases');
             
-            __first_executed_1534494807139__ = true ;
+            __first_executed_1534734659291__ = true ;
         }
         
         
@@ -461,8 +477,9 @@ exports['src::database.mongodb.collectionNames'] = (() =>{
     
     
     
-    let __first_executed_1534494807139__ = false ;
     
+    
+
     
     async function main(db){
 
@@ -516,8 +533,11 @@ exports['src::database.collectionNames'] = (() =>{
     
     
     
-    let __first_executed_1534494807139__ = false ;
     
+    
+    let __first_executed_1534734659291__ = false ;
+    
+
     
     async function main(connection){
 
@@ -534,12 +554,12 @@ return [] ;
     }
     return async function(connection = 'default'){
         
-        if(!__first_executed_1534494807139__){
+        if(!__first_executed_1534734659291__){
             getMap = include('database.properties.databases');
 getConnectionType = include('database.connection.type');
 databaseMongodbCollectionNames = include('database.mongodb.collectionNames');
             
-            __first_executed_1534494807139__ = true ;
+            __first_executed_1534734659291__ = true ;
         }
         
         
@@ -570,8 +590,9 @@ exports['src::database.mongodb.collection.find'] = (() =>{
     
     
     
-    let __first_executed_1534494807139__ = false ;
     
+    
+
     
     async function main({collection,db}){
 
@@ -609,8 +630,11 @@ exports['src::database.collection.find'] = (() =>{
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+    let __first_executed_1534734659292__ = false ;
+    
+
     
     async function main({collection,connection}){
 
@@ -630,12 +654,12 @@ return [] ;
     }
     return async function({collection,connection = 'default'}){
         
-        if(!__first_executed_1534494807140__){
+        if(!__first_executed_1534734659292__){
             getMap = include('database.properties.databases');
 getConnectionType = include('database.connection.type');
 databaseMongodbCollectionFind = include('database.mongodb.collection.find');
             
-            __first_executed_1534494807140__ = true ;
+            __first_executed_1534734659292__ = true ;
         }
         
         
@@ -666,8 +690,9 @@ exports['src::is.directory'] = (() =>{
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+
     
     function main(path){
 
@@ -710,8 +735,11 @@ exports['src::directory.create'] = (() =>{
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+    let __first_executed_1534734659292__ = false ;
+    
+
     
     
 
@@ -737,10 +765,10 @@ function main(path){
 }
     return function(path){
         
-        if(!__first_executed_1534494807140__){
+        if(!__first_executed_1534734659292__){
             isDirectory = include('is.directory');
             
-            __first_executed_1534494807140__ = true ;
+            __first_executed_1534734659292__ = true ;
         }
         
         
@@ -771,8 +799,11 @@ exports['src::file.write'] = (() =>{
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+    let __first_executed_1534734659292__ = false ;
+    
+
     
     function main(path,data){
 
@@ -791,10 +822,10 @@ writeFileSync(path , data) ;
     }
     return function(path,data){
         
-        if(!__first_executed_1534494807140__){
+        if(!__first_executed_1534734659292__){
             create = include('directory.create');
             
-            __first_executed_1534494807140__ = true ;
+            __first_executed_1534734659292__ = true ;
         }
         
         
@@ -825,8 +856,11 @@ exports['src::is.array'] = (() =>{
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(data){
 
@@ -836,10 +870,10 @@ exports['src::is.array'] = (() =>{
     }
     return function(data){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             isType = include('is.type');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -870,8 +904,9 @@ exports['src::is.object.simple'] = (() =>{
     
     
     
-    let __first_executed_1534494806871__ = false ;
     
+    
+
     
     function main(data){
 
@@ -909,8 +944,9 @@ exports['src::script.format'] = (() =>{
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+
     
     function main(data){
 
@@ -963,8 +999,9 @@ exports['src::is.file'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+
     
     function main(path){
 
@@ -1007,8 +1044,11 @@ exports['src::file.read.text'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+    let __first_executed_1534734659293__ = false ;
+    
+
     
     function main(path){
 
@@ -1025,10 +1065,10 @@ if(isFile(path)){
     }
     return function(path){
         
-        if(!__first_executed_1534494807141__){
+        if(!__first_executed_1534734659293__){
             isFile = include('is.file');
             
-            __first_executed_1534494807141__ = true ;
+            __first_executed_1534734659293__ = true ;
         }
         
         
@@ -1059,8 +1099,11 @@ exports['src::template.apply'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+    let __first_executed_1534734659293__ = false ;
+    
+
     
     
 
@@ -1107,10 +1150,10 @@ exports['src::template.apply'] = (() =>{
  }
     return function(name,data = {}){
         
-        if(!__first_executed_1534494807141__){
+        if(!__first_executed_1534734659293__){
             read = include('file.read.text');
             
-            __first_executed_1534494807141__ = true ;
+            __first_executed_1534734659293__ = true ;
         }
         
         
@@ -1141,8 +1184,11 @@ exports['src::database.collection.stringify'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+    let __first_executed_1534734659293__ = false ;
+    
+
     
     
 
@@ -1284,14 +1330,14 @@ function processObject(data , typeFn , convertFns){
 }
     return function(data,name = 'default'){
         
-        if(!__first_executed_1534494807141__){
+        if(!__first_executed_1534734659293__){
             isArray = include('is.array');
 isObject = include('is.object.simple');
 format = include('script.format');
 templateDatabaseBackup = include('template::database.backup');
 apply = include('template.apply');
             
-            __first_executed_1534494807141__ = true ;
+            __first_executed_1534734659293__ = true ;
         }
         
         
@@ -1322,8 +1368,9 @@ exports['src::database.mongodb.stringify.ObjectID'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+
     
     function main(id){
 
@@ -1361,8 +1408,9 @@ exports['src::database.stringify.Date'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+
     
     function main(date){
 
@@ -1400,8 +1448,9 @@ exports['src::is.Date'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+
     
     function main(data){
 
@@ -1440,8 +1489,11 @@ exports['src::database.datatype'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+    let __first_executed_1534734659293__ = false ;
+    
+
     
     function main(data){
 
@@ -1454,10 +1506,10 @@ exports['src::database.datatype'] = (() =>{
     }
     return function(data){
         
-        if(!__first_executed_1534494807141__){
+        if(!__first_executed_1534734659293__){
             isDate = include('is.Date');
             
-            __first_executed_1534494807141__ = true ;
+            __first_executed_1534734659293__ = true ;
         }
         
         
@@ -1488,8 +1540,11 @@ exports['src::database.mongodb.datatype'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+    let __first_executed_1534734659293__ = false ;
+    
+
     
     function main(data){
 
@@ -1508,10 +1563,10 @@ return getDataType(data) ;
     }
     return function(data){
         
-        if(!__first_executed_1534494807141__){
+        if(!__first_executed_1534734659293__){
             getDataType = include('database.datatype');
             
-            __first_executed_1534494807141__ = true ;
+            __first_executed_1534734659293__ = true ;
         }
         
         
@@ -1548,8 +1603,9 @@ exports['src::date.format'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+
     
     
 
@@ -1589,8 +1645,9 @@ exports['src::job.start'] = (() =>{
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+
     
     
 

@@ -7,14 +7,15 @@
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+
     
     function main(url,data){
 
         
 
-return url.replace(/\:([a-z]+)/g , (match , name) =>{
+return url.replace(/\:([^\\\/\d]+)/g , (match , name) =>{
 
     return data[name] || '' ;
 
@@ -52,8 +53,9 @@ return url.replace(/\:([a-z]+)/g , (match , name) =>{
     
     
     
-    let __first_executed_1534494806871__ = false ;
     
+    
+
     
     function main(data){
 
@@ -93,8 +95,9 @@ return data instanceof Object && data.constructor === Object;
     
     
     
-    let __first_executed_1534494806870__ = false ;
     
+    
+
     
     function main(data,type){
 
@@ -134,8 +137,11 @@ return data instanceof Object && data.constructor === Object;
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     function main(data){
 
@@ -145,10 +151,10 @@ return isType(data , 'string') ;
     }
     return function(data){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isType = include('is.type');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -181,8 +187,9 @@ return isType(data , 'string') ;
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+
     
     function main(url){
 
@@ -222,8 +229,11 @@ return /^https?\:\/{2}/.test(url) ;
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     
 
@@ -257,10 +267,10 @@ function main(...urls){
 }
     return function(...urls){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isAbsolute = include('url.isAbsolute');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -293,8 +303,11 @@ function main(...urls){
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     function main(url,data){
 
@@ -325,10 +338,10 @@ return `${url}?${querystring}` ;
     }
     return function(url,data){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isString = include('is.string');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -361,8 +374,9 @@ return `${url}?${querystring}` ;
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+
     
     
 
@@ -416,8 +430,11 @@ function main(){
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     function main(data){
 
@@ -427,10 +444,10 @@ return Object.prototype.toString.call(data) === '[object Object]' ;
     }
     return function(data){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isType = include('is.type');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -463,8 +480,11 @@ return Object.prototype.toString.call(data) === '[object Object]' ;
     
     
     
-    let __first_executed_1534494806877__ = false ;
     
+    
+    let __first_executed_1534734659039__ = false ;
+    
+
     
     
 
@@ -496,10 +516,10 @@ function get_keys(data , rootKey = ''){
 }
     return function(data){
         
-        if(!__first_executed_1534494806877__){
+        if(!__first_executed_1534734659039__){
             isObject = include('is.object');
             
-            __first_executed_1534494806877__ = true ;
+            __first_executed_1534734659039__ = true ;
         }
         
         
@@ -532,8 +552,11 @@ function get_keys(data , rootKey = ''){
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(data){
 
@@ -543,10 +566,10 @@ function get_keys(data , rootKey = ''){
     }
     return function(data){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             isType = include('is.type');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -579,8 +602,11 @@ function get_keys(data , rootKey = ''){
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(data,allowEmptyString){
 
@@ -590,10 +616,10 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
     }
     return function(data,allowEmptyString = false){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             isArray = include('is.array');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -626,8 +652,11 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     
 
@@ -642,10 +671,10 @@ function main(target , splitRe){
  }
     return function(target,splitRe){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             isEmpty = include('is.empty');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -678,8 +707,11 @@ function main(target , splitRe){
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     
 
@@ -714,11 +746,11 @@ function main(target , key , value){
 }
     return function(target,key,value){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             isObject = include('is.object');
 split = include('string.split');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -751,8 +783,9 @@ split = include('string.split');
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+
     
     
 
@@ -834,8 +867,11 @@ function main(data , key){
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(dest,source){
 
@@ -852,12 +888,12 @@ return dest ;
     }
     return function(dest,source){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             getKeys = include('object.keys');
 set = include('object.set');
 get = include('object.get');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -899,8 +935,11 @@ get = include('object.get');
     let http;
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     
 
@@ -1096,7 +1135,7 @@ function transform(type){
 }
     return function(uri,method,params){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             apply = include('url.template.apply');
 isObject = include('is.object.simple');
 isString = include('is.string');
@@ -1106,7 +1145,7 @@ parse = include('xml.parse');
 assign = include('object.assign');
 configHttp = include('config::http');
             http = config('http');
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1139,8 +1178,11 @@ configHttp = include('config::http');
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(uri,params){
 
@@ -1150,10 +1192,10 @@ return require('request-promise')(parse(uri , 'get' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1186,8 +1228,11 @@ return require('request-promise')(parse(uri , 'get' , params)) ;
     
     
     
-    let __first_executed_1534494806878__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(uri,params){
 
@@ -1197,10 +1242,10 @@ return require('request-promise')(parse(uri , 'post' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494806878__){
+        if(!__first_executed_1534734659040__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494806878__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1233,8 +1278,11 @@ return require('request-promise')(parse(uri , 'post' , params)) ;
     
     
     
-    let __first_executed_1534494806879__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(uri,params){
 
@@ -1244,10 +1292,10 @@ return require('request-promise')(parse(uri , 'put' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494806879__){
+        if(!__first_executed_1534734659040__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494806879__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1280,8 +1328,11 @@ return require('request-promise')(parse(uri , 'put' , params)) ;
     
     
     
-    let __first_executed_1534494806879__ = false ;
     
+    
+    let __first_executed_1534734659040__ = false ;
+    
+
     
     function main(uri,params){
 
@@ -1291,10 +1342,10 @@ return require('request-promise')(parse(uri , 'delete' , params)) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1534494806879__){
+        if(!__first_executed_1534734659040__){
             parse = include('http.params.parse');
             
-            __first_executed_1534494806879__ = true ;
+            __first_executed_1534734659040__ = true ;
         }
         
         
@@ -1349,8 +1400,9 @@ return require('request-promise')(parse(uri , 'delete' , params)) ;
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+
     
     function main(path){
 
@@ -1395,8 +1447,9 @@ return existsSync(path) && statSync(path).isDirectory() ;
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+
     
     function main(path){
 
@@ -1441,8 +1494,11 @@ return existsSync(path) && statSync(path).isFile() ;
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+    let __first_executed_1534734659292__ = false ;
+    
+
     
     
 
@@ -1468,10 +1524,10 @@ function main(path){
 }
     return function(path){
         
-        if(!__first_executed_1534494807140__){
+        if(!__first_executed_1534734659292__){
             isDirectory = include('is.directory');
             
-            __first_executed_1534494807140__ = true ;
+            __first_executed_1534734659292__ = true ;
         }
         
         
@@ -1504,8 +1560,11 @@ function main(path){
     
     
     
-    let __first_executed_1534494807140__ = false ;
     
+    
+    let __first_executed_1534734659292__ = false ;
+    
+
     
     function main(path,data){
 
@@ -1524,10 +1583,10 @@ writeFileSync(path , data) ;
     }
     return function(path,data){
         
-        if(!__first_executed_1534494807140__){
+        if(!__first_executed_1534734659292__){
             create = include('directory.create');
             
-            __first_executed_1534494807140__ = true ;
+            __first_executed_1534734659292__ = true ;
         }
         
         
@@ -1560,8 +1619,11 @@ writeFileSync(path , data) ;
     
     
     
-    let __first_executed_1534494807262__ = false ;
     
+    
+    let __first_executed_1534734659416__ = false ;
+    
+
     
     function main(path,data){
 
@@ -1571,10 +1633,10 @@ write(path , JSON.stringify(data , null , 2)) ;
     }
     return function(path,data){
         
-        if(!__first_executed_1534494807262__){
+        if(!__first_executed_1534734659416__){
             write = include('file.write');
             
-            __first_executed_1534494807262__ = true ;
+            __first_executed_1534734659416__ = true ;
         }
         
         
@@ -1607,8 +1669,11 @@ write(path , JSON.stringify(data , null , 2)) ;
     
     
     
-    let __first_executed_1534494807262__ = false ;
     
+    
+    let __first_executed_1534734659416__ = false ;
+    
+
     
     function main(path,doc){
 
@@ -1622,10 +1687,10 @@ write(path , html(`<!DOCTYPE html>\n${doc.documentElement.outerHTML}`)) ;
     }
     return function(path,doc){
         
-        if(!__first_executed_1534494807262__){
+        if(!__first_executed_1534734659416__){
             write = include('file.write');
             
-            __first_executed_1534494807262__ = true ;
+            __first_executed_1534734659416__ = true ;
         }
         
         
@@ -1658,8 +1723,11 @@ write(path , html(`<!DOCTYPE html>\n${doc.documentElement.outerHTML}`)) ;
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+    let __first_executed_1534734659293__ = false ;
+    
+
     
     function main(path){
 
@@ -1676,10 +1744,10 @@ if(isFile(path)){
     }
     return function(path){
         
-        if(!__first_executed_1534494807141__){
+        if(!__first_executed_1534734659293__){
             isFile = include('is.file');
             
-            __first_executed_1534494807141__ = true ;
+            __first_executed_1534734659293__ = true ;
         }
         
         
@@ -1712,8 +1780,11 @@ if(isFile(path)){
     
     
     
-    let __first_executed_1534494807141__ = false ;
     
+    
+    let __first_executed_1534734659293__ = false ;
+    
+
     
     
 
@@ -1760,10 +1831,10 @@ if(isFile(path)){
  }
     return function(name,data = {}){
         
-        if(!__first_executed_1534494807141__){
+        if(!__first_executed_1534734659293__){
             read = include('file.read.text');
             
-            __first_executed_1534494807141__ = true ;
+            __first_executed_1534734659293__ = true ;
         }
         
         
@@ -1796,8 +1867,9 @@ if(isFile(path)){
     
     
     
-    let __first_executed_1534494807262__ = false ;
     
+    
+
     
     function main(html){
 
@@ -1848,8 +1920,11 @@ return window.document ;
     
     
     
-    let __first_executed_1534494807263__ = false ;
     
+    
+    let __first_executed_1534734659416__ = false ;
+    
+
     
     function main(path){
 
@@ -1859,11 +1934,11 @@ return parse(read(path)) ;
     }
     return function(path){
         
-        if(!__first_executed_1534494807263__){
+        if(!__first_executed_1534734659416__){
             parse = include('html.parse');
 read = include('file.read.text');
             
-            __first_executed_1534494807263__ = true ;
+            __first_executed_1534734659416__ = true ;
         }
         
         
