@@ -108,7 +108,8 @@
             "object.equals",
             "http",
             "url.append",
-            "array.from"
+            "array.from",
+            "console.init.browser"
         ],
         "config":{
             "http":{
@@ -119,6 +120,15 @@
                     },
                     "type":"json"
                 }
+            },
+            "console":{
+                "log":[
+                    "U3D通信",
+                    "U3D桥接",
+                    "UE4通信",
+                    "UE4桥接",
+                    "调试"
+                ]
             }
         },
         "targets":[
