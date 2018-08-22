@@ -24,6 +24,7 @@
   "dependencies": {
     "dateformat": "^3.0.3",
     "ejs": "^2.6.1",
+    "html-minifier": "^3.5.20",
     "js-beautify": "^1.7.5",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.0",
