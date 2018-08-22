@@ -1,4 +1,12 @@
 {
+    "vue-toolkit":{
+        "classes":[
+            "array.from"
+        ],
+        "targets":[
+            "D:\\Code\\GitHub\\ZBEE\\Template\\VUE-TOOLKIT\\lib"
+        ]
+    },
     "vue-browser":{
         "classes":[
             "browser.event.init",
