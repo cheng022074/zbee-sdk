@@ -1,7 +1,8 @@
 {
     "vue-toolkit":{
         "classes":[
-            "array.from"
+            "array.from",
+            "path.string"
         ],
         "targets":[
             "D:\\Code\\GitHub\\ZBEE\\Template\\VUE-TOOLKIT\\lib"

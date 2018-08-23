@@ -48,7 +48,7 @@ exports['src::is.array'] = (() =>{
     
     
     
-    let __first_executed_1534925206806__ = false ;
+    let __first_executed_1535005768852__ = false ;
     
 
     
@@ -60,10 +60,10 @@ exports['src::is.array'] = (() =>{
     }
     return function(data){
         
-        if(!__first_executed_1534925206806__){
+        if(!__first_executed_1535005768852__){
             isType = include('is.type');
             
-            __first_executed_1534925206806__ = true ;
+            __first_executed_1535005768852__ = true ;
         }
         
         
@@ -96,7 +96,7 @@ exports['src::is.empty'] = (() =>{
     
     
     
-    let __first_executed_1534925206806__ = false ;
+    let __first_executed_1535005768852__ = false ;
     
 
     
@@ -108,10 +108,10 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
     }
     return function(data,allowEmptyString = false){
         
-        if(!__first_executed_1534925206806__){
+        if(!__first_executed_1535005768852__){
             isArray = include('is.array');
             
-            __first_executed_1534925206806__ = true ;
+            __first_executed_1535005768852__ = true ;
         }
         
         
@@ -144,7 +144,7 @@ exports['src::is.string'] = (() =>{
     
     
     
-    let __first_executed_1534925206806__ = false ;
+    let __first_executed_1535005768852__ = false ;
     
 
     
@@ -156,10 +156,10 @@ return isType(data , 'string') ;
     }
     return function(data){
         
-        if(!__first_executed_1534925206806__){
+        if(!__first_executed_1535005768852__){
             isType = include('is.type');
             
-            __first_executed_1534925206806__ = true ;
+            __first_executed_1535005768852__ = true ;
         }
         
         
@@ -192,7 +192,7 @@ exports['src::array.from'] = (() =>{
     
     
     
-    let __first_executed_1534925206807__ = false ;
+    let __first_executed_1535005768852__ = false ;
     
 
     
@@ -217,11 +217,11 @@ return [
     }
     return function(data){
         
-        if(!__first_executed_1534925206807__){
+        if(!__first_executed_1535005768852__){
             isEmpty = include('is.empty');
 isString = include('is.string');
             
-            __first_executed_1534925206807__ = true ;
+            __first_executed_1535005768852__ = true ;
         }
         
         
@@ -242,6 +242,46 @@ isString = include('is.string');
             return me === target ? main : me ;
 
         }).call(this) , data) ;
+    }
+    
+
+})() ;
+
+exports['src::path.string'] = (() =>{
+    
+    
+    
+    
+    
+    
+
+    
+    function main(path){
+
+        
+
+return path.replace(/\\/g , '\\\\') ;
+    }
+    return function(path){
+        
+        
+        return  main.call((function(){
+
+            let me = this,
+                target;
+
+            if(typeof global !== 'undefined'){
+
+                target = global ;
+            
+            }else{
+
+                target = window ;
+            }
+
+            return me === target ? main : me ;
+
+        }).call(this) , path) ;
     }
     
 
