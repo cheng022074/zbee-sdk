@@ -1,16 +1,10 @@
-try {
+const {
+    env
+} = process;
 
-    const {
-        env
-    } = process;
+if (!env['ZBEE-APPLICATION-ROOT-PATH']) {
 
-    if (!env['ZBEE-APPLICATION-ROOT-PATH']) {
-
-        env['ZBEE-APPLICATION-ROOT-PATH'] = __dirname;
-    }
-
-} catch (err) {
-
+    env['ZBEE-APPLICATION-ROOT-PATH'] = __dirname;
 }
 
 
@@ -141,9 +135,7 @@ const config = (() => {
         return data;
     }
 
-    const {
-        join
-    } = require('path'),
+    const
         dotRe = /\./g,
         config = {};
 
@@ -277,7 +269,7 @@ exports['src::is.array'] = (() => {
 
 
 
-    let __first_executed_1535005768852__ = false;
+    let __first_executed_1535200741186__ = false;
 
 
 
@@ -289,10 +281,10 @@ exports['src::is.array'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1535005768852__) {
+        if (!__first_executed_1535200741186__) {
             isType = include('is.type');
 
-            __first_executed_1535005768852__ = true;
+            __first_executed_1535200741186__ = true;
         }
 
 
@@ -325,7 +317,7 @@ exports['src::is.empty'] = (() => {
 
 
 
-    let __first_executed_1535005768852__ = false;
+    let __first_executed_1535200741186__ = false;
 
 
 
@@ -337,10 +329,10 @@ exports['src::is.empty'] = (() => {
     }
     return function(data, allowEmptyString = false) {
 
-        if (!__first_executed_1535005768852__) {
+        if (!__first_executed_1535200741186__) {
             isArray = include('is.array');
 
-            __first_executed_1535005768852__ = true;
+            __first_executed_1535200741186__ = true;
         }
 
 
@@ -373,7 +365,7 @@ exports['src::is.string'] = (() => {
 
 
 
-    let __first_executed_1535005768852__ = false;
+    let __first_executed_1535200741186__ = false;
 
 
 
@@ -385,10 +377,10 @@ exports['src::is.string'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1535005768852__) {
+        if (!__first_executed_1535200741186__) {
             isType = include('is.type');
 
-            __first_executed_1535005768852__ = true;
+            __first_executed_1535200741186__ = true;
         }
 
 
@@ -421,7 +413,7 @@ exports['src::array.from'] = (() => {
 
 
 
-    let __first_executed_1535005768852__ = false;
+    let __first_executed_1535200741186__ = false;
 
 
 
@@ -446,11 +438,11 @@ exports['src::array.from'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1535005768852__) {
+        if (!__first_executed_1535200741186__) {
             isEmpty = include('is.empty');
             isString = include('is.string');
 
-            __first_executed_1535005768852__ = true;
+            __first_executed_1535200741186__ = true;
         }
 
 
@@ -515,68 +507,3 @@ exports['src::path.string'] = (() => {
 
 
 })();
-
-
-
-
-
-{
-    const {
-        env
-    } = process,
-    entryName = env['ZBEE-ENTRY-NAME'];
-
-    if (entryName) {
-
-        const {
-            isWorker
-        } = require('cluster'),
-            entryFn = include(entryName);
-
-        if (typeof entryFn === 'function') {
-
-            if (isWorker) {
-
-                process.on('message', async ({
-                    type,
-                    id,
-                    data
-                }) => {
-
-                    if (type === 'master-send') {
-
-                        process.send({
-                            id,
-                            type: 'master-send-result',
-                            data: await entryFn(...data)
-                        });
-                    }
-
-                });
-
-            } else {
-
-                let args = env['ZBEE-ENTRY-ARGS'];
-
-                if (args) {
-
-                    args = JSON.parse(args);
-
-                } else {
-
-                    args = [];
-                }
-
-                (async () => {
-
-                    process.send(await entryFn(...args));
-
-                })();
-            }
-        }
-
-    } else {
-
-
-    }
-}

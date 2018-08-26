@@ -6,7 +6,7 @@
  * 
  * @import connection.sender.send.window
  * 
- * @import package from connection.message.package
+ * @import doPackage from connection.message.package
  * 
  * @param {Window} window 作用的窗口
  * 
@@ -18,4 +18,4 @@
  * 
  */
 
-return send(window , 'connection.sender.send.window' , package(action , data)) ;
+return send(window , 'connection.sender.send.window' , doPackage(action , data)) ;
