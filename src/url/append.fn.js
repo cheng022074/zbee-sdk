@@ -21,11 +21,16 @@ if(isString(data)){
 
 }else{
 
-    const {
-        stringify
-    } = require('querystring') ;
-    
-    querystring = stringify(data);
+    querystring = [];
+
+    let names = Object.keys(data) ;
+
+    for(let name of names){
+
+        querystring.push(`${name}=${encodeURIComponent(data[name])}`) ;
+    }
+
+    querystring = querystring.join('&') ;
 
 }
 

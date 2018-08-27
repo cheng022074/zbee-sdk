@@ -22,8 +22,6 @@
             "connection.window.receive"
         ],
         "browser":true,
-        "compress":true,
-        "es5":true,
         "config":{
             "vue":{
                 "gestures":[

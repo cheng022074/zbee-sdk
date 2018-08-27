@@ -2,7 +2,7 @@
  * 
  * 发起 GET 请求并获得返回数据
  * 
- * @import parse from http.params.parse
+ * @import request from http.request
  * 
  * @param {string} uri 请求名称
  * 
@@ -12,4 +12,4 @@
  * 
  */
 
-return require('request-promise')(parse(uri , 'get' , params)) ;
+return request(uri , 'get' , params) ;

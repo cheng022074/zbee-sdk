@@ -1,10 +1,12 @@
 /**
  * 
+ * 解析请求参数
+ * 
  * @param {string} uri 请求名称
  * 
- * @param {string} method HTTP 提交方式
+ * @param {string} [method = 'GET'] HTTP 提交方式
  * 
- * @param {config} params 参数信息
+ * @param {config} [params] 参数信息
  * 
  * @import apply from url.template.apply
  * 
@@ -16,205 +18,63 @@
  * 
  * @import append from url.append
  * 
- * @import parse from xml.parse
- * 
- * @import assign from object.assign
- * 
  * @config http from http
  * 
  * @return {object}  符合 request-promise 的配置信息
  * 
- * @scoped
  * 
  */
 
-function main(uri , method , params){
+method = method.toUpperCase() ;
 
-    method = method.toUpperCase() ;
+let name ;
 
-    let name ;
+if(isString(params)){
 
-    if(isString(params)){
+    name = params ;
 
-        name = params ;
+    params = {} ;
 
-        params = {} ;
-    
-    }else if(isObject(params)){
+}else if(isObject(params)){
 
-        name = params.name || 'default';
+    name = params.name || 'default';
 
-        delete params.name ;
-    
-    }else{
+    delete params.name ;
 
-        name = 'default' ;
+}else{
 
-        params = {} ;
-    }
+    name = 'default' ;
 
-    let httpConfig = http[name];
-
-    if(httpConfig){
-
-        let {
-            root:rootPath,
-            type,
-            headers,
-            timeout
-        } = httpConfig,
-        {
-            request:requestType,
-            response:responseType
-        } = process_type(type) ;
-
-        let {
-            query,
-            path,
-            body,
-            timeout:userTimeout
-        } = params;
-
-        return assign({
-            uri:append(join(rootPath , apply(uri , path)) , {
-                _dc:Date.now()
-            }),
-            timeout,
-            requestTimeout:timeout || 0,
-            method,
-            headers,
-            qs:query,
-            transform:transform(responseType)
-        } , process_body(body , requestType) , process_timeout(userTimeout));
-    }
-
-    throw new Error('试图请求未注册的路径') ;
+    params = {} ;
 }
 
-function process_timeout(timeout){
+let httpConfig = http[name];
 
-    if(timeout){
+if(httpConfig){
 
-        return {
-            timeout,
-            requestTimeout:timeout
-        } ;
-    }
-
-    return {} ;
-}
-
-function process_body(body , type){
-
-    switch(type){
-
-        case 'json':
-
-            return {
-                body,
-                headers:{
-                    'content-type':'application/json'
-                },
-                json:true
-            } ;
-
-        case 'xml':
-
-            return {
-                headers:{
-                    'content-type':'application/xml'
-                },
-                body
-            } ;
-
-        case 'form':
-
-            return {
-                formData:body
-            } ;
-
-        case 'html':
-
-            return {
-                headers:{
-                    'content-type':'text/html'
-                },
-                body
-            } ;
-    }
+    let {
+        root:rootURL,
+        type,
+        headers,
+        timeout
+    } = httpConfig,
+    {
+        query,
+        path,
+        body,
+        timeout:userTimeout
+    } = params;
 
     return {
-        body
-    } ; ;
-}
-
-function process_type(type){
-
-    if(isObject(type)){
-
-        let {
-            request,
-            response
-        } = type ;
-
-        return {
-            request,
-            response
-        } ;
-    
-    }else if(isString(type)){
-
-        return {
-            request:type,
-            response:type
-        } ;
-    }
-
-    return {
+        url:append(join(rootURL , apply(uri , path)) , {
+            _dc:Date.now()
+        }),
+        type,
+        headers,
+        method,
+        body,
+        timeout:timeout || userTimeout
     } ;
 }
 
-function transform_json(body){
-
-    if(isString(body)){
-
-        return JSON.parse(body) ;
-    }
-
-    return body ;
-}
-
-function transform_xml(body){
-
-    return parse(body) ;
-}
-
-function transform_html(body){
-
-
-}
-
-function transform_empty(body){
-
-    return body ;
-}
-
-function transform(type){
-
-    switch(type){
-
-        case 'json':
-
-            return transform_json ;
-
-        case 'xml':
-
-            return transform_xml ;
-
-        case 'html':
-
-            return transform_html ;
-    }
-
-    return transform_empty ;
-}
+throw new Error('试图请求未注册的路径') ;
