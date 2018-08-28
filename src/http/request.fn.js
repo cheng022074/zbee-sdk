@@ -2,7 +2,7 @@
  * 
  * 向后台应用服务发送请求
  * 
- * @import parse from http.params.parse
+ * @import parse from http.config.parse
  * 
  * @param {string} uri 请求名称
  * 
@@ -16,23 +16,23 @@
 
 const request = require('request-promise') ;
 
-function main(uri , method , params){
+function main(uri , methodName , params){
 
     let {
-        url:uri,
+        url,
         type,
         headers,
         method,
         timeout,
         body
-    } = parse(url , method , params),
+    } = parse(uri , methodName , params),
     {
         request:requestType,
         response:responseType
     } = process_type(type);
 
     return request(assign({
-        uri,
+        uri:url,
         method,
         headers,
         qs,

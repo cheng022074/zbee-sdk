@@ -2,7 +2,7 @@
  * 
  * 向后台应用服务发送请求
  * 
- * @import parse from http.params.parse
+ * @import config_parse from http.config.parse
  * 
  * @import empty from function.empty
  * 
@@ -10,7 +10,7 @@
  * 
  * @param {string} uri 服务请求链接
  * 
- * @param {string} [method] 请求方式
+ * @param {string} [methodName] 请求方式
  * 
  * @param {object} [params] 服务请求数据
  * 
@@ -24,14 +24,15 @@ const {
     method,
     timeout,
     body
-} = parse(uri , method , params),
+} = config_parse(uri , methodName , params),
 http = new XMLHttpRequest(),
 {
     stringify,
     parse
-} = JSON,
-successFn = empty,
-failureFn = empty;
+} = JSON ;
+
+let successFn = empty,
+    failureFn = empty;
 
 if(isObject(params)){
 

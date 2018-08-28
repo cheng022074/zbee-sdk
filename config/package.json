@@ -62,6 +62,24 @@
         ]
     },
 
+    "fontre-buried-point-html5-sdk-native":{
+        "classes":[
+            "browser.es5.http.post"
+        ],
+        "targets":[
+            "D:\\Code\\Company\\Outer\\BURIED-POINT-HTML5-SDK\\lib"
+        ]
+    },
+
+    "fontre-buried-point-html5-sdk-webpack":{
+        "classes":[
+            "http.post"
+        ],
+        "targets":[
+            "D:\\Code\\Company\\Outer\\BURIED-POINT-HTML5-SDK\\lib"
+        ]
+    },
+
     "fontre-car-configurator-compiler":{
         "classes":[
             "http",
