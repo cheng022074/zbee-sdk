@@ -14,4 +14,3 @@
  */
 
 return request(uri , 'put' , params) ;
-
