@@ -62,19 +62,11 @@
         ]
     },
 
-    "fontre-buried-point-html5-sdk-native":{
+    "fontre-buried-point-html5-sdk":{
         "classes":[
             "browser.es5.http.post"
         ],
-        "targets":[
-            "D:\\Code\\Company\\Outer\\BURIED-POINT-HTML5-SDK\\lib"
-        ]
-    },
-
-    "fontre-buried-point-html5-sdk-webpack":{
-        "classes":[
-            "http.post"
-        ],
+        "browser":true,
         "targets":[
             "D:\\Code\\Company\\Outer\\BURIED-POINT-HTML5-SDK\\lib"
         ]

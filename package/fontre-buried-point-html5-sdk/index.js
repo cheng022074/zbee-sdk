@@ -1,14 +1,3 @@
-const {
-    env
-} = process;
-
-if (!env['ZBEE-APPLICATION-ROOT-PATH']) {
-
-    env['ZBEE-APPLICATION-ROOT-PATH'] = __dirname;
-}
-
-
-
 const include = (() => {
 
     const nameRe = /^(\w+)\:{2}(.+?)$/,
@@ -38,7 +27,7 @@ const include = (() => {
             }
 
             folder = 'src',
-            className = name;
+                className = name;
         }
 
         let fullName = `${folder}::${className}`,
@@ -183,30 +172,6 @@ const config = (() => {
 
     return (name, key) => {
 
-
-
-        try {
-
-            const {
-                env
-            } = process;
-
-            let data;
-
-            try {
-
-                data = require(`${env['ZBEE-APPLICATION-ROOT-PATH']}/config/${name.replace(dotRe , '/')}.json`);
-
-            } catch (err) {}
-
-            if (data) {
-
-                return get_config(data, key);
-            }
-
-        } catch (err) {
-
-        }
 
 
         if (config.hasOwnProperty(name)) {
@@ -358,7 +323,7 @@ exports['src::is.string'] = (() => {
 
 
 
-    let __first_executed_1535441940110__ = false;
+    let __first_executed_1535523512582__ = false;
 
 
 
@@ -370,10 +335,10 @@ exports['src::is.string'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1535441940110__) {
+        if (!__first_executed_1535523512582__) {
             isType = include('is.type');
 
-            __first_executed_1535441940110__ = true;
+            __first_executed_1535523512582__ = true;
         }
 
 
@@ -446,7 +411,7 @@ exports['src::url.join'] = (() => {
 
 
 
-    let __first_executed_1535441940110__ = false;
+    let __first_executed_1535523512582__ = false;
 
 
 
@@ -482,10 +447,10 @@ exports['src::url.join'] = (() => {
     }
     return function(...urls) {
 
-        if (!__first_executed_1535441940110__) {
+        if (!__first_executed_1535523512582__) {
             isAbsolute = include('url.isAbsolute');
 
-            __first_executed_1535441940110__ = true;
+            __first_executed_1535523512582__ = true;
         }
 
 
@@ -518,7 +483,7 @@ exports['src::url.append'] = (() => {
 
 
 
-    let __first_executed_1535441940110__ = false;
+    let __first_executed_1535523512582__ = false;
 
 
 
@@ -556,10 +521,10 @@ exports['src::url.append'] = (() => {
     }
     return function(url, data) {
 
-        if (!__first_executed_1535441940110__) {
+        if (!__first_executed_1535523512582__) {
             isString = include('is.string');
 
-            __first_executed_1535441940110__ = true;
+            __first_executed_1535523512582__ = true;
         }
 
 
@@ -592,14 +557,14 @@ exports['config::http'] = {
     }
 };
 
-exports['src::http.params.parse'] = (() => {
+exports['src::http.config.parse'] = (() => {
     let apply, isObject, isString, join, append, configHttp;
     let http;
 
 
 
 
-    let __first_executed_1535441940111__ = false;
+    let __first_executed_1535523512583__ = false;
 
 
 
@@ -662,7 +627,7 @@ exports['src::http.params.parse'] = (() => {
     }
     return function(uri, method = 'GET', params) {
 
-        if (!__first_executed_1535441940111__) {
+        if (!__first_executed_1535523512583__) {
             apply = include('url.template.apply');
             isObject = include('is.object.simple');
             isString = include('is.string');
@@ -670,7 +635,7 @@ exports['src::http.params.parse'] = (() => {
             append = include('url.append');
             configHttp = include('config::http');
             http = config('http');
-            __first_executed_1535441940111__ = true;
+            __first_executed_1535523512583__ = true;
         }
 
 
@@ -691,255 +656,6 @@ exports['src::http.params.parse'] = (() => {
             return me === target ? main : me;
 
         }).call(this), uri, method, params);
-    }
-
-
-})();
-
-exports['src::http.request'] = (() => {
-    let parse;
-
-
-
-
-
-    let __first_executed_1535441940111__ = false;
-
-
-
-    function main(uri, method, params) {
-
-
-
-        const request = require('request-promise');
-
-        function main(uri, methodName, params) {
-
-            let {
-                url,
-                type,
-                headers,
-                method,
-                timeout,
-                body
-            } = parse(uri, methodName, params), {
-                request: requestType,
-                response: responseType
-            } = process_type(type);
-
-            return request(assign({
-                    uri: url,
-                    method,
-                    headers,
-                    qs,
-                    transform: transform(responseType)
-                },
-                process_body(body, requestType),
-                process_timeout(timeout)
-            ));
-        }
-
-        function process_timeout(timeout) {
-
-            if (timeout) {
-
-                return {
-                    timeout,
-                    requestTimeout: timeout
-                };
-            }
-
-            return {};
-        }
-
-        function process_body(body, type) {
-
-            switch (type) {
-
-                case 'json':
-
-                    return {
-                        body,
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                        json: true
-                    };
-
-                case 'xml':
-
-                    return {
-                        headers: {
-                            'content-type': 'application/xml'
-                        },
-                        body
-                    };
-
-                case 'form':
-
-                    return {
-                        formData: body
-                    };
-
-                case 'html':
-
-                    return {
-                        headers: {
-                            'content-type': 'text/html'
-                        },
-                        body
-                    };
-            }
-
-            return {
-                body
-            };;
-        }
-
-        function process_type(type) {
-
-            if (isObject(type)) {
-
-                let {
-                    request,
-                    response
-                } = type;
-
-                return {
-                    request,
-                    response
-                };
-
-            } else if (isString(type)) {
-
-                return {
-                    request: type,
-                    response: type
-                };
-            }
-
-            return {};
-        }
-
-        function transform_json(body) {
-
-            if (isString(body)) {
-
-                return JSON.parse(body);
-            }
-
-            return body;
-        }
-
-        function transform_xml(body) {
-
-            return parse(body);
-        }
-
-        function transform_html(body) {
-
-
-        }
-
-        function transform_empty(body) {
-
-            return body;
-        }
-
-        function transform(type) {
-
-            switch (type) {
-
-                case 'json':
-
-                    return transform_json;
-
-                case 'xml':
-
-                    return transform_xml;
-
-                case 'html':
-
-                    return transform_html;
-            }
-
-            return transform_empty;
-        }
-    }
-    return function(uri, method, params) {
-
-        if (!__first_executed_1535441940111__) {
-            parse = include('http.params.parse');
-
-            __first_executed_1535441940111__ = true;
-        }
-
-
-        return main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this), uri, method, params);
-    }
-
-
-})();
-
-exports['src::http.post'] = (() => {
-    let request;
-
-
-
-
-
-    let __first_executed_1535441940111__ = false;
-
-
-
-    function main(uri, params) {
-
-
-
-        return request(uri, 'post', params);
-    }
-    return function(uri, params) {
-
-        if (!__first_executed_1535441940111__) {
-            request = include('http.request');
-
-            __first_executed_1535441940111__ = true;
-        }
-
-
-        return main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this), uri, params);
     }
 
 
@@ -988,13 +704,13 @@ exports['src::function.empty'] = (() => {
 })();
 
 exports['src::browser.es5.http.request'] = (() => {
-    let parse, empty, isObject;
+    let config_parse, empty, isObject;
 
 
 
 
 
-    let __first_executed_1535441940111__ = false;
+    let __first_executed_1535523512584__ = false;
 
 
 
@@ -1010,7 +726,7 @@ exports['src::browser.es5.http.request'] = (() => {
             method,
             timeout,
             body
-        } = parse(uri, methodName, params),
+        } = config_parse(uri, methodName, params),
             http = new XMLHttpRequest(), {
                 stringify,
                 parse
@@ -1054,12 +770,12 @@ exports['src::browser.es5.http.request'] = (() => {
     }
     return function(uri, methodName, params) {
 
-        if (!__first_executed_1535441940111__) {
-            parse = include('http.params.parse');
+        if (!__first_executed_1535523512584__) {
+            config_parse = include('http.config.parse');
             empty = include('function.empty');
             isObject = include('is.object.simple');
 
-            __first_executed_1535441940111__ = true;
+            __first_executed_1535523512584__ = true;
         }
 
 
@@ -1092,7 +808,7 @@ exports['src::browser.es5.http.post'] = (() => {
 
 
 
-    let __first_executed_1535441940111__ = false;
+    let __first_executed_1535523512584__ = false;
 
 
 
@@ -1104,10 +820,10 @@ exports['src::browser.es5.http.post'] = (() => {
     }
     return function(uri, method, params) {
 
-        if (!__first_executed_1535441940111__) {
+        if (!__first_executed_1535523512584__) {
             request = include('browser.es5.http.request');
 
-            __first_executed_1535441940111__ = true;
+            __first_executed_1535523512584__ = true;
         }
 
 

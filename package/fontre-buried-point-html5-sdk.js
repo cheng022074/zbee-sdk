@@ -1,229 +1,189 @@
-
-
-
-
-const {
-    env
-} = process ;
-
-if(!env['ZBEE-APPLICATION-ROOT-PATH']){
-
-    env['ZBEE-APPLICATION-ROOT-PATH'] = __dirname ;
-}
-
-
-
-const include = (() =>{
+const include = (() => {
 
     const nameRe = /^(\w+)\:{2}(.+?)$/,
-          CODES = {};
+        CODES = {};
 
-    return name =>{
+    return name => {
 
-        if(CODES.hasOwnProperty(name)){
+        if (CODES.hasOwnProperty(name)) {
 
-            return CODES[name] ;
+            return CODES[name];
         }
 
         let match = name.match(nameRe),
             folder,
             className;
-    
-        if(match){
-    
+
+        if (match) {
+
             folder = match[1],
-            className = match[2] ;
-    
-        }else{
+                className = match[2];
 
-            if(exports.hasOwnProperty(name)){
+        } else {
 
-                return CODES[name] = exports[name] ;
+            if (exports.hasOwnProperty(name)) {
+
+                return CODES[name] = exports[name];
             }
-    
+
             folder = 'src',
-            className = name ;
+                className = name;
         }
 
         let fullName = `${folder}::${className}`,
-            code = CODES[name] = exports[fullName] ;
+            code = CODES[name] = exports[fullName];
 
-        if(code === undefined && folder !== 'config'){
+        if (code === undefined && folder !== 'config') {
 
-            throw new Error(`${fullName} 没有定义`) ;
+            throw new Error(`${fullName} 没有定义`);
         }
 
-        return code ;
-    } ;
+        return code;
+    };
 
-})() ;
+})();
 
-exports.include = include ;
+exports.include = include;
 
-const gettype = (() =>{
+const gettype = (() => {
 
     const typeofTypes = [
-        'number',
-        'string',
-        'boolean',
-        'undefined',
-        'function'
-     ],
-     {
-        toString
-     } = Object.prototype,
-     toStringTypes = {
-        '[object Array]'  : 'array',
-        '[object Date]'   : 'date',
-        '[object Boolean]': 'boolean',
-        '[object Number]' : 'number',
-        '[object RegExp]' : 'regexp'
-    },
-    nonWhitespaceRe = /\S/;
+            'number',
+            'string',
+            'boolean',
+            'undefined',
+            'function'
+        ],
+        {
+            toString
+        } = Object.prototype,
+        toStringTypes = {
+            '[object Array]': 'array',
+            '[object Date]': 'date',
+            '[object Boolean]': 'boolean',
+            '[object Number]': 'number',
+            '[object RegExp]': 'regexp'
+        },
+        nonWhitespaceRe = /\S/;
 
-    return data =>{
+    return data => {
 
-        if(data === null){
+        if (data === null) {
 
-            return 'null' ;
+            return 'null';
         }
-        
-        let type = typeof data ;
-    
-        if(typeofTypes.includes(type)){
-    
-            return type ;
+
+        let type = typeof data;
+
+        if (typeofTypes.includes(type)) {
+
+            return type;
         }
-    
-        let ret = toStringTypes[toString.call(data)] ;
-    
-        if(ret){
-    
-            return ret ;
+
+        let ret = toStringTypes[toString.call(data)];
+
+        if (ret) {
+
+            return ret;
         }
-    
-        if (type === 'object'){
-    
-            if (data.nodeType !== undefined){
-    
-                if (data.nodeType === 3){
-    
+
+        if (type === 'object') {
+
+            if (data.nodeType !== undefined) {
+
+                if (data.nodeType === 3) {
+
                     return nonWhitespaceRe.test(data.nodeValue) ? 'textnode' : 'whitespace';
-    
-                }else{
-    
+
+                } else {
+
                     return 'element';
                 }
             }
-    
+
             return 'object';
         }
-    
-        return 'mixed' ;
 
-    } ;
+        return 'mixed';
 
-})() ;
+    };
 
-const config = (() =>{
+})();
 
-    function freeze(data){
+const config = (() => {
 
-        if (data && typeof data === 'object' && !Object.isFrozen(data)){
+    function freeze(data) {
+
+        if (data && typeof data === 'object' && !Object.isFrozen(data)) {
 
             Object.freeze(data);
 
-            let names = Object.keys(data) ;
+            let names = Object.keys(data);
 
-            for(let name of names){
+            for (let name of names) {
 
-                freeze(data[name]) ;
+                freeze(data[name]);
             }
         }
 
         return data;
     }
 
-    const 
-    dotRe = /\./g,
-    config = {};
+    const
+        dotRe = /\./g,
+        config = {};
 
-    function get_config(target , key){
+    function get_config(target, key) {
 
-        if(key){
-    
-            if(target.hasOwnProperty(key)){
-        
-                return target[key] ;
+        if (key) {
+
+            if (target.hasOwnProperty(key)) {
+
+                return target[key];
             }
-        
+
             let names = key.split(/\./),
                 prefix = '';
-        
-            for(let name of names){
-        
-                let key = `${prefix}${name}` ;
-        
-                if(target.hasOwnProperty(key)){
-        
-                    target = target[key] ;
-        
-                    prefix = '' ;
-                
-                }else{
-        
-                    prefix = `${key}.` ;
+
+            for (let name of names) {
+
+                let key = `${prefix}${name}`;
+
+                if (target.hasOwnProperty(key)) {
+
+                    target = target[key];
+
+                    prefix = '';
+
+                } else {
+
+                    prefix = `${key}.`;
                 }
             }
 
-            if(prefix){
-        
-                return ;
+            if (prefix) {
+
+                return;
             }
         }
 
-        return freeze(target) ; 
+        return freeze(target);
     }
 
-    return (name , key) =>{
+    return (name, key) => {
 
-        
 
-        try{
 
-            const {
-                env
-            } = process ;
+        if (config.hasOwnProperty(name)) {
 
-            let data;
-
-            try{
-
-                data = require(`${env['ZBEE-APPLICATION-ROOT-PATH']}/config/${name.replace(dotRe , '/')}.json`) ;
-
-            }catch(err){
-            }
-
-            if(data){
-
-                return get_config(data , key) ;
-            }
-        
-        }catch(err){
-
-        }
-        
-
-        if(config.hasOwnProperty(name)){
-
-            return get_config(config[name] , key) ;
+            return get_config(config[name], key);
         }
 
-        try{ 
+        try {
 
-            return get_config(include(`config::${name}`) , key) ;
+            return get_config(include(`config::${name}`), key);
 
-        }catch(err){
+        } catch (err) {
 
         }
 
@@ -232,915 +192,659 @@ const config = (() =>{
 })();
 
 
-exports['src::url.template.apply'] = (() =>{
-    
-    
-    
-    
-    
-    
+exports['src::url.template.apply'] = (() => {
 
-    
-    function main(url,data){
 
-        
 
-return url.replace(/\:([^\\\/\d]+)/g , (match , name) =>{
 
-    return data[name] || '' ;
 
-}) ;
+
+
+
+    function main(url, data) {
+
+
+
+        return url.replace(/\:([^\\\/\d]+)/g, (match, name) => {
+
+            return data[name] || '';
+
+        });
     }
-    return function(url,data){
-        
-        
-        return  main.call((function(){
+    return function(url, data) {
+
+
+        return main.call((function() {
 
             let me = this,
                 target;
 
-            if(typeof global !== 'undefined'){
+            if (typeof global !== 'undefined') {
 
-                target = global ;
-            
-            }else{
+                target = global;
 
-                target = window ;
+            } else {
+
+                target = window;
             }
 
-            return me === target ? main : me ;
+            return me === target ? main : me;
 
-        }).call(this) , url,data) ;
+        }).call(this), url, data);
     }
-    
 
-})() ;
 
-exports['src::is.object.simple'] = (() =>{
-    
-    
-    
-    
-    
-    
+})();
 
-    
-    function main(data){
+exports['src::is.object.simple'] = (() => {
 
-        
 
-return data instanceof Object && data.constructor === Object;
+
+
+
+
+
+
+    function main(data) {
+
+
+
+        return data instanceof Object && data.constructor === Object;
     }
-    return function(data){
-        
-        
-        return  main.call((function(){
+    return function(data) {
+
+
+        return main.call((function() {
 
             let me = this,
                 target;
 
-            if(typeof global !== 'undefined'){
+            if (typeof global !== 'undefined') {
 
-                target = global ;
-            
-            }else{
+                target = global;
 
-                target = window ;
+            } else {
+
+                target = window;
             }
 
-            return me === target ? main : me ;
+            return me === target ? main : me;
 
-        }).call(this) , data) ;
+        }).call(this), data);
     }
-    
 
-})() ;
 
-exports['src::is.type'] = (() =>{
-    
-    
-    
-    
-    
-    
+})();
 
-    
-    function main(data,type){
+exports['src::is.type'] = (() => {
 
-        
 
- return typeof data === type ;
+
+
+
+
+
+
+    function main(data, type) {
+
+
+
+        return typeof data === type;
     }
-    return function(data,type){
-        
-        
-        return  main.call((function(){
+    return function(data, type) {
+
+
+        return main.call((function() {
 
             let me = this,
                 target;
 
-            if(typeof global !== 'undefined'){
+            if (typeof global !== 'undefined') {
 
-                target = global ;
-            
-            }else{
+                target = global;
 
-                target = window ;
+            } else {
+
+                target = window;
             }
 
-            return me === target ? main : me ;
+            return me === target ? main : me;
 
-        }).call(this) , data,type) ;
+        }).call(this), data, type);
     }
-    
 
-})() ;
 
-exports['src::is.string'] = (() =>{
+})();
+
+exports['src::is.string'] = (() => {
     let isType;
-    
-    
-    
-    
-    
-    let __first_executed_1535441940110__ = false ;
-    
 
-    
-    function main(data){
 
-        
 
-return isType(data , 'string') ;
+
+
+    let __first_executed_1535523512582__ = false;
+
+
+
+    function main(data) {
+
+
+
+        return isType(data, 'string');
     }
-    return function(data){
-        
-        if(!__first_executed_1535441940110__){
+    return function(data) {
+
+        if (!__first_executed_1535523512582__) {
             isType = include('is.type');
-            
-            __first_executed_1535441940110__ = true ;
+
+            __first_executed_1535523512582__ = true;
         }
-        
-        
-        return  main.call((function(){
+
+
+        return main.call((function() {
 
             let me = this,
                 target;
 
-            if(typeof global !== 'undefined'){
+            if (typeof global !== 'undefined') {
 
-                target = global ;
-            
-            }else{
+                target = global;
 
-                target = window ;
+            } else {
+
+                target = window;
             }
 
-            return me === target ? main : me ;
+            return me === target ? main : me;
 
-        }).call(this) , data) ;
+        }).call(this), data);
     }
-    
 
-})() ;
 
-exports['src::url.isAbsolute'] = (() =>{
-    
-    
-    
-    
-    
-    
+})();
 
-    
-    function main(url){
+exports['src::url.isAbsolute'] = (() => {
 
-        
 
-return /^https?\:\/{2}/.test(url) ;
+
+
+
+
+
+
+    function main(url) {
+
+
+
+        return /^https?\:\/{2}/.test(url);
     }
-    return function(url){
-        
-        
-        return  main.call((function(){
+    return function(url) {
+
+
+        return main.call((function() {
 
             let me = this,
                 target;
 
-            if(typeof global !== 'undefined'){
+            if (typeof global !== 'undefined') {
 
-                target = global ;
-            
-            }else{
+                target = global;
 
-                target = window ;
+            } else {
+
+                target = window;
             }
 
-            return me === target ? main : me ;
+            return me === target ? main : me;
 
-        }).call(this) , url) ;
+        }).call(this), url);
     }
-    
 
-})() ;
 
-exports['src::url.join'] = (() =>{
+})();
+
+exports['src::url.join'] = (() => {
     let isAbsolute;
-    
-    
-    
-    
-    
-    let __first_executed_1535441940110__ = false ;
-    
 
-    
-    
 
-const urlSuffixRe = /\/$/ ;
 
-function main(...urls){
 
-    let len = urls.length,
-        i = 0,
-        result = [];
 
-    for(; i < len ; i ++){
+    let __first_executed_1535523512582__ = false;
 
-        let part = urls[i] || '';
 
-        part = part.replace(urlSuffixRe , '') ;
 
-        if(isAbsolute(part)){
 
-            result.length = 0 ;
 
-            result.push(part) ;
-        
-        }else if(part){
+    const urlSuffixRe = /\/$/;
 
-            result.push(part) ;
+    function main(...urls) {
+
+        let len = urls.length,
+            i = 0,
+            result = [];
+
+        for (; i < len; i++) {
+
+            let part = urls[i] || '';
+
+            part = part.replace(urlSuffixRe, '');
+
+            if (isAbsolute(part)) {
+
+                result.length = 0;
+
+                result.push(part);
+
+            } else if (part) {
+
+                result.push(part);
+            }
         }
-    }
 
-    return result.join('/') ;
-}
-    return function(...urls){
-        
-        if(!__first_executed_1535441940110__){
+        return result.join('/');
+    }
+    return function(...urls) {
+
+        if (!__first_executed_1535523512582__) {
             isAbsolute = include('url.isAbsolute');
-            
-            __first_executed_1535441940110__ = true ;
+
+            __first_executed_1535523512582__ = true;
         }
-        
-        
-        return main.call((function(){
+
+
+        return main.call((function() {
 
             let me = this,
                 target;
 
-            if(typeof global !== 'undefined'){
+            if (typeof global !== 'undefined') {
 
-                target = global ;
-            
-            }else{
+                target = global;
 
-                target = window ;
+            } else {
+
+                target = window;
             }
 
-            return me === target ? main : me ;
+            return me === target ? main : me;
 
-        }).call(this) , ...urls) ;
+        }).call(this), ...urls);
     }
-    
 
-})() ;
 
-exports['src::url.append'] = (() =>{
+})();
+
+exports['src::url.append'] = (() => {
     let isString;
-    
-    
-    
-    
-    
-    let __first_executed_1535441940110__ = false ;
-    
 
-    
-    function main(url,data){
 
-        
 
-let querystring ;
 
-if(isString(data)){
 
-    querystring = data ;
+    let __first_executed_1535523512582__ = false;
 
-}else{
 
-    querystring = [];
 
-    let names = Object.keys(data) ;
+    function main(url, data) {
 
-    for(let name of names){
 
-        querystring.push(`${name}=${encodeURIComponent(data[name])}`) ;
-    }
 
-    querystring = querystring.join('&') ;
+        let querystring;
 
-}
+        if (isString(data)) {
 
-if(url.includes('?')){
+            querystring = data;
 
-    return `${url}&${querystring}` ;
-}
+        } else {
 
-return `${url}?${querystring}` ;
-    }
-    return function(url,data){
-        
-        if(!__first_executed_1535441940110__){
-            isString = include('is.string');
-            
-            __first_executed_1535441940110__ = true ;
+            querystring = [];
+
+            let names = Object.keys(data);
+
+            for (let name of names) {
+
+                querystring.push(`${name}=${encodeURIComponent(data[name])}`);
+            }
+
+            querystring = querystring.join('&');
+
         }
-        
-        
-        return  main.call((function(){
+
+        if (url.includes('?')) {
+
+            return `${url}&${querystring}`;
+        }
+
+        return `${url}?${querystring}`;
+    }
+    return function(url, data) {
+
+        if (!__first_executed_1535523512582__) {
+            isString = include('is.string');
+
+            __first_executed_1535523512582__ = true;
+        }
+
+
+        return main.call((function() {
 
             let me = this,
                 target;
 
-            if(typeof global !== 'undefined'){
+            if (typeof global !== 'undefined') {
 
-                target = global ;
-            
-            }else{
+                target = global;
 
-                target = window ;
+            } else {
+
+                target = window;
             }
 
-            return me === target ? main : me ;
+            return me === target ? main : me;
 
-        }).call(this) , url,data) ;
+        }).call(this), url, data);
     }
-    
 
-})() ;
+
+})();
 
 exports['config::http'] = {
-    "default":{
-        "timeout":20000,
-        "type":"json"
+    "default": {
+        "timeout": 20000,
+        "type": "json"
     }
-} ;
+};
 
-exports['src::http.params.parse'] = (() =>{
-    let apply,isObject,isString,join,append,configHttp;
+exports['src::http.config.parse'] = (() => {
+    let apply, isObject, isString, join, append, configHttp;
     let http;
-    
-    
-    
-    
-    let __first_executed_1535441940111__ = false ;
-    
 
-    
-    function main(uri,method,params){
 
-        
 
-method = method.toUpperCase() ;
 
-let name ;
+    let __first_executed_1535523512583__ = false;
 
-if(isString(params)){
 
-    name = params ;
 
-    params = {} ;
+    function main(uri, method, params) {
 
-}else if(isObject(params)){
 
-    name = params.name || 'default';
 
-    delete params.name ;
+        method = method.toUpperCase();
 
-}else{
+        let name;
 
-    name = 'default' ;
+        if (isString(params)) {
 
-    params = {} ;
-}
+            name = params;
 
-let httpConfig = http[name];
+            params = {};
 
-if(httpConfig){
+        } else if (isObject(params)) {
 
-    let {
-        root:rootURL,
-        type,
-        headers,
-        timeout
-    } = httpConfig,
-    {
-        query,
-        path,
-        body,
-        timeout:userTimeout
-    } = params;
+            name = params.name || 'default';
 
-    return {
-        url:append(join(rootURL , apply(uri , path)) , {
-            _dc:Date.now()
-        }),
-        type,
-        headers,
-        method,
-        body,
-        timeout:timeout || userTimeout
-    } ;
-}
+            delete params.name;
 
-throw new Error('试图请求未注册的路径') ;
-    }
-    return function(uri,method = 'GET',params){
-        
-        if(!__first_executed_1535441940111__){
-            apply = include('url.template.apply');
-isObject = include('is.object.simple');
-isString = include('is.string');
-join = include('url.join');
-append = include('url.append');
-configHttp = include('config::http');
-            http = config('http');
-            __first_executed_1535441940111__ = true ;
+        } else {
+
+            name = 'default';
+
+            params = {};
         }
-        
-        
-        return  main.call((function(){
 
-            let me = this,
-                target;
+        let httpConfig = http[name];
 
-            if(typeof global !== 'undefined'){
+        if (httpConfig) {
 
-                target = global ;
-            
-            }else{
-
-                target = window ;
-            }
-
-            return me === target ? main : me ;
-
-        }).call(this) , uri,method,params) ;
-    }
-    
-
-})() ;
-
-exports['src::http.request'] = (() =>{
-    let parse;
-    
-    
-    
-    
-    
-    let __first_executed_1535441940111__ = false ;
-    
-
-    
-    function main(uri,method,params){
-
-        
-
-const request = require('request-promise') ;
-
-function main(uri , methodName , params){
-
-    let {
-        url,
-        type,
-        headers,
-        method,
-        timeout,
-        body
-    } = parse(uri , methodName , params),
-    {
-        request:requestType,
-        response:responseType
-    } = process_type(type);
-
-    return request(assign({
-        uri:url,
-        method,
-        headers,
-        qs,
-        transform:transform(responseType)
-    }, 
-        process_body(body , requestType),
-        process_timeout(timeout)
-    ));
-}
-
-function process_timeout(timeout){
-
-    if(timeout){
-
-        return {
-            timeout,
-            requestTimeout:timeout
-        } ;
-    }
-
-    return {} ;
-}
-
-function process_body(body , type){
-
-    switch(type){
-
-        case 'json':
-
-            return {
+            let {
+                root: rootURL,
+                type,
+                headers,
+                timeout
+            } = httpConfig, {
+                query,
+                path,
                 body,
-                headers:{
-                    'content-type':'application/json'
-                },
-                json:true
-            } ;
-
-        case 'xml':
+                timeout: userTimeout
+            } = params;
 
             return {
-                headers:{
-                    'content-type':'application/xml'
-                },
-                body
-            } ;
-
-        case 'form':
-
-            return {
-                formData:body
-            } ;
-
-        case 'html':
-
-            return {
-                headers:{
-                    'content-type':'text/html'
-                },
-                body
-            } ;
-    }
-
-    return {
-        body
-    } ; ;
-}
-
-function process_type(type){
-
-    if(isObject(type)){
-
-        let {
-            request,
-            response
-        } = type ;
-
-        return {
-            request,
-            response
-        } ;
-    
-    }else if(isString(type)){
-
-        return {
-            request:type,
-            response:type
-        } ;
-    }
-
-    return {} ;
-}
-
-function transform_json(body){
-
-    if(isString(body)){
-
-        return JSON.parse(body) ;
-    }
-
-    return body ;
-}
-
-function transform_xml(body){
-
-    return parse(body) ;
-}
-
-function transform_html(body){
-
-
-}
-
-function transform_empty(body){
-
-    return body ;
-}
-
-function transform(type){
-
-    switch(type){
-
-        case 'json':
-
-            return transform_json ;
-
-        case 'xml':
-
-            return transform_xml ;
-
-        case 'html':
-
-            return transform_html ;
-    }
-
-    return transform_empty ;
-}
-    }
-    return function(uri,method,params){
-        
-        if(!__first_executed_1535441940111__){
-            parse = include('http.params.parse');
-            
-            __first_executed_1535441940111__ = true ;
+                url: append(join(rootURL, apply(uri, path)), {
+                    _dc: Date.now()
+                }),
+                type,
+                headers,
+                method,
+                body,
+                timeout: timeout || userTimeout
+            };
         }
-        
-        
-        return  main.call((function(){
+
+        throw new Error('试图请求未注册的路径');
+    }
+    return function(uri, method = 'GET', params) {
+
+        if (!__first_executed_1535523512583__) {
+            apply = include('url.template.apply');
+            isObject = include('is.object.simple');
+            isString = include('is.string');
+            join = include('url.join');
+            append = include('url.append');
+            configHttp = include('config::http');
+            http = config('http');
+            __first_executed_1535523512583__ = true;
+        }
+
+
+        return main.call((function() {
 
             let me = this,
                 target;
 
-            if(typeof global !== 'undefined'){
+            if (typeof global !== 'undefined') {
 
-                target = global ;
-            
-            }else{
+                target = global;
 
-                target = window ;
+            } else {
+
+                target = window;
             }
 
-            return me === target ? main : me ;
+            return me === target ? main : me;
 
-        }).call(this) , uri,method,params) ;
+        }).call(this), uri, method, params);
     }
-    
 
-})() ;
 
-exports['src::http.post'] = (() =>{
+})();
+
+exports['src::function.empty'] = (() => {
+
+
+
+
+
+
+
+
+
+
+    const emptyFn = () => {};
+
+    function main() {
+
+        return emptyFn;
+    }
+    return function() {
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this));
+    }
+
+
+})();
+
+exports['src::browser.es5.http.request'] = (() => {
+    let config_parse, empty, isObject;
+
+
+
+
+
+    let __first_executed_1535523512584__ = false;
+
+
+
+    function main(uri, methodName, params) {
+
+
+
+        // 为了简化与实用原则，当前函数未实现非JSON机制
+
+        const {
+            url,
+            headers,
+            method,
+            timeout,
+            body
+        } = config_parse(uri, methodName, params),
+            http = new XMLHttpRequest(), {
+                stringify,
+                parse
+            } = JSON;
+
+        let successFn = empty,
+            failureFn = empty;
+
+        if (isObject(params)) {
+
+            if (params.hasOwnProperty('success')) {
+
+                successFn = params.success;
+            }
+
+            if (params.hasOwnProperty('failure')) {
+
+                failureFn = params.failure;
+            }
+        }
+
+        http.addEventListener('readystatechange', () => {
+
+            if (http.readyState === 4) {
+
+                if (http.status === 200) {
+
+                    successFn(parse(http.responseText));
+
+                } else {
+
+                    failureFn();
+                }
+            }
+
+        });
+
+        http.open(method, url, true);
+
+        http.send(stringify(body));
+    }
+    return function(uri, methodName, params) {
+
+        if (!__first_executed_1535523512584__) {
+            config_parse = include('http.config.parse');
+            empty = include('function.empty');
+            isObject = include('is.object.simple');
+
+            __first_executed_1535523512584__ = true;
+        }
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), uri, methodName, params);
+    }
+
+
+})();
+
+exports['src::browser.es5.http.post'] = (() => {
     let request;
-    
-    
-    
-    
-    
-    let __first_executed_1535441940111__ = false ;
-    
 
-    
-    function main(uri,params){
 
-        
 
-return request(uri , 'post' , params) ;
+
+
+    let __first_executed_1535523512584__ = false;
+
+
+
+    function main(uri, method, params) {
+
+
+
+        request(uri, method, params);
     }
-    return function(uri,params){
-        
-        if(!__first_executed_1535441940111__){
-            request = include('http.request');
-            
-            __first_executed_1535441940111__ = true ;
-        }
-        
-        
-        return  main.call((function(){
+    return function(uri, method, params) {
 
-            let me = this,
-                target;
-
-            if(typeof global !== 'undefined'){
-
-                target = global ;
-            
-            }else{
-
-                target = window ;
-            }
-
-            return me === target ? main : me ;
-
-        }).call(this) , uri,params) ;
-    }
-    
-
-})() ;
-
-exports['src::function.empty'] = (() =>{
-    
-    
-    
-    
-    
-    
-
-    
-    
-
-const emptyFn = () =>{
-} ;
-
-function main(){
-
-    return emptyFn ;
-}
-    return function(){
-        
-        
-        return main.call((function(){
-
-            let me = this,
-                target;
-
-            if(typeof global !== 'undefined'){
-
-                target = global ;
-            
-            }else{
-
-                target = window ;
-            }
-
-            return me === target ? main : me ;
-
-        }).call(this) ) ;
-    }
-    
-
-})() ;
-
-exports['src::browser.es5.http.request'] = (() =>{
-    let parse,empty,isObject;
-    
-    
-    
-    
-    
-    let __first_executed_1535441940111__ = false ;
-    
-
-    
-    function main(uri,methodName,params){
-
-        
-
-// 为了简化与实用原则，当前函数未实现非JSON机制
-
-const {
-    url,
-    headers,
-    method,
-    timeout,
-    body
-} = parse(uri , methodName , params),
-http = new XMLHttpRequest(),
-{
-    stringify,
-    parse
-} = JSON ;
-
-let successFn = empty,
-    failureFn = empty;
-
-if(isObject(params)){
-
-    if(params.hasOwnProperty('success')){
-
-        successFn = params.success ;
-    }
-
-    if(params.hasOwnProperty('failure')){
-
-        failureFn = params.failure ;
-    }
-}
-
-http.addEventListener('readystatechange' , () =>{
-
-    if(http.readyState === 4){
-
-        if(http.status === 200){
-
-            successFn(parse(http.responseText)) ;
-
-        }else{
-
-            failureFn() ;
-        }
-    }
-
-}) ;
-
-http.open(method , url , true) ;
-
-http.send(stringify(body)) ;
-    }
-    return function(uri,methodName,params){
-        
-        if(!__first_executed_1535441940111__){
-            parse = include('http.params.parse');
-empty = include('function.empty');
-isObject = include('is.object.simple');
-            
-            __first_executed_1535441940111__ = true ;
-        }
-        
-        
-        return  main.call((function(){
-
-            let me = this,
-                target;
-
-            if(typeof global !== 'undefined'){
-
-                target = global ;
-            
-            }else{
-
-                target = window ;
-            }
-
-            return me === target ? main : me ;
-
-        }).call(this) , uri,methodName,params) ;
-    }
-    
-
-})() ;
-
-exports['src::browser.es5.http.post'] = (() =>{
-    let request;
-    
-    
-    
-    
-    
-    let __first_executed_1535441940111__ = false ;
-    
-
-    
-    function main(uri,method,params){
-
-        
-
-request(uri , method , params) ;
-    }
-    return function(uri,method,params){
-        
-        if(!__first_executed_1535441940111__){
+        if (!__first_executed_1535523512584__) {
             request = include('browser.es5.http.request');
-            
-            __first_executed_1535441940111__ = true ;
+
+            __first_executed_1535523512584__ = true;
         }
-        
-        
-        return  main.call((function(){
+
+
+        return main.call((function() {
 
             let me = this,
                 target;
 
-            if(typeof global !== 'undefined'){
+            if (typeof global !== 'undefined') {
 
-                target = global ;
-            
-            }else{
+                target = global;
 
-                target = window ;
+            } else {
+
+                target = window;
             }
 
-            return me === target ? main : me ;
+            return me === target ? main : me;
 
-        }).call(this) , uri,method,params) ;
+        }).call(this), uri, method, params);
     }
-    
-
-})() ;
 
 
-
+})();
