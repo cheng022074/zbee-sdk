@@ -2,9 +2,9 @@
  * 
  * 使用窗口发送一个信息包
  * 
- * @import send from connection.sender.send
+ * @import send from connection.send
  * 
- * @import connection.sender.send.window
+ * @import connection.send.window
  * 
  * @import doPackage from connection.message.package
  * 
@@ -18,4 +18,4 @@
  * 
  */
 
-return send(window , 'connection.sender.send.window' , doPackage(action , data)) ;
+return send(window , 'connection.send.window' , doPackage(action , data)) ;

@@ -62,6 +62,14 @@
         ]
     },
 
+    "fontre-communication-protocol-webgl-sdk":{
+        "classes":[
+            "connection.window.receive",
+            "connection.window.send"
+        ],
+        "browser":true
+    },
+
     "fontre-buried-point-html5-sdk":{
         "classes":[
             "browser.es5.http.post"

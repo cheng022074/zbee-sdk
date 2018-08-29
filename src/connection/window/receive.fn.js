@@ -2,11 +2,11 @@
  * 
  * 使用窗口接收信息
  * 
- * @import receive from connection.receiver.receive
+ * @import receive from connection.receive
  * 
- * @import connection.receiver.receive.window
+ * @import connection.receive.window
  * 
- * @import connection.receiver.reply.window
+ * @import connection.reply.window
  * 
  * @param {Window} window 作用的窗口
  * 
@@ -14,4 +14,4 @@
  * 
  */
 
-receive(window , 'connection.receiver.receive.window' , 'connection.receiver.reply.window' , actionFn) ;
+receive(window , 'connection.receive.window' , 'connection.reply.window' , actionFn) ;
