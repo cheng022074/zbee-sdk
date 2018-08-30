@@ -1,0 +1,7 @@
+{
+    "default":{
+        "host": "smtp.mxhichina.com",
+        "port": 25,
+        "secure": false
+    }
+}

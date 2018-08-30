@@ -2,7 +2,7 @@
  * 
  * 读取文本文件
  * 
- * @import is.file
+ * @import read from file.read
  * 
  * @param {string} path 文本文件路径
  * 
@@ -10,11 +10,9 @@
  * 
  */
 
-const {
-    readFileSync
-} = require('fs') ;
+let data = read(path) ;
 
-if(isFile(path)){
+if(data){
 
-    return readFileSync(path , 'utf8') ;
+    return data.toString('utf8') ;
 }

@@ -70,6 +70,15 @@
         "browser":true
     },
 
+    "fontre-database-backup":{
+        "classes":[
+            "database",
+            "database.collection.find",
+            "file.write"
+        ],
+        "browser":true
+    },
+
     "fontre-buried-point-html5-sdk":{
         "classes":[
             "browser.es5.http.post"
