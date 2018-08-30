@@ -74,9 +74,17 @@
         "classes":[
             "database",
             "database.collection.find",
-            "file.write"
+            "file.write",
+            "date.week",
+            "excel.template.apply",
+            "file.write",
+            "mail.send",
+            "date.format",
+            "job.start"
         ],
-        "browser":true
+        "targets":[
+            "D:\\Code\\Company\\Outer\\DATABASE-BACKUP\\lib"
+        ]
     },
 
     "fontre-buried-point-html5-sdk":{

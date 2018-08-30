@@ -10,8 +10,6 @@
  * 
  * @return {array} 一周之内所有日期
  *
- * @scoped
- *  
  */
 
 if(isNumber(date)){
@@ -20,19 +18,36 @@ if(isNumber(date)){
 }
 
 let cloneDate = clone(date),
-    count = 6,
-    dates = [],
-    i = 0;
+    year = cloneDate.getFullYear(),
+    month = cloneDate.getMonth(),
+    day = cloneDate.getDay(),
+    dateValue = cloneDate.getDate(),
+    count = 7,
+    dates = [];
 
-for(i = 0 ; i < count ; i ++){
+cloneDate.setHours(0) ;
 
-    cloneDate.setDay(i) ;
+cloneDate.setMinutes(0) ;
+
+cloneDate.setSeconds(0) ;
+
+for(i = 1 ; i <= count ; i ++){
+
+    cloneDate.setFullYear(year) ;
+
+    cloneDate.setMonth(month) ;
+
+    cloneDate.setDate(dateValue + i - day) ;
 
     dates.push(clone(cloneDate)) ;
 }
 
-cloneDate.setDay(i) ;
+let endDate = dates[dates.length - 1] ;
 
-dates.push(clone(cloneDate)) ;
+endDate.setHours(23) ;
+
+endDate.setMinutes(59) ;
+
+endDate.setHours(59) ;
 
 return dates ;

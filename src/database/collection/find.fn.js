@@ -15,6 +15,8 @@
  * 
  * @param {string} [config.connection='default'] 数据库名称
  * 
+ * @param {string} [config.query] 查询
+ * 
  * @async
  * 
  * @return {array} 一组集合名称 
@@ -27,7 +29,8 @@ if(map.has(connection)){
 
     return await include(`database.${getConnectionType(connection)}.collection.find`)({
         db:map.get(connection),
-        collection
+        collection,
+        query
     }) ;
 }
 

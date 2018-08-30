@@ -24,9 +24,25 @@
 
 const {
     createTransport
-} = require('nodemailer');
+} = require('nodemailer'),
+{
+    basename
+} = require('path');
 
 if(mailConfig.hasOwnProperty(name)){
+
+    let i = 0,
+        len = attachments.length;
+
+    for(; i < len ; i ++){
+
+        let path = attachments[i] ;
+
+        attachments[i] = {
+            filename:basename(path),
+            path:path
+        } ;
+    }
 
     return new Promise((resolve , reject) =>{
         
@@ -41,6 +57,7 @@ if(mailConfig.hasOwnProperty(name)){
                 to:toMailAddress.join(','),
                 subject:title,
                 text,
+                attachments
             }, err => {
 
                 if(error){

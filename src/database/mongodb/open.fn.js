@@ -35,7 +35,8 @@ async function main(map , name , {
         auth:{
             user,
             password
-        }
+        },
+        useNewUrlParser:true
     });
 
     map.set(name , new DB(client , client.db(database))) ;

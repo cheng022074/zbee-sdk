@@ -11,8 +11,6 @@
  * 
  * @return {string} 模板合并数据后的字符串
  * 
- * @scoped
- * 
  */
 
 const {
