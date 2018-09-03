@@ -15,7 +15,7 @@
 
 const {
     renderExcel
-} = require('ejsExcel'),
+} = require('ejsexcel'),
 template = read(path);
 
 if(template){

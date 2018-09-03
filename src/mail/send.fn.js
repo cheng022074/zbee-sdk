@@ -60,9 +60,9 @@ if(mailConfig.hasOwnProperty(name)){
                 attachments
             }, err => {
 
-                if(error){
+                if(err){
 
-                    reject(error) ;
+                    reject(err) ;
                     
                 }else{
 

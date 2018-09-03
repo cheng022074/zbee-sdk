@@ -214,14 +214,7 @@ const config = (() => {
             return get_config(config[name], key);
         }
 
-        try {
-
-            return get_config(include(`config::${name}`), key);
-
-        } catch (err) {
-
-        }
-
+        return get_config(include(`config::${name}`), key);
     }
 
 })();
@@ -232,8 +225,8 @@ exports['src::database.properties.databases'] = (() => {
 
 
 
-    let __once_1535621112886_value__,
-        __once_1535621112886_locked__ = false;
+    let __once_1535695363607_value__,
+        __once_1535695363607_locked__ = false;
 
 
 
@@ -248,15 +241,15 @@ exports['src::database.properties.databases'] = (() => {
     return function() {
 
 
-        if (__once_1535621112886_locked__) {
+        if (__once_1535695363607_locked__) {
 
-            return __once_1535621112886_value__;
+            return __once_1535695363607_value__;
 
         }
 
-        __once_1535621112886_locked__ = true;
+        __once_1535695363607_locked__ = true;
 
-        return __once_1535621112886_value__ = main.call((function() {
+        return __once_1535695363607_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -429,7 +422,7 @@ exports['src::is.defined'] = (() => {
 
 
 
-    let __first_executed_1535621112887__ = false;
+    let __first_executed_1535695363608__ = false;
 
 
 
@@ -441,10 +434,10 @@ exports['src::is.defined'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1535621112887__) {
+        if (!__first_executed_1535695363608__) {
             isType = include('is.type');
 
-            __first_executed_1535621112887__ = true;
+            __first_executed_1535695363608__ = true;
         }
 
 
@@ -477,7 +470,7 @@ exports['src::database.mongodb.open'] = (() => {
 
 
 
-    let __first_executed_1535621112887__ = false;
+    let __first_executed_1535695363608__ = false;
 
 
 
@@ -524,11 +517,11 @@ exports['src::database.mongodb.open'] = (() => {
     }
     return async function(map, name, config) {
 
-        if (!__first_executed_1535621112887__) {
+        if (!__first_executed_1535695363608__) {
             isDefined = include('is.defined');
             getMap = include('database.properties.databases');
 
-            __first_executed_1535621112887__ = true;
+            __first_executed_1535695363608__ = true;
         }
 
 
@@ -561,7 +554,7 @@ exports['src::database.methods.open'] = (() => {
 
 
 
-    let __first_executed_1535621112887__ = false;
+    let __first_executed_1535695363608__ = false;
 
 
 
@@ -594,13 +587,13 @@ exports['src::database.methods.open'] = (() => {
     }
     return async function(name = 'default') {
 
-        if (!__first_executed_1535621112887__) {
+        if (!__first_executed_1535695363608__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             getConnectionConfig = include('database.connection.config');
             databaseMongodbOpen = include('database.mongodb.open');
 
-            __first_executed_1535621112887__ = true;
+            __first_executed_1535695363608__ = true;
         }
 
 
@@ -633,7 +626,7 @@ exports['src::database.methods.close'] = (() => {
 
 
 
-    let __first_executed_1535621112887__ = false;
+    let __first_executed_1535695363608__ = false;
 
 
 
@@ -654,10 +647,10 @@ exports['src::database.methods.close'] = (() => {
     }
     return async function(name = 'default') {
 
-        if (!__first_executed_1535621112887__) {
+        if (!__first_executed_1535695363608__) {
             getMap = include('database.properties.databases');
 
-            __first_executed_1535621112887__ = true;
+            __first_executed_1535695363608__ = true;
         }
 
 
@@ -759,7 +752,7 @@ exports['src::database.collection.find'] = (() => {
 
 
 
-    let __first_executed_1535621112889__ = false;
+    let __first_executed_1535695363610__ = false;
 
 
 
@@ -790,12 +783,12 @@ exports['src::database.collection.find'] = (() => {
         query
     }) {
 
-        if (!__first_executed_1535621112889__) {
+        if (!__first_executed_1535695363610__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             databaseMongodbCollectionFind = include('database.mongodb.collection.find');
 
-            __first_executed_1535621112889__ = true;
+            __first_executed_1535695363610__ = true;
         }
 
 
@@ -877,7 +870,7 @@ exports['src::directory.create'] = (() => {
 
 
 
-    let __first_executed_1535621112889__ = false;
+    let __first_executed_1535695363610__ = false;
 
 
 
@@ -905,10 +898,10 @@ exports['src::directory.create'] = (() => {
     }
     return function(path) {
 
-        if (!__first_executed_1535621112889__) {
+        if (!__first_executed_1535695363610__) {
             isDirectory = include('is.directory');
 
-            __first_executed_1535621112889__ = true;
+            __first_executed_1535695363610__ = true;
         }
 
 
@@ -941,7 +934,7 @@ exports['src::file.write'] = (() => {
 
 
 
-    let __first_executed_1535621112889__ = false;
+    let __first_executed_1535695363610__ = false;
 
 
 
@@ -961,10 +954,10 @@ exports['src::file.write'] = (() => {
     }
     return function(path, data) {
 
-        if (!__first_executed_1535621112889__) {
+        if (!__first_executed_1535695363610__) {
             create = include('directory.create');
 
-            __first_executed_1535621112889__ = true;
+            __first_executed_1535695363610__ = true;
         }
 
 
@@ -997,7 +990,7 @@ exports['src::is.number'] = (() => {
 
 
 
-    let __first_executed_1535621112889__ = false;
+    let __first_executed_1535695363610__ = false;
 
 
 
@@ -1009,10 +1002,10 @@ exports['src::is.number'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1535621112889__) {
+        if (!__first_executed_1535695363610__) {
             isType = include('is.type');
 
-            __first_executed_1535621112889__ = true;
+            __first_executed_1535695363610__ = true;
         }
 
 
@@ -1085,7 +1078,7 @@ exports['src::date.week'] = (() => {
 
 
 
-    let __first_executed_1535621112889__ = false;
+    let __first_executed_1535695363610__ = false;
 
 
 
@@ -1135,11 +1128,11 @@ exports['src::date.week'] = (() => {
     }
     return function(date = Date.now()) {
 
-        if (!__first_executed_1535621112889__) {
+        if (!__first_executed_1535695363610__) {
             isNumber = include('is.number');
             clone = include('date.clone');
 
-            __first_executed_1535621112889__ = true;
+            __first_executed_1535695363610__ = true;
         }
 
 
@@ -1217,7 +1210,7 @@ exports['src::file.read'] = (() => {
 
 
 
-    let __first_executed_1535621112889__ = false;
+    let __first_executed_1535695363610__ = false;
 
 
 
@@ -1236,10 +1229,10 @@ exports['src::file.read'] = (() => {
     }
     return function(path) {
 
-        if (!__first_executed_1535621112889__) {
+        if (!__first_executed_1535695363610__) {
             isFile = include('is.file');
 
-            __first_executed_1535621112889__ = true;
+            __first_executed_1535695363610__ = true;
         }
 
 
@@ -1272,7 +1265,7 @@ exports['src::excel.template.apply'] = (() => {
 
 
 
-    let __first_executed_1535621112889__ = false;
+    let __first_executed_1535695363610__ = false;
 
 
 
@@ -1282,7 +1275,7 @@ exports['src::excel.template.apply'] = (() => {
 
         const {
             renderExcel
-        } = require('ejsExcel'),
+        } = require('ejsexcel'),
             template = read(path);
 
         if (template) {
@@ -1292,10 +1285,10 @@ exports['src::excel.template.apply'] = (() => {
     }
     return function(path, data = {}) {
 
-        if (!__first_executed_1535621112889__) {
+        if (!__first_executed_1535695363610__) {
             read = include('file.read');
 
-            __first_executed_1535621112889__ = true;
+            __first_executed_1535695363610__ = true;
         }
 
 
@@ -1336,7 +1329,7 @@ exports['src::mail.send'] = (() => {
 
 
 
-    let __first_executed_1535621112891__ = false;
+    let __first_executed_1535695363611__ = false;
 
 
 
@@ -1386,9 +1379,9 @@ exports['src::mail.send'] = (() => {
                     attachments
                 }, err => {
 
-                    if (error) {
+                    if (err) {
 
-                        reject(error);
+                        reject(err);
 
                     } else {
 
@@ -1408,10 +1401,10 @@ exports['src::mail.send'] = (() => {
         name = 'default'
     } = {}) {
 
-        if (!__first_executed_1535621112891__) {
+        if (!__first_executed_1535695363611__) {
             configMail = include('config::mail');
             mailConfig = config('mail');
-            __first_executed_1535621112891__ = true;
+            __first_executed_1535695363611__ = true;
         }
 
 
