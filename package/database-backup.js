@@ -1,16 +1,10 @@
-try {
+const {
+    env
+} = process;
 
-    const {
-        env
-    } = process;
+if (!env['ZBEE-APPLICATION-ROOT-PATH']) {
 
-    if (!env['ZBEE-APPLICATION-ROOT-PATH']) {
-
-        env['ZBEE-APPLICATION-ROOT-PATH'] = __dirname;
-    }
-
-} catch (err) {
-
+    env['ZBEE-APPLICATION-ROOT-PATH'] = __dirname;
 }
 
 
@@ -38,6 +32,11 @@ const include = (() => {
 
         } else {
 
+            if (exports.hasOwnProperty(name)) {
+
+                return CODES[name] = exports[name];
+            }
+
             folder = 'src',
                 className = name;
         }
@@ -45,7 +44,7 @@ const include = (() => {
         let fullName = `${folder}::${className}`,
             code = CODES[name] = exports[fullName];
 
-        if (code === undefined) {
+        if (code === undefined && folder !== 'config') {
 
             throw new Error(`${fullName} 没有定义`);
         }
@@ -141,9 +140,7 @@ const config = (() => {
         return data;
     }
 
-    const {
-        join
-    } = require('path'),
+    const
         dotRe = /\./g,
         config = {};
 
@@ -194,12 +191,11 @@ const config = (() => {
                 env
             } = process;
 
-            let path = `${env['ZBEE-APPLICATION-ROOT-PATH']}/config/${name.replace(dotRe , '/')}`,
-                data;
+            let data;
 
             try {
 
-                data = require(path);
+                data = require(`${env['ZBEE-APPLICATION-ROOT-PATH']}/config/${name.replace(dotRe , '/')}.json`);
 
             } catch (err) {}
 
@@ -218,14 +214,7 @@ const config = (() => {
             return get_config(config[name], key);
         }
 
-        try {
-
-            return get_config(include(`config::${name}`), key);
-
-        } catch (err) {
-
-        }
-
+        return get_config(include(`config::${name}`), key);
     }
 
 })();
@@ -236,8 +225,8 @@ exports['src::database.properties.databases'] = (() => {
 
 
 
-    let __once_1534734659291_value__,
-        __once_1534734659291_locked__ = false;
+    let __once_1536038165971_value__,
+        __once_1536038165971_locked__ = false;
 
 
 
@@ -252,15 +241,15 @@ exports['src::database.properties.databases'] = (() => {
     return function() {
 
 
-        if (__once_1534734659291_locked__) {
+        if (__once_1536038165971_locked__) {
 
-            return __once_1534734659291_value__;
+            return __once_1536038165971_value__;
 
         }
 
-        __once_1534734659291_locked__ = true;
+        __once_1536038165971_locked__ = true;
 
-        return __once_1534734659291_value__ = main.call((function() {
+        return __once_1536038165971_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -433,7 +422,7 @@ exports['src::is.defined'] = (() => {
 
 
 
-    let __first_executed_1534734659291__ = false;
+    let __first_executed_1536038165972__ = false;
 
 
 
@@ -445,10 +434,10 @@ exports['src::is.defined'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534734659291__) {
+        if (!__first_executed_1536038165972__) {
             isType = include('is.type');
 
-            __first_executed_1534734659291__ = true;
+            __first_executed_1536038165972__ = true;
         }
 
 
@@ -481,7 +470,7 @@ exports['src::database.mongodb.open'] = (() => {
 
 
 
-    let __first_executed_1534734659291__ = false;
+    let __first_executed_1536038165972__ = false;
 
 
 
@@ -503,7 +492,8 @@ exports['src::database.mongodb.open'] = (() => {
             auth: {
                 user,
                 password
-            }
+            },
+            useNewUrlParser: true
         });
 
         map.set(name, new DB(client, client.db(database)));
@@ -527,11 +517,11 @@ exports['src::database.mongodb.open'] = (() => {
     }
     return async function(map, name, config) {
 
-        if (!__first_executed_1534734659291__) {
+        if (!__first_executed_1536038165972__) {
             isDefined = include('is.defined');
             getMap = include('database.properties.databases');
 
-            __first_executed_1534734659291__ = true;
+            __first_executed_1536038165972__ = true;
         }
 
 
@@ -564,7 +554,7 @@ exports['src::database.methods.open'] = (() => {
 
 
 
-    let __first_executed_1534734659291__ = false;
+    let __first_executed_1536038165972__ = false;
 
 
 
@@ -597,13 +587,13 @@ exports['src::database.methods.open'] = (() => {
     }
     return async function(name = 'default') {
 
-        if (!__first_executed_1534734659291__) {
+        if (!__first_executed_1536038165972__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             getConnectionConfig = include('database.connection.config');
             databaseMongodbOpen = include('database.mongodb.open');
 
-            __first_executed_1534734659291__ = true;
+            __first_executed_1536038165972__ = true;
         }
 
 
@@ -636,7 +626,7 @@ exports['src::database.methods.close'] = (() => {
 
 
 
-    let __first_executed_1534734659291__ = false;
+    let __first_executed_1536038165972__ = false;
 
 
 
@@ -657,10 +647,10 @@ exports['src::database.methods.close'] = (() => {
     }
     return async function(name = 'default') {
 
-        if (!__first_executed_1534734659291__) {
+        if (!__first_executed_1536038165972__) {
             getMap = include('database.properties.databases');
 
-            __first_executed_1534734659291__ = true;
+            __first_executed_1536038165972__ = true;
         }
 
 
@@ -766,7 +756,7 @@ exports['src::database.collectionNames'] = (() => {
 
 
 
-    let __first_executed_1534734659291__ = false;
+    let __first_executed_1536038165974__ = false;
 
 
 
@@ -785,12 +775,12 @@ exports['src::database.collectionNames'] = (() => {
     }
     return async function(connection = 'default') {
 
-        if (!__first_executed_1534734659291__) {
+        if (!__first_executed_1536038165974__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             databaseMongodbCollectionNames = include('database.mongodb.collectionNames');
 
-            __first_executed_1534734659291__ = true;
+            __first_executed_1536038165974__ = true;
         }
 
 
@@ -827,16 +817,18 @@ exports['src::database.mongodb.collection.find'] = (() => {
 
     async function main({
         collection,
-        db
+        db,
+        query
     }) {
 
 
 
-        return await db.db.collection(collection).find().toArray();
+        return await db.db.collection(collection).find(query).toArray();
     }
     return async function({
         collection,
-        db
+        db,
+        query
     }) {
 
 
@@ -858,7 +850,8 @@ exports['src::database.mongodb.collection.find'] = (() => {
 
         }).call(this), {
             collection,
-            db
+            db,
+            query
         });
     }
 
@@ -872,13 +865,14 @@ exports['src::database.collection.find'] = (() => {
 
 
 
-    let __first_executed_1534734659292__ = false;
+    let __first_executed_1536038165974__ = false;
 
 
 
     async function main({
         collection,
-        connection
+        connection,
+        query
     }) {
 
 
@@ -889,7 +883,8 @@ exports['src::database.collection.find'] = (() => {
 
             return await include(`database.${getConnectionType(connection)}.collection.find`)({
                 db: map.get(connection),
-                collection
+                collection,
+                query
             });
         }
 
@@ -897,15 +892,16 @@ exports['src::database.collection.find'] = (() => {
     }
     return async function({
         collection,
-        connection = 'default'
+        connection = 'default',
+        query
     }) {
 
-        if (!__first_executed_1534734659292__) {
+        if (!__first_executed_1536038165974__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             databaseMongodbCollectionFind = include('database.mongodb.collection.find');
 
-            __first_executed_1534734659292__ = true;
+            __first_executed_1536038165974__ = true;
         }
 
 
@@ -927,7 +923,8 @@ exports['src::database.collection.find'] = (() => {
 
         }).call(this), {
             collection,
-            connection
+            connection,
+            query
         });
     }
 
@@ -986,7 +983,7 @@ exports['src::directory.create'] = (() => {
 
 
 
-    let __first_executed_1534734659292__ = false;
+    let __first_executed_1536038165974__ = false;
 
 
 
@@ -1014,10 +1011,10 @@ exports['src::directory.create'] = (() => {
     }
     return function(path) {
 
-        if (!__first_executed_1534734659292__) {
+        if (!__first_executed_1536038165974__) {
             isDirectory = include('is.directory');
 
-            __first_executed_1534734659292__ = true;
+            __first_executed_1536038165974__ = true;
         }
 
 
@@ -1050,7 +1047,7 @@ exports['src::file.write'] = (() => {
 
 
 
-    let __first_executed_1534734659292__ = false;
+    let __first_executed_1536038165974__ = false;
 
 
 
@@ -1070,10 +1067,10 @@ exports['src::file.write'] = (() => {
     }
     return function(path, data) {
 
-        if (!__first_executed_1534734659292__) {
+        if (!__first_executed_1536038165974__) {
             create = include('directory.create');
 
-            __first_executed_1534734659292__ = true;
+            __first_executed_1536038165974__ = true;
         }
 
 
@@ -1106,7 +1103,7 @@ exports['src::is.array'] = (() => {
 
 
 
-    let __first_executed_1534734659040__ = false;
+    let __first_executed_1536038165974__ = false;
 
 
 
@@ -1118,10 +1115,10 @@ exports['src::is.array'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534734659040__) {
+        if (!__first_executed_1536038165974__) {
             isType = include('is.type');
 
-            __first_executed_1534734659040__ = true;
+            __first_executed_1536038165974__ = true;
         }
 
 
@@ -1287,14 +1284,14 @@ exports['src::is.file'] = (() => {
 
 })();
 
-exports['src::file.read.text'] = (() => {
+exports['src::file.read'] = (() => {
     let isFile;
 
 
 
 
 
-    let __first_executed_1534734659293__ = false;
+    let __first_executed_1536038165975__ = false;
 
 
 
@@ -1308,15 +1305,68 @@ exports['src::file.read.text'] = (() => {
 
         if (isFile(path)) {
 
-            return readFileSync(path, 'utf8');
+            return readFileSync(path);
         }
     }
     return function(path) {
 
-        if (!__first_executed_1534734659293__) {
+        if (!__first_executed_1536038165975__) {
             isFile = include('is.file');
 
-            __first_executed_1534734659293__ = true;
+            __first_executed_1536038165975__ = true;
+        }
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), path);
+    }
+
+
+})();
+
+exports['src::file.read.text'] = (() => {
+    let read;
+
+
+
+
+
+    let __first_executed_1536038165975__ = false;
+
+
+
+    function main(path) {
+
+
+
+        let data = read(path);
+
+        if (data) {
+
+            return data.toString('utf8');
+        }
+    }
+    return function(path) {
+
+        if (!__first_executed_1536038165975__) {
+            read = include('file.read');
+
+            __first_executed_1536038165975__ = true;
         }
 
 
@@ -1349,7 +1399,7 @@ exports['src::template.apply'] = (() => {
 
 
 
-    let __first_executed_1534734659293__ = false;
+    let __first_executed_1536038165975__ = false;
 
 
 
@@ -1398,10 +1448,10 @@ exports['src::template.apply'] = (() => {
     }
     return function(name, data = {}) {
 
-        if (!__first_executed_1534734659293__) {
+        if (!__first_executed_1536038165975__) {
             read = include('file.read.text');
 
-            __first_executed_1534734659293__ = true;
+            __first_executed_1536038165975__ = true;
         }
 
 
@@ -1434,7 +1484,7 @@ exports['src::database.collection.stringify'] = (() => {
 
 
 
-    let __first_executed_1534734659293__ = false;
+    let __first_executed_1536038165976__ = false;
 
 
 
@@ -1578,14 +1628,14 @@ exports['src::database.collection.stringify'] = (() => {
     }
     return function(data, name = 'default') {
 
-        if (!__first_executed_1534734659293__) {
+        if (!__first_executed_1536038165976__) {
             isArray = include('is.array');
             isObject = include('is.object.simple');
             format = include('script.format');
             templateDatabaseBackup = include('template::database.backup');
             apply = include('template.apply');
 
-            __first_executed_1534734659293__ = true;
+            __first_executed_1536038165976__ = true;
         }
 
 
@@ -1739,7 +1789,7 @@ exports['src::database.datatype'] = (() => {
 
 
 
-    let __first_executed_1534734659293__ = false;
+    let __first_executed_1536038165976__ = false;
 
 
 
@@ -1754,10 +1804,10 @@ exports['src::database.datatype'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534734659293__) {
+        if (!__first_executed_1536038165976__) {
             isDate = include('is.Date');
 
-            __first_executed_1534734659293__ = true;
+            __first_executed_1536038165976__ = true;
         }
 
 
@@ -1790,7 +1840,7 @@ exports['src::database.mongodb.datatype'] = (() => {
 
 
 
-    let __first_executed_1534734659293__ = false;
+    let __first_executed_1536038165976__ = false;
 
 
 
@@ -1811,10 +1861,10 @@ exports['src::database.mongodb.datatype'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1534734659293__) {
+        if (!__first_executed_1536038165976__) {
             getDataType = include('database.datatype');
 
-            __first_executed_1534734659293__ = true;
+            __first_executed_1536038165976__ = true;
         }
 
 
@@ -1931,68 +1981,3 @@ exports['src::job.start'] = (() => {
 
 
 })();
-
-
-
-
-
-{
-    const {
-        env
-    } = process,
-    entryName = env['ZBEE-ENTRY-NAME'];
-
-    if (entryName) {
-
-        const {
-            isWorker
-        } = require('cluster'),
-            entryFn = include(entryName);
-
-        if (typeof entryFn === 'function') {
-
-            if (isWorker) {
-
-                process.on('message', async ({
-                    type,
-                    id,
-                    data
-                }) => {
-
-                    if (type === 'master-send') {
-
-                        process.send({
-                            id,
-                            type: 'master-send-result',
-                            data: await entryFn(...data)
-                        });
-                    }
-
-                });
-
-            } else {
-
-                let args = env['ZBEE-ENTRY-ARGS'];
-
-                if (args) {
-
-                    args = JSON.parse(args);
-
-                } else {
-
-                    args = [];
-                }
-
-                (async () => {
-
-                    process.send(await entryFn(...args));
-
-                })();
-            }
-        }
-
-    } else {
-
-
-    }
-}

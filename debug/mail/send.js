@@ -6,7 +6,7 @@
  * 
  */
 
-await send('zhiwenchen@fontre.com' , 'Kinghwa!@#$' , [
+await send('report@fontre.com' , '1234Qwer' , [
     'zhiwenchen@fontre.com'
 ] , {
     title:'Hello',
