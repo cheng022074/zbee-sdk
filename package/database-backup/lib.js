@@ -6,8 +6,8 @@ exports['src::database.properties.databases'] = (() =>{
     
     
     
-    let __once_1536038753277_value__,
-        __once_1536038753277_locked__ = false;
+    let __once_1536038724514_value__,
+        __once_1536038724514_locked__ = false;
     
     
     
@@ -22,15 +22,15 @@ return new Map() ;
     return function(){
         
         
-        if(__once_1536038753277_locked__){
+        if(__once_1536038724514_locked__){
 
-            return __once_1536038753277_value__ ;
+            return __once_1536038724514_value__ ;
 
         }
 
-        __once_1536038753277_locked__ = true ;
+        __once_1536038724514_locked__ = true ;
         
-        return __once_1536038753277_value__ =  main.call((function(){
+        return __once_1536038724514_value__ =  main.call((function(){
 
             let me = this,
                 target;
@@ -203,7 +203,7 @@ exports['src::is.defined'] = (() =>{
     
     
     
-    let __first_executed_1536038753278__ = false ;
+    let __first_executed_1536038724515__ = false ;
     
 
     
@@ -215,10 +215,10 @@ return !isType(data , 'undefined') ;
     }
     return function(data){
         
-        if(!__first_executed_1536038753278__){
+        if(!__first_executed_1536038724515__){
             isType = include('is.type');
             
-            __first_executed_1536038753278__ = true ;
+            __first_executed_1536038724515__ = true ;
         }
         
         
@@ -251,7 +251,7 @@ exports['src::database.mongodb.open'] = (() =>{
     
     
     
-    let __first_executed_1536038753278__ = false ;
+    let __first_executed_1536038724515__ = false ;
     
 
     
@@ -298,11 +298,11 @@ class DB{
 }
     return async function(map,name,config){
         
-        if(!__first_executed_1536038753278__){
+        if(!__first_executed_1536038724515__){
             isDefined = include('is.defined');
 getMap = include('database.properties.databases');
             
-            __first_executed_1536038753278__ = true ;
+            __first_executed_1536038724515__ = true ;
         }
         
         
@@ -335,7 +335,7 @@ exports['src::database.methods.open'] = (() =>{
     
     
     
-    let __first_executed_1536038753278__ = false ;
+    let __first_executed_1536038724516__ = false ;
     
 
     
@@ -368,13 +368,13 @@ if(databaseConfig){
     }
     return async function(name = 'default'){
         
-        if(!__first_executed_1536038753278__){
+        if(!__first_executed_1536038724516__){
             getMap = include('database.properties.databases');
 getConnectionType = include('database.connection.type');
 getConnectionConfig = include('database.connection.config');
 databaseMongodbOpen = include('database.mongodb.open');
             
-            __first_executed_1536038753278__ = true ;
+            __first_executed_1536038724516__ = true ;
         }
         
         
@@ -407,7 +407,7 @@ exports['src::database.methods.close'] = (() =>{
     
     
     
-    let __first_executed_1536038753278__ = false ;
+    let __first_executed_1536038724516__ = false ;
     
 
     
@@ -428,10 +428,10 @@ if(database){
     }
     return async function(name = 'default'){
         
-        if(!__first_executed_1536038753278__){
+        if(!__first_executed_1536038724516__){
             getMap = include('database.properties.databases');
             
-            __first_executed_1536038753278__ = true ;
+            __first_executed_1536038724516__ = true ;
         }
         
         
@@ -470,6 +470,119 @@ exports['src::database'] = (() =>{
         
 
     return Main ;
+
+})() ;
+
+exports['src::database.mongodb.collectionNames'] = (() =>{
+    
+    
+    
+    
+    
+    
+
+    
+    async function main(db){
+
+        
+
+let records = await db.db.listCollections().toArray(),
+    names = [];
+
+for(let record of records){
+
+    let {
+        name,
+        type
+    } = record ;
+
+    if(type === 'collection'){
+
+        names.push(name) ;
+    }
+}
+
+return names ;
+    }
+    return async function(db){
+        
+        
+        return  await main.call((function(){
+
+            let me = this,
+                target;
+
+            if(typeof global !== 'undefined'){
+
+                target = global ;
+            
+            }else{
+
+                target = window ;
+            }
+
+            return me === target ? main : me ;
+
+        }).call(this) , db) ;
+    }
+    
+
+})() ;
+
+exports['src::database.collectionNames'] = (() =>{
+    let getMap,getConnectionType,databaseMongodbCollectionNames;
+    
+    
+    
+    
+    
+    let __first_executed_1536038724518__ = false ;
+    
+
+    
+    async function main(connection){
+
+        
+
+let map = getMap() ;
+
+if(map.has(connection)){
+
+    return await include(`database.${getConnectionType(connection)}.collectionNames`)(map.get(connection)) ;
+}
+
+return [] ;
+    }
+    return async function(connection = 'default'){
+        
+        if(!__first_executed_1536038724518__){
+            getMap = include('database.properties.databases');
+getConnectionType = include('database.connection.type');
+databaseMongodbCollectionNames = include('database.mongodb.collectionNames');
+            
+            __first_executed_1536038724518__ = true ;
+        }
+        
+        
+        return  await main.call((function(){
+
+            let me = this,
+                target;
+
+            if(typeof global !== 'undefined'){
+
+                target = global ;
+            
+            }else{
+
+                target = window ;
+            }
+
+            return me === target ? main : me ;
+
+        }).call(this) , connection) ;
+    }
+    
 
 })() ;
 
@@ -520,7 +633,7 @@ exports['src::database.collection.find'] = (() =>{
     
     
     
-    let __first_executed_1536038753280__ = false ;
+    let __first_executed_1536038724518__ = false ;
     
 
     
@@ -543,12 +656,12 @@ return [] ;
     }
     return async function({collection,connection = 'default',query}){
         
-        if(!__first_executed_1536038753280__){
+        if(!__first_executed_1536038724518__){
             getMap = include('database.properties.databases');
 getConnectionType = include('database.connection.type');
 databaseMongodbCollectionFind = include('database.mongodb.collection.find');
             
-            __first_executed_1536038753280__ = true ;
+            __first_executed_1536038724518__ = true ;
         }
         
         
@@ -626,7 +739,7 @@ exports['src::directory.create'] = (() =>{
     
     
     
-    let __first_executed_1536038753280__ = false ;
+    let __first_executed_1536038724518__ = false ;
     
 
     
@@ -654,10 +767,10 @@ function main(path){
 }
     return function(path){
         
-        if(!__first_executed_1536038753280__){
+        if(!__first_executed_1536038724518__){
             isDirectory = include('is.directory');
             
-            __first_executed_1536038753280__ = true ;
+            __first_executed_1536038724518__ = true ;
         }
         
         
@@ -690,7 +803,7 @@ exports['src::file.write'] = (() =>{
     
     
     
-    let __first_executed_1536038753280__ = false ;
+    let __first_executed_1536038724518__ = false ;
     
 
     
@@ -711,10 +824,10 @@ writeFileSync(path , data) ;
     }
     return function(path,data){
         
-        if(!__first_executed_1536038753280__){
+        if(!__first_executed_1536038724518__){
             create = include('directory.create');
             
-            __first_executed_1536038753280__ = true ;
+            __first_executed_1536038724518__ = true ;
         }
         
         
@@ -740,14 +853,14 @@ writeFileSync(path , data) ;
 
 })() ;
 
-exports['src::is.number'] = (() =>{
+exports['src::is.array'] = (() =>{
     let isType;
     
     
     
     
     
-    let __first_executed_1536038753280__ = false ;
+    let __first_executed_1536038724518__ = false ;
     
 
     
@@ -755,14 +868,14 @@ exports['src::is.number'] = (() =>{
 
         
 
-return isType(data , 'number') && isFinite(data);
+ return Array.isArray(data) ;
     }
     return function(data){
         
-        if(!__first_executed_1536038753280__){
+        if(!__first_executed_1536038724518__){
             isType = include('is.type');
             
-            __first_executed_1536038753280__ = true ;
+            __first_executed_1536038724518__ = true ;
         }
         
         
@@ -788,7 +901,7 @@ return isType(data , 'number') && isFinite(data);
 
 })() ;
 
-exports['src::date.clone'] = (() =>{
+exports['src::is.object.simple'] = (() =>{
     
     
     
@@ -797,13 +910,13 @@ exports['src::date.clone'] = (() =>{
     
 
     
-    function main(date){
+    function main(data){
 
         
 
-return new Date(date.valueOf()) ;
+return data instanceof Object && data.constructor === Object;
     }
-    return function(date){
+    return function(data){
         
         
         return  main.call((function(){
@@ -822,75 +935,41 @@ return new Date(date.valueOf()) ;
 
             return me === target ? main : me ;
 
-        }).call(this) , date) ;
+        }).call(this) , data) ;
     }
     
 
 })() ;
 
-exports['src::date.week'] = (() =>{
-    let isNumber,clone;
+exports['src::script.format'] = (() =>{
     
     
     
     
     
-    let __first_executed_1536038753280__ = false ;
     
 
     
-    function main(date){
+    function main(data){
 
         
 
-if(isNumber(date)){
+const {
+    js
+} = require('js-beautify') ;
 
-    date = new Date(date) ;
+try{
+
+    return js(data) ;
+
+}catch(err){
+
+
 }
 
-let cloneDate = clone(date),
-    year = cloneDate.getFullYear(),
-    month = cloneDate.getMonth(),
-    day = cloneDate.getDay(),
-    dateValue = cloneDate.getDate(),
-    count = 7,
-    dates = [];
-
-cloneDate.setHours(0) ;
-
-cloneDate.setMinutes(0) ;
-
-cloneDate.setSeconds(0) ;
-
-for(i = 1 ; i <= count ; i ++){
-
-    cloneDate.setFullYear(year) ;
-
-    cloneDate.setMonth(month) ;
-
-    cloneDate.setDate(dateValue + i - day) ;
-
-    dates.push(clone(cloneDate)) ;
-}
-
-let endDate = dates[dates.length - 1] ;
-
-endDate.setHours(23) ;
-
-endDate.setMinutes(59) ;
-
-endDate.setHours(59) ;
-
-return dates ;
+return data ;
     }
-    return function(date = Date.now()){
-        
-        if(!__first_executed_1536038753280__){
-            isNumber = include('is.number');
-clone = include('date.clone');
-            
-            __first_executed_1536038753280__ = true ;
-        }
+    return function(data){
         
         
         return  main.call((function(){
@@ -909,11 +988,13 @@ clone = include('date.clone');
 
             return me === target ? main : me ;
 
-        }).call(this) , date) ;
+        }).call(this) , data) ;
     }
     
 
 })() ;
+
+exports['template::database.backup'] = `module.exports = <%- data.code %>`
 
 exports['src::is.file'] = (() =>{
     
@@ -967,7 +1048,7 @@ exports['src::file.read'] = (() =>{
     
     
     
-    let __first_executed_1536038753280__ = false ;
+    let __first_executed_1536038724520__ = false ;
     
 
     
@@ -986,10 +1067,10 @@ if(isFile(path)){
     }
     return function(path){
         
-        if(!__first_executed_1536038753280__){
+        if(!__first_executed_1536038724520__){
             isFile = include('is.file');
             
-            __first_executed_1536038753280__ = true ;
+            __first_executed_1536038724520__ = true ;
         }
         
         
@@ -1015,37 +1096,34 @@ if(isFile(path)){
 
 })() ;
 
-exports['src::excel.template.apply'] = (() =>{
+exports['src::file.read.text'] = (() =>{
     let read;
     
     
     
     
     
-    let __first_executed_1536038753280__ = false ;
+    let __first_executed_1536038724520__ = false ;
     
 
     
-    function main(path,data){
+    function main(path){
 
         
 
-const {
-    renderExcel
-} = require('ejsexcel'),
-template = read(path);
+let data = read(path) ;
 
-if(template){
+if(data){
 
-    return renderExcel(template , data) ;
+    return data.toString('utf8') ;
 }
     }
-    return function(path,data = {}){
+    return function(path){
         
-        if(!__first_executed_1536038753280__){
+        if(!__first_executed_1536038724520__){
             read = include('file.read');
             
-            __first_executed_1536038753280__ = true ;
+            __first_executed_1536038724520__ = true ;
         }
         
         
@@ -1065,94 +1143,485 @@ if(template){
 
             return me === target ? main : me ;
 
-        }).call(this) , path,data) ;
+        }).call(this) , path) ;
     }
     
 
 })() ;
 
-exports['config::mail'] = {
-    "default":{
-        "host": "smtp.mxhichina.com",
-        "port": 465,
-        "secure": true
+exports['src::template.apply'] = (() =>{
+    let read;
+    
+    
+    
+    
+    
+    let __first_executed_1536038724520__ = false ;
+    
+
+    
+    
+
+ const
+ TEMPLATES = {},
+ {
+    compile
+ } = require('ejs');
+
+ function main(name , data){
+
+    if(!TEMPLATES.hasOwnProperty(name)){
+
+        let template ;
+
+        try{
+
+            template = include(`template::${name}`) ;
+
+        }catch(err){
+
+            template = read(name) ;
+        }
+
+        if(template){
+
+            TEMPLATES[name] = compile(template) ;
+        
+        }else{
+
+            TEMPLATES[name] = emptyFn ;
+        }
     }
-} ;
 
-exports['src::mail.send'] = (() =>{
-    let configMail;
-    let mailConfig;
+    return TEMPLATES[name]({
+        data,
+        apply:main
+    }) ;
+ }
+
+ function emptyFn(){
+
+    return '' ;
+ }
+    return function(name,data = {}){
+        
+        if(!__first_executed_1536038724520__){
+            read = include('file.read.text');
+            
+            __first_executed_1536038724520__ = true ;
+        }
+        
+        
+        return main.call((function(){
+
+            let me = this,
+                target;
+
+            if(typeof global !== 'undefined'){
+
+                target = global ;
+            
+            }else{
+
+                target = window ;
+            }
+
+            return me === target ? main : me ;
+
+        }).call(this) , name,data) ;
+    }
+    
+
+})() ;
+
+exports['src::database.collection.stringify'] = (() =>{
+    let isArray,isObject,format,templateDatabaseBackup,apply;
     
     
     
     
-    let __first_executed_1536038753281__ = false ;
+    
+    let __first_executed_1536038724520__ = false ;
     
 
     
-    function main(fromMailAddress,fromMailPassword,toMailAddress,{title,text,attachments,name}){
+    
+
+function main(data , name){
+
+    let databaseConfig = config('database' , name) ;
+
+    if(!databaseConfig){
+
+        throw new Error(`${name} 无效的数据库配置`) ;
+    }
+
+    let {
+        backup
+    } = databaseConfig ;
+
+    let {
+        datatype,
+        converts,
+        template
+    } = backup || {},
+    typeFn = datatype ? include(datatype) : gettype,
+    convertFns = {};
+
+    template = template || 'database.backup' ;
+
+    if(converts){
+
+        let names = Object.keys(converts) ;
+
+        for(let name of names){
+
+            convertFns[name] = include(converts[name]) ;
+        }
+    }
+
+    if(isObject(data)){
+
+        return return_value(template , processObject(data , typeFn , convertFns)) ;
+    
+    }else if(isArray(data)){
+
+        return return_value(template , processArray(data , typeFn , convertFns)) ;
+    }
+}
+
+function return_value(template , code){
+
+    return format(apply(template , {
+        code
+    })) ;
+}
+
+function processArray(data , typeFn , convertFns){
+
+    let result = [] ;
+
+    for(let item of data){
+
+        if(isArray(item)){
+
+            result.push(processArray(item , typeFn , convertFns)) ;
+
+        }else if(isObject(item)){
+
+            result.push(processObject(item , typeFn , convertFns)) ;
+        
+        }else{
+
+            let type = typeFn(item) ;
+
+            if(type){
+
+                let convertFn = convertFns[type] ;
+
+                if(convertFn){
+
+                    result.push(convertFn(item)) ;
+
+                    continue ;
+                }
+            }
+
+            result.push(JSON.stringify(item , null , 2)) ;
+        }
+
+        
+    }
+
+    return `[${result.join(',')}]` ;
+}
+
+function processObject(data , typeFn , convertFns){
+
+    let names = Object.keys(data),
+        result = [];
+
+    for(let name of names){
+
+        let item = data[name] ;
+
+        if(isArray(item)){
+
+            result.push(`${name}:${processArray(item , typeFn , convertFns)}`) ;
+
+            continue ;
+
+        }
+        
+        if(isObject(item)){
+
+            result.push(`${name}:${processObject(item , typeFn , convertFns)}`) ;
+
+            continue ;
+        
+        }
+
+        let type = typeFn(item);
+
+        if(type){
+
+            let convertFn = convertFns[type] ;
+
+            if(convertFn){
+
+                data[name] = convertFn(item) ;
+
+                result.push(`${name}:${convertFn(item)}`) ;
+
+                continue ;
+            }
+        }
+
+        result.push(`${name}:${JSON.stringify(item , null , 2)}`) ;
+    }
+
+
+    return `{${result.join(',')}}` ;
+}
+    return function(data,name = 'default'){
+        
+        if(!__first_executed_1536038724520__){
+            isArray = include('is.array');
+isObject = include('is.object.simple');
+format = include('script.format');
+templateDatabaseBackup = include('template::database.backup');
+apply = include('template.apply');
+            
+            __first_executed_1536038724520__ = true ;
+        }
+        
+        
+        return main.call((function(){
+
+            let me = this,
+                target;
+
+            if(typeof global !== 'undefined'){
+
+                target = global ;
+            
+            }else{
+
+                target = window ;
+            }
+
+            return me === target ? main : me ;
+
+        }).call(this) , data,name) ;
+    }
+    
+
+})() ;
+
+exports['src::database.mongodb.stringify.ObjectID'] = (() =>{
+    
+    
+    
+    
+    
+    
+
+    
+    function main(id){
+
+        
+
+return `new ObjectID("${id}")` ;
+    }
+    return function(id){
+        
+        
+        return  main.call((function(){
+
+            let me = this,
+                target;
+
+            if(typeof global !== 'undefined'){
+
+                target = global ;
+            
+            }else{
+
+                target = window ;
+            }
+
+            return me === target ? main : me ;
+
+        }).call(this) , id) ;
+    }
+    
+
+})() ;
+
+exports['src::database.stringify.Date'] = (() =>{
+    
+    
+    
+    
+    
+    
+
+    
+    function main(date){
+
+        
+
+return `new Date("${date.toJSON()}")` ;
+    }
+    return function(date){
+        
+        
+        return  main.call((function(){
+
+            let me = this,
+                target;
+
+            if(typeof global !== 'undefined'){
+
+                target = global ;
+            
+            }else{
+
+                target = window ;
+            }
+
+            return me === target ? main : me ;
+
+        }).call(this) , date) ;
+    }
+    
+
+})() ;
+
+exports['src::is.Date'] = (() =>{
+    
+    
+    
+    
+    
+    
+
+    
+    function main(data){
+
+        
+
+
+ return Object.prototype.toString.call(data) === '[object Date]' ;
+    }
+    return function(data){
+        
+        
+        return  main.call((function(){
+
+            let me = this,
+                target;
+
+            if(typeof global !== 'undefined'){
+
+                target = global ;
+            
+            }else{
+
+                target = window ;
+            }
+
+            return me === target ? main : me ;
+
+        }).call(this) , data) ;
+    }
+    
+
+})() ;
+
+exports['src::database.datatype'] = (() =>{
+    let isDate;
+    
+    
+    
+    
+    
+    let __first_executed_1536038724520__ = false ;
+    
+
+    
+    function main(data){
+
+        
+
+ if(isDate(data)){
+
+    return 'date' ;
+ }
+    }
+    return function(data){
+        
+        if(!__first_executed_1536038724520__){
+            isDate = include('is.Date');
+            
+            __first_executed_1536038724520__ = true ;
+        }
+        
+        
+        return  main.call((function(){
+
+            let me = this,
+                target;
+
+            if(typeof global !== 'undefined'){
+
+                target = global ;
+            
+            }else{
+
+                target = window ;
+            }
+
+            return me === target ? main : me ;
+
+        }).call(this) , data) ;
+    }
+    
+
+})() ;
+
+exports['src::database.mongodb.datatype'] = (() =>{
+    let getDataType;
+    
+    
+    
+    
+    
+    let __first_executed_1536038724520__ = false ;
+    
+
+    
+    function main(data){
 
         
 
 const {
-    createTransport
-} = require('nodemailer'),
-{
-    basename
-} = require('path');
+    ObjectID,
+} = require('mongodb') ;
 
-if(mailConfig.hasOwnProperty(name)){
+if(data instanceof ObjectID){
 
-    let i = 0,
-        len = attachments.length;
-
-    for(; i < len ; i ++){
-
-        let path = attachments[i] ;
-
-        attachments[i] = {
-            filename:basename(path),
-            path:path
-        } ;
-    }
-
-    return new Promise((resolve , reject) =>{
-        
-            createTransport({
-                ...mailConfig[name],
-                auth: {
-                    user:fromMailAddress,
-                    pass:fromMailPassword
-                }
-            }).sendMail({
-                from:fromMailAddress,
-                to:toMailAddress.join(','),
-                subject:title,
-                text,
-                attachments
-            }, err => {
-
-                if(err){
-
-                    reject(err) ;
-                    
-                }else{
-
-                    resolve() ;
-                }
-            
-            });
-
-    }) ;
-
+    return 'oid' ;
 }
+
+return getDataType(data) ;
     }
-    return function(fromMailAddress,fromMailPassword,toMailAddress,{title,text,attachments = [],name = 'default'}= {}){
+    return function(data){
         
-        if(!__first_executed_1536038753281__){
-            configMail = include('config::mail');
-            mailConfig = config('mail');
-            __first_executed_1536038753281__ = true ;
+        if(!__first_executed_1536038724520__){
+            getDataType = include('database.datatype');
+            
+            __first_executed_1536038724520__ = true ;
         }
         
         
@@ -1172,11 +1641,17 @@ if(mailConfig.hasOwnProperty(name)){
 
             return me === target ? main : me ;
 
-        }).call(this) , fromMailAddress,fromMailPassword,toMailAddress,{title,text,attachments,name}) ;
+        }).call(this) , data) ;
     }
     
 
 })() ;
+
+exports['template::database.mongodb.backup'] = `const {
+    ObjectID
+} = require('mongodb') ;
+
+module.exports = <%- data.code %> ;`
 
 exports['src::date.format'] = (() =>{
     
