@@ -129,9 +129,7 @@ const config = (() => {
         return data;
     }
 
-    const
-        dotRe = /\./g,
-        config = {};
+    const config = {};
 
     function get_config(target, key) {
 
@@ -179,14 +177,7 @@ const config = (() => {
             return get_config(config[name], key);
         }
 
-        try {
-
-            return get_config(include(`config::${name}`), key);
-
-        } catch (err) {
-
-        }
-
+        return get_config(include(`config::${name}`), key);
     }
 
 })();
@@ -323,7 +314,7 @@ exports['src::is.string'] = (() => {
 
 
 
-    let __first_executed_1535523512582__ = false;
+    let __first_executed_1536131309778__ = false;
 
 
 
@@ -335,10 +326,10 @@ exports['src::is.string'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1535523512582__) {
+        if (!__first_executed_1536131309778__) {
             isType = include('is.type');
 
-            __first_executed_1535523512582__ = true;
+            __first_executed_1536131309778__ = true;
         }
 
 
@@ -411,7 +402,7 @@ exports['src::url.join'] = (() => {
 
 
 
-    let __first_executed_1535523512582__ = false;
+    let __first_executed_1536131309779__ = false;
 
 
 
@@ -447,10 +438,10 @@ exports['src::url.join'] = (() => {
     }
     return function(...urls) {
 
-        if (!__first_executed_1535523512582__) {
+        if (!__first_executed_1536131309779__) {
             isAbsolute = include('url.isAbsolute');
 
-            __first_executed_1535523512582__ = true;
+            __first_executed_1536131309779__ = true;
         }
 
 
@@ -483,7 +474,7 @@ exports['src::url.append'] = (() => {
 
 
 
-    let __first_executed_1535523512582__ = false;
+    let __first_executed_1536131309779__ = false;
 
 
 
@@ -521,10 +512,10 @@ exports['src::url.append'] = (() => {
     }
     return function(url, data) {
 
-        if (!__first_executed_1535523512582__) {
+        if (!__first_executed_1536131309779__) {
             isString = include('is.string');
 
-            __first_executed_1535523512582__ = true;
+            __first_executed_1536131309779__ = true;
         }
 
 
@@ -564,7 +555,7 @@ exports['src::http.config.parse'] = (() => {
 
 
 
-    let __first_executed_1535523512583__ = false;
+    let __first_executed_1536131309780__ = false;
 
 
 
@@ -612,9 +603,9 @@ exports['src::http.config.parse'] = (() => {
             } = params;
 
             return {
-                url: append(join(rootURL, apply(uri, path)), {
+                url: append(join(rootURL, apply(uri, path)), Object.assign({
                     _dc: Date.now()
-                }),
+                }, query)),
                 type,
                 headers,
                 method,
@@ -627,7 +618,7 @@ exports['src::http.config.parse'] = (() => {
     }
     return function(uri, method = 'GET', params) {
 
-        if (!__first_executed_1535523512583__) {
+        if (!__first_executed_1536131309780__) {
             apply = include('url.template.apply');
             isObject = include('is.object.simple');
             isString = include('is.string');
@@ -635,7 +626,7 @@ exports['src::http.config.parse'] = (() => {
             append = include('url.append');
             configHttp = include('config::http');
             http = config('http');
-            __first_executed_1535523512583__ = true;
+            __first_executed_1536131309780__ = true;
         }
 
 
@@ -661,121 +652,184 @@ exports['src::http.config.parse'] = (() => {
 
 })();
 
-exports['src::function.empty'] = (() => {
+exports['src::http.request'] = (() => {
+    let parse, isString, isObject;
 
 
 
 
 
+    let __first_executed_1536131309780__ = false;
 
 
 
 
 
-    const emptyFn = () => {};
-
-    function main() {
-
-        return emptyFn;
-    }
-    return function() {
-
-
-        return main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this));
-    }
-
-
-})();
-
-exports['src::browser.es5.http.request'] = (() => {
-    let config_parse, empty, isObject;
-
-
-
-
-
-    let __first_executed_1535523512584__ = false;
-
-
+    const
+        request = require('request-promise'),
+        {
+            assign
+        } = Object;
 
     function main(uri, methodName, params) {
 
-
-
-        // 为了简化与实用原则，当前函数未实现非JSON机制
-
-        const {
+        let {
             url,
+            type,
             headers,
             method,
             timeout,
             body
-        } = config_parse(uri, methodName, params),
-            http = new XMLHttpRequest(), {
-                stringify,
-                parse
-            } = JSON;
+        } = parse(uri, methodName, params), {
+            request: requestType,
+            response: responseType
+        } = process_type(type);
 
-        let successFn = empty,
-            failureFn = empty;
+        return request(assign({
+                uri: url,
+                method,
+                headers,
+                transform: transform(responseType)
+            },
+            process_body(body, requestType),
+            process_timeout(timeout)
+        ));
+    }
 
-        if (isObject(params)) {
+    function process_timeout(timeout) {
 
-            if (params.hasOwnProperty('success')) {
+        if (timeout) {
 
-                successFn = params.success;
-            }
-
-            if (params.hasOwnProperty('failure')) {
-
-                failureFn = params.failure;
-            }
+            return {
+                timeout,
+                requestTimeout: timeout
+            };
         }
 
-        http.addEventListener('readystatechange', () => {
-
-            if (http.readyState === 4) {
-
-                if (http.status === 200) {
-
-                    successFn(parse(http.responseText));
-
-                } else {
-
-                    failureFn();
-                }
-            }
-
-        });
-
-        http.open(method, url, true);
-
-        http.send(stringify(body));
+        return {};
     }
-    return function(uri, methodName, params) {
 
-        if (!__first_executed_1535523512584__) {
-            config_parse = include('http.config.parse');
-            empty = include('function.empty');
+    function process_body(body, type) {
+
+        switch (type) {
+
+            case 'json':
+
+                return {
+                    body,
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    json: true
+                };
+
+            case 'xml':
+
+                return {
+                    headers: {
+                        'content-type': 'application/xml'
+                    },
+                    body
+                };
+
+            case 'form':
+
+                return {
+                    formData: body
+                };
+
+            case 'html':
+
+                return {
+                    headers: {
+                        'content-type': 'text/html'
+                    },
+                    body
+                };
+        }
+
+        return {
+            body
+        };;
+    }
+
+    function process_type(type) {
+
+        if (isObject(type)) {
+
+            let {
+                request,
+                response
+            } = type;
+
+            return {
+                request,
+                response
+            };
+
+        } else if (isString(type)) {
+
+            return {
+                request: type,
+                response: type
+            };
+        }
+
+        return {};
+    }
+
+    function transform_json(body) {
+
+        if (isString(body)) {
+
+            return JSON.parse(body);
+        }
+
+        return body;
+    }
+
+    function transform_xml(body) {
+
+        return parse(body);
+    }
+
+    function transform_html(body) {
+
+
+    }
+
+    function transform_empty(body) {
+
+        return body;
+    }
+
+    function transform(type) {
+
+        switch (type) {
+
+            case 'json':
+
+                return transform_json;
+
+            case 'xml':
+
+                return transform_xml;
+
+            case 'html':
+
+                return transform_html;
+        }
+
+        return transform_empty;
+    }
+    return function(uri, method, params) {
+
+        if (!__first_executed_1536131309780__) {
+            parse = include('http.config.parse');
+            isString = include('is.string');
             isObject = include('is.object.simple');
 
-            __first_executed_1535523512584__ = true;
+            __first_executed_1536131309780__ = true;
         }
 
 
@@ -795,35 +849,35 @@ exports['src::browser.es5.http.request'] = (() => {
 
             return me === target ? main : me;
 
-        }).call(this), uri, methodName, params);
+        }).call(this), uri, method, params);
     }
 
 
 })();
 
-exports['src::browser.es5.http.post'] = (() => {
+exports['src::http.post'] = (() => {
     let request;
 
 
 
 
 
-    let __first_executed_1535523512584__ = false;
+    let __first_executed_1536131309780__ = false;
 
 
 
-    function main(uri, method, params) {
+    function main(uri, params) {
 
 
 
-        request(uri, method, params);
+        return request(uri, 'post', params);
     }
-    return function(uri, method, params) {
+    return function(uri, params) {
 
-        if (!__first_executed_1535523512584__) {
-            request = include('browser.es5.http.request');
+        if (!__first_executed_1536131309780__) {
+            request = include('http.request');
 
-            __first_executed_1535523512584__ = true;
+            __first_executed_1536131309780__ = true;
         }
 
 
@@ -843,7 +897,7 @@ exports['src::browser.es5.http.post'] = (() => {
 
             return me === target ? main : me;
 
-        }).call(this), uri, method, params);
+        }).call(this), uri, params);
     }
 
 

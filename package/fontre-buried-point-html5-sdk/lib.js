@@ -132,7 +132,7 @@ exports['src::is.string'] = (() =>{
     
     
     
-    let __first_executed_1535523512582__ = false ;
+    let __first_executed_1536131309778__ = false ;
     
 
     
@@ -144,10 +144,10 @@ return isType(data , 'string') ;
     }
     return function(data){
         
-        if(!__first_executed_1535523512582__){
+        if(!__first_executed_1536131309778__){
             isType = include('is.type');
             
-            __first_executed_1535523512582__ = true ;
+            __first_executed_1536131309778__ = true ;
         }
         
         
@@ -220,7 +220,7 @@ exports['src::url.join'] = (() =>{
     
     
     
-    let __first_executed_1535523512582__ = false ;
+    let __first_executed_1536131309779__ = false ;
     
 
     
@@ -256,10 +256,10 @@ function main(...urls){
 }
     return function(...urls){
         
-        if(!__first_executed_1535523512582__){
+        if(!__first_executed_1536131309779__){
             isAbsolute = include('url.isAbsolute');
             
-            __first_executed_1535523512582__ = true ;
+            __first_executed_1536131309779__ = true ;
         }
         
         
@@ -292,7 +292,7 @@ exports['src::url.append'] = (() =>{
     
     
     
-    let __first_executed_1535523512582__ = false ;
+    let __first_executed_1536131309779__ = false ;
     
 
     
@@ -330,10 +330,10 @@ return `${url}?${querystring}` ;
     }
     return function(url,data){
         
-        if(!__first_executed_1535523512582__){
+        if(!__first_executed_1536131309779__){
             isString = include('is.string');
             
-            __first_executed_1535523512582__ = true ;
+            __first_executed_1536131309779__ = true ;
         }
         
         
@@ -373,7 +373,7 @@ exports['src::http.config.parse'] = (() =>{
     
     
     
-    let __first_executed_1535523512583__ = false ;
+    let __first_executed_1536131309780__ = false ;
     
 
     
@@ -422,9 +422,9 @@ if(httpConfig){
     } = params;
 
     return {
-        url:append(join(rootURL , apply(uri , path)) , {
+        url:append(join(rootURL , apply(uri , path)) , Object.assign({
             _dc:Date.now()
-        }),
+        } , query)),
         type,
         headers,
         method,
@@ -437,7 +437,7 @@ throw new Error('试图请求未注册的路径') ;
     }
     return function(uri,method = 'GET',params){
         
-        if(!__first_executed_1535523512583__){
+        if(!__first_executed_1536131309780__){
             apply = include('url.template.apply');
 isObject = include('is.object.simple');
 isString = include('is.string');
@@ -445,7 +445,7 @@ join = include('url.join');
 append = include('url.append');
 configHttp = include('config::http');
             http = config('http');
-            __first_executed_1535523512583__ = true ;
+            __first_executed_1536131309780__ = true ;
         }
         
         
@@ -471,25 +471,186 @@ configHttp = include('config::http');
 
 })() ;
 
-exports['src::function.empty'] = (() =>{
+exports['src::http.request'] = (() =>{
+    let parse,isString,isObject;
     
     
     
     
     
+    let __first_executed_1536131309780__ = false ;
     
 
     
     
 
-const emptyFn = () =>{
-} ;
+const 
+request = require('request-promise'),
+{
+    assign
+} = Object;
 
-function main(){
+function main(uri , methodName , params){
 
-    return emptyFn ;
+    let {
+        url,
+        type,
+        headers,
+        method,
+        timeout,
+        body
+    } = parse(uri , methodName , params),
+    {
+        request:requestType,
+        response:responseType
+    } = process_type(type);
+
+    return request(assign({
+        uri:url,
+        method,
+        headers,
+        transform:transform(responseType)
+    }, 
+        process_body(body , requestType),
+        process_timeout(timeout)
+    ));
 }
-    return function(){
+
+function process_timeout(timeout){
+
+    if(timeout){
+
+        return {
+            timeout,
+            requestTimeout:timeout
+        } ;
+    }
+
+    return {} ;
+}
+
+function process_body(body , type){
+
+    switch(type){
+
+        case 'json':
+
+            return {
+                body,
+                headers:{
+                    'content-type':'application/json'
+                },
+                json:true
+            } ;
+
+        case 'xml':
+
+            return {
+                headers:{
+                    'content-type':'application/xml'
+                },
+                body
+            } ;
+
+        case 'form':
+
+            return {
+                formData:body
+            } ;
+
+        case 'html':
+
+            return {
+                headers:{
+                    'content-type':'text/html'
+                },
+                body
+            } ;
+    }
+
+    return {
+        body
+    } ; ;
+}
+
+function process_type(type){
+
+    if(isObject(type)){
+
+        let {
+            request,
+            response
+        } = type ;
+
+        return {
+            request,
+            response
+        } ;
+    
+    }else if(isString(type)){
+
+        return {
+            request:type,
+            response:type
+        } ;
+    }
+
+    return {} ;
+}
+
+function transform_json(body){
+
+    if(isString(body)){
+
+        return JSON.parse(body) ;
+    }
+
+    return body ;
+}
+
+function transform_xml(body){
+
+    return parse(body) ;
+}
+
+function transform_html(body){
+
+
+}
+
+function transform_empty(body){
+
+    return body ;
+}
+
+function transform(type){
+
+    switch(type){
+
+        case 'json':
+
+            return transform_json ;
+
+        case 'xml':
+
+            return transform_xml ;
+
+        case 'html':
+
+            return transform_html ;
+    }
+
+    return transform_empty ;
+}
+    return function(uri,method,params){
+        
+        if(!__first_executed_1536131309780__){
+            parse = include('http.config.parse');
+isString = include('is.string');
+isObject = include('is.object.simple');
+            
+            __first_executed_1536131309780__ = true ;
+        }
         
         
         return main.call((function(){
@@ -508,134 +669,35 @@ function main(){
 
             return me === target ? main : me ;
 
-        }).call(this) ) ;
+        }).call(this) , uri,method,params) ;
     }
     
 
 })() ;
 
-exports['src::browser.es5.http.request'] = (() =>{
-    let config_parse,empty,isObject;
-    
-    
-    
-    
-    
-    let __first_executed_1535523512584__ = false ;
-    
-
-    
-    function main(uri,methodName,params){
-
-        
-
-// 为了简化与实用原则，当前函数未实现非JSON机制
-
-const {
-    url,
-    headers,
-    method,
-    timeout,
-    body
-} = config_parse(uri , methodName , params),
-http = new XMLHttpRequest(),
-{
-    stringify,
-    parse
-} = JSON ;
-
-let successFn = empty,
-    failureFn = empty;
-
-if(isObject(params)){
-
-    if(params.hasOwnProperty('success')){
-
-        successFn = params.success ;
-    }
-
-    if(params.hasOwnProperty('failure')){
-
-        failureFn = params.failure ;
-    }
-}
-
-http.addEventListener('readystatechange' , () =>{
-
-    if(http.readyState === 4){
-
-        if(http.status === 200){
-
-            successFn(parse(http.responseText)) ;
-
-        }else{
-
-            failureFn() ;
-        }
-    }
-
-}) ;
-
-http.open(method , url , true) ;
-
-http.send(stringify(body)) ;
-    }
-    return function(uri,methodName,params){
-        
-        if(!__first_executed_1535523512584__){
-            config_parse = include('http.config.parse');
-empty = include('function.empty');
-isObject = include('is.object.simple');
-            
-            __first_executed_1535523512584__ = true ;
-        }
-        
-        
-        return  main.call((function(){
-
-            let me = this,
-                target;
-
-            if(typeof global !== 'undefined'){
-
-                target = global ;
-            
-            }else{
-
-                target = window ;
-            }
-
-            return me === target ? main : me ;
-
-        }).call(this) , uri,methodName,params) ;
-    }
-    
-
-})() ;
-
-exports['src::browser.es5.http.post'] = (() =>{
+exports['src::http.post'] = (() =>{
     let request;
     
     
     
     
     
-    let __first_executed_1535523512584__ = false ;
+    let __first_executed_1536131309780__ = false ;
     
 
     
-    function main(uri,method,params){
+    function main(uri,params){
 
         
 
-request(uri , method , params) ;
+return request(uri , 'post' , params) ;
     }
-    return function(uri,method,params){
+    return function(uri,params){
         
-        if(!__first_executed_1535523512584__){
-            request = include('browser.es5.http.request');
+        if(!__first_executed_1536131309780__){
+            request = include('http.request');
             
-            __first_executed_1535523512584__ = true ;
+            __first_executed_1536131309780__ = true ;
         }
         
         
@@ -655,7 +717,7 @@ request(uri , method , params) ;
 
             return me === target ? main : me ;
 
-        }).call(this) , uri,method,params) ;
+        }).call(this) , uri,params) ;
     }
     
 

@@ -4,17 +4,27 @@
  * 
  * @import parse from http.config.parse
  * 
+ * @import is.string
+ * 
+ * @import isObject from is.object.simple
+ * 
  * @param {string} uri 请求名称
  * 
  * @param {string} [method] HTTP 提交方式
  * 
  * @param {config} [params] 参数信息
  * 
+ * @scoped
+ * 
  * @return {Promise}
  * 
  */
 
-const request = require('request-promise') ;
+const 
+request = require('request-promise'),
+{
+    assign
+} = Object;
 
 function main(uri , methodName , params){
 
@@ -35,7 +45,6 @@ function main(uri , methodName , params){
         uri:url,
         method,
         headers,
-        qs,
         transform:transform(responseType)
     }, 
         process_body(body , requestType),

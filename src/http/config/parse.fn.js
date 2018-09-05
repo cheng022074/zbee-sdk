@@ -66,9 +66,9 @@ if(httpConfig){
     } = params;
 
     return {
-        url:append(join(rootURL , apply(uri , path)) , {
+        url:append(join(rootURL , apply(uri , path)) , Object.assign({
             _dc:Date.now()
-        }),
+        } , query)),
         type,
         headers,
         method,
