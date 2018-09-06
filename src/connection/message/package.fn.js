@@ -14,7 +14,7 @@
 
 let count = 0 ;
 
-function main(){
+function main(action , data){
 
     return {
         id:`${Date.now()}-${++ count}`,

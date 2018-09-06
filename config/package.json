@@ -64,10 +64,16 @@
 
     "fontre-communication-protocol-webgl-sdk":{
         "classes":[
+            "is.html.iframe",
+            "is.defined",
+            "browser.html.iframe.window",
             "connection.window.receive",
             "connection.window.send"
         ],
-        "browser":true
+        "browser":true,
+        "targets":[
+            "D:\\Code\\Company\\Outer\\COMMUNICATION-PROTOCOL-WEBGL-SDK\\lib"
+        ]
     },
 
     "fontre-database-backup":{
@@ -86,6 +92,7 @@
             "D:\\Code\\Company\\Outer\\DATABASE-BACKUP\\lib"
         ]
     },
+
 
     "fontre-buried-point-html5-sdk":{
         "classes":[
