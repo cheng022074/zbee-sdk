@@ -6,9 +6,14 @@
  * 
  */
 
-window.addEventListener('message' , ({
-    data
-}) =>{
+return new Promise(callback =>{
 
-    callback(data) ;
+    window.addEventListener('message' , ({
+        data
+    }) =>{
+    
+        callback(data) ;
+    }) ;
+
 }) ;
+

@@ -247,94 +247,6 @@ exports['src::is.html.iframe'] = (() => {
 
 })();
 
-exports['src::is.type'] = (() => {
-
-
-
-
-
-
-
-
-    function main(data, type) {
-
-
-
-        return typeof data === type;
-    }
-    return function(data, type) {
-
-
-        return main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this), data, type);
-    }
-
-
-})();
-
-exports['src::is.defined'] = (() => {
-    let isType;
-
-
-
-
-
-    let __first_executed_1536229642096__ = false;
-
-
-
-    function main(data) {
-
-
-
-        return !isType(data, 'undefined');
-    }
-    return function(data) {
-
-        if (!__first_executed_1536229642096__) {
-            isType = include('is.type');
-
-            __first_executed_1536229642096__ = true;
-        }
-
-
-        return main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this), data);
-    }
-
-
-})();
-
 exports['src::browser.html.iframe.window'] = (() => {
     let isHtmlIframe;
 
@@ -342,7 +254,7 @@ exports['src::browser.html.iframe.window'] = (() => {
 
 
 
-    let __first_executed_1536229642096__ = false;
+    let __first_executed_1536232345114__ = false;
 
 
 
@@ -379,10 +291,10 @@ exports['src::browser.html.iframe.window'] = (() => {
     }
     return function(iframeEl) {
 
-        if (!__first_executed_1536229642096__) {
+        if (!__first_executed_1536232345114__) {
             isHtmlIframe = include('is.html.iframe');
 
-            __first_executed_1536229642096__ = true;
+            __first_executed_1536232345114__ = true;
         }
 
 
@@ -455,7 +367,7 @@ exports['src::connection.message.is'] = (() => {
 
 
 
-    let __first_executed_1536229642096__ = false;
+    let __first_executed_1536232345114__ = false;
 
 
 
@@ -472,10 +384,10 @@ exports['src::connection.message.is'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1536229642096__) {
+        if (!__first_executed_1536232345114__) {
             isObject = include('is.object.simple');
 
-            __first_executed_1536229642096__ = true;
+            __first_executed_1536232345114__ = true;
         }
 
 
@@ -508,7 +420,7 @@ exports['src::connection.message.is.main'] = (() => {
 
 
 
-    let __first_executed_1536229642096__ = false;
+    let __first_executed_1536232345114__ = false;
 
 
 
@@ -520,10 +432,10 @@ exports['src::connection.message.is.main'] = (() => {
     }
     return function(message) {
 
-        if (!__first_executed_1536229642096__) {
+        if (!__first_executed_1536232345114__) {
             is = include('connection.message.is');
 
-            __first_executed_1536229642096__ = true;
+            __first_executed_1536232345114__ = true;
         }
 
 
@@ -602,6 +514,46 @@ exports['src::connection.message.reply'] = (() => {
 
 })();
 
+exports['src::is.type'] = (() => {
+
+
+
+
+
+
+
+
+    function main(data, type) {
+
+
+
+        return typeof data === type;
+    }
+    return function(data, type) {
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), data, type);
+    }
+
+
+})();
+
 exports['src::is.string'] = (() => {
     let isType;
 
@@ -609,7 +561,7 @@ exports['src::is.string'] = (() => {
 
 
 
-    let __first_executed_1536229642096__ = false;
+    let __first_executed_1536232345115__ = false;
 
 
 
@@ -621,10 +573,10 @@ exports['src::is.string'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1536229642096__) {
+        if (!__first_executed_1536232345115__) {
             isType = include('is.type');
 
-            __first_executed_1536229642096__ = true;
+            __first_executed_1536232345115__ = true;
         }
 
 
@@ -657,7 +609,7 @@ exports['src::is.function'] = (() => {
 
 
 
-    let __first_executed_1536229642096__ = false;
+    let __first_executed_1536232345115__ = false;
 
 
 
@@ -669,10 +621,10 @@ exports['src::is.function'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1536229642096__) {
+        if (!__first_executed_1536232345115__) {
             isType = include('is.type');
 
-            __first_executed_1536229642096__ = true;
+            __first_executed_1536232345115__ = true;
         }
 
 
@@ -747,7 +699,7 @@ exports['src::connection.receive'] = (() => {
 
 
 
-    let __first_executed_1536229642096__ = false;
+    let __first_executed_1536232345115__ = false;
 
 
 
@@ -782,14 +734,14 @@ exports['src::connection.receive'] = (() => {
     }
     return function(receiver, implementName, replyName, actionName) {
 
-        if (!__first_executed_1536229642096__) {
+        if (!__first_executed_1536232345115__) {
             isMain = include('connection.message.is.main');
             reply = include('connection.message.reply');
             isString = include('is.string');
             isFunction = include('is.function');
             emptyFn = include('function.empty');
 
-            __first_executed_1536229642096__ = true;
+            __first_executed_1536232345115__ = true;
         }
 
 
@@ -828,11 +780,15 @@ exports['src::connection.receive.window'] = (() => {
 
 
 
-        window.addEventListener('message', ({
-            data
-        }) => {
+        return new Promise(callback => {
 
-            callback(data);
+            window.addEventListener('message', ({
+                data
+            }) => {
+
+                callback(data);
+            });
+
         });
     }
     return function(window) {
@@ -907,7 +863,7 @@ exports['src::connection.window.receive'] = (() => {
 
 
 
-    let __first_executed_1536229642097__ = false;
+    let __first_executed_1536232345115__ = false;
 
 
 
@@ -919,12 +875,12 @@ exports['src::connection.window.receive'] = (() => {
     }
     return function(window, actionFn) {
 
-        if (!__first_executed_1536229642097__) {
+        if (!__first_executed_1536232345115__) {
             receive = include('connection.receive');
             connectionReceiveWindow = include('connection.receive.window');
             connectionReplyWindow = include('connection.reply.window');
 
-            __first_executed_1536229642097__ = true;
+            __first_executed_1536232345115__ = true;
         }
 
 
@@ -957,7 +913,7 @@ exports['src::connection.message.is.reply'] = (() => {
 
 
 
-    let __first_executed_1536229642097__ = false;
+    let __first_executed_1536232345115__ = false;
 
 
 
@@ -969,10 +925,10 @@ exports['src::connection.message.is.reply'] = (() => {
     }
     return function(message) {
 
-        if (!__first_executed_1536229642097__) {
+        if (!__first_executed_1536232345115__) {
             is = include('connection.message.is');
 
-            __first_executed_1536229642097__ = true;
+            __first_executed_1536232345115__ = true;
         }
 
 
@@ -1005,7 +961,7 @@ exports['src::connection.message.is.reply.to'] = (() => {
 
 
 
-    let __first_executed_1536229642097__ = false;
+    let __first_executed_1536232345115__ = false;
 
 
 
@@ -1017,11 +973,11 @@ exports['src::connection.message.is.reply.to'] = (() => {
     }
     return function(replyMessage, message) {
 
-        if (!__first_executed_1536229642097__) {
+        if (!__first_executed_1536232345115__) {
             isMain = include('connection.message.is.main');
             isReply = include('connection.message.is.reply');
 
-            __first_executed_1536229642097__ = true;
+            __first_executed_1536232345115__ = true;
         }
 
 
@@ -1105,7 +1061,7 @@ exports['src::connection.send'] = (() => {
 
 
 
-    let __first_executed_1536229642097__ = false;
+    let __first_executed_1536232345115__ = false;
 
 
 
@@ -1129,12 +1085,12 @@ exports['src::connection.send'] = (() => {
     }
     return function(sender, implementName, message) {
 
-        if (!__first_executed_1536229642097__) {
+        if (!__first_executed_1536232345115__) {
             isReply = include('connection.message.is.reply');
             isReplyTo = include('connection.message.is.reply.to');
             result = include('connection.message.reply.result');
 
-            __first_executed_1536229642097__ = true;
+            __first_executed_1536232345115__ = true;
         }
 
 
@@ -1169,11 +1125,11 @@ exports['src::connection.send.window'] = (() => {
 
 
 
-    function main(window, message, fn) {
+    function main(target, message, fn) {
 
 
 
-        window.postMessage(message, '*');
+        target.postMessage(message, '*');
 
         const
             callback = ({
@@ -1188,7 +1144,7 @@ exports['src::connection.send.window'] = (() => {
 
         window.addEventListener('message', callback);
     }
-    return function(window, message, fn) {
+    return function(target, message, fn) {
 
 
         return main.call((function() {
@@ -1207,7 +1163,7 @@ exports['src::connection.send.window'] = (() => {
 
             return me === target ? main : me;
 
-        }).call(this), window, message, fn);
+        }).call(this), target, message, fn);
     }
 
 
@@ -1266,7 +1222,7 @@ exports['src::connection.window.send'] = (() => {
 
 
 
-    let __first_executed_1536229642097__ = false;
+    let __first_executed_1536232345116__ = false;
 
 
 
@@ -1278,12 +1234,12 @@ exports['src::connection.window.send'] = (() => {
     }
     return function(window, action, data) {
 
-        if (!__first_executed_1536229642097__) {
+        if (!__first_executed_1536232345116__) {
             send = include('connection.send');
             connectionSendWindow = include('connection.send.window');
             doPackage = include('connection.message.package');
 
-            __first_executed_1536229642097__ = true;
+            __first_executed_1536232345116__ = true;
         }
 
 

@@ -2,7 +2,7 @@
  * 
  * 在浏览器中向另一个窗口发送消息
  *
- * @param {Window} window 窗口对象
+ * @param {Window} target 窗口对象
  * 
  * @param {object} message 消息体
  * 
@@ -10,7 +10,7 @@
  * 
  */
 
-window.postMessage(message , '*') ;
+target.postMessage(message , '*') ;
 
 const 
 callback = ({
