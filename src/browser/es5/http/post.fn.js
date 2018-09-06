@@ -6,10 +6,8 @@
  * 
  * @param {string} uri 服务请求链接
  * 
- * @param {string} [method] 请求方式
- * 
  * @param {object} [params] 服务请求数据
  * 
  */
 
-request(uri , method , params) ;
+request(uri , 'post' , params) ;
