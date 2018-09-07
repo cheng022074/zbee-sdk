@@ -261,7 +261,7 @@ exports['src::array.remove'] = (() => {
 
 
 
-    let __first_executed_1536299463276__ = false;
+    let __first_executed_1536304118407__ = false;
 
 
 
@@ -273,10 +273,10 @@ exports['src::array.remove'] = (() => {
     }
     return function(data, item) {
 
-        if (!__first_executed_1536299463276__) {
+        if (!__first_executed_1536304118407__) {
             remove = include('array.removeByIndex');
 
-            __first_executed_1536299463276__ = true;
+            __first_executed_1536304118407__ = true;
         }
 
 
@@ -309,7 +309,7 @@ exports['src::array.remove.all'] = (() => {
 
 
 
-    let __first_executed_1536299463276__ = false;
+    let __first_executed_1536304118407__ = false;
 
 
 
@@ -327,10 +327,10 @@ exports['src::array.remove.all'] = (() => {
     }
     return function(data, item) {
 
-        if (!__first_executed_1536299463276__) {
+        if (!__first_executed_1536304118407__) {
             remove = include('array.remove');
 
-            __first_executed_1536299463276__ = true;
+            __first_executed_1536304118407__ = true;
         }
 
 
@@ -403,7 +403,7 @@ exports['src::browser.html.iframe.window'] = (() => {
 
 
 
-    let __first_executed_1536299463276__ = false;
+    let __first_executed_1536304118407__ = false;
 
 
 
@@ -440,10 +440,10 @@ exports['src::browser.html.iframe.window'] = (() => {
     }
     return function(iframeEl) {
 
-        if (!__first_executed_1536299463276__) {
+        if (!__first_executed_1536304118407__) {
             isHtmlIframe = include('is.html.iframe');
 
-            __first_executed_1536299463276__ = true;
+            __first_executed_1536304118407__ = true;
         }
 
 
@@ -516,7 +516,7 @@ exports['src::connection.message.is'] = (() => {
 
 
 
-    let __first_executed_1536299463276__ = false;
+    let __first_executed_1536304118407__ = false;
 
 
 
@@ -533,10 +533,10 @@ exports['src::connection.message.is'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1536299463276__) {
+        if (!__first_executed_1536304118407__) {
             isObject = include('is.object.simple');
 
-            __first_executed_1536299463276__ = true;
+            __first_executed_1536304118407__ = true;
         }
 
 
@@ -569,7 +569,7 @@ exports['src::connection.message.is.main'] = (() => {
 
 
 
-    let __first_executed_1536299463276__ = false;
+    let __first_executed_1536304118408__ = false;
 
 
 
@@ -581,10 +581,10 @@ exports['src::connection.message.is.main'] = (() => {
     }
     return function(message) {
 
-        if (!__first_executed_1536299463276__) {
+        if (!__first_executed_1536304118408__) {
             is = include('connection.message.is');
 
-            __first_executed_1536299463276__ = true;
+            __first_executed_1536304118408__ = true;
         }
 
 
@@ -710,7 +710,7 @@ exports['src::is.string'] = (() => {
 
 
 
-    let __first_executed_1536299463276__ = false;
+    let __first_executed_1536304118408__ = false;
 
 
 
@@ -722,10 +722,10 @@ exports['src::is.string'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1536299463276__) {
+        if (!__first_executed_1536304118408__) {
             isType = include('is.type');
 
-            __first_executed_1536299463276__ = true;
+            __first_executed_1536304118408__ = true;
         }
 
 
@@ -758,7 +758,7 @@ exports['src::is.function'] = (() => {
 
 
 
-    let __first_executed_1536299463276__ = false;
+    let __first_executed_1536304118408__ = false;
 
 
 
@@ -770,10 +770,10 @@ exports['src::is.function'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1536299463276__) {
+        if (!__first_executed_1536304118408__) {
             isType = include('is.type');
 
-            __first_executed_1536299463276__ = true;
+            __first_executed_1536304118408__ = true;
         }
 
 
@@ -848,7 +848,7 @@ exports['src::connection.receive'] = (() => {
 
 
 
-    let __first_executed_1536299463277__ = false;
+    let __first_executed_1536304118408__ = false;
 
 
 
@@ -871,7 +871,7 @@ exports['src::connection.receive'] = (() => {
             actionFn = emptyFn();
         }
 
-        include(implementName)(receiver).then(async (message) => {
+        include(implementName)(receiver, async (message) => {
 
             if (isMain(message)) {
 
@@ -883,14 +883,14 @@ exports['src::connection.receive'] = (() => {
     }
     return function(receiver, implementName, replyName, actionName) {
 
-        if (!__first_executed_1536299463277__) {
+        if (!__first_executed_1536304118408__) {
             isMain = include('connection.message.is.main');
             reply = include('connection.message.reply');
             isString = include('is.string');
             isFunction = include('is.function');
             emptyFn = include('function.empty');
 
-            __first_executed_1536299463277__ = true;
+            __first_executed_1536304118408__ = true;
         }
 
 
@@ -925,22 +925,18 @@ exports['src::connection.receive.window'] = (() => {
 
 
 
-    function main() {
+    function main(window, callback) {
 
 
 
-        return new Promise(callback => {
+        window.addEventListener('message', ({
+            data
+        }) => {
 
-            window.addEventListener('message', ({
-                data
-            }) => {
-
-                callback(data);
-            });
-
+            callback(data);
         });
     }
-    return function() {
+    return function(window, callback) {
 
 
         return main.call((function() {
@@ -959,7 +955,7 @@ exports['src::connection.receive.window'] = (() => {
 
             return me === target ? main : me;
 
-        }).call(this));
+        }).call(this), window, callback);
     }
 
 
@@ -1012,7 +1008,7 @@ exports['src::connection.window.receive'] = (() => {
 
 
 
-    let __first_executed_1536299463277__ = false;
+    let __first_executed_1536304118408__ = false;
 
 
 
@@ -1024,12 +1020,12 @@ exports['src::connection.window.receive'] = (() => {
     }
     return function(window, actionFn) {
 
-        if (!__first_executed_1536299463277__) {
+        if (!__first_executed_1536304118408__) {
             receive = include('connection.receive');
             connectionReceiveWindow = include('connection.receive.window');
             connectionReplyWindow = include('connection.reply.window');
 
-            __first_executed_1536299463277__ = true;
+            __first_executed_1536304118408__ = true;
         }
 
 
@@ -1062,7 +1058,7 @@ exports['src::connection.message.is.reply'] = (() => {
 
 
 
-    let __first_executed_1536299463277__ = false;
+    let __first_executed_1536304118408__ = false;
 
 
 
@@ -1074,10 +1070,10 @@ exports['src::connection.message.is.reply'] = (() => {
     }
     return function(message) {
 
-        if (!__first_executed_1536299463277__) {
+        if (!__first_executed_1536304118408__) {
             is = include('connection.message.is');
 
-            __first_executed_1536299463277__ = true;
+            __first_executed_1536304118408__ = true;
         }
 
 
@@ -1110,7 +1106,7 @@ exports['src::connection.message.is.reply.to'] = (() => {
 
 
 
-    let __first_executed_1536299463277__ = false;
+    let __first_executed_1536304118408__ = false;
 
 
 
@@ -1122,11 +1118,11 @@ exports['src::connection.message.is.reply.to'] = (() => {
     }
     return function(replyMessage, message) {
 
-        if (!__first_executed_1536299463277__) {
+        if (!__first_executed_1536304118408__) {
             isMain = include('connection.message.is.main');
             isReply = include('connection.message.is.reply');
 
-            __first_executed_1536299463277__ = true;
+            __first_executed_1536304118408__ = true;
         }
 
 
@@ -1210,7 +1206,7 @@ exports['src::connection.send'] = (() => {
 
 
 
-    let __first_executed_1536299463277__ = false;
+    let __first_executed_1536304118408__ = false;
 
 
 
@@ -1234,12 +1230,12 @@ exports['src::connection.send'] = (() => {
     }
     return function(sender, implementName, message) {
 
-        if (!__first_executed_1536299463277__) {
+        if (!__first_executed_1536304118408__) {
             isReply = include('connection.message.is.reply');
             isReplyTo = include('connection.message.is.reply.to');
             result = include('connection.message.reply.result');
 
-            __first_executed_1536299463277__ = true;
+            __first_executed_1536304118408__ = true;
         }
 
 
@@ -1371,7 +1367,7 @@ exports['src::connection.window.send'] = (() => {
 
 
 
-    let __first_executed_1536299463277__ = false;
+    let __first_executed_1536304118409__ = false;
 
 
 
@@ -1383,12 +1379,12 @@ exports['src::connection.window.send'] = (() => {
     }
     return function(window, action, data) {
 
-        if (!__first_executed_1536299463277__) {
+        if (!__first_executed_1536304118409__) {
             send = include('connection.send');
             connectionSendWindow = include('connection.send.window');
             doPackage = include('connection.message.package');
 
-            __first_executed_1536299463277__ = true;
+            __first_executed_1536304118409__ = true;
         }
 
 

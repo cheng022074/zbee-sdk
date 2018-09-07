@@ -37,7 +37,7 @@ if(isString(actionName)){
     actionFn = emptyFn() ;
 }
 
-include(implementName)(receiver).then(async (message) =>{
+include(implementName)(receiver , async (message) =>{
 
     if(isMain(message)){
         
