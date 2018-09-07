@@ -64,6 +64,7 @@
 
     "fontre-communication-protocol-webgl-sdk":{
         "classes":[
+            "array.remove.all",
             "browser.html.iframe.window",
             "connection.window.receive",
             "connection.window.send"

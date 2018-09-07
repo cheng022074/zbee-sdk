@@ -13,4 +13,4 @@
  * 
  */
 
-remove(data , data.indexOf(item)) ;
+return remove(data , data.indexOf(item)) ;

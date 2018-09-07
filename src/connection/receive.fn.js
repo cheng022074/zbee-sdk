@@ -28,7 +28,7 @@ if(isString(actionName)){
 
     actionFn = include(actionName) ;
 
-}else if(isString(actionName)){
+}else if(isFunction(actionName)){
 
     actionFn = actionName ;
 
@@ -41,7 +41,7 @@ include(implementName)(receiver).then(async (message) =>{
 
     if(isMain(message)){
         
-        include(replyName)(receiver , reply(reply , message , await actionFn(message))) ;
+        include(replyName)(receiver , reply(message , await actionFn(message))) ;
     
     }
 
