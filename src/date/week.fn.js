@@ -37,7 +37,18 @@ for(i = 1 ; i <= count ; i ++){
 
     cloneDate.setMonth(month) ;
 
-    cloneDate.setDate(dateValue + i - day) ;
+    let currentDateValue ;
+
+    if(day === 0){
+
+        currentDateValue = dateValue - 7 + i
+    
+    }else{
+
+        currentDateValue = dateValue - day + i ;
+    }
+
+    cloneDate.setDate(currentDateValue) ;
 
     dates.push(clone(cloneDate)) ;
 }
@@ -48,6 +59,6 @@ endDate.setHours(23) ;
 
 endDate.setMinutes(59) ;
 
-endDate.setHours(59) ;
+endDate.setSeconds(59) ;
 
 return dates ;
