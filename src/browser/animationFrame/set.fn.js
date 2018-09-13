@@ -5,7 +5,7 @@
  * 
  * @import getMap from browser.animationFrame.map
  * 
- * @alias browser.setAnimationFrame
+ * @alias setAnimationFrame
  * 
  * @param {function} fn 动画帧回调函数
  * 

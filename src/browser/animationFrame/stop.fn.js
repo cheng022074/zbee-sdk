@@ -5,7 +5,7 @@
  * 
  * @import getMap from browser.animationFrame.map
  * 
- * @alias browser.stopAnimationFrame
+ * @alias stopAnimationFrame
  * 
  * @param {number} animationFrameId 动画帧编号
  * 

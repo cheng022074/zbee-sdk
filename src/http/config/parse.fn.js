@@ -55,18 +55,25 @@ if(httpConfig){
     let {
         root:rootURL,
         type,
-        headers,
+        headers:defaultHeaders,
         timeout
     } = httpConfig,
     {
         query,
         path,
         body,
-        timeout:userTimeout
+        timeout:userTimeout,
+        headers:userHeaders
     } = params;
 
+    const {
+        assign
+    } = Object ;
+
+    let headers = assign({} , defaultHeaders , userHeaders) ;
+
     return {
-        url:append(join(rootURL , apply(uri , path)) , Object.assign({
+        url:append(join(rootURL , apply(uri , path)) , assign({
             _dc:Date.now()
         } , query)),
         type,

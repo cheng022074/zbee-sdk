@@ -8,8 +8,6 @@
  * 
  * @once
  * 
- * @alias console.init
- * 
  */
 
 let types = Object.keys(rules) ;

@@ -11,17 +11,32 @@
  * 
  * @param {object} dest 目标数据
  * 
- * @param {object} source 来源数据
+ * @param {object} [...sources] 来源数据
  * 
  * @return {object} 合并后数据
  * 
+ * @scoped
+ * 
  */
 
-let keys = getKeys(source) ;
+function assign(dest , source){
 
-for(let key of keys){
+    let keys = getKeys(source) ;
 
-    set(dest , key , get(source , key)) ;
+    for(let key of keys){
+
+        set(dest , key , get(source , key)) ;
+    }
+
 }
 
-return dest ;
+function main(dest , ...sources){
+
+    for(let source of sources){
+
+        assign(dest , source) ;
+    }
+
+    return dest ;
+
+}

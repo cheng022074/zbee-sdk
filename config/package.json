@@ -137,6 +137,7 @@
 
     "fontre-car-configurator":{
         "browser":true,
+        "es6":true,
         "classes":[
             "browser.event.init",
             "browser.event.gesture.tap.double",

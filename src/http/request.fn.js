@@ -8,6 +8,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import assign from object.assign
+ * 
  * @param {string} uri 请求名称
  * 
  * @param {string} [method] HTTP 提交方式
@@ -21,10 +23,7 @@
  */
 
 const 
-request = require('request-promise'),
-{
-    assign
-} = Object;
+request = require('request-promise');
 
 function main(uri , methodName , params){
 
