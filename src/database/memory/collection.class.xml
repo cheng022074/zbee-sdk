@@ -5,7 +5,6 @@
     </constructor>
     <properties>
         <property static="yes" description="所有已经使用的存储模型" name="collectionMap" type="Map" value="${new Map()}"/>
-        <property once="yes" description="获得当前存储模型同步文件地址" name="asyncFilePath" type="string" getter="database.memory.collection.asyncFilePath"/>
     </properties>
     <methods>
         <method static="yes" description="获得存储模型实例" name="get" implement="database.memory.collection.get" type="database.memory.collection">

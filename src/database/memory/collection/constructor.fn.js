@@ -11,4 +11,10 @@
  * 
  */
 
- // 代码实现
+let me = this ;
+
+me.name = name ;
+
+me.path = path ;
+
+me.data = 
