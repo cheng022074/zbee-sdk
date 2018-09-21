@@ -5,6 +5,7 @@
     </constructor>
     <properties>
         <property static="yes" description="所有已经使用的存储模型" name="collectionMap" type="Map" value="${new Map()}"/>
+        <property once="yes" description="获得当前存储模型同步文件地址" name="asyncFilePath" type="string" getter="database.memory.collection.asyncFilePath"/>
     </properties>
     <methods>
         <method static="yes" description="获得存储模型实例" name="get" implement="database.memory.collection.get" type="database.memory.collection">
@@ -36,7 +37,7 @@
             <param optional="yes" name="options.limit" type="object" description="查询总数"/>
             <param optional="yes" name="options.projection" type="object" description="查询字段"/>
         </method>
-        <method description="查询多条记录" name="findOne" implement="database.memory.collection.find" type="Promise">
+        <method description="查询多条记录" name="find" implement="database.memory.collection.find" type="Promise">
             <param name="query" type="object" description="查询条件"/>
             <param optional="yes" name="options" type="object" description="查询配置"/>
             <param optional="yes" name="options.skip" type="object" description="查询起始位置"/>
