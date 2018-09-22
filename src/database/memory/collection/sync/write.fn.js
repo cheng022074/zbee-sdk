@@ -6,6 +6,8 @@
  * 
  * @import format from json.format
  * 
+ * @param {string} writeName 写入器名称
+ * 
  * @param {string} name 数据存储表名
  * 
  * @param {string} path 数据存储路径
@@ -16,31 +18,25 @@
  * 
  */
 
-const {
-    write
-} = require('fs') ;
-
 let locked = false,
     isNext = false;
 
-function main(name , path , data){
+async function main(name , path , data){
 
     if(!locked){
 
         locked = true ;
 
-        write(getSyncFilePath(name , path) , data , () =>{
+        await include(writeName)(getSyncFilePath(name , path) , data) ;
 
-            locked = false ;
+        locked = false ;
 
-            if(isNext){
+        if(isNext){
 
-                isNext = false ;
+            isNext = false ;
 
-                main(name , path , data) ;
-            }
-
-        }) ;
+            await main(name , path , data) ;
+        }
     
     }else{
 
