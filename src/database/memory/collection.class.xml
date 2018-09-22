@@ -2,6 +2,7 @@
     <constructor description="使用表名与数据目录路径构建存储模型" implement="database.memory.collection.constructor">
         <param name="name" type="string" description="数据存储表名"/>
         <param name="path" type="string" description="数据存储路径"/>
+        <param name="type" type="string" description="数据存储类型"/>
     </constructor>
     <properties>
         <property static="yes" description="所有已经使用的存储模型" name="collectionMap" type="Map" value="${new Map()}"/>

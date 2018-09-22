@@ -6,13 +6,15 @@
  * 
  * @import format from json.format
  * 
- * @param {string} writeName 写入器名称
- * 
  * @param {string} name 数据存储表名
  * 
  * @param {string} path 数据存储路径
  * 
+ * @param {string} writeName 写入器名称
+ * 
  * @param {array} data 需要序列化的数据
+ * 
+ * @async
  * 
  * @scoped
  * 
@@ -27,7 +29,7 @@ async function main(name , path , data){
 
         locked = true ;
 
-        await include(writeName)(getSyncFilePath(name , path) , data) ;
+        await include(`database.memory.collection.sync.read.${writeName}`)(getSyncFilePath(name , path) , data) ;
 
         locked = false ;
 
