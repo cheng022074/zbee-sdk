@@ -3,12 +3,20 @@
  * 
  * 插入一条数据
  * 
+ * @import sync from database.memory.collection.sync
  * 
  * @param {object} doc 插入的数据
  * 
- * 
- * @return {Promise} 
+ * @async
  * 
  */
 
- // 代码实现
+let {
+    data,
+    name,
+    path
+} = this ;
+
+data.push(doc) ;
+
+sync(name , path , data) ;

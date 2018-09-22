@@ -4,6 +4,8 @@
  * 
  * @import getSyncFilePath from database.memory.collection.syncFilePath
  * 
+ * @import format from json.format
+ * 
  * @param {string} name 数据存储表名
  * 
  * @param {string} path 数据存储路径
