@@ -1,19 +1,19 @@
 
 /**
  * 
- * 获得数据库所有的集合名称
+ * 数据库通用行为实现
  * 
  * @import getMap from database.properties.databases
  * 
  * @import getConnectionType from database.connection.type
  * 
- * @import database.mongodb.collectionNames
+ * @param {string} operation 行为名称
  * 
  * @param {string} [connection='default'] 数据库名称
  * 
  * @async
  * 
- * @return {array} 一组集合名称 
+ * @return {mixed} 行为返回结果 
  * 
  */
 
@@ -21,7 +21,5 @@ let map = getMap() ;
 
 if(map.has(connection)){
 
-    return await include(`database.${getConnectionType(connection)}.collectionNames`)(map.get(connection)) ;
+    return await include(`database.${getConnectionType(connection)}.${operation}`)(map.get(connection)) ;
 }
-
-return [] ;

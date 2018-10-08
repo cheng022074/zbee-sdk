@@ -1,0 +1,48 @@
+<class description="内存数据库存储模型构建工具">
+    <constructor description="使用表名与数据目录路径构建存储模型" implement="database.memory.collection.constructor">
+        <param name="name" type="string" description="数据存储表名"/>
+        <param name="path" type="string" description="数据存储路径"/>
+        <param name="type" type="string" description="数据存储类型"/>
+    </constructor>
+    <properties>
+        <property static="yes" description="所有已经使用的存储模型" name="collectionMap" type="Map" value="${new Map()}"/>
+    </properties>
+    <methods>
+        <method static="yes" description="获得存储模型实例" name="get" implement="database.memory.collection.get" type="database.memory.collection">
+            <param name="name" type="string" description="数据存储表名"/>
+            <param name="path" type="string" description="数据存储路径"/>
+        </method>
+        <method description="插入一条数据" name="insertOne" implement="database.memory.collection.one.insert" type="Promise">
+            <param name="doc" type="object" description="插入的数据"/>
+        </method>
+        <method description="插入一批数据" name="insertMany" implement="database.memory.collection.many.insert" type="Promise">
+            <param name="doc" type="object[]" description="插入的数据"/>
+        </method>
+        <method description="更新一条数据" name="updateOne" implement="database.memory.collection.one.update" type="Promise">
+            <param name="filter" type="object" description="更新条件"/>
+            <param name="updateDoc" type="object" description="更新的数据"/>
+        </method>
+        <method description="更新一批数据" name="updateMany" implement="database.memory.collection.many.update" type="Promise">
+            <param name="filter" type="object" description="更新条件"/>
+            <param name="updateDoc" type="object" description="更新的数据"/>
+        </method>
+        <method description="替换一条数据" name="replaceOne" implement="database.memory.collection.one.replace" type="Promise">
+            <param name="filter" type="object" description="更新条件"/>
+            <param name="doc" type="object" description="更新的数据"/>
+        </method>
+        <method description="查询一条记录" name="findOne" implement="database.memory.collection.one.find" type="Promise">
+            <param name="query" type="object" description="查询条件"/>
+            <param optional="yes" name="options" type="object" description="查询配置"/>
+            <param optional="yes" name="options.skip" type="object" description="查询起始位置"/>
+            <param optional="yes" name="options.limit" type="object" description="查询总数"/>
+            <param optional="yes" name="options.projection" type="object" description="查询字段"/>
+        </method>
+        <method description="查询多条记录" name="find" implement="database.memory.collection.find" type="Promise">
+            <param name="query" type="object" description="查询条件"/>
+            <param optional="yes" name="options" type="object" description="查询配置"/>
+            <param optional="yes" name="options.skip" type="object" description="查询起始位置"/>
+            <param optional="yes" name="options.limit" type="object" description="查询总数"/>
+            <param optional="yes" name="options.projection" type="object" description="查询字段"/>
+        </method>
+    </methods>
+</class>
