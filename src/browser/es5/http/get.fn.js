@@ -1,6 +1,6 @@
 /**
  * 
- * 向后台应用服务以 POST 方式发送请求
+ * 向后台应用服务以 GET 方式发送请求
  * 
  * @import request from browser.es5.http.request
  * 
@@ -10,4 +10,4 @@
  * 
  */
 
-request(uri , 'post' , params) ;
+request(uri , 'get' , params) ;

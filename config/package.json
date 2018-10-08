@@ -95,7 +95,11 @@
 
     "fontre-buried-point-html5-sdk":{
         "classes":[
-            "browser.es5.http.post"
+            "browser.storage.get",
+            "browser.storage.has",
+            "browser.storage.set",
+            "browser.es5.http.post",
+            "browser.es5.http.get"
         ],
         "browser":true,
         "targets":[

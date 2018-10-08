@@ -207,6 +207,298 @@ const config = (() => {
 })();
 
 
+exports['src::is.type'] = (() => {
+
+
+
+
+
+
+
+
+    function main(data, type) {
+
+
+
+        return typeof data === type;
+    }
+    return function(data, type) {
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), data, type);
+    }
+
+
+})();
+
+exports['src::is.null'] = (() => {
+    let isType;
+
+
+
+
+
+    let __first_executed_1538981263124__ = false;
+
+
+
+    function main(data) {
+
+
+
+        return data === null;
+    }
+    return function(data) {
+
+        if (!__first_executed_1538981263124__) {
+            isType = include('is.type');
+
+            __first_executed_1538981263124__ = true;
+        }
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), data);
+    }
+
+
+})();
+
+exports['src::browser.storage.get'] = (() => {
+    let isNull;
+
+
+
+
+
+    let __first_executed_1538981263124__ = false;
+
+
+
+    function main(storage, key) {
+
+
+
+        let value = storage.getItem(key);
+
+        if (!isNull(value)) {
+
+            return value;
+        }
+    }
+    return function(storage, key) {
+
+        if (!__first_executed_1538981263124__) {
+            isNull = include('is.null');
+
+            __first_executed_1538981263124__ = true;
+        }
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), storage, key);
+    }
+
+
+})();
+
+exports['src::browser.storage.has'] = (() => {
+    let isNull;
+
+
+
+
+
+    let __first_executed_1538981263124__ = false;
+
+
+
+    function main(storage, key) {
+
+
+
+        return !isNull(storage.getItem(key));
+    }
+    return function(storage, key) {
+
+        if (!__first_executed_1538981263124__) {
+            isNull = include('is.null');
+
+            __first_executed_1538981263124__ = true;
+        }
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), storage, key);
+    }
+
+
+})();
+
+exports['src::is.string'] = (() => {
+    let isType;
+
+
+
+
+
+    let __first_executed_1538981263124__ = false;
+
+
+
+    function main(data) {
+
+
+
+        return isType(data, 'string');
+    }
+    return function(data) {
+
+        if (!__first_executed_1538981263124__) {
+            isType = include('is.type');
+
+            __first_executed_1538981263124__ = true;
+        }
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), data);
+    }
+
+
+})();
+
+exports['src::browser.storage.set'] = (() => {
+    let isString;
+
+
+
+
+
+    let __first_executed_1538981263124__ = false;
+
+
+
+    function main(storage, key, value) {
+
+
+
+        if (isString(value)) {
+
+            storage.setItem(key, value);
+
+            return true;
+        }
+
+        return false;
+    }
+    return function(storage, key, value) {
+
+        if (!__first_executed_1538981263124__) {
+            isString = include('is.string');
+
+            __first_executed_1538981263124__ = true;
+        }
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), storage, key, value);
+    }
+
+
+})();
+
 exports['src::url.template.apply'] = (() => {
 
 
@@ -291,94 +583,6 @@ exports['src::is.object.simple'] = (() => {
 
 })();
 
-exports['src::is.type'] = (() => {
-
-
-
-
-
-
-
-
-    function main(data, type) {
-
-
-
-        return typeof data === type;
-    }
-    return function(data, type) {
-
-
-        return main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this), data, type);
-    }
-
-
-})();
-
-exports['src::is.string'] = (() => {
-    let isType;
-
-
-
-
-
-    let __first_executed_1536217612768__ = false;
-
-
-
-    function main(data) {
-
-
-
-        return isType(data, 'string');
-    }
-    return function(data) {
-
-        if (!__first_executed_1536217612768__) {
-            isType = include('is.type');
-
-            __first_executed_1536217612768__ = true;
-        }
-
-
-        return main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this), data);
-    }
-
-
-})();
-
 exports['src::url.isAbsolute'] = (() => {
 
 
@@ -426,7 +630,7 @@ exports['src::url.join'] = (() => {
 
 
 
-    let __first_executed_1536217612768__ = false;
+    let __first_executed_1538981263124__ = false;
 
 
 
@@ -462,10 +666,10 @@ exports['src::url.join'] = (() => {
     }
     return function(...urls) {
 
-        if (!__first_executed_1536217612768__) {
+        if (!__first_executed_1538981263124__) {
             isAbsolute = include('url.isAbsolute');
 
-            __first_executed_1536217612768__ = true;
+            __first_executed_1538981263124__ = true;
         }
 
 
@@ -498,7 +702,7 @@ exports['src::url.append'] = (() => {
 
 
 
-    let __first_executed_1536217612768__ = false;
+    let __first_executed_1538981263124__ = false;
 
 
 
@@ -536,10 +740,10 @@ exports['src::url.append'] = (() => {
     }
     return function(url, data) {
 
-        if (!__first_executed_1536217612768__) {
+        if (!__first_executed_1538981263124__) {
             isString = include('is.string');
 
-            __first_executed_1536217612768__ = true;
+            __first_executed_1538981263124__ = true;
         }
 
 
@@ -579,7 +783,7 @@ exports['src::http.config.parse'] = (() => {
 
 
 
-    let __first_executed_1536217612769__ = false;
+    let __first_executed_1538981263126__ = false;
 
 
 
@@ -617,17 +821,24 @@ exports['src::http.config.parse'] = (() => {
             let {
                 root: rootURL,
                 type,
-                headers,
+                headers: defaultHeaders,
                 timeout
             } = httpConfig, {
                 query,
                 path,
                 body,
-                timeout: userTimeout
+                timeout: userTimeout,
+                headers: userHeaders
             } = params;
 
+            const {
+                assign
+            } = Object;
+
+            let headers = assign({}, defaultHeaders, userHeaders);
+
             return {
-                url: append(join(rootURL, apply(uri, path)), Object.assign({
+                url: append(join(rootURL, apply(uri, path)), assign({
                     _dc: Date.now()
                 }, query)),
                 type,
@@ -642,7 +853,7 @@ exports['src::http.config.parse'] = (() => {
     }
     return function(uri, method = 'GET', params) {
 
-        if (!__first_executed_1536217612769__) {
+        if (!__first_executed_1538981263126__) {
             apply = include('url.template.apply');
             isObject = include('is.object.simple');
             isString = include('is.string');
@@ -650,7 +861,7 @@ exports['src::http.config.parse'] = (() => {
             append = include('url.append');
             configHttp = include('config::http');
             http = config('http');
-            __first_executed_1536217612769__ = true;
+            __first_executed_1538981263126__ = true;
         }
 
 
@@ -725,7 +936,7 @@ exports['src::browser.es5.http.request'] = (() => {
 
 
 
-    let __first_executed_1536217612769__ = false;
+    let __first_executed_1538981263126__ = false;
 
 
 
@@ -785,12 +996,12 @@ exports['src::browser.es5.http.request'] = (() => {
     }
     return function(uri, methodName, params) {
 
-        if (!__first_executed_1536217612769__) {
+        if (!__first_executed_1538981263126__) {
             config_parse = include('http.config.parse');
             empty = include('function.empty');
             isObject = include('is.object.simple');
 
-            __first_executed_1536217612769__ = true;
+            __first_executed_1538981263126__ = true;
         }
 
 
@@ -823,7 +1034,7 @@ exports['src::browser.es5.http.post'] = (() => {
 
 
 
-    let __first_executed_1536217612770__ = false;
+    let __first_executed_1538981263126__ = false;
 
 
 
@@ -835,10 +1046,58 @@ exports['src::browser.es5.http.post'] = (() => {
     }
     return function(uri, params) {
 
-        if (!__first_executed_1536217612770__) {
+        if (!__first_executed_1538981263126__) {
             request = include('browser.es5.http.request');
 
-            __first_executed_1536217612770__ = true;
+            __first_executed_1538981263126__ = true;
+        }
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), uri, params);
+    }
+
+
+})();
+
+exports['src::browser.es5.http.get'] = (() => {
+    let request;
+
+
+
+
+
+    let __first_executed_1538981263126__ = false;
+
+
+
+    function main(uri, params) {
+
+
+
+        request(uri, 'get', params);
+    }
+    return function(uri, params) {
+
+        if (!__first_executed_1538981263126__) {
+            request = include('browser.es5.http.request');
+
+            __first_executed_1538981263126__ = true;
         }
 
 
