@@ -3,21 +3,25 @@
  * 
  * 使用表名与数据目录路径构建存储模型
  * 
+ * @import parse from database.memory.collection.connectionString.parse
+ * 
  * @import read from database.memory.collection.sync.read
  * 
- * @param {string} name 数据存储表名
- * 
- * @param {string} path 数据存储路径
- * 
- * @param {string} type 数据存储类型
- * 
+ * @param {string} connectionString 标准连接字符串
  * 
  */
 
-let me = this ;
+let me = this,
+{
+    name,
+    ns,
+    type
+} = parse(connectionString);
 
 me.name = name ;
 
-me.path = path ;
+me.ns = ns ;
 
-me.data = read(name , path , type) || [];
+me.type = type ;
+
+me.data = read(name , ns , type) || [];

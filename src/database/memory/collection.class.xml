@@ -1,16 +1,13 @@
 <class description="内存数据库存储模型构建工具">
-    <constructor description="使用表名与数据目录路径构建存储模型" implement="database.memory.collection.constructor">
-        <param name="name" type="string" description="数据存储表名"/>
-        <param name="path" type="string" description="数据存储路径"/>
-        <param name="type" type="string" description="数据存储类型"/>
+    <constructor description="使用标准连接字符串构建存储模型" implement="database.memory.collection.constructor">
+        <param name="connectionString" type="string" description="标准连接字符串"/>
     </constructor>
     <properties>
         <property static="yes" description="所有已经使用的存储模型" name="collectionMap" type="Map" value="${new Map()}"/>
     </properties>
     <methods>
         <method static="yes" description="获得存储模型实例" name="get" implement="database.memory.collection.get" type="database.memory.collection">
-            <param name="name" type="string" description="数据存储表名"/>
-            <param name="path" type="string" description="数据存储路径"/>
+            <param name="connectionString" type="string" description="标准连接字符串"/>
         </method>
         <method description="插入一条数据" name="insertOne" implement="database.memory.collection.one.insert" type="Promise">
             <param name="doc" type="object" description="插入的数据"/>
