@@ -62,6 +62,17 @@
         ]
     },
 
+    "HYUNDAI-APP":{
+        "classes":[
+            "is.pc"
+        ],
+        "browser":true,
+        "es6":true,
+        "targets":[
+            "D:\\Code\\Company\\Outer\\HYUNDAI-APP\\src\\lib"
+        ]
+    },
+
     "fontre-communication-protocol-webgl-sdk":{
         "classes":[
             "array.remove.all",
