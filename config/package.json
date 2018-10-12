@@ -64,8 +64,18 @@
 
     "HYUNDAI-APP":{
         "classes":[
-            "is.pc"
+            "is.pc",
+            "browser.event.init",
+            "vue.plugin.gestures",
+            "browser.event.gesture.tap"
         ],
+        "config":{
+            "vue":{
+                "gestures":[
+                    "browser.event.gesture.tap"
+                ]
+            }
+        },
         "browser":true,
         "es6":true,
         "targets":[
