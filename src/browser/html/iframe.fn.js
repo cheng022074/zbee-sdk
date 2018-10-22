@@ -22,7 +22,7 @@ return new Promise(callback =>{
         case 'complete':
         case 'loaded':
 
-            callback(iframeEl.contentWindow) ;
+            callback(iframeEl) ;
 
             break ;
 
@@ -30,7 +30,7 @@ return new Promise(callback =>{
         
             iframeEl.addEventListener('load' , () =>{
 
-                callback(iframeEl.contentWindow) ;
+                callback(iframeEl) ;
 
             }) ;
     }

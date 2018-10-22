@@ -65,4 +65,16 @@ http.addEventListener('readystatechange' , () =>{
 
 http.open(method , url , true) ;
 
+http.setRequestHeader('content-type' , 'application/json') ;
+
+if(headers){
+
+    let names = Object.keys(headers) ;
+
+    for(let name of names){
+
+        http.setRequestHeader(name , headers[name]) ;
+    }
+}
+
 http.send(stringify(body)) ;

@@ -48,7 +48,7 @@ exports['src::is.null'] = (() =>{
     
     
     
-    let __first_executed_1538981263124__ = false ;
+    let __first_executed_1539230125989__ = false ;
     
 
     
@@ -60,10 +60,10 @@ return data === null ;
     }
     return function(data){
         
-        if(!__first_executed_1538981263124__){
+        if(!__first_executed_1539230125989__){
             isType = include('is.type');
             
-            __first_executed_1538981263124__ = true ;
+            __first_executed_1539230125989__ = true ;
         }
         
         
@@ -96,7 +96,7 @@ exports['src::browser.storage.get'] = (() =>{
     
     
     
-    let __first_executed_1538981263124__ = false ;
+    let __first_executed_1539230125989__ = false ;
     
 
     
@@ -113,10 +113,10 @@ if(!isNull(value)){
     }
     return function(storage,key){
         
-        if(!__first_executed_1538981263124__){
+        if(!__first_executed_1539230125989__){
             isNull = include('is.null');
             
-            __first_executed_1538981263124__ = true ;
+            __first_executed_1539230125989__ = true ;
         }
         
         
@@ -149,7 +149,7 @@ exports['src::browser.storage.has'] = (() =>{
     
     
     
-    let __first_executed_1538981263124__ = false ;
+    let __first_executed_1539230125989__ = false ;
     
 
     
@@ -161,10 +161,10 @@ return !isNull(storage.getItem(key)) ;
     }
     return function(storage,key){
         
-        if(!__first_executed_1538981263124__){
+        if(!__first_executed_1539230125989__){
             isNull = include('is.null');
             
-            __first_executed_1538981263124__ = true ;
+            __first_executed_1539230125989__ = true ;
         }
         
         
@@ -197,7 +197,7 @@ exports['src::is.string'] = (() =>{
     
     
     
-    let __first_executed_1538981263124__ = false ;
+    let __first_executed_1539230125989__ = false ;
     
 
     
@@ -209,10 +209,10 @@ return isType(data , 'string') ;
     }
     return function(data){
         
-        if(!__first_executed_1538981263124__){
+        if(!__first_executed_1539230125989__){
             isType = include('is.type');
             
-            __first_executed_1538981263124__ = true ;
+            __first_executed_1539230125989__ = true ;
         }
         
         
@@ -245,7 +245,7 @@ exports['src::browser.storage.set'] = (() =>{
     
     
     
-    let __first_executed_1538981263124__ = false ;
+    let __first_executed_1539230125989__ = false ;
     
 
     
@@ -264,10 +264,10 @@ return false ;
     }
     return function(storage,key,value){
         
-        if(!__first_executed_1538981263124__){
+        if(!__first_executed_1539230125989__){
             isString = include('is.string');
             
-            __first_executed_1538981263124__ = true ;
+            __first_executed_1539230125989__ = true ;
         }
         
         
@@ -424,7 +424,7 @@ exports['src::url.join'] = (() =>{
     
     
     
-    let __first_executed_1538981263124__ = false ;
+    let __first_executed_1539230125989__ = false ;
     
 
     
@@ -460,10 +460,10 @@ function main(...urls){
 }
     return function(...urls){
         
-        if(!__first_executed_1538981263124__){
+        if(!__first_executed_1539230125989__){
             isAbsolute = include('url.isAbsolute');
             
-            __first_executed_1538981263124__ = true ;
+            __first_executed_1539230125989__ = true ;
         }
         
         
@@ -496,7 +496,7 @@ exports['src::url.append'] = (() =>{
     
     
     
-    let __first_executed_1538981263124__ = false ;
+    let __first_executed_1539230125989__ = false ;
     
 
     
@@ -534,10 +534,10 @@ return `${url}?${querystring}` ;
     }
     return function(url,data){
         
-        if(!__first_executed_1538981263124__){
+        if(!__first_executed_1539230125989__){
             isString = include('is.string');
             
-            __first_executed_1538981263124__ = true ;
+            __first_executed_1539230125989__ = true ;
         }
         
         
@@ -577,7 +577,7 @@ exports['src::http.config.parse'] = (() =>{
     
     
     
-    let __first_executed_1538981263126__ = false ;
+    let __first_executed_1539230125990__ = false ;
     
 
     
@@ -648,7 +648,7 @@ throw new Error('试图请求未注册的路径') ;
     }
     return function(uri,method = 'GET',params){
         
-        if(!__first_executed_1538981263126__){
+        if(!__first_executed_1539230125990__){
             apply = include('url.template.apply');
 isObject = include('is.object.simple');
 isString = include('is.string');
@@ -656,7 +656,7 @@ join = include('url.join');
 append = include('url.append');
 configHttp = include('config::http');
             http = config('http');
-            __first_executed_1538981263126__ = true ;
+            __first_executed_1539230125990__ = true ;
         }
         
         
@@ -732,7 +732,7 @@ exports['src::browser.es5.http.request'] = (() =>{
     
     
     
-    let __first_executed_1538981263126__ = false ;
+    let __first_executed_1539230125991__ = false ;
     
 
     
@@ -789,16 +789,28 @@ http.addEventListener('readystatechange' , () =>{
 
 http.open(method , url , true) ;
 
+http.setRequestHeader('content-type' , 'application/json') ;
+
+if(headers){
+
+    let names = Object.keys(headers) ;
+
+    for(let name of names){
+
+        http.setRequestHeader(name , headers[name]) ;
+    }
+}
+
 http.send(stringify(body)) ;
     }
     return function(uri,methodName,params){
         
-        if(!__first_executed_1538981263126__){
+        if(!__first_executed_1539230125991__){
             config_parse = include('http.config.parse');
 empty = include('function.empty');
 isObject = include('is.object.simple');
             
-            __first_executed_1538981263126__ = true ;
+            __first_executed_1539230125991__ = true ;
         }
         
         
@@ -831,7 +843,7 @@ exports['src::browser.es5.http.post'] = (() =>{
     
     
     
-    let __first_executed_1538981263126__ = false ;
+    let __first_executed_1539230125991__ = false ;
     
 
     
@@ -843,10 +855,10 @@ request(uri , 'post' , params) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1538981263126__){
+        if(!__first_executed_1539230125991__){
             request = include('browser.es5.http.request');
             
-            __first_executed_1538981263126__ = true ;
+            __first_executed_1539230125991__ = true ;
         }
         
         
@@ -879,7 +891,7 @@ exports['src::browser.es5.http.get'] = (() =>{
     
     
     
-    let __first_executed_1538981263126__ = false ;
+    let __first_executed_1539230125991__ = false ;
     
 
     
@@ -891,10 +903,10 @@ request(uri , 'get' , params) ;
     }
     return function(uri,params){
         
-        if(!__first_executed_1538981263126__){
+        if(!__first_executed_1539230125991__){
             request = include('browser.es5.http.request');
             
-            __first_executed_1538981263126__ = true ;
+            __first_executed_1539230125991__ = true ;
         }
         
         

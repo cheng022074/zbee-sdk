@@ -105,7 +105,7 @@ function process_body(body , type){
 
     return {
         body
-    } ; ;
+    } ;
 }
 
 function process_type(type){
