@@ -9,6 +9,10 @@ if (!env['ZBEE-APPLICATION-ROOT-PATH']) {
 
 
 
+
+
+
+
 const include = (() => {
 
     const nameRe = /^(\w+)\:{2}(.+?)$/,
@@ -52,9 +56,11 @@ const include = (() => {
         return code;
     };
 
-})();
+})()
 
 exports.include = include;
+
+
 
 const gettype = (() => {
 
@@ -140,9 +146,7 @@ const config = (() => {
         return data;
     }
 
-    const
-        dotRe = /\./g,
-        config = {};
+    const config = {};
 
     function get_config(target, key) {
 
@@ -195,7 +199,7 @@ const config = (() => {
 
             try {
 
-                data = require(`${env['ZBEE-APPLICATION-ROOT-PATH']}/config/${name.replace(dotRe , '/')}.json`);
+                data = require(`${env['ZBEE-APPLICATION-ROOT-PATH']}/config/${name.replace(/\./g , '/')}.json`);
 
             } catch (err) {}
 
@@ -225,8 +229,8 @@ exports['src::database.properties.databases'] = (() => {
 
 
 
-    let __once_1536038724514_value__,
-        __once_1536038724514_locked__ = false;
+    let __once_1540778997099_value__,
+        __once_1540778997099_locked__ = false;
 
 
 
@@ -241,15 +245,15 @@ exports['src::database.properties.databases'] = (() => {
     return function() {
 
 
-        if (__once_1536038724514_locked__) {
+        if (__once_1540778997099_locked__) {
 
-            return __once_1536038724514_value__;
+            return __once_1540778997099_value__;
 
         }
 
-        __once_1536038724514_locked__ = true;
+        __once_1540778997099_locked__ = true;
 
-        return __once_1536038724514_value__ = main.call((function() {
+        return __once_1540778997099_value__ = main.call((function() {
 
             let me = this,
                 target;
@@ -375,54 +379,12 @@ exports['src::database.connection.config'] = (() => {
 
 })();
 
-exports['src::is.type'] = (() => {
-
-
-
-
-
-
-
-
-    function main(data, type) {
-
-
-
-        return typeof data === type;
-    }
-    return function(data, type) {
-
-
-        return main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this), data, type);
-    }
-
-
-})();
-
 exports['src::is.defined'] = (() => {
-    let isType;
 
 
 
 
 
-    let __first_executed_1536038724515__ = false;
 
 
 
@@ -430,15 +392,9 @@ exports['src::is.defined'] = (() => {
 
 
 
-        return !isType(data, 'undefined');
+        return data !== undefined;
     }
     return function(data) {
-
-        if (!__first_executed_1536038724515__) {
-            isType = include('is.type');
-
-            __first_executed_1536038724515__ = true;
-        }
 
 
         return main.call((function() {
@@ -470,7 +426,7 @@ exports['src::database.mongodb.open'] = (() => {
 
 
 
-    let __first_executed_1536038724515__ = false;
+    let __first_executed_1540778997100__ = false;
 
 
 
@@ -517,11 +473,11 @@ exports['src::database.mongodb.open'] = (() => {
     }
     return async function(map, name, config) {
 
-        if (!__first_executed_1536038724515__) {
+        if (!__first_executed_1540778997100__) {
             isDefined = include('is.defined');
             getMap = include('database.properties.databases');
 
-            __first_executed_1536038724515__ = true;
+            __first_executed_1540778997100__ = true;
         }
 
 
@@ -554,7 +510,7 @@ exports['src::database.methods.open'] = (() => {
 
 
 
-    let __first_executed_1536038724516__ = false;
+    let __first_executed_1540778997100__ = false;
 
 
 
@@ -587,13 +543,13 @@ exports['src::database.methods.open'] = (() => {
     }
     return async function(name = 'default') {
 
-        if (!__first_executed_1536038724516__) {
+        if (!__first_executed_1540778997100__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             getConnectionConfig = include('database.connection.config');
             databaseMongodbOpen = include('database.mongodb.open');
 
-            __first_executed_1536038724516__ = true;
+            __first_executed_1540778997100__ = true;
         }
 
 
@@ -626,7 +582,7 @@ exports['src::database.methods.close'] = (() => {
 
 
 
-    let __first_executed_1536038724516__ = false;
+    let __first_executed_1540778997100__ = false;
 
 
 
@@ -647,10 +603,10 @@ exports['src::database.methods.close'] = (() => {
     }
     return async function(name = 'default') {
 
-        if (!__first_executed_1536038724516__) {
+        if (!__first_executed_1540778997100__) {
             getMap = include('database.properties.databases');
 
-            __first_executed_1536038724516__ = true;
+            __first_executed_1540778997100__ = true;
         }
 
 
@@ -693,119 +649,6 @@ exports['src::database'] = (() => {
 
 })();
 
-exports['src::database.mongodb.collectionNames'] = (() => {
-
-
-
-
-
-
-
-
-    async function main(db) {
-
-
-
-        let records = await db.db.listCollections().toArray(),
-            names = [];
-
-        for (let record of records) {
-
-            let {
-                name,
-                type
-            } = record;
-
-            if (type === 'collection') {
-
-                names.push(name);
-            }
-        }
-
-        return names;
-    }
-    return async function(db) {
-
-
-        return await main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this), db);
-    }
-
-
-})();
-
-exports['src::database.collectionNames'] = (() => {
-    let getMap, getConnectionType, databaseMongodbCollectionNames;
-
-
-
-
-
-    let __first_executed_1536038724518__ = false;
-
-
-
-    async function main(connection) {
-
-
-
-        let map = getMap();
-
-        if (map.has(connection)) {
-
-            return await include(`database.${getConnectionType(connection)}.collectionNames`)(map.get(connection));
-        }
-
-        return [];
-    }
-    return async function(connection = 'default') {
-
-        if (!__first_executed_1536038724518__) {
-            getMap = include('database.properties.databases');
-            getConnectionType = include('database.connection.type');
-            databaseMongodbCollectionNames = include('database.mongodb.collectionNames');
-
-            __first_executed_1536038724518__ = true;
-        }
-
-
-        return await main.call((function() {
-
-            let me = this,
-                target;
-
-            if (typeof global !== 'undefined') {
-
-                target = global;
-
-            } else {
-
-                target = window;
-            }
-
-            return me === target ? main : me;
-
-        }).call(this), connection);
-    }
-
-
-})();
-
 exports['src::database.mongodb.collection.find'] = (() => {
 
 
@@ -829,7 +672,7 @@ exports['src::database.mongodb.collection.find'] = (() => {
         collection,
         db,
         query
-    }) {
+    } = {}) {
 
 
         return await main.call((function() {
@@ -865,7 +708,7 @@ exports['src::database.collection.find'] = (() => {
 
 
 
-    let __first_executed_1536038724518__ = false;
+    let __first_executed_1540778997102__ = false;
 
 
 
@@ -894,14 +737,14 @@ exports['src::database.collection.find'] = (() => {
         collection,
         connection = 'default',
         query
-    }) {
+    } = {}) {
 
-        if (!__first_executed_1536038724518__) {
+        if (!__first_executed_1540778997102__) {
             getMap = include('database.properties.databases');
             getConnectionType = include('database.connection.type');
             databaseMongodbCollectionFind = include('database.mongodb.collection.find');
 
-            __first_executed_1536038724518__ = true;
+            __first_executed_1540778997102__ = true;
         }
 
 
@@ -983,7 +826,7 @@ exports['src::directory.create'] = (() => {
 
 
 
-    let __first_executed_1536038724518__ = false;
+    let __first_executed_1540778997102__ = false;
 
 
 
@@ -1011,10 +854,10 @@ exports['src::directory.create'] = (() => {
     }
     return function(path) {
 
-        if (!__first_executed_1536038724518__) {
+        if (!__first_executed_1540778997102__) {
             isDirectory = include('is.directory');
 
-            __first_executed_1536038724518__ = true;
+            __first_executed_1540778997102__ = true;
         }
 
 
@@ -1047,7 +890,7 @@ exports['src::file.write'] = (() => {
 
 
 
-    let __first_executed_1536038724518__ = false;
+    let __first_executed_1540778997103__ = false;
 
 
 
@@ -1067,10 +910,10 @@ exports['src::file.write'] = (() => {
     }
     return function(path, data) {
 
-        if (!__first_executed_1536038724518__) {
+        if (!__first_executed_1540778997103__) {
             create = include('directory.create');
 
-            __first_executed_1536038724518__ = true;
+            __first_executed_1540778997103__ = true;
         }
 
 
@@ -1096,6 +939,46 @@ exports['src::file.write'] = (() => {
 
 })();
 
+exports['src::is.type'] = (() => {
+
+
+
+
+
+
+
+
+    function main(data, type) {
+
+
+
+        return typeof data === type;
+    }
+    return function(data, type) {
+
+
+        return main.call((function() {
+
+            let me = this,
+                target;
+
+            if (typeof global !== 'undefined') {
+
+                target = global;
+
+            } else {
+
+                target = window;
+            }
+
+            return me === target ? main : me;
+
+        }).call(this), data, type);
+    }
+
+
+})();
+
 exports['src::is.array'] = (() => {
     let isType;
 
@@ -1103,7 +986,7 @@ exports['src::is.array'] = (() => {
 
 
 
-    let __first_executed_1536038724518__ = false;
+    let __first_executed_1540778997103__ = false;
 
 
 
@@ -1115,10 +998,10 @@ exports['src::is.array'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1536038724518__) {
+        if (!__first_executed_1540778997103__) {
             isType = include('is.type');
 
-            __first_executed_1536038724518__ = true;
+            __first_executed_1540778997103__ = true;
         }
 
 
@@ -1291,7 +1174,7 @@ exports['src::file.read'] = (() => {
 
 
 
-    let __first_executed_1536038724520__ = false;
+    let __first_executed_1540778997104__ = false;
 
 
 
@@ -1310,10 +1193,10 @@ exports['src::file.read'] = (() => {
     }
     return function(path) {
 
-        if (!__first_executed_1536038724520__) {
+        if (!__first_executed_1540778997104__) {
             isFile = include('is.file');
 
-            __first_executed_1536038724520__ = true;
+            __first_executed_1540778997104__ = true;
         }
 
 
@@ -1346,7 +1229,7 @@ exports['src::file.read.text'] = (() => {
 
 
 
-    let __first_executed_1536038724520__ = false;
+    let __first_executed_1540778997104__ = false;
 
 
 
@@ -1363,10 +1246,10 @@ exports['src::file.read.text'] = (() => {
     }
     return function(path) {
 
-        if (!__first_executed_1536038724520__) {
+        if (!__first_executed_1540778997104__) {
             read = include('file.read');
 
-            __first_executed_1536038724520__ = true;
+            __first_executed_1540778997104__ = true;
         }
 
 
@@ -1399,7 +1282,7 @@ exports['src::template.apply'] = (() => {
 
 
 
-    let __first_executed_1536038724520__ = false;
+    let __first_executed_1540778997104__ = false;
 
 
 
@@ -1448,10 +1331,10 @@ exports['src::template.apply'] = (() => {
     }
     return function(name, data = {}) {
 
-        if (!__first_executed_1536038724520__) {
+        if (!__first_executed_1540778997104__) {
             read = include('file.read.text');
 
-            __first_executed_1536038724520__ = true;
+            __first_executed_1540778997104__ = true;
         }
 
 
@@ -1484,7 +1367,7 @@ exports['src::database.collection.stringify'] = (() => {
 
 
 
-    let __first_executed_1536038724520__ = false;
+    let __first_executed_1540778997104__ = false;
 
 
 
@@ -1628,14 +1511,14 @@ exports['src::database.collection.stringify'] = (() => {
     }
     return function(data, name = 'default') {
 
-        if (!__first_executed_1536038724520__) {
+        if (!__first_executed_1540778997104__) {
             isArray = include('is.array');
             isObject = include('is.object.simple');
             format = include('script.format');
             templateDatabaseBackup = include('template::database.backup');
             apply = include('template.apply');
 
-            __first_executed_1536038724520__ = true;
+            __first_executed_1540778997104__ = true;
         }
 
 
@@ -1789,7 +1672,7 @@ exports['src::database.datatype'] = (() => {
 
 
 
-    let __first_executed_1536038724520__ = false;
+    let __first_executed_1540778997104__ = false;
 
 
 
@@ -1804,10 +1687,10 @@ exports['src::database.datatype'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1536038724520__) {
+        if (!__first_executed_1540778997104__) {
             isDate = include('is.Date');
 
-            __first_executed_1536038724520__ = true;
+            __first_executed_1540778997104__ = true;
         }
 
 
@@ -1840,7 +1723,7 @@ exports['src::database.mongodb.datatype'] = (() => {
 
 
 
-    let __first_executed_1536038724520__ = false;
+    let __first_executed_1540778997104__ = false;
 
 
 
@@ -1861,10 +1744,10 @@ exports['src::database.mongodb.datatype'] = (() => {
     }
     return function(data) {
 
-        if (!__first_executed_1536038724520__) {
+        if (!__first_executed_1540778997104__) {
             getDataType = include('database.datatype');
 
-            __first_executed_1536038724520__ = true;
+            __first_executed_1540778997104__ = true;
         }
 
 
