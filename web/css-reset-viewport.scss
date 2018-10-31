@@ -1,5 +1,4 @@
-@import "var.reset" ;
-
+$var-reset-font-family:"Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif !default;
 html, body {
     font-family: $var-reset-font-family;
     font-weight: normal;
@@ -86,4 +85,9 @@ body.x-desktop {
 
 input, textarea {
     user-select: text;
+}
+html,body {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
