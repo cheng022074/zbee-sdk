@@ -1,7 +1,9 @@
 
+<?xml?>
+<classes>
 
-
-exports['src::is.type'] = (() =>{
+    <class name="src::is.type" >
+        <![CDATA[(() =>{
     
     
     
@@ -39,10 +41,11 @@ exports['src::is.type'] = (() =>{
     }
     
 
-})() ;
+})() ;]]>
+    </class>
 
-
-exports['src::is.array'] = (() =>{
+    <class name="src::is.array" >
+        <![CDATA[(() =>{
     let isType;
     
     
@@ -88,10 +91,11 @@ exports['src::is.array'] = (() =>{
     }
     
 
-})() ;
+})() ;]]>
+    </class>
 
-
-exports['is.type'] = (() =>{
+    <class name="is.type" >
+        <![CDATA[(() =>{
     
     
     
@@ -129,10 +133,11 @@ exports['is.type'] = (() =>{
     }
     
 
-})() ;
+})() ;]]>
+    </class>
 
-
-exports['src::is.empty'] = (() =>{
+    <class name="src::is.empty" >
+        <![CDATA[(() =>{
     let isArray;
     
     
@@ -178,10 +183,11 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
     }
     
 
-})() ;
+})() ;]]>
+    </class>
 
-
-exports['is.array'] = (() =>{
+    <class name="is.array" >
+        <![CDATA[(() =>{
     let isType;
     
     
@@ -227,10 +233,11 @@ exports['is.array'] = (() =>{
     }
     
 
-})() ;
+})() ;]]>
+    </class>
 
-
-exports['src::is.string'] = (() =>{
+    <class name="src::is.string" >
+        <![CDATA[(() =>{
     let isType;
     
     
@@ -276,5 +283,8 @@ return isType(data , 'string') ;
     }
     
 
-})() ;
+})() ;]]>
+    </class>
 
+
+</classes>

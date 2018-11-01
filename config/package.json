@@ -1,6 +1,8 @@
 {
     "vue-toolkit":{
+        "type":"scss",
         "classes":[
+            "css::reset.viewport",
             "array.from",
             "path.string"
         ],
