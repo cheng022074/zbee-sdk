@@ -148,7 +148,7 @@ exports['src::is.array'] = (() =>{
     
     
     
-    let __first_executed_1541079163964__ = false ;
+    let __first_executed_1541121637347__ = false ;
     
 
     
@@ -160,10 +160,10 @@ exports['src::is.array'] = (() =>{
     }
     return function(data){
         
-        if(!__first_executed_1541079163964__){
+        if(!__first_executed_1541121637347__){
             isType = include('is.type');
             
-            __first_executed_1541079163964__ = true ;
+            __first_executed_1541121637347__ = true ;
         }
         
         
@@ -197,7 +197,7 @@ exports['src::is.empty'] = (() =>{
     
     
     
-    let __first_executed_1541079163964__ = false ;
+    let __first_executed_1541121637348__ = false ;
     
 
     
@@ -209,10 +209,10 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
     }
     return function(data,allowEmptyString = false){
         
-        if(!__first_executed_1541079163964__){
+        if(!__first_executed_1541121637348__){
             isArray = include('is.array');
             
-            __first_executed_1541079163964__ = true ;
+            __first_executed_1541121637348__ = true ;
         }
         
         
@@ -246,7 +246,7 @@ exports['src::is.string'] = (() =>{
     
     
     
-    let __first_executed_1541079163964__ = false ;
+    let __first_executed_1541121637348__ = false ;
     
 
     
@@ -258,10 +258,10 @@ return isType(data , 'string') ;
     }
     return function(data){
         
-        if(!__first_executed_1541079163964__){
+        if(!__first_executed_1541121637348__){
             isType = include('is.type');
             
-            __first_executed_1541079163964__ = true ;
+            __first_executed_1541121637348__ = true ;
         }
         
         
@@ -295,7 +295,7 @@ exports['src::array.from'] = (() =>{
     
     
     
-    let __first_executed_1541079163964__ = false ;
+    let __first_executed_1541121637348__ = false ;
     
 
     
@@ -320,11 +320,11 @@ return [
     }
     return function(data){
         
-        if(!__first_executed_1541079163964__){
+        if(!__first_executed_1541121637348__){
             isEmpty = include('is.empty');
 isString = include('is.string');
             
-            __first_executed_1541079163964__ = true ;
+            __first_executed_1541121637348__ = true ;
         }
         
         
