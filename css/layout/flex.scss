@@ -1,0 +1,7 @@
+@import "var.layout.flex" ;
+
+@for $flex from 1 through $var-layout-flex-max{
+    .-main-#{$flex}{
+        flex:$flex;
+    }
+}
