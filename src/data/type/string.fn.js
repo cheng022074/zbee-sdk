@@ -27,5 +27,7 @@ return {
 
             return String(value) ;
         }
-    }
+    },
+
+    name:'string'
 } ;

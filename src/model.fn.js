@@ -9,6 +9,8 @@
  * 
  * @import clear from object.clear
  * 
+ * @import is.defined
+ * 
  * @once
  * 
  * @return {Model} 模型类型引用 
@@ -26,10 +28,7 @@ class Model {
 
         let me = this ;
 
-        defineProperty(me , [
-            'fields',
-            'idPropertyName'
-        ]) ;
+        defineProperty(me , 'fields') ;
 
         me.beforeCommitData = {} ;
 
@@ -50,13 +49,6 @@ class Model {
             data[name] = field.set(data[name]) ;
         }
 
-    }
-
-    get id(){
-
-        let me = this; 
-
-        return me.get(me.idPropertyName) ;
     }
 
     set data(data){
@@ -110,11 +102,6 @@ class Model {
         return {} ;
     }
 
-    applyIdPropertyName(){
-
-        return 'id' ;
-    }
-
     set(name , value){
 
         let {
@@ -126,25 +113,24 @@ class Model {
 
         if(field){
 
-            if(field.mode === 'readonly'){
+            value = field.set(value) ;
 
-                return ;
-            }
+            if(isDefined(value)){
 
-            value = field.set(value),
-            currentValue = data[name];
+                let currentValue = data[name];
 
-            if(value !== currentValue){
+                if(value !== currentValue){
 
-                data[name] = value ;
+                    data[name] = value ;
 
-                if(!beforeCommitData.hasOwnProperty(name)){
+                    if(!beforeCommitData.hasOwnProperty(name)){
 
-                    beforeCommitData[name] = currentValue ;
+                        beforeCommitData[name] = currentValue ;
+                    }
                 }
-            }
 
-            return value ;
+                return value ;
+            }
         }
     }
     

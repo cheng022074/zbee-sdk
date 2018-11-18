@@ -13,5 +13,6 @@ return {
     convert(value){
 
         return value ;
-    }
+    },
+    name:'auto'
 } ;

@@ -36,7 +36,6 @@ class Field{
 
     constructor(name , {
         type = 'auto',
-        mode = 'normal',
         set,
         get,
         ...config
@@ -48,24 +47,26 @@ class Field{
 
         me.type = getType(type) ;
 
-        me.mode = mode ;
-
         me.onSet = generate(set) ;
 
         me.onGet = generate(get) ;
 
-        Object.assign(me , config) ;
+        me.config = config ;
     }
 
     set(value){
 
-        let me = this;
+        let me = this,
+        {
+            config,
+            type
+        } = me;
         
-        value = me.type.convert(value) ;
+        value = type.convert(value , config) ;
 
         if(isDefined(value)){
 
-            return me.set(value) ;
+            return me.onSet(value) ;
         }
     }
 
@@ -73,17 +74,14 @@ class Field{
 
         let me = this,
         {
-            defaultValue
+            defaultValue,
+            config,
+            type
         } = me;
 
-        value = me.type.convert(value) ;
+        value = type.convert(value , config) ;
 
-        value = isDefined(value) ? value : defaultValue ;
-
-        if(isDefined(value)){
-
-            return me.get(value) ;
-        }
+        return me.onGet(isDefined(value) ? value : defaultValue) ;
     }
 }
 
