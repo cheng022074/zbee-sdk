@@ -5,7 +5,7 @@
  * 
  * @import is.function
  * 
- * @param {mixed} data 参数说明
+ * @param {mixed} data 检测数据
  * 
  * @param {string} className 类名称
  * 
