@@ -9,6 +9,10 @@
  * 
  * @import is.number
  * 
+ * @import is.date
+ * 
+ * @import format from date.format
+ * 
  * @return {data.type.String} 字符串类型 
  * 
  * @once
@@ -16,7 +20,9 @@
  */
 
 return {
-    convert(value){
+    convert(value , {
+        dateFormat
+    } = {}){
 
         if(isString(value)){
 
@@ -26,6 +32,11 @@ return {
         if(isNumber(value) || isBoolean(value)){
 
             return String(value) ;
+        }
+
+        if(isDate(value)){
+
+            return format(value , dateFormat);
         }
     },
 

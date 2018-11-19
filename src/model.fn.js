@@ -24,31 +24,72 @@ const {
 
 class Model {
 
-    constructor(data){
+    constructor(){
 
         let me = this ;
 
         defineProperty(me , 'fields') ;
 
-        me.beforeCommitData = {} ;
+        // 用来存储模型修改前的数据
+        me.$beforeEditData = {} ;
 
-        let 
-        data = me.$data = {},
-        {
-            fields
+        // 用来存储模型当前的数据
+        me.$data = {} ;
+    }
+
+    initData(data){
+
+        let {
+            fields,
+            $beforeEditData:beforeEditData,
+            $data:innerData
         } = me ;
+
+        clear(beforeEditData) ;
+
+        clear(innerData) ;
 
         fields = values(fields) ;
 
-        for(let field of fields){
+        for(let {
+            name
+        } of fields){
 
-            let {
-                name
-            } = field ;
+            innerData[name] = field.set(data[name]) ;
+        }
+    }
 
-            data[name] = field.set(data[name]) ;
+    get beforeEditData(){
+
+        return this.applyBeforeEditData() ;
+    }
+
+    applyBeforeEditData(){
+
+        return this.$beforeEditData ;
+    }
+
+    get afaterEditData(){
+
+        return this.applyAfterEditData() ;
+    }
+
+    applyAfterEditData(){
+
+        let 
+        me = this,
+        {
+            $beforeEditData:beforeEditData
+        } = me,
+        names = keys(beforeEditData),
+        result = {};
+
+        for(let name of names){
+
+            result[name] = me.get(name) ;
         }
 
+        return result ;
     }
 
     set data(data){
@@ -80,7 +121,11 @@ class Model {
 
     get dirty(){
 
-        return keys(this.beforeCommitData).length !== 0 ;
+        let {
+            $beforeEditData:beforeEditData
+        } = this ;
+
+        return keys(beforeEditData).length !== 0 ;
     }
 
     applyFields(){
@@ -96,6 +141,46 @@ class Model {
 
         return fields ;
     }
+    /**
+     * 
+     * 增加一个字段定义
+     * 
+     * @param {object} config 字段定义配置
+     * 
+     * @return {model.Field} 字段实例对象
+     */
+    addField(name , config){
+
+        this.fields[name] = getField(name , config) ;
+    }
+    /**
+     * 
+     * 去除一个字段定义
+     * 
+     * @param {string} name 字段名称
+     * 
+     */
+    removeField(name){
+
+        let {
+            fields
+        } = this ;
+
+        delete fields[name] ;
+    }
+
+    /**
+     * 
+     * 判断当前模型是否存在指定名称的字段
+     * 
+     * @param {string} name 字段名称
+     * 
+     * @return {boolean} 如果不存在，则返回 false , 否则返回true 
+     */
+    hasField(name){
+
+        return this.fields.hasOwnProperty(name) ;
+    }
 
     applyFieldConfig(){
 
@@ -104,11 +189,13 @@ class Model {
 
     set(name , value){
 
-        let {
+        let 
+        me = this,
+        {
             fields,
             $data:data,
-            beforeCommitData
-        } = this,
+            $beforeEditData:beforeEditData
+        } = me,
         field = fields[name];
 
         if(field){
@@ -123,9 +210,9 @@ class Model {
 
                     data[name] = value ;
 
-                    if(!beforeCommitData.hasOwnProperty(name)){
+                    if(!beforeEditData.hasOwnProperty(name)){
 
-                        beforeCommitData[name] = currentValue ;
+                        beforeEditData[name] = currentValue ;
                     }
                 }
 
@@ -144,16 +231,11 @@ class Model {
 
         if(field){
 
-            if(field.mode === 'writeonly'){
-
-                return ;
-            }
-
             return field.get(data[name]) ;
         }
     }
 
-    doCommit(beforeCommitData){
+    doCommit(){
 
 
     }
@@ -167,13 +249,9 @@ class Model {
 
         if(dirty){
 
-            let {
-                beforeCommitData
-            } = me ;
+            me.doCommit() ;
 
-            me.doCommit(beforeCommitData) ;
-
-            clear(beforeCommitData) ;
+            clear(me.$beforeEditData) ;
         }
     }
 
@@ -187,20 +265,19 @@ class Model {
         if(dirty){
 
             let {
-                beforeCommitData,
+                $beforeEditData:beforeEditData,
                 data
             } = me,
-            names = keys(beforeCommitData);
+            names = keys(beforeEditData);
 
             for(let name of names){
 
-                data[name] = beforeCommitData[name] ;
+                data[name] = beforeEditData[name] ;
 
-                delete beforeCommitData[name] ;
+                delete beforeEditData[name] ;
             }
         }
     }
-
 }
 
 return Model ;
