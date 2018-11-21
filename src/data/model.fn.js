@@ -7,7 +7,7 @@
  * 
  * @import defineProperties from object.properties.define
  * 
- * @import data.reader.auto
+ * @import data.reader.json
  * 
  * @import data.proxy.memory
  * 
@@ -56,7 +56,7 @@ class Model extends getModel(){
 
     getReaderConfig(){
 
-        return 'auto' ;
+        return 'json' ;
     }
 
     getProxy(){
@@ -76,13 +76,12 @@ class Model extends getModel(){
         {
             reader,
             proxy
-        } = me;
+        } = me,
+        data = reader.readOne(await proxy.findOne(config)) ;
 
-        let result = reader.read(await proxy.findOne(config)) ;
+        if(data){
 
-        if(result.length){
-
-            me.initData(result[0]) ;
+            me.initData(data) ;
         }
     }
 }
