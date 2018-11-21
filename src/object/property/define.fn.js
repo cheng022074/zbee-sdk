@@ -31,7 +31,7 @@
     
         let me = this,
             innerName = `${prefix}${name}`,
-            method = me[`apply${capitalize(name)}`];
+            method = me[`get${capitalize(name)}`];
 
         if(!me.hasOwnProperty(innerName) && method){
 

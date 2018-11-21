@@ -1,12 +1,12 @@
 
 /**
  * 
- * 函数实现说明
+ * 实现首字母大写
  * 
- * @param {mixed} data 参数说明
+ * @param {string} data 字符串
  * 
- * @return {mixed} 返回说明 
+ * @return {string} 首字母大写的字符串 
  * 
  */
 
- // 代码实现
+ return `${data.charAt(0).toUpperCase()}${data.substr(1)}` ;

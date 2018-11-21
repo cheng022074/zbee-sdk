@@ -1,12 +1,15 @@
 
 /**
  * 
- * 函数实现说明
+ * 清除指定对象的所有键
  * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
+ * @param {object} data 对象数据
  * 
  */
 
- // 代码实现
+let keys = Object.keys(data) ;
+
+for(let key of keys){
+
+    delete data[key] ;
+}

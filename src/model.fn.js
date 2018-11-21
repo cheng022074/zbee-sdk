@@ -3,7 +3,7 @@
  * 
  * 模型
  * 
- * @import defineProperty from object.defineCacheProperty
+ * @import defineProperties from object.properties.define
  * 
  * @import getField from model.field
  * 
@@ -28,21 +28,29 @@ class Model {
 
         let me = this ;
 
-        defineProperty(me , 'fields') ;
+        defineProperties(me , [
+            'fields',
+            'beforeEditData',
+            'innerData'
+        ]) ;
+    }
 
-        // 用来存储模型修改前的数据
-        me.$beforeEditData = {} ;
+    getInnerData(){
 
-        // 用来存储模型当前的数据
-        me.$data = {} ;
+        return {} ;
+    }
+
+    getBeforeEditData(){
+
+        return {} ;
     }
 
     initData(data){
 
         let {
             fields,
-            $beforeEditData:beforeEditData,
-            $data:innerData
+            beforeEditData,
+            innerData
         } = me ;
 
         clear(beforeEditData) ;
@@ -59,27 +67,12 @@ class Model {
         }
     }
 
-    get beforeEditData(){
-
-        return this.applyBeforeEditData() ;
-    }
-
-    applyBeforeEditData(){
-
-        return this.$beforeEditData ;
-    }
-
-    get afaterEditData(){
-
-        return this.applyAfterEditData() ;
-    }
-
-    applyAfterEditData(){
+    get afterEditData(){
 
         let 
         me = this,
         {
-            $beforeEditData:beforeEditData
+            beforeEditData
         } = me,
         names = keys(beforeEditData),
         result = {};
@@ -122,15 +115,15 @@ class Model {
     get dirty(){
 
         let {
-            $beforeEditData:beforeEditData
+            beforeEditData
         } = this ;
 
         return keys(beforeEditData).length !== 0 ;
     }
 
-    applyFields(){
+    getFields(){
 
-        let config = this.applyFieldConfig(),
+        let config = this.getFieldConfig(),
             names = keys(config),
             fields = {};
 
@@ -141,48 +134,8 @@ class Model {
 
         return fields ;
     }
-    /**
-     * 
-     * 增加一个字段定义
-     * 
-     * @param {object} config 字段定义配置
-     * 
-     * @return {model.Field} 字段实例对象
-     */
-    addField(name , config){
 
-        this.fields[name] = getField(name , config) ;
-    }
-    /**
-     * 
-     * 去除一个字段定义
-     * 
-     * @param {string} name 字段名称
-     * 
-     */
-    removeField(name){
-
-        let {
-            fields
-        } = this ;
-
-        delete fields[name] ;
-    }
-
-    /**
-     * 
-     * 判断当前模型是否存在指定名称的字段
-     * 
-     * @param {string} name 字段名称
-     * 
-     * @return {boolean} 如果不存在，则返回 false , 否则返回true 
-     */
-    hasField(name){
-
-        return this.fields.hasOwnProperty(name) ;
-    }
-
-    applyFieldConfig(){
+    getFieldConfig(){
 
         return {} ;
     }
@@ -193,8 +146,8 @@ class Model {
         me = this,
         {
             fields,
-            $data:data,
-            $beforeEditData:beforeEditData
+            innerData,
+            beforeEditData
         } = me,
         field = fields[name];
 
@@ -208,7 +161,7 @@ class Model {
 
                 if(value !== currentValue){
 
-                    data[name] = value ;
+                    innerData[name] = value ;
 
                     if(!beforeEditData.hasOwnProperty(name)){
 
@@ -225,13 +178,13 @@ class Model {
 
         let {
             fields,
-            $data:data
+            innerData
         } = this,
         field = fields[name];
 
         if(field){
 
-            return field.get(data[name]) ;
+            return field.get(innerData[name]) ;
         }
     }
 
@@ -251,7 +204,7 @@ class Model {
 
             me.doCommit() ;
 
-            clear(me.$beforeEditData) ;
+            clear(me.beforeEditData) ;
         }
     }
 
@@ -265,14 +218,14 @@ class Model {
         if(dirty){
 
             let {
-                $beforeEditData:beforeEditData,
-                data
+                beforeEditData,
+                innerData
             } = me,
             names = keys(beforeEditData);
 
             for(let name of names){
 
-                data[name] = beforeEditData[name] ;
+                innerData[name] = beforeEditData[name] ;
 
                 delete beforeEditData[name] ;
             }
