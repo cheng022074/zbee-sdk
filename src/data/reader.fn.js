@@ -115,6 +115,8 @@ class Reader {
 
             return data[0] ;
         }
+
+        return {} ;
     }
 
     parseRecord(data){

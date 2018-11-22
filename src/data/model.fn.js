@@ -13,6 +13,8 @@
  * 
  * @import is.string
  * 
+ * @import isObject from is.object.simple
+ * 
  * @return {model.Data} 数据模型 
  * 
  * @once
@@ -52,14 +54,18 @@ class Model extends getModel(){
         if(isString(config)){
 
             return include(config)() ;
+        
+        }else if(isObject(config)){
+
+            let {
+                type,
+                ...config
+            } = this ;
+    
+            return include(type)(config) ;
         }
 
-        let {
-            type,
-            ...config
-        } = this ;
-
-        return include(type)(config) ;
+        throw new Error(`${config} 不是一个合法的数据代理配置`) ;
     }
 
     getProxyConfig(){
