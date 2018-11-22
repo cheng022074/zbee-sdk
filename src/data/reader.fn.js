@@ -91,10 +91,33 @@ class Reader {
 
     getRecords(data){
 
-        return data ;
+        if(isArray(data)){
+
+            return data ;
+
+        }else if(isObject(data)){
+
+            return [
+                data
+            ] ;
+        }
+
+        return [] ;
     }
 
     getRecord(data){
+
+        if(isObject(data)){
+
+            return data ;
+        
+        }else if(isArray(data) && data.length){
+
+            return data[0] ;
+        }
+    }
+
+    parseRecord(data){
 
         let record = {},
         {
@@ -112,12 +135,16 @@ class Reader {
 
     readOne(data){
 
-        let records = this.read(data) ;
+        let me = this,
+            record = me.getRecord(data);
 
-        if(records.length){
+        me.rawData = data ;
 
-            return records[0] ;
+        if(record){
+
+            return me.parseRecord(record) ;
         }
+
     }
 
     read(data){
@@ -128,16 +155,13 @@ class Reader {
 
         me.rawData = data ;
 
-        if(isArray(records)){
+        for(let record of records){
 
-            for(let record of records){
+            record = me.parseRecord(record) ;
 
-                record = me.getRecord(record) ;
-
-                if(isDefined(record)){
-                    
-                    result.push(record) ;
-                }
+            if(isDefined(record)){
+                
+                result.push(record) ;
             }
         }
 

@@ -5,7 +5,7 @@
  * 
  * @import getModel from model
  * 
- * @import defineProperties from object.properties.define
+ * @import defineProperty from object.property.define
  * 
  * @import data.reader.json
  * 
@@ -42,26 +42,24 @@ class Model extends getModel(){
 
         super() ;
 
-        defineProperties(this , [
-            'reader',
-            'writer',
-            'proxy'
-        ]) ;
-    }
-
-    getReader(){
-
-        return getTarget.call(this , 'getReaderConfig') ;
-    }
-
-    getReaderConfig(){
-
-        return 'json' ;
+        defineProperty(this , 'proxy') ;
     }
 
     getProxy(){
 
-        return getTarget.call(this , 'getProxyConfig') ;
+        let config = this.getProxyConfig() ;
+
+        if(isString(config)){
+
+            return include(config)() ;
+        }
+
+        let {
+            type,
+            ...config
+        } = this ;
+
+        return include(type)(config) ;
     }
 
     getProxyConfig(){
