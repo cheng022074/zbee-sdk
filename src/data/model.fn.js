@@ -21,23 +21,6 @@
  * 
  */
 
-function getTarget(methodName){
-
-    let config = this[methodName]() ;
-
-    if(isString(config)){
-
-        return include(config)() ;
-    }
-
-    let {
-        type,
-        ...config
-    } = this ;
-
-    return include(type)(config) ;
-}
-
 class Model extends getModel(){
 
     constructor(){
@@ -78,14 +61,9 @@ class Model extends getModel(){
         let 
         me = this,
         {
-            reader,
             proxy
-        } = me,
-        data = reader.readOne(await proxy.findOne(config)) ;
-
-        if(data){
-
-            me.initData(data) ;
-        }
+        } = me ;
+        
+        me.initData(await proxy.findOne(config)) ;
     }
 }
