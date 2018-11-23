@@ -63,7 +63,34 @@ class Model {
             name
         } of fields){
 
-            innerData[name] = field.set(data[name]) ;
+            if(data.hasOwnProperty(name)){
+
+                innerData[name] = field.set(data[name]) ;
+
+            }
+        }
+    }
+
+    syncData(data){
+
+        let {
+            fields,
+            beforeEditData,
+            innerData
+        } = me ;
+
+        fields = values(fields) ;
+
+        for(let {
+            name
+        } of fields){
+
+            if(data.hasOwnProperty(name)){
+
+                innerData[name] = field.set(data[name]) ;
+
+                delete beforeEditData[name] ;
+            }
         }
     }
 
