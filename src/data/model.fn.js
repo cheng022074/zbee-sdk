@@ -7,13 +7,7 @@
  * 
  * @import defineProperty from object.property.define
  * 
- * @import data.reader.json
- * 
  * @import getProxy from data.proxy
- * 
- * @import is.string
- * 
- * @import isObject from is.object.simple
  * 
  * @return {model.Data} 数据模型 
  * 

@@ -3,19 +3,21 @@
  * 
  * 数据代理
  * 
- * @import data.reader.json
- * 
  * @import is.string
  * 
  * @import isObject from is.object.simple
  * 
  * @import data.proxy.memory
  * 
+ * @import getReader from data.reader
+ * 
  * @return {data.Proxy} 数据代理类型引用
  * 
  * @once 
  * 
  */
+
+ const Reader = getReader() ;
 
  const API_NAMES = [
     'find',
@@ -40,12 +42,10 @@
 
             let {
                type,
-               ...config
+               ...proxyConfig
             } = this ;
 
-            type = type || 'memory' ;
-   
-            return include(`data.proxy.${type}`)(config) ;
+            return include(`data.proxy.${type || 'memory'}`)(proxyConfig) ;
       }
 
       return include('data.proxy.memory')() ;
@@ -98,25 +98,7 @@
 
          case 'reader':
 
-            value = value || 'json' ;
-
-            if(isString(value)){
-
-               return include(`data.reader.${value}`)() ;
-            
-            }else if(isObject(value)){
-
-               let {
-                  type,
-                  ...config
-               } = value ;
-
-               type = type || 'json' ;
-
-               return include(`data.reader.${type}`)(config) ;
-            }
-
-            throw new Error(`${value} 不是一个合法的读取器配置`) ;
+            return Reader.create(value || 'json') ;
       }
    }
 
@@ -130,9 +112,7 @@
 
       }else if(isObject(config)){
 
-         return {
-            ...config
-         } ;
+         return config ;
       }
 
       return {

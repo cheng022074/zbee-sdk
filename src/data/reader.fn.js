@@ -11,6 +11,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import data.reader.json
+ * 
  * @return {data.Reader} 数据读取器引用 
  * 
  * @once
@@ -22,6 +24,25 @@ const {
 } = Object ;
 
 class Reader {
+
+    static create(config){
+
+        if(isString(config)){
+
+            return include(`data.reader.${config}`)() ;
+         
+        }else if(isObject(config)){
+
+        let {
+            type,
+            ...readerConfig
+        } = config ;
+
+        return include(`data.reader.${type || 'json'}`)(readerConfig) ;
+        }
+
+        return include('data.reader.json')() ;
+    }
 
     constructor({
         rootProperty,
