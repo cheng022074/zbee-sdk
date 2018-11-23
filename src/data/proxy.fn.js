@@ -9,6 +9,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import data.proxy.memory
+ * 
  * @return {data.Proxy} 数据代理类型引用
  * 
  * @once 
@@ -27,6 +29,27 @@
  ];
 
  class Proxy{
+
+   static create(config){
+
+      if(isString(config)){
+
+         return include(config)() ;
+     
+      }else if(isObject(config)){
+
+            let {
+               type,
+               ...config
+            } = this ;
+
+            type = type || 'memory' ;
+   
+            return include(`data.proxy.${type}`)(config) ;
+      }
+
+      return include('data.proxy.memory')() ;
+   }
 
    constructor({
       api = {}

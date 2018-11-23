@@ -9,7 +9,7 @@
  * 
  * @import data.reader.json
  * 
- * @import data.proxy.memory
+ * @import getProxy from data.proxy
  * 
  * @import is.string
  * 
@@ -20,6 +20,8 @@
  * @once
  * 
  */
+
+ const Proxy = getProxy() ;
 
 class Model extends getModel(){
 
@@ -32,28 +34,10 @@ class Model extends getModel(){
 
     getProxy(){
 
-        let config = this.getProxyConfig() ;
-
-        if(isString(config)){
-
-            return include(config)() ;
-        
-        }else if(isObject(config)){
-
-            let {
-                type,
-                ...config
-            } = this ;
-    
-            return include(type)(config) ;
-        }
-
-        throw new Error(`${config} 不是一个合法的数据代理配置`) ;
+        return Proxy.create(this.getProxyConfig()) ;
     }
 
     getProxyConfig(){
-
-        return 'memory' ;
     }
 
     async load(config){
