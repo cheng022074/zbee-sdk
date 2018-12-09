@@ -21,7 +21,7 @@
 
 const firstKeyRe = /^([^\.]+)\./;
 
-function main(data , key){
+function main(data , key = '.'){
 
     if(key === '.'){
 

@@ -1,0 +1,10 @@
+{
+    "constructor":true,
+    "properties":{
+        "children":"set",
+        "attributes":"set"
+    },
+    "methods":[
+        "toString"
+    ]
+}
