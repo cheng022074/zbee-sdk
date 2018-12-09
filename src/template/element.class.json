@@ -1,10 +1,14 @@
 {
     "constructor":true,
     "properties":{
-        "children":"set",
-        "attributes":"set"
+        "children":true,
+        "attributes":true
     },
     "methods":[
+        "setAttribute",
+        "getAttribute",
+        "equals",
+        "destroy",
         "toString"
     ]
 }
