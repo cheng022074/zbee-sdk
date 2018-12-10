@@ -5,14 +5,14 @@
  * 
  * @import getManager from template.element.manager
  * 
- * @param {array} children 子元素集合
+ * @param {array} [children = []] 子元素集合
  * 
  */
 
 let {
     $children
 } = this,
-len = $children.length,
+len = children.length,
 manager = getManager();
 
 for(let i = 0 ; i < len ; i ++){

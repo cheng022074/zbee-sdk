@@ -11,4 +11,4 @@ let me = this ;
 
 me.$children = [] ;
 
-me.$attributes = [] ;
+me.$attributes = {} ;

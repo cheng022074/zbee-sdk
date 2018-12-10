@@ -29,8 +29,6 @@ if($cache.length){
     el = createEl() ;
 }
 
- let el = getEl() ;
-
  el.tag = tag ;
 
  el.attributes = attributes ;

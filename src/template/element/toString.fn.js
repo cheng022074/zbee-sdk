@@ -14,7 +14,7 @@ function generate_attributes(attributes){
 
     for(let name of names){
 
-        result.push(`${name} = ${attributes[name]}`) ;
+        result.push(`${name} = "${attributes[name]}"`) ;
     }
 
     if(result.length){
