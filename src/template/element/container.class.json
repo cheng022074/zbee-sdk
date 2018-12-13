@@ -1,0 +1,15 @@
+{
+    "constructor":"template.element.constructor",
+    "properties":{
+        "children":"get",
+        "attributes":{
+            "set":"template.element.attribute.set",
+            "get":"template.element.attribute.get"
+        }
+    },
+    "methods":[
+        "equals",
+        "destroy",
+        "toString"
+    ]
+}

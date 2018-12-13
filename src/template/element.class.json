@@ -5,8 +5,6 @@
         "attributes":true
     },
     "methods":[
-        "setAttribute",
-        "getAttribute",
         "equals",
         "destroy",
         "toString"

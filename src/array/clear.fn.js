@@ -1,12 +1,11 @@
 
 /**
  * 
- * 函数实现说明
+ * 清除数组
  * 
- * @param {mixed} data 参数说明
+ * @param {array} data 数组
  * 
- * @return {mixed} 返回说明 
  * 
  */
 
- // 代码实现
+data.length = 0 ;

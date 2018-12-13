@@ -3,6 +3,8 @@
  * 
  * 设置一组属性
  * 
+ * @import setAttriubte from template.element.setAttribute scoped
+ * 
  * @param {object} data 一组属性值
  * 
  */
@@ -12,5 +14,5 @@ let me = this,
 
 for(let name of names){
 
-    me.setAttribute(name , data[name]) ;
+    setAttribute(name , data[name]) ;
 }
