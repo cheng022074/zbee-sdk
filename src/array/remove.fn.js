@@ -3,7 +3,7 @@
  * 
  * 在数组中去除项目
  * 
- * @import remove from array.removeByIndex
+ * @import remove from array.remove.index
  * 
  * @param {array} data 数组
  * 

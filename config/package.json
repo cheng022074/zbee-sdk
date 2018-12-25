@@ -1,7 +1,8 @@
 {
     "lib":{
+        "type":"webpack",
         "classes":[
-            "array.from",
+            "array.*",
             "is.array"
         ]
     },
