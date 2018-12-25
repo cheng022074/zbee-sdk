@@ -1,4 +1,10 @@
 {
+    "lib":{
+        "classes":[
+            "array.from",
+            "is.array"
+        ]
+    },
     "vue-toolkit":{
         "type":"scss",
         "classes":[
