@@ -11,6 +11,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @require koa
+ * 
  * @param {string} [name = 'default'] 服务配置名称
  * 
  */

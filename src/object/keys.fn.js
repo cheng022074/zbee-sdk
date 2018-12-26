@@ -6,7 +6,7 @@
  * 
  * @param {object} data 对象
  * 
- * @param {array} 键值数组
+ * @return {array} 键值数组
  * 
  * @scoped
  * 

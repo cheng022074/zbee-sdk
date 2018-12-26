@@ -15,7 +15,7 @@
  * 
  * @param {number} y 纵坐标
  * 
- * @param {object} 转换后的坐标值 
+ * @return {object} 转换后的坐标值 
  * 
  */
 

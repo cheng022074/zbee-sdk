@@ -6,7 +6,7 @@
  * 
  * @param {object} point2 第二个点的位置
  * 
- * @param {number} 两点之间的距离
+ * @return {number} 两点之间的距离
  * 
  */
 

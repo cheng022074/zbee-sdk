@@ -1,9 +1,7 @@
 {
     "lib":{
-        "type":"webpack",
         "classes":[
-            "array.*",
-            "is.array"
+            "http.server"
         ]
     },
     "vue-toolkit":{
