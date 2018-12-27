@@ -1,8 +1,6 @@
 {
     "singleton":true,
     "methods":[
-        "emit",
-        "on",
-        "off"
+        "emit"
     ]
 }

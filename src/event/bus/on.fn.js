@@ -1,12 +1,15 @@
-
 /**
  * 
  * 监听事件
  * 
- * @param {string} event 事件
+ * @import get from .getEmitter
+ * 
+ * @param {string} moduleName 模块名称
+ * 
+ * @param {string} event 事件名称
  * 
  * @param {function} listener 事件监听函数
  * 
  */
 
-this.emitter.addListener(event , listener) ;
+get(moduleName).addListener(event , listener) ;
