@@ -1,8 +1,6 @@
-import { on } from "cluster";
-
 /**
  * 
- * @config event
+ * @config event from event
  * 
  * @import on from .on scoped
  * 

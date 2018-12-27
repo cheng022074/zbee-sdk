@@ -2,7 +2,7 @@
  * 
  * 击发事件
  * 
- * @config event
+ * @config event from event
  * 
  * @import get from .getEmitter scoped
  * 

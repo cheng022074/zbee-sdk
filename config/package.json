@@ -5,7 +5,7 @@
             "event.bus"
         ],
         "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\PCHQ\\src\\gh_trade\\lib.js"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\PCHQ\\src\\gh_trade\\sdk\\lib.js"
         ]
     }
 }
