@@ -6,7 +6,7 @@
  * 
  * @import get from .getEmitter scoped
  * 
- * @import getListeners from object.get
+ * @import getEvents from object.get
  * 
  * @import is.array
  * 
@@ -19,9 +19,9 @@
  * 
  */
 
-let listeners = getListeners(events , `${moduleName}.${event}`) ;
+let eventList = getEvents(events , moduleName) ;
 
-if(isArray(listeners)){
+if(eventList.includes(event)){
 
     get(moduleName).emit(event , ...args) ;
 }
