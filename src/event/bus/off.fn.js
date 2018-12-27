@@ -2,7 +2,7 @@
  * 
  * 去除监听事件
  * 
- * @import get from .getEmitter
+ * @import get from .getEmitter scoped
  * 
  * @param {string} moduleName 模块名称
  * 

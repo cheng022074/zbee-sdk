@@ -9,6 +9,8 @@
  * 
  * @import is.defined
  * 
+ * @import join from object.key.join
+ * 
  * @param {object} data 对象数据
  * 
  * @param {string} [key = '.'] 对象键值
@@ -21,7 +23,7 @@
 
 const firstKeyRe = /^([^\.]+)\./;
 
-function main(data , key = '.'){
+function main(data , key , prefixKey = ''){
 
     if(key === '.'){
 
@@ -41,14 +43,33 @@ function main(data , key = '.'){
 
         if(firstKey){
 
-            let result = data[firstKey] ;
-            
+            firstKey = join(prefixKey , firstKey) ;
+
+            let result ;
+
+            if(data.hasOwnProperty(firstKey)){
+
+                result = data[firstKey] ;
+
+                prefixKey = '' ;
+
+            }else{
+
+                result = data ;
+
+                prefixKey = firstKey ;
+            }
+
             if(lastKey){
 
-                return main(result , lastKey) ;
+                return main(result , lastKey , prefixKey) ;
             }
         
             return result ;
+        
+        }else{
+
+            return data[join(prefixKey , lastKey)] ;
         }
 
     }else if(isArray(data)){

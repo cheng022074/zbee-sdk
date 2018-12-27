@@ -2,11 +2,11 @@
  * 
  * 击发事件
  * 
- * @config event from event
+ * @config events from event
  * 
  * @import get from .getEmitter scoped
  * 
- * @import get from object.get
+ * @import getListeners from object.get
  * 
  * @import is.array
  * 
@@ -19,7 +19,7 @@
  * 
  */
 
-let listeners = get(event , `${moduleName}.${event}`) ;
+let listeners = getListeners(events , `${moduleName}.${event}`) ;
 
 if(isArray(listeners)){
 
