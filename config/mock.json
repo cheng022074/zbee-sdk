@@ -1,3 +1,9 @@
 {
-    "increment":"data.mock.increment"
+    "increment":"data.mock.increment",
+    "placeholder":"data.mock.text.placeholder",
+    "text":"data.mock.text",
+    "number":"data.mock.number",
+    "date":"data.mock.date",
+    "time":"data.mock.time",
+    "datetime":"data.mock.time"
 }
