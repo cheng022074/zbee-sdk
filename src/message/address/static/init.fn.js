@@ -1,5 +1,3 @@
-import { isString, isObject } from "util";
-
 /**
  * 
  * 从配置中初始化所有地址

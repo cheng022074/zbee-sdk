@@ -4,9 +4,9 @@
  * 
  * @import after from function.create.after
  * 
- * @import activate from .activate
+ * @import activate from .address.static.activate
  * 
- * @import deactivate from .deactivate
+ * @import deactivate from .address.static.deactivate
  * 
  * @param {object} target Vue 配置对象
  * 

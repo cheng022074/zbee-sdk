@@ -11,7 +11,8 @@
     "vue":{
         "type":"webpack",
         "classes":[
-            "message.address"
+            "message.address.static.init",
+            "message.vue"
         ]
     }
 }
