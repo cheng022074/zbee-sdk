@@ -5,6 +5,7 @@
     },
     "methods":[
         "send",
-        "listen"
+        "activate",
+        "deactivate"
     ]
 }

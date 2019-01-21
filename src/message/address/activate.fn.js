@@ -1,11 +1,12 @@
+import { isFunction } from "util";
 
 /**
  * 
- * 当前消息地址的激活状态
+ * 激活消息地址
  * 
- * @import clear from array.clear
+ * @import is.function
  * 
- * @param {boolean} activate 如果非激活状态则设置 false , 否则设置  true 
+ * @param {function} fn 监听函数
  * 
  */
 
@@ -14,7 +15,9 @@ let me = this,
     activate
 } = me;
 
-if(activate === false){
+if(activate === false && isFunction(fn)){
+
+    me.listenFunction = fn ;
 
     let {
         unlistenMessages,
@@ -47,5 +50,5 @@ if(activate === false){
         clear(unlistenMessages) ;
     }
 
-    me.$activate = true ;
+    me.activate = true ;
 }

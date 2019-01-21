@@ -30,17 +30,20 @@ for(let address of addresses){
 
         plugin = addressConfig ;
 
-        include(`message.plugin.${addressConfig}`)() ;
-    
     }else if(isObject(addressConfig)){
 
-        if(addressConfig.hasOwnProperty('mode')){
+        let {
+            mode,
+            plugin:myPlugin
+        } = addressConfig ;
 
-            relistenMode = addressConfig.mode ;
+        if(mode){
+
+            relistenMode = mode ;
         
-        }else if(addressConfig.hasOwnProperty('plugin')){
+        }else if(myPlugin){
 
-            plugin = addressConfig.plugin ;
+            plugin = myPlugin ;
         }
     }
 

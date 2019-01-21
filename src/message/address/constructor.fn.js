@@ -21,7 +21,7 @@ me.relistenMode = relistenMode ;
 
 me.$activate = false ;
 
-me.listenFunction = () => {} ;
+me.listenFunction = null ;
 
 me.unlistenMessages = [] ;
 
