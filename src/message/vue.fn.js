@@ -8,6 +8,8 @@
  * 
  * @import deactivate from .address.static.deactivate
  * 
+ * @import 
+ * 
  * @param {object} target Vue 配置对象
  * 
  */
@@ -40,6 +42,11 @@ function main(target){
     }else{
 
         target.destroyed = doDeactivate ;
+    }
+
+    if(target.hasOwnProperty('address')){
+
+        
     }
 
     return target ;

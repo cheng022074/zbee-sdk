@@ -13,6 +13,9 @@
         "classes":[
             "message.address.static.init",
             "message.vue"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\sdk\\lib.js"
         ]
     }
 }
