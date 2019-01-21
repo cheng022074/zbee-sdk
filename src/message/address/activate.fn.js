@@ -1,5 +1,3 @@
-import { isFunction } from "util";
-
 /**
  * 
  * 激活消息地址
