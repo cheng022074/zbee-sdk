@@ -8,4 +8,4 @@
  * 
  */
 
-data.length = 0 ;
+data.splice(0 , data.length) ;

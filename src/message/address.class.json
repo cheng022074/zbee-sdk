@@ -1,0 +1,10 @@
+{
+    "constructor":true,
+    "properties":{
+        "activate":true
+    },
+    "methods":[
+        "send",
+        "listen"
+    ]
+}
