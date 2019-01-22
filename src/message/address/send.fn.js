@@ -8,10 +8,13 @@
  * 
  * @import is.defined
  * 
+ * @import convert from json.convert
+ * 
  * @param {string} address 发送消息到达的地址
  * 
- * @param {object} options 数据
+ * @param {string} method 方法
  * 
+ * @param {mixed} data 数据
  * 
  */
 
@@ -23,12 +26,12 @@ if(address){
     {
         plugin
     } = me,
-    message = createMessage(me , address , options),
+    message = createMessage(me , address , method , convert(data)),
     result = await plugin.send(message) ;
 
     if(isDefined(result)){
 
-        message.returnData = result ;
+        message.returnData = convert(result) ;
     }
 
     return message ;

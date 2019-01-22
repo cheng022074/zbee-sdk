@@ -9,7 +9,9 @@
  * 
  * @param {message.Address} toAddress 收件地址
  * 
- * @param {object} [options = {}] 消息配置
+ * @param {string} method 方法名称
+ * 
+ * @param {mixed} [data] 消息
  * 
  */
 
@@ -37,9 +39,6 @@ me.from = fromAddress ;
 
 me.to = toAddress ;
 
-names = Object.keys(options) ;
+me.method = method ;
 
-for(let name of names){
-
-    me[name] = options[name] ;
-}
+me.data = data ;
