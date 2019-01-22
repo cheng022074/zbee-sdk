@@ -5,7 +5,6 @@
     },
     "methods":[
         "send",
-        "callback",
         "bind",
         "unbind"
     ]
