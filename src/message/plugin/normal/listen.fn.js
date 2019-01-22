@@ -9,4 +9,8 @@
  * 
  */
 
-this.emitter.addListener(address.address , fn) ;
+let {
+    listens
+} = this ;
+
+listens[address.address] = fn ;

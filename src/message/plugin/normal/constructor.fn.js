@@ -5,4 +5,4 @@
  * 
  */
 
-this.emitter = new (require('events'))() ;
+this.listens = {} ;

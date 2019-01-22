@@ -21,7 +21,7 @@ let addresses = Object.keys(config) ;
 for(let address of addresses){
 
     let addressConfig = config[address],
-        plugin = 'STANDARD',
+        plugin = 'NORMAL',
         relistenMode = 'ALL';
 
     if(isString(addressConfig)){

@@ -1,8 +1,12 @@
 {
     "constructor":true,
+    "properties":{
+        "activate":"get"
+    },
     "methods":[
         "send",
-        "activate",
-        "deactivate"
+        "callback",
+        "bind",
+        "unbind"
     ]
 }

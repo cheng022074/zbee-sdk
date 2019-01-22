@@ -19,13 +19,13 @@ me.plugin = plugin ;
 
 me.relistenMode = relistenMode ;
 
-me.$activate = false ;
-
-me.listenFunction = null ;
+me.target = null ;
 
 me.unlistenMessages = [] ;
 
-plugin.listen(me , message =>{
+plugin.listen(me , ({
+    listen
+}) =>{
 
     let me = this,
     {
@@ -35,10 +35,13 @@ plugin.listen(me , message =>{
     if(activate){
 
         let {
-            listenFunction
+            target
         } = me ;
 
-        listenFunction(message) ;
+        if(target.hasOwnProperty(listen)){
+
+            return target[listen](message) ;
+        }
 
     }else{
 
