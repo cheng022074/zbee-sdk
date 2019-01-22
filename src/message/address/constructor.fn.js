@@ -23,11 +23,12 @@ me.target = null ;
 
 me.unlistenMessages = [] ;
 
-plugin.listen(me , ({
-    listen
-}) =>{
+plugin.listen(me , message =>{
 
     let me = this,
+    {
+        method
+    } = message,
     {
         activate
     } = me ;
@@ -38,9 +39,9 @@ plugin.listen(me , ({
             target
         } = me ;
 
-        if(target.hasOwnProperty(listen)){
+        if(target.hasOwnProperty(method)){
 
-            return target[listen](message) ;
+            return target[method](message) ;
         }
 
     }else{

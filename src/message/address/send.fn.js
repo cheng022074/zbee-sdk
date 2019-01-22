@@ -4,7 +4,7 @@
  * 
  * @import createMessage from message
  * 
- * @import get from .static.storage
+ * @import get from .storage
  * 
  * @import is.defined
  * 
@@ -24,7 +24,7 @@ if(address){
         plugin
     } = me,
     message = createMessage(me , address , options),
-    result = await plugin.send(address , message) ;
+    result = await plugin.send(message) ;
 
     if(isDefined(result)){
 

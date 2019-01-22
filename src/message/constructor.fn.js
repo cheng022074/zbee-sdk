@@ -18,7 +18,7 @@ let me = this,
         'data',
         'from',
         'to',
-        'listen',
+        'method',
         'returnData'
     ],
     config = {};
