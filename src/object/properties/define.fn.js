@@ -4,13 +4,27 @@
  * 
  * @import defineProperty from object.property.define
  *
+ * @import is.array
+ * 
  * @param {object} target 目标对象
  * 
- * @param {string[]} names 属性名称
+ * @param {string[]|object} config 属性名称
  * 
  */
 
- for(let name of names){
+ if(isArray(config)){
 
-    defineProperty(target , name) ;
+   for(let name of config){
+
+      defineProperty(target , name) ;
+   }
+
+ }else{
+
+   let names = Object.keys(config) ;
+
+   for(let name of names){
+
+      defineProperty(target , name , config[name]) ;
+   }
  }

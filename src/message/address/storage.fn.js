@@ -19,7 +19,7 @@ function main(address , target){
 
     if(target){
 
-        stroage[address] = target ;
+        storage[address] = target ;
     
     }else{
 

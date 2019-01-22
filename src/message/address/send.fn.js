@@ -1,4 +1,3 @@
-
 /**
  * 
  * 发送消息
@@ -7,9 +6,11 @@
  * 
  * @import get from .static.storage
  * 
+ * @import is.defined
+ * 
  * @param {string} address 发送消息到达的地址
  * 
- * @param {mixed} data 数据
+ * @param {object} options 数据
  * 
  * 
  */
@@ -21,7 +22,14 @@ if(address){
     let me = this,
     {
         plugin
-    } = me;
+    } = me,
+    message = createMessage(me , address , options),
+    result = await plugin.send(address , message) ;
 
-    plugin.send(address , createMessage(data , me , address)) ;
+    if(isDefined(result)){
+
+        message.returnData = result ;
+    }
+
+    return message ;
 }

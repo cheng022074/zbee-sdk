@@ -3,25 +3,23 @@
  * 
  * 函数绑定作用域
  * 
- * @import is from .bind.is
- * 
- * @import signature from .bind.signature
- * 
  * @param {function} fn 函数
  * 
- * @param {mixed} scope 作用域
+ * @param {mixed[]} [args = []] 函数参数
+ * 
+ * @param {mixed} [scope] 作用域
  * 
  * @return {function} 绑定作用域的函数
  * 
  */
 
-if(!is(fn)){
+if(scope){
 
-    let bindFn = fn.bind(scope) ;
+    return fn.bind(scope , ...args) ;
 
-    bindFn[signature()] = true ;
-
-    return bindFn ;
 }
 
-return fn ;
+return function(...newArgs){
+    
+    return fn.call(this , ...args , ...newArgs) ;
+} ;

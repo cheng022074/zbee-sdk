@@ -11,8 +11,9 @@
     "vue":{
         "type":"webpack",
         "classes":[
-            "message.address.static.init",
-            "message.vue"
+            "message.plugin.normal",
+            "message.address.init",
+            "message.address.vue"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\sdk\\lib.js"

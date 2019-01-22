@@ -2,7 +2,7 @@
  * 
  * 从配置中初始化所有地址
  * 
- * @import config from config::message.address
+ * @import config::message.address
  * 
  * @import getAddress from message.address
  * 
@@ -16,11 +16,12 @@
  * 
  */
 
-let addresses = Object.keys(config) ;
+let myConfig = config('message.address'),
+    addresses = Object.keys(myConfig) ;
 
 for(let address of addresses){
 
-    let addressConfig = config[address],
+    let addressConfig = myConfig[address],
         plugin = 'NORMAL',
         relistenMode = 'ALL';
 
