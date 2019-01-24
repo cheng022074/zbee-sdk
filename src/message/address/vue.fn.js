@@ -4,6 +4,8 @@
  * 
  * @import before from function.create.before
  * 
+ * @import after from function.create.after
+ * 
  * @import bind from function.bind
  * 
  * @import get from message.address.storage
@@ -66,7 +68,7 @@ function main(target){
 
     if(destroyed){
 
-        target.destroyed = before(destroyed , onDestroyed) ;
+        target.destroyed = after(destroyed , onDestroyed) ;
     
     }else{
 

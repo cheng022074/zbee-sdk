@@ -3,6 +3,8 @@
  * 
  * 将消息地址绑定在一个具体对象上
  * 
+ * @import clear from array.clear
+ * 
  * @param {mixed} target 绑定对象
  * 
  */
@@ -25,7 +27,7 @@ if(!activate){
             method
         } = message ;
 
-        if(target.hasOwnProperty(method)){
+        if(method in target){
 
             target[method](message) ;
         }
@@ -34,6 +36,8 @@ if(!activate){
 
             break ;
         }
+
+        clear(unlistenMessages) ;
     }
 }
 

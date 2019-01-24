@@ -2,7 +2,9 @@
     "react":{
         "type":"webpack",
         "classes":[
-            "event.bus"
+            "message.plugin.normal",
+            "message.address.init",
+            "message.address.react"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\PCHQ\\src\\gh_trade\\sdk\\lib.js"

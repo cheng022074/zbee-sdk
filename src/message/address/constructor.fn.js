@@ -39,7 +39,7 @@ plugin.listen(me , message =>{
             target
         } = me ;
 
-        if(target.hasOwnProperty(method)){
+        if(method in target){
 
             return target[method](message) ;
         }
