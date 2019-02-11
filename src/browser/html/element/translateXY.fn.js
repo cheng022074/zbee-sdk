@@ -19,8 +19,7 @@
  * 
  */
 
-let 
-{
+let {
     position,
     left,
     top

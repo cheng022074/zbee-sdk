@@ -15,8 +15,7 @@
  * 
  */
 
-let 
-{
+let {
     top,
     left
 } = translatePoints(el , x , y),

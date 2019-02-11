@@ -11,15 +11,13 @@
  * 
  */
 
-const
-{
+const {
     max,
     min,
     pow
 } = Math ;
 
-let 
-{
+let {
      xy:circleXY,
      radius:circleRadius
 } = this,
