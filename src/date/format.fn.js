@@ -8,6 +8,8 @@
  * @param {string} [format = 'yyyy-mm-dd'] 日期时间格式化字符串
  * 
  * @return {string} 根据格式化字符串输出的日期数据
+ * 
+ * @require dateformat
  *
  * @scoped
  *  

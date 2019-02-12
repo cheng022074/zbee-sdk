@@ -15,15 +15,12 @@
  * 
  * @return {data.proxy.Memory} 内存数据代理实例引用
  * 
- * @scoped
  * 
  */
 
-class Memory extends getProxy(){
+class Memory{
 
     constructor(config){
-
-        super(config) ;
 
         let {
             data

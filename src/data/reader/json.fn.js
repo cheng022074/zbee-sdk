@@ -19,7 +19,7 @@
  * 
  */
 
- class Reader extends getReader(){
+ class Reader{
 
     getMappingData(data , mapping){
 
