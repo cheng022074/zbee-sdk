@@ -9,4 +9,4 @@
  * 
  */
 
-return new RegExp(path.replace(/\./g , '\.').replace(/\\/g , '\\\\')) ;
+return new RegExp(path.replace(/\\/g , '\\\\').replace(/\./g , '\\.')) ;
