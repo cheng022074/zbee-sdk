@@ -24,7 +24,14 @@
     "webpack":{
         "type":"library",
         "classes":[
-            "path.*"
+            "webpack.*",
+            "directory.readAllFilePaths",
+            "path.ext.remove",
+            "file.write.json",
+            "file.read.json",
+            "is.file",
+            "path.url",
+            "path.unix"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\STARTER\\@VUE\\WEBPACK\\lib\\webpack"

@@ -9,11 +9,13 @@
  * 
  * @param {string} path 文件夹目录路径
  * 
+ * @param {RegExp} [testRe = /^.+$/] 路径匹配正则表达式
+ * 
  * @return {array} 多个文件路径
  * 
  */
 
-function main(path){
+function main(path , testRe){
 
     if(isDirectory(path)){
 
@@ -31,13 +33,13 @@ function main(path){
     
             let targetPath = join(path , name) ;
     
-            if(isFile(targetPath)){
+            if(isFile(targetPath) && testRe.test(targetPath)){
     
                 paths.push(targetPath) ;
             
             }else{
     
-                paths.push(...main(targetPath)) ;
+                paths.push(...main(targetPath , testRe)) ;
             }
         }
     
