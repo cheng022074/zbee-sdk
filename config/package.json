@@ -31,10 +31,8 @@
             "file.read.json",
             "is.file",
             "path.url",
-            "path.unix"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\STARTER\\@VUE\\WEBPACK\\lib\\webpack"
+            "path.unix",
+            "object.get"
         ]
     }
 }
