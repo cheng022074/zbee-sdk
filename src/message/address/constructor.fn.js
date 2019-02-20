@@ -5,52 +5,40 @@
  * 
  * @param {string} address 唯一的消息地址
  * 
- * @param {message.Plugin} plugin 发送与接收消息的插件
+ * @param {mixed} target 地址所绑定的对象
  * 
- * @param {string} relistenMode 重听消息接送模式 
+ * @param {object} addressConfig 地址配置
+ * 
+ * @param {string} [addressConfig.plugin = 'normal'] 发送与接收消息的插件名称
+ * 
+ * @param {string} [addressConfig.relistenMode = 'recent'] 重听消息接送模式 
  * 
  */
 
 let me = this ;
 
-me.address = address ;
+me.id = address ;
 
 me.plugin = plugin ;
 
 me.relistenMode = relistenMode ;
 
-me.target = null ;
-
-me.unlistenMessages = [] ;
+me.target = target ;
 
 plugin.listen(me , message =>{
 
     let me = this,
     {
         method
-    } = message,
-    {
-        activate
+    } = message ;
+
+    let {
+        target
     } = me ;
 
-    if(activate){
+    if(method in target){
 
-        let {
-            target
-        } = me ;
-
-        if(method in target){
-
-            return target[method](message) ;
-        }
-
-    }else{
-
-        let {
-            unlistenMessages
-        } = me ;
-
-        unlistenMessages.push(message) ;
+        return target[method](message) ;
     }
 
 }) ;

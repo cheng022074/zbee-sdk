@@ -9,7 +9,7 @@
 let {
     listens
 } = this,
-toAddress = message.to.address ;
+toAddress = message.to.id ;
 
 if(listens.hasOwnProperty(toAddress)){
 

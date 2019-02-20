@@ -13,4 +13,4 @@ let {
     listens
 } = this ;
 
-listens[address.address] = fn ;
+listens[address.id] = fn ;

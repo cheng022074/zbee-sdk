@@ -32,7 +32,7 @@ if(!activate){
             target[method](message) ;
         }
 
-        if(relistenMode === 'RECENT'){
+        if(relistenMode === 'recent'){
 
             break ;
         }

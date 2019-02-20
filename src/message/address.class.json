@@ -1,11 +1,10 @@
 {
     "constructor":true,
-    "properties":{
-        "activate":"get"
-    },
+    "staticMethods":[
+        "login",
+        "logout"
+    ],
     "methods":[
-        "send",
-        "bind",
-        "unbind"
+        "send"
     ]
 }

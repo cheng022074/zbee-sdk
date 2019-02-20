@@ -17,7 +17,11 @@ const storage = {} ;
 
 function main(address , target){
 
-    if(target){
+    if(target === false){
+
+        delete storage[address] ;
+
+    }else if(isDefined(target)){
 
         storage[address] = target ;
     
