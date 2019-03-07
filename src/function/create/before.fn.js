@@ -15,7 +15,8 @@ return function(){
 
     let me = this ;
 
-    beforeFn.apply(me , arguments) ;
+    if(beforeFn.apply(me , arguments) !== false){
 
-    target.apply(me , arguments) ;
+       return target.apply(me , arguments) ;
+    }
 } ;

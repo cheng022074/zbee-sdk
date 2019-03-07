@@ -13,9 +13,10 @@
 
 return function(){
 
-    let me = this ;
-
-    target.apply(me , arguments) ;
+    let me = this,
+        value = target.apply(me , arguments) ;
 
     afterFn.apply(me , arguments) ;
+
+    return value ;
 } ;
