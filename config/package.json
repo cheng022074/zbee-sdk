@@ -32,6 +32,8 @@
             "is.file",
             "path.url",
             "path.unix",
+            "path.short",
+            "path.name.element",
             "object.get"
         ]
     }

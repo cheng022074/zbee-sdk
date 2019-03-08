@@ -5,7 +5,7 @@
  * 
  * @import removeExt from path.ext.remove
  * 
- * @import getSrcPath from webpack.path.src
+ * @import getPath from path.unix
  * 
  * @param {string} rootPath 根路径
  * 
@@ -19,4 +19,7 @@ const {
     relative
 } = require('path') ;
 
-return removeExt(relative(rootPath , path)) ;
+if(path.indexOf(rootPath) === 0){
+
+    return removeExt(getPath(relative(rootPath , path))) ;
+}
