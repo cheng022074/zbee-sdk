@@ -3,53 +3,60 @@
  * 
  * 执行函数，如果当前是正在执行状态，则拒绝执行
  * 
+ * @import is.defined
+ * 
  * @param {mixed} [...params] 执行函数参数 
  * 
- * @return {boolean}  如果执行失败，则返回 false , 否则返回 true
+ * @return {function.Executer} 函数执行器本身
  * 
  */
 
-let me = this ;
+ function main(...params){
 
-if(me.isExecuting === true){
+    let me = this ;
 
-    return false;
-}
+    if(me.isExecuting === true){
 
-let {
-    executeFn,
-    executeScope,
-    resultFn,
-    resultScope
-} = me ;
+        return false;
+    }
 
-me.params = params ;
+    let {
+        target,
+        callbacks
+    } = me ;
 
-me.isExecuting = true ;
+    me.params = params ;
 
-let result = executeFn.apply(executeScope , params) ;
+    me.isExecuting = true ;
 
-if(result instanceof Promise){
+    let result = target(params) ;
 
-    result.then(result =>{
+    if(result instanceof Promise){
 
-        me.isExecuting = false ;
+        result.then(result => doCallback.call(me , callbacks , result)) ;
 
-        if(resultFn){
+    }else{
 
-            resultFn.call(resultScope , result) ;
+        doCallback.call(me , callbacks , result) ;
+
+    }
+
+    return me ;
+
+ }
+
+ function doCallback(callbacks , result){
+
+    for(let callback of callbacks){
+
+        let itemResult = callback(result , params) ;
+
+        if(isDefined(itemResult)){
+
+            result = itemResult ;
         }
-
-    }) ;
-
-}else{
+    }
 
     me.isExecuting = false ;
 
-    if(resultFn){
-
-        resultFn.call(resultScope , result) ;
-    }
-}
-
-return true ;
+ }

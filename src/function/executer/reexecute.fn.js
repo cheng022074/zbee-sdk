@@ -3,6 +3,8 @@
  * 
  * 重新执行函数
  * 
+ * @return {function.Executer} 函数执行器本身
+ * 
  */
 
 let me = this,
@@ -10,4 +12,4 @@ let me = this,
     params
 } = me;
 
-me.execute(...params) ;
+return me.execute(...params) ;
