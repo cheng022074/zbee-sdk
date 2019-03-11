@@ -1,12 +1,18 @@
-
 /**
  * 
- * 函数实现说明
+ * 获得一个函数引用
  * 
- * @param {mixed} data 参数说明
+ * @import is.string
  * 
- * @return {mixed} 返回说明 
+ * @param {string | function} fn 函数描述
+ * 
+ * @return {function} 函数引用本身 
  * 
  */
 
- // 代码实现
+if(isString(fn)){
+
+    return include(fn) ;
+}
+
+return fn ;

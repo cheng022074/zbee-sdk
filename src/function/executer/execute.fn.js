@@ -15,11 +15,6 @@
 
     let me = this ;
 
-    if(me.isExecuting === true){
-
-        return false;
-    }
-
     let {
         target,
         callbacks
@@ -29,7 +24,7 @@
 
     me.isExecuting = true ;
 
-    let result = target(params) ;
+    let result = target(...params) ;
 
     if(result instanceof Promise){
 
@@ -56,7 +51,5 @@
             result = itemResult ;
         }
     }
-
-    me.isExecuting = false ;
 
  }

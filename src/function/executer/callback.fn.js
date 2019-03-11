@@ -16,6 +16,6 @@ let me = this,
     callbacks
 } = me;
 
-callbacks.push(get(fn)) ;
+callbacks.push(get(callback)) ;
 
 return me ;

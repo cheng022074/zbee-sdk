@@ -12,6 +12,4 @@ let me = this ;
 
 me.target = get(fn) ;
 
-me.isExecuting = false ;
-
 me.callbacks = [] ;
