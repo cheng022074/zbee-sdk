@@ -36,5 +36,11 @@
             "path.name.element",
             "object.get"
         ]
+    },
+    "push":{
+        "type":"webpack",
+        "classes":[
+            "data.connection.*"
+        ]
     }
 }

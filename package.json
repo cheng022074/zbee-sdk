@@ -23,6 +23,7 @@
     "node": ">= 10.1.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "dateformat": "^3.0.3",
     "ejs": "^2.6.1",
     "ejsexcel": "^3.5.2",

@@ -7,6 +7,8 @@
  * 
  * @import apply from url.template.apply
  * 
+ * @require axios
+ * 
  * @param {string} url 请求路径
  * 
  * @param {object} [config] 请求配置

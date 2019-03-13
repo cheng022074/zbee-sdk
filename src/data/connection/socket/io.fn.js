@@ -6,6 +6,8 @@
  * 
  * @param {object} config socket.io 连接配置
  * 
+ * @require socket.io-client
+ * 
  */
 
 const IO = require('socket.io-client') ;
@@ -17,11 +19,9 @@ function main(url , options){
 
 const EventEmitter = require('events') ;
 
-class Socket extends EventEmitter{
+class Socket{
 
     constructor(url , options){
-
-        super() ;
 
         let me = this,
             onException =() => reconnect.call(me);
@@ -36,7 +36,7 @@ class Socket extends EventEmitter{
             socket
         } = me ;
 
-        me.once('connect' , () => {
+        socket.once('connect' , () => {
 
             socket.once('error' , onException) ;
 
@@ -71,6 +71,11 @@ class Socket extends EventEmitter{
             me.on('connect' , () => me.emit(event , ...args)) ;
         }
     }
+
+    on(event , fn){
+
+        this.socket.on(event , fn) ;
+    }
 }
 
 function reconnect(){
@@ -87,10 +92,11 @@ function reconnect(){
 
 function createSocket(){
 
-    let {
+    let me = this,
+    {
         url,
         options
-    } = this;
+    } = me;
 
     return  me.socket = IO(url , options) ;
 }
