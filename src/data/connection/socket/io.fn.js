@@ -17,8 +17,6 @@ function main(url , options){
     return new Socket(url , options) ;
 }
 
-const EventEmitter = require('events') ;
-
 class Socket{
 
     constructor(url , options){
