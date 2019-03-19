@@ -19,27 +19,20 @@ function main(url , options){
 
 class Socket{
 
-    constructor(url , options){
+    constructor(url , options = {}){
 
-        let me = this,
-            onException =() => reconnect.call(me);
+        let me = this;
 
         me.url = url ;
 
         me.options = options ;
 
-        createSocket.call(me) ;
-
-        let {
-            socket
-        } = me ;
-
-        socket.once('connect' , () => {
-
-            socket.once('error' , onException) ;
-
-            socket.once('disconnect' , onException) ;
-
+        me.socket = IO(url , {
+            transports: [
+                'websocket',
+                'polling'
+            ],
+            ...options
         }) ;
     }
 
@@ -66,7 +59,11 @@ class Socket{
         
         }else{
 
-            me.on('connect' , () => me.emit(event , ...args)) ;
+            const emitFn = () => me.emit(event , ...args) ;
+
+            socket.once('connect' , emitFn) ;
+
+            socket.once('reconnect' , emitFn) ;
         }
     }
 
@@ -74,27 +71,4 @@ class Socket{
 
         this.socket.on(event , fn) ;
     }
-}
-
-function reconnect(){
-
-    let me = this;
-
-    if(me.connected){
-
-        me.socket.close() ;
-    }
-
-    return createSocket.call(me) ;
-}
-
-function createSocket(){
-
-    let me = this,
-    {
-        url,
-        options
-    } = me;
-
-    return  me.socket = IO(url , options) ;
 }

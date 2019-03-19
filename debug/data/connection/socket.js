@@ -6,13 +6,7 @@
  * 
  */
 
-let socket = createSocket('http://118.31.105.13:83/message', {
-    'force new connection': true,
-    'transports': [
-        'websocket',
-        'polling'
-    ]
-}) ;
+let socket = createSocket('http://118.31.105.13:83/message') ;
 
 socket.on('msg' , ({
     msg
