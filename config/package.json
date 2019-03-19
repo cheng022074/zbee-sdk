@@ -37,7 +37,7 @@
             "object.get"
         ]
     },
-    "push":{
+    "data-connection":{
         "type":"webpack",
         "classes":[
             "data.connection.*"
