@@ -38,7 +38,7 @@
         ]
     },
     "data-connection":{
-        "type":"webpack",
+        "type":"library",
         "classes":[
             "data.connection.*"
         ]
