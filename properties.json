@@ -10,30 +10,5 @@
             "template":"text",
             "config":"json"
         }
-    },
-
-    "project":{
-
-        "sync":{
-            "resources":[
-                "config",
-                "debug",
-                "data",
-                "package",
-                "src",
-                "template",
-                "test",
-                ".gitignore",
-                "package.json",
-                "properties.json",
-                "README.md"
-            ],
-            "targets":[
-                "D:\\Code\\GitHub\\ZBEE\\SDK",
-                "D:\\Code\\Company\\Outer\\ZBEE-SDK",
-                "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\Outer\\ZBEE-SDK",
-                "C:\\Users\\nero.chen\\Desktop\\Code\\GitHub\\ZBEE\\SDK"
-            ]
-        }
     }
 }
