@@ -41,6 +41,9 @@
         "type":"library",
         "classes":[
             "data.connection.*"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
         ]
     }
 }
