@@ -2,7 +2,6 @@
     "extend":"events",
     "extendSource":"node",
     "constructor":true,
-    "class":true,
     "methods":[
         "load",
         "reload",

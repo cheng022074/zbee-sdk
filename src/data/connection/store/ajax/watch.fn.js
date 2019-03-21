@@ -7,4 +7,8 @@
  * 
  */
 
-this.addListener('load' , fn) ;
+let me = this ;
+
+me.addListener('load' , fn) ;
+
+return me ;

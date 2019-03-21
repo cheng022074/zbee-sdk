@@ -18,6 +18,6 @@
      ajaxConfig
  } = me ;
 
- ajax(url , assign({} , config , ajaxConfig)).then(({
-     data
- }) => me.emit('load' , data)) ;
+ ajax(url , assign({} , config , ajaxConfig)).then(data => me.emit('load' , data)) ;
+
+ return me ;

@@ -10,4 +10,5 @@
     ajaxConfig
  } = this ;
 
-load(ajaxConfig) ;
+return load(ajaxConfig) ;
+
