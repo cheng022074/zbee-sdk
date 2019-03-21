@@ -21,7 +21,9 @@
  * 
  * @param {object} [config.path = {}] 以路径参数形式提交的参数集合
  * 
- * @param {boolean} [config.json = true] 是否以 JSON方式提交数据  
+ * @param {boolean} [config.json = true] 是否以 JSON方式提交数据
+ * 
+ * @param {function} [config.reader = data => data]  数据读取器
  * 
  */
 
