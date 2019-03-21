@@ -13,6 +13,7 @@
 
  let {
      autoLoad = true,
+     reader = data => data,
      ...ajaxConfig
  } = config ;
 
@@ -21,6 +22,8 @@
  me.ajaxConfig = ajaxConfig ;
 
  me.url = url ;
+
+ me.reader = reader ;
 
  if(autoLoad){
 
