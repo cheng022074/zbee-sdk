@@ -6,12 +6,12 @@
  * 
  */
 
-ajax('http://118.31.105.13/pushMessage/pushMsg' , {
-    params:{
-        appId:"OK!",
-        userId:"陈治文",
-        msg:JSON.stringify({
-            operation:'insert'
-        })
+ajax('http://quote.cmschina.com/secuInfo/F10/OtbIllBas/SH/:id' , {
+    path:{
+        id:'600509'
     }
+}).then(data =>{
+
+    console.log(data) ;
+
 }) ;

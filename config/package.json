@@ -37,9 +37,10 @@
             "object.get"
         ]
     },
-    "data-connection":{
+    "support-xy-sdk":{
         "type":"library",
         "classes":[
+            "array.remove",
             "data.connection.*"
         ],
         "to":[

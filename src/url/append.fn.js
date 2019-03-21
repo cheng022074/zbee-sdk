@@ -34,9 +34,15 @@ if(isString(data)){
 
 }
 
-if(url.includes('?')){
+if(querystring){
 
-    return `${url}&${querystring}` ;
+    if(url.includes('?')){
+
+        return `${url}&${querystring}` ;
+    }
+    
+    return `${url}?${querystring}` ;
+
 }
 
-return `${url}?${querystring}` ;
+return url ;

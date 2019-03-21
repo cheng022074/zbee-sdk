@@ -11,7 +11,7 @@
  * 
  */
 
-return url.replace(/\:([^\\\/\d]+)/g , (match , name) =>{
+return url.replace(/\:(\w+)/g , (match , name) =>{
 
     return data[name] || '' ;
 
