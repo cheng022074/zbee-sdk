@@ -7,28 +7,30 @@
  * 
  * @import send from .send scoped
  * 
+ * @param {mixed} target 作用对象
+ * 
  * @param {object} message 消息
  * 
  * @param {string} message.toAction 接收消息方法
  * 
- * @param {string} message.from 接收消息方法
+ * @param {string} [message.from] 接收消息方法
  * 
- * @param {string} message.payload 消息负荷
+ * @param {string} [message.payload] 消息负荷
+ * 
+ * @param {string} [message.replyPayload]
  * 
  */
 
-for(let target of targets){
+if(toAction in target){
 
-    if(toAction in target){
+    let result = await target[method](payload , replyPayload) ;
 
-        let result = await target[method](payload) ;
+    if(from && isDefined(result)){
 
-        if(isDefined(result)){
-
-            send({
-                to:from,
-                payload:result
-            }) ;
-        }
+        send({
+            to:from,
+            replyPayload:payload,
+            payload:result
+        }) ;
     }
 }

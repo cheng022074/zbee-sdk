@@ -10,9 +10,13 @@
  */
 
 let {
+    targets,
     messages
 } = this;
 
-messages.push(Object.assign({} , message)) ;
+messages.push(message) ;
 
-doAction(message) ;
+for(let target of targets){
+
+    doAction(target , message) ;
+}
