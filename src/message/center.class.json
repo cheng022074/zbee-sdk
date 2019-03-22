@@ -1,0 +1,10 @@
+{
+    "constructor":true,
+    "singleton":true,
+    "methods":[
+        "getAddress",
+        "registerAddress",
+        "unregisterAddress",
+        "receive"
+    ]
+}

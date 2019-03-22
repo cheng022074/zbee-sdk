@@ -1,38 +1,40 @@
+import { isObject } from "util";
+
 /**
  * 
  * 发送消息
  * 
- * @import createMessage from message
+ * @import center from message.center
  * 
- * @import get from .storage
+ * @import is.string
  * 
- * @import is.defined
+ * @import isObject from is.object.simple
  * 
- * @import convert from json.convert
+ * @param {object|string} message 消息配置
  * 
- * @param {string} address 发送消息到达的地址
- * 
- * @param {string} method 方法
- * 
- * @param {mixed} data 数据
  * 
  */
 
-address = get(address) ;
+if(isString(message)){
 
-if(address){
+    center.receive({
+        to:message
+    }) ;
 
-    let me = this,
-    {
-        plugin
-    } = me,
-    message = createMessage(me , address , method , convert(data)),
-    result = await plugin.send(message) ;
+}else if(isObject(message)){
 
-    if(isDefined(result)){
+    let {
+        from
+    } = message;
 
-        message.returnData = convert(result) ;
+    if(from){
+
+        let {
+            name
+        } = this ;
+
+        message.from = `${name}::${from}` ;
     }
 
-    return message ;
+    center.receive(message) ;
 }

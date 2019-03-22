@@ -1,8 +1,0 @@
-{
-    "singleton":true,
-    "constructor":true,
-    "methods":[
-        "send",
-        "listen"
-    ]
-}

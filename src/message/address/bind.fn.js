@@ -1,45 +1,27 @@
 
 /**
  * 
- * 将消息地址绑定在一个具体对象上
+ * 绑定目标对象
  * 
- * @import clear from array.clear
- * 
- * @param {mixed} target 绑定对象
+ * @param {mixed} target 目标对象
  * 
  */
 
-let me = this,
-{
-    activate
-} = me ;
+ let {
+    targets,
+    messages
+ } = this ;
 
-if(!activate){
+ for(let {
+   payload,
+   method
+} of messages){
 
-    let {
-        relistenMode,
-        unlistenMessages
-    } = me ;
+   if(method in target){
 
-    for(let message of unlistenMessages){
+      await target[method](payload) ;
 
-        let {
-            method
-        } = message ;
+  }
+ }
 
-        if(method in target){
-
-            target[method](message) ;
-        }
-
-        if(relistenMode === 'recent'){
-
-            break ;
-        }
-
-        clear(unlistenMessages) ;
-    }
-}
-
-me.target = target ;
-
+ targets.push(target) ;

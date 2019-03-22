@@ -1,10 +1,9 @@
 {
     "constructor":true,
-    "staticMethods":[
-        "login",
-        "logout"
-    ],
     "methods":[
+        "bind",
+        "unbind",
+        "receive",
         "send"
     ]
 }
