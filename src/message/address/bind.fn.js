@@ -11,11 +11,11 @@
 
  let me = this,
  {
-  target,
+  target:currentTarget,
   messages
  } = me;
 
- if(!target){
+ if(!currentTarget){
 
   for(let message of messages){
 

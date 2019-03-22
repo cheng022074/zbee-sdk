@@ -23,7 +23,7 @@
 
 if(toAction in target){
 
-    let result = await target[method](payload , replyPayload) ;
+    let result = await target[toAction](payload , replyPayload) ;
 
     if(from && isDefined(result)){
 

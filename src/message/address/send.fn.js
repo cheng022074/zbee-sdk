@@ -2,16 +2,18 @@
  * 
  * 发送消息
  * 
- * @import center from message.center
+ * @import getCenter from message.center
  * 
  * @import is.string
  * 
  * @import isObject from is.object.simple
  * 
- * @param {object|string} message 消息配置
+ * @param {mixed} message 消息配置
  * 
  * 
  */
+
+let center = getCenter() ;
 
 if(isString(message)){
 

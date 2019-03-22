@@ -24,7 +24,7 @@
         action:toAction
     } = result;
 
-    this.registerAddress(toAddress).receive({
+    this.register(toAddress).receive({
         toAction,
         payload,
         from

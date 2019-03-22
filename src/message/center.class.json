@@ -2,9 +2,7 @@
     "constructor":true,
     "singleton":true,
     "methods":[
-        "getAddress",
-        "registerAddress",
-        "unregisterAddress",
+        "register",
         "receive"
     ]
 }
