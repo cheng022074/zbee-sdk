@@ -9,14 +9,16 @@
  * 
  */
 
-let {
-    targets,
-    messages
-} = this;
+ let {
+     target,
+     messages
+ } = this ;
 
-messages.push(message) ;
-
-for(let target of targets){
+ if(target){
 
     doAction(target , message) ;
+ 
+}else{
+
+    messages.push(message) ;
 }

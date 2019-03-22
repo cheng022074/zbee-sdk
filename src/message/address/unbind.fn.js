@@ -5,12 +5,8 @@
  * 
  * @import remove from array.remove
  * 
- * @param {mixed} target 目标对象
- * 
  */
 
-let {
-    targets
- } = this ;
+ delete this.target ;
 
- remove(targets , target) ;
+ 

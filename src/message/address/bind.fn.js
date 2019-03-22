@@ -9,14 +9,22 @@
  * 
  */
 
- let {
-    targets,
-    messages
- } = this ;
+ let me = this,
+ {
+  target,
+  messages
+ } = me;
 
- for(let message of messages){
+ if(!target){
 
-   doAction(target , message) ;
+  for(let message of messages){
+
+    doAction(target , message) ;
+
+  }
+
+  messages.length = 0 ;
+
+  me.target = target ;
+
  }
-
- targets.push(target) ;
