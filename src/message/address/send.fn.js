@@ -1,5 +1,3 @@
-import { isObject } from "util";
-
 /**
  * 
  * 发送消息
