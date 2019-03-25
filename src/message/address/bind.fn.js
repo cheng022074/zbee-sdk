@@ -27,4 +27,8 @@
 
   me.target = target ;
 
+  return true ;
+
  }
+
+ return false ;
