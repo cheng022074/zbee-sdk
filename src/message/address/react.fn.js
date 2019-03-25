@@ -4,7 +4,7 @@
  * 
  * @import getCenter from message.center
  * 
- * @param {React.Component} Target 继承的 React 组件类
+ * @param {React.Component} reactClass 继承的 React 组件类
  * 
  * @param {string} [address] 组件注册的消息地址
  * 
@@ -12,7 +12,7 @@
 
  let center = getCenter() ;
 
- return class extends Target{
+ return class extends reactClass{
 
     componentDidMount() {
 
@@ -20,7 +20,7 @@
         {
             address:currentAddress
         } = this.props ;
- 
+
         currentAddress = currentAddress || address ;
 
         if(!currentAddress){
@@ -43,9 +43,10 @@
 
             super.componentDidMount();
         }
+
     }
 
-    componentWillUnMount() {
+    componentWillUnmount(){
 
         if (super.componentWillUnMount) {
 
@@ -62,4 +63,4 @@
         }
     }
 
- }
+}

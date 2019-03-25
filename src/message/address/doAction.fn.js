@@ -11,19 +11,17 @@
  * 
  * @param {object} message 消息
  * 
- * @param {string} message.toAction 接收消息方法
- * 
- * @param {string} [message.from] 接收消息方法
- * 
- * @param {string} [message.payload] 消息负荷
- * 
- * @param {string} [message.replyPayload]
- * 
  */
+
+ let {
+    toAction,
+    from,
+    payload
+ } = message ;
 
 if(toAction in target){
 
-    let result = await target[toAction](payload , replyPayload) ;
+    let result = await target[toAction](payload , message) ;
 
     if(from && isDefined(result)){
 
