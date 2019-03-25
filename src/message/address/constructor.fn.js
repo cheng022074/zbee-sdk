@@ -12,6 +12,4 @@
 
 me.name = name ;
 
-me.targets = [] ;
-
 me.messages = [] ;
