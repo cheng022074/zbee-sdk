@@ -48,9 +48,9 @@
 
     componentWillUnmount(){
 
-        if (super.componentWillUnMount) {
+        if (super.componentWillUnmount) {
 
-            super.componentWillUnMount();
+            super.componentWillUnmount();
         }
 
         let {
