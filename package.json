@@ -43,10 +43,5 @@
     "url-join": "^4.0.0",
     "xlsx": "^0.12.9"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
   "private": false
 }
