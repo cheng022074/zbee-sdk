@@ -43,7 +43,9 @@
             "object.equals",
             "array.from",
             "map",
-            "function.get"
+            "function.get",
+            "is.object.simple",
+            "data.reader.json"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

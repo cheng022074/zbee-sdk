@@ -10,11 +10,19 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import object.get
+ * 
+ * @import array.from
+ * 
+ * @import is.empty
+ * 
  * @param {object} [config = {}] 读取参数设置
  * 
  * @param {string} [config.rootProperty = '.'] 读取数据的根
  * 
  * @param {string} [config.fields] 读取数据记录的字段项
+ * 
+ * @param {boolean} [config.multi = true] 如果设置为 true , 则返回数值，设置为 false , 则返回第一条记录 
  * 
  * @return {function} 读取器所生成的解析函数
  * 
@@ -24,15 +32,20 @@
 
  function main({
    rootProperty,
-   fields
+   fields,
+   multi
  }){
 
     return  (new Function('data' , `
 
       var get = include('object.get'),
+          from = include('array.from'),
+          isEmpty = include('is.empty'),
           converts = this;
 
       ${generate_get_root_data(rootProperty)}
+
+      data = from(data) ;
 
       var result = [],
           len = data.length;
@@ -47,9 +60,14 @@
          result.push(item) ;
       }
 
-      return result ;
+      ${generate_result(multi)}
 
     `)).bind(generate_get_field_converts(fields));
+ }
+
+ function generate_result(multi){
+
+   return multi ? `return result;` :`return result[0];`;
  }
 
  function generate_get_root_data(rootProperty){
@@ -80,6 +98,10 @@
    return converts ;
  }
 
+ const {
+   stringify
+ } = JSON ;
+
  function generate_get_field_data(fields){
 
    let result = [] ;
@@ -95,7 +117,8 @@
          let {
             name,
             mapping,
-            convert
+            convert,
+            defaultValue
          } = field ;
 
          if(convert){
@@ -105,6 +128,11 @@
          }else if(mapping){
 
             result.push(`item.${name} = get(currentItem , '${mapping}');`) ;
+         }
+
+         if(defaultValue){
+
+            result.push(`item.${name} = isEmpty(item.${name}) ? ${stringify(defaultValue)} : item.${name};`) ;
          }
       }
    }
