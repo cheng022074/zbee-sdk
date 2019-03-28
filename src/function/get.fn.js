@@ -10,7 +10,7 @@
  * 
  * @param {string | function} fn 函数描述
  * 
- * @param {mixed} scope 函数作用域
+ * @param {mixed} [scope] 函数作用域
  * 
  * @return {function} 函数引用本身 
  * 

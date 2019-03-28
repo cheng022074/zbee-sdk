@@ -4,6 +4,7 @@
         "set",
         "get",
         "has",
-        "delete"
+        "delete",
+        "forEach"
     ]
 }

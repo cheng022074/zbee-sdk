@@ -41,7 +41,9 @@
             "array.remove",
             "data.connection.*",
             "object.equals",
-            "array.from"
+            "array.from",
+            "map",
+            "function.get"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
