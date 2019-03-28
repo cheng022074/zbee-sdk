@@ -1,0 +1,9 @@
+{
+    "constructor":true,
+    "methods":[
+        "set",
+        "get",
+        "has",
+        "delete"
+    ]
+}

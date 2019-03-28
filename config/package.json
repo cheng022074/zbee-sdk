@@ -39,7 +39,9 @@
         "type":"library",
         "classes":[
             "array.remove",
-            "data.connection.*"
+            "data.connection.*",
+            "object.equals",
+            "array.from"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

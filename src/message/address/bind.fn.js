@@ -11,24 +11,27 @@
 
  let me = this,
  {
-  target:currentTarget,
-  messages
+    target:currentTarget,
+    messages
  } = me;
 
  if(!currentTarget){
 
-  for(let message of messages){
+    for(let message of messages){
 
-    doAction(target , message) ;
+      doAction(target , message) ;
 
-  }
+    }
 
-  messages.length = 0 ;
+    messages.length = 0 ;
 
-  me.target = target ;
+    me.target = target ;
 
-  return true ;
+    return true ;
 
+ }else if(currentTarget === me){
+
+    return true ;
  }
 
  return false ;

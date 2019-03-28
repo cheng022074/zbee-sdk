@@ -4,13 +4,16 @@
  * 
  * @import getCenter from message.center
  * 
+ * @import get from id.generate
+ * 
  * @param {React.Component} reactClass 继承的 React 组件类
  * 
  * @param {string} [address] 组件注册的消息地址
  * 
  */
 
- let center = getCenter() ;
+ let center = getCenter(),
+     count = 1;
 
  return class extends reactClass{
 
@@ -21,12 +24,7 @@
             address:currentAddress
         } = this.props ;
 
-        currentAddress = currentAddress || address ;
-
-        if(!currentAddress){
-
-            throw new Error(`${Target.name} 未注册消息地址`) ;
-        }
+        currentAddress = currentAddress || address || get('address-');
 
         let messageAddress = center.register(currentAddress) ;
 
@@ -34,7 +32,7 @@
 
         if(!isBind){
 
-            throw new Error(`${Target.name} 尝试注册已被占用的消息地址 ${currentAddress}`) ;
+            throw new Error(`${reactClass.name} 尝试注册已被占用的消息地址 ${currentAddress}`) ;
         }
 
         me.$address = messageAddress ;
