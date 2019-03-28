@@ -7,7 +7,13 @@
  * 
  * @import apply from url.template.apply
  * 
+ * @import isObject from is.object.simple
+ * 
+ * @import createReader from data.reader.json
+ * 
  * @require axios
+ * 
+ * @require qs
  * 
  * @param {string} url 请求路径
  * 
@@ -23,7 +29,7 @@
  * 
  * @param {boolean} [config.json = true] 是否以 JSON方式提交数据
  * 
- * @param {function} [config.reader = data => data]  数据读取器
+ * @param {function | object} [config.reader = data => data]  数据读取器
  * 
  */
 
@@ -40,7 +46,7 @@ if(path){
 const axios = require('axios'),
 {
     stringify
-} = require('querystring');
+} = require('qs');
 
 switch(method){
 
@@ -60,7 +66,12 @@ switch(method){
         }
 }
 
+if(isObject(reader)){
+
+    reader = createReader(reader) ;
+}
+
 return axios[method.toLowerCase()](url , params).then(({
     data
-}) => data) ;
+}) => reader(data)) ;
 

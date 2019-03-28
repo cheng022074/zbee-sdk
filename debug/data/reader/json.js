@@ -9,7 +9,7 @@
  */
 
  let reader = createReader({
-     multi:false,
+     multi:true,
      fields:[
          'name',
          'sex',{
