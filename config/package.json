@@ -45,7 +45,8 @@
             "map",
             "function.get",
             "is.object.simple",
-            "data.reader.json"
+            "data.reader.json",
+            "map.set.multi"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

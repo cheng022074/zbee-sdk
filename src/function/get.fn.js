@@ -21,9 +21,11 @@ if(isString(fn)){
     if(scope && scope.hasOwnProperty(fn)){
 
         fn = scope[fn] ;
-    }
 
-    fn = include(fn) ;
+    }else{
+
+        fn = include(fn) ;
+    }
 }
 
 if(isFunction(fn)){

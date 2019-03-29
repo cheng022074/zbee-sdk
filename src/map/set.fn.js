@@ -21,7 +21,7 @@
 
  if(length >= 2){
 
-    let keys = values.slice(0 , length - 2),
+    let keys = values.slice(0 , length - 1),
         value = values[length - 1],
         {
             match,
