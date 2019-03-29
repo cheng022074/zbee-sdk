@@ -21,11 +21,11 @@
  * 
  * @param {string} [config.method = 'GET'] 请求方式，默认是 GET 请求
  * 
- * @param {object} [config.query = {}] GET请求的参数集合
+ * @param {object} [config.query] GET请求的参数集合
  * 
  * @param {object} [config.params = {}] 请求主体的参数集合
  * 
- * @param {object} [config.path = {}] 以路径参数形式提交的参数集合
+ * @param {object} [config.path] 以路径参数形式提交的参数集合
  * 
  * @param {boolean} [config.requestJSON = true] 是否以 JSON方式提交数据
  * 
