@@ -10,3 +10,7 @@ let map = new Map() ;
 set(map , '123' , 111) ;
 
 console.log(map) ;
+
+set(map , '123' , 111) ;
+
+console.log(map) ;

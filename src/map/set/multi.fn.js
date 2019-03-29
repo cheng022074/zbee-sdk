@@ -25,8 +25,11 @@ if(length >= 2){
 
     if(isArray(oldValues)){
 
-        oldValues.push(value) ;
+        if(!oldValues.includes(value)){
 
+            oldValues.push(value) ;
+        }
+        
     }else{
 
         oldValues = [
