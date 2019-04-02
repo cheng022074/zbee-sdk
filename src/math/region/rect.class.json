@@ -1,0 +1,6 @@
+{
+    "constructor":true,
+    "methods":[
+        "getAnchorXY"
+    ]
+}

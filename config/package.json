@@ -46,7 +46,11 @@
             "function.get",
             "is.object.simple",
             "data.reader.json",
-            "map.set.multi"
+            "map.set.multi",
+            "id.generate",
+            "is.number",
+            "array.from",
+            "math.region.rect"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
