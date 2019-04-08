@@ -39,6 +39,7 @@
         "type":"library",
         "classes":[
             "array.remove",
+            "array.remove.all",
             "data.connection.*",
             "object.equals",
             "array.from",
@@ -50,7 +51,8 @@
             "id.generate",
             "is.number",
             "array.from",
-            "math.region.rect"
+            "math.region.rect",
+            "canvas.draw.line.bezierCurve"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

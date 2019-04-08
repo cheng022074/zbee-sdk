@@ -28,7 +28,28 @@ switch(anchor){
     case 'r':
 
         return {
-            x,
-            y:y + width / 2
+            x:x + width,
+            y:y + height / 2
         } ;
+
+    case 'l':
+
+        return {
+            x,
+            y:y + height / 2
+        } ;
+
+    case 't':
+
+        return {
+            x:x + width / 2,
+            y 
+        } ;
+
+    case 'b':
+
+        return {
+            x:x + width / 2,
+            y:y + height
+        }
 }
