@@ -57,5 +57,15 @@
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
         ]
+    },
+    "event-react":{
+        "type":"webpack",
+        "classes":[
+            "browser.event.tap.start",
+            "browser.event.name.react"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\STARTER\\WEBPACK"
+        ]
     }
 }

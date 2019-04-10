@@ -7,7 +7,11 @@
  * 
  * @import getDistance from math.point.distance
  * 
- * @import dispatch from browser.event.dispatch
+ * @import dispatch from browser.event.dispatch scoped
+ * 
+ * @import disabled from ..disabled scoped
+ * 
+ * @import getScale from browser.scale
  * 
  * @config moveDistance from event.tap...moveDistance
  * 
@@ -21,7 +25,10 @@ let me = this,
     {
         pageX,
         pageY
-    } = getEventProperties(e),
+    } = getEventProperties(e , [
+        'pageX',
+        'pageY'
+    ]),
     {
         startX,
         startY
@@ -33,7 +40,9 @@ if(Math.round(Math.abs(getDistance({
 } , {
     x:startX,
     y:startY
-}))) >= moveDistance){
+}))) * getScale() >= moveDistance){
 
-    dispatch(me , 'tapcancel' , e) ;
+    dispatch('tapcancel' , e) ;
+
+    disabled() ;
 }

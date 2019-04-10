@@ -3,22 +3,21 @@
  * 
  * 触发一个自定义事件
  * 
- * @param {mixed} target 目标对象
- * 
  * @param {string} name 自定义事件名称
  * 
  * @param {mixed} detail 基于自定义事件传递的数据
  * 
  */
 
- let {
+ let me = this,
+ {
     dispatchEvent,
     listeners
- } = target ;
+ } = me ;
 
  if(dispatchEvent){
 
-    dispatchEvent.call(target , new CustomEvent(`event:${name}` , {
+    dispatchEvent.call(me , new CustomEvent(`event:${name}` , {
         bubbles:false,
         detail
     })) ;
@@ -27,5 +26,4 @@
 
     listeners[name](detail) ;
  }
-
 

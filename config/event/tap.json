@@ -1,4 +1,4 @@
 {
     "timeout":100,
-    "moveDistance":100
+    "moveDistance":8
 }
