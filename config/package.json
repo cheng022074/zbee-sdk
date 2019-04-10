@@ -61,7 +61,8 @@
     "event-react":{
         "type":"webpack",
         "classes":[
-            "react.createElement"
+            "react.createElement",
+            "browser.event.touch.init"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\STARTER\\WEBPACK"

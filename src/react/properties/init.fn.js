@@ -25,35 +25,22 @@ function main(props){
                 onTap
             } = props ;
 
-            add_event_listener(props , getEventName('onTouchStart') , startTap.bind({
+            add_event_listener(props , 'onTouchStart' , startTap.bind({
                 listeners:{
                     tap:onTap
                 }
             })) ;
 
             delete props.onTap ;
-        
-        }
-        
-        if(props.hasOwnProperty('preventDefault')){
-
-            add_event_listener(props , 'onTouchStart' , prevent_default) ;
-
-            add_event_listener(props , 'onTouchMove' , prevent_default) ;
-
-            delete props.preventDefault ;
         }
     }
 
     return props ;
 }
 
-function prevent_default(e){
-
-    e.nativeEvent.preventDefault() ;
-}
-
 function add_event_listener(props , event , fn){
+
+    event = getEventName(event) ;
 
     if(props.hasOwnProperty(event)){
 
