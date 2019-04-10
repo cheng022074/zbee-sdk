@@ -5,17 +5,29 @@
  * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
- * @param {number[]} [...values] 一组坐标值
+ * @param {object} [config = {}] 画线配置
  * 
  */
 
- if(values.length === 8){
+ let {
+    points = [],
+    ...styles
+ } = config ;
+
+ if(points.length === 8){
 
     context.beginPath();
 
-    context.moveTo(...values.slice(0 , 2));
+    let names = Object.keys(styles) ;
+
+    for(let name of names){
+
+      context[name] = styles[name] ;
+    }
+
+    context.moveTo(...points.slice(0 , 2));
     
-    context.bezierCurveTo(...values.slice(2));
+    context.bezierCurveTo(...points.slice(2));
     
     context.stroke();
  }

@@ -11,7 +11,21 @@
  * 
  */
 
-target.dispatchEvent(new CustomEvent(name , {
-    bubbles:false,
-    detail
-})) ;
+ let {
+    dispatchEvent,
+    listeners
+ } = target ;
+
+ if(dispatchEvent){
+
+    dispatchEvent.call(target , new CustomEvent(`event:${name}` , {
+        bubbles:false,
+        detail
+    })) ;
+
+ }else if(listeners && listeners.hasOwnProperty(name)){
+
+    listeners[name](detail) ;
+ }
+
+
