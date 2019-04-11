@@ -7,6 +7,8 @@
  * 
  * @import prev from date.prev
  * 
+ * @import getLastDate from ..last
+ * 
  * @param {number} year 年份
  * 
  * @param {number} month 月份
@@ -22,8 +24,12 @@
     date:lastDate
    }) ;
 
+ if(month < 1 || month > 12){
 
- while(date.getMonth() !== month){
+    return getLastDate(date.getFullYear() , date.getMonth() + 1) ;
+ }
+
+ while(date.getMonth() + 1 !== month){
 
     date = prev(date) ;
  }

@@ -11,6 +11,8 @@
  * 
  * @import next from date.next
  * 
+ * @import getLastDate from month.date.last
+ * 
  * @param {number} year 年份
  * 
  * @param {number} month 月份
@@ -21,16 +23,35 @@
  * 
  * @param {number} [config.weekStartDay = 1] 每周从周几进行显示
  * 
+ * @param {number} [config.date] 指定日期所在周作为日历的第一周
+ * 
+ * @param {boolean} [config.ignoreNotCurrentMonthLastRow = true] 是否忽略不是本月的尾行
+ * 
  * @return {array} 一组日历数据 
  * 
  */
 
+
+if(!date){
+
+    date = 1 ;
+
+}
+
+let lastDate = getLastDate(year , month).getDate() ;
+
+if(date > lastDate){
+
+    date = lastDate ;
+}
+
+date = get({
+    year,
+    month,
+    date
+}) ;
+
 let days = getDays(weekStartDay),
-    date = get({
-        year,
-        month,
-        date:1
-    }),
     prevCount = days.indexOf(date.getDay()),
     nextCount = 6 - prevCount,
     result = [
@@ -51,11 +72,25 @@ while(nextCount -- > 0){
     result.push(date = next(date)) ;
 }
 
-let count = (row - 1) * 7;
+let count = (row - 1) ;
 
 while(count -- > 0){
 
-    result.push(date = next(date)) ;
+    date = next(date) ;
+
+    if(ignoreNotCurrentMonthLastRow && date.getMonth() + 1 !== month){
+
+        break ;
+    }
+
+    result.push(date) ;
+
+    for(let i = 0 ; i < 6 ; i ++){
+
+        result.push(date = next(date)) ;
+    }
+
+    
 }
 
 return result ;

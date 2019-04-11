@@ -7,8 +7,8 @@
  * 
  */
 
- console.log(getMonth(2019 , 4)) ;
-
- console.log(getMonth(2019 , 5)) ;
-
- console.log(getMonth(2019 , 6)) ;
+ console.log(getMonth(2019 , 5 , {
+     row:6,
+     weekStartDay:1,
+     ignoreNotCurrentMonthLastRow:false
+ })) ;
