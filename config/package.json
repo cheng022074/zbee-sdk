@@ -60,6 +60,7 @@
     },
     "event-react":{
         "type":"webpack",
+        "transform":false,
         "classes":[
             "react.createElement",
             "browser.event.touch.init"
