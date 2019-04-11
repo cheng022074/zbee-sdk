@@ -9,6 +9,6 @@
 
  console.log(getMonth(2019 , 4)) ;
 
- console.log(getMonth(2019 , 4 , {
-     weekStartDay:1
- })) ;
+ console.log(getMonth(2019 , 5)) ;
+
+ console.log(getMonth(2019 , 6)) ;

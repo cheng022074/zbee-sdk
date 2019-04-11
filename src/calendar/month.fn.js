@@ -17,9 +17,9 @@
  * 
  * @param {object} [config = {}] 日历构造配置
  * 
- * @param {number} [config.row = 5] 日历显示行数
+ * @param {number} [config.row = 6] 日历显示行数
  * 
- * @param {number} [config.weekStartDay = 0] 每周从周几进行显示
+ * @param {number} [config.weekStartDay = 1] 每周从周几进行显示
  * 
  * @return {array} 一组日历数据 
  * 
@@ -32,18 +32,28 @@ let days = getDays(weekStartDay),
         date:1
     }),
     prevCount = days.indexOf(date.getDay()),
+    nextCount = 6 - prevCount,
     result = [
         date
     ];
+
+let currentDate = date ;
 
 while(prevCount -- > 0){
 
     result.unshift(date = prev(date)) ;
 }
 
-let nextCount = 6 - prevCount - 1 ;
+date = currentDate ;
 
 while(nextCount -- > 0){
+
+    result.push(date = next(date)) ;
+}
+
+let count = (row - 1) * 7;
+
+while(count -- > 0){
 
     result.push(date = next(date)) ;
 }
