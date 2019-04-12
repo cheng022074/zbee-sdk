@@ -11,7 +11,7 @@
  * 
  * @param {number} [config.month] 月份
  * 
- * @param {number} [config.date] 日
+ * @param {number} [config.day] 日
  * 
  * @param {number} [config.hours] 小时
  * 
@@ -35,9 +35,9 @@
    data.setMonth(month - 1) ;
  }
 
- if(isDefined(date)){
+ if(isDefined(day)){
 
-   data.setDate(date) ;
+   data.setDate(day) ;
  }
 
  if(isDefined(hours)){

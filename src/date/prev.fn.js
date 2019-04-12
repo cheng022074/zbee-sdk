@@ -4,14 +4,23 @@
  * 
  * @import get from date.get
  * 
+ * @import is.date
+ * 
  * @param {Date} date 基准日期
  * 
  * @return {Date} 移过的日期 
  * 
  */
 
- return get({
-    year:date.getFullYear(),
-    month:date.getMonth() + 1,
-    date:date.getDate() - 1
- }) ;
+if(isDate(date)){
+
+   date = {
+      year:date.getFullYear(),
+      month:date.getMonth() + 1,
+      day:date.getDate()
+   } ;
+ }
+
+ date.day -- ;
+
+ return get(date) ;

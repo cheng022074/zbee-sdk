@@ -23,9 +23,14 @@
             year:itemYear,
             month:itemMonth,
             day:date.getDate(),
-            selected:false
+            selected:false,
+            key:date.getTime()
         } ;
 
     }) ;
 
-me.proxy.call('load' , dates) ;
+me.year = year ;
+
+me.month = month ;
+
+me.proxy.call('load' , year , month , dates) ;

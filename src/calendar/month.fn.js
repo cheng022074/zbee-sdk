@@ -21,9 +21,9 @@
  * 
  * @param {number} [config.row = 6] 日历显示行数
  * 
- * @param {number} [config.weekStartDay = 1] 每周从周几进行显示
+ * @param {number} [config.weekStartDay = 0] 每周从周几进行显示
  * 
- * @param {number} [config.date] 指定日期所在周作为日历的第一周
+ * @param {number} [config.day] 指定日期所在周作为日历的第一周
  * 
  * @param {boolean} [config.ignoreNotCurrentMonthLastRow = true] 是否忽略不是本月的尾行
  * 
@@ -32,23 +32,23 @@
  */
 
 
-if(!date){
+if(!day){
 
-    date = 1 ;
+    day = 1 ;
 
 }
 
-let lastDate = getLastDate(year , month).getDate() ;
+let lastDay = getLastDate(year , month).getDate() ;
 
-if(date > lastDate){
+if(day > lastDay){
 
-    date = lastDate ;
+    day = lastDay ;
 }
 
-date = get({
+let date = get({
     year,
     month,
-    date
+    day
 }) ;
 
 let days = getDays(weekStartDay),

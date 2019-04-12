@@ -17,11 +17,10 @@
  * 
  */
 
- let lastDate = 31,
-   date = get({
-    year,
-    month,
-    date:lastDate
+ let date = get({
+      year,
+      month,
+      day:31
    }) ;
 
  if(month < 1 || month > 12){

@@ -16,9 +16,9 @@
  * 
  * @param {number} month 月份
  * 
- * @param {number} startDate 起始日期数
+ * @param {number} startDay 起始日期数
  * 
- * @param {number} [endDate] 终止日期数
+ * @param {number} [endDay] 终止日期数
  * 
  * @return {array} 日期对象集合 
  * 
@@ -27,7 +27,7 @@
  let date = get({
     year,
     month,
-    date:startDate
+    day:startDay
  });
 
  let result = [
@@ -37,7 +37,7 @@
 
  if(endDate){
 
-    count = endDate - startDate ;
+    count = endDay - startDay ;
  }
 
  while(true){

@@ -3,6 +3,8 @@
     "methods":[
         "select",
         "selectMonth",
+        "selectNextMonth",
+        "selectPrevMonth",
         "deselectAll"
     ]
 }

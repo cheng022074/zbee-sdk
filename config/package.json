@@ -52,7 +52,8 @@
             "is.number",
             "array.from",
             "math.region.rect",
-            "canvas.draw.line.bezierCurve"
+            "canvas.draw.line.bezierCurve",
+            "calendar.month.view"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
