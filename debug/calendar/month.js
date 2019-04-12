@@ -3,7 +3,7 @@
  * 
  * 调试日历
  * 
- * @import getMonth from calendar.month.view
+ * @import getMonth from calendar.month
  * 
  */
 
