@@ -5,6 +5,6 @@
         "selectMonth",
         "selectNextMonth",
         "selectPrevMonth",
-        "deselectAll"
+        "deselect"
     ]
 }

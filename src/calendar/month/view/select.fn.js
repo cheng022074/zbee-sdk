@@ -3,7 +3,7 @@
  * 
  * 选定
  * 
- * @import deselectAll from ..deselectAll scoped
+ * @import deselect from ..deselect scoped
  * 
  * @param {number} year 选定年份
  * 
@@ -17,13 +17,13 @@
  {
     proxy,
     multiSelectMode,
-    selectedDates,
+    selectedDate,
     dates
  } = me;
 
  if(multiSelectMode === false){
 
-   deselectAll() ;
+   deselect() ;
  }
 
  let count = -1 ;
@@ -40,7 +40,7 @@
 
    if(itemYear === year && itemMonth === month && itemDay === day){
 
-      me.selectedDates.push(date) ;
+      me.selectedDate = date ;
 
       date.selected = true ;
 
@@ -49,6 +49,8 @@
       break ;
    }
  }
+
+ proxy.call('select' , count , dates[count]) ;
 
 
 

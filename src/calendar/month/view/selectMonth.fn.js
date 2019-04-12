@@ -5,7 +5,9 @@
  * 
  * @import getDates from ......month
  * 
- * @import deselectAll from ..deselectAll scoped
+ * @import deselect from ..deselect scoped
+ * 
+ * @import select from ..select scoped
  * 
  * @import getProperty from date.get.property
  * 
@@ -15,10 +17,14 @@
  * 
  */
 
- deselectAll() ;
-
  let me = this,
-     fields = [
+ {
+    selectedDate
+ } = me;
+
+ deselect() ;
+
+ let fields = [
         'year',
         'month',
         'day'
@@ -48,3 +54,16 @@ me.year = year ;
 me.month = month ;
 
 me.proxy.call('load' , year , month , dates) ;
+
+if(selectedDate){
+
+    let {
+        day
+    } = selectedDate,
+    {
+        year,
+        month
+    } = me;
+
+    select(year , month , day) ;
+}

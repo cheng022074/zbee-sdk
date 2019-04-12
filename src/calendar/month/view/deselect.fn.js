@@ -5,13 +5,14 @@
  * 
  */
 
- let {
+ let me = this,
+ {
     proxy,
     dates,
-    selectedDates
- } = this ;
+    selectedDate
+ } = me ;
 
- for(let selectedDate of selectedDates){
+ if(selectedDate){
 
     selectedDate.selected = false ;
 
@@ -19,5 +20,5 @@
     
  }
 
- selectedDates.length = 0 ;
+ delete me.selectedDate ;
  
