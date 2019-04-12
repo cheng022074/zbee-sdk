@@ -1,5 +1,3 @@
-import { get } from "https";
-
 /**
  * 
  * 获得指定月份的上一个月份
@@ -20,11 +18,18 @@ import { get } from "https";
 
     date = getProperty(date , [
         'year',
-        'month',
-        'day'
+        'month'
     ]) ;
  }
 
- date.month -- ;
+ let {
+    month,
+    ...other
+ } = date ;
 
- return get(date) ;
+ month -- ;
+
+ return get({
+     month,
+    ...other
+ }) ;

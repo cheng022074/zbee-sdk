@@ -21,10 +21,12 @@
     dates
  } = me;
 
- if(multiSelectMode === false && selectedDate){
+ if(multiSelectMode === false){
 
    deselectAll() ;
  }
+
+ let count = -1 ;
 
  for(let date of dates){
 
@@ -34,11 +36,15 @@
       day:itemDay
    } = date ;
 
+   count ++ ;
+
    if(itemYear === year && itemMonth === month && itemDay === day){
 
       me.selectedDates.push(date) ;
 
-      proxy.call('select' , year , month , day) ;
+      date.selected = true ;
+
+      proxy.call('select' , count , date) ;
 
       break ;
    }

@@ -15,16 +15,8 @@
 
     selectedDate.selected = false ;
 
-    if(dates.includes(selectedDate)){
-
-        let {
-            year,
-            month,
-            day
-        } = selectedDate ;
-
-        proxy.call('deselect' , year , month , day) ;
-    }
+    proxy.call('deselect' , dates.indexOf(selectedDate) , selectedDate) ;
+    
  }
 
  selectedDates.length = 0 ;

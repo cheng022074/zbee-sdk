@@ -23,6 +23,8 @@
 
  let me = this ;
 
+ me.multiSelectMode = multiSelectMode ;
+
  me.proxy = getProxy(target) ;
 
  me.selectedDates = [] ;

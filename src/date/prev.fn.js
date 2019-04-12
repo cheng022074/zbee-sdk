@@ -23,6 +23,14 @@ if(isDate(date)){
    ]) ;
  }
 
- date.day -- ;
+ let {
+   day,
+   ...other
+ } = date ;
 
- return get(date) ;
+ day -- ;
+
+ return get({
+   day,
+   ...other
+ }) ;

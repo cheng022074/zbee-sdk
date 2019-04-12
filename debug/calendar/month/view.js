@@ -13,8 +13,8 @@
         console.log('选定日期' , year , month , day) ;
      },
 
-     load(dates){
+     load(year , month , dates){
 
-        console.log('当前月份所包含的日期' , dates) ;
+        console.log('当前月份所包含的日期' , year , month , dates) ;
      }
  }) ;
