@@ -9,6 +9,8 @@
  * 
  * @import select from ..select scoped
  * 
+ * @import getProperty from date.get.property
+ * 
  * @param {mixed} target 可提供日历显示的套件
  * 
  * @param {object} [config = {}] 初始化配置
@@ -29,13 +31,11 @@
 
  if(!selectedDate){
 
-    let date = new Date() ;
-
-    selectedDate = {
-        year:date.getFullYear(),
-        month:date.getMonth() + 1,
-        day:date.getDate()
-    }
+    selectedDate = getProperty(new Date() , [
+        'year',
+        'month',
+        'day'
+    ]) ;
  }
 
  let {

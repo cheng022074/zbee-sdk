@@ -4,6 +4,8 @@
  * 
  * @import get from date.get
  * 
+ * @import getProperty from date.get.property
+ * 
  * @import is.date
  * 
  * @param {Date} date 基准日期
@@ -14,11 +16,11 @@
 
 if(isDate(date)){
 
-   date = {
-      year:date.getFullYear(),
-      month:date.getMonth() + 1,
-      day:date.getDate()
-   } ;
+   date = getProperty(date , [
+      'year',
+      'month',
+      'day'
+   ]) ;
  }
 
  date.day -- ;
