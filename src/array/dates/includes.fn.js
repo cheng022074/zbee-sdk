@@ -27,7 +27,7 @@
         year:itemYear,
         month:itemMonth,
         day:itemDay
-    } = get(date) ;
+    } = get(date , fields) ;
 
     if(itemYear === year && itemMonth === month && itemDay === day){
 

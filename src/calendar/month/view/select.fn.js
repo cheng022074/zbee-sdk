@@ -46,7 +46,13 @@
    }
  }
 
- proxy.call('select' , count , dates[count]) ;
+ selectedDate = me.selectedDate = dates[count] ;
+
+ selectedDate.selected = true ;
+
+ proxy.call('select' , count , selectedDate) ;
+
+ 
 
 
 

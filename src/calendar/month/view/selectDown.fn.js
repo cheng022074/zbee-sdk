@@ -40,8 +40,8 @@
         date = nextDate(date) ;
 
         let {
-            year,
-            month,
+            year:nextYearValue,
+            month:nextMonthValue,
             day
         } = getProperty(date , [
             'year',
@@ -49,7 +49,12 @@
             'day'
         ]) ;
 
-        select(year , month , day) ;
+        if(nextMonthValue !== month){
+
+            nextMonth() ;
+        }
+
+        select(nextYearValue , nextMonthValue , day) ;
     }
  }
 

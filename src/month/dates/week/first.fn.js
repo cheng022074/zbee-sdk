@@ -20,7 +20,7 @@
  */
 
 let days = getDays(weekStartDay),
-    date = getFirstDate(),
+    date = getFirstDate(year , month),
     firstIndex = days.indexOf(date.getDay()),
     result = [
         date
