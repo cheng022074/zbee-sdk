@@ -44,5 +44,8 @@
     "url-join": "^4.0.0",
     "xlsx": "^0.12.9"
   },
-  "private": false
+  "private": false,
+  "devDependencies": {
+    "zbee": "^0.0.70"
+  }
 }
