@@ -5,7 +5,7 @@
  * 
  * @import next from month.next
  * 
- * @import getProperty from date.get.property
+ * @import getProperty from date.get.properties
  * 
  * @import selectMonth from ..selectMonth scoped
  * 

@@ -2,6 +2,10 @@
     "constructor":true,
     "methods":[
         "select",
+        "selectLeft",
+        "selectRight",
+        "selectUp",
+        "selectDown",
         "selectMonth",
         "selectNextMonth",
         "selectPrevMonth",

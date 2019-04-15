@@ -4,11 +4,13 @@
  * 
  * @import get from date.get
  * 
- * @import getProperty from date.get.property
+ * @import getProperty from date.get.properties
  * 
  * @import is.date
  * 
  * @param {Date | object} date 基准日期
+ * 
+ * @param {number} [step = 1] 步长
  * 
  * @return {Date} 移过的日期 
  * 
@@ -28,7 +30,7 @@
    ...other
  } = date ;
 
- day ++ ;
+ day += step ;
 
  return get({
    day,

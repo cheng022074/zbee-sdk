@@ -16,15 +16,11 @@
  let me = this,
  {
     proxy,
-    multiSelectMode,
     selectedDate,
     dates
  } = me;
 
- if(multiSelectMode === false){
-
-   deselect() ;
- }
+ deselect() ;
 
  let count = -1 ;
 

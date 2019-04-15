@@ -9,7 +9,7 @@
  * 
  * @import select from ..select scoped
  * 
- * @import getProperty from date.get.property
+ * @import getProperty from date.get.properties
  * 
  * @param {number} year 年份
  * 
@@ -19,7 +19,9 @@
 
  let me = this,
  {
-    selectedDate
+    selectedDate,
+    weekStartDay,
+    viewConfig
  } = me;
 
  deselect() ;
@@ -29,7 +31,10 @@
         'month',
         'day'
      ],
-     dates = me.dates = getDates(year , month).map(date =>{
+     dates = me.dates = getDates(year , month , {
+        ...viewConfig,
+        weekStartDay
+     }).map(date =>{
 
         let {
             year:itemYear,

@@ -4,7 +4,7 @@
  * 
  * @import get from date.get
  * 
- * @import getProperty from date.get.property
+ * @import getProperty from date.get.properties
  * 
  * @import is.date
  * 

@@ -35,7 +35,7 @@
             "object.get"
         ]
     },
-    "support-xy-sdk":{
+    "xy":{
         "type":"library",
         "classes":[
             "array.remove",
