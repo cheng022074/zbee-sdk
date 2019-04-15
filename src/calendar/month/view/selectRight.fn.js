@@ -20,7 +20,8 @@
 
 let {
     selectedDate,
-    weekStartDay
+    weekStartDay,
+    month
  } = this ;
 
  if(selectedDate){
@@ -36,8 +37,8 @@ let {
         date = nextDate(date) ;
 
         let {
-            year,
-            month,
+            year:nextYearValue,
+            month:nextMonthValue,
             day
         } = getProperty(date , [
             'year',
@@ -45,6 +46,11 @@ let {
             'day'
         ]) ;
 
-        select(year , month , day) ;
+        if(nextMonthValue !== month){
+
+            nextMonth() ;
+        }
+
+        select(nextYearValue , nextMonthValue , day) ;
     }
  }

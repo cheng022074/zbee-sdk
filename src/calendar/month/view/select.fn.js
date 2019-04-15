@@ -5,6 +5,10 @@
  * 
  * @import deselect from ..deselect scoped
  * 
+ * @import getLastDate from month.date.last
+ * 
+ * @import get from date.get.properties
+ * 
  * @param {number} year 选定年份
  * 
  * @param {number} month 选定月份
@@ -21,6 +25,17 @@
  } = me;
 
  deselect() ;
+
+ let {
+    day:lastDay
+ } = get(getLastDate(year , month) , [
+    'day'
+ ]) ;
+
+ if(day > lastDay){
+
+   day = lastDay ;
+ }
 
  let count = -1 ;
 
@@ -45,12 +60,6 @@
       break ;
    }
  }
-
- selectedDate = me.selectedDate = dates[count] ;
-
- selectedDate.selected = true ;
-
- proxy.call('select' , count , selectedDate) ;
 
  
 
