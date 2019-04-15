@@ -13,4 +13,4 @@
  * 
  */
 
-window.removeEventListener(getEventName(event) , fn) ;
+document.removeEventListener(getEventName(event) , fn) ;

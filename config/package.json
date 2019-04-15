@@ -53,7 +53,9 @@
             "array.from",
             "math.region.rect",
             "canvas.draw.line.bezierCurve",
-            "calendar.month.view"
+            "calendar.month.view",
+            "browser.global.listener.*",
+            "browser.event.key"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

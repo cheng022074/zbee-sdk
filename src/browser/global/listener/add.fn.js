@@ -13,4 +13,4 @@
  * 
  */
 
- window.addEventListener(getEventName(event) , fn) ;
+ document.addEventListener(getEventName(event) , fn) ;
