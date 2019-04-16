@@ -18,6 +18,8 @@
  * 
  * @param {string} [config.fields] 读取数据记录的字段项
  * 
+ * @param {function} [config.create] 基于构建出来的数据进行构建对象
+ * 
  * @param {boolean} [config.multi = true] 如果设置为 true , 则返回数组，设置为 false , 则返回第一条记录 
  * 
  * @return {function} 读取器所生成的解析函数
@@ -27,7 +29,8 @@
  function main({
    rootProperty,
    fields,
-   multi
+   multi,
+   create:createFn
  }){
 
     return  (new Function('data' , `
@@ -35,7 +38,9 @@
       var get = include('object.get'),
           from = include('array.from'),
           isEmpty = include('is.empty'),
-          converts = this;
+          me = this,
+          converts = me.converts,
+          createFn = me.createFn;
 
       ${generate_get_root_data(rootProperty)}
 
@@ -51,12 +56,15 @@
 
          ${generate_get_field_data(fields)}
 
-         result.push(item) ;
+         result.push(createFn(item)) ;
       }
 
       ${generate_result(multi)}
 
-    `)).bind(generate_get_field_converts(fields));
+    `)).bind({
+       converts:generate_get_field_converts(fields),
+       createFn:createFn || (data => data)
+    });
  }
 
  function generate_result(multi){

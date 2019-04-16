@@ -19,7 +19,7 @@
  * 
  * @param {string} [config.childrenProperty = 'cn'] 读取子节点的字段名称
  * 
- * @param {string} [config.childrenField = 'cn'] 存储子节点的字段名称
+ * @param {string} [config.childrenField = 'children'] 存储子节点的字段名称
  * 
  * @param {string} [config.fields] 读取数据记录的字段项
  * 
