@@ -4,13 +4,9 @@
  * 
  * @import get from object.get
  * 
- * @import getReader from data.reader
- * 
  * @import is.string
  * 
  * @import isObject from is.object.simple
- * 
- * @import object.get
  * 
  * @import array.from
  * 
@@ -22,11 +18,9 @@
  * 
  * @param {string} [config.fields] 读取数据记录的字段项
  * 
- * @param {boolean} [config.multi = true] 如果设置为 true , 则返回数值，设置为 false , 则返回第一条记录 
+ * @param {boolean} [config.multi = true] 如果设置为 true , 则返回数组，设置为 false , 则返回第一条记录 
  * 
  * @return {function} 读取器所生成的解析函数
- * 
- * @scoped
  * 
  */
 
@@ -84,14 +78,19 @@
 
    let converts = {} ;
 
-   for(let {
-      name,
-      convert
-   } of fields){
+   for(let field of fields){
 
-      if(convert){
+      if(isObject(field)){
 
-         converts[name] = convert ;
+         let {
+            name,
+            convert
+         } = field ;
+
+         if(convert){
+
+            converts[name] = convert ;
+         }
       }
    }
 

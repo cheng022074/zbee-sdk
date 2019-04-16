@@ -48,7 +48,8 @@
             "calendar.month.view",
             "browser.global.listener.*",
             "browser.event.key",
-            "message.address.react"
+            "message.address.react",
+            "os.name"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
