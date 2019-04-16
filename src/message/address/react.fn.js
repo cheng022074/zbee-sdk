@@ -6,6 +6,8 @@
  * 
  * @import get from id.generate
  * 
+ * @param {ReactDOM} ReactDOM ReactDOM 引用
+ * 
  * @param {React.Component} reactClass 继承的 React 组件类
  * 
  * @param {string} [address] 组件注册的消息地址
@@ -22,20 +24,34 @@
         let me = this,
         {
             address:currentAddress
-        } = this.props ;
+        } = me.props ;
 
         currentAddress = currentAddress || address || get('address-');
 
-        let messageAddress = center.register(currentAddress) ;
+        let {
+            $address
+        } = me ;
 
-        let isBind = messageAddress.bind(me) ;
+        if($address){
 
-        if(!isBind){
+            console.error('已拥有消息地址' , $address.name , currentAddress) ;
 
-            throw new Error(`${reactClass.name} 尝试注册已被占用的消息地址 ${currentAddress}`) ;
+        }else{
+
+            let messageAddress = center.register(currentAddress),
+                isBind = messageAddress.bind(me) ;
+
+            if(!isBind){
+
+                console.error('消息地址已被注册' , currentAddress ,  ReactDOM.findDOMNode(me) , ReactDOM.findDOMNode(messageAddress.target)) ;
+
+            }else{
+
+                me.$address = messageAddress ;
+
+            }
+            
         }
-
-        me.$address = messageAddress ;
 
         if (super.componentDidMount) {
 
@@ -51,13 +67,16 @@
             super.componentWillUnmount();
         }
 
-        let {
+        let me = this,
+        {
             $address:address
-        } = this ;
+        } = me ;
 
         if(address){
 
             address.unbind() ;
+
+            delete me.$address ; 
         }
     }
 

@@ -1,13 +1,4 @@
 {
-    "fast-react":{
-        "type":"webpack",
-        "classes":[
-            "message.address.react"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\PRODUCT\\HQ\\PC"
-        ]
-    },
     "vue":{
         "type":"webpack",
         "classes":[
@@ -38,6 +29,7 @@
     "xy":{
         "type":"library",
         "classes":[
+            "message.address.react",
             "array.remove",
             "array.remove.all",
             "data.connection.*",
@@ -55,7 +47,8 @@
             "canvas.draw.line.bezierCurve",
             "calendar.month.view",
             "browser.global.listener.*",
-            "browser.event.key"
+            "browser.event.key",
+            "message.address.react"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
