@@ -13,8 +13,11 @@
 
  clear() ;
 
- let me = this,
- rootNode = me.read(data);
+ let me = this ;
+
+ me.loading = true ;
+
+ let rootNode = me.read(data);
 
  if(rootNode){
 
@@ -32,3 +35,5 @@
     proxy.call('load' , getData(nodes)) ;
     
  }
+
+ me.loading = false ;

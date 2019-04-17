@@ -15,6 +15,10 @@ let tree = createTree({
         console.log('加载后的所有节点' , data) ;
 
     },
+    insert(data){
+
+        console.log(data) ;
+    },
     clear(){
 
         console.log('清除所有节点') ;

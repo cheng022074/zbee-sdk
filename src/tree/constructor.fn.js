@@ -42,3 +42,5 @@
        tree:me
     }
  })) ;
+
+ me.loading = false ;

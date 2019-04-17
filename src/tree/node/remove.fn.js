@@ -10,7 +10,8 @@
  */
 
  let {
-    $children
+    $children,
+    tree
  } = this ;
 
  if($children.includes(node)){
@@ -18,4 +19,6 @@
    remove($children , node) ;
 
    delete node.parentNode ;
+
+   tree.remove(node) ;
  }

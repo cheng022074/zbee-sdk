@@ -3,9 +3,8 @@
     "methods":[
         "clear",
         "load",
-        {
-            "name":"syncNode",
-            "impl":".tree.node.sync"
-        }
+        "indexOf",
+        "append",
+        "remove"
     ]
 }

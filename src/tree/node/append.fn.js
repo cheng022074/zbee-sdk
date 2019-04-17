@@ -24,7 +24,9 @@
 
  if(!$children.includes(node)){
 
-    $children.push(node) ;
+   $children.push(node) ;
 
-    node.parentNode = me ;
+   node.parentNode = me ;
+
+   tree.append(me , node) ;
  }

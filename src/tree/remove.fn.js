@@ -2,21 +2,18 @@
 /**
  * 
  * 移除树型节点
- * 
- * @import unwatch from .node.unwatch scoped
- * 
- * @param {tree.Node} removeNode 节点配置
+ *
+ * @param {tree.Node} node 节点配置
  * 
  */
 
  let me = this,
  {
-    nodes
+    nodes,
+    proxy
  } = me,
- index = nodes.indexOf(removeNode);
+ index = me.indexOf(node);
 
- remove(nodes , removeNode) ;
+ remove(nodes , node) ;
 
- unwatch(removeNode) ;
-
- me.emit('remove' , index , removeNode.data) ;
+ proxy.call('remove' , index) ;
