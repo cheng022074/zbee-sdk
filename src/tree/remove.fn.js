@@ -1,11 +1,11 @@
 
 /**
  * 
- * 删除子节点
+ * 移除树型节点
  * 
- * @import remove from array.remove
+ * @import unwatch from .node.unwatch scoped
  * 
- * @param {tree.Node} removeNode 子节点
+ * @param {tree.Node} removeNode 节点配置
  * 
  */
 
@@ -16,5 +16,7 @@
  index = nodes.indexOf(removeNode);
 
  remove(nodes , removeNode) ;
+
+ unwatch(removeNode) ;
 
  me.emit('remove' , index , removeNode.data) ;

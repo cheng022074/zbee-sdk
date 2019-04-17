@@ -18,7 +18,7 @@
  * 
  * @param {string} [config.rootProperty = '.'] 读取数据的根
  * 
- * @param {string} [config.fields = {}] 读取数据记录的字段项
+ * @param {string} [config.fields = []] 读取数据记录的字段项
  * 
  * @param {function} [config.create] 基于构建出来的数据进行构建对象
  * 

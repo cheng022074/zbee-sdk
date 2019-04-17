@@ -5,6 +5,7 @@
     "class":true,
     "properties":{
         "children":true,
+        "descendants":"get",
         "data":"get"
     },
     "methods":[

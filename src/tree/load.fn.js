@@ -20,9 +20,14 @@
 
     me.rootNode = rootNode ;
 
-    me.emit('load' , getData(me.nodes)) ;
+    let {
+      nodes
+    } = me ;
 
- }else{
+    nodes.push(rootNode) ;
 
-    clear() ;
+    nodes.push(...rootNode.descendants) ;
+
+    me.emit('load' , getData(nodes)) ;
+
  }

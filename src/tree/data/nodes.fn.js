@@ -11,8 +11,6 @@
  * 
  */
 
-nodes = from(nodes) ;
-
 let result = [] ;
 
 for(let node of nodes){

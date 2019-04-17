@@ -5,24 +5,26 @@
  * 
  * @import createRead from tree.reader.json
  * 
- * @import create from ..create scoped
- * 
- * @param {class} Node 构建树型节点类  
+ * @import getNodeClass from tree.node scoped
  * 
  * @param {object} [readerConfig = {}] 读取器配置
  * 
  */
 
- let me = this ;
+ let me = this,
+ Node = getNodeClass();
 
  me.nodes = [] ;
 
- me.Node = Node ;
+ me.read = createRead(Object.assign({
+   create(config){
 
- me.read = createRead(Object.assign({} , readerConfig , {
-    fields:[
-       'id'
-    ],
-    childrenField:'children',
-    create
+      return new Node(config) ;
+
+   },
+   fields:[
+      'id'
+   ]
+ } , readerConfig , {
+    childrenField:'children'
  })) ;
