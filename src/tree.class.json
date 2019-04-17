@@ -3,6 +3,9 @@
     "extendSource":"node",
     "constructor":true,
     "methods":[
-        "load"
+        "load",{
+            "name":"createNode",
+            "impl":".tree.node.create"
+        }
     ]
 }

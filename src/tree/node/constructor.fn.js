@@ -9,6 +9,8 @@
  * 
  * @param {string} [config.id] 节点编号
  * 
+ * @param {Tree} [config.tree] 树型结构引用
+ * 
  */
 
  let me = this ;
@@ -16,3 +18,5 @@
  me.id = id || generate('tree-node-') ;
 
  me.$children = [] ;
+
+ me.tree = tree ;

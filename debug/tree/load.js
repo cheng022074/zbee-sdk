@@ -13,7 +13,7 @@ let tree = createTree(getNode()) ;
 
 tree.addListener('load' , nodes =>{
 
-    console.log('新节点' , nodes) ;
+    console.log('加载' , nodes) ;
 
 }) ;
 
@@ -22,6 +22,9 @@ tree.load({
  cn:[{
      id:'child1'
  },{
-    cn:{}
+    cn:[
+        {},
+        {}
+    ]
  }]
 }) ;
