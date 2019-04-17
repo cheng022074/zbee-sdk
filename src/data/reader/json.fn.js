@@ -6,6 +6,8 @@
  * 
  * @import is.string
  * 
+ * @import is.function
+ * 
  * @import isObject from is.object.simple
  * 
  * @import array.from
@@ -16,9 +18,11 @@
  * 
  * @param {string} [config.rootProperty = '.'] 读取数据的根
  * 
- * @param {string} [config.fields] 读取数据记录的字段项
+ * @param {string} [config.fields = {}] 读取数据记录的字段项
  * 
  * @param {function} [config.create] 基于构建出来的数据进行构建对象
+ * 
+ * @param {function} [config.createExtraParams = {}] 基于构建对象函数附加参数
  * 
  * @param {boolean} [config.multi = true] 如果设置为 true , 则返回数组，设置为 false , 则返回第一条记录 
  * 
@@ -26,11 +30,16 @@
  * 
  */
 
+ const {
+   assign
+ } = Object ;
+
  function main({
    rootProperty,
    fields,
    multi,
-   create:createFn
+   create:createFn,
+   createExtraParams
  }){
 
     return  (new Function('data' , `
@@ -63,7 +72,16 @@
 
     `)).bind({
        converts:generate_get_field_converts(fields),
-       createFn:createFn || (data => data)
+       createFn:data =>{
+
+         if(isFunction(createFn)){
+
+            return createFn(assign(data , createExtraParams)) ;
+         }
+
+         return data ;
+
+       }
     });
  }
 

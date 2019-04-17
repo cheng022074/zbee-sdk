@@ -21,6 +21,10 @@
  * 
  * @param {string} [config.childrenField = 'children'] 存储子节点的字段名称
  * 
+ * @param {function} [config.create] 构建对象函数
+ * 
+ * @param {function} [config.createExtraParams] 基于构建对象函数附加参数
+ * 
  * @param {string} [config.fields] 读取数据记录的字段项
  * 
  * @return {function} 读取器所生成的解析函数
@@ -31,11 +35,15 @@
     rootProperty,
     childrenProperty,
     childrenField,
-    fields
+    fields,
+    create,
+    createExtraParams
  }){
 
     const read = getReader({
         multi:false,
+        create,
+        createExtraParams,
         fields
     }),
     parse = children =>{

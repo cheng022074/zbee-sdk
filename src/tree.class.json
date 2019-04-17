@@ -1,0 +1,8 @@
+{
+    "extend":"events",
+    "extendSource":"node",
+    "constructor":true,
+    "methods":[
+        "load"
+    ]
+}
