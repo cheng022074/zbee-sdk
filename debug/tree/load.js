@@ -11,9 +11,9 @@
 
 let tree = createTree(getNode()) ;
 
-tree.addListener('create' , node =>{
+tree.addListener('load' , nodes =>{
 
-    console.log('新节点' , node) ;
+    console.log('新节点' , nodes) ;
 
 }) ;
 

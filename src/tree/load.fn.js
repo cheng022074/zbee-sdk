@@ -3,12 +3,26 @@
  * 
  * 重新载入树形数据
  * 
- * @param {mixed} data 树型数据
+ * @import getData from .data.nodes
  * 
- * @return {mixed} 返回说明 
+ * @import clear from ..clear scoped
+ * 
+ * @param {mixed} data 树型数据
  * 
  */
 
- let me = this ;
+ clear() ;
 
- me.rootNode = me.read(data) ;
+ let me = this,
+ rootNode = me.read(data);
+
+ if(rootNode){
+
+    me.rootNode = rootNode ;
+
+    me.emit('load' , getData(me.nodes)) ;
+
+ }else{
+
+    clear() ;
+ }

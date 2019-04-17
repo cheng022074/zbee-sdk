@@ -15,11 +15,12 @@
 
  let me = this,
  {
-    Node
+    Node,
+    nodes
  } = me ;
 
  let node = new Node(config) ;
 
- me.emit('create' , node.data) ;
+ me.nodes.push(node) ;
 
  return node ;
