@@ -3,6 +3,7 @@
     "extendSource":"node",
     "constructor":true,
     "methods":[
+        "clear",
         "load"
     ]
 }
