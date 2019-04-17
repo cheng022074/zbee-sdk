@@ -14,6 +14,8 @@
  * 
  * @import is.empty
  * 
+ * @import assign from object.assign.if
+ * 
  * @param {object} [config = {}] 读取参数设置
  * 
  * @param {string} [config.rootProperty = '.'] 读取数据的根
@@ -29,10 +31,6 @@
  * @return {function} 读取器所生成的解析函数
  * 
  */
-
- const {
-   assign
- } = Object ;
 
  function main({
    rootProperty,
