@@ -32,7 +32,7 @@
 
     nodes.push(...rootNode.descendants) ;
 
-    proxy.call('load' , getData(nodes)) ;
+    proxy.call('load' , me.data) ;
     
  }
 

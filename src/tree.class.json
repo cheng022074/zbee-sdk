@@ -1,9 +1,11 @@
 {
     "constructor":true,
+    "properties":{
+        "data":"get"
+    },
     "methods":[
         "clear",
         "load",
-        "indexOf",
         "append",
         "remove"
     ]

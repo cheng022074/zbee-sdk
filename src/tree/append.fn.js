@@ -21,7 +21,7 @@
     proxy
  } = me,
  {
-   last:lastNode
+   lastLeaf:lastNode
  } = parentNode,
  index;
 

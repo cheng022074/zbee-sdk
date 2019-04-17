@@ -8,7 +8,10 @@
         "isLeaf":"get",
         "isRoot":"get",
         "first":"get",
-        "last":"get"
+        "last":"get",
+        "lastLeaf":{
+            "get":"tree.node.last.leaf"
+        }
     },
     "methods":[
         "append",

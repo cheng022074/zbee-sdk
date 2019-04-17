@@ -17,7 +17,7 @@ let tree = createTree({
     },
     insert(data){
 
-        console.log(data) ;
+        console.log('新添节点' , data) ;
     },
     clear(){
 
@@ -38,3 +38,9 @@ tree.load({
     ]
  }]
 }) ;
+
+tree.rootNode.append({
+    id:'node'
+}) ;
+
+console.log(tree.data) ;

@@ -16,9 +16,9 @@
 
  if($children.includes(node)){
 
+   tree.remove(node) ;
+
    remove($children , node) ;
 
    delete node.parentNode ;
-
-   tree.remove(node) ;
  }

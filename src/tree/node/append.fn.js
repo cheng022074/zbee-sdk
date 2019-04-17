@@ -3,7 +3,9 @@
  * 
  * 添加子节点
  * 
- * @param {tree.node} node 子节点
+ * @import isObject from is.object.simple
+ * 
+ * @param {mixed} node 子节点
  * 
  */
 
@@ -11,8 +13,19 @@
  {
     $children,
     tree
- } = me,
- {
+ } = me ;
+
+ if(isObject(node)){
+
+    node = tree.read(node) ;
+
+    if(!node){
+
+      return ;
+    }
+ }
+
+ let {
     parentNode
  } = node;
 
@@ -24,9 +37,9 @@
 
  if(!$children.includes(node)){
 
-   $children.push(node) ;
+   tree.append(me , node) ;
 
    node.parentNode = me ;
 
-   tree.append(me , node) ;
+   $children.push(node) ;
  }
