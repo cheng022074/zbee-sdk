@@ -2,7 +2,7 @@
  * 
  * 获取对象的键值组合
  * 
- * @import is.object
+ * @import isObject from is.object.simple
  * 
  * @param {object} data 对象
  * 
