@@ -1,9 +1,11 @@
 {
-    "extend":"events",
-    "extendSource":"node",
     "constructor":true,
     "methods":[
         "clear",
-        "load"
+        "load",
+        {
+            "name":"syncNode",
+            "impl":".tree.node.sync"
+        }
     ]
 }

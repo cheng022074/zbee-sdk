@@ -7,6 +7,10 @@
  * 
  * @import getNodeClass from tree.node
  * 
+ * @import getProxy from object.proxy
+ * 
+ * @param {mixed} target 树所绑定的对象
+ * 
  * @param {object} [config = {}] 配置
  * 
  * @param {object} [config.reader = {}] 读取器配置
@@ -18,6 +22,8 @@
  let me = this;
  
  Node = me.Node = Node || getNodeClass() ;
+
+ me.proxy = getProxy(target) ;
 
  me.nodes = [] ;
 

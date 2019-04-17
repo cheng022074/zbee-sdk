@@ -16,7 +16,7 @@ for(let child of children){
 
     nodes.push(child) ;
 
-    if(child.hasChildNodes()){
+    if(child.hasNodes()){
 
         nodes.push(...child.descendants) ;
     }

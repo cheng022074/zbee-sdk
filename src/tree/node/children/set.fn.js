@@ -5,9 +5,9 @@
  * 
  * @import from from array.from
  * 
- * @import removeChild from ....removeChild scoped
+ * @import remove from ....remove scoped
  * 
- * @import appendChild from ....appendChild scoped
+ * @import append from ....append scoped
  * 
  * @param {array} children 子节点集合
  * 
@@ -26,7 +26,7 @@
 
    for(let childNode of childNodes){
 
-      removeChild(childNode) ;
+      remove(childNode) ;
    }
  }
 
@@ -35,7 +35,7 @@
 
    for(let childNode of childNodes){
 
-      appendChild(childNode) ;
+      append(childNode) ;
    }
  }
 

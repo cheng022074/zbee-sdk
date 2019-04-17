@@ -7,9 +7,9 @@
         "data":"get"
     },
     "methods":[
-        "appendChild",
-        "removeChild",
-        "hasChildNodes",
+        "append",
+        "remove",
+        "hasNodes",
         "destroy"
     ]
 }

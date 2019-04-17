@@ -9,7 +9,8 @@
 
  let me = this,
  {
-     nodes
+     nodes,
+     proxy
  } = me ;
 
  for(let node of nodes){
@@ -19,4 +20,6 @@
 
  nodes.length = 0 ;
 
- me.emit('clear') ;
+ delete me.rootNode ;
+
+ proxy.call('clear') ;

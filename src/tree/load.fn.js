@@ -21,13 +21,14 @@
     me.rootNode = rootNode ;
 
     let {
-      nodes
+      nodes,
+      proxy
     } = me ;
 
     nodes.push(rootNode) ;
 
     nodes.push(...rootNode.descendants) ;
 
-    me.emit('load' , getData(nodes)) ;
-
+    proxy.call('load' , getData(nodes)) ;
+    
  }

@@ -9,12 +9,16 @@
  * 
  */
 
-let tree = createTree(getNode()) ;
+let tree = createTree({
+    load(data){
 
-tree.addListener('load' , nodes =>{
+        console.log('加载后的所有节点' , data) ;
 
-    console.log('加载' , nodes) ;
+    },
+    clear(){
 
+        console.log('清除所有节点') ;
+    }
 }) ;
 
 tree.load({
@@ -28,3 +32,9 @@ tree.load({
     ]
  }]
 }) ;
+
+console.log('根节点' , tree.rootNode , tree.nodes) ;
+
+tree.clear() ;
+
+console.log('根节点' , tree.rootNode , tree.nodes) ;
