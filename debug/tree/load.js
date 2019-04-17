@@ -19,6 +19,11 @@ let tree = createTree({
 
         console.log('新添节点' , data) ;
     },
+    remove(index){
+
+        console.log('删除节点' , index) ;
+    },
+    
     clear(){
 
         console.log('清除所有节点') ;
@@ -39,8 +44,12 @@ tree.load({
  }]
 }) ;
 
-tree.rootNode.append({
+let node = tree.rootNode.append({
     id:'node'
 }) ;
+
+console.log(tree.data) ;
+
+tree.rootNode.remove(node) ;
 
 console.log(tree.data) ;

@@ -2,6 +2,8 @@
 /**
  * 
  * 移除树型节点
+ * 
+ * @import remove from array.remove
  *
  * @param {tree.Node} node 节点配置
  * 
@@ -12,7 +14,7 @@
     nodes,
     proxy
  } = me,
- index = me.indexOf(node);
+ index = nodes.indexOf(node);
 
  remove(nodes , node) ;
 

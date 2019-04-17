@@ -42,4 +42,6 @@
    node.parentNode = me ;
 
    $children.push(node) ;
+
+   return node ;
  }
