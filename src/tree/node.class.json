@@ -11,6 +11,9 @@
         "last":"get",
         "lastLeaf":{
             "get":"tree.node.last.leaf"
+        },
+        "leafDescendants":{
+            "get":"tree.node.descendants.leaf"
         }
     },
     "methods":[
