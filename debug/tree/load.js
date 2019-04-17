@@ -28,13 +28,9 @@ tree.load({
  },{
     cn:[
         {},
-        {}
+        {
+            id:'ccc'
+        }
     ]
  }]
 }) ;
-
-console.log('根节点' , tree.rootNode , tree.nodes) ;
-
-tree.clear() ;
-
-console.log('根节点' , tree.rootNode , tree.nodes) ;

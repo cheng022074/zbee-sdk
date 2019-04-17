@@ -9,7 +9,8 @@
 
  let me = this,
  {
-    $children
+    $children,
+    tree
  } = me,
  {
     parentNode

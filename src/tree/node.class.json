@@ -4,12 +4,15 @@
     "properties":{
         "children":true,
         "descendants":"get",
-        "data":"get"
+        "data":"get",
+        "isLeaf":"get",
+        "isRoot":"get",
+        "first":"get",
+        "last":"get"
     },
     "methods":[
         "append",
         "remove",
-        "hasNodes",
         "destroy"
     ]
 }

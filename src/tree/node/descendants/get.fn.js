@@ -16,7 +16,7 @@ for(let child of children){
 
     nodes.push(child) ;
 
-    if(child.hasNodes()){
+    if(!child.isLeaf){
 
         nodes.push(...child.descendants) ;
     }
