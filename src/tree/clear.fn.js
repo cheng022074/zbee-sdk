@@ -24,4 +24,4 @@
 
  me.nodes.length = 0 ;
 
- proxy.call('clear') ;
+ proxy.call('remove' , 1) ;

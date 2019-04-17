@@ -22,11 +22,6 @@ let tree = createTree({
     remove(index){
 
         console.log('删除节点' , index) ;
-    },
-    
-    clear(){
-
-        console.log('清除所有节点') ;
     }
 }) ;
 
