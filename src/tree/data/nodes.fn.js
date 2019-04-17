@@ -17,7 +17,7 @@ let result = [] ;
 
 for(let node of nodes){
 
-result.push(node.data) ;
+    result.push(node.data) ;
 }
 
 return result ;

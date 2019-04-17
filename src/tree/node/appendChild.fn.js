@@ -10,7 +10,16 @@
  let me = this,
  {
     $children
- } = me ;
+ } = me,
+ {
+    parentNode
+ } = node;
+
+ if(parentNode){
+
+   parentNode.removeChild(node) ;
+   
+ }
 
  if(!$children.includes(node)){
 

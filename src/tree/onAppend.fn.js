@@ -1,16 +1,17 @@
 
 /**
  * 
- * 添加新节点
+ * 增加子节点
  * 
- * @param {tree.Node} parentNode 父节点
- * 
- * @param {tree.Node} appendNode 添加节点
+ * @param {tree.Node} appendNode 子节点
  * 
  */
 
- let me = this ;
+let me = this,
+{
+   nodes
+} = me ;
 
- me.nodes.push(appendNode) ;
+nodes.push(appendNode) ;
 
- me.emit('append' , parentNode.data , appendNode.data) ;
+me.emit('append' , appendNode.data) ;

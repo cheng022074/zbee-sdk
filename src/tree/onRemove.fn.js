@@ -1,12 +1,20 @@
 
 /**
  * 
- * 函数实现说明
+ * 删除子节点
  * 
- * @param {mixed} data 参数说明
+ * @import remove from array.remove
  * 
- * @return {mixed} 返回说明 
+ * @param {tree.Node} removeNode 子节点
  * 
  */
 
- // 代码实现
+ let me = this,
+ {
+    nodes
+ } = me,
+ index = nodes.indexOf(removeNode);
+
+ remove(nodes , removeNode) ;
+
+ me.emit('remove' , index , removeNode.data) ;

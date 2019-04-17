@@ -9,7 +9,7 @@
  * 
  * @param {object} config 节点配置
  * 
- * @return {tree.node}  
+ * @return {tree.Node}  
  * 
  */
 
