@@ -18,6 +18,4 @@
    remove($children , node) ;
 
    delete node.parentNode ;
-
-   me.emit('remove' , me , node) ;
  }

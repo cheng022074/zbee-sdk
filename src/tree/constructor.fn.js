@@ -16,22 +16,22 @@
  */
 
  let me = this;
-
- me.Node = Node || getNodeClass() ;
+ 
+ Node = me.Node = Node || getNodeClass() ;
 
  me.nodes = [] ;
 
  me.read = createRead(Object.assign({
    fields:[
       'id'
-   ]
- } , readerConfig , {
-    childrenField:'children',
-    create(config){
+   ],
+   create(config){
 
       return new Node(config) ;
 
-   },
+   }
+ } , reader , {
+    childrenField:'children',
     createExtraParams:{
        tree:me
     }

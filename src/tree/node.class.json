@@ -1,6 +1,4 @@
 {
-    "extend":"events",
-    "extendSource":"node",
     "constructor":true,
     "class":true,
     "properties":{

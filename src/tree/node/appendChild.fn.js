@@ -26,6 +26,4 @@
     $children.push(node) ;
 
     node.parentNode = me ;
-
-    me.emit('append' , me , node) ;
  }
