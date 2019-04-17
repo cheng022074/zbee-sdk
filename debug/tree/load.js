@@ -53,3 +53,7 @@ console.log(tree.data) ;
 tree.rootNode.remove(node) ;
 
 console.log(tree.data) ;
+
+console.log(tree.rootNode.leafDescendants.length)
+
+tree.load({}) ;

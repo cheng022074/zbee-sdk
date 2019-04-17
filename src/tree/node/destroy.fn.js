@@ -8,12 +8,12 @@
 
  let me = this,
  {
-     rootNode
+     parentNode
  } = me ;
 
- if(rootNode){
+ if(parentNode){
 
-    rootNode.remove(me) ;
+    parentNode.remove(me) ;
  }
 
 

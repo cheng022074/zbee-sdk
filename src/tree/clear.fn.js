@@ -13,13 +13,15 @@
      proxy
  } = me ;
 
+ nodes = from(nodes) ;
+
  for(let node of nodes){
 
     node.destroy() ;
  }
 
- nodes.length = 0 ;
-
  delete me.rootNode ;
+
+ me.nodes.length = 0 ;
 
  proxy.call('clear') ;
