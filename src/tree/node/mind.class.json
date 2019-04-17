@@ -1,4 +1,0 @@
-{
-    "extend":"tree.node",
-    "constructor":true
-}

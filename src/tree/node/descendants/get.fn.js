@@ -7,10 +7,20 @@
  * 
  */
 
+let me = this,
+{
+    $descendants
+} = me ; 
+
+if($descendants){
+
+    return $descendants ;
+}
+
 let nodes = [],
 {
     children
-} = this;
+} = me;
 
 for(let child of children){
 
@@ -22,5 +32,5 @@ for(let child of children){
     }
 }
 
-return nodes ;
+return me.$descendants = nodes ;
 

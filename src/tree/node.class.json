@@ -17,6 +17,8 @@
         }
     },
     "methods":[
+        "notifyDescendantNodeAdd",
+        "notifyDescendantNodeRemove",
         "append",
         "remove",
         "destroy"
