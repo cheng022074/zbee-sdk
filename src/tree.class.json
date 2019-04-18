@@ -5,6 +5,7 @@
         "data":"get"
     },
     "methods":[
+        "set",
         "clear",
         "load",
         "append",
