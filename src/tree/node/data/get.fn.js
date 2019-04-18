@@ -3,14 +3,15 @@
  * 
  * 获取节点的简单JSON数据
  * 
+ * @import copy from object.copy
+ * 
  * @return {object} JSON 数据
  * 
  */
 
- let {
-    id
- } = this ;
+ let me = this,
+ {
+    fields
+ } = me.tree;
 
- return {
-    id
- } ;
+ return copy({} , me , fields) ;

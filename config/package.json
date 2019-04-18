@@ -50,8 +50,7 @@
             "browser.event.key",
             "message.address.react",
             "os.name",
-            "tree",
-            "tree.node.mind"
+            "tree.mind"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

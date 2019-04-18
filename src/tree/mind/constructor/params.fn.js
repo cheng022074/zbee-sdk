@@ -14,7 +14,19 @@
  let [
      target,
      config
- ] = args ;
+ ] = args,
+ {
+    fields = []
+ } = config;
+
+ config.fields = [
+    'id',
+    'x',
+    'y',
+    'width',
+    'height',
+    ...fields
+ ] ;
 
  config.Node = getNode() ;
 

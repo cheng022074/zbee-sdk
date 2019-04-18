@@ -3,8 +3,9 @@
     "class":true,
     "constructor":true,
     "properties":{
-        "regionHeight":"get",
-        "data":"get"
+        "regionHeight":{
+            "get":"tree.node.mind.height.region"
+        }
     },
     "methods":[
         "layout"

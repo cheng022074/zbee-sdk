@@ -16,6 +16,8 @@
  * 
  * @import assign from object.assign.if
  * 
+ * @import getFields from data.reader.fields
+ * 
  * @param {object} [config = {}] 读取参数设置
  * 
  * @param {string} [config.rootProperty = '.'] 读取数据的根
@@ -39,6 +41,8 @@
    create:createFn,
    createExtraParams
  }){
+
+   fields = getFields(fields) ;
 
     return  (new Function('data' , `
 
@@ -106,17 +110,14 @@
 
    for(let field of fields){
 
-      if(isObject(field)){
+      let {
+         name,
+         convert
+      } = field ;
 
-         let {
-            name,
-            convert
-         } = field ;
+      if(convert){
 
-         if(convert){
-
-            converts[name] = convert ;
-         }
+         converts[name] = convert ;
       }
    }
 
@@ -133,33 +134,28 @@
 
    for(let field of fields){
 
-      if(isString(field)){
+      let {
+         name,
+         mapping,
+         convert,
+         defaultValue
+      } = field ;
 
-         result.push(`item.${field} = currentItem.${field};`) ;
+      if(convert){
 
-      }else if(isObject(field)){
+         result.push(`item.${name} = converts.${name}(currentItem);`) ;
 
-         let {
-            name,
-            mapping,
-            convert,
-            defaultValue
-         } = field ;
+      }else if(mapping){
 
-         if(convert){
-
-            result.push(`item.${name} = converts.${name}(currentItem);`) ;
-
-         }else if(mapping){
-
-            result.push(`item.${name} = get(currentItem , '${mapping}');`) ;
-         }
-
-         if(defaultValue){
-
-            result.push(`item.${name} = isEmpty(item.${name}) ? ${stringify(defaultValue)} : item.${name};`) ;
-         }
+         result.push(`item.${name} = get(currentItem , '${mapping}');`) ;
       }
+
+      if(defaultValue){
+
+         result.push(`item.${name} = isEmpty(item.${name}) ? ${stringify(defaultValue)} : item.${name};`) ;
+      }
+
+      result.push(`if(isEmpty(item.${name})){delete item.${name};}`) ;
    }
 
    return result.join('') ;

@@ -34,10 +34,14 @@ let tree = createTree({
     rootXY:{
         x:100,
         y:50
-    }
+    },
+    fields:[
+        'detail'
+    ]
 }) ;
 
 tree.load({
+    detail:'xxxx',
     cn:[{},{
         cn:{}
     }]
