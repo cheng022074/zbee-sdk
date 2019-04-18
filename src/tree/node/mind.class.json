@@ -2,6 +2,9 @@
     "extend":"tree.node",
     "class":true,
     "constructor":true,
+    "properties":{
+        "data":"get"
+    },
     "methods":[
         "layout"
     ]
