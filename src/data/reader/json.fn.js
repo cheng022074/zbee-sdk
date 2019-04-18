@@ -42,12 +42,13 @@
 
     return  (new Function('data' , `
 
-      var get = include('object.get'),
-          from = include('array.from'),
-          isEmpty = include('is.empty'),
-          me = this,
-          converts = me.converts,
-          createFn = me.createFn;
+      var me = this,
+         include = me.include,
+         converts = me.converts,
+         createFn = me.createFn,
+         get = include('object.get'),
+         from = include('array.from'),
+         isEmpty = include('is.empty');
 
       ${generate_get_root_data(rootProperty)}
 
@@ -69,6 +70,7 @@
       ${generate_result(multi)}
 
     `)).bind({
+       include,
        converts:generate_get_field_converts(fields),
        createFn:data =>{
 

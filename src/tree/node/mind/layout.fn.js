@@ -35,7 +35,7 @@
         countHeight += child.regionHeight;
     }
 
-    startY = countHeight + (length - 1) * verticalSpacing  - height / 2;
+    startY = y - (countHeight + (length - 1) * verticalSpacing) / 2  + height / 2;
 
  }else{
 
@@ -48,7 +48,7 @@
 
     child.y = startY ;
 
-    startY += child.height + verticalSpacing ;
+    startY += child.regionHeight + verticalSpacing ;
 
     child.layout() ;
 }
@@ -64,5 +64,5 @@ if(isRoot){
         last
     } = me ;
 
-    me.y = (last.y + last.height - first.y) / length + height / 2 ; 
+    me.y = first.y + (last.y + last.height - first.y) / 2 - height / 2 ; 
 }

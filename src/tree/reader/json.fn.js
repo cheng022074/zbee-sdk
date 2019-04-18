@@ -77,9 +77,11 @@
     };
 
     return (new Function('data' , `
-        var get = include('object.get'),
-            isObject = include('is.object.simple'),
-            parse = this;
+
+        var include = this.include,
+            parse = this.parse,
+            get = include('object.get'),
+            isObject = include('is.object.simple');
 
         ${generate_get_root_data(rootProperty)}
 
@@ -88,7 +90,10 @@
             return parse(data)[0] ;
         }
 
-    `)).bind(parse) ;
+    `)).bind({
+        include,
+        parse
+    }) ;
  }
 
  function generate_get_root_data(rootProperty){

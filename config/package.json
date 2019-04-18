@@ -49,7 +49,9 @@
             "browser.global.listener.*",
             "browser.event.key",
             "message.address.react",
-            "os.name"
+            "os.name",
+            "tree",
+            "tree.node.mind"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

@@ -31,23 +31,15 @@ let tree = createTree({
 } , {
     defaultNodeConfig:{
         width:100,
-        height:100
+        height:50
     },
     Node:getNode()
 }) ;
 
 tree.load({
- id:'root',
- cn:[{
-     id:'child1'
- },{
-    cn:[
-        {},
-        {
-            id:'ccc'
-        }
-    ]
- }]
+    cn:[{},{
+        cn:{}
+    }]
 }) ;
 
 let {
@@ -56,6 +48,6 @@ let {
 
 rootNode.x = 100 ;
 
-rootNode.y = 100 ;
+rootNode.y = 300 ;
 
 rootNode.layout() ;
