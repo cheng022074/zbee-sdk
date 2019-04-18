@@ -17,6 +17,8 @@
  * 
  * @param {class} [config.Node] 节点类型 
  * 
+ * @param {object} [config.defaultNodeConfig = {}] 默认的节点配置
+ * 
  */
 
  let me = this;
@@ -38,9 +40,9 @@
    }
  } , reader , {
     childrenField:'children',
-    createExtraParams:{
+    createExtraParams:Object.assign({
        tree:me
-    }
+    } , defaultNodeConfig)
  })) ;
 
  me.loading = false ;

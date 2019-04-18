@@ -20,8 +20,17 @@
     node.destroy() ;
  }
 
- delete me.rootNode ;
+ 
 
- me.nodes.length = 0 ;
+ let {
+     rootNode
+ } = me ;
 
- proxy.call('remove' , 1) ;
+ if(rootNode){
+
+    delete me.rootNode ;
+
+    me.nodes.length = 0 ;
+
+    proxy.call('remove' , 1) ;
+ }

@@ -1,11 +1,10 @@
-
 /**
  * 
  * 调试树型结构
  * 
  * @import createTree from tree
  * 
- * @import getNode from tree.node
+ * @import getNode from tree.node.mind
  * 
  */
 
@@ -23,6 +22,12 @@ let tree = createTree({
 
         console.log('删除节点' , index) ;
     }
+} , {
+    defaultNodeConfig:{
+        width:100,
+        height:100
+    },
+    Node:getNode()
 }) ;
 
 tree.load({
@@ -38,17 +43,3 @@ tree.load({
     ]
  }]
 }) ;
-
-let node = tree.rootNode.append({
-    id:'node'
-}) ;
-
-console.log(tree.data) ;
-
-tree.rootNode.remove(node) ;
-
-console.log(tree.data) ;
-
-console.log(tree.rootNode.leafDescendants.length)
-
-tree.load({}) ;

@@ -1,0 +1,8 @@
+{
+    "extend":"tree.node",
+    "class":true,
+    "constructor":true,
+    "methods":[
+        "layout"
+    ]
+}

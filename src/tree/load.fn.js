@@ -3,8 +3,6 @@
  * 
  * 重新载入树形数据
  * 
- * @import getData from .data.nodes
- * 
  * @import clear from ..clear scoped
  * 
  * @param {mixed} data 树型数据
