@@ -9,8 +9,11 @@
         "isRoot":"get",
         "first":"get",
         "last":"get",
+        "firstLeaf":{
+            "get":"tree.node.leaf.first"
+        },
         "lastLeaf":{
-            "get":"tree.node.last.leaf"
+            "get":"tree.node.leaf.last"
         },
         "leafDescendants":{
             "get":"tree.node.descendants.leaf"
