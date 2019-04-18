@@ -5,6 +5,9 @@
     "properties":{
         "regionHeight":{
             "get":"tree.node.mind.height.region"
+        },
+        "nodeRegion":{
+            "get":"tree.node.mind.region.node"
         }
     },
     "methods":[

@@ -25,6 +25,8 @@
       context[name] = styles[name] ;
     }
 
+    console.log(points) ;
+
     context.moveTo(...points.slice(0 , 2));
     
     context.bezierCurveTo(...points.slice(2));
