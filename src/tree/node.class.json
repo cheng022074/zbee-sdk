@@ -16,8 +16,12 @@
             "get":"tree.node.leaf.last"
         },
         "leafDescendants":{
-            "get":"tree.node.descendants.leaf"
-        }
+            "get":"tree.node.leaf.descendants"
+        },
+        "deepestLeaf":{
+            "get":"tree.node.leaf.deepest"
+        },
+        "floor":"get"
     },
     "methods":[
         "append",

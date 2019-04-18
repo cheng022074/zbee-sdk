@@ -12,9 +12,9 @@ let tree = createTree({
         console.log('加载后的所有节点' , data) ;
 
     },
-    layout(data){
+    layout(data , region){
 
-        console.log('布局后的所有节点' , data) ;
+        console.log('布局后的所有节点' , data , region) ;
  
 
     },

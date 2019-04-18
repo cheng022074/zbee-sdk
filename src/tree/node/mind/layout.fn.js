@@ -53,11 +53,7 @@
     child.layout() ;
 }
 
-if(isRoot){
-
-    tree.proxy.call('layout' , tree.data) ;
-
-}else if(!isLeaf){
+if(!isRoot && !isLeaf){
 
     let {
         first,
