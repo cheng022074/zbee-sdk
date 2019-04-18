@@ -1,12 +1,10 @@
 
 /**
  * 
- * 判断
+ * 判断当前节点是否为根节点
  * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
+ * @return {boolean} 如果是根节点则返回 true , 否则返回 false 
  * 
  */
 
- // 代码实现
+ return !this.parentNode ;

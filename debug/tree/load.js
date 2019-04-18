@@ -14,6 +14,12 @@ let tree = createTree({
         console.log('加载后的所有节点' , data) ;
 
     },
+    layout(data){
+
+        console.log('布局后的所有节点' , data) ;
+ 
+
+    },
     insert(data){
 
         console.log('新添节点' , data) ;
@@ -43,3 +49,13 @@ tree.load({
     ]
  }]
 }) ;
+
+let {
+    rootNode
+} = tree ;
+
+rootNode.x = 100 ;
+
+rootNode.y = 100 ;
+
+rootNode.layout() ;

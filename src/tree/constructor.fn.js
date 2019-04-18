@@ -19,6 +19,8 @@
  * 
  * @param {object} [config.defaultNodeConfig = {}] 默认的节点配置
  * 
+ * @param {object} [config.layoutConfig = {}] 树型图的布局信息
+ * 
  */
 
  let me = this;
@@ -28,6 +30,8 @@
  me.proxy = getProxy(target) ;
 
  me.nodes = [] ;
+
+ me.layoutConfig = layoutConfig ;
 
  me.read = createRead(Object.assign({
    fields:[
