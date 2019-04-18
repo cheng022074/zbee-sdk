@@ -2,9 +2,7 @@
  * 
  * 调试树型结构
  * 
- * @import createTree from tree
- * 
- * @import getNode from tree.node.mind
+ * @import createTree from tree.mind
  * 
  */
 
@@ -33,7 +31,10 @@ let tree = createTree({
         width:100,
         height:50
     },
-    Node:getNode()
+    rootXY:{
+        x:100,
+        y:50
+    }
 }) ;
 
 tree.load({
@@ -46,8 +47,4 @@ let {
     rootNode
 } = tree ;
 
-rootNode.x = 100 ;
-
-rootNode.y = 300 ;
-
-rootNode.layout() ;
+tree.layout() ;
