@@ -16,7 +16,7 @@ let {
 } = this,
 node = get(id) ;
 
-if(node){
+if(node && !node.isRoot){
 
     proxy.callIf('remove' , node.index) ;
 

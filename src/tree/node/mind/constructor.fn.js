@@ -10,3 +10,5 @@
  me.x = 0 ;
 
  me.y = 0 ;
+
+ me.selected = false ;

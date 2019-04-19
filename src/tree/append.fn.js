@@ -18,11 +18,14 @@ node = get(id) ;
 
 if(node){
 
-    node.append(config) ;
+    let newNode = node.append(config) ;
 
-    proxy.callIf('insert' , node.data , node.index) ;
+    if(newNode){
 
-    return true ;
+        proxy.callIf('insert' , node.data , node.index) ;
+
+        return true ;
+    }
 }
 
 return false ;
