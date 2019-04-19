@@ -3,15 +3,13 @@
  * 
  * 重新载入树形数据
  * 
- * @import clear from ..clear scoped
- * 
  * @param {mixed} data 树型数据
  * 
  */
 
- clear() ;
-
  let me = this ;
+
+ me.clear() ;
 
  me.loading = true ;
 
