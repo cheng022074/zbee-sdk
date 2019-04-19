@@ -16,7 +16,7 @@
 
  if($children.includes(node)){
 
-   tree.remove(node) ;
+   tree.removeQueue(node) ;
 
    remove($children , node) ;
 

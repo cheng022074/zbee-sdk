@@ -1,9 +1,10 @@
-
 /**
  * 
  * 设置节点属性
  * 
  * @import assign from object.assign
+ * 
+ * @import get from .node.get scoped
  * 
  * @param {string} id 节点编号
  * 
@@ -14,22 +15,13 @@
  */
 
  let {
-     nodes,
      proxy
  } = this,
- count = -1;
+ node = get(id) ;
 
- for(let node of nodes){
+if(node){
 
-    count ++ ;
+    assign(node , values) ;
 
-    if(node.id === id){
-
-        assign(node , values) ;
-
-        proxy.call('update' , count , node.data) ;
-
-        break ;
-    }
- }
-
+    proxy.call('update' , node.index , node.data) ;
+}

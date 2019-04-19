@@ -37,7 +37,7 @@
 
  if(!$children.includes(node)){
 
-   tree.append(me , node) ;
+   tree.appendQueue(me , node) ;
 
    node.parentNode = me ;
 
