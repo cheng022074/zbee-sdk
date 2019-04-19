@@ -3,9 +3,11 @@
     "processConstructorParams":true,
     "constructor":true,
     "methods":[
+        "clear",
         "load",
         "append",
         "remove",
+        "deselect",
         "select",
         "layout"
     ]

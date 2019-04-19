@@ -13,6 +13,17 @@
 
  if(parentNode){
 
+    let {
+        descendants
+    } = me ;
+
+    descendants = descendants.reverse() ;
+
+    for(let descendant of descendants){
+
+        descendant.destroy() ;
+    }
+
     parentNode.remove(me) ;
  }
 

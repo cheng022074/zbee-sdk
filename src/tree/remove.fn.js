@@ -7,8 +7,6 @@
  * 
  * @param {string} id 节点编号
  * 
- * @param {object} config 节点配置
- * 
  */
 
 let {

@@ -25,6 +25,7 @@
     'y',
     'width',
     'height',
+    'selected',
     ...fields
  ] ;
 
