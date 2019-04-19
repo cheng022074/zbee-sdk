@@ -3,6 +3,7 @@
     "processConstructorParams":true,
     "constructor":true,
     "methods":[
+        "load",
         "layout"
     ]
 }
