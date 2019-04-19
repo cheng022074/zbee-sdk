@@ -22,7 +22,7 @@ if(node){
 
     if(newNode){
 
-        proxy.callIf('insert' , node.data , node.index) ;
+        proxy.callIf('insert' , newNode.data , newNode.index) ;
 
         return true ;
     }

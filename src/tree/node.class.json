@@ -26,6 +26,14 @@
     },
     "methods":[
         "append",
+        {
+            "name":"insertAfter",
+            "impl":"tree.node.insert.after"
+        },
+        {
+            "name":"insertBefore",
+            "impl":"tree.node.insert.before"
+        },
         "remove",
         "destroy"
     ]

@@ -16,6 +16,10 @@
             "name":"removeQueue",
             "impl":"tree.queue.remove"
         },
+        {
+            "name":"insertQueue",
+            "impl":"tree.queue.insert"
+        },
         "append",
         {
             "name":"insertBefore",

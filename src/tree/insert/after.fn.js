@@ -1,12 +1,33 @@
 
 /**
  * 
- * 函数实现说明
+ * 在指定节点下方添加节点
  * 
- * @param {mixed} data 参数说明
+ * @param {string} id 节点编号
  * 
- * @return {mixed} 返回说明 
+ * @param {object} config 节点配置
+ * 
  * 
  */
 
- // 代码实现
+let {
+    proxy
+} = this,
+node = get(id) ;
+
+if(node && !node.isRoot){
+
+    let {
+        parentNode
+    } = node,
+    newNode = parentNode.insertAfter(config , node) ;
+
+    if(newNode){
+
+        proxy.callIf('insert' , newNode.data , newNode.index) ;
+
+        return true ;
+    }
+}
+
+return false ;
