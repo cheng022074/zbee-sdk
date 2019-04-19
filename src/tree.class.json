@@ -8,7 +8,23 @@
         "set",
         "clear",
         "load",
+        {
+            "name":"appendQueue",
+            "impl":"tree.queue.append"
+        },
+        {
+            "name":"removeQueue",
+            "impl":"tree.queue.remove"
+        },
         "append",
+        {
+            "name":"insertBefore",
+            "impl":"tree.insert.before"
+        },
+        {
+            "name":"insertAfter",
+            "impl":"tree.insert.after"
+        },
         "remove"
     ]
 }

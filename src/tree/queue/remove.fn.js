@@ -17,5 +17,3 @@
  index = nodes.indexOf(node);
 
  remove(nodes , node) ;
-
- proxy.call('remove' , index) ;

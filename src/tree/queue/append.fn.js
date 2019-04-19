@@ -35,5 +35,3 @@
  }
 
  nodes.splice(index + 1 , 0 , node) ;
- 
- proxy.call('insert' , node.data , index) ;
