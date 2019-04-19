@@ -3,27 +3,23 @@
  * 
  * 绘制贝赛尔曲线
  * 
+ * @import assign from object.assign
+ * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
  * @param {object} [config = {}] 画线配置
  * 
+ * @param {array} [config.points = []] 画线点集合
+ * 
+ * @param {object} [config.styles = {}] 画线样式
+ * 
  */
-
- let {
-    points = [],
-    ...styles
- } = config ;
 
  if(points.length === 8){
 
     context.beginPath();
 
-    let names = Object.keys(styles) ;
-
-    for(let name of names){
-
-      context[name] = styles[name] ;
-    }
+    assign(context , styles) ;
 
     context.moveTo(...points.slice(0 , 2));
     

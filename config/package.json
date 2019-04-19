@@ -45,6 +45,7 @@
             "array.from",
             "math.region.rect",
             "canvas.draw.line.bezierCurve",
+            "canvas.draw.line.arc",
             "calendar.month.view",
             "browser.global.listener.*",
             "browser.event.key",
