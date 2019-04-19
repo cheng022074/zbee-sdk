@@ -9,21 +9,17 @@
  * 
  */
 
- switch(code){
+ const KEY_CODES = {
+    39:'DIRECTION::RIGHT',
+    37:'DIRECTION::LEFT',
+    38:'DIRECTION::UP',
+    40:'DIRECTION::DOWN',
+    13:'ENTER',
+    46:'DELETE',
+    9:'TAB'
+ } ;
 
-    case 39:
+ function main(code){
 
-        return 'DIRECTION::RIGHT' ;
-
-    case 37:
-
-        return 'DIRECTION::LEFT' ;
-
-    case 38:
-
-        return 'DIRECTION::UP' ;
-
-    case 40:
-
-        return 'DIRECTION::DOWN' ;
+    return KEY_CODES[code] ;
  }
