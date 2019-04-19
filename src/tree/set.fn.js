@@ -23,5 +23,5 @@ if(node){
 
     assign(node , values) ;
 
-    proxy.call('update' , node.index , node.data) ;
+    proxy.call('update' , node.data , node.index) ;
 }

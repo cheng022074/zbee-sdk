@@ -1,12 +1,28 @@
 
 /**
  * 
- * 函数实现说明
+ * 删除子节点
  * 
- * @param {mixed} data 参数说明
+ * @import get from .node.get scoped
  * 
- * @return {mixed} 返回说明 
+ * @param {string} id 节点编号
+ * 
+ * @param {object} config 节点配置
  * 
  */
 
- // 代码实现
+let {
+    proxy
+} = this,
+node = get(id) ;
+
+if(node){
+
+    proxy.callIf('remove' , node.index) ;
+
+    node.destroy() ;
+
+    return true ;
+}
+
+return false ;

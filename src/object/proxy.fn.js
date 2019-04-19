@@ -29,11 +29,23 @@
 
         if(method in target){
 
-            target[method](...args) ;
+            return target[method](...args) ;
         
         }else{
 
             throw new ProxyMethodNotFoundError(target , method) ;
+        }
+    }
+
+    callIf(method , ...args){
+
+        let {
+            target
+        } = this ;
+
+        if(method in target){
+
+            return target[method](...args) ;
         }
     }
 

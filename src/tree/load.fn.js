@@ -30,7 +30,7 @@
 
     nodes.push(...rootNode.descendants) ;
 
-    proxy.call('load' , me.data) ;
+    proxy.callIf('load' , me.data) ;
     
  }
 

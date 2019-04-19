@@ -13,6 +13,6 @@
 
  Object.assign(me , config) ;
 
- me.id = me.id || generate('tree-node-') ;
+ me.id = generate('tree-node-') ;
 
  me.$children = [] ;

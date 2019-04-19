@@ -32,5 +32,5 @@
 
     me.nodes.length = 0 ;
 
-    proxy.call('remove' , 1) ;
+    proxy.callIf('remove' , 1) ;
  }
