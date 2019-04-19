@@ -48,7 +48,7 @@ if(parentNode){
 
 if(!children.includes(node)){
 
-  tree.insertQueue(me , existNode.index + 1 , node) ;
+  tree.insertQueue(existNode.index + 1 , node) ;
 
   node.parentNode = me ;
 

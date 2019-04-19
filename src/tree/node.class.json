@@ -10,6 +10,7 @@
         "isRoot":"get",
         "first":"get",
         "last":"get",
+        "next":"get",
         "firstLeaf":{
             "get":"tree.node.leaf.first"
         },

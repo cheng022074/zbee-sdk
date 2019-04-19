@@ -5,7 +5,7 @@
  * 
  * @param {array} data 目标数组
  * 
- * @param {mixed} inserItem 需要添加的项
+ * @param {mixed} insertItem 需要添加的项
  * 
  * @param {mixed} existItem 指定项
  * 

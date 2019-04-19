@@ -5,6 +5,10 @@
     "methods":[
         "clear",
         "load",
+        {
+            "name":"insertAfter",
+            "impl":"tree.mind.insert.after"
+        },
         "append",
         "remove",
         "deselect",
