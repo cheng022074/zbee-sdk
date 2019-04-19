@@ -18,13 +18,4 @@ if(typeof window === 'object' && toString.call(window) === '[object Window]' && 
     return 'browser' ;
 }
 
-const {
-    env
-} = process ;
-
-if(env['ZBEE-RUNTIME-ENVIRONMENT'] === 'yes'){
-
-    return 'zbee' ;
-}
-
 return 'node' ;
