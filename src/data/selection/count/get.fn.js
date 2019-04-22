@@ -7,4 +7,4 @@
  * 
  */
 
- return this.selectedItems.length = 0 ;
+ return this.selectedItems.length ;
