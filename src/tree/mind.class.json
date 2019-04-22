@@ -1,10 +1,5 @@
 {
-    "extend":"tree",
     "constructor":true,
-    "staticMethods":[{
-        "name":"PROCESS_CONSTRUCTOR_PARAMS",
-        "impl":".mind.params"
-    }],
     "methods":[
         "clear",
         "load",

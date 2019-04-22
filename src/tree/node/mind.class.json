@@ -1,5 +1,4 @@
 {
-    "extend":"tree.node",
     "class":true,
     "constructor":true,
     "properties":{
