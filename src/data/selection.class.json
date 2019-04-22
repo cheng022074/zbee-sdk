@@ -1,0 +1,13 @@
+{
+    "constructor":true,
+    "properties":{
+        "count":"get"
+    },
+    "methods":[
+        "select",
+        "deselect",{
+            "name":"deselectAll",
+            "impl":".selection.deselect.all"
+        }
+    ]
+}
