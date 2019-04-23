@@ -3,7 +3,7 @@
  * 
  * 得到对应代码的值键值 
  * 
- * @param {number} code 键代码
+ * @param {Event} event 键事件对象
  * 
  * @return {mixed} 键值 
  * 
@@ -19,7 +19,9 @@
     9:'TAB'
  } ;
 
- function main(code){
+ function main({
+    keyCode
+ }){
 
-    return KEY_CODES[code] ;
+    return KEY_CODES[keyCode] ;
  }

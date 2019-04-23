@@ -12,6 +12,22 @@
         "remove",
         "deselect",
         "select",
+        {
+            "name":"selectRight",
+            "impl":".mind.select.right"
+        },
+        {
+            "name":"selectLeft",
+            "impl":".mind.select.left"
+        },
+        {
+            "name":"selectUp",
+            "impl":".mind.select.up"
+        },
+        {
+            "name":"selectDown",
+            "impl":".mind.select.down"
+        },
         "layout"
     ]
 }
