@@ -1,12 +1,16 @@
 /**
  * 
- * @import node from tree.node.mind
+ * 脑图
  * 
- * @import tree
+ * @import Node from tree.node.mind value
+ * 
+ * @import tree value
+ * 
+ * @class
  * 
  */
 
-class main extends tree(){
+class main extends tree{
 
     constructor(target , config){
 
@@ -24,8 +28,8 @@ class main extends tree(){
            ...fields
         ] ;
         
-        config.Node = node() ;
-        
+        config.Node = Node ;
+
         super(target , config) ;
     }
 }

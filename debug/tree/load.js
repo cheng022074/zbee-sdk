@@ -33,7 +33,7 @@ let tree = createTree({
     },
     rootXY:{
         x:100,
-        y:50
+        y:150
     },
     fields:[
         'detail'

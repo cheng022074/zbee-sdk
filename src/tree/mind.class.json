@@ -1,4 +1,5 @@
 {
+    "extend":".mind.extend",
     "constructor":true,
     "methods":[
         "clear",
