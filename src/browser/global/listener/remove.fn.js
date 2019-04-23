@@ -7,20 +7,20 @@
  * 
  * @import getMap from ..map
  * 
- * @param {string} selector 选择器
- * 
  * @param {string} event 目标监听事件
  * 
  * @param {function} fn 目标监听回调
+ * 
+ * @param {string} selector 选择器
  * 
  * @return {mixed} 返回说明 
  * 
  */
 
- let event = getEventName(event) ;
+ event = getEventName(event) ;
 
  let map = getMap(),
-    listenerFn = map.get(selector , event , fn);
+    listenerFn = map.get(event , fn , selector);
 
 if(listenerFn){
 

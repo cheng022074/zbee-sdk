@@ -3,7 +3,7 @@
  * 
  * 判断元素及其元素父祖级元素是否匹配选择器
  * 
- * @import is from selector.is
+ * @import is from ..is
  * 
  * @param {HTMLElement} el 元素
  * 
