@@ -1,0 +1,28 @@
+{
+    "params":[
+        "node",
+        "config"
+    ],
+    "constructor":true,
+    "properties":{
+        "parentNode":{
+            "get":".relationship.node.parent"
+        },
+        "nextNode":{
+            "get":".relationship.node.next"
+        },
+        "previousNode":{
+            "get":".relationship.node.previos"
+        }
+    },
+    "methods":[{
+        "name":"getFirstNode",
+        "impl":".relationship.node.first.get"
+    },{
+        "name":"getFirstNode",
+        "impl":".relationship.node.last.get"
+    },
+        "up",
+        "down"
+    ]
+}
