@@ -11,7 +11,7 @@
  * 
  * @param {array} [config.points = []] 画线点集合
  * 
- * @param {object} [config.styles = {}] 画线样式
+ * @param {object} [...config.styles] 画线样式
  * 
  */
 

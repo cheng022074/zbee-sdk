@@ -23,7 +23,7 @@
  * 
  * @param {number} [config.counterclockwise = false] 如果为 false 则为顺时针，反之为逆时针
  * 
- * @param {object} [config.styles = {}] 画线样式
+ * @param {object} [...config.styles] 画线样式
  * 
  */
 
