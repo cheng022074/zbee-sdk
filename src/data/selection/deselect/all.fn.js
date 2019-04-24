@@ -7,7 +7,7 @@
 
  let me = this,
  {
-    selectedItems
+    $selectedItems:selectedItems
  } = me ;
 
  for(let selectedItem of selectedItems){

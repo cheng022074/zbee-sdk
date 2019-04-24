@@ -11,14 +11,15 @@
 
  let me = this,
  {
-    selectedItems,
+    $selectedItems:selectedItems,
     selectItemField,
-    selectionMode
+    selectionMode,
+    proxy
  } = me ;
 
  if(!selectedItem.includes(item)){
 
-    if(selectionMode === 'single' && me.count !== 0){
+    if(selectionMode === 'single' && selectedItems.length !== 0){
 
         me.deselect(selectedItem[0]) ;
     }
@@ -26,6 +27,8 @@
     item[selectItemField] = true ;
 
     selectedItems.push(item) ;
+
+    proxy.callIf('doSelect' , item) ;
 
     return true ;
  }

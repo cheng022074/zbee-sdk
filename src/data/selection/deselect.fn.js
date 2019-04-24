@@ -10,7 +10,7 @@
  */
 
  let {
-    selectedItems,
+    $selectedItems:selectedItems,
     selectItemField
  } = this ;
 
@@ -19,6 +19,8 @@
     item[selectItemField] = false ;
 
     remove(selectedItems , item) ;
+
+    proxy.callIf('doDeselect' , item) ;
 
     return true ;
  }

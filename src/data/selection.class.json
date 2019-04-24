@@ -1,7 +1,14 @@
 {
+    "params":[
+        "target",
+        "config"
+    ],
     "constructor":true,
     "properties":{
-        "count":"get"
+        "items":"get",
+        "selectedItems":{
+            "get":".selection.items.selected"
+        }
     },
     "methods":[
         "select",
