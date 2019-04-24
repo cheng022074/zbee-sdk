@@ -12,12 +12,10 @@ let me = this,
 
 if(selectedNode){
 
-    let {
-        prev:prevNode
-    } = selectedNode ;
+    let relationship = selectedNode.relationship.up() ;
 
-    if(prevNode){
+    if(relationship){
 
-        me.select(prevNode.id) ;
+        me.select(relationship.node.id) ;
     }
 }

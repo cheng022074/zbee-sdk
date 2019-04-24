@@ -23,4 +23,4 @@
 
  me.childNodesField = childNodesField ;
 
- me[me.relationshipField = relationshipField] = me ;
+ node[me.relationshipField = relationshipField] = me ;

@@ -25,7 +25,7 @@
         "name":"getFirstNode",
         "impl":".relationship.node.first.get"
     },{
-        "name":"getFirstNode",
+        "name":"getLastNode",
         "impl":".relationship.node.last.get"
     },
         "up",

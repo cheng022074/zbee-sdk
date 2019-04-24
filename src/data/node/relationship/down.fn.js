@@ -24,11 +24,11 @@ while(node = node.parentNode){
     count ++ ;
 
     let {
-        previousNode
+        nextNode
     } = node ;
 
-    if(previousNode){
+    if(nextNode){
 
-        return previousNode.getFirstNode(count) ;
+        return nextNode.getFirstNode(count) ;
     }
 }

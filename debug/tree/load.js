@@ -16,11 +16,11 @@ let tree = createTree({
     },
     insert(data){
 
-        console.log('新添节点' , data) ;
+        //console.log('新添节点' , data) ;
     },
     remove(index){
 
-        console.log('删除节点' , index) ;
+       // console.log('删除节点' , index) ;
     }
 } , {
     defaultNodeConfig:{
@@ -37,9 +37,14 @@ let tree = createTree({
 }) ;
 
 tree.load({
-    detail:'xxxx',
-    cn:[{},{
-        cn:{}
+    id1:'1',
+    cn:[{
+        id1:'x1',
+    },{
+        id1:'x2',
+        cn:{
+            id1:'last'
+        }
     }]
 }) ;
 
@@ -48,3 +53,5 @@ let {
 } = tree ;
 
 tree.layout() ;
+
+console.log(rootNode.relationship.lastNode.up()) ;
