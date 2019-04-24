@@ -72,4 +72,6 @@ if(firstChildNode && lastChildNode){
     result = lastChildNode || firstChildNode ;
 }
 
+
+
 return result ;
