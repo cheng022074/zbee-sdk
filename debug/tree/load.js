@@ -7,14 +7,10 @@
  */
 
 let tree = createTree({
-    load(data){
 
-        console.log('加载后的所有节点' , data) ;
-
-    },
     layout(data , region){
 
-        console.log('布局后的所有节点' , data , region) ;
+        //console.log('布局后的所有节点' , data , region) ;
  
 
     },

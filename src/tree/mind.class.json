@@ -1,4 +1,8 @@
 {
+    "params":[
+        "target",
+        "config"
+    ],
     "extend":".mind.extend",
     "constructor":true,
     "methods":[
