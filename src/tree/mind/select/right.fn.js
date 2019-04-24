@@ -10,7 +10,12 @@ let me = this,
    selectedNode
 } = me ;
 
-if(selectedNode && !selectedNode.isLeaf){
+if(selectedNode){
 
-    me.select(selectedNode.first.id) ;
+    let relationship = selectedNode.relationship.right() ;
+
+    if(relationship){
+
+        me.select(relationship.node.id) ;
+    }
 }
