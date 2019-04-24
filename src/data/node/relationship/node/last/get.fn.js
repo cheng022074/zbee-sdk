@@ -9,20 +9,4 @@
  * 
  */
 
-let node = this ;
-
-for(let i = 1 ; i <= floor ; i ++){
-
-   let tempNode = node.firstNode ;
-
-   if(tempNode){
-
-       node = tempNode ;
-   
-   }else{
-
-       return node ;
-   }
-}
-
-return node ;
+return getNode('lastNode' , floor) ;

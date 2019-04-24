@@ -1,7 +1,9 @@
 
 /**
  * 
- * 返回指定层数的最后一个节点
+ * 返回指定层数的第一个节点
+ * 
+ * @import getNode from ....floor scoped
  * 
  * @param {number} [floor = 1] 层数
  * 
@@ -9,20 +11,4 @@
  * 
  */
 
- let node = this ;
-
- for(let i = 1 ; i <= floor ; i ++){
-
-    let tempNode = node.lastNode ;
-
-    if(tempNode){
-
-        node = tempNode ;
-    
-    }else{
-
-        return node ;
-    }
- }
-
- return node ;
+ return getNode('firstNode' , floor) ;
