@@ -1,7 +1,7 @@
 
 /**
  * 
- * 返回下一个兄弟节点
+ * 返回最后一个子节点
  * 
  * @import getNode from ..child scoped
  * 
@@ -9,4 +9,4 @@
  * 
  */
 
-return getNode(-1) ;
+return getNode('last') ;

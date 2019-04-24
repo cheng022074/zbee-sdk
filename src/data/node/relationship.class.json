@@ -11,6 +11,12 @@
         "nextNode":{
             "get":".relationship.node.next"
         },
+        "firstNode":{
+            "get":".relationship.node.first"
+        },
+        "lastNode":{
+            "get":".relationship.node.last"
+        },
         "previousNode":{
             "get":".relationship.node.previos"
         }
