@@ -1,12 +1,19 @@
 
 /**
  * 
- * 函数实现说明
+ * 返回右面的节点引用
  * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
+ * @return {data.node.Relationship} 右面节点 
  * 
  */
 
- // 代码实现
+let node = this,
+{
+    firstNode
+} = node ;
+
+ if(firstNode){
+
+    return firstNode ;
+ }
+

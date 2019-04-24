@@ -3,7 +3,7 @@
  * 
  * 返回上面的节点引用
  * 
- * @return {mixed} 上面节点 
+ * @return {data.node.Relationship} 上面节点 
  * 
  */
 

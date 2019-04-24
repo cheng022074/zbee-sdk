@@ -1,13 +1,18 @@
 
 /**
  * 
- * 返回左边的节点引用
+ * 返回左面的节点引用
  * 
- * @return {mixed} 左边节点 
+ * @return {data.node.Relationship} 左面节点 
  * 
  */
 
- while(){
+let node = this,
+{
+    parentNode
+} = node ;
 
-    
+ if(parentNode){
+
+    return parentNode ;
  }

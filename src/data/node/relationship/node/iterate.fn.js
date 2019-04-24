@@ -5,9 +5,9 @@
  * 
  * @param {string} field 节点字段
  * 
- * @param {number} [floor= 1] 层数
+ * @param {number} [floor= 1] 迭代次数
  * 
- * @return {mixed} 返回说明 
+ * @return {data.node.Relationship} 节点关系对象 
  * 
  */
 
