@@ -7,8 +7,6 @@
  * 
  * @import getLastNode from .node.deepest.last scoped
  * 
- * @import join from ..join scoped
- * 
  * @param {mixed} parentNode 父节点
  * 
  * @param {data.node.List} list 节点列表

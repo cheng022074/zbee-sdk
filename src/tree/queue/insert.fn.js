@@ -2,16 +2,18 @@
  * 
  * 将节点插入到线性表中
  * 
- * @import insert from array.insert
+ * @param {mixed} parentNode 父节点
  * 
- * @param {number} index 数组下标
+ * @param {mixed} node 子节点
  * 
- * @param {tree.Node} node 树型节点
+ * @param {mixed} baseChildNode 基准子节点
+ * 
+ * @param {string} position 插入在基准子节点的前后位置
  * 
  */
 
  let {
-    nodes
+    list
  } = this ;
 
- insert(nodes , index , node) ;
+ list.insert(parentNode , node.list , baseChildNode , position) ;

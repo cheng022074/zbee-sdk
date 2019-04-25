@@ -14,7 +14,7 @@
  let {
     nodeMap
  } = this,
- childNodes = nodeMap.get(node),
+ childNodes = nodeMap.get(node) || [],
  {
      length
  } = childNodes;

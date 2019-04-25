@@ -4,16 +4,15 @@
  * 移除树型节点
  * 
  * @import remove from array.remove
+ * 
+ * @param {mixed} parentNode 父节点
  *
- * @param {tree.Node} node 节点配置
+ * @param {mixed} node 节点配置
  * 
  */
 
- let me = this,
- {
-    nodes,
-    proxy
- } = me,
- index = nodes.indexOf(node);
+ let {
+   list
+ } = this ;
 
- remove(nodes , node) ;
+ list.remove(parentNode , node.list) ;

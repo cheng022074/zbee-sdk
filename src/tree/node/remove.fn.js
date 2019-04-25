@@ -9,16 +9,17 @@
  * 
  */
 
- let {
+ let me = this,
+ {
     $children,
     tree
- } = this ;
+ } = me ;
 
  if($children.includes(node)){
 
-   tree.removeQueue(node) ;
-
    remove($children , node) ;
+
+   tree.removeQueue(me , node) ;
 
    delete node.parentNode ;
  }

@@ -32,14 +32,12 @@ if(nodes.includes(parentNode)){
         let startIndex = nodes.indexOf(startNode),
             endIndex = nodes.indexOf(endNode) ;
 
-        if(endIndex === -1){
+        if(endIndex !== -1){
 
-            throw new Error('无法拆分交差节点集合') ;
+            nodes.splice(startIndex , endIndex - startIndex + 1) ;
+
+            return true ;
         }
-
-        nodes.splice(startIndex , endIndex - startIndex + 1) ;
-
-        return true ;
     }
 }
 
