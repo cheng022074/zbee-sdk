@@ -12,4 +12,4 @@
     itemsField
  } = this ;
 
- return this.proxy.get(itemsField) ;
+ return proxy.get(itemsField) ;

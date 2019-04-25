@@ -1,0 +1,10 @@
+{
+    "params":[
+        "node"
+    ],
+    "constructor":true,
+    "methods":[
+        "append",
+        "remove"
+    ]
+}
