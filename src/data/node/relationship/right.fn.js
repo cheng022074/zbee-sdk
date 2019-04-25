@@ -35,6 +35,24 @@ while(previousNode = node.previousNode){
     }
 }
 
+if(!lastChildNode){
+
+    let upNode ;
+
+    while(upNode = node.up()){
+
+        previousCount ++ ;
+
+        if(lastChildNode = upNode.lastNode){
+
+            break ;
+        
+        }else{
+
+            node = upNode ;
+        }
+    }
+}
 
 let nextount = 0,
     nextNode,
@@ -51,6 +69,25 @@ while(nextNode = node.nextNode){
     }else{
 
         node = nextNode ;
+    }
+}
+
+if(!firstChildNode){
+
+    let downNode ;
+
+    while(downNode = node.down()){
+
+        nextount ++ ;
+
+        if(firstChildNode = downNode.firstNode){
+
+            break ;
+        
+        }else{
+
+            node = downNode ;
+        }
     }
 }
 
