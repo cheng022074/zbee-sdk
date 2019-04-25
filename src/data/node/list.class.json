@@ -3,6 +3,14 @@
         "node"
     ],
     "constructor":true,
+    "properties":{
+        "startNode":{
+            "get":".list.node.start"
+        },
+        "endNode":{
+            "get":".list.node.end"
+        }
+    },
     "methods":[
         {
             "name":"getNodes",
