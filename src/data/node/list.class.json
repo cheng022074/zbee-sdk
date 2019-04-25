@@ -5,6 +5,7 @@
     "constructor":true,
     "methods":[
         "append",
-        "remove"
+        "remove",
+        "insert"
     ]
 }

@@ -37,29 +37,20 @@
         index = nodes.indexOf(parentNode) ;
     }
 
-    if(!nodeMap.has(childNode)){
+    let lastNode = getLastNode(childNode) ;
+
+    if(!nodeMap.has(childNode) || !lastNode){
 
         insert(nodes , index + 1 , childNode) ;
-
-        childNodes.push(childNode) ;
-
-        nodeMap.set(parentNode , childNodes) ;
 
         nodeMap.set(childNode , []) ;
     
     }else{
 
-        let lastNode = getLastNode(childNode) ;
-
-        if(lastNode){
-
-            insert(nodes , index + 1 , ...nodes.slice(nodes.indexOf(childNode) , nodes.indexOf(lastNode) + 1)) ;
-        
-        }else{
-
-            insert(nodes , index + 1 , childNode) ;
-        }
+        insert(nodes , index + 1 , ...nodes.slice(nodes.indexOf(childNode) , nodes.indexOf(lastNode) + 1)) ;
     }
+
+    childNodes.push(childNode) ;
 
     return true ;
  }

@@ -49,8 +49,6 @@ if(childNodes){
             remove(nodes , childNode) ;
         }
 
-        
-
         return true ;
    }
 }
