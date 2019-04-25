@@ -3,6 +3,8 @@
  * 
  * 插入节点列表
  * 
+ * @import getLastNode from .node.deepest.last scoped
+ * 
  * @import insert from array.insert
  * 
  * @import array.insert.before

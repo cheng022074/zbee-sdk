@@ -5,7 +5,7 @@
  * 
  * @import insert from array.insert
  * 
- * @import getLastNode from .node.deepest.last
+ * @import getLastNode from .node.deepest.last scoped
  * 
  * @import join from ..join scoped
  * 

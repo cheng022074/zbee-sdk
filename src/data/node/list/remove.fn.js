@@ -5,8 +5,6 @@
  * 
  * @import remove from array.remove
  * 
- * @import getLastNode from .node.deepest.last
- * 
  * @param {mixed} parentNode 父节点
  * 
  * @param {data.node.List} list 节点列表
