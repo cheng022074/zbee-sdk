@@ -19,9 +19,10 @@ if(firstNode){
 
 let previousCount = 0,
     previousNode,
-    lastChildNode;
+    lastChildNode,
+    basePreviousNode = node;
 
-while(previousNode = node.previousNode){
+while(previousNode = basePreviousNode.previousNode){
 
     previousCount ++ ;
 
@@ -31,7 +32,7 @@ while(previousNode = node.previousNode){
     
     }else{
 
-        node = previousNode ;
+        basePreviousNode = previousNode ;
     }
 }
 
@@ -39,7 +40,7 @@ if(!lastChildNode){
 
     let upNode ;
 
-    while(upNode = node.up()){
+    while(upNode = basePreviousNode.up()){
 
         previousCount ++ ;
 
@@ -49,16 +50,17 @@ if(!lastChildNode){
         
         }else{
 
-            node = upNode ;
+            basePreviousNode = upNode ;
         }
     }
 }
 
 let nextount = 0,
     nextNode,
-    firstChildNode;
+    firstChildNode,
+    baseNextNode = node;
 
-while(nextNode = node.nextNode){
+while(nextNode = baseNextNode.nextNode){
 
     nextount ++ ;
 
@@ -68,7 +70,7 @@ while(nextNode = node.nextNode){
     
     }else{
 
-        node = nextNode ;
+        baseNextNode = nextNode ;
     }
 }
 
@@ -76,7 +78,7 @@ if(!firstChildNode){
 
     let downNode ;
 
-    while(downNode = node.down()){
+    while(downNode = baseNextNode.down()){
 
         nextount ++ ;
 
@@ -86,7 +88,7 @@ if(!firstChildNode){
         
         }else{
 
-            node = downNode ;
+            baseNextNode = downNode ;
         }
     }
 }

@@ -1,4 +1,8 @@
 {
+    "params":[
+        "target",
+        "config"
+    ],
     "constructor":true,
     "methods":[
         "select",
