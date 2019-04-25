@@ -9,48 +9,43 @@
  * 
  * @param {mixed} parentNode 父节点
  * 
- * @param {mixed} childNode 子节点
+ * @param {data.node.List} list 节点列表
  * 
  * @return {boolean} 添加成功后则返回 true , 否则返回 false
  * 
  */
 
+ let me = this ;
+
+ me.merge(list) ;
+
  let {
      nodes,
      nodeMap
- } = this,
- childNodes = nodeMap.get(parentNode);
+ } = this;
 
- if(childNodes){
+ if(nodes.includes(parentNode)){
 
-    let {
-        length
-    } = childNodes,
-    index;
+    let lastNode = getLastNode(parentNode),
+        index;
 
-    if(length){
+    if(lastNode){
 
-        index = nodes.indexOf(childNodes[length - 1]) ;
+        index = nodes.indexOf(lastNode) ;
     
     }else{
 
         index = nodes.indexOf(parentNode) ;
     }
 
-    let lastNode = getLastNode(childNode) ;
+    let {
+        startNode,
+        endNode
+    } = list ;
 
-    if(!nodeMap.has(childNode) || !lastNode){
+    insert(nodes , index + 1 , ...me.getNodes(startNode , endNode)) ;
 
-        insert(nodes , index + 1 , childNode) ;
-
-        nodeMap.set(childNode , []) ;
-    
-    }else{
-
-        insert(nodes , index + 1 , ...nodes.slice(nodes.indexOf(childNode) , nodes.indexOf(lastNode) + 1)) ;
-    }
-
-    childNodes.push(childNode) ;
+    nodeMap.get(parentNode).push(startNode) ;
 
     return true ;
  }

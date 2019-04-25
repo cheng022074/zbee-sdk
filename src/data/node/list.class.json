@@ -4,6 +4,11 @@
     ],
     "constructor":true,
     "methods":[
+        {
+            "name":"getNodes",
+            "impl":".list.nodes.get"
+        },
+        "merge",
         "append",
         "remove",
         "insert"

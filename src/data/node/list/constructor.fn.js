@@ -25,7 +25,7 @@
 
         children.push(childNode) ;
 
-        index = initNodes(nodes , childNode);
+        index = initNodes(nodes , nodeMap , childNode);
     }
 
     nodeMap.set(node , children) ;

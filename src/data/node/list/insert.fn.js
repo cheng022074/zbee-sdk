@@ -5,9 +5,13 @@
  * 
  * @import insert from array.insert
  * 
+ * @import array.insert.before
+ * 
+ * @import array.insert.after
+ * 
  * @param {mixed} parentNode 父节点
  * 
- * @param {mixed} childNode 子节点
+ * @param {data.node.List} list 子节点
  * 
  * @param {mixed} baseChildNode 基准子节点
  * 
@@ -16,65 +20,50 @@
  * @return {boolean} 插入成功后则返回 true , 否则返回 false
  * 
  */
+let me = this ;
+
+me.merge(list) ;
 
 let {
     nodes,
     nodeMap
 } = this,
-childNodes = nodeMap.get(parentNode),
-index;
+childNodes = nodeMap.get(parentNode);
 
-if(childNodes && (index = childNodes.indexOf(baseChildNode) !== -1)){
+if(nodes.includes(parentNode) && nodes.includes(baseChildNode) && childNodes.includes(baseChildNode)){
+
+   let index;
 
     switch(position){
 
         case 'before':
 
-            insert(childNodes , index , childNode) ;
-
-            break ;
+            index = nodes.indexOf(baseChildNode) ;
 
         case 'after':
 
-            insert(childNodes , index + 1 , childNode) ;
+            let lastNode = getLastNode(baseChildNode) ;
+
+            if(lastNode){
+
+                index = nodes.indexOf(lastNode) + 1;
+            
+            }else{
+         
+                index = nodes.indexOf(baseChildNode) + 1 ;
+            }
     }
 
-    index = nodes.indexOf(baseChildNode) ;
+   let {
+       startNode,
+       endNode
+   } = list ;
 
-    let lastNode = getLastNode(childNode) ;
+   insert(nodes , index , ...me.getNodes(startNode , endNode)) ;
 
-    if(!nodeMap.has(childNode) || !lastNode){
+   include(`array.insert.${position}`)(nodeMap.get(parentNode) , startNode , baseChildNode) ;
 
-        switch(position){
-
-            case 'before':
-
-                insert(nodes , index , childNode) ;
-
-                break ;
-
-            case 'after':
-
-                insert(nodes , index + 1 , childNode) ;
-        }
-
-        nodeMap.set(childNode , []) ;
-    
-    }else{
-
-        let insertNodes = nodes.slice(nodes.indexOf(childNode) , nodes.indexOf(lastNode) + 1) ;
-
-        switch(position){
-
-            case 'before':
-
-                insert(nodes , index , ...insertNodes) ;
-
-                break ;
-
-            case 'after':
-
-                insert(nodes , index + 1 , ...insertNodes) ;
-        }
-    }
+   return true ;
 }
+
+return false ;
