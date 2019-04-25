@@ -1,13 +1,15 @@
 
 /**
  * 
- * 插入节点
+ * 插入节点列表
  * 
  * @import insert from array.insert
  * 
  * @import array.insert.before
  * 
  * @import array.insert.after
+ * 
+ * @import join from ..join scoped
  * 
  * @param {mixed} parentNode 父节点
  * 
@@ -22,7 +24,7 @@
  */
 let me = this ;
 
-me.merge(list) ;
+join(list) ;
 
 let {
     nodes,

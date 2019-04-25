@@ -1,11 +1,13 @@
 
 /**
  * 
- * 添加节点
+ * 添加节点列表
  * 
  * @import insert from array.insert
  * 
  * @import getLastNode from .node.deepest.last
+ * 
+ * @import join from ..join scoped
  * 
  * @param {mixed} parentNode 父节点
  * 
@@ -17,7 +19,7 @@
 
  let me = this ;
 
- me.merge(list) ;
+ join(list) ;
 
  let {
      nodes,
