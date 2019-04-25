@@ -37,8 +37,6 @@
     'id'
  ]) ;
 
- me.nodes = [] ;
-
  me.layoutConfig = layoutConfig ;
 
  me.read = createRead(Object.assign({

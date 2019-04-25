@@ -20,13 +20,12 @@
     me.rootNode = rootNode ;
 
     let {
-      nodes,
       proxy
     } = me ;
 
-    nodes.push(rootNode) ;
+    me.list = rootNode.list ;
 
-    nodes.push(...rootNode.descendants) ;
+    console.log('初始化列表' , me.list) ;
 
     proxy.callIf('load' , me.data) ;
 

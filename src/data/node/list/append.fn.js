@@ -17,39 +17,40 @@
  * 
  */
 
- let me = this ;
+let me = this,
+{
+    startNode,
+    endNode
+} = list,
+{
+    nodes,
+    nodeMap
+} = me;
 
- join(list) ;
+if(!nodes.includes(startNode) && !nodes.includes(endNode)){
 
- let {
-     nodes,
-     nodeMap
- } = this;
+    list.nodeMap.forEach((value , key) => nodeMap.set(key , value)) ;
 
- if(nodes.includes(parentNode)){
-
-    let lastNode = getLastNode(parentNode),
-        index;
-
-    if(lastNode){
-
-        index = nodes.indexOf(lastNode) ;
-    
-    }else{
-
-        index = nodes.indexOf(parentNode) ;
+    if(nodes.includes(parentNode)){
+   
+       let lastNode = getLastNode(parentNode),
+           index;
+   
+       if(lastNode){
+   
+           index = nodes.indexOf(lastNode) ;
+       
+       }else{
+   
+           index = nodes.indexOf(parentNode) ;
+       }
+   
+       insert(nodes , index + 1 , ...list.nodes) ;
+   
+       nodeMap.get(parentNode).push(startNode) ;
+   
+       return true ;
     }
+}
 
-    let {
-        startNode,
-        endNode
-    } = list ;
-
-    insert(nodes , index + 1 , ...me.getNodes(startNode , endNode)) ;
-
-    nodeMap.get(parentNode).push(startNode) ;
-
-    return true ;
- }
-
- return false ;
+return false ;

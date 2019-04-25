@@ -3,7 +3,7 @@
  * 
  * 获取指定节点最底部的叶子节点
  * 
- * @import getLastNode from ..last
+ * @import getLastNode from ..last scoped
  * 
  * @param {mixed} node 节点
  * 

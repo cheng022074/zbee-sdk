@@ -1,6 +1,7 @@
 {
     "params":[
-        "node"
+        "node",
+        "config"
     ],
     "constructor":true,
     "properties":{

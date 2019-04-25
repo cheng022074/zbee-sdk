@@ -37,11 +37,11 @@
 
  if(!$children.includes(node)){
 
-   tree.appendQueue(me , node) ;
-
    node.parentNode = me ;
 
    $children.push(node) ;
+
+   tree.appendQueue(me , node) ;
 
    return node ;
  }

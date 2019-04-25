@@ -11,7 +11,7 @@
 
  let {
     nodes
- } = this ;
+ } = this.list ;
 
  for(let node of nodes){
 

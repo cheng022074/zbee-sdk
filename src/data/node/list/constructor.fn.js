@@ -13,7 +13,7 @@
  * 
  */
 
- function initNodes(nodes , nodeMap , node){
+ function initNodes(nodes , nodeMap , childNodesField , node){
 
     let childNodes = node[childNodesField],
         index = nodes.indexOf(node),
@@ -25,7 +25,7 @@
 
         children.push(childNode) ;
 
-        index = initNodes(nodes , nodeMap , childNode);
+        index = initNodes(nodes , nodeMap , childNodesField , childNode);
     }
 
     nodeMap.set(node , children) ;
@@ -33,7 +33,9 @@
     return index;
  }
 
- function main(){
+ function main(node , {
+    childNodesField
+ }){
 
     let me = this,
         nodes = [
@@ -41,7 +43,7 @@
         ],
         nodeMap = new Map();
 
-    initNodes(nodes , nodeMap , node) ;
+    initNodes(nodes , nodeMap , childNodesField , node) ;
 
     me.nodes = nodes ;
 

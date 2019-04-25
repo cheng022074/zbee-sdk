@@ -24,14 +24,15 @@
  * @return {boolean} 插入成功后则返回 true , 否则返回 false
  * 
  */
-let me = this ;
-
-join(list) ;
-
-let {
+let me = this,
+{
+    startNode,
+    endNode
+} = list,
+{
     nodes,
     nodeMap
-} = this,
+} = me,
 childNodes = nodeMap.get(parentNode);
 
 if(nodes.includes(parentNode) && nodes.includes(baseChildNode) && childNodes.includes(baseChildNode)){
@@ -58,12 +59,7 @@ if(nodes.includes(parentNode) && nodes.includes(baseChildNode) && childNodes.inc
             }
     }
 
-   let {
-       startNode,
-       endNode
-   } = list ;
-
-   insert(nodes , index , ...me.getNodes(startNode , endNode)) ;
+   insert(nodes , index , ...list.nodes) ;
 
    include(`array.insert.${position}`)(nodeMap.get(parentNode) , startNode , baseChildNode) ;
 

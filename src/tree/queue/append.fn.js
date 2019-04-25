@@ -9,29 +9,11 @@
  * 
  */
 
- let me = this ;
-
- if(me.loading){
-
-    return ;
- }
-
  let {
-    nodes,
-    proxy
- } = me,
- {
-   lastLeaf:lastNode
- } = parentNode,
- index;
+   list
+ } = this ;
 
- if(lastNode){
+ if(list){
 
-   index = nodes.indexOf(lastNode) ;
- 
- }else{
-
-   index = nodes.indexOf(parentNode) ;
+    list.append(parentNode , node.list) ;
  }
-
- nodes.splice(index + 1 , 0 , node) ;

@@ -16,12 +16,22 @@
     40:'DIRECTION::DOWN',
     13:'ENTER',
     46:'DELETE',
-    9:'TAB'
- } ;
+    9:'TAB',
+    107:'ADDITION'
+ },
+ WITH_SHIFT_KEY_CODES = {
+   187:'ADDITION'
+ };
 
  function main({
+    shiftKey,
     keyCode
  }){
+
+   if(shiftKey){
+
+      return WITH_SHIFT_KEY_CODES[keyCode] ;
+   }
 
     return KEY_CODES[keyCode] ;
  }

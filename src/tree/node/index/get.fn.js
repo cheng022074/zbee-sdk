@@ -10,6 +10,6 @@
  let me = this,
  {
      nodes
- } = me.tree ;
+ } = me.tree.list ;
 
  return nodes.indexOf(me) ;

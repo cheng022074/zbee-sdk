@@ -2,6 +2,7 @@
     "constructor":true,
     "class":true,
     "properties":{
+        "list":"get",
         "index":"get",
         "children":true,
         "descendants":"get",

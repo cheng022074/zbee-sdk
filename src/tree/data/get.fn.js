@@ -7,9 +7,19 @@
  * 
  */
 
+ let me = this,
+ {
+   rootNode
+ } = me ;
+
+ if(!rootNode){
+
+   return [] ;
+ }
+
  let {
     nodes
- } = this,
+ } = me.list,
  result = [];
 
  for(let {
