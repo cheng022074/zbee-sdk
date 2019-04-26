@@ -54,7 +54,5 @@ if(!children.includes(node)){
 
   me.fireEvent('insert' , node , existNode , 'after') ;
 
-  tree.insertQueue(me , node , existNode , 'after') ;
-
   return node ;
 }

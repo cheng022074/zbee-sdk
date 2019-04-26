@@ -21,7 +21,5 @@
 
    me.fireEvent('remove' , node) ;
 
-   tree.removeQueue(me , node) ;
-
    delete node.parentNode ;
  }

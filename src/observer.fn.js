@@ -139,15 +139,21 @@
 
         let me = this ;
 
-        me.emit(event , me , ...args) ;
+        doFireBubbleEvent.call(me , event , me , ...args) ;
+    }
+ }
 
-        let {
-            bubbleTarget
-        } = me ;
+ function doFireBubbleEvent(event , target , ...args){
 
-        if(bubbleTarget && bubbleTarget instanceof main){
+    let me = this,
+    {
+        bubbleTarget
+    } = me ;
 
-            bubbleTarget.fireEvent(event , me , ...args) ;
-        }
+    me.emit(event , target ,  ...args) ;
+
+    if(bubbleTarget && bubbleTarget instanceof main){
+
+        doFireBubbleEvent.call(bubbleTarget , event , target , ...args) ;
     }
  }

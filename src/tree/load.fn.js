@@ -3,6 +3,12 @@
  * 
  * 重新载入树形数据
  * 
+ * @import append from ..queue.append scoped
+ * 
+ * @import insert from ..queue.insert scoped
+ * 
+ * @import remove from ..queue.remove scoped
+ * 
  * @param {mixed} data 树型数据
  * 
  */
@@ -32,19 +38,25 @@
 
         rootNode.addListeners({
 
-          append(){
+          append(parentNode , node){
 
-            console.log('添加') ;
+            console.log('添加' , parentNode) ;
+
+            append(parentNode , node) ;
           },
 
-          insert(){
+          insert(parentNode , node , existNode , position){
 
-            console.log('插入') ;
+            console.log('插入' , parentNode) ;
+
+            insert(parentNode , node , existNode , position) ;
           },
 
-          remove(){
+          remove(parentNode , node){
 
-            console.log('移除') ;
+            console.log('删除' , parentNode) ;
+
+            remove(parentNode , node) ;
           }
           
         }) ;

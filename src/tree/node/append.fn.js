@@ -43,7 +43,5 @@
 
    me.fireEvent('append' , node) ;
 
-   tree.appendQueue(me , node) ;
-
    return node ;
  }
