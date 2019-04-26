@@ -3,11 +3,26 @@
  * 
  * 观察者模式
  * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.function
+ * 
+ * @import createMap from map
+ * 
+ * @import remove from array.remove
+ * 
  * @class
  * 
  */
 
  class main extends require('events'){
+
+    constructor(){
+
+        super() ;
+
+        this.listeners = createMap() ;
+    }
 
     clearAllEventListeners(){
 
@@ -19,26 +34,108 @@
         this.removeAllListeners(event) ;
     }
 
-    addEventListener(event , fn , {
+    addListeners(listeners){
+
+        let me = this,
+            events = Object.keys(listeners),
+            {
+                scope
+            } = listeners;
+
+        remove(events , 'scope') ;
+
+        for(let event of events){
+
+            let listener = listeners[event] ;
+            
+            if(isObject(listener)){
+
+                let {
+                    fn,
+                    scope:listenerScope,
+                    ...options
+                } = listener ;
+
+                me.on(event , fn , listenerScope || scope , options) ;
+            
+            }else if(isFunction(listener)){
+
+                me.on(event , listener , scope) ;
+            }
+        }
+    }
+
+    removeListeners(listeners){
+
+        let me = this,
+            events = Object.keys(listeners) ;
+
+        for(let event of events){
+
+            let listener = listeners[event] ;
+            
+            if(isObject(listener)){
+
+                let {
+                    fn
+                } = listener ;
+
+                me.un(event , fn) ;
+            
+            }else if(isFunction(listener)){
+
+                me.un(event , listener) ;
+            }
+        }
+    }
+
+    on(event , fn , scope , options){
+
+        this.addListener(event , fn , scope , options) ;
+    }
+
+    addListener(event , fn , scope , {
         once = false
     } = {}){
 
-        let me = this ;
+        let me = this,
+        {
+            listeners
+        } = me,
+        listener = fn.bind(scope);
+
+        listeners.set(event , fn , scope , listener) ;
 
         if(once){
 
-            me.once(event , fn) ;
+            me.once(event , listener) ;
         }
 
-        me.addListener(event , fn) ;
+        super.addListener(event , listener) ;
     }
 
-    removeEventListener(){
+    un(event , fn , scope){
 
-        this.removeListener(event , fn) ;
+        this.removeListener(event , fn , scope) ;
     }
 
-    dispatchEvent(event , ...args){
+    removeListener(event , fn , scope){
+
+        let me = this,
+        {
+            listeners
+        } = me,
+        listener = listeners.get(event , fn , scope) ;
+
+        if(listener){
+
+            super.removeListener(event , listener) ;
+
+            listeners.delete(event , fn , scope) ;
+        }
+    }
+
+    fireEvent(event , ...args){
 
         let me = this ;
 
@@ -50,7 +147,7 @@
 
         if(bubbleTarget && bubbleTarget instanceof main){
 
-            bubbleTarget.dispatchEvent(event , me , ...args) ;
+            bubbleTarget.fireEvent(event , me , ...args) ;
         }
     }
  }

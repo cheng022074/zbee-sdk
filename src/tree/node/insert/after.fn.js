@@ -52,7 +52,7 @@ if(!children.includes(node)){
 
   insert(children , node , existNode) ;
 
-  me.dispatchEvent('append' , node , existNode , 'after') ;
+  me.fireEvent('insert' , node , existNode , 'after') ;
 
   tree.insertQueue(me , node , existNode , 'after') ;
 

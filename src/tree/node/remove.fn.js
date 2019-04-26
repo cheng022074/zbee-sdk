@@ -19,7 +19,7 @@
 
    remove($children , node) ;
 
-   me.dispatchEvent('remove' , node) ;
+   me.fireEvent('remove' , node) ;
 
    tree.removeQueue(me , node) ;
 

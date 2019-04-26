@@ -7,27 +7,52 @@
  * 
  */
 
- let me = this ;
+ function main(data){
 
- me.clear() ;
+        
+    let me = this ;
 
- me.loading = true ;
+    me.clear() ;
 
- let rootNode = me.read(data);
+    me.loading = true ;
 
- if(rootNode){
+    let rootNode = me.read(data);
 
-    me.rootNode = rootNode ;
+    if(rootNode){
 
-    let {
-      proxy
-    } = me ;
+        me.rootNode = rootNode ;
 
-    me.list = rootNode.list ;
+        let {
+          proxy
+        } = me ;
 
-    proxy.callIf('load' , me.data) ;
+        me.list = rootNode.list ;
 
+        proxy.callIf('load' , me.data) ;
+
+        rootNode.addListeners({
+
+          append(){
+
+            console.log('添加') ;
+          },
+
+          insert(){
+
+            console.log('插入') ;
+          },
+
+          remove(){
+
+            console.log('移除') ;
+          }
+          
+        }) ;
+    }
+
+    me.loading = false ;
  }
 
- me.loading = false ;
+
+
 
