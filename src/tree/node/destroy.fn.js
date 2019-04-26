@@ -8,23 +8,13 @@
 
  let me = this,
  {
-     parentNode,
-     descendants
+     parentNode
  } = me ;
-
-descendants = descendants.reverse() ;
-
-for(let descendant of descendants){
-
-    descendant.destroy() ;
-}
 
 if(parentNode){
 
     parentNode.remove(me) ;
 }
-
-me.clearAllEventListeners() ;
 
 
 

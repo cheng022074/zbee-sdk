@@ -24,12 +24,12 @@
         this.listeners = createMap() ;
     }
 
-    clearAllEventListeners(){
+    clearAllListeners(){
 
         this.removeAllListeners() ;
     }
 
-    clearEventListeners(event){
+    clearListeners(event){
 
         this.removeAllListeners(event) ;
     }

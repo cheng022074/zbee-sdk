@@ -9,24 +9,16 @@
 
  let me = this,
  {
-     nodes,
      proxy
  } = me ;
-
- nodes = from(nodes) ;
-
- for(let node of nodes){
-
-    node.destroy() ;
- }
-
- 
 
  let {
      rootNode
  } = me ;
 
  if(rootNode){
+
+    rootNode.clearAllListeners() ;
 
     delete me.rootNode ;
 

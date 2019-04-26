@@ -1,0 +1,11 @@
+{
+    "params":[
+        "node",
+        "config"
+    ],
+    "constructor":true,
+    "methods":[
+        "expand",
+        "collapse"
+    ]
+}

@@ -5,6 +5,8 @@
  * 
  * @import createRelationship from data.node.relationship
  * 
+ * @import createView from data.node.view
+ * 
  * 
  * @import generate from id.generate
  * 
@@ -16,10 +18,16 @@
 
  Object.assign(me , config) ;
 
+ me.expanded = me.expanded || true ;
+
  me.id = generate('tree-node-') ;
 
  me.$children = [] ;
 
  createRelationship(me , {
     childNodesField:'children'
+ }) ;
+
+ createView(me , {
+   childNodesField:'children'
  }) ;

@@ -34,6 +34,11 @@ if(nodes.includes(parentNode)){
 
         if(endIndex !== -1){
 
+            for(let i = startIndex ; i <= endIndex ; i ++){
+
+                delete nodes[i].parentNode ;
+            }
+
             nodes.splice(startIndex , endIndex - startIndex + 1) ;
 
             return true ;
