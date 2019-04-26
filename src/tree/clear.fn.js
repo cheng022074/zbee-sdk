@@ -32,7 +32,5 @@
 
     delete me.list ;
 
-    me.nodes.length = 0 ;
-
     proxy.callIf('remove' , 1) ;
  }

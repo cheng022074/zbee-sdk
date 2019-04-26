@@ -9,6 +9,16 @@
 
  class main extends require('events'){
 
+    clearAllEventListeners(){
+
+        this.removeAllListeners() ;
+    }
+
+    clearEventListeners(event){
+
+        this.removeAllListeners(event) ;
+    }
+
     addEventListener(event , fn , {
         once = false
     } = {}){

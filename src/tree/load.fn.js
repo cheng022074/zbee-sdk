@@ -25,8 +25,6 @@
 
     me.list = rootNode.list ;
 
-    console.log('初始化列表' , me.list) ;
-
     proxy.callIf('load' , me.data) ;
 
  }
