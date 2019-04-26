@@ -41,6 +41,8 @@
 
    $children.push(node) ;
 
+   me.dispatchEvent('append' , node) ;
+
    tree.appendQueue(me , node) ;
 
    return node ;

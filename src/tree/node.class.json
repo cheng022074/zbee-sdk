@@ -1,7 +1,9 @@
 {
+    "extend":"observer",
     "constructor":true,
     "class":true,
     "properties":{
+        "bubbleTarget":"get",
         "list":"get",
         "index":"get",
         "children":true,

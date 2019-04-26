@@ -17,7 +17,8 @@
     13:'ENTER',
     46:'DELETE',
     9:'TAB',
-    107:'ADDITION'
+    107:'ADDITION',
+    27:'ESC'
  },
  WITH_SHIFT_KEY_CODES = {
    187:'ADDITION'
@@ -28,9 +29,16 @@
     keyCode
  }){
 
+   let value ;
+
    if(shiftKey){
 
-      return WITH_SHIFT_KEY_CODES[keyCode] ;
+      value = WITH_SHIFT_KEY_CODES[keyCode] ;
+   }
+
+   if(value){
+
+      return value ;
    }
 
     return KEY_CODES[keyCode] ;

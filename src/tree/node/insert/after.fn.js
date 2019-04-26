@@ -48,11 +48,13 @@ if(parentNode){
 
 if(!children.includes(node)){
 
-  tree.insertQueue(me , node , existNode , 'after') ;
-
   node.parentNode = me ;
 
   insert(children , node , existNode) ;
+
+  me.dispatchEvent('append' , node , existNode , 'after') ;
+
+  tree.insertQueue(me , node , existNode , 'after') ;
 
   return node ;
 }

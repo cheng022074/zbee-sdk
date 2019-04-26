@@ -19,6 +19,8 @@
 
    remove($children , node) ;
 
+   me.dispatchEvent('remove' , node) ;
+
    tree.removeQueue(me , node) ;
 
    delete node.parentNode ;
