@@ -14,4 +14,6 @@
     fields
  } = me.tree;
 
- return copy({} , me , fields) ;
+ return copy({
+   leaf:me.isLeaf
+ } , me , fields) ;

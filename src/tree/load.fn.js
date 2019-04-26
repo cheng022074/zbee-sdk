@@ -40,21 +40,15 @@
 
           append(parentNode , node){
 
-            console.log('添加' , parentNode) ;
-
             append(parentNode , node) ;
           },
 
           insert(parentNode , node , existNode , position){
 
-            console.log('插入' , parentNode) ;
-
             insert(parentNode , node , existNode , position) ;
           },
 
           remove(parentNode , node){
-
-            console.log('删除' , parentNode) ;
 
             remove(parentNode , node) ;
           }

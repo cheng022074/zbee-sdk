@@ -12,6 +12,8 @@
             "name":"insertAfter",
             "impl":"tree.mind.insert.after"
         },
+        "expand",
+        "collapse",
         "append",
         "remove",
         "deselect",

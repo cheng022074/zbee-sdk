@@ -14,6 +14,8 @@
  * 
  */
 
+ children = from(children) ;
+
  let me = this,
  {
     $children
@@ -28,10 +30,13 @@
    }
  }
 
- for(let childNode of children){
+ {
+   let childNodes = from(children) ;
 
-   $children.push(childNode) ;
+   for(let childNode of childNodes){
 
-   childNode.parentNode = me ;
+      append(childNode) ;
+   }
  }
 
+ 

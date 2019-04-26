@@ -25,6 +25,8 @@
       delete me.cacheChildNodes ;
 
       proxy.set(expandedField , true) ;
+
+      proxy.target.append = me.$append;
    }
 
  }

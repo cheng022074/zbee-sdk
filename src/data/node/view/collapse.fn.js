@@ -19,4 +19,8 @@ if(proxy.get(expandedField) === true){
    proxy.set(childNodesField , []) ;
 
    proxy.set(expandedField , false) ;
+
+   me.$append = proxy.target.append;
+
+   proxy.target.append = () =>{} ;
 }
