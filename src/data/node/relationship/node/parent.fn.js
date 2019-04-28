@@ -3,18 +3,20 @@
  * 
  * 返回父节点
  * 
+ * @import fly from object.proxy.fly
+ * 
  * @return {data.node.Relationship} 节点关系对象
  * 
  */
 
  let {
-    node,
+    proxy,
     parentNodeField,
     relationshipField
  } = this,
- parentNode = node[parentNodeField];
+ parentNode = proxy.getIf(parentNodeField);
 
  if(parentNode){
 
-    return parentNode[relationshipField] ;
+    return fly(parentNode).get(relationshipField) ;
  }

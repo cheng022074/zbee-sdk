@@ -6,6 +6,8 @@
  * 
  * @import is.number
  * 
+ * @import fly from object.proxy.fly
+ * 
  * @param {mixed} index 子节点定位索引
  * 
  * @return {data.node.Relationship} 节点关系对象
@@ -14,6 +16,7 @@
 
 let {
     node,
+    proxy,
     parentNodeField,
     childNodesField,
     relationshipField
@@ -22,7 +25,7 @@ let {
 
 if(isString(index)){
 
-    let childNodes = node[childNodesField] ;
+    let childNodes = proxy.get(childNodesField) ;
 
     switch(index){
 
@@ -39,11 +42,11 @@ if(isString(index)){
 
 }else if(isNumber(index)){
 
-    let parentNode = node[parentNodeField] ;
+    let parentNode = proxy.getIf(parentNodeField) ;
 
     if(parentNode){
 
-        let childNodes = parentNode[childNodesField] ;
+        let childNodes = fly(parentNode).get(childNodesField) ;
 
         result = childNodes[childNodes.indexOf(node) + index];
     }
@@ -51,5 +54,5 @@ if(isString(index)){
 
 if(result){
 
-    return result[relationshipField] ;
+    return fly(result).get(relationshipField) ;
 }

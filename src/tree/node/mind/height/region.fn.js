@@ -19,6 +19,11 @@
      length
  } = leafDescendants;
 
+ if(this.expanded === false){
+
+   return height ;
+ }
+
  if(length){
 
     let countHeight = 0;

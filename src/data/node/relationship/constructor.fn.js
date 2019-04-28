@@ -3,6 +3,8 @@
  * 
  * 构建节点方向识别器
  * 
+ * @import getProxy from object.proxy
+ * 
  * @param {mixed} node 节点引用
  * 
  * @param {object} [config = {}] 配置
@@ -16,6 +18,8 @@
  */
 
  let me = this ;
+
+ me.proxy = getProxy(node) ;
 
  me.node = node ;
 

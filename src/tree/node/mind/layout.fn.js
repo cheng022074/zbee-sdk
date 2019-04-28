@@ -26,6 +26,11 @@
  startX = x + width + horizontalSpacing,
  startY;
 
+ if(me.expanded === false){
+
+   return ;
+ }
+
  if(isRoot){
 
     let countHeight = 0 ;

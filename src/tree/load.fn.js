@@ -40,12 +40,19 @@
 
           append(parentNode , node){
 
-            append(parentNode , node) ;
+            if(parentNode.expanded){
+
+              append(parentNode , node) ;
+            }
+
           },
 
           insert(parentNode , node , existNode , position){
 
-            insert(parentNode , node , existNode , position) ;
+            if(parentNode.expanded){
+
+              insert(parentNode , node , existNode , position) ;
+            }
           },
 
           remove(parentNode , node){
@@ -71,14 +78,10 @@
               children
             } = parentNode ;
 
-            console.log('xxxxx' , children) ;
-
             for(let childNode of children){
 
               remove(parentNode , childNode) ;
             }
-
-            console.log('collapase') ;
           }
           
         }) ;
