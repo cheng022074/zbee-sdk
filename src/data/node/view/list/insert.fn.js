@@ -37,8 +37,10 @@ if(!isArray(insertNodes)){
 
 let {
     nodes,
-    childNodesField
+    childNodesField,
+    expandedField
 } = this;
+
 
 if(nodes.includes(node)){
 
@@ -69,7 +71,10 @@ if(nodes.includes(node)){
 
     for(let insertNode of insertNodes){
 
-        doInsertNodes(insertNode , fly(insertNode).get(childNodesField)) ;
+        if(fly(insertNode).get(expandedField) === true){
+
+            doInsertNodes(insertNode , fly(insertNode).get(childNodesField)) ;
+        }
     }
 
     return true ;

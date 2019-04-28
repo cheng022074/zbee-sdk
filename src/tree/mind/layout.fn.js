@@ -92,22 +92,28 @@ function main(){
     }
 }
 
-function get_lines(nodes , params){
-
-    let {
-        left,
-        top,
-        lineOffset
-    } = params ;
+function get_lines(nodes , {
+    left,
+    top,
+    lineOffset
+}){
 
     let lines = [] ;
 
     for(let node of nodes){
 
         let {
-            nodeRegion,
-            children
-        } = node,
+            parentNode
+        } = node ;
+
+        if(!parentNode){
+
+            continue ;
+        }
+
+        let {
+            nodeRegion
+        } = parentNode,
         {
             x:startX,
             y:startY
@@ -117,16 +123,10 @@ function get_lines(nodes , params){
     
         startY += top ;
     
-        for(let child of children){
-
-            if(!nodes.includes(child)){
-
-                continue ;
-            }
-    
+        {
             let {
                 nodeRegion
-            } = child,{
+            } = node,{
                 x,
                 y
             } = nodeRegion.getAnchorXY('l') ;
@@ -146,9 +146,8 @@ function get_lines(nodes , params){
                 y
             ]) ;
         }
+        
     }
-
-    console.log('lines' , lines) ;
 
     return lines ;
 }
