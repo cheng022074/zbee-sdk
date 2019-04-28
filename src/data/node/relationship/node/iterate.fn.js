@@ -7,6 +7,8 @@
  * 
  * @param {number} [floor= 1] 迭代次数
  * 
+ * @param {boolean} [strict = true] 是否严格匹配
+ * 
  * @return {data.node.Relationship} 节点关系对象 
  * 
  */
@@ -21,6 +23,10 @@ for(let i = 1 ; i <= floor ; i ++){
    if(tempNode){
 
        node = tempNode ;
+   
+   }else if(strict){
+
+       return ;
    
    }else{
 

@@ -17,7 +17,9 @@ let node = this,
     return nextNode ;
  }
 
- let count = 0 ;
+ let count = 0,
+     firstNextNode,
+     firstCount;
 
 while(node = node.parentNode){
 
@@ -29,6 +31,24 @@ while(node = node.parentNode){
 
     if(nextNode){
 
-        return nextNode.getFirstNode(count) ;
+        if(!firstNextNode){
+
+            firstNextNode = nextNode ;
+
+            firstCount = count ;
+        }
+
+        let result = nextNode.getFirstNode(count) ;
+
+        if(result){
+
+            return result ;
+        }
     }
 }
+
+if(firstNextNode){
+
+    return firstNextNode.getFirstNode(firstCount , false) ;
+}
+

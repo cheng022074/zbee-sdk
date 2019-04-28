@@ -7,8 +7,10 @@
  * 
  * @param {number} [count] 迭代次数
  * 
+ * @param {boolean} [strict] 严格模式
+ * 
  * @return {data.node.Relationship} 节点关系对象
  * 
  */
 
- return getNode('firstNode' , count) ;
+ return getNode('firstNode' , count , strict) ;
