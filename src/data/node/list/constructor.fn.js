@@ -3,7 +3,9 @@
  * 
  * 构建节点的一维列表
  * 
- * @import insert from array.insert
+ * @import fly from object.proxy.fly
+ * 
+ * @import insert from ..insert scoped
  * 
  * @param {mixed} node 节点
  * 
@@ -13,41 +15,13 @@
  * 
  */
 
- function initNodes(nodes , nodeMap , childNodesField , node){
+let me = this ;
 
-    let childNodes = node[childNodesField],
-        index = nodes.indexOf(node),
-        children = [];
+me.nodes = [
+    node
+] ;
 
-    for(let childNode of childNodes){
+me.childNodesField = childNodesField ;
 
-        insert(nodes , index + 1 , childNode) ;
-
-        children.push(childNode) ;
-
-        index = initNodes(nodes , nodeMap , childNodesField , childNode);
-    }
-
-    nodeMap.set(node , children) ;
-
-    return index;
- }
-
- function main(node , {
-    childNodesField
- }){
-
-    let me = this,
-        nodes = [
-            node
-        ],
-        nodeMap = new Map();
-
-    initNodes(nodes , nodeMap , childNodesField , node) ;
-
-    me.nodes = nodes ;
-
-    me.nodeMap = nodeMap ;
- }
-
+insert(node , fly(node).get(childNodesField)) ;
  

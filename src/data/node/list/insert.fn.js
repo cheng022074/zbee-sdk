@@ -1,69 +1,81 @@
-
 /**
  * 
  * 插入节点列表
  * 
- * @import getLastNode from .node.deepest.last scoped
+ * @import is.array
  * 
  * @import insert from array.insert
  * 
- * @import array.insert.before
+ * @import fly from object.proxy.fly
  * 
- * @import array.insert.after
+ * @import getBeforeStartIndex from ..node.index.start.before scoped
  * 
- * @param {mixed} parentNode 父节点
+ * @import getAfterStartIndex from ..node.index.start.after scoped
  * 
- * @param {data.node.List} list 子节点
+ * @import getBeforeEndIndex from ..node.index.end.before scoped
  * 
- * @param {mixed} baseChildNode 基准子节点
+ * @import getAfterEndIndex from ..node.index.end.after scoped
  * 
- * @param {string} [position = 'before'] 插入在基准子节点的前后位置
+ * @import doInsertNodes from ..insert scoped
  * 
- * @return {boolean} 插入成功后则返回 true , 否则返回 false
+ * @param {mixed} node 基准节点
+ * 
+ * @param {mixed} insertNodes 子节点
+ * 
+ * @param {string} [position = 'beforeend'] 插入位置
+ * 
+ * @return {boolean} 如果插入成功则返回 true , 否则返回 false
  * 
  */
-let me = this,
-{
-    startNode,
-    endNode
-} = list,
-{
+
+if(!isArray(insertNodes)){
+
+    insertNodes = [
+        insertNodes
+    ] ;
+}
+
+let {
     nodes,
-    nodeMap
-} = me,
-childNodes = nodeMap.get(parentNode);
+    childNodesField
+} = this;
 
-if(nodes.includes(parentNode) && nodes.includes(baseChildNode) && childNodes.includes(baseChildNode)){
-
-   list.nodeMap.forEach((value , key) => nodeMap.set(key , value)) ;
-
-   let index;
+if(nodes.includes(node)){
 
     switch(position){
 
-        case 'before':
+        case 'beforestart':
 
-            index = nodes.indexOf(baseChildNode) ;
+            insert(nodes , getBeforeStartIndex(node) , ...insertNodes) ;
 
-        case 'after':
+            break ;
 
-            let lastNode = getLastNode(baseChildNode) ;
+        case 'afterstart':
 
-            if(lastNode){
+            insert(nodes , getAfterStartIndex(node) , ...insertNodes) ;
+        
+            break ;
 
-                index = nodes.indexOf(lastNode) + 1;
-            
-            }else{
-         
-                index = nodes.indexOf(baseChildNode) + 1 ;
-            }
+        case 'beforeend':
+
+            insert(nodes , getBeforeEndIndex(node) , ...insertNodes) ;
+
+            break ;
+
+        case 'afterend':
+
+            insert(nodes , getAfterEndIndex(node) , ...insertNodes) ;
     }
 
-   insert(nodes , index , ...list.nodes) ;
+    for(let insertNode of insertNodes){
 
-   include(`array.insert.${position}`)(nodeMap.get(parentNode) , startNode , baseChildNode) ;
+        doInsertNodes(insertNode , fly(insertNode).get(childNodesField)) ;
+    }
 
-   return true ;
+    return true ;
 }
 
 return false ;
+
+
+

@@ -51,6 +51,34 @@
           remove(parentNode , node){
 
             remove(parentNode , node) ;
+          },
+
+          expand(parentNode){
+
+              let {
+                children
+              } = parentNode ;
+
+              for(let childNode of children){
+
+                append(parentNode , childNode) ;
+              }
+          },
+
+          collapse(parentNode){
+
+            let {
+              children
+            } = parentNode ;
+
+            console.log('xxxxx' , children) ;
+
+            for(let childNode of children){
+
+              remove(parentNode , childNode) ;
+            }
+
+            console.log('collapase') ;
           }
           
         }) ;

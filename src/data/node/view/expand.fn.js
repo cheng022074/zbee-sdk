@@ -13,20 +13,8 @@
 
  if(proxy.get(expandedField) !== true){
 
-   let {
-      cacheChildNodes,
-      childNodesField
-   } = me ;
-   
-   if(cacheChildNodes){
+   proxy.set(expandedField , true) ;
 
-      proxy.set(childNodesField , cacheChildNodes) ;
-
-      delete me.cacheChildNodes ;
-
-      proxy.set(expandedField , true) ;
-
-      proxy.target.append = me.$append;
-   }
+   proxy.fireEvent('expand') ;
 
  }

@@ -11,8 +11,6 @@
  * 
  * @param {string} [config.expandedField = 'expanded'] 展开收起控制字段
  * 
- * @param {string} [config.childNodesField = 'childNodesField'] 子节点集合引用字段名称
- * 
  * @param {string} [config.viewField = 'view'] 描述节点关系字段名称
  * 
  */
@@ -21,8 +19,6 @@
      proxy = me.proxy = getProxy(node) ;
 
  me.expandedField = expandedField ;
-
- me.childNodesField = childNodesField ;
 
  if(proxy.get(expandedField) === true){
 

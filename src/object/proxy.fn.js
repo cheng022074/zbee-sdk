@@ -65,6 +65,19 @@
         }
     }
 
+    setIf(name , value){
+
+        let {
+            target
+        } = this ;
+
+        if(name in target){
+
+            target[name] = value ;
+        
+        }
+    }
+
     get(name){
 
         let {
@@ -78,6 +91,31 @@
         }else{
 
             throw new ProxyPropertyNotFoundError(target , name , 'get') ;
+        }
+    }
+
+    getIf(name){
+
+        let {
+            target
+        } = this ;
+
+        if(name in target){
+
+            return target[name] ;
+        
+        }
+    }
+
+    fireEvent(name , ...args){
+
+        let {
+            target
+        } = this ;
+
+        if('fireEvent' in target){
+
+            target.fireEvent(name , ...args) ;
         }
     }
  }

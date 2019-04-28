@@ -5,45 +5,32 @@
  * 
  * @import remove from array.remove
  * 
- * @param {mixed} parentNode 父节点
+ * @import doRemoveNodes from ..remove scoped
  * 
- * @param {data.node.List} list 节点列表
+ * @import fly from object.proxy
  * 
- * @return {boolean} 添加成功后则返回 true , 否则返回 false
+ * @import is.array
+ * 
+ * @param {mixed} removeNodes 子节点
+ * 
  * 
  */
 
-let me = this ;
+if(!isArray(removeNodes)){
+
+    removeNodes = [
+        removeNodes
+    ] ;
+}
 
 let {
     nodes,
-    nodeMap
-} = this;
+    childNodesField
+} = this ;
 
-if(nodes.includes(parentNode)){
+remove(nodes , ...removeNodes) ;
 
-    let {
-        startNode,
-        endNode
-    } = list ;
+for(let removeNode of removeNodes){
 
-    if(remove(nodeMap.get(parentNode) , startNode)){
-
-        let startIndex = nodes.indexOf(startNode),
-            endIndex = nodes.indexOf(endNode) ;
-
-        if(endIndex !== -1){
-
-            for(let i = startIndex ; i <= endIndex ; i++){
-
-                nodeMap.delete(nodes[i]) ;
-            }
-
-            nodes.splice(startIndex , endIndex - startIndex + 1) ;
-
-            return true ;
-        }
-    }
+    doRemoveNodes(fly(removeNode).get(childNodesField)) ;
 }
-
-return false ;

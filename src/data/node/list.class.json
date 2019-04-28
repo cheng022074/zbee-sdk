@@ -4,20 +4,7 @@
         "config"
     ],
     "constructor":true,
-    "properties":{
-        "startNode":{
-            "get":".list.node.start"
-        },
-        "endNode":{
-            "get":".list.node.end"
-        }
-    },
     "methods":[
-        {
-            "name":"getNodes",
-            "impl":".list.nodes.get"
-        },
-        "append",
         "remove",
         "insert"
     ]

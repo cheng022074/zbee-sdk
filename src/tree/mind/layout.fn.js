@@ -11,7 +11,8 @@ function main(){
     {
         rootNode,
         rootXY,
-        layoutConfig
+        layoutConfig,
+        list
     } = me,
     {
         lineOffset = 5
@@ -82,7 +83,7 @@ function main(){
             right:deepestLeaf.x + deepestLeaf.width,
             top,
             bottom:lastLeaf.y + lastLeaf.height,
-            lines:get_lines(rootNode , {
+            lines:get_lines(list.nodes , {
                 left,
                 top,
                 lineOffset
@@ -91,7 +92,7 @@ function main(){
     }
 }
 
-function get_lines(node , params){
+function get_lines(nodes , params){
 
     let {
         left,
@@ -101,49 +102,53 @@ function get_lines(node , params){
 
     let lines = [] ;
 
-    let {
-        nodeRegion,
-        children
-    } = node,
-    {
-        x:startX,
-        y:startY
-    } = nodeRegion.getAnchorXY('r');
-
-    startX += left ;
-
-    startY += top ;
-
-    for(let child of children){
+    for(let node of nodes){
 
         let {
-            isLeaf,
-            nodeRegion
-        } = child,{
-            x,
-            y
-        } = nodeRegion.getAnchorXY('l') ;
+            nodeRegion,
+            children
+        } = node,
+        {
+            x:startX,
+            y:startY
+        } = nodeRegion.getAnchorXY('r');
+    
+        startX += left ;
+    
+        startY += top ;
+    
+        for(let child of children){
 
-        x += left ;
+            if(!nodes.includes(child)){
 
-        y += top ;
-
-        lines.push([
-            startX,
-            startY,
-            startX + lineOffset,
-            startY,
-            x - lineOffset,
-            y,
-            x,
-            y
-        ]) ;
-
-        if(!isLeaf){
-
-            lines.push(...get_lines(child , params)) ;
+                continue ;
+            }
+    
+            let {
+                nodeRegion
+            } = child,{
+                x,
+                y
+            } = nodeRegion.getAnchorXY('l') ;
+    
+            x += left ;
+    
+            y += top ;
+    
+            lines.push([
+                startX,
+                startY,
+                startX + lineOffset,
+                startY,
+                x - lineOffset,
+                y,
+                x,
+                y
+            ]) ;
         }
     }
+
+    console.log('lines' , lines) ;
 
     return lines ;
 }

@@ -15,4 +15,4 @@
    list
  } = this ;
 
- list.remove(parentNode , node.list) ;
+ list.remove(node) ;

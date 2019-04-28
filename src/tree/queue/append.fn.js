@@ -15,5 +15,5 @@
 
  if(list){
 
-    list.append(parentNode , node.list) ;
+    list.insert(parentNode , node) ;
  }

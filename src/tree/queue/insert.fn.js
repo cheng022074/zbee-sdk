@@ -16,4 +16,15 @@
     list
  } = this ;
 
- list.insert(parentNode , node.list , baseChildNode , position) ;
+ switch(position){
+
+   case 'before':
+
+      list.insert(baseChildNode , node , 'beforestart') ;
+
+      break ;
+
+   case 'after':
+
+      list.insert(baseChildNode , node , 'afterend') ;
+ }

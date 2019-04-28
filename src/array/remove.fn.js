@@ -7,10 +7,11 @@
  * 
  * @param {array} data 数组
  * 
- * @param {mixed} item 项目
- * 
- * @return {boolean} 如果删除项目成功则返回 true ，否则返回 false 
+ * @param {mixed} [...items] 项目
  * 
  */
 
-return remove(data , data.indexOf(item)) ;
+ for(let item of items){
+
+    remove(data , data.indexOf(item)) ;
+ }
