@@ -15,7 +15,11 @@ function main(){
         list
     } = me,
     {
-        lineOffset = 5
+        line:{
+            offset:lineOffset = 5,
+            startX:lineStartX = 0,
+            startY:lineStartY = 0
+        }
     } = layoutConfig;
 
     if(rootNode){
@@ -86,7 +90,9 @@ function main(){
             lines:get_lines(list.nodes , {
                 left,
                 top,
-                lineOffset
+                lineOffset,
+                lineStartX,
+                lineStartY
             })
         }) ;
     }
@@ -95,7 +101,9 @@ function main(){
 function get_lines(nodes , {
     left,
     top,
-    lineOffset
+    lineOffset,
+    lineStartX,
+    lineStartY
 }){
 
     let lines = [] ;
@@ -119,9 +127,9 @@ function get_lines(nodes , {
             y:startY
         } = nodeRegion.getAnchorXY('r');
     
-        startX += left ;
+        startX += left + lineStartX;
     
-        startY += top ;
+        startY += top + lineStartY;
     
         {
             let {
