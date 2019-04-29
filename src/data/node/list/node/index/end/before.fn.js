@@ -35,7 +35,13 @@
     let me = this,
     {
         nodes
-    } = me ;
+    } = me,
+    lastNode = get_last_node.call(me , node);
 
-    return nodes.indexOf(get_last_node.call(me , node)) ;
+    if(lastNode !== node){
+
+        return nodes.indexOf(lastNode) ;
+    }
+
+    return nodes.indexOf(node) + 1 ;
  }

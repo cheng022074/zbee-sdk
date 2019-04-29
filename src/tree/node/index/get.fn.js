@@ -12,4 +12,6 @@
      nodes
  } = me.tree.list ;
 
+ console.log('节点列表' , nodes) ;
+
  return nodes.indexOf(me) ;
