@@ -21,7 +21,14 @@
 
 if(node){
 
-    assign(node , values) ;
+    console.log('修改内容' , values) ;
+
+    let {
+        children,
+        ...data
+    } = values
+
+    assign(node , data) ;
 
     proxy.call('update' , node.data , node.index) ;
 }
