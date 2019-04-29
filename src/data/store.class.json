@@ -1,0 +1,6 @@
+{
+    "constructor":false,
+    "mixins":[
+        "mixin.observable"
+    ]
+}
