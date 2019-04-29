@@ -3,7 +3,7 @@
  * 
  * 节点尾部之后的位置
  * 
- * @import getIndex from ..before scoped
+ * @import fly from object.proxy.fly
  * 
  * @param {mixed} node 节点
  * 
