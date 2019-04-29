@@ -3,7 +3,7 @@
  * 
  * 返回指定层数的第一个节点
  * 
- * @import getNode from ....iterate scoped
+ * @import getNode from ....deep scoped
  * 
  * @param {number} [count] 迭代次数
  * 

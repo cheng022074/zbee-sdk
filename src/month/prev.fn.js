@@ -29,6 +29,11 @@
 
  month -- ;
 
+ console.log(month , get({
+   month,
+  ...other
+}).toJSON()) ;
+
  return get({
      month,
     ...other

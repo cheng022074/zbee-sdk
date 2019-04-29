@@ -25,6 +25,10 @@
 
  let data = new Date() ;
 
+ data.setMonth(0) ;
+
+ data.setDate(1) ;
+
  if(isDefined(year)){
 
    data.setFullYear(year) ;
@@ -38,6 +42,7 @@
  if(isDefined(day)){
 
    data.setDate(day) ;
+ 
  }
 
  if(isDefined(hours)){

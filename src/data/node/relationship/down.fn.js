@@ -25,11 +25,9 @@ while(node = node.parentNode){
 
     count ++ ;
 
-    let {
-        nextNode
-    } = node ;
+    let nextNode ;
 
-    if(nextNode){
+    while(nextNode = node.nextNode){
 
         if(!firstNextNode){
 
@@ -39,11 +37,15 @@ while(node = node.parentNode){
         }
 
         let result = nextNode.getFirstNode(count) ;
-
+        
         if(result){
 
             return result ;
         }
+
+        node = nextNode ;
+
+       
     }
 }
 
