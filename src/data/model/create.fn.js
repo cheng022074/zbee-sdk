@@ -13,8 +13,6 @@
 
  function main(fields){
 
-    console.log(fields) ;
-
     return class extends Model{
 
         static get fieldsConfig(){

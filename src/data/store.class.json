@@ -1,4 +1,7 @@
 {
+    "params":[
+        "options"
+    ],
     "constructor":true,
     "mixins":[
         "mixin.observable"

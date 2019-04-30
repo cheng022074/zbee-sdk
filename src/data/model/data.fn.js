@@ -7,4 +7,4 @@
  * 
  */
 
- return {} ;
+ return this.$data ;

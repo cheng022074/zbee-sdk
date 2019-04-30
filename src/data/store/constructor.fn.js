@@ -22,14 +22,10 @@
 
  let me = this ;
 
- console.log('fields' , fields) ;
-
  if(!model){
 
     model = createModel(fields) ;
  }
-
- console.log(model.fields) ;
 
  if(isString(proxy)){
 

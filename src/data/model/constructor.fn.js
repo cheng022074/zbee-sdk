@@ -1,12 +1,12 @@
 
 /**
  * 
- * 函数实现说明
+ * 初始化数据模型
  * 
  * @param {mixed} data 参数说明
  * 
- * @return {mixed} 返回说明 
- * 
  */
 
- // 代码实现
+ console.log(data) ;
+
+ this.$data = data ;
