@@ -11,6 +11,8 @@
  * 
  * @param {string} [options.proxy] 数据代理
  * 
+ * @param {string} [options.model] 数据模型
+ * 
  */
 
  let me = this ;
@@ -20,4 +22,4 @@
      scope:me
  }) ;
 
- me.data = [] ;
+ me.$data = [] ;

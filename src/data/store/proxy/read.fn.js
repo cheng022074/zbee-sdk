@@ -13,7 +13,7 @@
 
  let me = this,
  {
-    data
+    $data:data
  } = me ;
 
  data.length = 0 ;
@@ -22,4 +22,4 @@
 
  me.loading = true ;
 
- me.fireEvent('load' , data) ;
+ me.fireEvent('load' , me.data) ;

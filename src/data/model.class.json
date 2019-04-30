@@ -4,5 +4,10 @@
         "fields":{
             "get":".model.fields"
         }
+    },
+    "properties":{
+        "data":{
+            "get":".model.data"
+        }
     }
 }

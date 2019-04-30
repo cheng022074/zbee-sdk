@@ -37,7 +37,7 @@
 
             result.push({
                 name:field,
-                convert:empty
+                mapping:field
             }) ;
         
         }else{

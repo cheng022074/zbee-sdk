@@ -11,13 +11,15 @@
 
  function onLoad(store , data){
 
-    store.removeListener('load' , onLoad) ;
-
     console.log('加载数据' , data) ;
  }
 
  store.addListener('load' , onLoad) ;
 
- store.load([]) ;
-
- store.load([]) ;
+ store.load([{
+    name:'x'
+ },{
+   name:'xx'
+},{
+   name:'xxx'
+}]) ;

@@ -3,6 +3,11 @@
     "mixins":[
         "mixin.observable"
     ],
+    "properties":{
+        "data":{
+            "get":".store.data"   
+        }
+    },
     "methods":[{
         "name":"load",
         "impl":".store.load"
