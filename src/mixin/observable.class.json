@@ -1,0 +1,29 @@
+{
+    "mixin":true,
+    "constructor":true,
+    "methods":[{
+        "name":"clearAllListeners",
+        "impl":".observable.listeners.clear.all"
+    },{
+        "name":"clearListeners",
+        "impl":".observable.listeners.clear"
+    },{
+        "name":"addListeners",
+        "impl":".observable.listeners.add"
+    },{
+        "name":"removeListeners",
+        "impl":".observable.listeners.remove"
+    },{
+        "name":"addListener",
+        "impl":".observable.listener.add"
+    },{
+        "name":"removeListener",
+        "impl":".observable.listener.remove"
+    },{
+        "name":"fireEvent",
+        "impl":".observable.fire"
+    },
+    "on",
+    "un"
+    ]
+}

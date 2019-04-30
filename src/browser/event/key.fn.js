@@ -17,11 +17,12 @@
     13:'ENTER',
     46:'DELETE',
     9:'TAB',
-    107:'ADDITION',
+    107:'+',
+    187:'=',
     27:'ESC'
  },
  WITH_SHIFT_KEY_CODES = {
-   187:'ADDITION'
+   187:'+'
  };
 
  function main({

@@ -1,6 +1,12 @@
 {
-    "constructor":false,
+    "constructor":true,
     "mixins":[
         "mixin.observable"
+    ],
+    "methods":[{
+        "name":"load",
+        "impl":".store.load"
+    },
+    "destroy"
     ]
 }
