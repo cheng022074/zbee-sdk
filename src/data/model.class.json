@@ -8,6 +8,16 @@
     "properties":{
         "data":{
             "get":".model.data"
+        },
+        "id":{
+            "get":".model.id"
+        },
+        "idProperty":{
+            "get":".model.property.id"
         }
-    }
+    },
+    "methods":[{
+        "name":"get",
+        "impl":".model.value"
+    }]
 }

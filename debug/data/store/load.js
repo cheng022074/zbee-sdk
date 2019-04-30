@@ -10,7 +10,8 @@
  let store = createStore({
    fields:[
       'name'
-   ]
+   ],
+   idProperty:'name'
  }) ;
 
  function onLoad(store , data){

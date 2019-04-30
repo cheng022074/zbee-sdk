@@ -10,11 +10,15 @@
  * 
  * @import is.string
  * 
+ * @import createSource from data.store.source
+ * 
  * @param {object} [options = {}] 配置
  * 
  * @param {string} [options.proxy = 'memory'] 数据代理
  * 
- * @param {mixed} [options.fields = []] 字段定义
+ * @param {mixed} [options.fields] 字段定义
+ * 
+ * @param {mixed} [options.idProperty] 字段定义
  * 
  * @param {string} [options.model] 数据模型
  * 
@@ -24,7 +28,7 @@
 
  if(!model){
 
-    model = createModel(fields) ;
+    model = createModel(fields , idProperty) ;
  }
 
  if(isString(proxy)){
@@ -42,4 +46,4 @@
      scope:me
  }) ;
 
- me.$data = [] ;
+ me.$data = createSource() ;
