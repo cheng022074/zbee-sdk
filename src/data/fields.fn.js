@@ -37,7 +37,7 @@
 
             result.push({
                 name:field,
-                mapping:field
+                convert:data => get(data , field)
             }) ;
         
         }else{
@@ -99,26 +99,36 @@
 
     get names(){
 
-        return get_values.call(this , 'name') ;
+        let {
+            fields
+        } = this,
+        names = [];
+    
+        for(let {
+            name
+        } of fields){
+    
+            names.push(name) ;
+        }
+    
+        return names ;
     }
 
     get converts(){
 
-        return get_values.call(this , 'convert') ;
+        let {
+            fields
+        } = this,
+        converts = {};
+    
+        for(let {
+            name,
+            convert
+        } of fields){
+    
+            converts[name] = convert ;
+        }
+
+        return converts ;
     }
- }
-
- function get_values(key){
-
-    let {
-        fields
-    } = this,
-    values = [];
-
-    for(let field of fields){
-
-        values.push(field[key]) ;
-    }
-
-    return values ;
  }

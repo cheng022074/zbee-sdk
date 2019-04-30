@@ -60,8 +60,6 @@ if(nodes.includes(node)){
 
         case 'beforeend':
 
-            console.log('beforeend' , getBeforeEndIndex(node) , insertNodes) ;
-
             insert(nodes , getBeforeEndIndex(node) , ...insertNodes) ;
 
             break ;

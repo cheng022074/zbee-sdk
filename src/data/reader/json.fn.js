@@ -31,7 +31,9 @@
 
    const Model = getModel(model) ;
 
-   fields = model.fields ;
+   let {
+      fields
+   } = Model ;
 
     return  (new Function('data' , `
 

@@ -30,4 +30,4 @@ if(isString(options)){
     return include(`${namespace}.${name}`)(currentOptions) ;
  }
 
- return proxy ;
+ return options ;
