@@ -16,8 +16,6 @@
     $data:data
  } = me ;
 
- data.length = 0 ;
-
  data.push(...records) ;
 
  me.loading = true ;

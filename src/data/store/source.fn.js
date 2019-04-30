@@ -11,13 +11,22 @@
 
         super() ;
 
-        this.ids = [] ;
+        this.map = {} ;
+    }
+
+    clear(){
+
+        let me = this ;
+
+        me.map = {} ;
+
+        me.length = 0 ;
     }
 
     push(...records){
 
         let {
-            ids
+            map
         } = this ;
 
         for(let record of records){
@@ -26,9 +35,9 @@
                 id
             } = record ;
 
-            if(id && !ids.includes(id)){
+            if(id && !map.hasOwnProperty(id)){
 
-                ids.push(id) ;
+                map[id] = record;
 
                 super.push(record) ;
             }

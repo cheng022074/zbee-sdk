@@ -11,8 +11,11 @@
 
  let me = this,
  {
-    proxy
+    proxy,
+    $data:data
  } = me;
+
+ data.clear() ;
 
  me.loading = false ;
 
