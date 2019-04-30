@@ -13,7 +13,7 @@
 
  class main extends Model{
 
-    get fieldsConfig(){
+    static get fieldsConfig(){
 
         return {} ;
     }

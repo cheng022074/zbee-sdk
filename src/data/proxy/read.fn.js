@@ -9,7 +9,8 @@
 
  let me = this,
  {
-     proxy
+     proxy,
+     reader
  } = me ;
 
- me.fireEvent('read' , await proxy.call('doRead' , options)) ;
+ me.fireEvent('read' , reader(await proxy.call('doRead' , options))) ;

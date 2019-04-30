@@ -3,7 +3,7 @@
  * 
  * 创建新的代理
  * 
- * @import create from object.create
+ * @import create from class.create
  * 
  * @import ..memory
  * 

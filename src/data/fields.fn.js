@@ -1,5 +1,3 @@
-import { get } from "http";
-
 /**
  * 
  * 标准化字段集合
