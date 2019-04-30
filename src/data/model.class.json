@@ -19,5 +19,8 @@
     "methods":[{
         "name":"get",
         "impl":".model.value"
-    }]
+    },{
+        "name":"bindStore",
+        "impl":".model.store.bind"
+    },"destroy"]
 }

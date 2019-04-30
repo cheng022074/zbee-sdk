@@ -8,9 +8,9 @@
  let me = this,
  {
     proxy,
-    data
+    $data:data
  } = me ;
 
  proxy.destroy() ;
 
- data.length = 0 ;
+ data.clear() ;
