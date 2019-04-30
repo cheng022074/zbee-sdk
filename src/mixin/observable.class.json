@@ -15,15 +15,14 @@
         "impl":".observable.listeners.remove"
     },{
         "name":"addListener",
+        "alias":"on",
         "impl":".observable.listener.add"
     },{
         "name":"removeListener",
+        "alias":"un",
         "impl":".observable.listener.remove"
     },{
         "name":"fireEvent",
         "impl":".observable.fire"
-    },
-    "on",
-    "un"
-    ]
+    }]
 }
