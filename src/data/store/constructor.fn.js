@@ -7,11 +7,9 @@
  * 
  * @import onProxyRead from .proxy.read
  * 
- * @import data.proxy.memory
- * 
  * @param {object} [options = {}] 配置
  * 
- * @param {string} [options.proxy = 'memory'] 数据代理
+ * @param {string} [options.proxy] 数据代理
  * 
  */
 

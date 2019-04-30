@@ -1,0 +1,8 @@
+{
+    "class":true,
+    "staticProperties":{
+        "fields":{
+            "get":".model.fields"
+        }
+    }
+}

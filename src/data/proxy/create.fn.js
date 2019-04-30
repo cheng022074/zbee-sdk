@@ -3,28 +3,14 @@
  * 
  * 创建新的代理
  * 
- * @import is.string
+ * @import create from object.create
  * 
- * @import isObject from is.object.simple
+ * @import ..memory
  * 
- * @param {mixed} proxy 数据代理
+ * @param {mixed} [proxy = 'memory'] 数据代理
  * 
- * @return {mixed} 返回说明 
+ * @return {mixed} 数据代理 
  * 
  */
 
- if(isString(proxy)){
-
-    return include(`data.proxy.${proxy}`)() ;
- 
-}else if(isObject(proxy)){
-
-    let {
-        name,
-        ...options
-    } = proxy ;
-
-    return include(`data.proxy.${proxy}`)(options) ;
- }
-
- return proxy ;
+ return create('data.proxy' , proxy) ;
