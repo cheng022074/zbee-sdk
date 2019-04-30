@@ -9,7 +9,9 @@
  * 
  * @param {object} [options = {}] 配置
  * 
- * @param {object} [options.reader] 配置读取器
+ * @param {mixed} [options.reader = {}] 配置读取器
+ * 
+ * @param {mixed} [options.model] 数据模型
  * 
  */
 
@@ -17,4 +19,7 @@
 
  me.proxy = createProxy(me) ;
 
- me.reader = createReader(reader) ;
+ me.reader = createReader({
+     ...reader,
+     model
+ }) ;

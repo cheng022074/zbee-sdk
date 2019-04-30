@@ -7,7 +7,11 @@
  * 
  */
 
- let store = createStore() ;
+ let store = createStore({
+   fields:[
+      'name'
+   ]
+ }) ;
 
  function onLoad(store , data){
 
