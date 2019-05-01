@@ -6,15 +6,22 @@
     "mixins":[
         "mixin.observable"
     ],
-    "properties":{
-        "data":{
-            "get":".store.data"   
-        }
-    },
-    "methods":[{
-        "name":"load",
-        "impl":".store.load"
-    },
-    "destroy"
+    "methods":[
+        "load",
+        "reload",
+        "clear",
+        "add",
+        "remove",
+        "insert",{
+            "name":"getById",
+            "impl":".store.get.id"
+        },
+        {
+            "name":"getAt",
+            "impl":".store.get.index"
+        },
+        "bind",
+        "unbind",
+        "destroy"
     ]
 }
