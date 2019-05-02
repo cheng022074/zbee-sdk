@@ -12,13 +12,22 @@
         "clear",
         "add",
         "remove",
-        "insert",{
+        "insert",
+        {
             "name":"getById",
             "impl":".store.get.id"
         },
         {
             "name":"getAt",
-            "impl":".store.get.index"
+            "impl":".store.get.at"
+        },
+        {
+            "name":"removeAt",
+            "impl":".store.remove.at"
+        },
+        {
+            "name":"removeById",
+            "impl":".store.remove.id"
         },
         "bind",
         "unbind",

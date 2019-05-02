@@ -11,12 +11,13 @@
 
  let me = this,
  {
-    proxy,
-    $data:data
+    proxy
  } = me;
 
- data.clear() ;
+ me.clear() ;
 
- me.loading = false ;
+ me.connected = false ;
+
+ me.connecting = true ;
 
  proxy.read(options) ;

@@ -5,19 +5,18 @@
  * 
  * @import from from array.from
  * 
+ * @import add from .private.add scoped
+ * 
  * @param {data.Proxy} proxy 数据代理
  * 
  * @param {mixed} records 读取数据
  * 
  */
 
- let me = this,
- {
-    $data:data
- } = me ;
+ let me = this ;
 
- data.push(...records) ;
+ me.connected = true ;
 
- me.loading = true ;
+ me.connecting = false ;
 
- me.fireEvent('load' , me.data) ;
+ me.fireEvent('load' , add(records)) ;

@@ -10,8 +10,6 @@
  * 
  * @import is.string
  * 
- * @import createSource from data.store.source
- * 
  * @param {object} [options = {}] 配置
  * 
  * @param {string} [options.proxy = 'memory'] 数据代理
@@ -46,4 +44,10 @@
      scope:me
  }) ;
 
- me.$data = createSource() ;
+ me.records = [] ;
+
+ me.recordMap = {} ;
+
+ me.connected = false ;
+
+ me.connecting = false ;

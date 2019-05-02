@@ -7,10 +7,15 @@
 
  let me = this,
  {
-    proxy,
-    $data:data
+   records,
+   recordMap
  } = me ;
 
- proxy.destroy() ;
+ for(let record of records){
 
- data.clear() ;
+   record.destroy() ;
+
+   delete recordMap[record.id] ;
+ }
+
+ records.length = 0 ;

@@ -14,12 +14,7 @@
    idProperty:'name'
  }) ;
 
- function onLoad(store , data){
-
-    console.log('加载数据' , data) ;
- }
-
- store.addListener('load' , onLoad) ;
+ store.on('load' , (store , data) => console.log('加载数据' , data)) ;
 
  store.load([{
     name:'x'
