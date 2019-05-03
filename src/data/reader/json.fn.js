@@ -47,8 +47,6 @@
 
       ${generate_get_root_data(rootProperty)}
 
-      
-
       data = from(data) ;
 
       var result = [],

@@ -20,6 +20,12 @@
  * 
  * @param {string} [options.model] 数据模型
  * 
+ * @param {boolean} [options.autoLoad = false] 是否自动载入
+ * 
+ * @param {mixed} [options.defaultLoadOptions] 默认载入时所需要的参数
+ * 
+ * @param {object} [options.listeners] 默认监听函数
+ * 
  */
 
  let me = this ;
@@ -54,3 +60,15 @@
  me.connected = false ;
 
  me.connecting = false ;
+
+ me.defaultLoadOptions = defaultLoadOptions ;
+
+ if(listeners){
+
+    me.addListeners(listeners) ;
+ }
+
+ if(autoLoad === true){
+
+    me.load() ;
+ }

@@ -5,13 +5,14 @@
  * 
  * @import from from array.from
  * 
- * @param {mixed} options 数据
+ * @param {mixed} [options] 数据
  * 
  */
 
  let me = this,
  {
-    proxy
+    proxy,
+    defaultLoadOptions
  } = me;
 
  me.clear() ;
@@ -20,4 +21,4 @@
 
  me.connecting = true ;
 
- proxy.read(options) ;
+ proxy.read(options || defaultLoadOptions) ;

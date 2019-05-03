@@ -83,6 +83,7 @@
 
                 let {
                     model = currentModel,
+                    autoLoad,
                     associatedName
                 } = hasMany ;
 
@@ -94,6 +95,8 @@
 
                         let store = createStore({
                             model,
+                            autoLoad,
+                            defaultLoadOptions:data,
                             proxy:{
                                 name:'memory',
                                 reader:{
@@ -102,8 +105,6 @@
                             }
                         }) ;
 
-                        store.load(data) ;
-    
                         return store ;
                     } ;
                 

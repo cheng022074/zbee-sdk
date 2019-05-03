@@ -15,6 +15,7 @@ const Node = createModel({
         {
             "name":"childNodes",
             "hasMany":{
+                autoLoad:true,
                 associatedName:"cn"
             }
         }
@@ -28,17 +29,8 @@ let store = createStore({
 
 store.on('load' , (store , records) => {
 
-   let record = records[0] ;
+   console.log(records) ;
 
-   console.log(record.get('name')) ;
-
-   setTimeout(() =>{
-
-      console.log(record.get('childNodes').records) ;
-
-   } , 1000) ;
-
-   
 
 }) ;
 

@@ -16,5 +16,6 @@ function main(){
     me.emitter = new EventEmitter() ;
 
     me.listeners = createMap() ;
+
 }
 
