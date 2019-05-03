@@ -14,13 +14,19 @@
  * 
  * @import is.empty
  * 
+ * @import getModel from data.model.get
+ * 
+ * @import createStore from data.store
+ * 
  * @param {mixed} fields 字段集合
+ * 
+ * @param {data.Model} [model] 数据模型
  * 
  * @return {mixed} 标准化后的字段集合
  * 
  */
 
- function main(fields){
+ function main(fields , currentModel){
 
     if(fields instanceof Fields){
 
@@ -46,19 +52,13 @@
                 name,
                 mapping,
                 convert,
-                defaultValue
-            } = field ;
+                defaultValue,
+                hasMany
+            } = field;
 
             if(convert){
 
-                item = {
-                    name,
-                    convert
-                } ;
-
             }else if(mapping){
-
-                let convert ;
 
                 if(isDefined(defaultValue)){
 
@@ -79,13 +79,47 @@
                     convert = data => get(data , mapping) ;
                 }
 
-                result.push({
-                    name,
-                    convert
-                }) ;
+            }else if(hasMany){
+
+                let {
+                    model = currentModel,
+                    associatedName
+                } = hasMany ;
+
+                model = getModel(model) ;
+
+                if(model){
+
+                    convert = data =>{
+
+                        let store = createStore({
+                            model,
+                            proxy:{
+                                name:'memory',
+                                reader:{
+                                    rootProperty:associatedName
+                                }
+                            }
+                        }) ;
+
+                        store.load(data) ;
+    
+                        return store ;
+                    } ;
+                
+                }else{
+
+                    convert = empty ;
+                }
             }
+
+            result.push({
+                name,
+                convert
+            }) ;
         }
     }
+
 
     return new Fields(result) ;
  }

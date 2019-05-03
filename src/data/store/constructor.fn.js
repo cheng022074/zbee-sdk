@@ -26,7 +26,10 @@
 
  if(!model){
 
-    model = createModel(fields , idProperty) ;
+    model = createModel({
+        fields,
+        idProperty
+    }) ;
  }
 
  if(isString(proxy)){
@@ -46,7 +49,7 @@
 
  me.records = [] ;
 
- me.recordMap = {} ;
+ me.recordMap = new Map() ;
 
  me.connected = false ;
 

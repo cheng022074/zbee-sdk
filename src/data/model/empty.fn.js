@@ -15,6 +15,6 @@
 
     static get fieldsConfig(){
 
-        return {} ;
+        return [] ;
     }
  }

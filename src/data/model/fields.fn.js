@@ -13,4 +13,4 @@
 
  let me = this ;
 
- return me.$fields || (me.$fields = getFields(fly(me).get('fieldsConfig'))) ;
+ return me.$fields || (me.$fields = getFields(fly(me).get('fieldsConfig') , me)) ;

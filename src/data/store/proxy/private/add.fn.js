@@ -1,12 +1,43 @@
 
 /**
  * 
- * 函数实现说明
+ * 处理添加的数据记录
  * 
- * @param {mixed} data 参数说明
+ * @import from from array.from
  * 
- * @return {mixed} 返回说明 
+ * @import Model from data.model value
+ * 
+ * @param {mixed} insertRecords 数据记录
+ * 
+ * @return {array} 经过处理后的可添加的数据记录
  * 
  */
 
- // 代码实现
+ insertRecords = from(insertRecords) ;
+
+ let {
+    records,
+    recordMap
+ } = this,
+ insertedRecords = [];
+
+ for(let record of insertRecords){
+
+    if(record instanceof Model){
+
+        let {
+            id
+        } = record ;
+
+        if(!recordMap.has(id)){
+
+            records.push(record) ;
+
+            recordMap.set(id , record) ;
+
+            insertedRecords.push(record) ;
+        }
+    }
+ }
+
+ return insertedRecords ;

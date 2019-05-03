@@ -5,9 +5,7 @@
  * 
  * @import create from class.create
  * 
- * @import ..empty
- * 
- * @param {mixed} [model = 'empty'] 数据模型名称
+ * @param {mixed} model 数据模型名称
  * 
  * @return {data.Model} 模型类引用
  * 

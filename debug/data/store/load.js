@@ -14,12 +14,12 @@
    idProperty:'name'
  }) ;
 
- store.on('load' , (store , data) => console.log('加载数据' , data)) ;
+ store.on('load' , (store , records) => console.log('加载数据' , records)) ;
 
  store.load([{
-    name:'x'
+    name:'陈治文'
  },{
-   name:'xx'
+   name:'苏大强'
 },{
-   name:'xxx'
+   name:'宁小小'
 }]) ;

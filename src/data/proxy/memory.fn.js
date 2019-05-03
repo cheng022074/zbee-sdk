@@ -5,8 +5,6 @@
  * 
  * @param {object} options 配置
  * 
- * @import from from array.from
- * 
  * @import Proxy from data.proxy value
  */
 
@@ -14,7 +12,7 @@
 
     doRead(data){
 
-        return from(data); 
+        return data; 
     }
 
     doUpdate(){
