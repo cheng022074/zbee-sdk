@@ -1,7 +1,7 @@
 
 /**
  * 
- * 载入树型数据
+ * 修改树型数据
  * 
  * @import createStore from data.store.tree
  * 
@@ -31,15 +31,6 @@ let store = createStore({
     model:Node
   });
 
-store.on('load' , (store , records) =>{
-
-   for(let record of records){
-
-      console.log(record.get('name') , record.get('job')) ;
-   }
-
-}) ;
-
 store.load({
    name:'陈治文',
    job:'程序员',
@@ -58,3 +49,19 @@ store.load({
       name:'宁小小'
    }]
 }) ;
+
+store.on('update' , (record ,  name , value) =>{
+
+    console.log('update' , record.get('name') , name , value) ;
+
+}) ;
+
+store.on('load' , () =>{
+
+    store.getById('陈治文').set('job' , '工程师') ;
+
+    store.getById('宁小小').set('job' , 'xxxxxx') ;
+
+}) ;
+
+

@@ -7,6 +7,8 @@
  * 
  * @import update from .private.records.update scoped
  * 
+ * @import bind from .private.records.bind scoped
+ * 
  * @param {mixed} addRecords 数据记录
  * 
  * @param {boolean} [isFireAddEvent = true] 是否触发添加事件
@@ -19,13 +21,12 @@
  } = getRecords(addRecords),
  me = this,
  {
-    records,
-    recordMap
+    records
  } = me;
 
- records.push(...notExistsRecords) ;
+ bind(notExistsRecords) ;
 
- notExistsRecords.forEach(record => recordMap.set(record.id , record)) ;
+ records.push(...notExistsRecords) ;
 
  if(isFireAddEvent){
 

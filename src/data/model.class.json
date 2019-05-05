@@ -1,5 +1,8 @@
 {
     "class":true,
+    "mixins":[
+        "mixin.observable"
+    ],
     "staticProperties":{
         "fields":{
             "get":".model.fields"

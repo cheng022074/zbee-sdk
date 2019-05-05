@@ -1,31 +1,34 @@
 
 /**
- * 
+ *
  * 触发事件
- * 
+ *
  * @param {string} event 事件名称
- * 
+ *
  * @param {mixed} [...args] 事件参数
- * 
+ *
  */
 
  function main(event , ...args){
 
     let me = this ;
-   
+
     doFireBubbleEvent.call(me , event , me , ...args) ;
  }
 
  function doFireBubbleEvent(event , target , ...args){
-   
-    let {
+
+    let me = this,{
         bubbleTarget,
         emitter
-    } = this ;
+    } = me ;
 
-    emitter.emit(event , target ,  ...args) ;
+    if('emit' in emitter){
 
-    if(bubbleTarget && bubbleTarget instanceof main){
+        emitter.emit(event , target ,  ...args) ;
+    }
+
+    if(bubbleTarget){
 
         doFireBubbleEvent.call(bubbleTarget , event , target , ...args) ;
     }

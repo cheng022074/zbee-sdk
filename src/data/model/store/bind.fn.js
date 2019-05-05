@@ -1,12 +1,14 @@
 
 /**
  * 
- * 函数实现说明
+ * 绑定存储器
  * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
+ * @param {data.Store} store 数据存储器
  * 
  */
 
- // 代码实现
+ let me = this ;
+
+ me.store = store ;
+
+ me.bubbleTarget = store ;

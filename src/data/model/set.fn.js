@@ -7,6 +7,10 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import isStore from is.data.store
+ * 
+ * @import isModel from is.data.model
+ * 
  * @param {mixed} name 属性名称或者是一组属性值
  * 
  * @param {mixed} [value] 属性值
@@ -15,15 +19,16 @@
 
  function getFields(){
 
-    return this.constructor.fields ;
+    return this.constructor.fields.fields ;
  }
 
  function set(values){
 
-    let fields = getFields(),
+    let me = this,
+    fields = getFields.call(me),
     {
         data
-    } = this;
+    } = me;
 
     for(let {
         name
@@ -31,22 +36,40 @@
 
         if(values.hasOwnProperty(name)){
 
-            data[name] = values[name] ;
+            let target = data[name],
+                value = values[name];
+
+            if(isStore(target)){
+
+                target.loadData(value) ;
+            
+            }else if(isModel(target)){
+
+                target.loadData(value) ;
+            
+            }else{
+
+                let oldValue = data[name] ;
+
+                me.fireEvent('update' , name , data[name] = values[name] , oldValue) ;
+            }
         }
     }
  }
 
  function main(name , value){
 
+    let me = this ;
+
     if(isString(name)){
 
-        set({
+        set.call(me , {
             [name]:value
         }) ;
     
     }else if(isObject(name)){
 
-        set(name) ;
+        set.call(me , name) ;
     }
  }
 

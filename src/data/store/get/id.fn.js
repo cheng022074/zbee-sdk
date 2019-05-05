@@ -9,4 +9,8 @@
  * 
  */
 
- // 代码实现
+ let {
+    recordMap
+ } = this ;
+
+ return recordMap.get(id) ;

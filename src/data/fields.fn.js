@@ -56,9 +56,7 @@
                 hasMany
             } = field;
 
-            if(convert){
-
-            }else if(mapping){
+            if(mapping){
 
                 if(isDefined(defaultValue)){
 
@@ -116,7 +114,7 @@
 
             result.push({
                 name,
-                convert
+                convert:convert || (() => undefined)
             }) ;
         }
     }

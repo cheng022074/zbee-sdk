@@ -9,6 +9,8 @@
  * 
  * @import update from .private.records.update scoped
  * 
+ * @import bind from .private.records.bind scoped
+ * 
  * @param {number} index 插入位置
  * 
  * @param {mixed} insertRecords 数据记录
@@ -24,13 +26,12 @@
  } = getRecords(insertRecords),
  me = this,
  {
-    records,
-    recordMap
+    records
  } = me;
 
- insert(records , index , ...notExistsRecords) ;
+ bind(notExistsRecords) ;
 
- notExistsRecords.forEach(record => recordMap.set(record.id , record)) ;
+ insert(records , index , ...notExistsRecords) ;
 
  if(isFireInsertEvent){
 
