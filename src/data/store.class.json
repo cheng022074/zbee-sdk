@@ -8,7 +8,10 @@
         "mixin.observable"
     ],
     "methods":[
-        "load",
+        "load",{
+            "name":"loadData",
+            "impl":".store.load.data"
+        },
         "reload",
         "clear",
         "add",

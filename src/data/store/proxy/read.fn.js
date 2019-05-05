@@ -11,6 +11,4 @@
  * 
  */
 
- let me = this;
-
- me.fireEvent('load' , me.add(records , false)) ;
+this.loadData(records) ;

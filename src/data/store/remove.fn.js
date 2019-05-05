@@ -11,6 +11,8 @@
  * 
  * @param {mixed} removeRecords 数据记录
  * 
+ * @param {boolean} [isFireRemoveEvent = true] 是否触发删除事件
+ * 
  */
 
 let {
@@ -25,6 +27,9 @@ let {
 
  remove(records , ...existsRecords) ;
 
- me.fireEvent('remove' , existsRecords) ;
+ if(isFireRemoveEvent){
+
+    me.fireEvent('remove' , existsRecords) ;
+ }
 
  return existsRecords ;
