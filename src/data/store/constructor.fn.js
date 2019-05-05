@@ -24,8 +24,6 @@
  * 
  * @param {mixed} [options.defaultLoadOptions] 默认载入时所需要的参数
  * 
- * @param {object} [options.listeners] 默认监听函数
- * 
  */
 
  let me = this ;
@@ -58,11 +56,6 @@
  me.recordMap = new Map() ;
 
  me.defaultLoadOptions = defaultLoadOptions ;
-
- if(listeners){
-
-    me.addListeners(listeners) ;
- }
 
  if(autoLoad === true){
 
