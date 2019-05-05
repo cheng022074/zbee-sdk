@@ -5,31 +5,18 @@
  * 
  * @import createStore from data.store.tree
  * 
- * @import createModel from data.model.create
- * 
  */
 
-const Node = createModel({
-    fields:[
-        'name',{
-            name:'job',
-            mapping:'job',
-            defaultValue:'其它'
-        },
-        {
-            name:'childNodes',
-            hasMany:{
-                autoLoad:true,
-                associatedName:'cn'
-            }
-        }
-     ],
-     idProperty:'name'
-}) ;
-
 let store = createStore({
-    model:Node
-  });
+    fields:[
+       'name',{
+           name:'job',
+           mapping:'job',
+           defaultValue:'其它'
+       }
+    ],
+    idProperty:'name'
+   });
 
 store.load({
    name:'陈治文',
@@ -53,6 +40,15 @@ store.load({
 store.on('update' , (record ,  name , value) =>{
 
     console.log('update' , record.get('name') , name , value) ;
+
+    let {
+        records
+    } = store ;
+
+    for(let record of records){
+
+        console.log(record.get('name') , record.get('job')) ;
+     }
 
 }) ;
 

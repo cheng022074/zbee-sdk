@@ -5,12 +5,37 @@
  * 
  * @import Store from data.store value
  * 
+ * @import data.model.tree
+ * 
  * @param {object} options 数据存储器配置
  * 
  * 
  */
 
  class main extends Store{
+
+    constructor(options = {}){
+
+        let {
+            fields = [],
+            childNodeProperty = 'cn',
+            ...storeOptions
+        } = options ;
+
+        fields.push({
+            name:'childNodes',
+            hasMany:{
+                autoLoad:true,
+                associatedName:childNodeProperty
+            }
+        }) ;
+
+        super({
+            ...storeOptions,
+            fields,
+            modelClass:'tree'
+        }) ;
+    }
 
     onProxyRead(proxy , records){
 

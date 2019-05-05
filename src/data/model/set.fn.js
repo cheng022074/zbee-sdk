@@ -45,7 +45,7 @@
             
             }else if(isModel(target)){
 
-                target.loadData(value) ;
+                target.setData(value) ;
             
             }else{
 

@@ -127,7 +127,28 @@
 
     constructor(fields){
 
-        this.fields = fields ;
+        let names = [],
+            result = [] ;
+
+        for(let field of fields){
+
+            let {
+                name
+            } = field ;
+
+            if(!names.includes(name)){
+
+                result.push(field) ;
+
+                names.push(name) ;
+            
+            }else{
+
+                result[names.indexOf(name)] = field ;
+            }
+        }
+
+        this.fields = result ;
     }
 
     get names(){

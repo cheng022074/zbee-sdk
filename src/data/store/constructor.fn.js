@@ -16,6 +16,8 @@
  * 
  * @param {mixed} [options.idProperty] 字段定义
  * 
+ * @param {mixed} [options.modelClass] 数据模型类引用
+ * 
  * @param {string} [options.model] 数据模型
  * 
  * @param {boolean} [options.autoLoad = false] 是否自动载入
@@ -33,7 +35,8 @@
 
     model = createModel({
         fields,
-        idProperty
+        idProperty,
+        modelClass
     }) ;
  }
 

@@ -1,31 +1,22 @@
 
 /**
  * 
- * 载入树型数据
+ * 添加树型节点
  * 
  * @import createStore from data.store.tree
  * 
  */
 
 let store = createStore({
-   fields:[
-      'name',{
-          name:'job',
-          mapping:'job',
-          defaultValue:'其它'
-      }
-   ],
-   idProperty:'name'
-  });
-
-store.on('load' , (store , records) =>{
-
-   for(let record of records){
-
-      console.log(record.get('name') , record.get('job')) ;
-   }
-
-}) ;
+    fields:[
+       'name',{
+           name:'job',
+           mapping:'job',
+           defaultValue:'其它'
+       }
+    ],
+    idProperty:'name'
+   });
 
 store.load({
    name:'陈治文',
@@ -45,3 +36,11 @@ store.load({
       name:'宁小小'
    }]
 }) ;
+
+store.on('load' , () =>{
+
+    console.log(store.getById('陈治文').appendChild) ;
+
+}) ;
+
+
