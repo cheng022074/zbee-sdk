@@ -17,6 +17,8 @@
         "bind",
         "unbind",
         "destroy",
+        "first",
+        "last",
         {
             "name":"getById",
             "impl":".store.get.id"

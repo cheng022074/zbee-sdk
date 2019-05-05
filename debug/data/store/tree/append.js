@@ -37,9 +37,25 @@ store.load({
    }]
 }) ;
 
+store.on('insert' , (store) =>{
+
+   let {
+      records
+   } = store ;
+
+   for(let record of records){
+
+      console.log(record.get('name') , record.get('job')) ;
+   }
+
+}) ;
+
 store.on('load' , () =>{
 
-    console.log(store.getById('陈治文').appendChild) ;
+   store.getById('陈治文').appendChild({
+      name:'李新人',
+      job:'研究员'
+   }) ;
 
 }) ;
 

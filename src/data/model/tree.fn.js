@@ -18,20 +18,33 @@
         return [] ;
     }
 
+    get firstChildNode(){
+
+        return this.childNodes.first() ;
+    }
+
+    get lastChildNode(){
+
+        return this.childNodes.last() ;
+    }
+
+    get childNodes(){
+
+        return this.get('childNodes') ;
+    }
+
     appendChild(node){
 
         let me = this,
         {
             store
         } = me,
-        insertNodes = store.insert(store.indexOf(me) + 1 , node) ;
+        insertNodes = store.insert(store.indexOf(me.lastChildNode || me) + 1 , node) ;
 
         for(let insertNode of insertNodes){
 
             store.insert(store.indexOf(insertNode) + 1 , insertNode.descendantNodes) ;
         }
-
-        console.log('添加节点') ;
     }
 
     insertBefore(node , existNode){

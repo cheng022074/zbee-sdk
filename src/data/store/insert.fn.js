@@ -11,6 +11,8 @@
  * 
  * @import bind from .private.records.bind scoped
  * 
+ * @import is.empty
+ * 
  * @param {number} index 插入位置
  * 
  * @param {mixed} insertRecords 数据记录
@@ -29,13 +31,16 @@
     records
  } = me;
 
- bind(notExistsRecords) ;
+ if(!isEmpty(notExistsRecords)){
 
- insert(records , index , ...notExistsRecords) ;
+   bind(notExistsRecords) ;
 
- if(isFireInsertEvent){
+   insert(records , index , ...notExistsRecords) ;
 
-    me.fireEvent('insert' , index , notExistsRecords) ;
+   if(isFireInsertEvent){
+
+      me.fireEvent('insert' , index , notExistsRecords) ;
+   }
  }
 
  update(existsRecords) ;
