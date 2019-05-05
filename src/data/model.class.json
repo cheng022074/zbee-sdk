@@ -6,9 +6,6 @@
         }
     },
     "properties":{
-        "data":{
-            "get":".model.data"
-        },
         "id":{
             "get":".model.id"
         },
@@ -22,5 +19,13 @@
     },{
         "name":"bindStore",
         "impl":".model.store.bind"
-    },"destroy"]
+    },{
+        "name":"addFieldStoreListers",
+        "impl":".model.field.listeners.add.store"
+    },{
+        "name":"addFieldModelListers",
+        "impl":".model.field.listeners.add.model"
+    },
+    "destroy"
+    ]
 }
