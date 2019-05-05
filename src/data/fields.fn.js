@@ -16,7 +16,7 @@
  * 
  * @import getModel from data.model.get
  * 
- * @import createStore from data.store
+ * @import createStore from data.store.create
  * 
  * @param {mixed} fields 字段集合
  * 
