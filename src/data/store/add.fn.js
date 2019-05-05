@@ -5,6 +5,8 @@
  * 
  * @import getRecords from .private.records scoped
  * 
+ * @import update from .private.records.update scoped
+ * 
  * @param {mixed} addRecords 数据记录
  * 
  * @param {boolean} [isFireAddEvent = true] 是否触发添加事件
@@ -12,7 +14,8 @@
  */
 
  let {
-    notExists:notExistsRecords
+    notExists:notExistsRecords,
+    exists:existsRecords
  } = getRecords(addRecords),
  me = this,
  {
@@ -28,5 +31,7 @@
 
     me.fireEvent('add' , notExistsRecords) ;
  }
+
+ update(existsRecords) ;
 
  return notExistsRecords ;

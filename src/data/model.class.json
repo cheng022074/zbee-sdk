@@ -17,6 +17,9 @@
         "name":"get",
         "impl":".model.value"
     },{
+        "name":"set",
+        "impl":".model.set"
+    },{
         "name":"bindStore",
         "impl":".model.store.bind"
     },{

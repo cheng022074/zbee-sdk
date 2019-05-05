@@ -3,7 +3,7 @@
  * 
  * 载入数据
  * 
- * @import createStore from data.store
+ * @import createStore from data.store.create
  * 
  */
 

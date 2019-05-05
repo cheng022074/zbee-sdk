@@ -7,6 +7,8 @@
  * 
  * @import insert from array.insert
  * 
+ * @import update from .private.records.update scoped
+ * 
  * @param {number} index 插入位置
  * 
  * @param {mixed} insertRecords 数据记录
@@ -17,7 +19,8 @@
 
  
  let {
-    notExists:notExistsRecords
+    notExists:notExistsRecords,
+    exists:existsRecords
  } = getRecords(insertRecords),
  me = this,
  {
@@ -33,5 +36,7 @@
 
     me.fireEvent('insert' , index , notExistsRecords) ;
  }
+
+ update(existsRecords) ;
 
  return notExistsRecords ;

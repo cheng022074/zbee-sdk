@@ -15,14 +15,14 @@
 
  let me = this,
  {
-    model:Model
+    proxy
  } = me ;
- 
+
  records = from(records).map(record =>{
 
     if(!isModel(record)){
 
-       return new Model(record) ;
+       return proxy.reader(record)[0] ;
     }
 
     return record ;
