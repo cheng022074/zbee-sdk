@@ -52,7 +52,10 @@ store.on('removechild' , () =>{
 
 store.on('load' , () =>{
 
-   store.getById('陈治文').removeChild(store.getById('宁小小')) ;
+   store.getById('陈治文').removeChild([
+    store.getById('宁小小'),
+    store.getById('苏大强')
+   ]) ;
 
 }) ;
 

@@ -15,7 +15,20 @@
 
     get descendantNodes(){
 
-        return [] ;
+        let me = this,
+        {
+            childNodes
+        } = this,
+        result = [];
+
+        for(let childNode of childNodes){
+
+            result.push(childNode) ;
+
+            result.push(...childNode.descendantNodes) ;
+        }
+
+        return result ;
     }
 
     get firstChildNode(){
@@ -30,7 +43,7 @@
 
     get childNodes(){
 
-        return this.get('childNodes') ;
+        return this.get('childNodes').toArray() ;
     }
 
     appendChild(node){

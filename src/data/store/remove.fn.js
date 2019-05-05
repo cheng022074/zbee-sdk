@@ -9,13 +9,13 @@
  * 
  * @import remove from array.remove
  * 
- * @param {mixed} records 数据记录
+ * @param {mixed} removeRecords 数据记录
  * 
  */
 
 let {
     exists:existsRecords
- } = getRecords(insertRecords),
+ } = getRecords(removeRecords),
  me = this,
  {
      records
@@ -26,3 +26,5 @@ let {
  remove(records , ...existsRecords) ;
 
  me.fireEvent('remove' , existsRecords) ;
+
+ return existsRecords ;

@@ -19,6 +19,7 @@
         "destroy",
         "first",
         "last",
+        "toArray",
         {
             "name":"getById",
             "impl":".store.get.id"
