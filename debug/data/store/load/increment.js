@@ -1,7 +1,7 @@
 
 /**
  * 
- * 载入数据
+ * 增量载入数据
  * 
  * @import createStore from data.store.create
  * 
@@ -11,7 +11,8 @@
    fields:[
       'name'
    ],
-   idProperty:'name'
+   idProperty:'name',
+   fullLoad:false
  }) ;
 
  store.on('load' , store => {
@@ -27,7 +28,7 @@
 
  }) ;
 
- store.load([{
+store.load([{
     name:'陈治文'
  },{
    name:'苏大强'
@@ -36,5 +37,5 @@
 }]) ;
 
 store.load([{
-   name:'陈炳昌'
-}]) ;
+    name:'陈炳昌'
+ }]) ;

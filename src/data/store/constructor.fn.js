@@ -24,6 +24,8 @@
  * 
  * @param {mixed} [options.defaultLoadOptions] 默认载入时所需要的参数
  * 
+ * @param {boolean} [options.fullLoad = true] 是否为全量加载
+ * 
  */
 
  let me = this,
@@ -62,6 +64,8 @@
  me.defaultLoadOptions = defaultLoadOptions ;
 
  me.model = model ;
+
+ me.fullLoad = fullLoad ;
 
  if(autoLoad === true){
 
