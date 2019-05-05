@@ -26,6 +26,9 @@
         "name":"bindStore",
         "impl":".model.store.bind"
     },{
+        "name":"bindStore",
+        "impl":".model.store.unbind"
+    },{
         "name":"addFieldStoreListers",
         "impl":".model.field.listeners.add.store"
     },{

@@ -68,6 +68,17 @@
 
     removeChild(node){
 
-        console.log('删除') ;
+        let me = this,
+        {
+             store
+        } = me,
+        removeNodes = store.remove(node) ;
+
+        for(let removeNode of removeNodes){
+
+            store.remove(removeNode.descendantNodes) ;
+        }
+
+        me.fireEvent('removechild' , removeNodes) ;
     }
  }
