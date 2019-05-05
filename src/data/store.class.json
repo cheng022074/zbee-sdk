@@ -2,6 +2,7 @@
     "params":[
         "options"
     ],
+    "class":true,
     "constructor":true,
     "mixins":[
         "mixin.observable"

@@ -3,7 +3,7 @@
  * 
  * 载入树型数据
  * 
- * @import createStore from data.store
+ * @import createStore from data.store.create
  * 
  * @import createModel from data.model.create
  * 
