@@ -49,7 +49,21 @@
 
     insertBefore(node , existNode){
 
-        console.log('插入节点') ;
+       let me = this,
+       {
+            store
+       } = me,
+       index = store.indexOf(existNode);
+
+       if(index !== -1){
+
+            let insertNodes = store.insert(index , node) ;
+
+            for(let insertNode of insertNodes){
+
+                store.insert(store.indexOf(insertNode) + 1 , insertNode.descendantNodes) ;
+            }
+       }
     }
 
     removeChild(node){
