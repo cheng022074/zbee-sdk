@@ -3,10 +3,30 @@
  * 
  * 添加数据
  * 
- * @import add from .private.add scoped
+ * @import getRecords from .private.records scoped
  * 
- * @param {mixed} records 数据记录
+ * @param {mixed} addRecords 数据记录
+ * 
+ * @param {boolean} [isFireAddEvent = true] 是否触发添加事件
  * 
  */
 
- this.fireEvent('add' , add(records)) ;
+ let {
+    notExists:notExistsRecords
+ } = getRecords(addRecords),
+ me = this,
+ {
+    records,
+    recordMap
+ } = me;
+
+ records.push(...notExistsRecords) ;
+
+ notExistsRecords.forEach(record => recordMap.set(record.id , record)) ;
+
+ if(isFireAddEvent){
+
+    me.fireEvent('add' , notExistsRecords) ;
+ }
+
+ return notExistsRecords ;

@@ -33,6 +33,12 @@
             "name":"removeById",
             "impl":".store.remove.id"
         },{
+            "name":"indexOf",
+            "impl":".store.index"
+        },{
+            "name":"indexOfId",
+            "impl":".store.index.id"
+        },{
             "name":"onProxyRead",
             "impl":".store.proxy.read"
         }

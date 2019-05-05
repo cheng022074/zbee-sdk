@@ -58,6 +58,8 @@
 
  me.defaultLoadOptions = defaultLoadOptions ;
 
+ me.model = model ;
+
  if(autoLoad === true){
 
     me.load() ;
