@@ -4,8 +4,6 @@
  * 
  * @import createProxy from data.proxy.create
  * 
- * @import onProxyRead from .proxy.read
- * 
  * @import createModel from data.model.create
  * 
  * @import is.string
@@ -26,7 +24,10 @@
  * 
  */
 
- let me = this ;
+ let me = this,
+ {
+    onProxyRead
+ } = me;
 
  if(!model){
 

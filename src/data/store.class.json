@@ -14,6 +14,9 @@
         "add",
         "remove",
         "insert",
+        "bind",
+        "unbind",
+        "destroy",
         {
             "name":"getById",
             "impl":".store.get.id"
@@ -29,9 +32,9 @@
         {
             "name":"removeById",
             "impl":".store.remove.id"
-        },
-        "bind",
-        "unbind",
-        "destroy"
+        },{
+            "name":"onProxyRead",
+            "impl":".store.proxy.read"
+        }
     ]
 }
