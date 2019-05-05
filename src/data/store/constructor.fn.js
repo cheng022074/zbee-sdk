@@ -57,10 +57,6 @@
 
  me.recordMap = new Map() ;
 
- me.connected = false ;
-
- me.connecting = false ;
-
  me.defaultLoadOptions = defaultLoadOptions ;
 
  if(listeners){

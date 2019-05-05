@@ -15,8 +15,4 @@
 
  let me = this ;
 
- me.connected = true ;
-
- me.connecting = false ;
-
  me.fireEvent('load' , add(records)) ;

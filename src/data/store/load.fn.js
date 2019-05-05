@@ -17,8 +17,4 @@
 
  me.clear() ;
 
- me.connected = false ;
-
- me.connecting = true ;
-
  proxy.read(options || defaultLoadOptions) ;
