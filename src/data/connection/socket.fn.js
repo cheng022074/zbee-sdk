@@ -51,14 +51,15 @@
         let me = this,
         {
             subscribers
-        } = this,
-        result = me.processMessage(msg);
+        } = this ;
+
+        msg = me.processMessage(msg);
 
         subscribers.forEach(subscriber =>{
 
             if(subscriber.validate(msg)){
 
-                subscriber.accept(result) ;
+                subscriber.accept(msg) ;
             }
 
         }) ;

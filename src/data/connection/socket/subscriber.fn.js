@@ -54,12 +54,12 @@ import { get } from "http";
      * 
      * 校验推送数据是否满足当前订阅的要求
      * 
-     * @param {mixed} data 数据
+     * @param {mixed} msg 数据
      * 
      * @return {boolean} 如果检验数据成功则返回 true , 否则返回 false
      * 
      */
-    validate(data){
+    validate(msg){
 
         return false ;
     }

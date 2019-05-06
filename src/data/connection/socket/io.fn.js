@@ -20,13 +20,21 @@
         url,
         options
     }){
-        this.socket = IO(url , {
-            transports: [
-                'websocket',
-                'polling'
-            ],
-            ...options
-        }) ;
+
+        let me = this,
+            {
+                messageEventName,
+                onMessageEvent
+            } = me,
+            socket = me.socket = IO(url , {
+                transports: [
+                    'websocket',
+                    'polling'
+                ],
+                ...options
+            }) ;
+
+        socket.on(messageEventName , onMessageEvent.bind(me)) ;
     }
 
     get connected(){
@@ -36,6 +44,16 @@
         } = this ;
 
         return socket.connected ;
+    }
+
+    onMessageEvent(msg){
+
+        this.acceptMessage(msg) ;
+    }
+
+    get messageEventName(){
+
+        return 'msg' ;
     }
 
 
