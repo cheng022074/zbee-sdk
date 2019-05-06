@@ -2,32 +2,25 @@
  * 
  * 基于 socket.io 标准进行开发
  * 
- * @param {string} url socket.io 连接地址
- * 
- * @param {object} config socket.io 连接配置
+ * @import Socket from ....socket value
  * 
  * @require socket.io-client
  * 
+ * @param {mixed} options Socket 初始化配置
+ * 
+ * @class
+ * 
  */
 
-const IO = require('socket.io-client') ;
+ const IO = require('socket.io-client') ;
 
-function main(url , options){
+ class main extends Socket{
 
-    return new Socket(url , options) ;
-}
-
-class Socket{
-
-    constructor(url , options = {}){
-
-        let me = this;
-
-        me.url = url ;
-
-        me.options = options ;
-
-        me.socket = IO(url , {
+    init({
+        url,
+        options
+    }){
+        this.socket = IO(url , {
             transports: [
                 'websocket',
                 'polling'
@@ -45,7 +38,23 @@ class Socket{
         return socket.connected ;
     }
 
-    emit(event , ...args){
+
+    get subscribeEventName(){
+
+        return 'sub' ;
+    }
+
+    get unsubscribeEventName(){
+
+        return 'unsub' ;
+    }
+
+    doEmit(event , params){
+
+        this.socket.emit(event , params) ;
+    }
+
+    emit(event , params){
 
         let me = this,
         {
@@ -55,11 +64,11 @@ class Socket{
 
         if(connected){
 
-            socket.emit(event , ...args) ;
+            me.doEmit(event , params) ;
         
         }else{
 
-            const emitFn = () => me.emit(event , ...args) ;
+            const emitFn = () => me.emit(event , params) ;
 
             socket.once('connect' , emitFn) ;
 
@@ -67,8 +76,23 @@ class Socket{
         }
     }
 
-    on(event , fn){
+    doSubscribe(params){
 
-        this.socket.on(event , fn) ;
+        let me = this,
+        {
+            subscribeEventName
+        } = me ;
+        
+        me.emit(subscribeEventName , params) ;
     }
-}
+
+    doUnsubscribe(params){
+
+        let me = this,
+        {
+            unsubscribeEventName
+        } = me ;
+        
+        me.emit(unsubscribeEventName , params) ;
+    }
+ }
