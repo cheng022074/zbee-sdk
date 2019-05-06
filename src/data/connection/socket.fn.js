@@ -5,6 +5,8 @@
  * 
  * @import get from object.get
  * 
+ * @import createMap from object.map
+ * 
  * @param {mixed} options Socket 初始化配置
  * 
  * @class
@@ -19,7 +21,9 @@
 
         me.init(options) ;
 
-        me.subscribers = new Map() ;
+        me.subscriberMap = createMap() ;
+
+        me.remoteParamsMap = createMap() ;
     }
 
     /**
@@ -85,7 +89,7 @@
      * 
      * @param {mixed} ...args 消息
      * 
-     * @return {mixed}
+     * @return {object}
      *  
      */
     processMessage(...args){
@@ -93,87 +97,43 @@
         return {} ;
     }
 
-    get subscribeParamNames(){
-
-        return [] ;
-    }
-
     /**
      * 
-     * 根据参数生成一个唯一的键值
+     * 根据订阅参数获取订阅器
      * 
-     * @param {mixed} params 订阅参数
-     * 
-     * @return {string} 
+     * @param {object} params 订阅参数  
      */
-    generateSubscriberKey(params){
 
-        let keys = this.subscribeParamNames,
-            result = [];
-
-        for(let key of keys){
-
-            let value = get(params , key) ;
-
-            result.push(`${key}=${JSON.stringify(value)}`) ;
-        }
-
-        return result.join('&') ;
-    }
-
-    /**
-     * 
-     * 判断指定指阅参数是否还有订阅器在使用
-     * 
-     * @param {mixed} params 远程订阅参数
-     * 
-     * @return {boolean} 如果还有订阅器在使用则返回 true , 否则返回 false
-     *  
-     */
-    hasSubscribeRemoteParams(params){
-
-        let me = this,
-        {
-            subscribers
-        } = me,
-        key = me.generateSubscriberKey(params);
-
-        subscribers = subscribers.values() ;
-
-        for(let subscriber of subscribers){
-
-            if(me.generateSubscriberKey(subscriber.remoteParams) === key){
-
-                return true ;
-            }
-        }
-
-        return false ;
-    }
-
-    /**
-     * 
-     * 根据订阅参数获得订阅器
-     * 
-     * @param {mixed} params 订阅参数
-     * 
-     * @return {data.connection.socket.Subscriber} 订阅器
-     * 
-     */
     getSubscriber(params){
 
         let me = this,
-            key = me.generateSubscriberKey(params),
-            {
-                subscribers
-            } = me;
+        {
+            subscriberMap
+        } = this ;
 
-        if(!subscribers.has(key)){
+        if(!subscriberMap.has(params)){
 
-            subscribers.set(key , me.createSubscriber(params)) ;
+            subscriberMap.set(params , me.createSubscriber(params)) ;
         }
 
-        return subscribers.get(key) ;
+        return subscriberMap.get(params) ;
+    }
+
+    removeSubscriber(params){
+
+        let me = this,
+        {
+            subscriberMap
+        } = this;
+
+        if(subscriberMap.has(params)){
+
+            let subscriber = subscriberMap.get(params) ;
+
+            subscriberMap.delete(params) ;
+
+            return subscriber ;
+        }
     }
 
     /**
@@ -190,39 +150,12 @@
 
     /**
      * 
-     * 根据订阅参数获得订阅器
-     * 
-     * @param {mixed} params 订阅参数
-     * 
-     * @return {data.connection.socket.Subscriber} 订阅器
-     * 
-     */
-    removeSubscriber(params){
-
-        let me = this,
-            key = me.generateSubscriberKey(params),
-            {
-                subscribers
-            } = me;
-
-        if(subscribers.has(key)){
-
-            let subscriber = subscribers.get(key) ;
-
-            subscribers.delete(key) ;
-
-            return subscriber ;
-        }
-    }
-
-    /**
-     * 
      * 订阅参数至服务器
      * 
      * @param {mixed} params 订阅参数
      * 
      */
-    doSubscribe(params){
+    doSubscribe(remoteParams){
     }
 
     /**
@@ -232,7 +165,7 @@
      * @param {mixed} params 订阅参数 
      * 
      */
-    doUnsubscribe(params){
+    doUnsubscribe(remoteParams){
     }
 
     /**
@@ -249,17 +182,93 @@
 
     /**
      * 
+     * 是否可以远程订阅
+     * 
+     * @param {mixed} remoteParams 订阅参数
+     * 
+     */
+    isCanRemoteSubscribe(remoteParams){
+
+        return false ;
+    }
+
+    /**
+     * 
+     * 是否可以远程取消订阅
+     * 
+     * @param {mixed} remoteParams 订阅参数
+     * 
+     */
+    isCanRemoteUnsubscribe(remoteParams){
+
+        return false ;
+    }
+
+    /**
+     * 
+     * 尝试订阅
+     * 
+     * @param {mixed} remoteParams 订阅参数
+     * 
+     */
+    trySubscribe(remoteParams){
+
+        let me = this ;
+
+        if(me.isCanRemoteSubscribe(remoteParams)){
+
+            let {
+                remoteParamsMap
+            } = me ;
+    
+            if(!remoteParamsMap.has(remoteParams)){
+    
+                remoteParamsMap.set(remoteParams , remoteParams) ;
+    
+                me.doSubscribe(remoteParams) ;
+            }
+        }
+    }
+
+    /**
+     * 
+     * 尝试取消订阅
+     * 
+     * @param {mixed} remoteParams 订阅参数
+     * 
+     */
+    tryUnsubscribe(remoteParams){
+
+        let me = this ;
+
+        if(me.isCanRemoteUnsubscribe(remoteParams)){
+
+            let {
+                remoteParamsMap
+            } = me ;
+    
+            remoteParamsMap.delete(remoteParams) ;
+    
+            if(!remoteParamsMap.has(remoteParams)){
+    
+                me.doUnsubscribe(remoteParams) ;
+            }
+        }
+    }
+
+    /**
+     * 
      * 订阅
      * 
      */
     subscribe(...args){
 
         let me = this,
-            {
-                remoteParams
-            } = me.getSubscriber(me.processSubscribeParams(...args)) ;
+        {
+            remoteParams
+        } = me.getSubscriber(me.processSubscribeParams(...args)) ;
 
-        me.doSubscribe(remoteParams) ;
+        me.trySubscribe(remoteParams) ;
     }
 
     /**
@@ -271,13 +280,11 @@
     unsubscribe(...args){
 
         let me = this,
-            {
-                remoteParams
-            } = me.removeSubscriber(me.processSubscribeParams(...args)) ;
+            subscriber = me.removeSubscriber(me.processSubscribeParams(...args)) ;
 
-        if(!me.hasSubscribeRemoteParams(remoteParams)){
+        if(subscriber){
 
-            me.doUnsubscribe(remoteParams) ;
+            me.tryUnsubscribe(subscriber.remoteParams) ;
         }
     }
  }
