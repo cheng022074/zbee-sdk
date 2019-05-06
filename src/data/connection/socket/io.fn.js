@@ -46,9 +46,9 @@
         return socket.connected ;
     }
 
-    onMessageEvent(msg){
+    onMessageEvent(...args){
 
-        this.acceptMessage(msg) ;
+        this.acceptMessage(...args) ;
     }
 
     get messageEventName(){
@@ -67,9 +67,9 @@
         return 'unsub' ;
     }
 
-    doEmit(event , params){
+    doEmit(socket , event , params){
 
-        this.socket.emit(event , params) ;
+        socket.emit(event , params) ;
     }
 
     emit(event , params){
@@ -82,7 +82,7 @@
 
         if(connected){
 
-            me.doEmit(event , params) ;
+            me.doEmit(socket , event , params) ;
         
         }else{
 

@@ -15,15 +15,9 @@
 
     constructor(options){
 
-        let me = this,
-            {
-                subscriber = {},
-                ...socketOptions
-            } = options;
+        let me = this;
 
-        me.subscriberOptions = subscriber ;
-
-        me.init(socketOptions) ;
+        me.init(options) ;
 
         me.subscribers = new Map() ;
     }
@@ -41,19 +35,25 @@
 
     /**
      * 
-     * 接收来自服务器端的消息推送
+     * 接收来自服务器端的消息推送,推送可能是配置式，也可能是参数式
      * 
      * @param {mixed} msg 接收消息
      * 
      */
-    acceptMessage(msg){
+    acceptMessage(...args){
 
-        let me = this,
-        {
+        let me = this ;
+
+        msg = me.processMessage(...args);
+
+        if(me.isAcceptMessage(msg) === false){
+
+            return  ;
+        }
+
+        let {
             subscribers
-        } = this ;
-
-        msg = me.processMessage(msg);
+        } = me ;
 
         subscribers.forEach(subscriber =>{
 
@@ -67,16 +67,30 @@
 
     /**
      * 
-     * 针对消息进行处理
+     * 判断给定消息是否可接受
      * 
      * @param {mixed} msg 消息
+     * 
+     * @return {boolean} 如果可接受消息则返回 true , 否则返回 false
+     * 
+     */
+    isAcceptMessage(msg){
+
+        return false ;
+    }
+
+    /**
+     * 
+     * 针对消息进行处理
+     * 
+     * @param {mixed} ...args 消息
      * 
      * @return {mixed}
      *  
      */
-    processMessage(msg){
+    processMessage(...args){
 
-        return msg ;
+        return {} ;
     }
 
     get subscribeParamNames(){
@@ -223,29 +237,27 @@
 
     /**
      * 
+     * 处理订阅参数
+     * 
+     * @param  {mixed} ...args 订阅参数
+     *  
+     */
+    processSubscribeParams(...args){
+
+        return {} ;
+    }
+
+    /**
+     * 
      * 订阅
      * 
-     * @param {mixed} params 订阅参数
-     * 
-     * @param {mixed} fn 订阅函数 
-     * 
-     * @param {mixed} scope 订阅函数作用域
-     * 
      */
-    subscribe(params , fn , scope){
+    subscribe(...args){
 
         let me = this,
-        {
-            subscriberOptions
-        } = me,
-        {
-            remoteParams
-        } = me.getSubscriber({
-            ...subscriberOptions,
-            params,
-            fn,
-            scope
-        }) ;
+            {
+                remoteParams
+            } = me.getSubscriber(me.processSubscribeParams(...args)) ;
 
         me.doSubscribe(remoteParams) ;
     }
@@ -254,24 +266,14 @@
      * 
      * 取消订阅
      * 
-     * @param {mixed} params 订阅参数
-     * 
-     * @param {mixed} fn 订阅函数 
-     * 
-     * @param {mixed} scope 订阅函数作用域
      * 
      */
-    unsubscribe(params , fn , scope){
+    unsubscribe(...args){
 
         let me = this,
             {
                 remoteParams
-            } = me.removeSubscriber({
-                ...subscriberOptions,
-                params,
-                fn,
-                scope
-            }) ;
+            } = me.removeSubscriber(me.processSubscribeParams(...args)) ;
 
         if(!me.hasSubscribeRemoteParams(remoteParams)){
 
