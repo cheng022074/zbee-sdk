@@ -4,16 +4,16 @@
  * 
  * @import Socket from data.connection.socket.io value
  * 
- * @import Subscriber from data.connection.socket.Subscriber value
+ * @import Subscriber from data.connection.socket.subscriber value
  * 
  */
 
  class XYSocket extends Socket{
 
-    constructor(userId){
+    constructor(url , userId){
 
         super({
-            url:'http://121.40.129.195:8292/message'
+            url
         }) ;
 
         this.userId = userId ;
@@ -25,7 +25,7 @@
             topic,
             params,
             options
-        }
+        };
     }
 
     createSubscriber(params){
@@ -73,6 +73,11 @@
 
     }
 
+    processData(message){
+
+        return message.msg.data ;
+    }
+
     validate({
         msg
     }){
@@ -106,37 +111,31 @@
     }
  }
 
-let socket = new XYSocket('411') ;
+let socket = new XYSocket('http://121.40.129.195:8292/message' , '411') ;
 
 socket.subscribe('ok' , {
     op:'create',
     type:'todo'
-}).bind(({
-    msg
-}) =>{
+}).bind(data =>{
 
-    console.log(msg.type) ;
+    console.log('todo' , data) ;
 
 }) ;
 
 socket.subscribe('ok' , {
     op:'create',
     type:'todo'
-}).bind(({
-    msg
-}) =>{
+}).bind(data =>{
 
-    console.log(msg.type) ;
+    console.log('todo' , data) ;
 
 }) ;
 
 socket.subscribe('ok' , {
     op:'create',
     type:'msg'
-}).bind(({
-    msg
-}) =>{
+}).bind(data =>{
 
-    console.log(msg.type) ;
+    console.log('消息' , data) ;
 
 }) ;

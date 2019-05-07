@@ -44,6 +44,20 @@
 
     /**
      * 
+     * 针对消息进行处理
+     * 
+     * @param {mixed} ...args 消息
+     * 
+     * @return {object}
+     *  
+     */
+    processData(message){
+
+        return message ;
+    }
+
+    /**
+     * 
      * 校验推送数据是否满足当前订阅的要求
      * 
      * @param {mixed} msg 数据
@@ -69,6 +83,8 @@
         {
             data
         } = me;
+
+        message = me.processData(message) ;
 
         if(isArray(data)){
 
