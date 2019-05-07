@@ -1,0 +1,1595 @@
+{
+  "nested": {
+    "com": {
+      "nested": {
+        "xinyu": {
+          "nested": {
+            "unidata": {
+              "nested": {
+                "protocbuf": {
+                  "options": {
+                    "java_package": "com.xinyu.unidata.protocbuf",
+                    "java_outer_classname": "TransactionProto"
+                  },
+                  "nested": {
+                    "ClassifyMemberRank": {
+                      "fields": {
+                        "exchange": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 1
+                        },
+                        "code": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 2
+                        },
+                        "rankList": {
+                          "rule": "repeated",
+                          "type": "SnapBody",
+                          "id": 3
+                        },
+                        "rankTarget": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "SnapBody": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "stockBasic": {
+                          "type": "StockBasic",
+                          "id": 3
+                        },
+                        "preClose": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "high": {
+                          "type": "int64",
+                          "id": 5
+                        },
+                        "open": {
+                          "type": "int64",
+                          "id": 6
+                        },
+                        "low": {
+                          "type": "int64",
+                          "id": 7
+                        },
+                        "close": {
+                          "type": "int64",
+                          "id": 8
+                        },
+                        "nowVolume": {
+                          "type": "int64",
+                          "id": 10
+                        },
+                        "nowAmount": {
+                          "type": "int64",
+                          "id": 11
+                        },
+                        "volume": {
+                          "type": "int64",
+                          "id": 12
+                        },
+                        "amount": {
+                          "type": "int64",
+                          "id": 13
+                        },
+                        "ask1Price": {
+                          "type": "int64",
+                          "id": 14
+                        },
+                        "ask1Volume": {
+                          "type": "int64",
+                          "id": 15
+                        },
+                        "bid1Price": {
+                          "type": "int64",
+                          "id": 16
+                        },
+                        "bid1Volume": {
+                          "type": "int64",
+                          "id": 17
+                        },
+                        "netChange": {
+                          "type": "int64",
+                          "id": 18
+                        },
+                        "netChangeRatio": {
+                          "type": "float",
+                          "id": 19
+                        },
+                        "amplitudeRatio": {
+                          "type": "float",
+                          "id": 20
+                        },
+                        "turnoverRatio": {
+                          "type": "float",
+                          "id": 21
+                        },
+                        "volumeRatio": {
+                          "type": "float",
+                          "id": 22
+                        },
+                        "quoteRatio": {
+                          "type": "float",
+                          "id": 23
+                        },
+                        "quoteMargin": {
+                          "type": "int64",
+                          "id": 24
+                        },
+                        "speedRatio": {
+                          "type": "float",
+                          "id": 25
+                        },
+                        "peRatio": {
+                          "type": "float",
+                          "id": 26
+                        },
+                        "pbRatio": {
+                          "type": "float",
+                          "id": 27
+                        },
+                        "psRatio": {
+                          "type": "float",
+                          "id": 28
+                        },
+                        "currencyValue": {
+                          "type": "int64",
+                          "id": 29
+                        },
+                        "capitalization": {
+                          "type": "int64",
+                          "id": 30
+                        },
+                        "innerVolume": {
+                          "type": "int64",
+                          "id": 31
+                        },
+                        "outerVolume": {
+                          "type": "int64",
+                          "id": 32
+                        },
+                        "dealCount": {
+                          "type": "int32",
+                          "id": 33
+                        },
+                        "bigInflows": {
+                          "type": "int64",
+                          "id": 34
+                        },
+                        "bigOutflows": {
+                          "type": "int64",
+                          "id": 35
+                        },
+                        "bigNetflows": {
+                          "type": "int64",
+                          "id": 36
+                        },
+                        "sumInflows": {
+                          "type": "int64",
+                          "id": 37
+                        },
+                        "sumOutflows": {
+                          "type": "int64",
+                          "id": 38
+                        },
+                        "sumNetflows": {
+                          "type": "int64",
+                          "id": 39
+                        },
+                        "avgPrice": {
+                          "type": "int64",
+                          "id": 40
+                        },
+                        "currencyVolume": {
+                          "type": "int64",
+                          "id": 41
+                        },
+                        "capitalVolume": {
+                          "type": "int64",
+                          "id": 42
+                        },
+                        "nowPrice": {
+                          "type": "int64",
+                          "id": 43
+                        },
+                        "RiseVolume": {
+                          "type": "int32",
+                          "id": 44
+                        },
+                        "FallVolume": {
+                          "type": "int32",
+                          "id": 45
+                        },
+                        "nowAvgDiff": {
+                          "type": "float",
+                          "id": 46
+                        },
+                        "lstVolume": {
+                          "type": "int64",
+                          "id": 47
+                        }
+                      }
+                    },
+                    "StockBasic": {
+                      "fields": {
+                        "exchange": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 1
+                        },
+                        "stockCode": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 2
+                        },
+                        "stockName": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "stockStatus": {
+                          "type": "int32",
+                          "id": 4
+                        },
+                        "asset": {
+                          "type": "int32",
+                          "id": 5
+                        },
+                        "ccyCode": {
+                          "type": "string",
+                          "id": 6
+                        },
+                        "unit": {
+                          "type": "int32",
+                          "id": 7
+                        },
+                        "codeNumber": {
+                          "type": "int32",
+                          "id": 9
+                        },
+                        "uuid": {
+                          "type": "string",
+                          "id": 10
+                        },
+                        "area": {
+                          "type": "string",
+                          "id": 11
+                        },
+                        "industry": {
+                          "type": "string",
+                          "id": 12
+                        },
+                        "priceStep": {
+                          "type": "float",
+                          "id": 13
+                        },
+                        "subnew": {
+                          "type": "int32",
+                          "id": 14
+                        },
+                        "tradflag": {
+                          "type": "int32",
+                          "id": 15
+                        },
+                        "digit": {
+                          "type": "int32",
+                          "id": 16
+                        }
+                      }
+                    },
+                    "CodeList": {
+                      "fields": {
+                        "exchange": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 1
+                        },
+                        "security": {
+                          "rule": "repeated",
+                          "type": "StockBasic",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "PreandAfterMarket": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "stockBasic": {
+                          "type": "StockBasic",
+                          "id": 3
+                        },
+                        "close": {
+                          "type": "float",
+                          "id": 4
+                        },
+                        "netChange": {
+                          "type": "float",
+                          "id": 5
+                        },
+                        "netChangeRatio": {
+                          "type": "float",
+                          "id": 6
+                        },
+                        "dataType": {
+                          "rule": "required",
+                          "type": "DataType",
+                          "id": 7
+                        },
+                        "nowVol": {
+                          "type": "int32",
+                          "id": 8
+                        }
+                      },
+                      "nested": {
+                        "DataType": {
+                          "values": {
+                            "PREMARKET": 0,
+                            "AFTERMARKET": 1
+                          }
+                        }
+                      }
+                    },
+                    "ClassifyRankList": {
+                      "fields": {
+                        "rank": {
+                          "rule": "repeated",
+                          "type": "Rank",
+                          "id": 3
+                        }
+                      },
+                      "nested": {
+                        "Rank": {
+                          "fields": {
+                            "code": {
+                              "type": "string",
+                              "id": 1
+                            },
+                            "name": {
+                              "type": "string",
+                              "id": 2
+                            },
+                            "changeRatio": {
+                              "type": "float",
+                              "id": 3
+                            },
+                            "riseMaxStock": {
+                              "type": "StockBasic",
+                              "id": 4
+                            },
+                            "fallMaxStock": {
+                              "type": "StockBasic",
+                              "id": 5
+                            },
+                            "rankIndex": {
+                              "type": "int32",
+                              "id": 6
+                            },
+                            "turnoverRatio": {
+                              "type": "float",
+                              "id": 7
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "ComprehensiveRank": {
+                      "fields": {
+                        "exchange": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 1
+                        },
+                        "code": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 2
+                        },
+                        "netChangeRatioUpperRank": {
+                          "rule": "repeated",
+                          "type": "SimpleSnapBody",
+                          "id": 3
+                        },
+                        "netChangeRatioDownRank": {
+                          "rule": "repeated",
+                          "type": "SimpleSnapBody",
+                          "id": 4
+                        },
+                        "speedRatioUpperRank": {
+                          "rule": "repeated",
+                          "type": "SimpleSnapBody",
+                          "id": 5
+                        },
+                        "speedRatioDownRank": {
+                          "rule": "repeated",
+                          "type": "SimpleSnapBody",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "SimpleSnapBody": {
+                      "fields": {
+                        "stockBasic": {
+                          "rule": "required",
+                          "type": "StockBasic",
+                          "id": 1
+                        },
+                        "close": {
+                          "type": "float",
+                          "id": 2
+                        },
+                        "netChangeRatio": {
+                          "type": "float",
+                          "id": 3
+                        },
+                        "speedRatio": {
+                          "type": "float",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "ExchangeStatus": {
+                      "fields": {
+                        "exchange": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 1
+                        },
+                        "exchangeStatusType": {
+                          "rule": "required",
+                          "type": "ExchangeStatusType",
+                          "id": 2
+                        }
+                      },
+                      "nested": {
+                        "ExchangeStatusType": {
+                          "values": {
+                            "AUCTION": 0,
+                            "TRANSACTION": 1,
+                            "LUNCHBREAK": 2,
+                            "CLOSED": 3,
+                            "NOTOPENED": 4,
+                            "FESTIVELSBREAK": 5
+                          }
+                        }
+                      }
+                    },
+                    "FundFlow": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "bigInflows": {
+                          "type": "int64",
+                          "id": 3
+                        },
+                        "bigOutflows": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "bigNetInflows": {
+                          "type": "int64",
+                          "id": 5
+                        },
+                        "middleInflows": {
+                          "type": "int64",
+                          "id": 6
+                        },
+                        "middleOutflows": {
+                          "type": "int64",
+                          "id": 7
+                        },
+                        "middleNetInflows": {
+                          "type": "int64",
+                          "id": 8
+                        },
+                        "smallInflows": {
+                          "type": "int64",
+                          "id": 9
+                        },
+                        "smallOutflows": {
+                          "type": "int64",
+                          "id": 10
+                        },
+                        "smallNetInflows": {
+                          "type": "int64",
+                          "id": 11
+                        },
+                        "sumInflows": {
+                          "type": "int64",
+                          "id": 12
+                        },
+                        "sumOutflows": {
+                          "type": "int64",
+                          "id": 13
+                        },
+                        "sumNetInflows": {
+                          "type": "int64",
+                          "id": 14
+                        }
+                      }
+                    },
+                    "HQ": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "exchange": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "symbol": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "uuid": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "preClose": {
+                          "type": "int64",
+                          "id": 6
+                        },
+                        "high": {
+                          "type": "int64",
+                          "id": 7
+                        },
+                        "open": {
+                          "type": "int64",
+                          "id": 8
+                        },
+                        "low": {
+                          "type": "int64",
+                          "id": 9
+                        },
+                        "close": {
+                          "type": "int64",
+                          "id": 10
+                        },
+                        "volume": {
+                          "type": "int64",
+                          "id": 11
+                        },
+                        "amount": {
+                          "type": "int64",
+                          "id": 13
+                        },
+                        "bid": {
+                          "rule": "repeated",
+                          "type": "Bid",
+                          "id": 14
+                        },
+                        "ask": {
+                          "rule": "repeated",
+                          "type": "Ask",
+                          "id": 15
+                        },
+                        "cjbs": {
+                          "type": "int32",
+                          "id": 16
+                        },
+                        "stockStatus": {
+                          "type": "int32",
+                          "id": 17
+                        }
+                      },
+                      "nested": {
+                        "Bid": {
+                          "fields": {
+                            "price": {
+                              "rule": "required",
+                              "type": "int64",
+                              "id": 1
+                            },
+                            "volume": {
+                              "type": "int64",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "Ask": {
+                          "fields": {
+                            "price": {
+                              "rule": "required",
+                              "type": "int64",
+                              "id": 1
+                            },
+                            "volume": {
+                              "type": "int64",
+                              "id": 2
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "IndexStat": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "stockBasic": {
+                          "rule": "required",
+                          "type": "StockBasic",
+                          "id": 3
+                        },
+                        "close": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "netChange": {
+                          "type": "int64",
+                          "id": 5
+                        },
+                        "netChangeRatio": {
+                          "type": "float",
+                          "id": 6
+                        },
+                        "riseNum": {
+                          "type": "int32",
+                          "id": 7
+                        },
+                        "fairNum": {
+                          "type": "int32",
+                          "id": 8
+                        },
+                        "fallNum": {
+                          "type": "int32",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "KLine": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "open": {
+                          "type": "int64",
+                          "id": 3
+                        },
+                        "high": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "low": {
+                          "type": "int64",
+                          "id": 5
+                        },
+                        "close": {
+                          "type": "int64",
+                          "id": 6
+                        },
+                        "volume": {
+                          "type": "int64",
+                          "id": 7
+                        },
+                        "amount": {
+                          "type": "int64",
+                          "id": 8
+                        },
+                        "ccl": {
+                          "type": "int32",
+                          "id": 9
+                        },
+                        "netChange": {
+                          "type": "int64",
+                          "id": 10
+                        },
+                        "netChangeRatio": {
+                          "type": "float",
+                          "id": 11
+                        },
+                        "preClose": {
+                          "type": "int64",
+                          "id": 12
+                        }
+                      }
+                    },
+                    "LiveNews": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "pubdate": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "pubtime": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "medname": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "title": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "content": {
+                          "type": "string",
+                          "id": 6
+                        },
+                        "posid": {
+                          "type": "string",
+                          "id": 7
+                        }
+                      }
+                    },
+                    "MarketInfo": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "exchange": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "type": {
+                          "type": "InfoType",
+                          "id": 3
+                        },
+                        "playback": {
+                          "type": "bool",
+                          "id": 4
+                        }
+                      },
+                      "nested": {
+                        "InfoType": {
+                          "values": {
+                            "opening": 0,
+                            "closed": 1,
+                            "midopen": 2,
+                            "midclosed": 3,
+                            "notOpen": 4,
+                            "auction": 5,
+                            "amTransaction": 6
+                          }
+                        }
+                      }
+                    },
+                    "PriceFence": {
+                      "fields": {
+                        "fence": {
+                          "rule": "repeated",
+                          "type": "Fence",
+                          "id": 1
+                        },
+                        "volume": {
+                          "rule": "required",
+                          "type": "int64",
+                          "id": 2
+                        },
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 3
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 4
+                        },
+                        "preClose": {
+                          "rule": "required",
+                          "type": "int64",
+                          "id": 5
+                        }
+                      },
+                      "nested": {
+                        "Fence": {
+                          "fields": {
+                            "price": {
+                              "type": "int64",
+                              "id": 1
+                            },
+                            "volume": {
+                              "type": "int64",
+                              "id": 2
+                            },
+                            "percent": {
+                              "type": "float",
+                              "id": 3
+                            },
+                            "bidRatio": {
+                              "type": "float",
+                              "id": 4
+                            },
+                            "bidVolume": {
+                              "type": "int64",
+                              "id": 5
+                            },
+                            "askVolume": {
+                              "type": "int64",
+                              "id": 6
+                            },
+                            "noneVolume": {
+                              "type": "int64",
+                              "id": 7
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "RankSignal": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "market": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "SnapShot": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "stockBasic": {
+                          "type": "StockBasic",
+                          "id": 3
+                        },
+                        "preClose": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "high": {
+                          "type": "int64",
+                          "id": 5
+                        },
+                        "open": {
+                          "type": "int64",
+                          "id": 6
+                        },
+                        "low": {
+                          "type": "int64",
+                          "id": 7
+                        },
+                        "close": {
+                          "type": "int64",
+                          "id": 8
+                        },
+                        "volume": {
+                          "type": "int64",
+                          "id": 9
+                        },
+                        "nowVol": {
+                          "type": "int64",
+                          "id": 10
+                        },
+                        "amount": {
+                          "type": "int64",
+                          "id": 11
+                        },
+                        "bid": {
+                          "rule": "repeated",
+                          "type": "Bid",
+                          "id": 12
+                        },
+                        "ask": {
+                          "rule": "repeated",
+                          "type": "Ask",
+                          "id": 13
+                        },
+                        "netChange": {
+                          "type": "int64",
+                          "id": 14
+                        },
+                        "netChangeRatio": {
+                          "type": "float",
+                          "id": 15
+                        },
+                        "amplitudeRatio": {
+                          "type": "float",
+                          "id": 16
+                        },
+                        "turnoverRatio": {
+                          "type": "float",
+                          "id": 17
+                        },
+                        "inside": {
+                          "type": "int64",
+                          "id": 18
+                        },
+                        "outside": {
+                          "type": "int64",
+                          "id": 19
+                        },
+                        "ccl": {
+                          "type": "int32",
+                          "id": 20
+                        },
+                        "currencyValue": {
+                          "type": "int64",
+                          "id": 21
+                        },
+                        "capitalization": {
+                          "type": "int64",
+                          "id": 22
+                        },
+                        "peratio": {
+                          "type": "float",
+                          "id": 23
+                        },
+                        "volumeRatio": {
+                          "type": "float",
+                          "id": 24
+                        },
+                        "weibiRatio": {
+                          "type": "float",
+                          "id": 25
+                        },
+                        "industryList": {
+                          "rule": "repeated",
+                          "type": "string",
+                          "id": 26
+                        },
+                        "bvRatio": {
+                          "type": "float",
+                          "id": 27
+                        },
+                        "psRatio": {
+                          "type": "float",
+                          "id": 28
+                        },
+                        "dealCount": {
+                          "type": "int32",
+                          "id": 29
+                        },
+                        "weekHigh": {
+                          "type": "int64",
+                          "id": 30
+                        },
+                        "weekLow": {
+                          "type": "int64",
+                          "id": 31
+                        },
+                        "riseNum": {
+                          "type": "int32",
+                          "id": 32
+                        },
+                        "fairNum": {
+                          "type": "int32",
+                          "id": 33
+                        },
+                        "fallNum": {
+                          "type": "int32",
+                          "id": 34
+                        },
+                        "avgPrice": {
+                          "type": "int64",
+                          "id": 35
+                        },
+                        "highLimit": {
+                          "type": "int64",
+                          "id": 36
+                        },
+                        "downLimit": {
+                          "type": "int64",
+                          "id": 37
+                        }
+                      },
+                      "nested": {
+                        "Bid": {
+                          "fields": {
+                            "price": {
+                              "rule": "required",
+                              "type": "int64",
+                              "id": 1
+                            },
+                            "volume": {
+                              "type": "int64",
+                              "id": 2
+                            }
+                          }
+                        },
+                        "Ask": {
+                          "fields": {
+                            "price": {
+                              "rule": "required",
+                              "type": "int64",
+                              "id": 1
+                            },
+                            "volume": {
+                              "type": "int64",
+                              "id": 2
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Sub": {
+                      "fields": {
+                        "exchange": {
+                          "rule": "required",
+                          "type": "string",
+                          "id": 1
+                        },
+                        "codeSectionMin": {
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "codeSectionMax": {
+                          "type": "int32",
+                          "id": 3
+                        },
+                        "dataType": {
+                          "type": "int32",
+                          "id": 4
+                        },
+                        "allCode": {
+                          "type": "bool",
+                          "id": 5
+                        },
+                        "allDataType": {
+                          "type": "bool",
+                          "id": 6
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 7
+                        }
+                      }
+                    },
+                    "Tick": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "price": {
+                          "type": "int64",
+                          "id": 3
+                        },
+                        "volume": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "bsflag": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "ccl": {
+                          "type": "int32",
+                          "id": 6
+                        },
+                        "stockBasic": {
+                          "type": "StockBasic",
+                          "id": 7
+                        },
+                        "amount": {
+                          "type": "int64",
+                          "id": 8
+                        },
+                        "preClose": {
+                          "type": "int64",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "TimeLine": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "price": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "nowVolume": {
+                          "type": "int64",
+                          "id": 5
+                        },
+                        "avgPrice": {
+                          "type": "int64",
+                          "id": 6
+                        },
+                        "ccl": {
+                          "type": "int32",
+                          "id": 7
+                        },
+                        "netChangeRatio": {
+                          "type": "float",
+                          "id": 8
+                        },
+                        "preClose": {
+                          "type": "int64",
+                          "id": 9
+                        },
+                        "nowAmount": {
+                          "type": "int64",
+                          "id": 10
+                        },
+                        "volume": {
+                          "type": "int64",
+                          "id": 11
+                        },
+                        "amount": {
+                          "type": "int64",
+                          "id": 12
+                        },
+                        "turnoverRatio": {
+                          "type": "float",
+                          "id": 13
+                        },
+                        "netChange": {
+                          "type": "int64",
+                          "id": 14
+                        },
+                        "open": {
+                          "type": "int64",
+                          "id": 15
+                        }
+                      }
+                    },
+                    "Transaction": {
+                      "fields": {
+                        "date": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 1
+                        },
+                        "time": {
+                          "rule": "required",
+                          "type": "int32",
+                          "id": 2
+                        },
+                        "doneNo": {
+                          "type": "int32",
+                          "id": 3
+                        },
+                        "price": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "volume": {
+                          "type": "int64",
+                          "id": 5
+                        },
+                        "amount": {
+                          "type": "int64",
+                          "id": 6
+                        },
+                        "bsflag": {
+                          "type": "string",
+                          "id": 7
+                        },
+                        "askOrder": {
+                          "type": "int32",
+                          "id": 8
+                        },
+                        "bidOrder": {
+                          "type": "int32",
+                          "id": 9
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "md": {
+      "nested": {
+        "proto": {
+          "options": {
+            "cc_enable_arenas": true,
+            "optimize_for": "SPEED",
+            "java_package": "com.xinyu.unidata.protocbuf",
+            "java_outer_classname": "CodeListProto"
+          },
+          "nested": {
+            "FundFlow": {
+              "fields": {
+                "date": {
+                  "rule": "required",
+                  "type": "int32",
+                  "id": 1
+                },
+                "time": {
+                  "rule": "required",
+                  "type": "int32",
+                  "id": 2
+                },
+                "bigInflows": {
+                  "type": "int64",
+                  "id": 3
+                },
+                "bigOutflows": {
+                  "type": "int64",
+                  "id": 4
+                },
+                "bigNetInflows": {
+                  "type": "int64",
+                  "id": 5
+                },
+                "middleInflows": {
+                  "type": "int64",
+                  "id": 6
+                },
+                "middleOutflows": {
+                  "type": "int64",
+                  "id": 7
+                },
+                "middleNetInflows": {
+                  "type": "int64",
+                  "id": 8
+                },
+                "smallInflows": {
+                  "type": "int64",
+                  "id": 9
+                },
+                "smallOutflows": {
+                  "type": "int64",
+                  "id": 10
+                },
+                "smallNetInflows": {
+                  "type": "int64",
+                  "id": 11
+                },
+                "sumInflows": {
+                  "type": "int64",
+                  "id": 12
+                },
+                "sumOutflows": {
+                  "type": "int64",
+                  "id": 13
+                },
+                "sumNetInflows": {
+                  "type": "int64",
+                  "id": 14
+                },
+                "exchange": {
+                  "type": "int32",
+                  "id": 15
+                },
+                "code": {
+                  "type": "string",
+                  "id": 16
+                }
+              }
+            },
+            "FundFlowList": {
+              "fields": {
+                "fundFlow": {
+                  "rule": "repeated",
+                  "type": "FundFlow",
+                  "id": 1
+                }
+              }
+            },
+            "KLine": {
+              "fields": {
+                "date": {
+                  "rule": "required",
+                  "type": "int32",
+                  "id": 1
+                },
+                "time": {
+                  "rule": "required",
+                  "type": "int32",
+                  "id": 2
+                },
+                "open": {
+                  "type": "int64",
+                  "id": 3
+                },
+                "high": {
+                  "type": "int64",
+                  "id": 4
+                },
+                "low": {
+                  "type": "int64",
+                  "id": 5
+                },
+                "close": {
+                  "type": "int64",
+                  "id": 6
+                },
+                "volume": {
+                  "type": "int64",
+                  "id": 7
+                },
+                "amount": {
+                  "type": "int64",
+                  "id": 8
+                },
+                "ccl": {
+                  "type": "int32",
+                  "id": 9
+                },
+                "netChange": {
+                  "type": "int64",
+                  "id": 10
+                },
+                "netChangeRatio": {
+                  "type": "float",
+                  "id": 11
+                },
+                "preClose": {
+                  "type": "int64",
+                  "id": 12
+                },
+                "exchange": {
+                  "type": "int32",
+                  "id": 13
+                },
+                "index": {
+                  "type": "string",
+                  "id": 14
+                },
+                "code": {
+                  "type": "string",
+                  "id": 15
+                },
+                "cycle": {
+                  "type": "string",
+                  "id": 16
+                }
+              }
+            },
+            "KLineList": {
+              "fields": {
+                "kline": {
+                  "rule": "repeated",
+                  "type": "KLine",
+                  "id": 1
+                }
+              }
+            },
+            "TimeLine": {
+              "fields": {
+                "date": {
+                  "rule": "required",
+                  "type": "int32",
+                  "id": 1
+                },
+                "time": {
+                  "rule": "required",
+                  "type": "int32",
+                  "id": 2
+                },
+                "price": {
+                  "type": "int64",
+                  "id": 4
+                },
+                "nowVolume": {
+                  "type": "int64",
+                  "id": 5
+                },
+                "avgPrice": {
+                  "type": "int64",
+                  "id": 6
+                },
+                "ccl": {
+                  "type": "int32",
+                  "id": 7
+                },
+                "netChangeRatio": {
+                  "type": "float",
+                  "id": 8
+                },
+                "preClose": {
+                  "type": "int64",
+                  "id": 9
+                },
+                "nowAmount": {
+                  "type": "int64",
+                  "id": 10
+                },
+                "volume": {
+                  "type": "int64",
+                  "id": 11
+                },
+                "amount": {
+                  "type": "int64",
+                  "id": 12
+                },
+                "turnoverRatio": {
+                  "type": "float",
+                  "id": 13
+                },
+                "netChange": {
+                  "type": "int64",
+                  "id": 14
+                },
+                "open": {
+                  "type": "int64",
+                  "id": 15
+                },
+                "exchange": {
+                  "type": "int32",
+                  "id": 16
+                },
+                "code": {
+                  "type": "string",
+                  "id": 17
+                }
+              }
+            },
+            "TimeLineList": {
+              "fields": {
+                "timeLine": {
+                  "rule": "repeated",
+                  "type": "TimeLine",
+                  "id": 1
+                }
+              }
+            },
+            "CodeBasic": {
+              "fields": {
+                "exchange": {
+                  "rule": "required",
+                  "type": "string",
+                  "id": 1
+                },
+                "stockCode": {
+                  "rule": "required",
+                  "type": "string",
+                  "id": 2
+                },
+                "stockName": {
+                  "type": "string",
+                  "id": 3
+                },
+                "stockStatus": {
+                  "type": "int32",
+                  "id": 4
+                },
+                "asset": {
+                  "type": "int32",
+                  "id": 5
+                },
+                "ccyCode": {
+                  "type": "string",
+                  "id": 6
+                },
+                "unit": {
+                  "type": "int32",
+                  "id": 7
+                },
+                "codeNumber": {
+                  "type": "int32",
+                  "id": 9
+                },
+                "uuid": {
+                  "rule": "required",
+                  "type": "string",
+                  "id": 10
+                },
+                "area": {
+                  "type": "string",
+                  "id": 11
+                },
+                "industry": {
+                  "type": "string",
+                  "id": 12
+                },
+                "priceStep": {
+                  "type": "float",
+                  "id": 13
+                },
+                "subnew": {
+                  "type": "int32",
+                  "id": 14
+                },
+                "tradflag": {
+                  "type": "int32",
+                  "id": 15
+                },
+                "digit": {
+                  "type": "int32",
+                  "id": 16
+                },
+                "securityType": {
+                  "type": "int32",
+                  "id": 17
+                },
+                "stockpysht": {
+                  "type": "string",
+                  "id": 18
+                }
+              }
+            },
+            "CodeList": {
+              "fields": {
+                "codeBasic": {
+                  "rule": "repeated",
+                  "type": "CodeBasic",
+                  "id": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

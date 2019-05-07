@@ -22,7 +22,10 @@
     "browser.event.key",
     "message.address.react",
     "os.name",
-    "tree.mind"
+    "tree.mind",
+    "file.read.json",
+    "is.object.simple",
+    "is.object.empty"
   ],
   "type": "library",
   "memory": false
