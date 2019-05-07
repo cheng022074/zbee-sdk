@@ -146,7 +146,7 @@
      * @return {boolean} 如果绑定成功则返回 true , 否则返回 false
      * 
      */
-    hasBinding(){
+    get hasBinding(){
 
         return this.callbacks.size !== 0;
     }

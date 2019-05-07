@@ -82,6 +82,11 @@ const {
         me.values = [] ;
     }
 
+    get size(){
+
+        return this.keys.length ;
+    }
+
     set(key , value){
 
         let me = this,

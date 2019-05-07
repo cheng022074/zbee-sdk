@@ -129,9 +129,12 @@
 
             let subscriber = subscriberMap.get(params) ;
 
-            subscriberMap.delete(params) ;
+            if(!subscriber.isBinding){
 
-            return subscriber ;
+                subscriberMap.delete(params) ;
+
+                return subscriber ;
+            }
         }
     }
 

@@ -93,7 +93,7 @@
         {
             subscribeEventName
         } = me ;
-        
+
         me.emit(subscribeEventName , params) ;
     }
 

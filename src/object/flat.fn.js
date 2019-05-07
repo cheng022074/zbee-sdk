@@ -18,7 +18,7 @@
 
  for(let key of keys){
 
-    values[key] = get(key) ;
+    values[key] = get(data , key) ;
  }
 
  return values ;

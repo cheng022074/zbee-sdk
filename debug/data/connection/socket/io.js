@@ -111,8 +111,32 @@ let socket = new XYSocket('411') ;
 socket.subscribe('ok' , {
     op:'create',
     type:'todo'
-}).bind(msg =>{
+}).bind(({
+    msg
+}) =>{
 
-    console.log(msg) ;
+    console.log(msg.type) ;
+
+}) ;
+
+socket.subscribe('ok' , {
+    op:'create',
+    type:'todo'
+}).bind(({
+    msg
+}) =>{
+
+    console.log(msg.type) ;
+
+}) ;
+
+socket.subscribe('ok' , {
+    op:'create',
+    type:'msg'
+}).bind(({
+    msg
+}) =>{
+
+    console.log(msg.type) ;
 
 }) ;
