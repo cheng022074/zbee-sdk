@@ -35,7 +35,7 @@ const {
 
             let isMatch = true ;
 
-            for(let i = 0 ; i < len ; i ++){
+            for(let i = 0 ; i < findLen ; i ++){
 
                 let key = findKeys[i] ;
 
@@ -153,5 +153,19 @@ const {
     values(){
 
         return Array.from(this.values) ;
+    }
+
+    forEach(fn , scope){
+
+        let {
+            keys,
+            values
+        } = this,
+        len = values.length ;
+
+        for(let i = 0 ; i < len ; i ++){
+
+            fn.call(scope , values[i] , keys[i]) ;
+        }
     }
  }

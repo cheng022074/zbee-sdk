@@ -6,8 +6,6 @@
  * 
  * @require socket.io-client
  * 
- * @param {mixed} options Socket 初始化配置
- * 
  * @class
  * 
  */
@@ -18,13 +16,13 @@
 
     init({
         url,
-        options
+        options = {}
     }){
 
         let me = this,
             {
                 messageEventName,
-                onMessageEvent
+                acceptMessage
             } = me,
             socket = me.socket = IO(url , {
                 transports: [
@@ -34,7 +32,7 @@
                 ...options
             }) ;
 
-        socket.on(messageEventName , onMessageEvent.bind(me)) ;
+        socket.on(messageEventName , acceptMessage.bind(me)) ;
     }
 
     get connected(){
@@ -44,11 +42,6 @@
         } = this ;
 
         return socket.connected ;
-    }
-
-    onMessageEvent(...args){
-
-        this.acceptMessage(...args) ;
     }
 
     get messageEventName(){

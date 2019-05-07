@@ -7,6 +7,8 @@
  * 
  * @import createMap from object.map
  * 
+ * @import Subscriber from data.connection.socket.subscriber value
+ * 
  * @param {mixed} options Socket 初始化配置
  * 
  * @class
@@ -41,14 +43,11 @@
      * 
      * 接收来自服务器端的消息推送,推送可能是配置式，也可能是参数式
      * 
-     * @param {mixed} msg 接收消息
-     * 
      */
     acceptMessage(...args){
 
-        let me = this ;
-
-        msg = me.processMessage(...args);
+        let me = this,
+            msg = me.processMessage(...args);
 
         if(me.isAcceptMessage(msg) === false){
 
@@ -56,10 +55,10 @@
         }
 
         let {
-            subscribers
+            subscriberMap
         } = me ;
 
-        subscribers.forEach(subscriber =>{
+        subscriberMap.forEach(subscriber =>{
 
             if(subscriber.validate(msg)){
 
@@ -146,6 +145,8 @@
      * 
      */
     createSubscriber(params){
+
+        return new Subscriber(this , params) ;
     }
 
     /**
@@ -213,20 +214,16 @@
      */
     trySubscribe(remoteParams){
 
-        let me = this ;
+        let me = this,
+        {
+            remoteParamsMap
+        } = me ;
 
-        if(me.isCanRemoteSubscribe(remoteParams)){
+        if(!remoteParamsMap.has(remoteParams)){
 
-            let {
-                remoteParamsMap
-            } = me ;
-    
-            if(!remoteParamsMap.has(remoteParams)){
-    
-                remoteParamsMap.set(remoteParams , remoteParams) ;
-    
-                me.doSubscribe(remoteParams) ;
-            }
+            remoteParamsMap.set(remoteParams , remoteParams) ;
+
+            me.doSubscribe(remoteParams) ;
         }
     }
 
@@ -239,20 +236,16 @@
      */
     tryUnsubscribe(remoteParams){
 
-        let me = this ;
-
-        if(me.isCanRemoteUnsubscribe(remoteParams)){
-
-            let {
+        let me = this,
+            {
                 remoteParamsMap
             } = me ;
     
-            remoteParamsMap.delete(remoteParams) ;
-    
-            if(!remoteParamsMap.has(remoteParams)){
-    
-                me.doUnsubscribe(remoteParams) ;
-            }
+        remoteParamsMap.delete(remoteParams) ;
+
+        if(!remoteParamsMap.has(remoteParams)){
+
+            me.doUnsubscribe(remoteParams) ;
         }
     }
 
@@ -264,11 +257,11 @@
     subscribe(...args){
 
         let me = this,
-        {
-            remoteParams
-        } = me.getSubscriber(me.processSubscribeParams(...args)) ;
+            subscriber = me.getSubscriber(me.processSubscribeParams(...args)) ;
 
-        me.trySubscribe(remoteParams) ;
+        me.trySubscribe(subscriber.remoteParams) ;
+
+        return subscriber ;
     }
 
     /**

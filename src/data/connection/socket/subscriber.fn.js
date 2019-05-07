@@ -9,15 +9,13 @@
  * 
  * @import createMap from map
  * 
+ * @param {data.connection.Socket} socket socket 对象
+ * 
  * @param {object} options 订阅参数
  * 
  * @param {object} options.params  订阅参数
  * 
  * @param {object} [options.saveLastMessage = true] 订阅器配置
- * 
- * @param {mixed} [options.fn] 绑定函数
- * 
- * @param {mixed} [options.scope] 绑定函数作用域
  * 
  * @class
  * 
@@ -25,14 +23,14 @@
 
  class main {
 
-    constructor({
+    constructor(socket , {
         params,
-        saveLastMessage,
-        fn,
-        scope
+        saveLastMessage
     }){
 
         let me = this ;
+
+        me.socket = socket ;
 
         if(saveLastMessage === false){
 
@@ -42,11 +40,6 @@
         me.params = params ;
 
         me.callbacks = createMap() ;
-
-        if(fn){
-
-            me.bind(fn , scope) ;
-        }
     }
 
     /**
@@ -128,6 +121,15 @@
         }
     }
 
+    /**
+     * 
+     * 解除函数绑定
+     * 
+     * @param {function} fn
+     *  
+     * @param {mixed} scope
+     * 
+     */
     unbind(fn , scope){
 
         let {
@@ -135,6 +137,18 @@
         } = this; 
 
         callbacks.delete(fn , scope) ;
+    }
+
+    /**
+     * 
+     * 判断是否还有绑定
+     * 
+     * @return {boolean} 如果绑定成功则返回 true , 否则返回 false
+     * 
+     */
+    hasBinding(){
+
+        return this.callbacks.size !== 0;
     }
 
     /**
