@@ -12,15 +12,6 @@
 
  class XYSocket extends Socket{
 
-    constructor(url , userId){
-
-        super({
-            url
-        }) ;
-
-        this.userId = userId ;
-    }
-
     doSubscribe(params){
 
         return super.doSubscribe({
@@ -61,11 +52,9 @@
         } ;
     }
 
-    isAcceptMessage({
-        userId
-    }){
+    isAcceptMessage(){
 
-        return this.userId === userId ;
+        return true ;
     }
  }
 
@@ -88,16 +77,13 @@
     }
 
     generateRemoteParams({
-        topic
+        topic,
+        userId
     }){
-
-        let {
-            socket
-        } = this ;
 
         return {
             topic,
-            userId:socket.userId
+            userId
         } ;
     }
 
@@ -108,6 +94,7 @@
 
     validate({
         topic,
+        userId,
         msg
     }){
 
@@ -119,28 +106,37 @@
         let {
             type:paramType,
             op:paramOp,
-            topic:paramTopic
+            topic:paramTopic,
+            userId:paramUserId
         } = this.params;
 
-        return topic === paramTopic &&  paramType === type && paramOp === op;
+        return paramUserId === userId && topic === paramTopic &&  paramType === type && paramOp === op;
     }
  }
 
-let socket = new XYSocket('http://121.40.129.195:8292/message' , '411') ;
+let socket = new XYSocket({
+    url:'http://121.40.129.195:8292/message'
+}) ;
 
-socket.subscribe('ok.create.todo').bind(data =>{
+socket.subscribe('ok.create.todo' , {
+    userId:'411'
+}).bind(data =>{
 
     console.log('todo1' , data) ;
 
 }) ;
 
-socket.subscribe('ok.create.todo').bind(data =>{
+socket.subscribe('ok.create.todo' ,  {
+    userId:'411'
+}).bind(data =>{
 
     console.log('todo2' , data) ;
 
 }) ;
 
-socket.subscribe('ok.create.msg').bind(data =>{
+socket.subscribe('ok.create.msg' ,  {
+    userId:'411'
+}).bind(data =>{
 
     console.log('消息' , data) ;
 

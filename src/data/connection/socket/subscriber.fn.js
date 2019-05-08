@@ -19,15 +19,17 @@
 
  class main {
 
-    constructor(socket , id , {
-        saveLastMessage
-    } = {}){
+    constructor(socket , id , options = {}){
 
         let me = this ;
 
         me.socket = socket ;
 
         me.id = id ;
+
+        let {
+            saveLastMessage = true
+        } = options ;
 
         if(saveLastMessage === false){
 
@@ -36,12 +38,14 @@
         
         me.callbacks = createMap() ;
 
-        me.oldParams = false ;
+        me.originParams = false ;
+
+        me.options = options ;
     }
 
     get opened(){
 
-        return !! this.oldParams ;
+        return !! this.originParams ;
     }
 
     /**
@@ -54,12 +58,12 @@
         let me = this,
         {
             opened,
-            oldParams,
+            originParams,
             id,
             socket
         } = me;
 
-        if(!opened || !equals(oldParams , params)){
+        if(!opened || !equals(originParams , params)){
 
             let options = assign({} , me.processID(id) , params) ;
 
@@ -67,7 +71,7 @@
 
             me.params = me.generateLocalParams(options) ;
 
-            me.oldParams = params ;
+            me.originParams = params ;
         
         }
     }
@@ -76,14 +80,19 @@
 
         let {
             opened,
-            oldParams,
+            originParams,
             socket
         } = this ;
 
         if(opened){
 
-            socket.tryUnsubscribe(me.generateRemoteParams(assign({} , me.processID(id) , oldParams))) ;
+            socket.tryUnsubscribe(me.generateRemoteParams(assign({} , me.processID(id) , originParams))) ;
         }
+    }
+
+    generateInitParams(){
+
+
     }
 
     /**

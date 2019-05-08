@@ -17,9 +17,14 @@
 
  class main{
 
-    constructor(options){
+    constructor({
+        subscribers = {},
+        ...options
+    }){
 
         let me = this;
+
+        me.subscribers = subscribers ;
 
         me.init(options) ;
 
@@ -109,12 +114,13 @@
 
         let me = this,
         {
-            subscriberMap
+            subscriberMap,
+            subscribers
         } = this;
 
         if(!subscriberMap.has(id)){
 
-            subscriberMap.set(id , me.createSubscriber(id)) ;
+            subscriberMap.set(id , me.createSubscriber(id , subscribers[id])) ;
         }
 
         let subscriber = subscriberMap.get(id) ;
@@ -178,42 +184,6 @@
      * 
      */
     doUnsubscribe(remoteParams){
-    }
-
-    /**
-     * 
-     * 处理订阅参数
-     * 
-     * @param  {mixed} ...args 订阅参数
-     *  
-     */
-    processSubscribeParams(...args){
-
-        return {} ;
-    }
-
-    /**
-     * 
-     * 是否可以远程订阅
-     * 
-     * @param {mixed} remoteParams 订阅参数
-     * 
-     */
-    isCanRemoteSubscribe(remoteParams){
-
-        return false ;
-    }
-
-    /**
-     * 
-     * 是否可以远程取消订阅
-     * 
-     * @param {mixed} remoteParams 订阅参数
-     * 
-     */
-    isCanRemoteUnsubscribe(remoteParams){
-
-        return false ;
     }
 
     /**
