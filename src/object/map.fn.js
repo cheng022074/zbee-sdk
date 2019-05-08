@@ -3,73 +3,11 @@
  * 
  * 对象数组
  * 
- * @import flat from ..flat
+ * @import createSet from ..set
  * 
  * @import remove from array.remove.index
  * 
  */
-
-const {
-    keys:getKeys
-} = Object ;
-
- function find(key){
-
-    let findValues = flat(key),
-        findKeys = getKeys(findValues),
-        findLen = findKeys.length;
-
-    let {
-        keys,
-        values,
-    } = this,
-    index = 0;
-
-    for(let {
-        values:currentValues,
-        keys:currentKeys,
-        len:currentLen
-    } of keys){
-
-        if(findLen === currentLen){
-
-            let isMatch = true ;
-
-            for(let i = 0 ; i < findLen ; i ++){
-
-                let key = findKeys[i] ;
-
-                if(!currentKeys.includes(key)){
-
-                    isMatch = false ;
-
-                    break ;
-                }
-
-                if(findValues[key] !== currentValues[key]){
-
-                    isMatch = false ;
-
-                    break ;
-                }
-            }
-
-            if(isMatch){
-
-                return {
-                    index,
-                    value:values[index]
-                } ;
-            }
-
-            index ++ ;
-        }
-    }
-
-    return {
-        index:-1
-    } ;
- }
 
  class main{
 
@@ -77,14 +15,14 @@ const {
 
         let me = this ;
 
-        me.keys = [] ;
+        me.keys = createSet() ;
 
         me.values = [] ;
     }
 
     get size(){
 
-        return this.keys.length ;
+        return this.keys.size ;
     }
 
     set(key , value){
@@ -94,9 +32,7 @@ const {
             keys,
             values
         } = me,
-        {
-            index
-        } = find.call(me , key);
+        index = keys.indexOf(key);
 
         if(index !== -1){
 
@@ -104,14 +40,7 @@ const {
         
         }else{
 
-            let insertValues = flat(key),
-                insertKeys = getKeys(insertValues);
-        
-            keys.push({
-                keys:insertKeys,
-                len:insertKeys.length,
-                values:insertValues
-            }) ;
+            keys.add(key) ;
 
             values.push(value) ;
         }
@@ -120,26 +49,28 @@ const {
     get(key){
 
         let {
-            value
-        } = find.call(this , key) ;
+            keys,
+            values
+        } = this,
+        index = keys.indexOf(key);
 
-        return value ;
+        if(index !== -1){
+
+            return values[index] ;
+        }
     }
 
     delete(key){
 
-        let me = this,
-            {
-                index
-            } = find.call(me , key),
-            {
-                keys,
-                values
-            } = me;
+        let {
+            keys,
+            values
+        } = this,
+        index = keys.indexOf(key);
 
         if(index !== -1){
 
-            remove(keys , index) ;
+            keys.deleteByIndex(index) ;
 
             remove(values , index) ;
         }
@@ -147,12 +78,7 @@ const {
 
     has(key){
 
-        let me = this,
-            {
-                index
-            } = find.call(me , key);
-
-        return index !== -1 ;
+        return this.keys.has(key) ;
     }
 
     values(){
@@ -170,7 +96,7 @@ const {
 
         for(let i = 0 ; i < len ; i ++){
 
-            fn.call(scope , values[i] , keys[i]) ;
+            fn.call(scope , values[i] , keys.get(i)) ;
         }
     }
  }

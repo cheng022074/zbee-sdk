@@ -9,7 +9,9 @@
  * 
  * @import createMap from map
  * 
- * @param {data.connection.Socket} socket socket 对象
+ * @import assign from object.assign
+ * 
+ * @import equals from object.equals
  * 
  * @class
  * 
@@ -17,30 +19,29 @@
 
  class main {
 
-    constructor(socket , {
-        id,
-        ...options
-    }){
+    constructor(socket , id , {
+        saveLastMessage
+    } = {}){
 
         let me = this ;
 
         me.socket = socket ;
 
-        let {
-                params = {},
-                saveLastMessage = true
-            } = assign(options , me.getExtraOptions(id)) ;
+        me.id = id ;
 
         if(saveLastMessage === false){
 
             me.data = [] ;
         }
         
-        me.params = params ;
-
         me.callbacks = createMap() ;
 
-        me.opened = false ;
+        me.oldParams = false ;
+    }
+
+    get opened(){
+
+        return !! this.oldParams ;
     }
 
     /**
@@ -48,14 +49,68 @@
      * 打开通道
      * 
      */
-    open(){
+    open(params = {}){
+
+        let me = this,
+        {
+            opened,
+            oldParams,
+            id,
+            socket
+        } = me;
+
+        if(!opened || !equals(oldParams , params)){
+
+            let options = assign({} , me.processID(id) , params) ;
+
+            socket.trySubscribe(me.generateRemoteParams(options)) ;
+
+            me.params = me.generateLocalParams(options) ;
+
+            me.oldParams = params ;
+        
+        }
+    }
+
+    close(){
 
         let {
-            socket,
-            remoteParams
+            opened,
+            oldParams,
+            socket
         } = this ;
 
-        socket.trySubscribe(remoteParams) ;
+        if(opened){
+
+            socket.tryUnsubscribe(me.generateRemoteParams(assign({} , me.processID(id) , oldParams))) ;
+        }
+    }
+
+    /**
+     * 
+     * 生成远程订阅参数
+     * 
+     * @param {mixed} params 订阅参数
+     * 
+     * @return {mixed} 远程订阅参数 
+     * 
+     */
+    generateRemoteParams(params){
+
+        return params ;
+    }
+     /**
+     * 
+     * 生成本地订阅参数
+     * 
+     * @param {mixed} params 订阅参数
+     * 
+     * @return {mixed} 远程订阅参数 
+     * 
+     */
+    generateLocalParams(params){
+
+        return params ;
     }
 
     /**
@@ -65,7 +120,7 @@
      * @param {string} id 订阅器编号 
      * 
      */
-    getExtraOptions(id){
+    processID(id){
 
         return {} ;
     }
@@ -193,17 +248,5 @@
     get hasBinding(){
 
         return this.callbacks.size !== 0;
-    }
-
-    /**
-     * 
-     * 返回实际的订阅参数
-     * 
-     * @return {object}
-     * 
-     */
-    get remoteParams(){
-
-        return this.params ;
     }
  }

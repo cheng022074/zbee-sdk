@@ -6,6 +6,8 @@
  * 
  * @import Subscriber from data.connection.socket.subscriber value
  * 
+ * @import from from array.from
+ * 
  */
 
  class XYSocket extends Socket{
@@ -19,12 +21,25 @@
         this.userId = userId ;
     }
 
-    processSubscribeParams(topic , params , options){
+    doSubscribe(params){
+
+        return super.doSubscribe({
+            subs:from(params)
+        }) ;
+    }
+
+    doUnsubscribe(params){
+
+        return super.doUnsubscribe({
+            subs:from(params)
+        }) ;
+    }
+
+    processSubscribeParams(id , params){
 
         return {
-            topic,
-            params,
-            options
+            id,
+            params
         };
     }
 
@@ -56,21 +71,34 @@
 
  class XYSubscriber extends Subscriber{
 
-    constructor(socket , {
-        topic,
-        params,
-        options = {}
+    processID(id){
+
+        let [
+            ,
+            topic,
+            op,
+            type
+        ] = id.match(/(\w+)\.(\w+)\.(\w+)/) ;
+
+        return {
+            topic,
+            op,
+            type
+        } ;
+    }
+
+    generateRemoteParams({
+        topic
     }){
 
-        super(socket , {
-            params,
-            ...options
-        }) ;
+        let {
+            socket
+        } = this ;
 
-        let me = this ;
-
-        me.topic = topic ;
-
+        return {
+            topic,
+            userId:socket.userId
+        } ;
     }
 
     processData(message){
@@ -79,6 +107,7 @@
     }
 
     validate({
+        topic,
         msg
     }){
 
@@ -89,52 +118,29 @@
 
         let {
             type:paramType,
-            op:paramOp
+            op:paramOp,
+            topic:paramTopic
         } = this.params;
 
-        return  paramType === type && paramOp === op;
-    }
-
-    get remoteParams(){
-
-        let {
-            topic,
-            socket
-        } = this ;
-
-        return {
-            subs:[{
-                topic,
-                userId:socket.userId
-            }]
-        }
+        return topic === paramTopic &&  paramType === type && paramOp === op;
     }
  }
 
 let socket = new XYSocket('http://121.40.129.195:8292/message' , '411') ;
 
-socket.subscribe('ok' , {
-    op:'create',
-    type:'todo'
-}).bind(data =>{
+socket.subscribe('ok.create.todo').bind(data =>{
 
-    console.log('todo' , data) ;
+    console.log('todo1' , data) ;
 
 }) ;
 
-socket.subscribe('ok' , {
-    op:'create',
-    type:'todo'
-}).bind(data =>{
+socket.subscribe('ok.create.todo').bind(data =>{
 
-    console.log('todo' , data) ;
+    console.log('todo2' , data) ;
 
 }) ;
 
-socket.subscribe('ok' , {
-    op:'create',
-    type:'msg'
-}).bind(data =>{
+socket.subscribe('ok.create.msg').bind(data =>{
 
     console.log('消息' , data) ;
 
