@@ -26,17 +26,10 @@
         }) ;
     }
 
-    processSubscribeParams(id , params){
 
-        return {
-            id,
-            params
-        };
-    }
+    createSubscriber(id , options){
 
-    createSubscriber(params){
-
-        return new XYSubscriber(this , params) ;
+        return new XYSubscriber(this , id , options) ;
     }
 
     processMessage({

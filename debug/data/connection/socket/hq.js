@@ -12,6 +12,8 @@
  * 
  * @import read from file.read.json
  * 
+ * @import from from array.from
+ * 
  */
 
  const {
@@ -207,22 +209,29 @@ const dataTypeMaps = [{
 
  class XYSocket extends Socket{
 
-    processSubscribeParams(params , options){
+    doSubscribe(params){
 
-        return {
-            params,
-            options
-        };
+        return super.doSubscribe({
+            subs:from(params)
+        }) ;
     }
 
-    createSubscriber(params){
+    doUnsubscribe(params){
 
-        return new XYSubscriber(this , params) ;
+        return super.doUnsubscribe({
+            subs:from(params)
+        }) ;
+    }
+
+    createSubscriber(id , options){
+
+        return new XYSubscriber(this , id , options) ;
     }
 
     processMessage(dataType, symbol, arrayFlag, buffer, order, count, startNum){
 
         return {
+            symbol,
             dataType,
             data:this.decodeData(buffer, dataType, arrayFlag, symbol)
         } ;
@@ -265,25 +274,43 @@ const dataTypeMaps = [{
 
  class XYSubscriber extends Subscriber{
 
+      processID(id){
+
+        console.log(id) ;
+
+          let [
+              ,
+              api,
+              symbol
+          ] = id.match(/(\w+)\:{2}(.+)/) ;
+
+          return {
+              dataType:name2type[api],
+              symbol
+          } ;
+      }
+
     processData(message){
 
         return message.data ;
     }
 
     validate({
-        dataType
+        dataType,
+        symbol
     }){
 
-       return dataType === this.params.dataType ;
-    }
+      let {
+        dataType:paramDataType,
+        symbol:paramSymbol
+      } = this.params ;
 
-    get remoteParams(){
+      if(dataType === 0){
 
-        return {
-            subs:[
-                this.params
-            ]
-        }
+          return paramDataType === dataType ;
+      }
+
+       return paramDataType === dataType &&  symbol === paramSymbol; 
     }
  }
 
@@ -291,10 +318,7 @@ let socket = new XYSocket({
     url:'http://113.16.174.140:8092/stock'
 }) ;
 
-socket.subscribe({
-    symbol: 'SIGNAL',
-    dataType:0
-}).bind(data =>{
+socket.subscribe('api_one::SH.000001').bind(data =>{
 
     console.log('ok' , data) ;
 
