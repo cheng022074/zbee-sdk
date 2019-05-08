@@ -158,12 +158,14 @@
      * 
      * @param {string} id 订阅编号
      * 
+     * @param {object} options 订阅配置参数
+     * 
      * @return {data.connection.socket.Subscriber} 订阅器
      * 
      */
-    createSubscriber(id){
+    createSubscriber(id , options){
 
-        return new Subscriber(this , id) ;
+        return new Subscriber(this , id , options) ;
     }
 
     /**
