@@ -3,7 +3,7 @@
  * 
  * 获得当前 Excel 中所有的工作表对象列表
  * 
- * @import once from object.setOnce
+ * @import once from object.value.setOnce
  * 
  * @import Sheet from excel.sheet
  * 

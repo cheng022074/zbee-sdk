@@ -5,9 +5,9 @@
  * 
  * @import getKeys from object.keys
  * 
- * @import set from object.set
+ * @import set from object.value.set
  * 
- * @import get from object.get
+ * @import get from object.value.get
  * 
  * @param {object} dest 目标数据
  * 

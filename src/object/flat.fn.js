@@ -5,7 +5,7 @@
  * 
  * @import getKeys from ..keys
  * 
- * @import get from ..get
+ * @import get from .value.get
  * 
  * @param {object} data 对象
  * 

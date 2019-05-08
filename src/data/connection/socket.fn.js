@@ -3,7 +3,7 @@
  * 
  * Socket 消息机
  * 
- * @import get from object.get
+ * @import get from object.value.get
  * 
  * @import createMap from object.map
  * 
@@ -23,7 +23,7 @@
 
         me.init(options) ;
 
-        me.subscriberMap = createMap() ;
+        me.subscriberMap = new Map() ;
 
         me.remoteParamsMap = createMap() ;
     }
@@ -108,14 +108,20 @@
         let me = this,
         {
             subscriberMap
-        } = this ;
+        } = this,
+        {
+            id
+        } = params;
 
-        if(!subscriberMap.has(params)){
+        if(id){
 
-            subscriberMap.set(params , me.createSubscriber(params)) ;
+            if(!subscriberMap.has(id)){
+
+                subscriberMap.set(id , me.createSubscriber(params)) ;
+            }
+    
+            return subscriberMap.get(id) ;
         }
-
-        return subscriberMap.get(params) ;
     }
 
     removeSubscriber(params){
@@ -262,7 +268,7 @@
         let me = this,
             subscriber = me.getSubscriber(me.processSubscribeParams(...args)) ;
 
-        me.trySubscribe(subscriber.remoteParams) ;
+        subscriber.open() ;
 
         return subscriber ;
     }

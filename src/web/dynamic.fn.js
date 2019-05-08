@@ -7,7 +7,7 @@
  * 
  * @import string.convert.string
  * 
- * @import get from object.get
+ * @import get from object.value.get
  * 
  * @param {object} router 基于 Koa 的路由对象
  * 

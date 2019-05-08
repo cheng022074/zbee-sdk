@@ -11,12 +11,6 @@
  * 
  * @param {data.connection.Socket} socket socket 对象
  * 
- * @param {object} options 订阅参数
- * 
- * @param {object} options.params  订阅参数
- * 
- * @param {object} [options.saveLastMessage = true] 订阅器配置
- * 
  * @class
  * 
  */
@@ -24,13 +18,18 @@
  class main {
 
     constructor(socket , {
-        params,
-        saveLastMessage
+        id,
+        ...options
     }){
 
         let me = this ;
 
         me.socket = socket ;
+
+        let {
+                params = {},
+                saveLastMessage = true
+            } = assign(options , me.getExtraOptions(id)) ;
 
         if(saveLastMessage === false){
 
@@ -40,6 +39,35 @@
         me.params = params ;
 
         me.callbacks = createMap() ;
+
+        me.opened = false ;
+    }
+
+    /**
+     * 
+     * 打开通道
+     * 
+     */
+    open(){
+
+        let {
+            socket,
+            remoteParams
+        } = this ;
+
+        socket.trySubscribe(remoteParams) ;
+    }
+
+    /**
+     * 
+     * 根据订阅器名称得到额外的订阅参数
+     * 
+     * @param {string} id 订阅器编号 
+     * 
+     */
+    getExtraOptions(id){
+
+        return {} ;
     }
 
     /**

@@ -2,7 +2,7 @@
  * 
  * JSON 数据读取器
  * 
- * @import object.get
+ * @import object.value.get
  * 
  * @import is.string
  * 
@@ -41,7 +41,7 @@
          include = me.include,
          converts = me.converts,
          createModel = me.createModel,
-         get = include('object.get'),
+         get = include('object.value.get'),
          from = include('array.from'),
          isEmpty = include('is.empty');
 

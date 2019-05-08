@@ -8,7 +8,7 @@
  * 
  * @import empty from function.empty value
  * 
- * @import get from object.get
+ * @import get from object.value.get
  * 
  * @import is.defined
  * 

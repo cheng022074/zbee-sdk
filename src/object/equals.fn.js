@@ -4,7 +4,7 @@
  * 
  * @import keys from object.keys
  * 
- * @import get from object.get
+ * @import get from object.value.get
  * 
  * @param {object} value1 第一个对象数据
  * 

@@ -2,7 +2,7 @@
  * 
  * 将指定VUE组件对象中的属性配置转换成创建配置
  * 
- * @import get from object.get
+ * @import get from object.value.get
  * 
  * @import split from string.split
  * 

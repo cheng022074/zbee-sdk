@@ -3,7 +3,7 @@
  * 
  * 解析树型数据
  * 
- * @import object.get
+ * @import object.value.get
  * 
  * @import from from array.from
  * 
@@ -80,7 +80,7 @@
 
         var include = this.include,
             parse = this.parse,
-            get = include('object.get'),
+            get = include('object.value.get'),
             isObject = include('is.object.simple');
 
         ${generate_get_root_data(rootProperty)}
