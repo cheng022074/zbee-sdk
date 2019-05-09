@@ -28,6 +28,7 @@
 
     constructor({
         subscriber,
+        defaultSubscriberOptions = {},
         ...options
     }){
 
@@ -40,6 +41,8 @@
         me.subscriberMap = new Map() ;
 
         me.remoteParamsMap = createMap() ;
+
+        me.defaultSubscriberOptions = defaultSubscriberOptions ;
 
     }
 
@@ -234,16 +237,17 @@
 
         let me = this,
         {
-            subscriberMap
+            subscriberMap,
+            defaultSubscriberOptions
         } = this,
         subscriber;
 
         if(!subscriberMap.has(id)){
 
-            subscriberMap.set(id , subscriber = me.createSubscriber(id , {
+            subscriberMap.set(id , subscriber = me.createSubscriber(id , assign({} , defaultSubscriberOptions , {
                 ...options,
                 params
-            })) ;
+            }))) ;
         
         }else{
 

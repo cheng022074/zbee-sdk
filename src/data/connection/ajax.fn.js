@@ -17,7 +17,7 @@
 
     constructor({
         url,
-        defaultParams = {},
+        defaultLoaderOptions = {},
         processData = message => message
     }){
 
@@ -27,7 +27,7 @@
 
         me.loadersMap = new Map() ;
 
-        me.defaultParams = defaultParams ;
+        me.defaultLoaderOptions = defaultLoaderOptions ;
 
         me.processData = processData;
     }
@@ -47,16 +47,16 @@
         let me = this,
         {
             loadersMap,
-            defaultParams
+            defaultLoaderOptions
         } = me,
         loader;
 
         if(!loadersMap.has(url)){
 
-            loadersMap.set(url , loader = me.createLoader(url ,  {
+            loadersMap.set(url , loader = me.createLoader(url ,  assign({} , defaultLoaderOptions , {
                 ...options,
-                params:assign({} , defaultParams , params)
-            })) ;
+                params
+            }))) ;
         
         }else{
 
