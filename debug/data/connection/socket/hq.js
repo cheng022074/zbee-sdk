@@ -209,6 +209,14 @@ const dataTypeMaps = [{
 
  class XYSocket extends Socket{
 
+    constructor(options){
+
+      super({
+        subscriber:XYSubscriber,
+        ...options
+      }) ;
+    }
+
     doSubscribe(params){
 
         return super.doSubscribe({
@@ -221,11 +229,6 @@ const dataTypeMaps = [{
         return super.doUnsubscribe({
             subs:from(params)
         }) ;
-    }
-
-    createSubscriber(id , options){
-
-        return new XYSubscriber(this , id , options) ;
     }
 
     processMessage(dataType, symbol, arrayFlag, buffer, order, count, startNum){
@@ -309,6 +312,7 @@ const dataTypeMaps = [{
 
           return paramDataType === dataType ;
       }
+
 
        return paramDataType === dataType &&  symbol === paramSymbol; 
     }

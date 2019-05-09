@@ -1,4 +1,3 @@
-
 /**
  * 
  * Socket 消息机
@@ -11,6 +10,12 @@
  * 
  * @param {mixed} options Socket 初始化配置
  * 
+ * @import is.class
+ * 
+ * @import is.string
+ * 
+ * @import is.function
+ * 
  * @class
  * 
  */
@@ -18,13 +23,16 @@
  class main{
 
     constructor({
-        subscribers = {},
+        subscriber,
+        subscriberOptions = {},
         ...options
     }){
 
         let me = this;
 
-        me.subscribers = subscribers ;
+        me.subscriber = subscriber || Subscriber ;
+
+        me.subscriberOptions = subscriberOptions ;
 
         me.init(options) ;
 
@@ -115,12 +123,12 @@
         let me = this,
         {
             subscriberMap,
-            subscribers
+            subscriberOptions
         } = this;
 
         if(!subscriberMap.has(id)){
 
-            subscriberMap.set(id , me.createSubscriber(id , subscribers[id])) ;
+            subscriberMap.set(id , me.createSubscriber(id , subscriberOptions[id])) ;
         }
 
         let subscriber = subscriberMap.get(id) ;
@@ -132,8 +140,7 @@
 
     removeSubscriber(id){
 
-        let me = this,
-        {
+        let {
             subscriberMap
         } = this;
 
@@ -141,14 +148,9 @@
 
             let subscriber = subscriberMap.get(id) ;
 
-            if(!subscriber.isBinding){
+            subscriber.close() ;
 
-                subscriber.close() ;
-
-                subscriberMap.delete(id) ;
-
-                return subscriber ;
-            }
+            subscriberMap.delete(id) ;
         }
     }
 
@@ -165,7 +167,25 @@
      */
     createSubscriber(id , options){
 
-        return new Subscriber(this , id , options) ;
+        let me = this,
+        {
+            subscriber
+        } = this ;
+
+        if(isClass(subscriber)){
+
+            return new subscriber(me , id , options) ;
+        }
+
+        if(isFunction(subscriber)){
+
+            return subscriber(me , id , options) ;
+        }
+
+        if(isString(subscriber)){
+
+            return include(subscriber)(me , id , options) ;
+        }
     }
 
     /**

@@ -81,13 +81,16 @@
         let {
             opened,
             originParams,
-            socket
+            socket,
+            callbacks
         } = this ;
 
         if(opened){
 
             socket.tryUnsubscribe(me.generateRemoteParams(assign({} , me.processID(id) , originParams))) ;
         }
+
+        callbacks.clear() ;
     }
 
     generateInitParams(){
@@ -245,17 +248,5 @@
         } = this; 
 
         callbacks.delete(fn , scope) ;
-    }
-
-    /**
-     * 
-     * 判断是否还有绑定
-     * 
-     * @return {boolean} 如果绑定成功则返回 true , 否则返回 false
-     * 
-     */
-    get hasBinding(){
-
-        return this.callbacks.size !== 0;
     }
  }

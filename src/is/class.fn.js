@@ -7,12 +7,8 @@
  * 
  * @param {mixed} data 检测数据
  * 
- * @param {string} className 类名称
- * 
  * @return {boolean} 如果指定数据是类的实例则返回 true ，否则返回 false 
  * 
  */
 
-let target = include(className)() ;
-
-return isFunction(target) && data instanceof target ;
+return isFunction(data) && /^class/.test(data.toString())

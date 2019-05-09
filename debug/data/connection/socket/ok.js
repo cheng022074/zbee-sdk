@@ -12,6 +12,14 @@
 
  class XYSocket extends Socket{
 
+    constructor(options){
+
+        super({
+          subscriber:XYSubscriber,
+          ...options
+        }) ;
+    }
+
     doSubscribe(params){
 
         return super.doSubscribe({
@@ -24,12 +32,6 @@
         return super.doUnsubscribe({
             subs:from(params)
         }) ;
-    }
-
-
-    createSubscriber(id , options){
-
-        return new XYSubscriber(this , id , options) ;
     }
 
     processMessage({
