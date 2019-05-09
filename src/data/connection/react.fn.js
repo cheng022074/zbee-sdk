@@ -6,7 +6,7 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @param {data.connection.Socket} socket Socket 对象
+ * @param {object} mixins Socket 对象
  * 
  * @param {mixed} componentClass 组件类引用
  * 
@@ -14,52 +14,90 @@
  * 
  */
 
+ const {
+     socket,
+     ajax
+ } = mixins ;
+
 return class extends componentClass{
 
     constructor(...args){
 
         super(...args) ;
 
-        this.connection_socket_subscribed = false ;
+        this.connection_subscribed = false ;
     }
 
     componentDidMount() {
 
         let me = this,
         {
-            connection_socket_subscribed
+            connection_subscribed
         } = me;
 
-        if(!connection_socket_subscribed){
+        if(!connection_subscribed){
 
-            let {
-                subscribers = {}
-            } = me ;
-    
-            let ids = Object.keys(subscribers),
-                result = {};
-    
-            for(let id of ids){
-    
-                let subscriber = subscribers[id] ;
-    
-                if(isString(subscriber)){
-    
-                    result[id] = socket.subscribe(id).bind(subscriber , me) ;
-                
-                }else if(isObject(subscriber)){
-    
-                    let {
-                        fn,
-                        params,
-                        ...options
-                    } = subscriber ;
-    
-                    result[id] =  socket.subscribe(id , params , ...options).bind(subscriber , me) ;
+            {
+                let {
+                    subscribers = {}
+                } = me ;
+        
+                let ids = Object.keys(subscribers),
+                    result = {};
+        
+                for(let id of ids){
+        
+                    let subscriber = subscribers[id] ;
+        
+                    if(isString(subscriber)){
+        
+                        result[id] = socket.subscribe(id).bind(subscriber , me) ;
+                    
+                    }else if(isObject(subscriber)){
+        
+                        let {
+                            fn,
+                            params,
+                            ...options
+                        } = subscriber ;
+        
+                        result[id] =  socket.subscribe(id , params , options).bind(fn , me) ;
+                    }
                 }
+        
+                me.subscribers = result ;
             }
-    
-            me.subscribers = result ;
+
+            {
+                let {
+                    loaders = {}
+                } = me ;
+        
+                let urls = Object.keys(loaders),
+                    result = {};
+        
+                for(let url of urls){
+        
+                    let loader = loaders[url] ;
+        
+                    if(isString(loader)){
+        
+                        result[url] = ajax.load(url).bind(loader , me) ;
+                    
+                    }else if(isObject(loader)){
+        
+                        let {
+                            fn,
+                            params,
+                            ...options
+                        } = loader ;
+        
+                        result[id] =  ajax.load(id , params , options).bind(fn , me) ;
+                    }
+                }
+        
+                me.loaders = result ;
+            }
 
             me.connection_socket_subscribed = true ;
         }
@@ -79,10 +117,10 @@ return class extends componentClass{
 
         let me = this,
         {
-            connection_socket_subscribed
+            connection_subscribed
         } = me;
 
-        if(connection_socket_subscribed){
+        if(connection_subscribed){
 
             let {
                 subscribers = {}
@@ -94,7 +132,7 @@ return class extends componentClass{
                 socket.unsubscribe(id) ;
             }
 
-            me.connection_socket_subscribed = false ;
+            me.connection_subscribed = false ;
         }
     }
     
