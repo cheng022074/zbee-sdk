@@ -3,68 +3,43 @@
  * 
  * 基于 AJAX 进行数据交互
  * 
- * @import append from url.append
+ * @import request from .ajax.request
  * 
- * @import apply from url.template.apply
- * 
- * @import isObject from is.object.simple
- * 
- * @import createReader from data.reader.json
- * 
- * @require axios
- * 
- * @require qs
- * 
- * @param {string} url 请求路径
- * 
- * @param {object} [config] 请求配置
- * 
- * @param {string} [config.method = 'GET'] 请求方式，默认是 GET 请求
- * 
- * @param {object} [config.query] GET请求的参数集合
- * 
- * @param {object} [config.params = {}] 请求主体的参数集合
- * 
- * @param {object} [config.path] 以路径参数形式提交的参数集合
- * 
- * @param {boolean} [config.requestJSON = true] 是否以 JSON方式提交数据
+ * @class
  * 
  */
 
-if(query){
+ class main{
 
-    url = append(url , query) ;
-}
+    constructor(url){
 
-if(path){
+        let me = this ;
 
-    url = apply(url , path) ;
-}
+        me.url = url ;
 
-const axios = require('axios'),
-{
-    stringify
-} = require('qs');
+        me.loadersMap = new Map() ;
+    }
 
-switch(method){
+    createLoader(url , options){
 
-    case 'GET':
-    case 'DELETE':
 
-        url = append(url , params) ;
+    }
 
-        break ;
+    load(url , params , options){
 
-    case 'POST':
-    case 'PUT':
+        let me = this,
+        {
+            loadersMap
+        } = me ;
 
-        if(requestJSON === false){
+        if(loadersMap.has(url)){
 
-            params = stringify(params) ;
+            loadersMap.set(url , me.createLoader(url ,  {
+                ...options,
+                params
+            })) ;
         }
-}
 
-return axios[method.toLowerCase()](url , params).then(({
-    data
-}) => data) ;
-
+        return loadersMap.get(id)  ;
+    }
+ }

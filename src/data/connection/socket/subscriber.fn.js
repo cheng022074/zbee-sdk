@@ -70,7 +70,12 @@
             socket
         } = me;
 
-        if(!opened || !equals(originParams , params)){
+        if(opened && !equals(originParams , params)){
+
+            me.close(false) ;
+        }
+
+        if(!opened){
 
             let options = assign({} , me.processID(id) , params) ;
 
@@ -82,7 +87,7 @@
         }
     }
 
-    close(){
+    close(isClearBinding = true){
 
         let me = this,
         {
@@ -105,9 +110,14 @@
         if(opened){
 
             socket.tryUnsubscribe(me.generateRemoteParams(assign({} , me.processID(id) , originParams))) ;
+
+            me.originParams = false ;
         }
 
-        callbacks.clear() ;
+        if(isClearBinding){
+
+            callbacks.clear() ;
+        }
 
         return true ;
     }
@@ -195,7 +205,8 @@
 
         let me = this,
         {
-            data
+            data,
+            params
         } = me;
 
         message = me.processData(message) ;
@@ -213,7 +224,7 @@
             callbacks
         } = me ;
 
-        callbacks.forEach(fn => fn(message)) ;
+        callbacks.forEach(fn => fn(message , params)) ;
     }
 
     /**

@@ -219,8 +219,6 @@
 
             remoteParamsMap.set(remoteParams , count) ;
         }
-
-       
     }
 
     /**
@@ -237,17 +235,24 @@
         let me = this,
         {
             subscriberMap
-        } = this;
+        } = this,
+        subscriber;
 
         if(!subscriberMap.has(id)){
 
-            subscriberMap.set(id , me.createSubscriber(id , {
+            subscriberMap.set(id , subscriber = me.createSubscriber(id , {
                 ...options,
                 params
             })) ;
+        
+        }else{
+
+            subscriber = subscriberMap.get(id) ;
+
+            subscriber.open(params) ;
         }
 
-        return subscriberMap.get(id)  ;
+        return subscriber ;
     }
 
     /**
