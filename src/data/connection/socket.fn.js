@@ -97,7 +97,7 @@
 
     /**
      * 
-     * 针对消息进行处理
+     * 将消息处理成一个对象
      * 
      * @param {mixed} ...args 消息
      * 
@@ -107,51 +107,6 @@
     processMessage(...args){
 
         return {} ;
-    }
-
-    /**
-     * 
-     * 根据订阅参数获取订阅器
-     * 
-     * @param {string} id 订阅器编号
-     * 
-     * @param {object} params 订阅参数  
-     */
-
-    getSubscriber(id , params){
-
-        let me = this,
-        {
-            subscriberMap,
-            subscriberOptions
-        } = this;
-
-        if(!subscriberMap.has(id)){
-
-            subscriberMap.set(id , me.createSubscriber(id , subscriberOptions[id])) ;
-        }
-
-        let subscriber = subscriberMap.get(id) ;
-
-        subscriber.open(params) ;
-
-        return subscriberMap.get(id) ;
-    }
-
-    removeSubscriber(id){
-
-        let {
-            subscriberMap
-        } = this;
-
-        if(subscriberMap.has(id)){
-
-            let subscriber = subscriberMap.get(id) ;
-
-            subscriber.close() ;
-
-            subscriberMap.delete(id) ;
-        }
     }
 
     /**
@@ -276,7 +231,22 @@
      */
     subscribe(id , params){
 
-        return this.getSubscriber(id , params) ;
+        let me = this,
+        {
+            subscriberMap,
+            subscriberOptions
+        } = this;
+
+        if(!subscriberMap.has(id)){
+
+            subscriberMap.set(id , me.createSubscriber(id , subscriberOptions[id])) ;
+        }
+
+        let subscriber = subscriberMap.get(id) ;
+
+        subscriber.open(params) ;
+
+        return subscriberMap.get(id) ;
     }
 
     /**
@@ -287,6 +257,17 @@
      */
     unsubscribe(id){
         
-        this.removeSubscriber(id) ;
+        let {
+            subscriberMap
+        } = this;
+
+        if(subscriberMap.has(id)){
+
+            let subscriber = subscriberMap.get(id) ;
+
+            subscriber.close() ;
+
+            subscriberMap.delete(id) ;
+        }
     }
  }
