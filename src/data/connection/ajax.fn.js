@@ -5,6 +5,8 @@
  * 
  * @import request from .ajax.request
  * 
+ * @import createLoader from .ajax.loader
+ * 
  * @class
  * 
  */
@@ -22,7 +24,12 @@
 
     createLoader(url , options){
 
+        return createLoader(this , url , options) ;
+    }
 
+    tryLoad(url , params){
+
+        return request(url , params) ;
     }
 
     load(url , params , options){
@@ -30,16 +37,23 @@
         let me = this,
         {
             loadersMap
-        } = me ;
+        } = me,
+        loader;
 
         if(loadersMap.has(url)){
 
-            loadersMap.set(url , me.createLoader(url ,  {
+            loadersMap.set(url , loader = me.createLoader(url ,  {
                 ...options,
                 params
             })) ;
+        
+        }else{
+
+            loader = loadersMap.get(url) ;
+
+            loader.load(params) ;
         }
 
-        return loadersMap.get(id)  ;
+        return loader  ;
     }
  }
