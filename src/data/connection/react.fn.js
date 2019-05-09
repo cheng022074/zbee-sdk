@@ -16,37 +16,53 @@
 
 return class extends componentClass{
 
+    constructor(...args){
+
+        super(...args) ;
+
+        this.connection_socket_subscribed = false ;
+    }
+
     componentDidMount() {
 
         let me = this,
         {
-            subscribers = {}
-        } = me ;
+            connection_socket_subscribed
+        } = me;
 
-        let ids = Object.keys(subscribers),
-            result = {};
+        if(!connection_socket_subscribed){
 
-        for(let id of ids){
-
-            let subscriber = subscribers[id] ;
-
-            if(isString(subscriber)){
-
-                result[id] = socket.subscribe(id).bind(subscriber , me) ;
-            
-            }else if(isObject(subscriber)){
-
-                let {
-                    fn,
-                    params,
-                    ...options
-                } = subscriber ;
-
-                result[id] =  socket.subscribe(id , params , ...options).bind(subscriber , me) ;
+            let {
+                subscribers = {}
+            } = me ;
+    
+            let ids = Object.keys(subscribers),
+                result = {};
+    
+            for(let id of ids){
+    
+                let subscriber = subscribers[id] ;
+    
+                if(isString(subscriber)){
+    
+                    result[id] = socket.subscribe(id).bind(subscriber , me) ;
+                
+                }else if(isObject(subscriber)){
+    
+                    let {
+                        fn,
+                        params,
+                        ...options
+                    } = subscriber ;
+    
+                    result[id] =  socket.subscribe(id , params , ...options).bind(subscriber , me) ;
+                }
             }
-        }
+    
+            me.subscribers = result ;
 
-        me.subscribers = result ;
+            me.connection_socket_subscribed = true ;
+        }
 
         if (super.componentDidMount) {
 
@@ -63,14 +79,22 @@ return class extends componentClass{
 
         let me = this,
         {
-            subscribers = {}
-        } = me ;
+            connection_socket_subscribed
+        } = me;
 
-        let ids = Object.keys(subscribers) ;
+        if(connection_socket_subscribed){
 
-        for(let id of ids){
+            let {
+                subscribers = {}
+            } = me,
+            ids = Object.keys(subscribers) ;
+    
+            for(let id of ids){
+    
+                socket.unsubscribe(id) ;
+            }
 
-            socket.unsubscribe(id) ;
+            me.connection_socket_subscribed = false ;
         }
     }
     
