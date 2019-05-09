@@ -5,21 +5,31 @@
  * 
  * @import request from .ajax.request
  * 
+ * @import assign from object.assign
+ * 
  * @import createLoader from .ajax.loader
  * 
- * @class
+ * @param {object} options 配置
  * 
  */
 
  class main{
 
-    constructor(url){
+    constructor({
+        url,
+        defaultParams = {},
+        processData = message => message
+    }){
 
         let me = this ;
 
         me.url = url ;
 
         me.loadersMap = new Map() ;
+
+        me.defaultParams = defaultParams ;
+
+        me.processData = processData;
     }
 
     createLoader(url , options){
@@ -32,19 +42,20 @@
         return request(url , params) ;
     }
 
-    load(url , params , options){
+    load(url , params = {} , options){
 
         let me = this,
         {
-            loadersMap
+            loadersMap,
+            defaultParams
         } = me,
         loader;
 
-        if(loadersMap.has(url)){
+        if(!loadersMap.has(url)){
 
             loadersMap.set(url , loader = me.createLoader(url ,  {
                 ...options,
-                params
+                params:assign({} , defaultParams , params)
             })) ;
         
         }else{

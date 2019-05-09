@@ -122,11 +122,6 @@
         return true ;
     }
 
-    generateInitParams(){
-
-
-    }
-
     /**
      * 
      * 生成远程订阅参数
@@ -260,6 +255,8 @@
 
             bindFn(data) ;
         }
+
+        return me ;
     }
 
     /**
@@ -273,10 +270,13 @@
      */
     unbind(fn , scope){
 
-        let {
+        let me = this,
+        {
             callbacks
-        } = this; 
+        } = me; 
 
         callbacks.delete(fn , scope) ;
+
+        return me ;
     }
  }

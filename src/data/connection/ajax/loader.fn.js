@@ -5,11 +5,16 @@
  * 
  * @import createMap from map
  * 
+ * @import get from function.get
+ * 
+ * @import equals from object.equals
+ * 
  * @param {data.connection.Ajax} ajax AJAX 引用
  * 
  * @param {string} url 数据加载的链接
  * 
  * @param {object} options 加载器配置
+ * 
  * 
  */
 
@@ -55,7 +60,9 @@
 
          let {
             originParams
-         } = this ;
+         } = me ;
+
+         me.originParams = false ;
 
          me.load(originParams) ;
       }
@@ -70,7 +77,7 @@
             ajax
         } = me;
 
-        if(originParams !== false && !equals(originParams , params)){
+        if(originParams === false || !equals(originParams , params)){
 
             ajax.tryLoad(join(ajax.url , url) , params).then(message => this.accept(message)) ;
 
@@ -78,19 +85,15 @@
         }
     }
 
-    processData(message){
-
-      return message ;
-    }
-
     accept(message){
 
       let me = this,
       {
-          originParams
+          originParams,
+          ajax
       } = me;
 
-      message = me.processData(message) ;
+      message = ajax.processData(message) ;
 
       me.data = message ;
 
@@ -127,6 +130,8 @@
 
          bindFn(data) ;
       }
+
+      return me ;
    }
 
    /**
@@ -140,10 +145,13 @@
       */
    unbind(fn , scope){
 
-         let {
+         let me = this,
+         {
             callbacks
-         } = this; 
+         } = me; 
 
          callbacks.delete(fn , scope) ;
+
+         return me ;
    }
  }
