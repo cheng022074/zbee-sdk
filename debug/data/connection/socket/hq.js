@@ -279,8 +279,6 @@ const dataTypeMaps = [{
 
       processID(id){
 
-        console.log(id) ;
-
           let [
               ,
               api,
@@ -322,8 +320,13 @@ let socket = new XYSocket({
     url:'http://113.16.174.140:8092/stock'
 }) ;
 
-socket.subscribe('api_one::SH.000001').bind(data =>{
+socket.subscribe('api_one::SH.000001' , {} , {
+  closable:false
+}).bind(data =>{
 
     console.log('ok' , data) ;
 
 }) ;
+
+socket.unsubscribe('api_one::SH.000001') ;
+

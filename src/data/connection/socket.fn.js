@@ -16,6 +16,10 @@
  * 
  * @import is.function
  * 
+ * @import is.defined
+ * 
+ * @import assign from object.assign
+ * 
  * @class
  * 
  */
@@ -24,7 +28,6 @@
 
     constructor({
         subscriber,
-        subscriberOptions = {},
         ...options
     }){
 
@@ -32,13 +35,12 @@
 
         me.subscriber = subscriber || Subscriber ;
 
-        me.subscriberOptions = subscriberOptions ;
-
         me.init(options) ;
 
         me.subscriberMap = new Map() ;
 
         me.remoteParamsMap = createMap() ;
+
     }
 
     /**
@@ -70,6 +72,7 @@
         let {
             subscriberMap
         } = me ;
+
 
         subscriberMap.forEach(subscriber =>{
 
@@ -229,24 +232,22 @@
      * @param {mixed} params 订阅参数
      * 
      */
-    subscribe(id , params){
+    subscribe(id , params , options = {}){
 
         let me = this,
         {
-            subscriberMap,
-            subscriberOptions
+            subscriberMap
         } = this;
 
         if(!subscriberMap.has(id)){
 
-            subscriberMap.set(id , me.createSubscriber(id , subscriberOptions[id])) ;
+            subscriberMap.set(id , me.createSubscriber(id , {
+                ...options,
+                params
+            })) ;
         }
 
-        let subscriber = subscriberMap.get(id) ;
-
-        subscriber.open(params) ;
-
-        return subscriberMap.get(id) ;
+        return subscriberMap.get(id)  ;
     }
 
     /**
@@ -265,9 +266,10 @@
 
             let subscriber = subscriberMap.get(id) ;
 
-            subscriber.close() ;
+            if(subscriber.close()){
 
-            subscriberMap.delete(id) ;
+                subscriberMap.delete(id) ;
+            }
         }
     }
  }

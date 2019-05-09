@@ -18,7 +18,7 @@
 
 if(isString(fn)){
 
-    if(scope && scope.hasOwnProperty(fn)){
+    if(scope && fn in scope){
 
         fn = scope[fn] ;
 

@@ -28,6 +28,8 @@
         me.id = id ;
 
         let {
+            autoOpen = true,
+            params,
             saveLastMessage = true
         } = options ;
 
@@ -41,6 +43,11 @@
         me.originParams = false ;
 
         me.options = options ;
+
+        if(autoOpen){
+
+            me.open(params) ;
+        }
     }
 
     get opened(){
@@ -72,18 +79,28 @@
             me.params = me.generateLocalParams(options) ;
 
             me.originParams = params ;
-        
         }
     }
 
     close(){
 
+        let me = this,
+        {
+            closable = true
+        } = me.options ;
+
+        if(closable === false){
+
+            return false ;
+        }
+        
         let {
+            id,
             opened,
             originParams,
             socket,
             callbacks
-        } = this ;
+        } = me ;
 
         if(opened){
 
@@ -91,6 +108,8 @@
         }
 
         callbacks.clear() ;
+
+        return true ;
     }
 
     generateInitParams(){

@@ -25,6 +25,7 @@
                 acceptMessage
             } = me,
             socket = me.socket = IO(url , {
+                'force new connection': true,
                 transports: [
                     'websocket',
                     'polling'
@@ -103,7 +104,7 @@
         {
             unsubscribeEventName
         } = me ;
-        
+
         me.emit(unsubscribeEventName , params) ;
     }
  }
