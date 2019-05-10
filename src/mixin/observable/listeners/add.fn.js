@@ -34,7 +34,7 @@ for(let event of events){
 
         me.addListener(event , fn , listenerScope || scope , options) ;
 
-    }else if(isFunction(listener)){
+    }else{
 
         me.addListener(event , listener , scope) ;
     }

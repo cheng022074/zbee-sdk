@@ -5,29 +5,28 @@
  * 
  * @import is.string
  * 
- * @import isObject from is.object.simple
+ * @import is.class
  * 
- * @param {string} namespace 命名空间
+ * @import is.function
  * 
- * @param {mixed} options 实例参数
+ * @param {mixed} baseClass 类
  * 
- * @return {mixed} 类实例 
+ * @param {mixed} [...args] 类参数
  * 
  */
 
- 
-if(isString(options)){
+if(isString(baseClass)){
 
-    return include(`${namespace}.${options}`)() ;
- 
-}else if(isObject(options)){
+    return include(baseClass)(...args) ;
 
-    let {
-        name,
-        ...currentOptions
-    } = options ;
+}else if(isClass(baseClass)){
 
-    return include(`${namespace}.${name}`)(currentOptions) ;
- }
+    return new baseClass(...args) ;
 
- return options ;
+}else if(isFunction(subscriber)){
+
+    return baseClass(...args) ;
+
+}
+
+return subscriber ;

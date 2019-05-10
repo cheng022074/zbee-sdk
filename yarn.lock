@@ -3118,6 +3118,11 @@ regex-not@^1.0.0, regex-not@^1.0.2:
     extend-shallow "^3.0.2"
     safe-regex "^1.1.0"
 
+regex-parser@^2.2.10:
+  version "2.2.10"
+  resolved "https://registry.npm.taobao.org/regex-parser/download/regex-parser-2.2.10.tgz#9e66a8f73d89a107616e63b39d4deddfee912b37"
+  integrity sha1-nmao9z2JoQdhbmOznU3t3+6RKzc=
+
 regexp-tree@^0.1.0:
   version "0.1.6"
   resolved "https://registry.npm.taobao.org/regexp-tree/download/regexp-tree-0.1.6.tgz#84900fa12fdf428a2ac25f04300382a7c0148479"
