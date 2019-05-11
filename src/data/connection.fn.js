@@ -24,7 +24,7 @@
  * 
  */
 
-const createRegex = require("regex-parser"); 
+const createRegex = require('regex-parser'); 
 
  class main extends mixins({
      mixins:[
@@ -55,6 +55,32 @@ const createRegex = require("regex-parser");
         me.validateMessage = validate ;
 
         me.processData = data ;
+    }
+
+    /**
+     * 
+     * 接收消息
+     * 
+     * @param  {mixed} [...args] 消息参数
+     * 
+     */
+    acceptMessage(...args){
+
+        let me = this,
+            message = me.processMessage(...args),
+            {
+                subscribers
+            } = me,
+            data = me.processData(message);
+
+        subscribers.forEach(subscriber => {
+
+            if(me.validateMessage(subscriber , message)){
+
+                subscriber.acceptData(data) ;
+            }
+
+        }) ;
     }
 
     /**
@@ -112,13 +138,9 @@ const createRegex = require("regex-parser");
     }
 
     onSubscriberOpen(subscriber , params){
-
-        console.log('订阅' , subscriber , params) ;
     }
 
-    onSubscriberClose(subscriber){
-
-        console.log('退订' , subscriber) ;
+    onSubscriberClose(subscriber , params){
     }
 
     /**
@@ -202,20 +224,6 @@ const createRegex = require("regex-parser");
     disconnect(name , fn , scope){
 
         this.doSubscriberMethod(name , 'disconnect' , fn , scope) ;
-    }
-
-    /**
-     * 
-     * 打开指定订阅通道
-     * 
-     * @param {string} name  订阅名称
-     * 
-     * @param {mixed} [params] 订阅参数
-     * 
-     */
-    open(name , params){
-
-       this.doSubscriberMethod(name , 'open' , params) ;
     }
 
     /**

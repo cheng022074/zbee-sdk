@@ -9,6 +9,10 @@
  * 
  * @import equals from object.equals
  * 
+ * @import createMap from map
+ * 
+ * @import get from function.get
+ * 
  * @class
  * 
  */
@@ -21,10 +25,10 @@
 
     constructor(name , {
         listeners,
-        autoOpen = true,
+        autoLoad = true,
         extraParams = {},
         defaultParams = {},
-        params = {}
+        params
     }){
 
         super() ;
@@ -37,35 +41,97 @@
 
         me.defaultParams = defaultParams ;
 
-        me.params = params ;
+        me.callbacks = createMap() ;
 
         if(listeners){
 
             me.addListeners(listeners) ;
         }
 
-        if(autoOpen){
+        if(autoLoad){
 
-            me.open(params) ;
+            me.load(params) ;
         }
     }
 
+    /**
+     * 
+     * 绑定函数
+     * 
+     * @param {mixed} fn 函数
+     * 
+     * @param {mixed} scope 作用域
+     */
+    connect(fn , scope){
+
+        let {
+            callbacks
+        } = this ;
+
+        callbacks.set(fn , scope , get(fn , scope)) ;
+    }
+    /**
+     * 
+     * 解绑函数
+     * 
+     * @param {mixed} fn 函数
+     * 
+     * @param {mixed} scope 作用域
+     */
+    disconnect(fn , scope){
+
+        let {
+            callbacks
+        } = this ;
+
+        callbacks.delete(fn , scope) ;
+    }
+
+    /**
+     * 
+     * 打开
+     * 
+     * @param {object} params 加载参数
+     * 
+     */
     open(params = {}){
 
         let me = this,
         {
             extraParams,
             defaultParams,
-            oldParams
-        } = this ;
-        
+            params:oldParams
+        } = me ;
+
         params = assign({} , defaultParams , params , extraParams) ;
 
         if(!oldParams || !equals(params , oldParams)){
 
-            me.fireEvent('open' , params , oldParams) ;
+            me.close() ;
 
-            me.oldParams = params ;
+            me.params = params ;
+
+            me.fireEvent('open' , params , oldParams) ;
+        }
+    }
+
+    /**
+     * 
+     * 关闭
+     * 
+     */
+    close(){
+
+        let me = this,
+        {
+            params
+        } = me;
+
+        if(params){
+
+            me.fireEvent('close' , params) ;
+
+            delete me.params ;
         }
     }
  }
