@@ -94,18 +94,18 @@ const createRegex = require("regex-parser");
     get subscriberListeners(){
 
         return {
-            open:'onSubscriberOpen',
-            close:'onSubscriberClose',
+            connect:'onSubscriberConnect',
+            disconnect:'onSubscriberDisconnect',
             scope:this
         } ;
     }
 
-    onSubscriberOpen(subscriber , params){
+    onSubscriberConnect(subscriber , params){
 
         console.log('订阅' , subscriber , params) ;
     }
 
-    onSubscriberClose(subscriber){
+    onSubscriberDisconnect(subscriber){
 
         console.log('退订' , subscriber) ;
     }
@@ -172,9 +172,9 @@ const createRegex = require("regex-parser");
      * @param {mixed} scope 连接函数作用域
      *  
      */
-    connect(name , fn , scope){
+    bind(name , fn , scope){
 
-        this.doSubscriberMethod(name , 'connect' , fn , scope) ;
+        this.doSubscriberMethod(name , 'bind' , fn , scope) ;
     }
 
     /**
@@ -188,9 +188,9 @@ const createRegex = require("regex-parser");
      * @param {mixed} scope 连接函数作用域
      * 
      */
-    disconnect(name , fn , scope){
+    unbind(name , fn , scope){
 
-        this.doSubscriberMethod(name , 'disconnect' , fn , scope) ;
+        this.doSubscriberMethod(name , 'unbind' , fn , scope) ;
     }
 
     /**
@@ -202,9 +202,9 @@ const createRegex = require("regex-parser");
      * @param {mixed} [params] 订阅参数
      * 
      */
-    open(name , params){
+    connect(name , params){
 
-       this.doSubscriberMethod(name , 'open' , params) ;
+       this.doSubscriberMethod(name , 'connect' , params) ;
     }
 
     /**
@@ -214,9 +214,9 @@ const createRegex = require("regex-parser");
      * @param {string} name  订阅名称
      * 
      */
-    close(name){
+    disconnect(name){
 
-        this.doSubscriberMethod(name , 'close') ;
+        this.doSubscriberMethod(name , 'disconnect') ;
     }
 
     /**

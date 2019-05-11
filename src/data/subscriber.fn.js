@@ -9,6 +9,10 @@
  * 
  * @import equals from object.equals
  * 
+ * @import createMap from map
+ * 
+ * @import get from function.get
+ * 
  * @class
  * 
  */
@@ -39,38 +43,91 @@
 
         me.params = params ;
 
+        me.callbacks = createMap() ;
+
         if(listeners){
 
             me.addListeners(listeners) ;
         }
 
+        me.opened = false ;
+
         if(autoOpen){
 
             me.open(params) ;
         }
+
+        me.on('data' , 'onData' , me) ;
     }
 
-    open(params = {}){
+    connect(params = {}){
 
-        let me = this,
+        let me = this;
+
+        me.disconnect() ;
+
         {
             extraParams,
             defaultParams,
-            oldParams
+            params:oldParams
         } = this ;
         
         params = assign({} , defaultParams , params , extraParams) ;
 
         if(!oldParams || !equals(params , oldParams)){
 
-            me.fireEvent('open' , params , oldParams) ;
+            me.fireEvent('connect' , params , oldParams) ;
 
-            me.oldParams = params ;
+            me.params = params ;
+
+            me.opened = true ;
         }
     }
 
-    get remoteParams(){
+    disconnect(){
 
-        return this.params ;
+        let me = this,
+        {
+            opened
+        } = me ;
+
+        if(opened){
+
+            me.opened = false ;
+
+            let {
+                oldParams
+            } = me ;
+
+            me.fireEvent('disconnect' , oldParams) ;
+        }
+    }
+
+    bind(fn , scope){
+
+        this.callbacks.set(fn , scope , get(fn , scope)) ;
+    }
+
+    unbind(fn , scope){
+
+        this.callbacks.delete(fn , scope , get(fn , scope)) ;
+    }
+
+    accept(message){
+
+        let me = this ;
+
+        callbacks.forEach(callback => callback(message)) ;
+    }
+
+    destroy(){
+
+        let me = this ;
+
+        me.disconnect() ;
+
+        me.removeAllListeners() ;
+
+        me.callbacks.clear() ;
     }
  }
