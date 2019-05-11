@@ -68,9 +68,4 @@
             me.oldParams = params ;
         }
     }
-
-    get remoteParams(){
-
-        return this.params ;
-    }
  }

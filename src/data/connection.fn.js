@@ -10,6 +10,8 @@
  * 
  * @import is.class
  * 
+ * @import isObject from is.object.simple
+ * 
  * @import is.function
  * 
  * @import Subscriber from data.subscriber value
@@ -32,7 +34,10 @@ const createRegex = require("regex-parser");
 
     constructor({
         subscriber = Subscriber,
-        rules
+        rules = {},
+        message = () => {},
+        validate = () => true,
+        data = data => data
     } = {}){
 
         super() ;
@@ -44,6 +49,12 @@ const createRegex = require("regex-parser");
         me.subscribers = new Map() ;
 
         me.subscriber = subscriber ;
+
+        me.processMessage = message ;
+
+        me.validateMessage = validate ;
+
+        me.processData = data ;
     }
 
     /**
@@ -209,18 +220,6 @@ const createRegex = require("regex-parser");
 
     /**
      * 
-     * 关闭指定订阅通道
-     * 
-     * @param {string} name  订阅名称
-     * 
-     */
-    close(name){
-
-        this.doSubscriberMethod(name , 'close') ;
-    }
-
-    /**
-     * 
      * 订阅
      * 
      * @param {string} name 订阅名称
@@ -269,11 +268,9 @@ const createRegex = require("regex-parser");
     unsubscribe(name){
 
         let me = this,
-            subscriber = me.doSubscriberMethod(name , 'destroy') ;
+            subscriber = me.doSubscriberMethod(name , 'close') ;
 
         if(subscriber){
-
-            subscriber.destroy() ;
 
             me.subscribers.delete(subscriber) ;
         }
