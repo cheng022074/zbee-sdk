@@ -62,7 +62,7 @@
      * 
      * @param {mixed} scope 作用域
      */
-    connect(fn , scope){
+    bind(fn , scope){
 
         let {
             callbacks
@@ -78,7 +78,7 @@
      * 
      * @param {mixed} scope 作用域
      */
-    disconnect(fn , scope){
+    unbind(fn , scope){
 
         let {
             callbacks

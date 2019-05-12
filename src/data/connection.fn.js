@@ -34,7 +34,7 @@ const createRegex = require('regex-parser');
 
     constructor({
         subscriber = Subscriber,
-        rules = {},
+        rules = [],
         message = () => {},
         validate = () => true,
         data = data => data
@@ -94,20 +94,23 @@ const createRegex = require('regex-parser');
      */
     createRules(rules){
 
-        let map = new Map(),
-            regexs = Object.keys(rules) ;
+        let result = [] ;
 
-        for(let regex of regexs){
+        for(let {
+            test,
+            use
+        } of rules){
 
-            let fn = rules[regex] ;
+            if(isFunction(use)){
 
-            if(isFunction(fn)){
-
-                map.set(createRegex(regex) , fn) ;
+                result.push({
+                    test:createRegex(test),
+                    use
+                }) ;
             }
         }
 
-        return map ;
+        return result ;
     }
 
     /**
@@ -156,16 +159,18 @@ const createRegex = require('regex-parser');
 
         let {
             rules
-        } = this,
-        keys = rules.keys();
+        } = this;
 
-        for(let key of keys){
+        for(let {
+            test,
+            use
+        } of rules){
 
-            let args = name.match(key) ;
+            let args = name.match(test) ;
 
             if(args){
 
-                return rules.get(key)(...args) ;
+                return use(...args) ;
             }
         }
     }
@@ -205,9 +210,9 @@ const createRegex = require('regex-parser');
      * @param {mixed} scope 连接函数作用域
      *  
      */
-    connect(name , fn , scope){
+    bind(name , fn , scope){
 
-        this.doSubscriberMethod(name , 'connect' , fn , scope) ;
+        this.doSubscriberMethod(name , 'bind' , fn , scope) ;
     }
 
     /**
@@ -221,9 +226,9 @@ const createRegex = require('regex-parser');
      * @param {mixed} scope 连接函数作用域
      * 
      */
-    disconnect(name , fn , scope){
+    unbind(name , fn , scope){
 
-        this.doSubscriberMethod(name , 'disconnect' , fn , scope) ;
+        this.doSubscriberMethod(name , 'unbind' , fn , scope) ;
     }
 
     /**
