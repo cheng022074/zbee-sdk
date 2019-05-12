@@ -48,6 +48,9 @@
   },
   "private": false,
   "devDependencies": {
-    "zbee": "^0.0.70"
+    "zbee": "^0.0.72"
+  },
+  "scripts":{
+    "generate":"zb generate"
   }
 }

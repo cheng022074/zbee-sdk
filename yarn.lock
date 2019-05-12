@@ -1157,6 +1157,11 @@ color-name@1.1.3:
   resolved "https://registry.npm.taobao.org/color-name/download/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
   integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
 
+colors@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.npm.taobao.org/colors/download/colors-1.3.3.tgz#39e005d546afe01e01f9c4ca8fa50f686a01205d"
+  integrity sha1-OeAF1Uav4B4B+cTKj6UPaGoBIF0=
+
 columnify@^1.5.4:
   version "1.5.4"
   resolved "https://registry.npm.taobao.org/columnify/download/columnify-1.5.4.tgz#4737ddf1c7b69a8a7c340570782e947eec8e78bb"
@@ -3962,10 +3967,10 @@ ylru@^1.2.0:
   resolved "https://registry.npm.taobao.org/ylru/download/ylru-1.2.1.tgz#f576b63341547989c1de7ba288760923b27fe84f"
   integrity sha1-9Xa2M0FUeYnB3nuiiHYJI7J/6E8=
 
-zbee@^0.0.70:
-  version "0.0.70"
-  resolved "https://registry.npm.taobao.org/zbee/download/zbee-0.0.70.tgz#fbb47e3daf3cbf96168741fe9be1d931ac5d5fa4"
-  integrity sha1-+7R+Pa88v5YWh0H+m+HZMaxdX6Q=
+zbee@^0.0.72:
+  version "0.0.72"
+  resolved "https://registry.npm.taobao.org/zbee/download/zbee-0.0.72.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fzbee%2Fdownload%2Fzbee-0.0.72.tgz#3fcc32330e658332bf25340b109b227c1baabce9"
+  integrity sha1-P8wyMw5lgzK/JTQLEJsifBuqvOk=
   dependencies:
     "@babel/core" "^7.3.4"
     "@babel/parser" "^7.3.1"
@@ -3974,6 +3979,7 @@ zbee@^0.0.70:
     "@babel/traverse" "^7.2.3"
     autoprefixer "^9.3.1"
     chokidar "^2.0.4"
+    colors "^1.3.3"
     columnify "^1.5.4"
     date-and-time "^0.6.2"
     ejs "^2.6.1"

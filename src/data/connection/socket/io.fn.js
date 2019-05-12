@@ -2,7 +2,7 @@
  * 
  * 基于 socket.io 标准进行开发
  * 
- * @import Socket from ....socket value
+ * @import Connection from data.connection.socket value
  * 
  * @require socket.io-client
  * 
@@ -12,25 +12,32 @@
 
  const IO = require('socket.io-client') ;
 
- class main extends Socket{
+ class main extends Connection{
 
-    init({
-        url,
-        options = {}
+    constructor({
+        socket,
+        ...options
     }){
+
+        super(options) ;
+
+        let {
+            url:socketURL,
+            options:socketOptions
+        } = socket ;
 
         let me = this,
             {
                 messageEventName,
                 acceptMessage
             } = me,
-            socket = me.socket = IO(url , {
+            socket = me.socket = IO(socketURL , {
                 'force new connection': true,
                 transports: [
                     'websocket',
                     'polling'
                 ],
-                ...options
+                ...socketOptions
             }) ;
 
         socket.on(messageEventName , acceptMessage.bind(me)) ;
@@ -61,12 +68,8 @@
         return 'unsub' ;
     }
 
-    doEmit(socket , event , params){
 
-        socket.emit(event , params) ;
-    }
-
-    emit(event , params){
+    emit(event , ...params){
 
         let me = this,
         {
@@ -76,11 +79,11 @@
 
         if(connected){
 
-            me.doEmit(socket , event , params) ;
+            socket.emit(event , ...params) ;
         
         }else{
 
-            const emitFn = () => me.emit(event , params) ;
+            const emitFn = () => me.emit(event , ...params) ;
 
             socket.once('connect' , emitFn) ;
 
@@ -88,23 +91,23 @@
         }
     }
 
-    doSubscribe(params){
+    doSubscriberOpen(subscriber , ...args){
 
         let me = this,
         {
             subscribeEventName
         } = me ;
 
-        me.emit(subscribeEventName , params) ;
+        me.emit(subscribeEventName , ...args) ;
     }
 
-    doUnsubscribe(params){
+    doSubscriberClose(subscriber , ...args){
 
         let me = this,
         {
             unsubscribeEventName
         } = me ;
 
-        me.emit(unsubscribeEventName , params) ;
+        me.emit(unsubscribeEventName , ...args) ;
     }
  }

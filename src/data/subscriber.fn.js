@@ -24,7 +24,9 @@
 }){
 
     constructor(name , {
+        subscriberListeners,
         listeners,
+        accumulationMode = false,
         autoLoad = true,
         extraParams = {},
         defaultParams = {},
@@ -43,6 +45,12 @@
 
         me.callbacks = createMap() ;
 
+        me.accumulationMode = accumulationMode ;
+
+        me.cache = [] ;
+
+        me.addListeners(subscriberListeners) ;
+
         if(listeners){
 
             me.addListeners(listeners) ;
@@ -52,6 +60,24 @@
 
             me.load(params) ;
         }
+    }
+
+    acceptData(data){
+
+        let {
+            callbacks,
+            accumulationMode,
+            cache
+        } = this ;
+
+        callbacks.forEach(callback => callback(data)) ;
+
+        if(accumulationMode === false){
+
+            cache.length = 0 ;
+        }
+
+        cache.push(data) ;
     }
 
     /**
@@ -65,10 +91,18 @@
     bind(fn , scope){
 
         let {
-            callbacks
-        } = this ;
+            callbacks,
+            cache
+        } = this;
 
-        callbacks.set(fn , scope , get(fn , scope)) ;
+        fn = get(fn , scope) ;
+
+        for(let data of cache){
+
+            fn(data) ;
+        }
+
+        callbacks.set(fn , scope , fn) ;
     }
     /**
      * 
@@ -85,6 +119,25 @@
         } = this ;
 
         callbacks.delete(fn , scope) ;
+    }
+    /**
+     * 
+     * 重新打开
+     * 
+     */
+    reopen(){
+
+        let me = this,
+        {
+            params
+        } = me ;
+
+        if(params){
+
+            me.close() ;
+
+            me.open(params) ;
+        }
     }
 
     /**
@@ -124,14 +177,17 @@
 
         let me = this,
         {
-            params
+            params,
+            cache
         } = me;
 
         if(params){
 
-            me.fireEvent('close' , params) ;
-
             delete me.params ;
+
+            cache.length = 0 ;
+
+            me.fireEvent('close' , params) ;
         }
     }
  }

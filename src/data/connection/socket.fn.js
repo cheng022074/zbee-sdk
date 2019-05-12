@@ -1,87 +1,104 @@
+
 /**
  * 
- * Socket 消息机
+ * Socket 通信
  * 
- * @import get from object.value.get
- * 
- * @import createMap from object.map
- * 
- * @import Subscriber from data.connection.socket.subscriber value
- * 
- * @param {mixed} options Socket 初始化配置
- * 
- * @import is.class
- * 
- * @import is.string
- * 
- * @import is.function
- * 
- * @import is.defined
- * 
- * @import assign from object.assign
+ * @import Connection from data.connection value
  * 
  * @class
  * 
  */
 
- class main{
+ class main extends Connection{
 
     constructor({
-        subscriber,
-        defaultSubscriberOptions = {},
+        rules = [],
         ...options
     }){
 
-        let me = this;
+        super(options) ;
 
-        me.subscriber = subscriber || Subscriber ;
-
-        me.init(options) ;
-
-        me.subscriberMap = new Map() ;
-
-        me.remoteParamsMap = createMap() ;
-
-        me.defaultSubscriberOptions = defaultSubscriberOptions ;
-
+        this.rules = me.createRules(rules) ;
     }
 
     /**
      * 
-     * 初始化 Socket
+     * 构建规则集合
      * 
-     * @param {mixed} options 初始化 Socket 参数
-     *  
+     * 
+     * @param {object} rules 规则配置
+     * 
+     * @return {Map} 规则集合
      */
-    init(options){
+    createRules(rules){
 
+        let result = [] ;
+
+        for(let {
+            test,
+            use
+        } of rules){
+
+            if(isFunction(use)){
+
+                result.push({
+                    test:createRegex(test),
+                    use
+                }) ;
+            }
+        }
+
+        return result ;
+    }
+
+    processMessage(...args){
+
+        return {} ;
+    }
+
+    validateMessage({
+        params:baseParams
+    } , {
+        params:equalParams
+    }){
+
+        if(isObject(baseParams) || isObject(equalParams)){
+
+            let keys = getKeys(baseParams) ;
+
+            for(let key of keys){
+
+                if(getValue(baseParams , key) !== getValue(equalParams , key)){
+
+                    return false ;
+                }
+            }
+        }
+
+        return true ;
     }
 
     /**
      * 
-     * 接收来自服务器端的消息推送,推送可能是配置式，也可能是参数式
+     * 接收消息
+     * 
+     * @param  {mixed} [...args] 消息参数
      * 
      */
     acceptMessage(...args){
 
         let me = this,
-            msg = me.processMessage(...args);
+            message = me.processMessage(...args),
+            {
+                subscribers
+            } = me,
+            data = me.processData(message);
 
-        if(me.isAcceptMessage(msg) === false){
+        subscribers.forEach(subscriber => {
 
-            return  ;
-        }
+            if(me.validateMessage(subscriber , message)){
 
-        let {
-            subscriberMap
-        } = me ;
-
-
-        subscriberMap.forEach(subscriber =>{
-
-            if(subscriber.validate(msg)){
-
-                subscriber.accept(msg) ;
+                subscriber.acceptData(data) ;
             }
 
         }) ;
@@ -89,138 +106,30 @@
 
     /**
      * 
-     * 判断给定消息是否可接受
+     * 将订阅名称根据预定义的规则转换成订阅器配置
      * 
-     * @param {mixed} msg 消息
+     * @param {string} name 订阅名称
      * 
-     * @return {boolean} 如果可接受消息则返回 true , 否则返回 false
-     * 
-     */
-    isAcceptMessage(msg){
-
-        return false ;
-    }
-
-    /**
-     * 
-     * 将消息处理成一个对象
-     * 
-     * @param {mixed} ...args 消息
-     * 
-     * @return {object}
-     *  
-     */
-    processMessage(...args){
-
-        return {} ;
-    }
-
-    /**
-     * 
-     * 创建订阅器
-     * 
-     * @param {string} id 订阅编号
-     * 
-     * @param {object} options 订阅配置参数
-     * 
-     * @return {data.connection.socket.Subscriber} 订阅器
+     * @return {object} 订阅器配置
      * 
      */
-    createSubscriber(id , options){
+    convertNameToSubscriberOptions(name){
 
-        let me = this,
-        {
-            subscriber
-        } = this ;
+        let {
+            rules
+        } = this;
 
-        if(isClass(subscriber)){
+        for(let {
+            test,
+            use
+        } of rules){
 
-            return new subscriber(me , id , options) ;
-        }
+            let args = name.match(test) ;
 
-        if(isFunction(subscriber)){
+            if(args){
 
-            return subscriber(me , id , options) ;
-        }
-
-        if(isString(subscriber)){
-
-            return include(subscriber)(me , id , options) ;
-        }
-    }
-
-    /**
-     * 
-     * 订阅参数至服务器
-     * 
-     * @param {mixed} params 订阅参数
-     * 
-     */
-    doSubscribe(remoteParams){
-    }
-
-    /**
-     * 
-     * 取消订阅参数至服务器
-     * 
-     * @param {mixed} params 订阅参数 
-     * 
-     */
-    doUnsubscribe(remoteParams){
-    }
-
-    /**
-     * 
-     * 尝试订阅
-     * 
-     * @param {mixed} remoteParams 订阅参数
-     * 
-     */
-    trySubscribe(remoteParams){
-
-        let me = this,
-        {
-            remoteParamsMap
-        } = me ;
-
-        if(!remoteParamsMap.has(remoteParams)){
-
-            remoteParamsMap.set(remoteParams , 1) ;
-
-            me.doSubscribe(remoteParams) ;
-        
-        }else{
-
-            remoteParamsMap.set(remoteParams , remoteParamsMap.get(remoteParams) + 1) ;
-        }
-    }
-
-    /**
-     * 
-     * 尝试取消订阅
-     * 
-     * @param {mixed} remoteParams 订阅参数
-     * 
-     */
-    tryUnsubscribe(remoteParams){
-
-        let me = this,
-            {
-                remoteParamsMap
-            } = me,
-            count = remoteParamsMap.get(remoteParams);
-    
-        count -- ;
-
-        if(count === 0){
-
-            remoteParamsMap.delete(remoteParams) ;
-
-            me.doUnsubscribe(remoteParams) ;
-        
-        }else{
-
-            remoteParamsMap.set(remoteParams , count) ;
+                return use(...args) ;
+            }
         }
     }
 
@@ -228,57 +137,26 @@
      * 
      * 订阅
      * 
-     * @param {string} id 订阅唯一编号
+     * @param {string} name 订阅名称
      * 
-     * @param {mixed} params 订阅参数
+     * @param {object} [options = {}] 订阅参数
+     * 
+     * @return {data.connection.Subscribe} 成功订阅后的获得的订阅器
      * 
      */
-    subscribe(id , params , options = {}){
+    subscribe(name , options = {}){
 
-        let me = this,
-        {
-            subscriberMap,
-            defaultSubscriberOptions
-        } = this,
-        subscriber;
+        let me = this ;
 
-        if(!subscriberMap.has(id)){
+        let baseOptions = me.convertNameToSubscriberOptions(name);
 
-            subscriberMap.set(id , subscriber = me.createSubscriber(id , assign({} , defaultSubscriberOptions , {
-                ...options,
-                params
-            }))) ;
-        
+        if(baseOptions){
+
+            return super.subscribe(name , assign(baseOptions , options)) ;
+
         }else{
 
-            subscriber = subscriberMap.get(id) ;
-
-            subscriber.open(params) ;
-        }
-
-        return subscriber ;
-    }
-
-    /**
-     * 
-     * 取消订阅
-     * 
-     * 
-     */
-    unsubscribe(id){
-        
-        let {
-            subscriberMap
-        } = this;
-
-        if(subscriberMap.has(id)){
-
-            let subscriber = subscriberMap.get(id) ;
-
-            if(subscriber.close()){
-
-                subscriberMap.delete(id) ;
-            }
+            throw new Error(`无效的订阅名称 ${name}`) ;
         }
     }
  }

@@ -14,9 +14,15 @@
  * 
  * @import is.function
  * 
+ * @import isObject from is.object.simple
+ * 
  * @import Subscriber from data.subscriber value
  * 
  * @import create from class.create
+ * 
+ * @import getKeys from object.keys
+ * 
+ * @import getValue from object.value.get
  * 
  * @require regex-parser
  * 
@@ -33,84 +39,30 @@ const createRegex = require('regex-parser');
  }){
 
     constructor({
-        subscriber = Subscriber,
-        rules = [],
-        message = () => {},
-        validate = () => true,
-        data = data => data
+        subscriber = Subscriber
     } = {}){
 
         super() ;
 
         let me = this ;
 
-        me.rules = me.createRules(rules) ;
-
         me.subscribers = new Map() ;
 
         me.subscriber = subscriber ;
-
-        me.processMessage = message ;
-
-        me.validateMessage = validate ;
-
-        me.processData = data ;
     }
 
-    /**
-     * 
-     * 接收消息
-     * 
-     * @param  {mixed} [...args] 消息参数
-     * 
-     */
-    acceptMessage(...args){
+    processData({
+        data
+    }){
 
-        let me = this,
-            message = me.processMessage(...args),
-            {
-                subscribers
-            } = me,
-            data = me.processData(message);
-
-        subscribers.forEach(subscriber => {
-
-            if(me.validateMessage(subscriber , message)){
-
-                subscriber.acceptData(data) ;
-            }
-
-        }) ;
+        return data ;
     }
 
-    /**
-     * 
-     * 构建规则集合
-     * 
-     * 
-     * @param {object} rules 规则配置
-     * 
-     * @return {Map} 规则集合
-     */
-    createRules(rules){
+    processSubscribeParams(subscriber , params){
 
-        let result = [] ;
-
-        for(let {
-            test,
-            use
-        } of rules){
-
-            if(isFunction(use)){
-
-                result.push({
-                    test:createRegex(test),
-                    use
-                }) ;
-            }
-        }
-
-        return result ;
+        return [
+            params
+        ] ;
     }
 
     /**
@@ -141,38 +93,27 @@ const createRegex = require('regex-parser');
     }
 
     onSubscriberOpen(subscriber , params){
+
+        let me = this;
+
+        me.doSubscriberOpen(subscriber , ...me.processSubscribeParams(subscriber , params)) ;
+    }
+
+    doSubscriberOpen(subscriber , ...args){
+
+
     }
 
     onSubscriberClose(subscriber , params){
+
+        let me = this;
+
+        me.doSubscriberClose(subscriber , ...me.processSubscribeParams(subscriber , params)) ;
     }
 
-    /**
-     * 
-     * 将订阅名称根据预定义的规则转换成订阅器配置
-     * 
-     * @param {string} name 订阅名称
-     * 
-     * @return {object} 订阅器配置
-     * 
-     */
-    convertNameToSubscriberOptions(name){
+    doSubscriberClose(subscriber , ...args){
 
-        let {
-            rules
-        } = this;
 
-        for(let {
-            test,
-            use
-        } of rules){
-
-            let args = name.match(test) ;
-
-            if(args){
-
-                return use(...args) ;
-            }
-        }
     }
 
     /**
@@ -254,21 +195,15 @@ const createRegex = require('regex-parser');
 
             return subscribers.get(name) ;
         }
-
-        let baseOptions = me.convertNameToSubscriberOptions(name);
-
-        if(baseOptions){
-
-            let subscriber = me.createSubscriber(name , assign(baseOptions , options , {
-                listeners:subscriberListeners
-            })) ;
-
-            subscribers.set(name , subscriber) ;
         
-        }else{
+        let subscriber = me.createSubscriber(name , assign({} , options , {
+            subscriberListeners
+        })) ;
 
-            throw new Error(`无效的订阅名称 ${name}`) ;
-        }
+        subscribers.set(name , subscriber) ;
+
+        return subscriber ;
+        
     }
 
     /**
