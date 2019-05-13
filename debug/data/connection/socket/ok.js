@@ -15,8 +15,6 @@
         topic
     }){
 
-        console.log(userId , topic) ;
-
         return [{
           subs:[{
             userId,

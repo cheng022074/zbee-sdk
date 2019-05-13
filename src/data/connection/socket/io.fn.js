@@ -99,8 +99,6 @@
             subscribeEventName
         } = me ;
 
-        console.log(args) ;
-
         me.emit(subscribeEventName , ...args) ;
     }
 

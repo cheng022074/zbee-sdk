@@ -7,11 +7,11 @@
  * 
  * @import Observable from mixin.observable
  * 
+ * @import FunctionBind from mixin.bind.function
+ * 
  * @import equals from object.equals
  * 
  * @import createMap from map
- * 
- * @import get from function.get
  * 
  * @class
  * 
@@ -19,7 +19,8 @@
 
  class main extends mixins({
     mixins:[
-        Observable
+        Observable,
+        FunctionBind
     ]
 }){
 
@@ -39,76 +40,11 @@
 
         me.defaultParams = defaultParams ;
 
-        me.callbacks = createMap() ;
-
         me.accumulationMode = accumulationMode ;
 
         me.cache = [] ;
     }
 
-    acceptData(data){
-
-        let {
-            callbacks,
-            accumulationMode,
-            cache
-        } = this ;
-
-        callbacks.forEach(callback => callback(data)) ;
-
-        if(accumulationMode === false){
-
-            cache.length = 0 ;
-        }
-
-        cache.push(data) ;
-    }
-
-    /**
-     * 
-     * 绑定函数
-     * 
-     * @param {mixed} fn 函数
-     * 
-     * @param {mixed} scope 作用域
-     */
-    bind(fn , scope){
-
-        let me = this,{
-            callbacks,
-            cache
-        } = me;
-
-        fn = get(fn , scope) ;
-
-        for(let data of cache){
-
-            fn(data) ;
-        }
-
-        callbacks.set(fn , scope , fn) ;
-
-        return me;
-    }
-    /**
-     * 
-     * 解绑函数
-     * 
-     * @param {mixed} fn 函数
-     * 
-     * @param {mixed} scope 作用域
-     */
-    unbind(fn , scope){
-
-        let me = this,
-        {
-            callbacks
-        } = me ;
-
-        callbacks.delete(fn , scope) ;
-
-        return me ;
-    }
     /**
      * 
      * 重新打开
