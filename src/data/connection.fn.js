@@ -2,8 +2,6 @@
  * 
  * 数据连接基础类
  * 
- * @import Observable from mixin.observable
- * 
  * @import isObject from is.object.simple
  * 
  * @import is.function
@@ -17,16 +15,10 @@
  * 
  */
 
- class main extends mixins({
-     mixins:[
-        Observable
-     ]
- }){
+ class main{
 
     constructor(){
 
-        super() ;
-        
         this.subscribers = new Map() ;
     }
 

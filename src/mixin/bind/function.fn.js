@@ -1,7 +1,8 @@
-
 /**
  * 
  * 绑定函数
+ * 
+ * @import is.defined
  * 
  * @import createMap from map
  * 
@@ -23,15 +24,37 @@
         me.bindCallbacks = createMap() ;
     }
 
-    acceptData(data){
+    async acceptData(data){
 
         let {
             bindCallbacks,
             accumulationMode,
             cache
-        } = this ;
+        } = this,
+        results = [];
 
-        bindCallbacks.forEach(callback => callback(data)) ;
+        bindCallbacks.forEach(callback => {
+
+            let result = callback(data) ;
+
+            if(isDefined(result)){
+
+                results.push(result) ;
+            }
+
+        }) ;
+
+        let len = results.length ; 
+
+        for(let i = 0 ; i < len ; i ++){
+
+            let result = results[i] ;
+
+            if(result instanceof Promise){
+
+                results[i] = await result ;
+            }
+        }
 
         if(accumulationMode === false){
 
@@ -39,6 +62,8 @@
         }
 
         cache.push(data) ;
+
+        return results ;
     }
 
     /**
@@ -83,6 +108,18 @@
         } = me ;
 
         bindCallbacks.delete(fn , scope) ;
+
+        return me ;
+    }
+
+    unbindAll(){
+
+        let me = this,
+        {
+            bindCallbacks
+        } = me ;
+
+        bindCallbacks.clear() ;
 
         return me ;
     }

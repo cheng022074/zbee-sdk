@@ -118,13 +118,10 @@
 
     destroy(){
 
-        let {
-            callbacks
-        } = this ;
+       let me = this ;
 
-        for(let callback of callbacks){
+       me.close() ;
 
-            callback() ;
-        }
+       me.unbindAll() ;
     }
  }
