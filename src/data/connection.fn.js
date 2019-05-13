@@ -116,7 +116,8 @@
     }){
 
         let names = Object.keys(subscribers),
-            me = this;
+            me = this,
+            result = [];
 
         for(let name of names){
 
@@ -127,6 +128,8 @@
                 let subscriber = me.subscribe(name) ;
 
                 subscriber.bind(target , scope) ;
+
+                result.push(subscriber) ;
             
             }else if(isObject(target)){
 
@@ -134,18 +137,21 @@
                     fn,
                     scope:currentScope,
                     listeners = {},
-                    options
+                    ...options
                 } = target ;
 
                 currentScope = currentScope || scope ;
 
-                let subscriber = me.subscribe(name , options) ;
-
                 listeners.scope = currentScope ;
 
-                subscriber.addListeners(listeners) ;
+                let subscriber = me.subscribe(name , {
+                    listeners,
+                    ...options
+                }) ;
 
                 subscriber.bind(fn , currentScope) ;
+
+                result.push(subscriber) ;
             }
         }
     }
@@ -178,6 +184,8 @@
      */
     subscribe(name , options = {}){
 
+
+
         let me = this,
         {
             subscribers,
@@ -185,6 +193,7 @@
         } = me,
         {
             params,
+            listeners = {},
             autoOpen = true,
             ...currentOptions
         } = options;

@@ -41,62 +41,23 @@ return class extends componentClass{
                 let {
                     subscribers = {}
                 } = me ;
-        
-                let ids = Object.keys(subscribers),
-                    result = {};
-        
-                for(let id of ids){
-        
-                    let subscriber = subscribers[id] ;
-        
-                    if(isString(subscriber)){
-        
-                        result[id] = socket.subscribe(id).bind(subscriber , me) ;
-                    
-                    }else if(isObject(subscriber)){
-        
-                        let {
-                            fn,
-                            params,
-                            ...options
-                        } = subscriber ;
-        
-                        result[id] =  socket.subscribe(id , params , options).bind(fn , me) ;
-                    }
-                }
-        
-                me.subscribers = result ;
+
+                me.subscribers = socket.subscribes({
+                    ...subscribers,
+                    scope:me
+                }) ;
             }
 
             {
+        
                 let {
                     loaders = {}
                 } = me ;
-        
-                let urls = Object.keys(loaders),
-                    result = {};
-        
-                for(let url of urls){
-        
-                    let loader = loaders[url] ;
-        
-                    if(isString(loader)){
-        
-                        result[url] = ajax.load(url).bind(loader , me) ;
-                    
-                    }else if(isObject(loader)){
-        
-                        let {
-                            fn,
-                            params,
-                            ...options
-                        } = loader ;
-        
-                        result[id] =  ajax.load(id , params , options).bind(fn , me) ;
-                    }
-                }
-        
-                me.loaders = result ;
+
+                me.subscribers = ajax.subscribes({
+                    ...loaders,
+                    scope:me
+                }) ;
             }
 
             me.connection_socket_subscribed = true ;
@@ -123,14 +84,16 @@ return class extends componentClass{
         if(connection_subscribed){
 
             let {
-                subscribers = {}
+                subscribers = {},
+                loaders = {}
             } = me,
-            ids = Object.keys(subscribers) ;
-    
-            for(let id of ids){
-    
-                socket.unsubscribe(id) ;
-            }
+            {
+                keys
+            } = Object;
+
+            socket.unsubscribes(keys(subscribers)) ;
+
+            ajax.unsubscribes(keys(loaders)) ;
 
             me.connection_subscribed = false ;
         }
