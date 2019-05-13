@@ -24,10 +24,8 @@
 }){
 
     constructor(name , {
-        subscriberListeners,
-        listeners,
         accumulationMode = false,
-        autoLoad = true,
+        autoOpen = true,
         extraParams = {},
         defaultParams = {},
         params
@@ -49,16 +47,9 @@
 
         me.cache = [] ;
 
-        me.addListeners(subscriberListeners) ;
+        if(autoOpen){
 
-        if(listeners){
-
-            me.addListeners(listeners) ;
-        }
-
-        if(autoLoad){
-
-            me.load(params) ;
+            me.open(params) ;
         }
     }
 

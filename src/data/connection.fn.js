@@ -142,34 +142,62 @@ const createRegex = require('regex-parser');
 
     /**
      * 
-     * 将订阅器与一个具体的函数进行连接
+     * 批量订阅
      * 
-     * @param {string} name 订阅器名称 
-     * 
-     * @param {mixed} fn 连接函数 
-     * 
-     * @param {mixed} scope 连接函数作用域
-     *  
      */
-    bind(name , fn , scope){
+    subscribes({
+        scope,
+        ...subscribers
+    }){
 
-        this.doSubscriberMethod(name , 'bind' , fn , scope) ;
+        let names = Object.keys(subscribers),
+            me = this;
+
+        for(let name of names){
+
+            let target = subscribers[name] ;
+
+            if(isFunction(target)){
+
+                let subscriber = me.subscribe(name) ;
+
+                subscriber.bind(target , scope) ;
+            
+            }else if(isObject(target)){
+
+                let {
+                    fn,
+                    scope:currentScope,
+                    listeners = {},
+                    options
+                } = target ;
+
+                currentScope = currentScope || scope ;
+
+                let subscriber = me.subscribe(name , options) ;
+
+                listeners.scope = currentScope ;
+
+                subscriber.addListeners(listeners) ;
+
+                subscriber.bind(fn , currentScope) ;
+            }
+        }
     }
 
     /**
      * 
-     * 将订阅器与一个具体的函数解除连接
-     * 
-     * @param {string} name 订阅器名称 
-     * 
-     * @param {mixed} fn 连接函数 
-     * 
-     * @param {mixed} scope 连接函数作用域
+     * 批量取消订阅
      * 
      */
-    unbind(name , fn , scope){
+    unsubscribes(names){
 
-        this.doSubscriberMethod(name , 'unbind' , fn , scope) ;
+        let me = this;
+
+        for(let name of names){
+
+           me.unsubscribe(name) ;
+        }
     }
 
     /**
