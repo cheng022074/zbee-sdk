@@ -51,11 +51,9 @@ const createRegex = require('regex-parser');
         me.subscriber = subscriber ;
     }
 
-    processData({
-        data
-    }){
+    processData(message){
 
-        return data ;
+        return message ;
     }
 
     processSubscribeParams(subscriber , params){
@@ -217,18 +215,28 @@ const createRegex = require('regex-parser');
         {
             subscribers,
             subscriberListeners
-        } = me;
+        } = me,
+        {
+            params,
+            autoOpen = true,
+            ...currentOptions
+        } = options;
 
         if(subscribers.has(name)){
 
             return subscribers.get(name) ;
         }
         
-        let subscriber = me.createSubscriber(name , assign({} , options , {
-            subscriberListeners
-        })) ;
+        let subscriber = me.createSubscriber(name , currentOptions) ;
+
+        subscriber.addListeners(subscriberListeners) ;
 
         subscribers.set(name , subscriber) ;
+
+        if(autoOpen){
+
+            subscriber.open(params) ;
+        }
 
         return subscriber ;
         
@@ -244,7 +252,7 @@ const createRegex = require('regex-parser');
     unsubscribe(name){
 
         let me = this,
-            subscriber = me.doSubscriberMethod(name , 'close') ;
+            subscriber = me.doSubscriberMethod(name , 'destroy') ;
 
         if(subscriber){
 

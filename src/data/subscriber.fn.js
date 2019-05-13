@@ -25,10 +25,8 @@
 
     constructor(name , {
         accumulationMode = false,
-        autoOpen = true,
         extraParams = {},
-        defaultParams = {},
-        params
+        defaultParams = {}
     }){
 
         super() ;
@@ -46,11 +44,6 @@
         me.accumulationMode = accumulationMode ;
 
         me.cache = [] ;
-
-        if(autoOpen){
-
-            me.open(params) ;
-        }
     }
 
     acceptData(data){
@@ -81,10 +74,10 @@
      */
     bind(fn , scope){
 
-        let {
+        let me = this,{
             callbacks,
             cache
-        } = this;
+        } = me;
 
         fn = get(fn , scope) ;
 
@@ -94,6 +87,8 @@
         }
 
         callbacks.set(fn , scope , fn) ;
+
+        return me;
     }
     /**
      * 
@@ -105,11 +100,14 @@
      */
     unbind(fn , scope){
 
-        let {
+        let me = this,
+        {
             callbacks
-        } = this ;
+        } = me ;
 
         callbacks.delete(fn , scope) ;
+
+        return me ;
     }
     /**
      * 
@@ -179,6 +177,18 @@
             cache.length = 0 ;
 
             me.fireEvent('close' , params) ;
+        }
+    }
+
+    destroy(){
+
+        let {
+            callbacks
+        } = this ;
+
+        for(let callback of callbacks){
+
+            callback() ;
         }
     }
  }

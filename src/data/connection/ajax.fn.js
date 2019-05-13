@@ -9,7 +9,7 @@
  * 
  * @require url-join
  * 
- * @class
+ * @param {object} options 配置
  * 
  */
 

@@ -8,21 +8,25 @@
 
 
 let ajax = createAjax({
-    url:'http://quote.cmschina.com/secuInfo'
+    ajax:{
+        url:'http://quote.cmschina.com/secuInfo'
+    }
 }) ;
 
-let loader = ajax.load('F10/OtbIllBas/SH/:id' , {
-    path:{
-        id:'600509'
+let subscriber = ajax.subscribe('F10/OtbIllBas/SH/:id' , {
+    params:{
+        path:{
+            id:'600509'
+        }
     }
 }).bind(data => {
 
-    console.log(data) ;
+    console.log('xxxxxxxx' , data) ;
 
 }) ;
 
 setTimeout(() =>{
 
-    loader.reload() ;
+    subscriber.reopen() ;
 
-} , 2000) ;
+} , 5000) ;
