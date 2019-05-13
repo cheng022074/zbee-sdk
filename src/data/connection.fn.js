@@ -4,10 +4,13 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import is.string
+ * 
  * @import is.function
  * 
  * @import Subscriber from data.subscriber value
  * 
+ * @import get from function.get
  * 
  * @require regex-parser
  * 
@@ -123,11 +126,11 @@
 
             let target = subscribers[name] ;
 
-            if(isFunction(target)){
+            if(isString(target) || isFunction(target)){
 
                 let subscriber = me.subscribe(name) ;
 
-                subscriber.bind(target , scope) ;
+                subscriber.bind(get(subscribers[name] , scope) , scope) ;
 
                 result.push(subscriber) ;
             

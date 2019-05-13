@@ -37,7 +37,8 @@ return class extends componentClass{
 
         if(!connection_subscribed){
 
-            {
+            if(socket){
+                
                 let {
                     subscribers = {}
                 } = me ;
@@ -48,7 +49,7 @@ return class extends componentClass{
                 }) ;
             }
 
-            {
+            if(ajax){
         
                 let {
                     loaders = {}
@@ -91,9 +92,15 @@ return class extends componentClass{
                 keys
             } = Object;
 
-            socket.unsubscribes(keys(subscribers)) ;
+            if(socket){
 
-            ajax.unsubscribes(keys(loaders)) ;
+                socket.unsubscribes(keys(subscribers)) ;
+            }
+
+            if(ajax){
+
+                ajax.unsubscribes(keys(loaders)) ;
+            }
 
             me.connection_subscribed = false ;
         }
