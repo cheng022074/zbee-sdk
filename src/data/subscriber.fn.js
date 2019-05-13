@@ -152,7 +152,7 @@
             me.close() ;
 
             me.params = params ;
-
+            
             me.fireEvent('open' , params , oldParams) ;
         }
     }

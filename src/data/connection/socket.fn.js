@@ -5,20 +5,33 @@
  * 
  * @import Connection from data.connection value
  * 
+ * @import assign from object.assign
+ * 
+ * @import is.function
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import getKeys from object.keys
+ * 
+ * @import getValue from object.value.get
+ * 
  * @class
  * 
  */
 
+ const createRegex = require('regex-parser'); 
+
  class main extends Connection{
 
     constructor({
-        rules = [],
-        ...options
+        rules = []
     }){
 
-        super(options) ;
+        super() ;
 
-        this.rules = me.createRules(rules) ;
+        let me = this ;
+
+        me.rules = me.createRules(rules) ;
     }
 
     /**
@@ -76,6 +89,13 @@
         }
 
         return true ;
+    }
+
+    processData({
+        data
+    }){
+
+        return data ;
     }
 
     /**

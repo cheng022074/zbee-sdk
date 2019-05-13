@@ -4,25 +4,12 @@
  * 
  * @import Observable from mixin.observable
  * 
- * @import assign from object.assign
- * 
- * @import is.string
- * 
- * @import is.class
- * 
  * @import isObject from is.object.simple
  * 
  * @import is.function
  * 
- * @import isObject from is.object.simple
- * 
  * @import Subscriber from data.subscriber value
  * 
- * @import create from class.create
- * 
- * @import getKeys from object.keys
- * 
- * @import getValue from object.value.get
  * 
  * @require regex-parser
  * 
@@ -30,25 +17,17 @@
  * 
  */
 
-const createRegex = require('regex-parser'); 
-
  class main extends mixins({
      mixins:[
         Observable
      ]
  }){
 
-    constructor({
-        subscriber = Subscriber
-    } = {}){
+    constructor(){
 
         super() ;
-
-        let me = this ;
-
-        me.subscribers = new Map() ;
-
-        me.subscriber = subscriber ;
+        
+        this.subscribers = new Map() ;
     }
 
     processData(message){
@@ -74,11 +53,7 @@ const createRegex = require('regex-parser');
      */
     createSubscriber(...args){
 
-        let {
-            subscriber
-        } = this;
-
-        return create(subscriber , ...args) ;
+        return new Subscriber(...args) ;
     }
 
     get subscriberListeners(){

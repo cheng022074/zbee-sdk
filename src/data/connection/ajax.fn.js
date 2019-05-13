@@ -18,11 +18,10 @@
  class main extends Connection{
 
     constructor({
-        ajax,
-        ...options
+        ajax
     }){
 
-        super(options) ;
+        super() ;
 
         let {
             url:ajaxURL

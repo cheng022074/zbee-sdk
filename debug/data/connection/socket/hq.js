@@ -209,33 +209,22 @@ const dataTypeMaps = [{
 
  class XYSocket extends Socket{
 
-    constructor(options){
+    processSubscribeParams(subscriber , params){
 
-      super({
-        subscriber:XYSubscriber,
-        ...options
-      }) ;
-    }
-
-    doSubscribe(params){
-
-        return super.doSubscribe({
-            subs:from(params)
-        }) ;
-    }
-
-    doUnsubscribe(params){
-
-        return super.doUnsubscribe({
-            subs:from(params)
-        }) ;
+        return [{
+          subs:[
+            params
+          ]
+        }] ;
     }
 
     processMessage(dataType, symbol, arrayFlag, buffer, order, count, startNum){
 
         return {
-            symbol,
-            dataType,
+            params:{
+              symbol,
+              dataType
+            },
             data:this.decodeData(buffer, dataType, arrayFlag, symbol)
         } ;
     }
@@ -268,65 +257,29 @@ const dataTypeMaps = [{
 
         return newData;
     }
-
-    isAcceptMessage(){
-
-        return true ;
-    }
- }
-
- class XYSubscriber extends Subscriber{
-
-      processID(id){
-
-          let [
-              ,
-              api,
-              symbol
-          ] = id.match(/(\w+)\:{2}(.+)/) ;
-
-          return {
-              dataType:name2type[api],
-              symbol
-          } ;
-      }
-
-    processData(message){
-
-        return message.data ;
-    }
-
-    validate({
-        dataType,
-        symbol
-    }){
-
-      let {
-        dataType:paramDataType,
-        symbol:paramSymbol
-      } = this.params ;
-
-      if(dataType === 0){
-
-          return paramDataType === dataType ;
-      }
-
-
-       return paramDataType === dataType &&  symbol === paramSymbol; 
-    }
  }
 
 let socket = new XYSocket({
+  socket:{
     url:'http://113.16.174.140:8092/stock'
+  },
+  rules:[{
+    test:'^(\\w+):{2}(.+)$',
+    use(id , api , symbol){
+
+        return {
+            params:{
+              dataType:name2type[api],
+              symbol
+            }
+        } ;
+    }
+}]
 }) ;
 
-socket.subscribe('api_one::SH.000001' , {} , {
-  closable:false
-}).bind(data =>{
+socket.subscribe('api_one::SH.000001').bind(data =>{
 
     console.log('ok' , data) ;
 
 }) ;
-
-socket.unsubscribe('api_one::SH.000001') ;
 

@@ -30,15 +30,16 @@
             {
                 messageEventName,
                 acceptMessage
-            } = me,
-            socket = me.socket = IO(socketURL , {
-                'force new connection': true,
-                transports: [
-                    'websocket',
-                    'polling'
-                ],
-                ...socketOptions
-            }) ;
+            } = me ;
+
+        socket = me.socket = IO(socketURL , {
+            'force new connection': true,
+            transports: [
+                'websocket',
+                'polling'
+            ],
+            ...socketOptions
+        }) ;
 
         socket.on(messageEventName , acceptMessage.bind(me)) ;
     }
@@ -97,6 +98,8 @@
         {
             subscribeEventName
         } = me ;
+
+        console.log(args) ;
 
         me.emit(subscribeEventName , ...args) ;
     }
