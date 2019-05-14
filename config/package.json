@@ -29,7 +29,6 @@
     "xy":{
         "type":"library",
         "classes":[
-            "message.address.react",
             "array.remove",
             "array.remove.all",
             "data.connection.*",
