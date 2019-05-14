@@ -5,6 +5,12 @@
  * 
  * @import Subscriber from data.Subscriber value
  * 
+ * @param {string} name 消息地址
+ * 
+ * @param {object} options 消息配置
+ * 
+ * @once
+ * 
  */
 
  class main extends Subscriber{

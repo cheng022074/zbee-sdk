@@ -12,7 +12,7 @@
  * 
  * @import get from function.get
  * 
- * @improt create from class.create
+ * @import create from class.create
  * 
  * @require regex-parser
  * 

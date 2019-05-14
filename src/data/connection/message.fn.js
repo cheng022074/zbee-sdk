@@ -10,6 +10,8 @@
  * 
  * @import createAddress from data.connection.message.address
  * 
+ * @singleton
+ * 
  */
 
  class main extends Socket{

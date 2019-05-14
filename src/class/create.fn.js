@@ -23,7 +23,7 @@ if(isString(baseClass)){
 
     return new baseClass(...args) ;
 
-}else if(isFunction(subscriber)){
+}else if(isFunction(baseClass)){
 
     return baseClass(...args) ;
 
