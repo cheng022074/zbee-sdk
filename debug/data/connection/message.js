@@ -8,12 +8,15 @@
  */
 
  let A = {
-    aaa({
-       data
-    }){
+    aaa(){
 
       return '哈哈' ;
     },
+
+    ccc(){
+
+     return '嘿嘿' ;
+   },
 
     bbb({
        data
@@ -25,6 +28,8 @@
 
 
 Message.subscribe('xxxxx').bind('aaa' , A) ;
+
+Message.subscribe('xxxxx').bind('ccc' , A) ;
 
 let subscriber = Message.subscribe('yyyyy').bind('bbb' , A) ;
 
