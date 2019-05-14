@@ -24,10 +24,11 @@
  class main extends Connection{
 
     constructor({
-        rules = []
+        rules = [],
+        ...options
     }){
 
-        super() ;
+        super(options) ;
 
         let me = this ;
 

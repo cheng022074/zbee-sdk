@@ -12,6 +12,8 @@
  * 
  * @import get from function.get
  * 
+ * @improt create from class.create
+ * 
  * @require regex-parser
  * 
  * @class
@@ -20,7 +22,13 @@
 
  class main{
 
-    constructor(){
+    constructor({
+        subscriber = Subscriber
+    }){
+
+        let me = this ;
+
+        me.subscriber = subscriber ;
 
         this.subscribers = new Map() ;
     }
@@ -48,7 +56,11 @@
      */
     createSubscriber(...args){
 
-        return new Subscriber(...args) ;
+        let {
+            subscriber
+        } = this ;
+
+        return create(subscriber , ...args) ;
     }
 
     get subscriberListeners(){
@@ -209,6 +221,8 @@
         let subscriber = me.createSubscriber(name , currentOptions) ;
 
         subscriber.addListeners(subscriberListeners) ;
+
+        subscriber.addListeners(listeners) ;
 
         subscribers.set(name , subscriber) ;
 
