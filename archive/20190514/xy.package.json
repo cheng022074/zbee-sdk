@@ -1,0 +1,31 @@
+{
+  "classes": [
+    "array.remove",
+    "array.remove.all",
+    "data.connection.*",
+    "object.equals",
+    "array.from",
+    "map",
+    "function.get",
+    "is.object.simple",
+    "data.reader.json",
+    "map.set.multi",
+    "id.generate",
+    "is.number",
+    "array.from",
+    "math.region.rect",
+    "canvas.draw.line.bezierCurve",
+    "canvas.draw.line.arc",
+    "calendar.month.view",
+    "browser.global.listener.*",
+    "browser.event.key",
+    "message.address.react",
+    "os.name",
+    "tree.mind",
+    "file.read.json",
+    "is.object.simple",
+    "is.object.empty"
+  ],
+  "type": "library",
+  "memory": false
+}

@@ -78,18 +78,26 @@
 
         if(isObject(baseParams) && isObject(equalParams)){
 
-            let keys = getKeys(baseParams) ;
+            let keys = getKeys(baseParams),
+                equalKeys = getKeys(equalParams);
 
             for(let key of keys){
+
+                if(!equalKeys.includes(key)){
+
+                    continue ;
+                }
 
                 if(getValue(baseParams , key) !== getValue(equalParams , key)){
 
                     return false ;
                 }
             }
+
+            return true ;
         }
 
-        return true ;
+        return false ;
     }
 
     processData({

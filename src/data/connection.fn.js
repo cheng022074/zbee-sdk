@@ -23,7 +23,10 @@
  class main{
 
     constructor({
-        subscriber = Subscriber
+        subscriber = (name , options) =>{
+
+            return new Subscriber(name , options) ;
+        }
     }){
 
         let me = this ;
@@ -132,19 +135,16 @@
 
         let names = Object.keys(subscribers),
             me = this,
-            result = [];
+            result = {};
 
         for(let name of names){
 
-            let target = subscribers[name] ;
+            let target = subscribers[name],
+                subscriber;
 
             if(isString(target) || isFunction(target)){
 
-                let subscriber = me.subscribe(name) ;
-
-                subscriber.bind(get(subscribers[name] , scope) , scope) ;
-
-                result.push(subscriber) ;
+                subscriber = me.subscribe(name).bind(get(subscribers[name] , scope) , scope) ;
             
             }else if(isObject(target)){
 
@@ -159,16 +159,19 @@
 
                 listeners.scope = currentScope ;
 
-                let subscriber = me.subscribe(name , {
+                subscriber = me.subscribe(name , {
                     listeners,
                     ...options
-                }) ;
+                }).bind(fn , currentScope) ;
+            }
 
-                subscriber.bind(fn , currentScope) ;
+            if(subscriber){
 
-                result.push(subscriber) ;
+                result[name] = subscriber ;
             }
         }
+
+        return result ;
     }
 
     /**

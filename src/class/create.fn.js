@@ -5,8 +5,6 @@
  * 
  * @import is.string
  * 
- * @import is.class
- * 
  * @import is.function
  * 
  * @param {mixed} baseClass 类
@@ -18,10 +16,6 @@
 if(isString(baseClass)){
 
     return include(baseClass)(...args) ;
-
-}else if(isClass(baseClass)){
-
-    return new baseClass(...args) ;
 
 }else if(isFunction(baseClass)){
 

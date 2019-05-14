@@ -7,12 +7,14 @@
  * @import isObject from is.object.simple
  * 
  * @import isEmpty from is.object.empty
- * 
- * @import Subscriber from data.connection.socket.subscriber value
- * 
+ *
  * @import read from file.read.json
  * 
  * @import from from array.from
+ * 
+ * @import create from class.create
+ * 
+ * @import Subscriber from data.Subscriber value
  * 
  */
 
@@ -277,7 +279,11 @@ let socket = new XYSocket({
 }]
 }) ;
 
-socket.subscribe('api_one::SH.000001').bind(data =>{
+socket.subscribe('api_tick::SZ.000655' , {
+  params:{
+    length:-1
+  }
+}).bind(data =>{
 
     console.log('ok' , data) ;
 
