@@ -76,7 +76,7 @@
         params:equalParams
     }){
 
-        if(isObject(baseParams) || isObject(equalParams)){
+        if(isObject(baseParams) && isObject(equalParams)){
 
             let keys = getKeys(baseParams) ;
 

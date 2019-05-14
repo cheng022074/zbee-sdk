@@ -28,6 +28,4 @@ Message.subscribe('xxxxx').bind('aaa' , A) ;
 
 let subscriber = Message.subscribe('yyyyy').bind('bbb' , A) ;
 
-console.log(subscriber.name) ;
-
 subscriber.send('xxxxx' , 'Hello World') ;

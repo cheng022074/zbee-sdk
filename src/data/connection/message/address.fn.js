@@ -17,8 +17,6 @@
 
         let me = this ;
 
-        console.log(this.name , to)
-
         me.fireEvent('send' , {
             from:me.name,
             to,
@@ -36,10 +34,6 @@
 
         if(from){
 
-            console.log('acceptData' , me.name , data) ;
-
-            return ;
-
             for(let result of results){
 
                 if(result instanceof Promise){
@@ -48,7 +42,7 @@
                 
                 }else{
 
-                    me.send(from , data) ;
+                    me.send(from , result) ;
                 }
             }
         }

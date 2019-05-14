@@ -33,7 +33,7 @@
 
         return {
             params:{
-                to
+                address:to
             },
             data:{
                 from,
@@ -52,9 +52,16 @@
         return listeners ;
     }
 
-    onMessageSend(address , message){
+    subscribe(name){
 
-        console.log(message) ;
+        return super.subscribe(name , {
+            params:{
+                address:name
+            }
+        }) ;
+    }
+
+    onMessageSend(address , message){
 
         this.acceptMessage(message) ;
     }
