@@ -9,8 +9,6 @@
  * 
  * @param {object} options 消息配置
  * 
- * @once
- * 
  */
 
  class main extends Subscriber{
@@ -18,6 +16,8 @@
     send(to , data){
 
         let me = this ;
+
+        console.log(this.name , to)
 
         me.fireEvent('send' , {
             from:me.name,
@@ -35,6 +35,10 @@
             } = data;
 
         if(from){
+
+            console.log('acceptData' , me.name , data) ;
+
+            return ;
 
             for(let result of results){
 

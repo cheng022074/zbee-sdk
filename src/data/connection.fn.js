@@ -217,7 +217,7 @@
 
             return subscribers.get(name) ;
         }
-        
+
         let subscriber = me.createSubscriber(name , currentOptions) ;
 
         subscriber.addListeners(subscriberListeners) ;

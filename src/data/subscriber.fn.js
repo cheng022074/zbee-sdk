@@ -13,6 +13,8 @@
  * 
  * @import is.defined
  * 
+ * @import get from function.get
+ * 
  * @class
  * 
  */

@@ -8,11 +8,26 @@
  */
 
  let A = {
-    aaa(){
+    aaa({
+       data
+    }){
 
+      return '哈哈' ;
+    },
 
+    bbb({
+       data
+    }){
+
+      console.log('返回数据' , data) ;
     }
  } ;
 
 
-Message.subscribe('xxxxx') ;
+Message.subscribe('xxxxx').bind('aaa' , A) ;
+
+let subscriber = Message.subscribe('yyyyy').bind('bbb' , A) ;
+
+console.log(subscriber.name) ;
+
+subscriber.send('xxxxx' , 'Hello World') ;

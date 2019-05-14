@@ -10,6 +10,8 @@
  * 
  * @import createAddress from data.connection.message.address
  * 
+ * @import is.defined
+ * 
  * @singleton
  * 
  */
@@ -50,7 +52,9 @@
         return listeners ;
     }
 
-    onMessageSend(message){
+    onMessageSend(address , message){
+
+        console.log(message) ;
 
         this.acceptMessage(message) ;
     }
@@ -70,6 +74,18 @@
         }
 
         if(isObject(address)){
+
+            if(isDefined(data)){
+
+                try{
+
+                    data = JSON.parse(JSON.stringify(data)) ;
+                
+                }catch(err){
+    
+                    data = undefined ;
+                }
+            }
 
             this.acceptMessage({
                 ...address,
