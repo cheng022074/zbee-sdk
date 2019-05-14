@@ -29,11 +29,28 @@
 
         return {
             params:{
-                from,
                 to
             },
-            data
+            data:{
+                from,
+                to,
+                data
+            }
         } ;
+    }
+
+    get subscriberListeners(){
+
+        let listeners = super.subscriberListeners ;
+
+        listeners.send = 'onMessageSend' ;
+
+        return listeners ;
+    }
+
+    onMessageSend(message){
+
+        this.acceptMessage(message) ;
     }
 
     convertNameToSubscriberOptions(){

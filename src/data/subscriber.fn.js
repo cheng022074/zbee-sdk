@@ -7,11 +7,11 @@
  * 
  * @import Observable from mixin.observable
  * 
- * @import FunctionBind from mixin.bind.function
- * 
  * @import equals from object.equals
  * 
  * @import createMap from map
+ * 
+ * @import is.defined
  * 
  * @class
  * 
@@ -19,8 +19,7 @@
 
  class main extends mixins({
     mixins:[
-        Observable,
-        FunctionBind
+        Observable
     ]
 }){
 
@@ -43,6 +42,96 @@
         me.accumulationMode = accumulationMode ;
 
         me.cache = [] ;
+
+        me.bindCallbacks = createMap() ;
+    }
+
+    acceptData(data){
+
+        let {
+            bindCallbacks,
+            accumulationMode,
+            cache
+        } = this,
+        results = [];
+
+        bindCallbacks.forEach(callback => {
+
+           let result = callback(data) ;
+
+           if(isDefined(result)){
+
+                results.push(result) ;
+           }
+
+        }) ;
+
+        if(accumulationMode === false){
+
+            cache.length = 0 ;
+        }
+
+        cache.push(data) ;
+
+        return results ;
+    }
+
+    /**
+     * 
+     * 绑定函数
+     * 
+     * @param {mixed} fn 函数
+     * 
+     * @param {mixed} scope 作用域
+     */
+    bind(fn , scope){
+
+        let me = this,{
+            bindCallbacks,
+            cache
+        } = me;
+
+        fn = get(fn , scope) ;
+
+        for(let data of cache){
+
+            fn(data) ;
+        }
+
+        bindCallbacks.set(fn , scope , fn) ;
+
+        return me;
+    }
+    /**
+     * 
+     * 解绑函数
+     * 
+     * @param {mixed} fn 函数
+     * 
+     * @param {mixed} scope 作用域
+     */
+    unbind(fn , scope){
+
+        let me = this,
+        {
+            bindCallbacks
+        } = me ;
+
+        bindCallbacks.delete(fn , scope) ;
+
+        return me ;
+    }
+
+    unbindAll(){
+
+        let me = this,
+        {
+            bindCallbacks
+        } = me ;
+
+        bindCallbacks.clear() ;
+
+        return me ;
     }
 
     /**
