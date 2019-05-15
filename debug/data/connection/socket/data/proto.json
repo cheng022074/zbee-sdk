@@ -12,80 +12,6 @@
                     "java_outer_classname": "TransactionProto"
                   },
                   "nested": {
-                    "ClassifyChangeCount": {
-                      "fields": {
-                        "downTenPercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 1
-                        },
-                        "downSevenPercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 2
-                        },
-                        "downFivePercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 3
-                        },
-                        "downThreePercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 4
-                        },
-                        "downZeroPercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 5
-                        },
-                        "noChange": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 6
-                        },
-                        "riseZeroPercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 7
-                        },
-                        "riseThreePercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 8
-                        },
-                        "riseFivePercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 9
-                        },
-                        "riseSevenPercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 10
-                        },
-                        "riseTenPercent": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 11
-                        },
-                        "downSize": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 12
-                        },
-                        "riseSize": {
-                          "rule": "required",
-                          "type": "int32",
-                          "id": 13
-                        },
-                        "uuid": {
-                          "rule": "required",
-                          "type": "string",
-                          "id": 14
-                        }
-                      }
-                    },
                     "ClassifyMemberRank": {
                       "fields": {
                         "exchange": {
@@ -467,39 +393,6 @@
                               "id": 7
                             }
                           }
-                        }
-                      }
-                    },
-                    "ClassifySectRank": {
-                      "fields": {
-                        "exchange": {
-                          "rule": "required",
-                          "type": "string",
-                          "id": 1
-                        },
-                        "code": {
-                          "rule": "required",
-                          "type": "string",
-                          "id": 2
-                        },
-                        "rankList": {
-                          "rule": "repeated",
-                          "type": "SnapBody",
-                          "id": 3
-                        },
-                        "rankTarget": {
-                          "rule": "required",
-                          "type": "string",
-                          "id": 4
-                        },
-                        "totalSize": {
-                          "type": "int32",
-                          "id": 5
-                        },
-                        "stockList": {
-                          "rule": "repeated",
-                          "type": "SnapBody",
-                          "id": 6
                         }
                       }
                     },

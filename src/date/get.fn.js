@@ -29,6 +29,8 @@
 
  data.setDate(1) ;
 
+ data.setMilliseconds(0) ;
+
  if(isDefined(year)){
 
    data.setFullYear(year) ;

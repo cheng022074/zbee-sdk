@@ -53,7 +53,13 @@
             "tree.mind",
             "file.read.json",
             "is.object.simple",
-            "is.object.empty"
+            "is.object.empty",
+            "date.get",
+            "date.list",
+            "date.parse",
+            "date.get.properties",
+            "is.array",
+            "number.format"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

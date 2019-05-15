@@ -16,6 +16,16 @@
  * 
  * @import Subscriber from data.Subscriber value
  * 
+ * @import is.array
+ * 
+ * @import getList from generate.date.list
+ * 
+ * @import get from date.get
+ * 
+ * @import parse from date.parse
+ * 
+ * @import getNumberFormat from number.format
+ * 
  */
 
  const {
@@ -266,6 +276,17 @@ let socket = new XYSocket({
     url:'http://113.16.174.140:8092/stock'
   },
   rules:[{
+    test:'time\\-sharing',
+    use(){
+        return {
+            extraParams:{
+                dataType:name2type['api_tick'],
+                length:-1
+            },
+            autoOpen:false
+        } ;
+    }
+},{
     test:'^(\\w+):{2}(.+)$',
     use(id , api , symbol){
 
@@ -279,13 +300,53 @@ let socket = new XYSocket({
 }]
 }) ;
 
-socket.subscribe('api_tick::SZ.000655' , {
-  params:{
-    length:-1
-  }
-}).bind(data =>{
+let timeAxis = getList(get({
+    year:1970,
+    month:1,
+    day:2,
+    hours:9,
+    minutes:30,
+    seconds:0
+  }) , get({
+  year:1970,
+  month:1,
+  day:2,
+  hours:11,
+  minutes:30,
+  seconds:0
+  }) , 30),
+  result = [{
+    x:5.1,
+    y:timeAxis[0]
+  }];
 
-    console.log('ok' , data) ;
+
+const formatRe = /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/ ;
+
+
+let subscriber = socket.subscribe('time-sharing').bind(data =>{
+
+  if(!isArray(data)){
+
+    data = [
+      data
+    ] ;
+  }
+
+  for(let {
+    date,
+    time,
+    price
+  } of data){
+
+    console.log(parse(`${date}${getNumberFormat(time , 9)}` , formatRe , '{1}-{2}-{3} {4}:{5}:{6}').toLocaleTimeString())
+  }
 
 }) ;
+
+subscriber.open({
+  symbol:'SZ.000655'
+}) ;
+
+
 
