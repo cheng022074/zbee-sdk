@@ -24,9 +24,6 @@ store.on('load' , (store , records) =>{
 
       console.log(record.get('name') , record.get('job')) ;
    }
-
-   console.log('loaded') ;
-
 }) ;
 
 store.load({

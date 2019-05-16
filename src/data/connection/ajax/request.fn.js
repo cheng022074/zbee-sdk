@@ -29,6 +29,8 @@
  * 
  * @param {boolean} [config.requestJSON = true] 是否以 JSON方式提交数据
  * 
+ * @param {boolean} [config.responseHeaders = false] 是否返回头部信息
+ * 
  */
 
 if(query){
@@ -64,7 +66,19 @@ switch(method){
         }
 }
 
-return axios[method.toLowerCase()](url , params).then(({
+let result = axios[method.toLowerCase()](url , params) ;
+
+if(responseHeaders){
+
+    return result.then(({
+        data,
+        headers
+    }) => {
+        data,
+        headers
+    }) ;
+}
+
+return result.then(({
     data
 }) => data) ;
-

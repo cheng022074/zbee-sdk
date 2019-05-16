@@ -53,7 +53,8 @@
                 mapping,
                 convert,
                 defaultValue,
-                hasMany
+                hasMany,
+                belongsTo
             } = field;
 
             if(mapping){
@@ -104,6 +105,27 @@
                         }) ;
 
                         return store ;
+                    } ;
+                
+                }else{
+
+                    convert = empty ;
+                }
+
+            }else if(belongsTo){
+
+                let {
+                    model = currentModel,
+                    associatedName
+                } = belongsTo ;
+
+                model = getModel(model) ;
+
+                if(model){
+
+                    convert = () =>{
+
+                        return store.getById(data[associatedName]) ;
                     } ;
                 
                 }else{
