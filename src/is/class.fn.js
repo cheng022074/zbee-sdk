@@ -3,7 +3,7 @@
  * 
  * 判定指定数据是否为指定类名称对象的实例
  * 
- * @import is.function
+ * @import is.type
  * 
  * @param {mixed} data 检测数据
  * 
@@ -11,4 +11,4 @@
  * 
  */
 
-return isFunction(data) && /^class/.test(data.toString())
+return isType(data , 'function') && data.ZBEE_CLASS === true ;

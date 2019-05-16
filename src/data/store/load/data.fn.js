@@ -21,8 +21,5 @@ if(fullLoad){
 
 let loadRecords = me.add(records , false) ;
 
-if(!isEmpty(loadRecords)){
-
-    me.fireEvent('load' , loadRecords) ;
-}
+me.fireEvent('load' , loadRecords) ;
 

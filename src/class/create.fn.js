@@ -7,6 +7,8 @@
  * 
  * @import is.function
  * 
+ * @import is.class
+ * 
  * @param {mixed} baseClass 类
  * 
  * @param {mixed} [...args] 类参数
@@ -15,12 +17,14 @@
 
 if(isString(baseClass)){
 
-    return include(baseClass)(...args) ;
+    baseClass = include(baseClass) ;
+}
 
-}else if(isFunction(baseClass)){
+if(isFunction(baseClass)){
 
     return baseClass(...args) ;
 
-}
+}else if(isClass(baseClass)){
 
-return subscriber ;
+    return new baseClass(...args) ;
+}

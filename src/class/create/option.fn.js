@@ -6,6 +6,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import is.class
+ * 
  * @import create from class.create
  * 
  * @param {string} namespace 命名空间
@@ -27,5 +29,6 @@
         ...currentOptions
     } = option ;
 
-    return create(`${namespace}.${option}` , currentOptions) ;
- }
+    return create(`${namespace}.${name}` , currentOptions) ;
+ 
+}
