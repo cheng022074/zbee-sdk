@@ -51,6 +51,7 @@
     "zbee": "^0.0.72"
   },
   "scripts":{
-    "generate":"zb generate"
+    "generate":"zb generate",
+    "debug":"zb debug"
   }
 }
