@@ -18,8 +18,6 @@
  * 
  * @import is.array
  * 
- * @import getList from generate.date.list
- * 
  * @import get from date.get
  * 
  * @import parse from date.parse
@@ -300,26 +298,6 @@ let socket = new XYSocket({
 }]
 }) ;
 
-let timeAxis = getList(get({
-    year:1970,
-    month:1,
-    day:2,
-    hours:9,
-    minutes:30,
-    seconds:0
-  }) , get({
-  year:1970,
-  month:1,
-  day:2,
-  hours:11,
-  minutes:30,
-  seconds:0
-  }) , 30),
-  result = [{
-    x:5.1,
-    y:timeAxis[0]
-  }];
-
 
 const formatRe = /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/ ;
 
@@ -333,14 +311,7 @@ let subscriber = socket.subscribe('time-sharing').bind(data =>{
     ] ;
   }
 
-  for(let {
-    date,
-    time,
-    price
-  } of data){
-
-    console.log(parse(`${date}${getNumberFormat(time , 9)}` , formatRe , '{1}-{2}-{3} {4}:{5}:{6}').toLocaleTimeString())
-  }
+  console.log(data.length) ;
 
 }) ;
 
