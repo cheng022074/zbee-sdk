@@ -6,6 +6,8 @@
  * @import Model from data.model value
  * 
  * @import get from data.model.get
+ * 
+ * @import define from class.define
  *
  * @param {object} [config = {}] 配置
  * 
@@ -22,7 +24,8 @@
      idProperty
  }){
 
-    return class extends Model{
+
+    return define(class extends Model{
 
         static get fieldConfigurations(){
 
@@ -33,5 +36,5 @@
 
             return idProperty;
         }
-    } ;
+    }) ;
  }

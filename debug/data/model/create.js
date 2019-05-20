@@ -7,16 +7,13 @@
  * 
  */
 
+
 let Model = createModel({
     fields:[
         'name',
         'job'
     ]
 }) ;
-
-console.log(Model.fields) ;
-
-return ;
 
 let user = new Model({
     data:{

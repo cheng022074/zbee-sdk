@@ -11,9 +11,9 @@
 
  return class extends BaseClass{
 
-    static get ZBEE_CLASS(){
+    get ZBEE_CURRENT_CLASS(){
 
-        return true ;
+        return BaseClass ;
     }
 
  } ;

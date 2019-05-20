@@ -35,6 +35,8 @@
       fields
    } = Model ;
 
+   console.log(fields) ;
+
     return  (new Function('data' , `
 
       var me = this,

@@ -40,7 +40,7 @@
 
         proxy = me.proxy = createProxy(assign2({} , proxy , {
             type:'memory',
-            model:main,
+            model:me.ZBEE_CURRENT_CLASS,
             reader:{
                 type:'json'
             }
