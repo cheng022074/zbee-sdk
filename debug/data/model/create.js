@@ -14,6 +14,10 @@ let Model = createModel({
     ]
 }) ;
 
+console.log(Model.fields) ;
+
+return ;
+
 let user = new Model({
     data:{
        name:'陈治文',

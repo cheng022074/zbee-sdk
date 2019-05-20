@@ -25,10 +25,10 @@
  }else if(isObject(option)){
 
     let {
-        name,
+        type,
         ...currentOptions
     } = option ;
 
-    return create(`${namespace}.${name}` , currentOptions) ;
+    return create(`${namespace}.${type}` , currentOptions) ;
  
 }

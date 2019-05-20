@@ -6,9 +6,7 @@
  * @import Model from data.model value
  * 
  * @import get from data.model.get
- * 
- * @import define from class.define
- * 
+ *
  * @param {object} [config = {}] 配置
  * 
  * @param {mixed} [config.fields = []] 字段定义
@@ -24,7 +22,7 @@
      idProperty
  }){
 
-    return define(class extends Model{
+    return class extends Model{
 
         static get fieldConfigurations(){
 
@@ -35,5 +33,5 @@
 
             return idProperty;
         }
-    }) ;
+    } ;
  }

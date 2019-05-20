@@ -17,6 +17,8 @@
  * 
  * @import isMemoryProxy from is.proxy.memory
  * 
+ * @import assign2 from object.assign.if
+ * 
  * @class
  * 
  */
@@ -30,14 +32,19 @@
  class main{
 
     constructor({
-        proxy,
+        proxy = {},
         data
     } = {}){
 
         let me = this;
 
-
-        proxy = me.proxy = createProxy(proxy) ;
+        proxy = me.proxy = createProxy(assign2({} , proxy , {
+            type:'memory',
+            model:main,
+            reader:{
+                type:'json'
+            }
+        })) ;
 
         proxy.addListeners({
             load:'onProxyLoad',
@@ -62,7 +69,7 @@
 
     static get fieldConfigurations(){
 
-        return {} ;
+        return [] ;
     }
 
     static get fields(){
@@ -71,7 +78,8 @@
         {
             fieldConfigurations
         } = me,
-        fieldNames = [];
+        fieldNames = [],
+        fields = [];
 
         for(let fieldConfig of fieldConfigurations){
 
@@ -161,7 +169,11 @@
                     assign(fieldConfig , getAssociationConfig(model , association)) ;
                 }
             }
+
+            fields.push(fieldConfig) ;
         }
+
+        return fields ;
     }
  }
 

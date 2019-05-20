@@ -20,4 +20,4 @@
     baseClass = include(baseClass)() ;
  }
 
- return isClass(data) && isClass(baseClass) && data.prototype instanceof baseClass ;
+ return isClass(data) && isClass(baseClass) && (data === baseClass && data.prototype instanceof baseClass) ;

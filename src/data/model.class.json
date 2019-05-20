@@ -4,11 +4,6 @@
     "mixins":[
         "mixin.observable"
     ],
-    "staticProperties":{
-        "fields":{
-            "get":".model.fields"
-        }
-    },
     "properties":{
         "id":{
             "get":".model.id"
