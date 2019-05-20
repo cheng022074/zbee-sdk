@@ -1,6 +1,6 @@
 {
     "class":true,
-    "extend":".base",
+    "extend":".model.base",
     "mixins":[
         "mixin.observable"
     ],

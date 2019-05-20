@@ -29,7 +29,7 @@
    model
  }){
 
-   const Model = model ? getModel(model) : getModel('empty') ;
+   const Model = getModel(model) ;
 
    let {
       fields

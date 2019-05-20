@@ -13,6 +13,10 @@
  * 
  * @import getModel from data.model.get
  * 
+ * @import createProxy from data.proxy.create
+ * 
+ * @import isMemoryProxy from is.proxy.memory
+ * 
  * @class
  * 
  */
@@ -24,6 +28,37 @@
        } = Object;
 
  class main{
+
+    constructor({
+        proxy,
+        data
+    } = {}){
+
+        let me = this;
+
+
+        proxy = me.proxy = createProxy(proxy) ;
+
+        proxy.addListeners({
+            load:'onProxyLoad',
+            scope:me
+        }) ;
+
+        if(data && isMemoryProxy(proxy)){
+
+            proxy.load(data) ;
+        }
+    }
+
+    onProxyLoad(data){
+
+        this.set(data) ;
+    }
+
+    load(options){
+
+        me.proxy.load(options) ;
+    }
 
     static get fieldConfigurations(){
 

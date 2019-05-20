@@ -2,9 +2,9 @@
  * 
  * 获取数据模型类引用
  * 
- * @import create from class.create.option
+ * @import Model from data.model value
  * 
- * @import is.class
+ * @import isModelClass from is.data.model.class
  * 
  * @import is.string
  * 
@@ -21,12 +21,9 @@
     model = include(`data.model.${model}`) ;
  }
 
- if(isFunction(model)){
-
-    return model() ;
- }
-
- if(isClass(model)){
+ if(isModelClass(model)){
 
     return model ;
  }
+
+ return Model ;

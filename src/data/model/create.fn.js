@@ -13,9 +13,7 @@
  * 
  * @param {mixed} [config.fields = []] 字段定义
  * 
- * @param {string} [config.idProperty] 编号字段名称
- * 
- * @param {mixed} [config.modelClass] 数据模型引用
+ * @param {string} [config.idProperty = 'id'] 编号字段名称
  * 
  * @return {data.Model} 数据模型类 
  * 
@@ -23,29 +21,19 @@
 
  function main({
      fields,
-     idProperty,
-     modelClass
+     idProperty
  }){
 
-    if(!modelClass){
+    return define(class extends Model{
 
-        modelClass = Model ;
-    
-    }else{
-
-        modelClass = get(modelClass) ;
-    }
-
-    return define(class extends modelClass{
-
-        static get fieldsConfig(){
+        static get fieldConfigurations(){
 
             return fields;
         }
 
         get idProperty(){
 
-            return idProperty || super.idProperty;
+            return idProperty;
         }
     }) ;
  }

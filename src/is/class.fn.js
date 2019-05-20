@@ -1,13 +1,13 @@
 
 /**
  * 
- * 判定指定数据是否为指定类名称对象的实例
+ * 判断数据是否为类
  * 
  * @import is.type
  * 
  * @param {mixed} data 检测数据
  * 
- * @return {boolean} 如果指定数据是类的实例则返回 true ，否则返回 false 
+ * @return {boolean} 如果指定数据是类则返回 true ，否则返回 false 
  * 
  */
 
