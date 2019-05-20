@@ -83,29 +83,46 @@
                 let {
                     model = currentModel,
                     autoLoad,
-                    associatedName
+                    associatedKey,
+                    associatedMode = 'data'
                 } = hasMany ;
 
                 model = getModel(model) ;
 
                 if(model){
 
-                    convert = data =>{
+                    switch(associatedMode){
 
-                        let store = createStore({
-                            model,
-                            autoLoad,
-                            defaultLoadOptions:data,
-                            proxy:{
-                                name:'memory',
-                                reader:{
-                                    rootProperty:associatedName
-                                }
-                            }
-                        }) ;
+                        case 'data':
 
-                        return store ;
-                    } ;
+                            convert = data =>{
+
+                                let store = createStore({
+                                    model,
+                                    autoLoad,
+                                    defaultLoadOptions:data,
+                                    proxy:{
+                                        name:'memory',
+                                        reader:{
+                                            rootProperty:associatedKey
+                                        }
+                                    }
+                                }) ;
+        
+                                return store ;
+                            } ;
+
+                            break ;
+
+                        case 'reference':
+
+                                convert = () =>{
+
+                                    return store.getById(data[associatedName]) ;
+                                } ;
+
+                        break ;
+                    }
                 
                 }else{
 
