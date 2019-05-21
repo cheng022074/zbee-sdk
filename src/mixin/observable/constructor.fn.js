@@ -17,5 +17,6 @@ function main(){
 
     me.listeners = createMap() ;
 
+    me.cacheFireEventDataList = [] ;
 }
 

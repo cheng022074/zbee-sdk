@@ -15,6 +15,8 @@
  * 
  * @param {boolean} [options.once = false] 是否只监听一次
  * 
+ * @param {boolean} [options.getOldFireEventData] 是否获取以前的触发事件数据
+ * 
  */
 
 let me = this,
@@ -25,6 +27,33 @@ let me = this,
 listener = get(fn , scope).bind(scope);
 
 listeners.set(event , fn , scope , listener) ;
+
+switch(getOldFireEventData){
+
+    case 'last':
+
+        let {
+            getLastFireEventData
+        } = me ;
+
+        if(getLastFireEventData){
+
+            listener(...getLastFireEventData) ;
+        }
+
+        break ;
+
+    case 'all':
+
+        let {
+            cacheFireEventDataList
+        } = me ;
+
+        for(let cacheFireEventData of cacheFireEventDataList){
+
+            listener(...cacheFireEventData) ;
+        }
+}
 
 if(once){
     

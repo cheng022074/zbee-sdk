@@ -22,6 +22,12 @@
         "alias":"un",
         "impl":".observable.listener.remove"
     },{
+        "name":"hasListener",
+        "impl":".observable.listener.has"
+    },{
+        "name":"getLastFireEventData",
+        "impl":".observable.fire.data.last"
+    },{
         "name":"fireEvent",
         "impl":".observable.fire"
     }]
