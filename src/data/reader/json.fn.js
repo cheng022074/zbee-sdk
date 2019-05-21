@@ -20,13 +20,16 @@
  * 
  * @param {function} [config.model] 数据模型类
  * 
+ * @param {boolean} [config.isModelData = true] 是否解析成模型化的数据 
+ * 
  * @return {function} 读取器所生成的解析函数
  * 
  */
 
  function main({
    rootProperty,
-   model
+   model,
+   isModelData
  }){
 
    const Model = getModel(model) ;
@@ -67,9 +70,9 @@
     `)).bind({
        include,
        converts:fields.converts,
-       createModel:data => new Model({
+       createModel:data => isModelData ? new Model({
          innerData:data
-       })
+       }) : data
     });
  }
 

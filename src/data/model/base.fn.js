@@ -53,7 +53,8 @@
             type:'memory',
             model:me.ZBEE_CURRENT_CLASS,
             reader:{
-                type:'json'
+                type:'json',
+                isModelData:false
             }
         })) ;
 
@@ -75,8 +76,8 @@
         if(records.length){
 
             let me = this ;
-
-            assign(me.data , records[0].data) ;
+            
+            assign(me.data , records[0]) ;
 
             me.fireEvent('load') ;
         }
