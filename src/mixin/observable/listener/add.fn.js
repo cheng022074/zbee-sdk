@@ -33,12 +33,12 @@ switch(getOldFireEventData){
     case 'last':
 
         let {
-            getLastFireEventData
+            lastFireEventData
         } = me ;
 
-        if(getLastFireEventData){
+        if(lastFireEventData){
 
-            listener(...getLastFireEventData) ;
+            listener(...lastFireEventData) ;
         }
 
         break ;

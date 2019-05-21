@@ -1,6 +1,11 @@
 {
     "mixin":true,
     "constructor":true,
+    "properties":{
+        "lastFireEventData":{
+            "get":".observable.fire.data.last"
+        }
+    },
     "methods":[{
         "name":"clearAllListeners",
         "impl":".observable.listeners.clear.all"
@@ -24,9 +29,6 @@
     },{
         "name":"hasListener",
         "impl":".observable.listener.has"
-    },{
-        "name":"getLastFireEventData",
-        "impl":".observable.fire.data.last"
     },{
         "name":"fireEvent",
         "impl":".observable.fire"
