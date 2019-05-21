@@ -45,13 +45,16 @@
 
         super() ;
 
-        let me = this;
+        let me = this,
+        {
+            ZBEE_CURRENT_CLASS
+        } = me;
 
         me.fireEventDataCacheCount = 1 ;
 
         proxy = me.proxy = createProxy(assign2({} , proxy , {
             type:'memory',
-            model:me.ZBEE_CURRENT_CLASS,
+            model:ZBEE_CURRENT_CLASS,
             reader:{
                 type:'json',
                 isModelData:false
@@ -76,7 +79,7 @@
         if(records.length){
 
             let me = this ;
-            
+
             assign(me.data , records[0]) ;
 
             me.fireEvent('load') ;
