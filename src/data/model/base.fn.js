@@ -47,19 +47,22 @@
         })) ;
 
         proxy.addListeners({
-            load:'onProxyLoad',
+            read:'onProxyRead',
             scope:me
         }) ;
 
+  
         if(data && isMemoryProxy(proxy)){
 
-            proxy.load(data) ;
+            proxy.read(data) ;
         }
     }
 
-    onProxyLoad(data){
+    onProxyRead(proxy , data){
 
-        this.set(data) ;
+        console.log('proxy-load' , data) ;
+
+        //this.set(data) ;
     }
 
     load(options){
@@ -76,9 +79,17 @@
 
         let me = this,
         {
+            $fields
+        } = me;
+
+        if($fields){
+
+            return $fields ;
+        }
+
+        let {
             fieldConfigurations
         } = me,
-        fieldNames = [],
         fields = [];
 
         for(let fieldConfig of fieldConfigurations){
@@ -121,18 +132,10 @@
             if(isObject(fieldConfig)){
 
                 let {
-                    name,
                     hasMany,
                     hasOne,
                     belongsTo
                 } = fieldConfig ;
-
-                if(fieldNames.includes(name)){
-
-                    continue ;
-                }
-
-                fieldNames.push(name) ;
 
                 let association ;
 
@@ -173,7 +176,57 @@
             fields.push(fieldConfig) ;
         }
 
-        return fields ;
+        return me.$fields = new Fields(fields) ;
+    }
+ }
+
+ class Fields{
+
+    constructor(fields){
+
+        let me = this,
+            names = [],
+            innerFields = [] ;
+
+        for(let field of fields){
+
+            let {
+                name
+            } = field ;
+
+            if(!names.includes(name)){
+
+                innerFields.push(field) ;
+
+                names.push(name) ;
+            
+            }else{
+
+                innerFields[names.indexOf(name)] = field ;
+            }
+        }
+
+        me.fields = innerFields ;
+
+        me.names = names ;
+    }
+
+    get converts(){
+
+        let {
+            fields
+        } = this,
+        converts = {};
+    
+        for(let {
+            name,
+            convert
+        } of fields){
+    
+            converts[name] = convert ;
+        }
+
+        return converts ;
     }
  }
 

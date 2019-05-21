@@ -35,9 +35,7 @@
       fields
    } = Model ;
 
-   console.log(fields) ;
-
-    return  (new Function('data' , `
+   return  (new Function('data' , `
 
       var me = this,
          include = me.include,
@@ -69,7 +67,9 @@
     `)).bind({
        include,
        converts:fields.converts,
-       createModel:data => new Model(data)
+       createModel:data => new Model({
+         data
+       })
     });
  }
 

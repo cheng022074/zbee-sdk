@@ -21,5 +21,3 @@ let user = new Model({
        job:'程序员'
     }
 }) ;
-
-console.log(user) ;

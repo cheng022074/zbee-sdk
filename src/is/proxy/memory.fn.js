@@ -1,12 +1,15 @@
 
 /**
  * 
- * 函数实现说明
+ * 判断是否内存代理
  * 
- * @param {mixed} data 参数说明
+ * @import Proxy from data.proxy value
  * 
- * @return {mixed} 返回说明 
+ * @param {mixed} data 测试数据
+ * 
+ * @return {boolean} 如果为内存代理则返回 true , 否则返回 false
  * 
  */
 
- // 代码实现
+
+ return data instanceof Proxy && data.proxyType === 'memory' ;

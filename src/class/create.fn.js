@@ -22,9 +22,15 @@ if(isString(baseClass)){
 
 if(isFunction(baseClass)){
 
-    return baseClass(...args) ;
+    baseClass = baseClass(...args) ;
 
-}else if(isClass(baseClass)){
+    if(!isClass(baseClass)){
+
+        return baseClass ;
+    }
+}
+
+if(isClass(baseClass)){
 
     return new baseClass(...args) ;
 }
