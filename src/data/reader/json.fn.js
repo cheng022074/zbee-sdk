@@ -68,7 +68,7 @@
        include,
        converts:fields.converts,
        createModel:data => new Model({
-         data
+         innerData:data
        })
     });
  }

@@ -9,10 +9,32 @@
  * 
  */
 
- let me = this,
- {
-     proxy,
-     reader
- } = me;
+function fireReadEvent(data){
 
- me.fireEvent('read' , reader(await proxy.call('doRead' , options))) ;
+    let me = this,
+    {
+        reader
+    } = me ;
+
+    me.fireEvent('read' , reader(data)) ;
+}
+
+function main(options){
+
+    let me = this,
+    {
+        proxy
+    } = me,
+    data = proxy.call('doRead' , options);
+   
+    if(isPromise(data)){
+   
+       data.then(data => fireReadEvent.call(me , data)) ;
+    
+    }else{
+
+        fireReadEvent.call(me , data) ;
+    }
+}
+
+

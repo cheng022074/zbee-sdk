@@ -21,3 +21,11 @@ let user = new Model({
        job:'程序员'
     }
 }) ;
+
+user.on('load' , () =>{
+
+    console.log(user) ;
+
+} , undefined , {
+    getOldFireEventData:'last'
+}) ;

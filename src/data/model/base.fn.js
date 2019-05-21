@@ -19,6 +19,8 @@
  * 
  * @import assign2 from object.assign.if
  * 
+ * @import observable from mixin.observable
+ * 
  * @class
  * 
  */
@@ -29,14 +31,23 @@
            assign
        } = Object;
 
- class main{
+ class main extends mixins({
+     mixins:[
+        observable
+     ]
+ }){
 
     constructor({
         proxy = {},
+        innerData = {},
         data
     } = {}){
 
+        super() ;
+
         let me = this;
+
+        me.fireEventDataCacheCount = 1 ;
 
         proxy = me.proxy = createProxy(assign2({} , proxy , {
             type:'memory',
@@ -51,18 +62,24 @@
             scope:me
         }) ;
 
-  
+        me.data = innerData || {} ;
+
         if(data && isMemoryProxy(proxy)){
 
             proxy.read(data) ;
         }
     }
 
-    onProxyRead(proxy , data){
+    onProxyRead(proxy , records){
 
-        console.log('proxy-load' , data) ;
+        if(records.length){
 
-        //this.set(data) ;
+            let me = this ;
+
+            assign(me.data , records[0].data) ;
+
+            me.fireEvent('load') ;
+        }
     }
 
     load(options){
