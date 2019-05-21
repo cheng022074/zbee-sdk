@@ -2,14 +2,6 @@
     "class":true,
     "constructor":false,
     "extend":".model.base",
-    "properties":{
-        "id":{
-            "get":".model.id"
-        },
-        "idProperty":{
-            "get":".model.property.id"
-        }
-    },
     "methods":[{
         "name":"get",
         "impl":".model.value"

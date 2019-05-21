@@ -21,6 +21,8 @@
  * 
  * @import observable from mixin.observable
  * 
+ * @import getId from id.generate
+ * 
  * @class
  * 
  */
@@ -38,6 +40,7 @@
  }){
 
     constructor({
+        idProperty = 'id',
         proxy = {},
         innerData = {},
         data
@@ -72,6 +75,38 @@
 
             proxy.read(data) ;
         }
+
+        me.idProperty = idProperty ;
+    }
+
+    has(name){
+
+
+    }
+
+    get id(){
+
+        let me = this,
+        {
+            $id
+        } = me;
+
+        if($id){
+
+            return $id ;
+        }
+
+        let {
+            idProperty
+        } = me ;
+
+        if(me.has(idProperty)){
+
+            return me.$id =  me.get(idProperty) ;
+        
+        }
+
+        return me.$id = getId('model-') ;
     }
 
     onProxyRead(proxy , records){

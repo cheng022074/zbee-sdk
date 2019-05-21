@@ -1,8 +1,31 @@
 
 /**
  * 
- * 调试《属于》数据关联模式
+ * 调试《属于》逻辑
+ * 
+ * @import createModel from data.model.create
  * 
  */
 
- // 代码实现
+
+let Model = createModel({
+    fields:[
+        'name',
+        'job'
+    ]
+}) ;
+
+let user = new Model({
+    data:{
+       name:'陈治文',
+       job:'程序员'
+    }
+}) ;
+
+user.on('load' , () =>{
+
+    console.log(user) ;
+
+} , undefined , {
+    getOldFireEventData:'last'
+}) ;
