@@ -55,14 +55,14 @@
 
         me.fireEventDataCacheCount = 1 ;
 
-        (me.proxy = createProxy(assign2({} , proxy , {
+        (me.proxy = createProxy(assign2({
             type:'memory',
             model:ZBEE_CURRENT_CLASS,
             reader:{
                 type:'json',
                 isModelData:false
             }
-        }))).addListeners({
+        } , proxy))).addListeners({
             read:'onProxyRead',
             scope:me
         }) ;

@@ -54,13 +54,13 @@ class main extends mixins({
 
         me.fireEventDataCacheCount = 1 ;
 
-        (me.proxy = createProxy(assign({} , proxy , {
+        (me.proxy = createProxy(assign({
             type:'memory',
             model,
             reader:{
                 type:'json'
             }
-        }))).addListeners({
+        } , proxy))).addListeners({
             read:'onProxyRead',
             scope:me
         }) ;
