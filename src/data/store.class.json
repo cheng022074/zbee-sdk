@@ -1,19 +1,9 @@
 {
-    "params":[
-        "options"
-    ],
+    "extend":".store.base",
     "class":true,
-    "constructor":true,
-    "mixins":[
-        "mixin.observable"
-    ],
+    "constructor":false,
     "methods":[
-        "load",{
-            "name":"loadData",
-            "impl":".store.load.data"
-        },
         "reload",
-        "clear",
         "add",
         "remove",
         "insert",
@@ -44,9 +34,6 @@
         },{
             "name":"indexOfId",
             "impl":".store.index.id"
-        },{
-            "name":"onProxyRead",
-            "impl":".store.proxy.read"
         }
     ]
 }

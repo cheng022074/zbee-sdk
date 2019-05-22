@@ -10,9 +10,11 @@
  * 
  * @import create from class.create
  * 
+ * @import is.defined
+ * 
  * @param {string} namespace 命名空间
  * 
- * @param {mixed}  option 配置
+ * @param {mixed}  [option] 配置
  * 
  * @return {mixed} 类实例
  * 
@@ -27,8 +29,21 @@
     let {
         type,
         ...currentOptions
-    } = option ;
+    } = option,
+    name;
 
-    return create(`${namespace}.${type}` , currentOptions) ;
+    if(type){
+
+        name = `${namespace}.${type}` ;
+    
+    }else{
+
+        name = namespace ;
+    }
+
+    return create(name , currentOptions) ;
  
+}else if(!isDefined(options)){
+
+    return create(namespace) ;
 }

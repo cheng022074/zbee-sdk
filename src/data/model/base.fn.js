@@ -42,7 +42,8 @@
     constructor({
         proxy = {},
         innerData = {},
-        data
+        data,
+        autoLoad
     } = {}){
 
         super() ;
@@ -54,25 +55,34 @@
 
         me.fireEventDataCacheCount = 1 ;
 
-        proxy = me.proxy = createProxy(assign2({} , proxy , {
+        (me.proxy = createProxy(assign2({} , proxy , {
             type:'memory',
             model:ZBEE_CURRENT_CLASS,
             reader:{
                 type:'json',
                 isModelData:false
             }
-        })) ;
-
-        proxy.addListeners({
+        }))).addListeners({
             read:'onProxyRead',
             scope:me
         }) ;
 
         me.data = innerData || {} ;
 
-        if(data && isMemoryProxy(proxy)){
+        if(data){
+            
+            let {
+                proxy
+            } = me ;
 
-            proxy.read(data) ;
+            if(isMemoryProxy(proxy)){
+
+                proxy.read(data) ;
+            }
+
+        }else if(autoLoad){
+
+            me.load() ;
         }
     }
 
@@ -142,7 +152,7 @@
 
     load(options){
 
-        me.proxy.load(options) ;
+        this.proxy.read(options) ;
     }
 
     static get fieldConfigurations(){
