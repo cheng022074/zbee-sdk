@@ -13,6 +13,42 @@
 
  class main extends Model{
 
+    static get fieldConfigurations(){
+
+        return [
+            'id',
+            'parentId'
+        ];
+    }
+
+    get parentNode(){
+
+        let me = this,
+        {
+            store
+        } = me ;
+
+        return store.getById(me.get('parentId')) ;
+    }
+
+    get childNodes(){
+
+        let me = this;
+
+        if(!me.hasOwnProperty('$childNodes')){
+
+            let {
+                store,
+                id
+            } = me ;
+
+            me.$childNodes = store.findRecords('parentId' , id) ;
+        
+        }
+
+        return me.$childNodes ;
+    }
+
     get descendantNodes(){
 
         let me = this,
@@ -39,11 +75,6 @@
     get lastChildNode(){
 
         return this.childNodes.last() ;
-    }
-
-    get childNodes(){
-
-        return this.get('childNodes').toArray() ;
     }
 
     appendChild(node){

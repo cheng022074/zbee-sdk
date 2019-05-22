@@ -4,7 +4,7 @@
  * 
  * @import create from data.store.create
  * 
- * @import Model from data.model value
+ * @import Model from data.model.node.tree value
  * 
  * @import define from class.define
  * 
@@ -18,42 +18,9 @@
             name:'id',
             mapping:'f_id'
         },{
-           name:'parentNode',
-           belongsTo:{
-               associationKey:'f_pid',
-               assocationMode:'local-key' 
-           }
-        },{
-            name:'title',
-            mapping:'f_title'
+           name:'parentId',
+           mapping:'f_pid'
         }];
-    }
-
-    get parentNode(){
-
-        return this.get('parentNode') ;
-    }
-
-    get childNodes(){
-
-        let me = this,
-        {
-            id,
-            store
-        } = me;
-
-        return store.findRecords(({
-            parentNode
-        }) => {
-
-            if(parentNode){
-
-                return parentNode.id === id ;
-            }
-
-            return false ;
-
-        }) ;
     }
 
  }) ;
