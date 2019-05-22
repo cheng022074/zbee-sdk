@@ -3,15 +3,9 @@
     "class":true,
     "constructor":false,
     "methods":[
-        "reload",
         "add",
-        "remove",
         "insert",
-        "bind",
-        "unbind",
         "destroy",
-        "first",
-        "last",
         "each",
         {
             "name":"getById",
@@ -28,12 +22,6 @@
         {
             "name":"removeById",
             "impl":".store.remove.id"
-        },{
-            "name":"indexOf",
-            "impl":".store.index"
-        },{
-            "name":"indexOfId",
-            "impl":".store.index.id"
         }
     ]
 }

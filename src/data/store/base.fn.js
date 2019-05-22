@@ -131,14 +131,17 @@ class main extends mixins({
 
     clear(){
 
-        let {
+        let me = this,
+        {
             records,
             recordMap
-        } = this ;
+        } = me ;
 
         records.length = 0 ;
 
         recordMap.clear() ;
+
+        me.fireEvent('clear') ;
 
     }
 }
