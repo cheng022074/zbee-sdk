@@ -8,6 +8,8 @@
  * 
  * @import define from class.define
  * 
+ * @import data.store.tree
+ * 
  */
 
  const Node = define(class extends Model{
@@ -25,8 +27,15 @@
 
  }) ;
 
- let store = create({
-     model:Node,
+ store = create({
+     type:'tree',
+     fields:[{
+        name:'id',
+        mapping:'f_id'
+    },{
+       name:'parentId',
+       mapping:'f_pid'
+    }],
      data:[{
             "f_company_id": "1",
             "f_id": "3671",

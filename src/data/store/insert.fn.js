@@ -3,46 +3,50 @@
  * 
  * 插入记录
  * 
- * @import getRecords from .private.records scoped
+ * @import from from array.from
  * 
  * @import insert from array.insert
  * 
- * @import update from .private.records.update scoped
- * 
- * @import bind from .private.records.bind scoped
- * 
- * @import is.empty
- * 
  * @param {number} index 插入位置
  * 
- * @param {mixed} insertRecords 数据记录
- * 
- * @param {boolean} [isFireInsertEvent = true] 是否触发插入事件
+ * @param {mixed} records 数据记录
  * 
  */
 
- 
- let {
-    notExists:notExistsRecords,
-    exists:existsRecords
- } = getRecords(insertRecords),
- me = this,
+ let me = this,
  {
-    records
- } = me;
+   records:data,
+   recordMap
+ } = me ;
 
- if(!isEmpty(notExistsRecords)){
+ records = from(records) ;
 
-   bind(notExistsRecords) ;
+ let insertRecords = [] ;
 
-   insert(records , index , ...notExistsRecords) ;
+ for(let record of records){
 
-   if(isFireInsertEvent){
+   let {
+      id,
+      store
+   } = record ;
 
-      me.fireEvent('insert' , index , notExistsRecords) ;
+   if(recordMap.has(id)){
+
+      continue ;
    }
+
+   if(store){
+
+      store.remove(record) ;
+   }
+
+   record.bindStore(store) ;
+
+   recordMap.set(id , record) ;
+
+   insert(data , index , record) ;
+
+   insertRecords.push(record) ;
  }
 
- update(existsRecords) ;
-
- return notExistsRecords ;
+ me.fireEvent('insert' , index , insertRecords) ;

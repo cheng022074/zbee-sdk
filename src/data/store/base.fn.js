@@ -43,6 +43,7 @@ class main extends mixins({
         
         }
 
+
         if(model){
 
             model = get(model) ;
@@ -50,6 +51,8 @@ class main extends mixins({
         }
 
         let me = this ;
+
+        me.fireEventDataCacheCount = 1 ;
 
         (me.proxy = createProxy(assign({} , proxy , {
             type:'memory',
@@ -74,7 +77,7 @@ class main extends mixins({
 
             if(isMemoryProxy(proxy)){
 
-                proxy.read(data) ;
+                proxy.read(data)
             }
 
         }else if(autoLoad){

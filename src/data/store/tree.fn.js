@@ -5,7 +5,9 @@
  * 
  * @import Store from data.store value
  * 
- * @import data.model.tree
+ * @import model from data.model.node.tree value
+ * 
+ * @import define from class.define
  * 
  * @param {object} options 数据存储器配置
  * 
@@ -14,74 +16,62 @@
 
  class main extends Store{
 
-    constructor(options = {}){
+    constructor({
+        fields,
+        ...options
+    }){
 
-        let {
-            fields = [],
-            childNodeProperty = 'cn',
-            ...storeOptions
-        } = options ;
+        if(fields){
 
-        fields.push({
-            name:'childNodes',
-            hasMany:{
-                autoLoad:true,
-                associatedName:childNodeProperty
-            }
-        }) ;
+            model = define(class extends model{
+
+                static get fieldConfigurations(){
+
+                    return fields;
+                }
+            }) ;
+        }
 
         super({
-            ...storeOptions,
-            fields,
-            modelClass:'tree'
+            ...options,
+            model
+        }) ;
+
+        let me = this ;
+
+        me.on('load' , 'onLoad' , me , {
+            once:true,
+            getOldFireEventData:'last'
         }) ;
     }
 
-    onProxyRead(proxy , records){
+    onLoad(store , nodes){
 
-       let me = this ;
+        for(let node of nodes){
 
-       me.loadCount = 1 ;
+            let {
+                parentNode
+            } = node ;
 
-       me.onStoreLoad(records) ;
+            if(!parentNode){
+
+                sort(node) ;
+            }
+        }
     }
+ }
 
-    onStoreLoad(records , belongToRecord){
+ function sort(node){
 
-        let me = this;
+    let {
+        store,
+        childNodes
+    } = node ;
 
-        if(belongToRecord){
+    store.insert(store.indexOf(node) + 1 , childNodes) ;
 
-            me.insert(me.indexOf(belongToRecord) + 1 , records , false) ;
-        
-        }else{
+    for(let childNode of childNodes){
 
-            me.add(records , false) ;
-        }
-
-        for(let record of records){
-
-            me.loadCount ++ ;
-
-            record.addFieldStoreListers({
-                load:{
-                   fn(store , records){
-
-                        me.onStoreLoad(records , record) ;
-                   },
-                   once:true
-                },
-                scope:me
-             }) ;
-        }
-
-        me.loadCount -- ;
-
-        if(me.loadCount === 0){
-
-            delete me.loadCount ;
-
-            me.fireEvent('load' , me.records) ;
-        }
+        sort(childNode) ;
     }
  }

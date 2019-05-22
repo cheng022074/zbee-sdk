@@ -3,9 +3,12 @@
     "class":true,
     "constructor":false,
     "methods":[
-        "add",
         "insert",
-        "destroy",
+        "remove",
+        {
+            "name":"indexOf",
+            "impl":".store.index.of"
+        },
         "each",
         {
             "name":"getById",

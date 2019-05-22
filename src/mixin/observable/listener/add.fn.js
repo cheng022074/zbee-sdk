@@ -24,7 +24,7 @@ let me = this,
     emitter,
     listeners
 } = me,
-listener = get(fn , scope).bind(scope);
+listener = get(fn , scope);
 
 listeners.set(event , fn , scope , listener) ;
 
@@ -35,6 +35,7 @@ switch(getOldFireEventData){
         let {
             lastFireEventData
         } = me ;
+
 
         if(lastFireEventData){
 
