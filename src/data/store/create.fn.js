@@ -5,7 +5,7 @@
  * 
  * @import create from class.create.option
  * 
- * @import ..store
+ * @import ....store
  * 
  * @param {mixed} [store] 数据代理
  * 

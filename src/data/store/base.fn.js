@@ -11,6 +11,10 @@
  * 
  * @import assign from object.assign
  * 
+ * @import createProxy from data.proxy.create
+ * 
+ * @import isMemoryProxy from is.proxy.memory
+ * 
  * @class
  * 
  */
@@ -45,7 +49,9 @@ class main extends mixins({
         
         }
 
-        (me.proxy = createProxy(assigns({} , proxy , {
+        let me = this ;
+
+        (me.proxy = createProxy(assign({} , proxy , {
             type:'memory',
             model,
             reader:{
