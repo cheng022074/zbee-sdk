@@ -134,7 +134,7 @@
 
         if(field){
 
-            return field.get(data[name]) ;
+            return field.get.call(me , data[name]) ;
         }
     }
 
@@ -421,7 +421,19 @@
 
                         return {
                             convert:createConvertFn(associationKey),
-                            get:key => this.store.getById(key)
+                            get(key){
+
+                                let {
+                                    store
+                                } = this ;
+
+                                if(store){
+
+                                    return store.getById(key) ;
+                                }
+
+                                
+                            }
                         } ;
     
                     case 'remote-key':

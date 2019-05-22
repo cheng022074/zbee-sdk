@@ -108,6 +108,8 @@ class main extends mixins({
                     data.push(record) ;
 
                     recordMap.set(id , record) ;
+
+                    record.bindStore(me) ;
                 }
             }
 

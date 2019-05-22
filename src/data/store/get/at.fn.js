@@ -9,4 +9,8 @@
  * 
  */
 
- // 代码实现
+ let {
+     records
+ } = this ;
+
+ return records[index] ;
