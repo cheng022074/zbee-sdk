@@ -22,6 +22,10 @@
         {
             "name":"removeById",
             "impl":".store.remove.id"
+        },
+        {
+            "name":"findRecords",
+            "impl":".store.find.records"
         }
     ]
 }

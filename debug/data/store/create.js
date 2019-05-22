@@ -4,22 +4,62 @@
  * 
  * @import create from data.store.create
  * 
+ * @import Model from data.model value
+ * 
+ * @import define from class.define
+ * 
  */
 
+ const Node = define(class extends Model{
+
+    static get fieldConfigurations(){
+
+        return [{
+            name:'id',
+            mapping:'f_id'
+        },{
+           name:'parentNode',
+           belongsTo:{
+               associationKey:'f_pid',
+               assocationMode:'local-key' 
+           }
+        },{
+            name:'title',
+            mapping:'f_title'
+        }];
+    }
+
+    get parentNode(){
+
+        return this.get('parentNode') ;
+    }
+
+    get childNodes(){
+
+        let me = this,
+        {
+            id,
+            store
+        } = me;
+
+        return store.findRecords(({
+            parentNode
+        }) => {
+
+            if(parentNode){
+
+                return parentNode.id === id ;
+            }
+
+            return false ;
+
+        }) ;
+    }
+
+ }) ;
+
  let store = create({
-     fields:[{
-         name:'id',
-         mapping:'f_id'
-     },{
-        name:'parentNode',
-        belongsTo:{
-            associationKey:'f_pid',
-            assocationMode:'local-key' 
-        }
-     },{
-         name:'title',
-         mapping:'f_title'
-     }],
+     model:Node,
      data:[{
             "f_company_id": "1",
             "f_id": "3671",
@@ -481,15 +521,9 @@
 
  store.each(record =>{
 
-    let parentNode = record.get('parentNode') ;
+   
 
-    if(parentNode){
-
-        console.log(record.id , record.get('title') , parentNode.id) ;
+        console.log(record.id , record.childNodes.length) ;
     
-    }else{
-
-        console.log(record.id , record.get('title')) ;
-    }
 
  }) ;

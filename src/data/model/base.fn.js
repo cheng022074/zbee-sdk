@@ -86,6 +86,11 @@
         }
     }
 
+    get idProperty(){
+
+        return 'id' ;
+    }
+
     has(name){
 
         let {
