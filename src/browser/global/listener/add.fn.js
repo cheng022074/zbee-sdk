@@ -43,6 +43,6 @@ let map = getMap(),
 
 map.set(event , fn , selector , listenerFn) ;
 
-document.addEventListener(event , listenerFn) ;
+window.addEventListener(event , listenerFn) ;
 
 

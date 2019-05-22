@@ -40,7 +40,6 @@
  }){
 
     constructor({
-        idProperty = 'id',
         proxy = {},
         innerData = {},
         data
@@ -75,13 +74,15 @@
 
             proxy.read(data) ;
         }
-
-        me.idProperty = idProperty ;
     }
 
     has(name){
 
+        let {
+            fields
+        } = this.ZBEE_CURRENT_CLASS ;
 
+        return fields.hasField(name) ;
     }
 
     get id(){
@@ -107,6 +108,24 @@
         }
 
         return me.$id = getId('model-') ;
+    }
+
+    get(name){
+
+        let me = this,
+        {
+            data,
+            ZBEE_CURRENT_CLASS
+        } = me,
+        {
+            fields
+        } = ZBEE_CURRENT_CLASS,
+        field = fields.getField(name);
+
+        if(field){
+
+            return field.get(data[name]) ;
+        }
     }
 
     onProxyRead(proxy , records){
@@ -166,7 +185,8 @@
                     convert,
                     mapping,
                     get = defaultSetOrGetFn,
-                    set = defaultSetOrGetFn
+                    set = defaultSetOrGetFn,
+                    ...otherFieldConfig
                 } = fieldConfig ;
 
                 if(mapping){
@@ -181,7 +201,8 @@
                     name,
                     convert,
                     get,
-                    set
+                    set,
+                    ...otherFieldConfig
                 } ;
             }
 
@@ -202,6 +223,7 @@
                         ...hasMany
                     } ;
 
+                    delete fieldConfig.hasMany ;
                 }
 
                 if(hasOne){
@@ -210,7 +232,8 @@
                         type:'hasOne',
                         ...hasOne
                     } ;
-
+                    
+                    delete fieldConfig.hasOne ;
                 }
 
 
@@ -225,7 +248,7 @@
 
                 if(association){
 
-                    assign(fieldConfig , getAssociationConfig(model , association)) ;
+                    assign(fieldConfig , getAssociationConfig(me , association)) ;
                 }
             }
 
@@ -234,6 +257,15 @@
 
         return me.$fields = new Fields(fields) ;
     }
+ }
+
+ function getFieldIndex(name){
+
+    let {
+        names
+    } = this ;
+
+    return names.indexOf(name) ;
  }
 
  class Fields{
@@ -265,6 +297,22 @@
         me.fields = innerFields ;
 
         me.names = names ;
+    }
+
+    getField(name){
+
+        let me = this,
+            index = getFieldIndex.call(me , name);
+
+        if(index !== -1){
+
+           return me.fields[index] ;
+        }
+    }
+
+    hasField(name){
+
+        return getFieldIndex.call(this , name) !== -1 ;
     }
 
     get converts(){

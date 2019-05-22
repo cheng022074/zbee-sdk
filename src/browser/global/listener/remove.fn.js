@@ -24,5 +24,5 @@
 
 if(listenerFn){
 
-    document.removeEventListener(event , listenerFn) ;
+    window.removeEventListener(event , listenerFn) ;
 }

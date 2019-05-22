@@ -3,9 +3,6 @@
     "constructor":false,
     "extend":".model.base",
     "methods":[{
-        "name":"get",
-        "impl":".model.value"
-    },{
         "name":"set",
         "impl":".model.set"
     },{
