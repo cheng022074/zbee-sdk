@@ -5,18 +5,6 @@
     "methods":[{
         "name":"set",
         "impl":".model.set"
-    },{
-        "name":"bindStore",
-        "impl":".model.store.bind"
-    },{
-        "name":"unbindStore",
-        "impl":".model.store.unbind"
-    },{
-        "name":"addFieldStoreListers",
-        "impl":".model.field.listeners.add.store"
-    },{
-        "name":"addFieldModelListers",
-        "impl":".model.field.listeners.add.model"
     },
     "destroy"
     ]

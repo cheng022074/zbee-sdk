@@ -91,6 +91,21 @@
         return 'id' ;
     }
 
+    get bubbleTarget(){
+
+        return this.store ;
+    }
+
+    bindStore(store){
+
+        this.store = store ;
+    }
+
+    unbindStore(){
+
+        delete this.store ;
+    }
+
     has(name){
 
         let {
