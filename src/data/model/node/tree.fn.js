@@ -53,36 +53,68 @@
         ];
     }
 
-    get nextSiblingNode(){
+    get depth(){
 
-        let me = this,
-        {
-            parentNode
-        } = me ;
+        let node = this,
+        parentNode,
+        depth = 0;
 
-        if(parentNode){
+        while(parentNode = node.parentNode){
 
-            let {
-                childNodes
-            } = parentNode ;
+            node = parentNode ;
 
-            childNodes[childNodes.indexOf(me) + 1] ;
+            depth ++ ;
         }
+
+        return depth ;
     }
 
-    getFirstDepthNode(depth){
+    get x(){
 
-        return getDepthNode.call(this , depth , 'first') ;
+        return this.get('x') ;
     }
 
-    getLastDepthNode(depth){
+    get y(){
 
-        return getDepthNode.call(this , depth , 'last') ;
+        return this.get('y') ;
     }
 
-    getParentNode(depth){
+    getDepthNodes(depth){
 
-        return getDepthNode.call(this , depth , 'parent') ;
+        let depthNodes = [
+                this
+            ];
+
+        for(let i = 0 ; i < depth ; i ++){
+
+           let nodes = [] ;
+
+           for(let {
+            childNodes
+           } of depthNodes){
+
+                nodes.push(...childNodes) ;
+           }
+
+           depthNodes = nodes ;
+        }
+
+        return depthNodes ;
+    }
+
+    getFirstDepthNode(depth , isStrict = true){
+
+        return getDepthNode.call(this , depth , isStrict , 'first') ;
+    }
+
+    getLastDepthNode(depth , isStrict = true){
+
+        return getDepthNode.call(this , depth , isStrict , 'last') ;
+    }
+
+    getParentNode(depth , isStrict = true){
+
+        return getDepthNode.call(this , depth , isStrict , 'parent') ;
     }
 
     get previousSiblingNode(){
@@ -186,6 +218,103 @@
         return this.get('selected') ;
     }
 
+    up(){
+
+        let me = this,
+        {
+            previousSiblingNode
+        } = me ;
+
+        if(previousSiblingNode){
+
+            previousSiblingNode.select() ;
+        
+        }else{
+
+            let depth = 1,
+                parentNode;
+
+            while(parentNode = me.getParentNode(depth)){
+
+                let {
+                    previousSiblingNode
+                } = parentNode ;
+
+                if(previousSiblingNode){
+
+                    previousSiblingNode.getLastDepthNode(depth , false).select() ;
+
+                    break ;
+                }
+
+                depth ++ ;
+            }
+        }
+    }
+
+    down(){
+
+        let me = this,
+        {
+            nextSiblingNode
+        } = me ;
+
+        if(nextSiblingNode){
+
+            nextSiblingNode.select() ;
+        
+        }else{
+
+            let depth = 1,
+                parentNode;
+
+            while(parentNode = me.getParentNode(depth)){
+
+                let {
+                    nextSiblingNode
+                } = parentNode ;
+
+                if(nextSiblingNode){
+
+                    nextSiblingNode.getFirstDepthNode(depth , false).select() ;
+
+                    break ;
+                }
+
+                depth ++ ;
+            }
+        }
+    }
+
+    left(){
+
+        let {
+            parentNode
+        } = this ;
+
+        if(parentNode){
+
+            parentNode.select() ;
+        }
+    }
+
+    right(){
+
+        let me = this,
+        {
+            firstChildNode
+        } = me ;
+
+        if(firstChildNode){
+
+            firstChildNode.select() ;
+        
+        }else{
+
+            // 尝试寻找其它节点的子节点
+        }
+    }
+
     select(){
 
         let me = this,
@@ -267,9 +396,14 @@
             store.removeNodes(childNodes) ;
         }
     }
+
+    layout(){
+
+
+    }
  }
 
- function getDepthNode(depth , property){
+ function getDepthNode(depth , isStrict , property){
 
     let node = this ;
 
@@ -302,7 +436,10 @@
         
         }else{
 
-            node = undefined ;
+            if(isStrict){
+
+                node = undefined ;
+            }
 
             break ;
         }
