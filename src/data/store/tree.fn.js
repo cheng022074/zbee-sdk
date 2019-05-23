@@ -64,32 +64,65 @@
             } = node ;
 
             if(!parentNode){
+                
+                doReorder(node) ;
 
-                sort(node) ;
+                doRemove(node) ;
             }
         }
     }
 
-    remove(nodes){
+    insertNodes(index , nodes){
 
         nodes = from(nodes) ;
 
-        let removeNodes = [] ;
+        let me = this,
+            insertNodes = [] ;
+
+        for(let node of nodes){
+
+            insertNodes.push(node) ;
+
+            insertNodes.push(...node.descendantNodes) ;
+        }
+
+        insertNodes.push(...me.insert(index , insertNodes , false)) ;
+
+        me.fireEvent('insert' , insertNodes) ;
+    }
+
+    removeNodes(nodes){
+
+        nodes = from(nodes) ;
+
+        let me = this,
+            removeNodes = [] ;
 
         for(let {
             descendantNodes
         } of nodes){
 
-            removeNodes.push(...super.remove(descendantNodes , false)) ;
+            removeNodes.push(...me.remove(descendantNodes , false)) ;
         }
 
-        removeNodes.push(...super.remove(nodes , false)) ;
+        removeNodes.push(...me.remove(nodes , false)) ;
 
-        this.fireEvent('remove' , removeNodes) ;
+        me.fireEvent('remove' , removeNodes) ;
     }
  }
 
- function sort(node){
+ function doReorder(node){
+
+    let {
+        store,
+        childNodes
+    } = node ;
+
+    store.insertNodes(store.indexOf(node) + 1 , childNodes) ;
+
+ }
+
+ function doRemove(node){
 
     let {
         store,
@@ -98,15 +131,13 @@
 
     if(node.expanded){
 
-        store.insert(store.indexOf(node) + 1 , childNodes) ;
-
         for(let childNode of childNodes){
 
-            sort(childNode) ;
+            doRemove(childNode) ;
         }
-    
+
     }else{
 
-        store.remove(childNodes) ;
+        store.removeNodes(childNodes) ;
     }
  }

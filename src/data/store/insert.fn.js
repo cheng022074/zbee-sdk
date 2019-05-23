@@ -11,6 +11,8 @@
  * 
  * @param {mixed} records 数据记录
  * 
+ * @param {boolean} [isFireEvent = true] 是否触发插入事件
+ * 
  */
 
  let me = this,
@@ -25,5 +27,10 @@
 
     insert(data , index , ...records) ;
 
-    me.fireEvent('insert' , index , records) ;
+    if(isFireEvent){
+
+      me.fireEvent('insert' , index , records) ;
+    }
  }
+
+ return records ;
