@@ -142,14 +142,36 @@
         }
     }
 
+    get selected(){
+
+        return this.get('selected') ;
+    }
+
     select(){
 
-        
+        let me = this,
+        {
+            store
+        } = me;
+
+        if(store){
+
+            me.set('selected' , true) ;
+
+            store.each(node => {
+
+                if(node !== me){
+
+                    node.deselect() ;
+                }
+
+            }) ;
+        }
     }
 
     deselect(){
 
-
+        this.set('selected' , false) ;
     }
 
     insertBefore(node , existNode){
