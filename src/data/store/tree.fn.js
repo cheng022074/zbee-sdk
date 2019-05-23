@@ -96,7 +96,6 @@
         childNodes
     } = node ;
 
-
     if(node.expanded){
 
         store.insert(store.indexOf(node) + 1 , childNodes) ;

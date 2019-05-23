@@ -9,6 +9,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import remove from array.remove
+ * 
  * @param {mixed} records 数据记录
  * 
  * 
@@ -19,6 +21,7 @@
  let me = this,
  {
    innerReader,
+   records:data,
    recordMap
  } = me,
  result = [];
@@ -27,7 +30,7 @@
 
     if(isModel(record) && record.isBindStore && record.store === me){
 
-         me.remove(record) ;
+          remove(data , record) ;
 
     }else if(isObject(record)){
 

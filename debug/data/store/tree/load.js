@@ -22,7 +22,6 @@
        mapping:'f_pid'
     }],
      data:[{
-            "expanded":false,
             "f_company_id": "1",
             "f_id": "3671",
             "f_pid": "0",
@@ -170,6 +169,7 @@
         }, {
             "f_company_id": "1",
             "f_id": "3843",
+            "expanded":false,
             "f_pid": "3671",
             "f_create_by": "437",
             "f_create_date": "2019-05-21 10:01:37",
