@@ -3,7 +3,7 @@
  * 
  * 插入记录
  * 
- * @import from from array.from
+ * @import getRecords from ..records scoped
  * 
  * @import insert from array.insert
  * 
@@ -19,34 +19,6 @@
    recordMap
  } = me ;
 
- records = from(records) ;
+ insert(data , index , ...getRecords(records)) ;
 
- let insertRecords = [] ;
-
- for(let record of records){
-
-   let {
-      id,
-      store
-   } = record ;
-
-   if(recordMap.has(id)){
-
-      continue ;
-   }
-
-   if(store){
-
-      store.remove(record) ;
-   }
-
-   record.bindStore(store) ;
-
-   recordMap.set(id , record) ;
-
-   insert(data , index , record) ;
-
-   insertRecords.push(record) ;
- }
-
- me.fireEvent('insert' , index , insertRecords) ;
+ me.fireEvent('insert' , index , records) ;

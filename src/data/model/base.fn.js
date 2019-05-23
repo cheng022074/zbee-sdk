@@ -100,7 +100,7 @@
 
         let me = this ;
 
-        if(!me.hasOwnProperty('store')){
+        if(!me.isBindStore){
 
             me.store = store ;
         }
@@ -109,6 +109,11 @@
     unbindStore(){
 
         delete this.store ;
+    }
+
+    get isBindStore(){
+
+        return this.hasOwnProperty('store') ;
     }
 
     has(name){

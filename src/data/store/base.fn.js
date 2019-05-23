@@ -15,6 +15,8 @@
  * 
  * @import isMemoryProxy from is.proxy.memory
  * 
+ * @import createReader from data.reader.json
+ * 
  * @class
  * 
  */
@@ -84,6 +86,10 @@ class main extends mixins({
 
             me.load() ;
         }
+
+        me.innerReader = createReader({
+            model
+        }) ;
     }
 
     onProxyRead(proxy , records){

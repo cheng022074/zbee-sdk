@@ -24,6 +24,8 @@
 
     remove(records , record) ;
 
+    record.unbindStore() ;
+
     me.fireEvent('remove' , record) ;
  } 
 
