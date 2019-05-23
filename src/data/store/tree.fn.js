@@ -74,14 +74,18 @@
 
         nodes = from(nodes) ;
 
+        let removeNodes = [] ;
+
         for(let {
             descendantNodes
         } of nodes){
 
-            super.remove(descendantNodes) ;
+            removeNodes.push(...super.remove(descendantNodes , false)) ;
         }
 
-        super.remove(nodes) ;
+        removeNodes.push(...super.remove(nodes , false)) ;
+
+        this.fireEvent('remove' , removeNodes) ;
     }
  }
 
