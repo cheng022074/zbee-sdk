@@ -9,6 +9,8 @@
  * 
  * @param {mixed} records 数据记录
  * 
+ * @param {boolean} [isFireEvent = true] 是否触发删除事件
+ * 
  */
 
  records = from(records) ;
@@ -38,10 +40,12 @@
    }
  }
 
- if(removeRecords.length){
+ if(removeRecords.length && isFireEvent){
 
    me.fireEvent('remove' , removeRecords) ;
  }
+
+ return removeRecords ;
 
 
 
