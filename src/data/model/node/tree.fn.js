@@ -116,48 +116,66 @@
         let me = this,
         {
             store
-        } = me,
-        insertNodes = store.insert(store.indexOf(me.lastChildNode || me) + 1 , node) ;
+        } = me ;
 
-        for(let insertNode of insertNodes){
+        if(store){
 
-            store.insert(store.indexOf(insertNode) + 1 , insertNode.descendantNodes) ;
+            store.insertNodes(store.indexOf(me.lastLeafNode || me) + 1 , node) ;
         }
     }
 
     insertBefore(node , existNode){
 
-       let me = this,
-       {
-            store
-       } = me,
-       index = store.indexOf(existNode);
+       let {
+         childNodes,
+         store
+       } = this ;
 
-       if(index !== -1){
+       if(store && childNodes.includes(existNode)){
 
-            let insertNodes = store.insert(index , node) ;
-
-            for(let insertNode of insertNodes){
-
-                store.insert(store.indexOf(insertNode) + 1 , insertNode.descendantNodes) ;
-            }
+            store.insert(store.indexOf(existNode) , node) ;
        }
     }
 
     removeChild(node){
 
+        let {
+             store
+        } = this ;
+
+        if(store){
+
+            store.removeNodes(node) ;
+        }
+    }
+
+    expand(){
+
         let me = this,
         {
-             store
-        } = me,
-        removeNodes = store.remove(node) ;
+            expanded,
+            childNodes,
+            store
+        } = me ;
 
-        for(let removeNode of removeNodes){
+        if(store && !expanded){
 
-            store.remove(removeNode.descendantNodes) ;
+            store.insertNodes(store.indexOf(me) + 1 , childNodes) ;
         }
+    }
 
-        me.fireEvent('removechild' , removeNodes) ;
+    collapse(){
+
+        let {
+            expanded,
+            childNodes,
+            store
+        } = this ;
+
+        if(store && expanded){
+
+            store.removeNodes(childNodes) ;
+        }
     }
  }
 
