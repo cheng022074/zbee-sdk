@@ -23,6 +23,8 @@
  * 
  * @import getId from id.generate
  * 
+ * @import is.defined
+ * 
  * @class
  * 
  */
@@ -226,16 +228,23 @@
                     mapping,
                     get = defaultSetOrGetFn,
                     set = defaultSetOrGetFn,
+                    defaultValue,
                     ...otherFieldConfig
                 } = fieldConfig ;
 
                 if(mapping){
 
                     convert = createConvertFn(mapping) ;
-                
                 }
 
                 convert = convert || createConvertFn(name) ;
+
+                if(isDefined(defaultValue)){
+
+                    let oldConvert = convert;
+
+                    convert = (data) => oldConvert(data) || defaultValue ;
+                }
 
                 fieldConfig = {
                     name,

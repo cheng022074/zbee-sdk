@@ -27,7 +27,10 @@
 
                 static get fieldConfigurations(){
 
-                    return fields;
+                    return [
+                        ...super.fieldConfigurations,
+                        ...fields
+                    ];
                 }
             }) ;
         }

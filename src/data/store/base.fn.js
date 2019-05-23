@@ -110,7 +110,7 @@ class main extends mixins({
 
                 if(recordMap.has(id)){
 
-                    data[recordMap.get(id)].set(record.data) ;
+                    recordMap.get(id).set(record.data) ;
 
                 }else{
 

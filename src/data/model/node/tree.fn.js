@@ -17,8 +17,17 @@
 
         return [
             'id',
-            'parentId'
+            'parentId',
+            {
+                name:'expanded',
+                defaultValue:true
+            }
         ];
+    }
+
+    get expanded(){
+
+        return this.get('expanded') ;
     }
 
     get parentNode(){

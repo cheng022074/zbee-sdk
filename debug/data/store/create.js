@@ -497,10 +497,11 @@
 
  store.each(({
      id,
+     expanded,
      childNodes
  }) =>{
 
-        console.log('当前节点' , id) ;
+        console.log('当前节点' , id , expanded) ;
 
         for(let childNode of childNodes){
 
