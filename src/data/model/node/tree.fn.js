@@ -151,21 +151,15 @@
 
         let me = this,
         {
+            selected,
             store
         } = me;
 
-        if(store){
+        if(selected){
+
+            store.each(node => node.deselect()) ;
 
             me.set('selected' , true) ;
-
-            store.each(node => {
-
-                if(node !== me){
-
-                    node.deselect() ;
-                }
-
-            }) ;
         }
     }
 
