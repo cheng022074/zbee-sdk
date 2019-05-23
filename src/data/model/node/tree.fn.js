@@ -49,6 +49,14 @@
                 name:'selected',
                 persistent:true,
                 defaultValue:false
+            },{
+                name:'margin-bottom',
+                persistent:true,
+                defaultValue:0
+            },{
+                name:'margin-right',
+                persistent:true,
+                defaultValue:0
             }
         ];
     }
