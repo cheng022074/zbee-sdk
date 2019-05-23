@@ -495,11 +495,17 @@
 
  }) ;
 
- store.each(record =>{
+ store.each(({
+     id,
+     childNodes
+ }) =>{
 
-   
+        console.log('当前节点' , id) ;
 
-        console.log(record.id , record.childNodes.length) ;
+        for(let childNode of childNodes){
+
+            console.log('子节点' , childNode.id) ;
+        }
     
 
  }) ;

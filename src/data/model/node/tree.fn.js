@@ -49,6 +49,47 @@
         return me.$childNodes ;
     }
 
+    get isLeaf(){
+
+        return this.childNodes.length === 0 ;
+    }
+
+    get firstLeafNode(){
+
+        return getLeafNode.call(this , 'firstChildNode') ;
+    }
+
+    get lastLeafNode(){
+
+        return getLeafNode.call(this , 'lastChildNode') ;
+    }
+
+    get firstChildNode(){
+
+        let {
+            isLeaf,
+            childNodes
+        } = this ;
+
+        if(!isLeaf){
+
+            return childNodes[0] ;
+        }
+    }
+
+    get lastChildNode(){
+
+        let {
+            isLeaf,
+            childNodes
+        } = this ;
+
+        if(!isLeaf){
+
+            return childNodes[childNodes.length - 1] ;
+        }
+    }
+
     get descendantNodes(){
 
         let me = this,
@@ -65,16 +106,6 @@
         }
 
         return result ;
-    }
-
-    get firstChildNode(){
-
-        return this.childNodes.first() ;
-    }
-
-    get lastChildNode(){
-
-        return this.childNodes.last() ;
     }
 
     appendChild(node){
@@ -125,4 +156,26 @@
 
         me.fireEvent('removechild' , removeNodes) ;
     }
+ }
+
+ function getLeafNode(property){
+
+    let me = this,
+        {
+            isLeaf
+        } = me ;
+
+        if(isLeaf){
+
+            return me ;
+        }
+
+        let node = me[property];
+
+        while(!node.isLeaf){
+
+            node = node[property] ;
+        }
+
+        return node ;
  }
