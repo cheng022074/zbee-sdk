@@ -243,7 +243,13 @@
 
                     let oldConvert = convert;
 
-                    convert = (data) => oldConvert(data) || defaultValue ;
+                    convert = (data) => {
+
+                        let value = oldConvert(data) ;
+                        
+                        return isDefined(value) ? value : defaultValue ;
+
+                    } ;
                 }
 
                 fieldConfig = {

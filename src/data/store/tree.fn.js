@@ -9,6 +9,8 @@
  * 
  * @import define from class.define
  * 
+ * @import from from array.from
+ * 
  * @param {object} options 数据存储器配置
  * 
  * 
@@ -52,6 +54,11 @@
 
         for(let node of nodes){
 
+            if(!node.isBindStore){
+
+                continue ;
+            }
+
             let {
                 parentNode
             } = node ;
@@ -62,6 +69,20 @@
             }
         }
     }
+
+    remove(nodes){
+
+        nodes = from(nodes) ;
+
+        for(let {
+            descendantNodes
+        } of nodes){
+
+            super.remove(descendantNodes) ;
+        }
+
+        super.remove(nodes) ;
+    }
  }
 
  function sort(node){
@@ -71,10 +92,18 @@
         childNodes
     } = node ;
 
-    store.insert(store.indexOf(node) + 1 , childNodes) ;
 
-    for(let childNode of childNodes){
+    if(node.expanded){
 
-        sort(childNode) ;
+        store.insert(store.indexOf(node) + 1 , childNodes) ;
+
+        for(let childNode of childNodes){
+
+            sort(childNode) ;
+        }
+    
+    }else{
+
+        store.remove(childNodes) ;
     }
  }

@@ -12,21 +12,6 @@
  * 
  */
 
- const Node = define(class extends Model{
-
-    static get fieldConfigurations(){
-
-        return [{
-            name:'id',
-            mapping:'f_id'
-        },{
-           name:'parentId',
-           mapping:'f_pid'
-        }];
-    }
-
- }) ;
-
  store = create({
      type:'tree',
      fields:[{
@@ -37,6 +22,7 @@
        mapping:'f_pid'
     }],
      data:[{
+            "expanded":false,
             "f_company_id": "1",
             "f_id": "3671",
             "f_pid": "0",
@@ -497,16 +483,9 @@
 
  store.each(({
      id,
-     expanded,
-     childNodes
+     expanded
  }) =>{
 
-        console.log('当前节点' , id , expanded) ;
-
-        for(let childNode of childNodes){
-
-            console.log('子节点' , childNode.id) ;
-        }
-    
+    console.log(id , expanded) ;
 
  }) ;

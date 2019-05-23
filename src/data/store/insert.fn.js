@@ -19,6 +19,11 @@
    recordMap
  } = me ;
 
- insert(data , index , ...getRecords(records)) ;
+ records = getRecords(records) ;
 
- me.fireEvent('insert' , index , records) ;
+ if(records.length){
+
+    insert(data , index , ...records) ;
+
+    me.fireEvent('insert' , index , records) ;
+ }

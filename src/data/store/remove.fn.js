@@ -5,28 +5,44 @@
  * 
  * @import remove from array.remove
  * 
- * @param {data.Model} record 数据记录
+ * @import from from array.from
+ * 
+ * @param {mixed} records 数据记录
  * 
  */
 
+ records = from(records) ;
+ 
  let me = this,
  {
-    records,
+    records:data,
     recordMap
  } = me,
- {
-     id
- } = record;
+ removeRecords = [];
 
- if(recordMap.has(id)){
+ for(let record of records){
 
-    recordMap.delete(id) ;
+   let {
+      id
+   } = record ;
 
-    remove(records , record) ;
+   if(recordMap.has(id)){
 
-    record.unbindStore() ;
+      recordMap.delete(id) ;
+  
+      remove(data , record) ;
+  
+      record.unbindStore() ;
+  
+      removeRecords.push(record) ;
+   }
+ }
 
-    me.fireEvent('remove' , record) ;
- } 
+ if(removeRecords.length){
+
+   me.fireEvent('remove' , removeRecords) ;
+ }
+
+
 
 
