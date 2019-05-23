@@ -32,7 +32,8 @@
  const createConvertFn = mapping => data => data[mapping],
        defaultSetOrGetFn = data => data,
        {
-           assign
+           assign,
+           keys
        } = Object;
 
  class main extends mixins({
@@ -167,6 +168,52 @@
         if(field){
 
             return field.get.call(me , data[name]) ;
+        }
+    }
+
+    set(name , value){
+
+        let values ;
+
+        if(isString(name)){
+
+            values = {
+                [name]:value
+            } ;
+
+        }else{
+
+            values = name ;
+        }
+        
+        if(isObject(values)){
+
+            let me = this,
+            {
+                data,
+                ZBEE_CURRENT_CLASS
+            } = me,
+            {
+                fields
+            } = ZBEE_CURRENT_CLASS,
+            names = keys(values);
+
+            for(let name of names){
+
+                field = fields.getField(name);
+        
+                if(field){
+        
+                    let value = field.set.call(me , values[name]) ;
+
+                    if(isDefined(value)){
+
+                        data[name] = value ;
+                    }
+                }
+            }
+
+            
         }
     }
 
