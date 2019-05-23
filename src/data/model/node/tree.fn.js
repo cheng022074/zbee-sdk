@@ -53,6 +53,48 @@
         ];
     }
 
+    get nextSiblingNode(){
+
+        let me = this,
+        {
+            parentNode
+        } = me ;
+
+        if(parentNode){
+
+            let {
+                childNodes
+            } = parentNode ;
+
+            childNodes[childNodes.indexOf(me) + 1] ;
+        }
+    }
+
+    getFirstDepthNode(depth){
+
+        return getDepthNode.call(this , depth , 'first') ;
+    }
+
+    getLastDepthNode(depth){
+
+        return getDepthNode.call(this , depth , 'last') ;
+    }
+
+    getParentNode(depth){
+
+        return getDepthNode.call(this , depth , 'parent') ;
+    }
+
+    get previousSiblingNode(){
+
+        return getSiblingNode.call(this , 'previous') ;
+    }
+
+    get nextSiblingNode(){
+
+        return getSiblingNode.call(this , 'next') ;
+    }
+
     get expanded(){
 
         return this.get('expanded') ;
@@ -136,10 +178,7 @@
             store
         } = me ;
 
-        if(store){
-
-            store.insertNodes(store.indexOf(me.lastLeafNode || me) + 1 , node) ;
-        }
+        store.insertNodes(store.indexOf(me.lastLeafNode || me) + 1 , node) ;
     }
 
     get selected(){
@@ -155,11 +194,20 @@
             store
         } = me;
 
-        if(selected){
+        if(!selected){
 
-            store.each(node => node.deselect()) ;
+            let {
+                previousSelectedNode
+            } = store ;
+
+            if(previousSelectedNode){
+
+                previousSelectedNode.deselect() ;
+            }
 
             me.set('selected' , true) ;
+
+            store.previousSelectedNode = me ;
         }
     }
 
@@ -175,7 +223,7 @@
          store
        } = this ;
 
-       if(store && childNodes.includes(existNode)){
+       if(childNodes.includes(existNode)){
 
             store.insert(store.indexOf(existNode) , node) ;
        }
@@ -187,10 +235,8 @@
              store
         } = this ;
 
-        if(store){
-
-            store.removeNodes(node) ;
-        }
+        store.removeNodes(node) ;
+        
     }
 
     expand(){
@@ -202,7 +248,7 @@
             store
         } = me ;
 
-        if(store && !expanded){
+        if(!expanded){
 
             store.insertNodes(store.indexOf(me) + 1 , childNodes) ;
         }
@@ -216,10 +262,83 @@
             store
         } = this ;
 
-        if(store && expanded){
+        if(expanded){
 
             store.removeNodes(childNodes) ;
         }
+    }
+ }
+
+ function getDepthNode(depth , property){
+
+    let node = this ;
+
+    for(let i = 0 ; i < depth ; i ++){
+
+        let depthNode ;
+
+        switch(property){
+
+            case 'first':
+
+                depthNode = node.firstChildNode ;
+
+                break ;
+
+            case 'last':
+
+                depthNode = node.lastChildNode ;
+
+                break ;
+
+            case 'parent':
+
+                depthNode = node.parentNode ;
+        }
+
+        if(depthNode){
+
+            node = depthNode ;
+        
+        }else{
+
+            node = undefined ;
+
+            break ;
+        }
+    }
+
+    return node ;
+ }
+
+ function getSiblingNode(property){
+
+    let me = this,
+        {
+            parentNode
+        } = me ;
+
+    if(parentNode){
+
+        let {
+            childNodes
+        } = parentNode,
+        index = childNodes.indexOf(me);
+
+        switch(property){
+
+            case 'next':
+
+                index ++ ;
+
+                break ;
+
+            case 'previous':
+
+                index -- ;
+        }
+
+        return childNodes[index] ;
     }
  }
 
