@@ -13,6 +13,14 @@
 
  class main extends Model{
 
+    syncSize(width , height){
+
+        this.setSize({
+            width,
+            height
+        }) ;
+    }
+
     static get fieldConfigurations(){
 
         return [
@@ -21,7 +29,9 @@
             {
                 name:'expanded',
                 defaultValue:true
-            }
+            },
+            'width',
+            'height'
         ];
     }
 
@@ -75,28 +85,12 @@
 
     get firstChildNode(){
 
-        let {
-            isLeaf,
-            childNodes
-        } = this ;
-
-        if(!isLeaf){
-
-            return childNodes[0] ;
-        }
+       return getChildNode('first') ;
     }
 
     get lastChildNode(){
 
-        let {
-            isLeaf,
-            childNodes
-        } = this ;
-
-        if(!isLeaf){
-
-            return childNodes[childNodes.length - 1] ;
-        }
+        return getChildNode('last') ;
     }
 
     get descendantNodes(){
@@ -104,7 +98,7 @@
         let me = this,
         {
             childNodes
-        } = this,
+        } = me,
         result = [];
 
         for(let childNode of childNodes){
@@ -164,6 +158,28 @@
         }
 
         me.fireEvent('removechild' , removeNodes) ;
+    }
+ }
+
+ function getChildNode(property){
+
+    let {
+        isLeaf,
+        childNodes
+    } = this ;
+
+    if(!isLeaf){
+
+        switch(property){
+
+            case 'first':
+
+                return childNodes[0] ;
+
+            case 'last':
+
+                return childNodes[childNodes.length - 1] ;
+        }
     }
  }
 

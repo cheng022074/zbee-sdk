@@ -484,9 +484,11 @@
 
  store.each(({
      id,
-     expanded
+     expanded,
+     width,
+     height
  }) =>{
 
-    console.log(id , expanded) ;
+    console.log(id , expanded , width , height) ;
 
  }) ;

@@ -30,7 +30,12 @@
  */
 
  const createConvertFn = mapping => data => data[mapping],
-       defaultSetOrGetFn = data => data,
+       defaultGetFn = data => data,
+       defaultEqualsFn = (value , oldValue) => value !== oldValue,
+       defaultSetFn = function(value , name){
+
+            this.data[name] = value ;
+       },
        {
            assign,
            keys
@@ -204,16 +209,16 @@
         
                 if(field){
         
-                    let value = field.set.call(me , values[name]) ;
+                    let oldValue = values[name];
 
-                    if(isDefined(value)){
+                    if(field.equals.call(me , value , oldValue)){
 
-                        data[name] = value ;
+                        field.set.call(me , value , name) ;
+
+                        me.fireEvent('update' , name , value , oldValue) ;
                     }
                 }
             }
-
-            
         }
     }
 
@@ -263,8 +268,9 @@
                 fieldConfig = {
                     name:fieldConfig,
                     convert:createConvertFn(fieldConfig),
-                    get:defaultSetOrGetFn,
-                    set:defaultSetOrGetFn
+                    get:defaultGetFn,
+                    equals:defaultEqualsFn,
+                    set:defaultSetFn
                 } ;
 
             }else if(isObject(fieldConfig)){
@@ -273,8 +279,9 @@
                     name,
                     convert,
                     mapping,
-                    get = defaultSetOrGetFn,
-                    set = defaultSetOrGetFn,
+                    get = defaultGetFn,
+                    equals = defaultEqualsFn,
+                    set = defaultSetFn,
                     defaultValue,
                     ...otherFieldConfig
                 } = fieldConfig ;

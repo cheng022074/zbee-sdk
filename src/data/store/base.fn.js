@@ -45,7 +45,6 @@ class main extends mixins({
         
         }
 
-
         if(model){
 
             model = get(model) ;
