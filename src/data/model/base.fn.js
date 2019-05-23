@@ -98,7 +98,12 @@
 
     bindStore(store){
 
-        this.store = store ;
+        let me = this ;
+
+        if(!me.hasOwnProperty('store')){
+
+            me.store = store ;
+        }
     }
 
     unbindStore(){

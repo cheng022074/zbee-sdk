@@ -2,6 +2,8 @@
 /**
  *
  * 触发事件
+ * 
+ * @import is.array
  *
  * @param {string} event 事件名称
  *
