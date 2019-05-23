@@ -29,9 +29,27 @@
             {
                 name:'expanded',
                 defaultValue:true
-            },
-            'width',
-            'height'
+            },{
+                name:'width',
+                persistent:true,
+                defaultValue:0
+            },{
+                name:'height',
+                persistent:true,
+                defaultValue:0
+            },{
+                name:'x',
+                persistent:true,
+                defaultValue:0
+            },{
+                name:'y',
+                persistent:true,
+                defaultValue:0
+            },{
+                name:'selected',
+                persistent:true,
+                defaultValue:false
+            }
         ];
     }
 
@@ -122,6 +140,16 @@
 
             store.insertNodes(store.indexOf(me.lastLeafNode || me) + 1 , node) ;
         }
+    }
+
+    select(){
+
+        
+    }
+
+    deselect(){
+
+
     }
 
     insertBefore(node , existNode){

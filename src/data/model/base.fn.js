@@ -268,6 +268,7 @@
                 fieldConfig = {
                     name:fieldConfig,
                     convert:createConvertFn(fieldConfig),
+                    persistent:false,
                     get:defaultGetFn,
                     equals:defaultEqualsFn,
                     set:defaultSetFn
@@ -279,6 +280,7 @@
                     name,
                     convert,
                     mapping,
+                    persistent = false,
                     get = defaultGetFn,
                     equals = defaultEqualsFn,
                     set = defaultSetFn,
@@ -311,6 +313,8 @@
                     convert,
                     get,
                     set,
+                    persistent,
+                    equals,
                     ...otherFieldConfig
                 } ;
             }
@@ -406,6 +410,27 @@
         me.fields = innerFields ;
 
         me.names = names ;
+    }
+
+    get remotePersistentNames(){
+
+        let {
+            fields
+        } = this,
+        names = [];
+
+        for(let {
+            name,
+            persistent
+        } of fields){
+
+            if(persistent !== true){
+
+                names.push(name) ;
+            }
+        }
+
+        return names ;
     }
 
     getField(name){

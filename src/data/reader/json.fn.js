@@ -87,7 +87,7 @@
  }
 
  function generate_get_field_data({
-    names
+   remotePersistentNames:names
  }){
 
    let result = [] ;
