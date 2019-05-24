@@ -195,7 +195,6 @@
 
             let me = this,
             {
-                data,
                 ZBEE_CURRENT_CLASS
             } = me,
             {
