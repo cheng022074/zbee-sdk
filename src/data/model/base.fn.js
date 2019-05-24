@@ -205,11 +205,12 @@
 
             for(let name of names){
 
-                field = fields.getField(name);
+                let field = fields.getField(name);
         
                 if(field){
         
-                    let oldValue = values[name];
+                    let value = values[name],
+                        oldValue = me.get(name);
 
                     if(field.equals.call(me , value , oldValue)){
 

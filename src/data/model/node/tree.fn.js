@@ -9,13 +9,20 @@
  * 
  * @import remove from array.remove
  * 
+ * @import region from mixin.region
+ * 
  * @param {mixed} data 数据
  * 
  * @class
  * 
  */
 
- class main extends Model{
+ class main extends mixins({
+     extend:Model,
+     mixins:[
+        region
+     ]
+ }){
 
     syncSize(width , height){
 
@@ -173,6 +180,7 @@
 
         return getChildNodes.call(this).length === 0 ;
     }
+
 
     get regionHeight(){
 
@@ -652,7 +660,7 @@
      * 隐藏
      * 
      */
-    hidden(){
+    hide(){
 
         doHidden.call(this , true) ;
     }
@@ -660,7 +668,9 @@
     layout(){
 
         let {
-            childNodes
+            childNodes,
+            x,
+            y
         } = this,
         height = 0;
 
@@ -670,6 +680,8 @@
 
             height += nodeHeight ;
         }
+
+        let startY = y + height ;
     }
  }
 

@@ -1,0 +1,8 @@
+{
+    "mixin":true,
+    "constructor":false,
+    "methods":[{
+        "name":"getAnchorXY",
+        "impl":".region.xy.anchor"
+    }]
+}

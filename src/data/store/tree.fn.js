@@ -36,6 +36,7 @@
                     ];
                 }
             }) ;
+
         }
 
         super({
@@ -151,6 +152,9 @@
 
     }else{
 
-        node.hide() ;
+        for(let childNode of childNodes){
+
+            childNode.hide() ;
+        }
     }
  }
