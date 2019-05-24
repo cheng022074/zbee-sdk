@@ -87,16 +87,16 @@
  }
 
  function generate_get_field_data({
-   remotePersistentNames:names
+   names
  }){
 
    let result = [] ;
 
    for(let name of names){
 
-      result.push(`item.${name} = converts.${name}(currentItem);`) ;
+      result.push(`item['${name}'] = converts['${name}'](currentItem);`) ;
 
-      result.push(`if(isEmpty(item.${name})){
+      result.push(`if(isEmpty(item['${name}'])){
 
          delete item.${name};
       

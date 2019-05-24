@@ -516,6 +516,11 @@
         }
     }
 
+    /**
+     * 
+     * 选择节点
+     * 
+     */
     select(){
 
         let me = this,
@@ -540,12 +545,26 @@
             store.previousSelectedNode = me ;
         }
     }
-
+    /**
+     * 
+     * 取消选择
+     * 
+     */
     deselect(){
 
         this.set('selected' , false) ;
     }
 
+    /**
+     * 
+     * 插入
+     * 
+     * @param {data.model.node.Tree} node
+     * 
+     * @param {data.model.node.Tree} existNode
+     * 
+     *  
+     */
     insertBefore(node , existNode){
 
        let {
@@ -561,6 +580,13 @@
        }
     }
 
+    /**
+     * 
+     * 删除
+     * 
+     * @param {data.model.node.Tree} node 节点
+     * 
+     */
     removeChild(node){
 
         let {
@@ -573,6 +599,11 @@
         remove(childNodes , node) ;
     }
 
+    /**
+     * 
+     * 展开
+     * 
+     */
     expand(){
 
         let me = this,
@@ -588,6 +619,11 @@
         }
     }
 
+    /**
+     * 
+     * 收起
+     * 
+     */
     collapse(){
 
         let {
@@ -604,7 +640,7 @@
 
     layout(){
 
-
+        
     }
  }
 

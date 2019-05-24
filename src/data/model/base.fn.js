@@ -268,7 +268,6 @@
                 fieldConfig = {
                     name:fieldConfig,
                     convert:createConvertFn(fieldConfig),
-                    persistent:false,
                     get:defaultGetFn,
                     equals:defaultEqualsFn,
                     set:defaultSetFn
@@ -288,24 +287,31 @@
                     ...otherFieldConfig
                 } = fieldConfig ;
 
-                if(mapping){
+                if(persistent){
 
-                    convert = createConvertFn(mapping) ;
-                }
+                    convert = () => defaultValue ;
 
-                convert = convert || createConvertFn(name) ;
+                }else{
 
-                if(isDefined(defaultValue)){
+                    if(mapping){
 
-                    let oldConvert = convert;
+                        convert = createConvertFn(mapping) ;
+                    }
 
-                    convert = (data) => {
+                    convert = convert || createConvertFn(name) ;
 
-                        let value = oldConvert(data) ;
-                        
-                        return isDefined(value) ? value : defaultValue ;
-
-                    } ;
+                    if(isDefined(defaultValue)){
+    
+                        let oldConvert = convert;
+    
+                        convert = (data) => {
+    
+                            let value = oldConvert(data) ;
+                            
+                            return isDefined(value) ? value : defaultValue ;
+    
+                        } ;
+                    }
                 }
 
                 fieldConfig = {
@@ -313,7 +319,6 @@
                     convert,
                     get,
                     set,
-                    persistent,
                     equals,
                     ...otherFieldConfig
                 } ;
@@ -410,27 +415,6 @@
         me.fields = innerFields ;
 
         me.names = names ;
-    }
-
-    get remotePersistentNames(){
-
-        let {
-            fields
-        } = this,
-        names = [];
-
-        for(let {
-            name,
-            persistent
-        } of fields){
-
-            if(persistent !== true){
-
-                names.push(name) ;
-            }
-        }
-
-        return names ;
     }
 
     getField(name){
