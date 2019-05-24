@@ -67,7 +67,11 @@
                 
                 doReorder(node) ;
 
-                doRemove(node) ;
+                doHide(node) ;
+
+                this.rootNode = node ;
+
+                break ;
             }
         }
     }
@@ -122,10 +126,9 @@
 
  }
 
- function doRemove(node){
+ function doHide(node){
 
     let {
-        store,
         childNodes
     } = node ;
 
@@ -133,11 +136,11 @@
 
         for(let childNode of childNodes){
 
-            doRemove(childNode) ;
+            doHide(childNode) ;
         }
 
     }else{
 
-        store.removeNodes(childNodes) ;
+        node.hide() ;
     }
  }
