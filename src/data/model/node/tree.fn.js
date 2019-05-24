@@ -19,7 +19,7 @@
 
     syncSize(width , height){
 
-        this.setSize({
+        this.set({
             width,
             height
         }) ;
@@ -107,7 +107,7 @@
      */
     get x(){
 
-        return getRegion.call(this , 'x' , NaN) ;
+        return this.get('x') ;
     }
 
     /**
@@ -119,7 +119,7 @@
      */
     get y(){
 
-        return getRegion.call(this , 'y' , NaN) ;
+        return this.get('y');
     }
 
     /**
@@ -131,7 +131,9 @@
      */
     get width(){
 
-      return getRegion.call(this , 'width') ;
+        let me = this ;
+
+        return me.get('width') + me.get('margin-right') ;
     }
 
     /**
@@ -143,7 +145,9 @@
      */
     get height(){
 
-        return getRegion.call(this , 'height') ;
+        let me = this ;
+
+        return me.get('height') + me.get('margin-bottom') ;
     }
 
     /**
@@ -167,18 +171,55 @@
      */
     get isLeaf(){
 
+        return getChildNodes.call(this).length === 0 ;
+    }
+
+    get regionHeight(){
+
         let me = this,
         {
-            expanded,
+            height,
+            leafNodes
+        } = me,
+        countHeight = 0 ;
+
+        if(leafNodes.length){
+
+            for(let {
+                height
+            } of leafNodes){
+    
+                countHeight += height ;
+            }
+
+            return height; 
+        }
+
+        return countHeight ;
+    }
+
+    get leafNodes(){
+
+        let me = this,
+        {
             childNodes
         } = me ;
 
-        if(!expanded){
+        if(childNodes.length === 0){
 
-            return true ;
+            return [
+                me
+            ] ;
         }
 
-        return childNodes.length === 0 ;
+        let nodes = [];
+
+        for(let childNode of childNodes){
+
+            nodes.push(...childNode.leafNodes) ;
+        }
+
+        return nodes ;
     }
 
     /**
@@ -618,7 +659,17 @@
 
     layout(){
 
+        let {
+            childNodes
+        } = this,
+        height = 0;
 
+        for(let {
+            regionHeight:nodeHeight
+        } of childNodes){
+
+            height += nodeHeight ;
+        }
     }
  }
 
@@ -877,11 +928,10 @@
  function getChildNode(property){
 
     let {
-        isLeaf,
         childNodes
     } = this ;
 
-    if(!isLeaf){
+    if(childNodes.length){
 
         switch(property){
 

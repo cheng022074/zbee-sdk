@@ -20,6 +20,7 @@
 
     constructor({
         fields,
+        rootConfig,
         ...options
     }){
 
@@ -43,6 +44,8 @@
         }) ;
 
         let me = this ;
+
+        me.rootConfig = rootConfig || {} ;
 
         me.on('load' , 'onLoad' , me , {
             once:true,
@@ -69,7 +72,14 @@
 
                 doHide(node) ;
 
-                this.rootNode = node ;
+                let me = this,
+                {
+                    rootConfig
+                } = me ;
+
+                me.rootNode = node ;
+
+                node.set(rootConfig) ;
 
                 break ;
             }
