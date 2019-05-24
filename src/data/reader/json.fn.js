@@ -98,7 +98,7 @@
 
       result.push(`if(isEmpty(item['${name}'])){
 
-         delete item.${name};
+         delete item['${name}'];
       
       }`) ;
    }

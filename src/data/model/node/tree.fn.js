@@ -32,6 +32,7 @@
             'parentId',
             {
                 name:'expanded',
+                persistent:true,
                 defaultValue:true
             },{
                 name:'width',
@@ -61,6 +62,10 @@
                 name:'margin-right',
                 persistent:true,
                 defaultValue:0
+            },{
+                name:'hidden',
+                persistent:true,
+                defaultValue:false
             }
         ];
     }
@@ -88,6 +93,11 @@
         return depth ;
     }
 
+    get hidden(){
+
+        return this.get('hidden') ;
+    }
+
     /**
      * 
      * 获得横坐标
@@ -97,7 +107,7 @@
      */
     get x(){
 
-        return this.get('x') ;
+        return getRegion.call(this , 'x' , NaN) ;
     }
 
     /**
@@ -109,7 +119,7 @@
      */
     get y(){
 
-        return this.get('y') ;
+        return getRegion.call(this , 'y' , NaN) ;
     }
 
     /**
@@ -121,7 +131,7 @@
      */
     get width(){
 
-        return this.get('width') ;
+      return getRegion.call(this , 'width') ;
     }
 
     /**
@@ -133,7 +143,7 @@
      */
     get height(){
 
-        return this.get('height') ;
+        return getRegion.call(this , 'height') ;
     }
 
     /**
@@ -157,97 +167,18 @@
      */
     get isLeaf(){
 
-        return this.childNodes.length === 0 ;
-    }
-
-    /**
-     * 
-     * 获得指定深度的所有节点
-     * 
-     * @param {number} depth 深度
-     * 
-     * @return {array} 节点列表
-     *  
-     */
-    getDepthNodes(depth){
-
-        let depthNodes = [
-                this
-            ];
-
-        for(let i = 0 ; i < depth ; i ++){
-
-           let nodes = [] ;
-
-           for(let {
+        let me = this,
+        {
+            expanded,
             childNodes
-           } of depthNodes){
+        } = me ;
 
-                nodes.push(...childNodes) ;
-           }
+        if(!expanded){
 
-           depthNodes = nodes ;
-
-           if(depthNodes.length === 0){
-
-                break ;
-           }
+            return true ;
         }
 
-        return depthNodes ;
-    }
-
-    /**
-     * 
-     * 获得最深的节点
-     * 
-     * @return {data.model.node.Tree} 节点
-     * 
-     */
-    get maxDepthNode(){
-
-        let depthNodes = [
-            this
-        ];
-
-        while(true){
-
-            let nodes = [] ;
-
-            for(let {
-                childNodes
-            } of depthNodes){
-
-                nodes.push(...childNodes) ;
-            }
-
-            if(nodes.length === 0){
-
-                let maxDepthNode,
-                    maxDepth;
-
-                for(let depthNode of depthNodes){
-
-                    let {
-                        depth
-                    }  = depthNode ;
-
-                    if(!maxDepthNode || depth > maxDepth){
-
-                        maxDepthNode = depthNode ;
-
-                        maxDepth = depth ;
-                    
-                    }
-                }
-
-                return maxDepthNode ;
-
-            }else{
-
-                depthNodes = nodes ;
-            }
-        }
+        return childNodes.length === 0 ;
     }
 
     /**
@@ -351,20 +282,17 @@
      */
     get childNodes(){
 
-        let me = this;
+       let me = this,
+       {
+           expanded
+       } = me ;
 
-        if(!me.hasOwnProperty('$childNodes')){
+       if(!expanded){
 
-            let {
-                store,
-                id
-            } = me ;
+            return [] ;
+       }
 
-            me.$childNodes = store.findRecords('parentId' , id) ;
-        
-        }
-
-        return me.$childNodes ;
+       return getChildNodes.call(me) ;
     }
      /**
      * 
@@ -437,26 +365,6 @@
         return result ;
     }
 
-    /**
-     * 
-     * 添加子节点
-     * 
-     * @param {data.model.node.} node
-     * 
-     */
-    appendChild(node){
-
-        let me = this,
-        {
-            store,
-            childNodes
-        } = me ;
-
-        store.insertNodes(store.indexOf(me.lastLeafNode || me) + 1 , node) ;
-
-        childNodes.push(node) ;
-    }
-
     get selected(){
 
         return this.get('selected') ;
@@ -485,6 +393,11 @@
         }
     }
 
+    /**
+     * 
+     * 往右移动
+     * 
+     */
     right(){
 
         let me = this,
@@ -498,7 +411,7 @@
         
         }else{
 
-            let upNode = getSubNode.call(this  , 'up');
+            let upNode = getSubNode.call(me  , 'up');
 
             if(upNode){
 
@@ -507,7 +420,7 @@
                 return ;
             }
 
-            let downNode = getSubNode.call(this , 'down');
+            let downNode = getSubNode.call(me , 'down');
 
             if(downNode){
 
@@ -557,6 +470,32 @@
 
     /**
      * 
+     * 添加子节点
+     * 
+     * @param {data.model.node.} node
+     * 
+     */
+    appendChild(node){
+
+        let me = this,
+        {
+            store,
+            expanded
+        } = me,
+        childNodes = getChildNodes.call(me);
+  
+        if(!expanded){
+
+            node.hide() ;
+        }
+
+        store.insertNodes(store.indexOf(me.lastLeafNode || me) + 1 , node) ;
+
+        childNodes.push(node) ;
+    }
+
+    /**
+     * 
      * 插入
      * 
      * @param {data.model.node.Tree} node
@@ -568,11 +507,17 @@
     insertBefore(node , existNode){
 
        let {
-         childNodes,
-         store
-       } = this ;
+         store,
+         expanded
+       } = this,
+       childNodes = getChildNodes.call(me);
 
        if(childNodes.includes(existNode)){
+
+            if(!expanded){
+
+                node.hide() ;
+            }
 
             store.insert(store.indexOf(existNode) , node) ;
 
@@ -608,14 +553,21 @@
 
         let me = this,
         {
-            expanded,
-            childNodes,
-            store
+            expanded
         } = me ;
 
         if(!expanded){
 
-            store.insertNodes(store.indexOf(me) + 1 , childNodes) ;
+            me.set('expanded' , true) ;
+
+            let {
+                childNodes
+            } = me ;
+
+            for(let childNode of childNodes){
+
+                childNode.show() ;
+            }
         }
     }
 
@@ -626,29 +578,104 @@
      */
     collapse(){
 
-        let {
+        let me = this,
+        {
             expanded,
-            childNodes,
-            store
-        } = this ;
+            childNodes
+        } = me ;
 
         if(expanded){
 
-            store.removeNodes(childNodes) ;
+            for(let childNode of childNodes){
+
+                childNode.hide() ;
+            }
+
+            me.set('expanded' , false) ;
         }
+    }
+
+    /**
+     * 
+     * 显示
+     * 
+     */
+    show(){
+
+        doHidden.call(this , false) ;
+        
+    }
+
+    /**
+     * 
+     * 隐藏
+     * 
+     */
+    hidden(){
+
+        doHidden.call(this , true) ;
     }
 
     layout(){
 
-        
+
     }
+ }
+
+ function doHidden(value){
+
+    let me = this,
+        {
+            childNodes
+        } = me;
+
+    me.set('hidden' , value) ;
+
+    for(let childNode of childNodes){
+
+        childNode.show() ;
+    }
+ }
+
+ function getChildNodes(){
+
+    let me = this;
+
+    if(!me.hasOwnProperty('$childNodes')){
+
+        let {
+            store,
+            id
+        } = me ;
+
+        me.$childNodes = store.findRecords('parentId' , id) ;
+    
+    }
+
+    return me.$childNodes ;
+ }
+
+ function getRegion(property , defaultValue = 0){
+
+    let me = this,
+    {
+        hidden
+    } = me ;
+
+    if(hidden){
+
+        return defaultValue;
+    }
+
+    return me.get(property) ;
  }
 
  function getDepthNode(depth , isStrict , property){
 
-    let node = this ;
+    let node = this,
+        i = 0;
 
-    for(let i = 0 ; i < depth ; i ++){
+    for(; i < depth ; i ++){
 
         let depthNode ;
 
@@ -677,16 +704,15 @@
         
         }else{
 
-            if(isStrict){
-
-                node = undefined ;
-            }
-
             break ;
         }
     }
 
-    return node ;
+    if(i === depth || isStrict !== true){
+
+        return node ;
+    
+    }
  }
 
  function getSiblingNode(property){
