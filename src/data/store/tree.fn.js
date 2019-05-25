@@ -20,6 +20,7 @@
 
     constructor({
         fields,
+        margin = {}, 
         rootConfig,
         ...options
     }){
@@ -47,6 +48,15 @@
         let me = this ;
 
         me.rootConfig = rootConfig || {} ;
+
+        let {
+            bottom:marginBottom = 0,
+            right:marginRight = 0
+        } = margin ;
+
+        me.marginBottom = marginBottom ;
+
+        me.marginRight = marginRight ;
 
         me.on('load' , 'onLoad' , me , {
             once:true,
@@ -123,6 +133,22 @@
         removeNodes.push(...me.remove(nodes , false)) ;
 
         me.fireEvent('remove' , removeNodes) ;
+    }
+
+    layout(){
+
+        let me = this,
+        {
+            rootNode,
+            records
+        } = me ;
+
+        if(rootNode){
+
+            rootNode.layout() ;
+
+            me.fireEvent('layout' , records) ;
+        }
     }
  }
 

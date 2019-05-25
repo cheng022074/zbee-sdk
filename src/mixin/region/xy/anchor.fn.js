@@ -18,6 +18,13 @@ let {
 
 switch(anchor){
 
+   case 'c':
+
+        return {
+            x:x + width / 2,
+            y:y + height / 2
+        } ;
+
    case 'tl':
 
        return {

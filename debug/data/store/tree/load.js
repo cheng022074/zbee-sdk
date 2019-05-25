@@ -37,26 +37,42 @@
     }]
  }) ;
 
- store.load([{
-     f_id:'3671',
-     f_pid:'0'
- },{
-    f_id:'4116',
+ 
+
+ store.addListeners({
+    load(store , records){
+
+        for(let record of records){
+
+            record.syncSize(100 , 100) ;
+        }
+    },
+    layout(store , records){
+
+        for(let {
+            id,
+            x,
+            y,
+            width,
+            height
+        } of records){
+    
+            console.log(id , x , y , width , height) ;
+        }
+    
+    }
+ }) ;
+
+store.load([{
+    f_id:'3671',
+    f_pid:'0'
+},{
+   f_id:'4116',
+   f_pid:'3671'
+},{
+    f_id:'4117',
     f_pid:'3671'
  }]) ;
 
- store.each(record =>{
 
-    record.syncSize(128 , 345) ;
-
-    let {
-        id,
-        x,
-        y,
-        width,
-        height
-    } = record ;
-
-    console.log(id , x , y , width , height) ;
-
- }) ;
+store.layout() ;

@@ -62,14 +62,6 @@
                 persistent:true,
                 defaultValue:false
             },{
-                name:'margin-bottom',
-                persistent:true,
-                defaultValue:0
-            },{
-                name:'margin-right',
-                persistent:true,
-                defaultValue:0
-            },{
                 name:'hidden',
                 persistent:true,
                 defaultValue:false
@@ -138,9 +130,7 @@
      */
     get width(){
 
-        let me = this ;
-
-        return me.get('width') + me.get('margin-right') ;
+        return this.get('width');
     }
 
     /**
@@ -152,9 +142,7 @@
      */
     get height(){
 
-        let me = this ;
-
-        return me.get('height') + me.get('margin-bottom') ;
+        return this.get('height') ;
     }
 
     /**
@@ -187,47 +175,30 @@
         let me = this,
         {
             height,
-            leafNodes
+            childNodes,
+            store,
         } = me,
-        countHeight = 0 ;
+        countHeight = 0,
+        {
+            marginBottom
+        } = store,
+        {
+            length
+        } = childNodes;
 
-        if(leafNodes.length){
+        if(length){
 
             for(let {
-                height
-            } of leafNodes){
+                regionHeight
+            } of childNodes){
     
-                countHeight += height ;
+                countHeight += regionHeight ;
             }
 
-            return height; 
+            return countHeight + marginBottom * (length - 1); 
         }
 
-        return countHeight ;
-    }
-
-    get leafNodes(){
-
-        let me = this,
-        {
-            childNodes
-        } = me ;
-
-        if(childNodes.length === 0){
-
-            return [
-                me
-            ] ;
-        }
-
-        let nodes = [];
-
-        for(let childNode of childNodes){
-
-            nodes.push(...childNode.leafNodes) ;
-        }
-
-        return nodes ;
+        return height ;
     }
 
     /**
@@ -667,21 +638,29 @@
 
     layout(){
 
-        let {
-            childNodes,
-            x,
-            y
-        } = this,
-        height = 0;
+        let me = this,
+        {
+            regionHeight,
+            store,
+            childNodes
+        } = me,
+        {
+            marginBottom
+        } = store,
+        {
+            y:centerY
+        } = me.getAnchorXY('c');
 
-        for(let {
-            regionHeight:nodeHeight
-        } of childNodes){
+        let startY = centerY - regionHeight / 2 ;
 
-            height += nodeHeight ;
+        for(let childNode of childNodes){
+
+            childNode.set('y' , startY + childNode.regionHeight / 2 - childNode.height / 2) ;
+
+            startY += childNode.height + marginBottom ;
+
+            childNode.layout() ;
         }
-
-        let startY = y + height ;
     }
  }
 
