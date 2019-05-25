@@ -345,7 +345,7 @@
      */
     get firstChildNode(){
 
-       return getChildNode('first') ;
+       return getChildNode.call(this , 'first') ;
     }
 
     /**
@@ -357,7 +357,7 @@
      */
     get lastChildNode(){
 
-        return getChildNode('last') ;
+        return getChildNode.call(this , 'last') ;
     }
 
     /**
@@ -639,28 +639,63 @@
     layout(){
 
         let me = this,
-        {
+            {
+                childNodes
+            } = me;
+
+        if(childNodes.length === 0){
+
+            return ;
+        }
+
+        let {
             regionHeight,
-            store,
-            childNodes
+            store
         } = me,
         {
-            marginBottom
+            marginBottom,
+            marginRight
         } = store,
         {
             y:centerY
-        } = me.getAnchorXY('c');
+        } = me.getAnchorXY('c'),
+        {
+            x:rightX
+        } = me.getAnchorXY('r');
 
-        let startY = centerY - regionHeight / 2 ;
+        let startY = centerY - regionHeight / 2,
+            x = rightX + marginRight;
 
         for(let childNode of childNodes){
 
-            childNode.set('y' , startY + childNode.regionHeight / 2 - childNode.height / 2) ;
+            let {
+                regionHeight
+            } = childNode ;
 
-            startY += childNode.height + marginBottom ;
+            childNode.set(childNode.setAnchorXY({
+                x,
+                y:startY + regionHeight / 2
+            } , 'c')) ;
+
+            startY += regionHeight + marginBottom ;
 
             childNode.layout() ;
         }
+
+        let {
+            firstChildNode,
+            lastChildNode
+        } = me,
+        {
+            y:topY
+        } = firstChildNode.getAnchorXY('t'),
+        {
+            y:bottomY
+        } = lastChildNode.getAnchorXY('b');
+
+        me.set(me.setAnchorXY({
+            y:(bottomY - topY) / 2
+        })) ;
     }
  }
 

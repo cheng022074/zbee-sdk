@@ -3,6 +3,9 @@
     "constructor":false,
     "methods":[{
         "name":"getAnchorXY",
-        "impl":".region.xy.anchor"
+        "impl":".region.xy.anchor.get"
+    },{
+        "name":"setAnchorXY",
+        "impl":".region.xy.anchor.set"
     }]
 }
