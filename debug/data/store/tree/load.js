@@ -4,18 +4,16 @@
  * 
  * 初始化脑图中的所有节点都是展开状态
  * 
- * @import create from data.store.create
- * 
- * @import Model from data.model.node.tree value
- * 
- * @import define from class.define
- * 
  * @import data.store.tree
  * 
  */
 
  store = create({
      type:'tree',
+     margin:{
+        right:10,
+        bottom:10
+    },
      rootConfig:{
         x:100,
         y:100
@@ -26,14 +24,6 @@
     },{
        name:'parentId',
        mapping:'f_pid'
-    },{
-        name:'margin-bottom',
-        persistent:true,
-        defaultValue:10
-    },{
-        name:'margin-right',
-        persistent:true,
-        defaultValue:10
     }]
  }) ;
 

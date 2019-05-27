@@ -3,6 +3,7 @@
  * 
  * 计算当前区域锚点坐标
  * 
+ * @import is.defined
  * 
  * @param {object} xy 设置坐标
  * 
@@ -19,51 +20,66 @@ let {
     height
 } = this,
 {
-    x = originX,
-    y = originY
-} = xy;
+    x,
+    y
+} = xy,
+defaultXY = {};
+
+if(!isDefined(x)){
+
+    defaultXY.x = originX ;
+}
+
+if(!isDefined(y)){
+
+    defaultXY.y = originY ;
+}
+
+const {
+    assign
+} = Object ;
 
 switch(anchor){
 
    case 'c':
 
-        return {
+        return assign({
             x:x - width / 2,
             y:y - height / 2
-        } ;
+        } , defaultXY) ;
 
    case 'tl':
 
-       return {
+       return assign({
            x,
            y
-       } ;
+       } , defaultXY) ;
 
    case 'r':
 
-       return {
+       return assign({
            x:x - width,
            y:y - height / 2
-       } ;
+       } , defaultXY) ;
 
    case 'l':
 
-       return {
+       return assign({
            x,
            y:y - height / 2
-       } ;
+       } , defaultXY) ;
 
    case 't':
 
-       return {
+       return assign({
            x:x - width / 2,
            y 
-       } ;
+       } , defaultXY) ;
 
    case 'b':
 
-       return {
+       return assign({
            x:x - width / 2,
            y:y - height
-       }
+       } , defaultXY) ;
 }

@@ -1,0 +1,9 @@
+{
+  "classes": [
+    "data.store.create",
+    "data.store.tree"
+  ],
+  "type": "webpack",
+  "memory": false,
+  "compile": false
+}

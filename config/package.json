@@ -65,6 +65,17 @@
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
         ]
     },
+    "mind":{
+        "type":"webpack",
+        "compile":false,
+        "classes":[
+            "data.store.create",
+            "data.store.tree"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
+        ]
+    },
     "event-react":{
         "type":"webpack",
         "transform":false,

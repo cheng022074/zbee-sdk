@@ -51,7 +51,10 @@
 
         for(let childNode of childNodes){
 
-            childNode.move(x , y) ;
+            childNode.move({
+                x:offsetX,
+                y:offsetY
+            }) ;
         }
     }
 
@@ -696,8 +699,9 @@
                 regionHeight
             } = childNode ;
 
+            childNode.set('x' , x) ;
+
             childNode.set(childNode.setAnchorXY({
-                x,
                 y:startY + regionHeight / 2
             } , 'c')) ;
 
@@ -712,28 +716,31 @@
         } = me,
         {
             y:topY
-        } = firstChildNode.getAnchorXY('t'),
+        } = firstChildNode.getAnchorXY('c'),
         {
             y:bottomY
-        } = lastChildNode.getAnchorXY('b'),
-        moveY = (bottomY - topY) / 2;
+        } = lastChildNode.getAnchorXY('c'),
+        moveToY = topY + (bottomY - topY) / 2;
 
         if(isRoot){
 
-            let offsetY = moveY - me.getAnchorXY('c').y ;
+            let offsetY =  -(moveToY - me.getAnchorXY('c').y) ;
 
-            for(let childNode of childNodes){
+            if(offsetY !== 0){
 
-                childNode.move({
-                    y:offsetY
-                }) ;
+                for(let childNode of childNodes){
+
+                    childNode.move({
+                        y:offsetY
+                    }) ;
+                }
             }
 
         }else{
-    
+
             me.set(me.setAnchorXY({
-                y:moveY
-            })) ;
+                y:moveToY
+            } , 'c')) ;
         }
     }
  }
