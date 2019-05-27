@@ -70,7 +70,8 @@
         "compile":false,
         "classes":[
             "data.store.create",
-            "data.store.tree"
+            "data.store.tree",
+            "canvas.draw.line"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"

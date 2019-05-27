@@ -154,12 +154,7 @@
      * @return {number}
      * 
      */
-    get realWidth(){
-
-        return this.get('width');
-    }
-
-    get width(){
+    get layoutWidth(){
 
         let me = this,
         {
@@ -167,7 +162,7 @@
             store
         } = me,
         nodes = store.rootNode.getDepthNodes(depth),
-        maxWidth = me.realWidth;
+        maxWidth = me.width;
 
         for(let {
             realWidth
@@ -180,6 +175,11 @@
         }
 
         return maxWidth ;
+    }
+
+    get width(){
+
+       return this.get('width') ;
     }
 
     /**
@@ -774,7 +774,9 @@
 
         let {
             childCountHeight,
-            store
+            store,
+            x,
+            layoutWidth
         } = me,
         {
             marginBottom,
@@ -782,13 +784,13 @@
         } = store,
         {
             y:centerY
-        } = me.getAnchorXY('c'),
-        {
-            x:rightX
-        } = me.getAnchorXY('r');
+        } = me.getAnchorXY('c');
 
-        let startY = centerY - childCountHeight / 2,
-            x = rightX + marginRight;
+        let startY = centerY - childCountHeight / 2 ;
+        
+        x += layoutWidth + marginRight;
+
+        console.log(layoutWidth , marginRight) ;
 
         for(let childNode of childNodes){
 

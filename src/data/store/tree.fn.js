@@ -179,9 +179,45 @@
 
             rootNode.layout() ;
 
-            me.fireEvent('layout' , records) ;
+            me.fireEvent('layout' , records , lines.call(me , records)) ;
         }
     }
+ }
+
+ function lines(nodes){
+
+    let lines = [],
+    {
+        region
+    } = this;
+
+    for(let node of nodes){
+
+        let {
+            x:startX,
+            y:startY
+        } = node.getAnchorXY('r'),
+        {
+            childNodes
+        } = node;
+
+        for(let childNode of childNodes){
+
+            let {
+                x:endX,
+                y:endY
+            } = childNode.getAnchorXY('l') ;
+
+            lines.push([
+                startX,
+                startY - region.y,
+                endX,
+                endY - region.y
+            ]) ;
+        }
+    }
+
+    return lines ;
  }
 
  function doReorder(node){

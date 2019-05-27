@@ -1,7 +1,8 @@
 {
   "classes": [
     "data.store.create",
-    "data.store.tree"
+    "data.store.tree",
+    "canvas.draw.line"
   ],
   "type": "webpack",
   "memory": false,
