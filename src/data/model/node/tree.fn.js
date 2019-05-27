@@ -790,8 +790,6 @@
         
         x += layoutWidth + marginRight;
 
-        console.log(layoutWidth , marginRight) ;
-
         for(let childNode of childNodes){
 
             let {

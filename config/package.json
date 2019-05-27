@@ -71,7 +71,8 @@
         "classes":[
             "data.store.create",
             "data.store.tree",
-            "canvas.draw.line"
+            "canvas.draw.line",
+            "canvas.draw.line.bezierCurve"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
