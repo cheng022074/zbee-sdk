@@ -32,6 +32,29 @@
         }) ;
     }
 
+    move({
+        x:offsetX = 0,
+        y:offsetY = 0
+    }){
+
+        let me = this,
+        {
+            childNodes,
+            x,
+            y
+        } = me;
+
+        me.set({
+            x:x + offsetX,
+            y:y + offsetY
+        }) ;
+
+        for(let childNode of childNodes){
+
+            childNode.move(x , y) ;
+        }
+    }
+
     static get fieldConfigurations(){
 
         return [
@@ -154,7 +177,7 @@
      */
     get isRoot(){
 
-        return !!this.parentNOde ;
+        return !this.parentNode ;
     }
 
     /**
@@ -640,7 +663,8 @@
 
         let me = this,
             {
-                childNodes
+                childNodes,
+                isRoot
             } = me;
 
         if(childNodes.length === 0){
@@ -691,11 +715,26 @@
         } = firstChildNode.getAnchorXY('t'),
         {
             y:bottomY
-        } = lastChildNode.getAnchorXY('b');
+        } = lastChildNode.getAnchorXY('b'),
+        moveY = (bottomY - topY) / 2;
 
-        me.set(me.setAnchorXY({
-            y:(bottomY - topY) / 2
-        })) ;
+        if(isRoot){
+
+            let offsetY = moveY - me.getAnchorXY('c').y ;
+
+            for(let childNode of childNodes){
+
+                childNode.move({
+                    y:offsetY
+                }) ;
+            }
+
+        }else{
+    
+            me.set(me.setAnchorXY({
+                y:moveY
+            })) ;
+        }
     }
  }
 
