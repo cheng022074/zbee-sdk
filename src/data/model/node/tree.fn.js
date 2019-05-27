@@ -154,9 +154,32 @@
      * @return {number}
      * 
      */
-    get width(){
+    get realWidth(){
 
         return this.get('width');
+    }
+
+    get width(){
+
+        let me = this,
+        {
+            depth,
+            store
+        } = me,
+        nodes = store.rootNode.getDepthNodes(depth),
+        maxWidth = me.realWidth;
+
+        for(let {
+            realWidth
+        } of nodes){
+
+            if(maxWidth < realWidth){
+
+                maxWidth = realWidth ;
+            }
+        }
+
+        return maxWidth ;
     }
 
     /**
@@ -195,24 +218,15 @@
         return getChildNodes.call(this).length === 0 ;
     }
 
+    get childCountHeight(){
 
-    get regionHeight(){
-
-        let me = this,
+        let countHeight = 0,
         {
-            height,
             childNodes,
-            store,
-        } = me,
-        countHeight = 0,
-        {
-            marginBottom
-        } = store,
-        {
-            length
-        } = childNodes;
+            store
+        } = this ;
 
-        if(length){
+        if(childNodes.length){
 
             for(let {
                 regionHeight
@@ -220,11 +234,77 @@
     
                 countHeight += regionHeight ;
             }
-
-            return countHeight + marginBottom * (length - 1); 
+    
+            countHeight += store.marginBottom * (childNodes.length - 1);
+    
+            return countHeight ;
         }
 
-        return height ;
+        return 0 ;
+    }
+
+    /**
+     * 
+     * 包括子节点在内的区域高度
+     * 
+     * @return {number}
+     * 
+     */
+    get regionHeight(){
+
+        let me = this,
+        {
+            height,
+            childCountHeight,
+        } = me ;
+
+        return Math.max(height , childCountHeight) ;
+    }
+
+    getDepthNodes(depth){
+
+        let nodes = [],
+        {
+            childNodes
+        } = this;
+
+        if(depth === 1){
+
+            return childNodes ;
+        }
+
+        depth -- ;
+
+        for(let childNode of childNodes){
+
+            nodes.push(...childNode.getDepthNodes(depth)) ;
+        }
+
+        return nodes ;
+    }
+
+    /**
+     * 
+     * 返回所有子孙节点
+     * 
+     * @param {data.model.node.Tree[]} 节点集合
+     * 
+     */
+    get descendantNodes(){
+
+        let me = this,
+        childNodes = getChildNodes.call(me),
+        result = [];
+
+        for(let childNode of childNodes){
+
+            result.push(childNode) ;
+
+            result.push(...childNode.descendantNodes) ;
+
+        }
+
+        return result ;
     }
 
     /**
@@ -242,6 +322,7 @@
 
         return getDepthNode.call(this , depth , isStrict , 'first') ;
     }
+
     /**
      * 
      * 获得指定深度的最后一个节点
@@ -340,6 +421,37 @@
 
        return getChildNodes.call(me) ;
     }
+
+    /**
+     * 
+     * 所有叶子节点
+     * 
+     */
+    get leafNodes(){
+
+        let node = this,
+            nodes = [],
+            {
+                childNodes
+            } = node;
+
+        if(childNodes.length){
+
+            for(let childNode of childNodes){
+
+                nodes.push(...childNode.leafNodes) ;
+     
+            }
+        
+        }else{
+
+            return [
+                node
+            ] ;
+        }
+
+        return nodes ;
+    }
      /**
      * 
      * 返回第一个叶子节点
@@ -374,6 +486,11 @@
        return getChildNode.call(this , 'first') ;
     }
 
+    get firstDescendantNodes(){
+
+        return getDescendantNodes.call(this , 'firstChildNode') ;
+    }
+
     /**
      * 
      * 返回最后一个子节点
@@ -386,30 +503,11 @@
         return getChildNode.call(this , 'last') ;
     }
 
-    /**
-     * 
-     * 返回所有子孙节点
-     * 
-     * @param {data.model.node.Tree[]} 节点集合
-     * 
-     */
-    get descendantNodes(){
+    get lastDescendantNodes(){
 
-        let me = this,
-        {
-            childNodes
-        } = me,
-        result = [];
-
-        for(let childNode of childNodes){
-
-            result.push(childNode) ;
-
-            result.push(...childNode.descendantNodes) ;
-        }
-
-        return result ;
+        return getDescendantNodes.call(this , 'lastChildNode') ;
     }
+
 
     get selected(){
 
@@ -666,8 +764,7 @@
 
         let me = this,
             {
-                childNodes,
-                isRoot
+                childNodes
             } = me;
 
         if(childNodes.length === 0){
@@ -676,7 +773,7 @@
         }
 
         let {
-            regionHeight,
+            childCountHeight,
             store
         } = me,
         {
@@ -690,7 +787,7 @@
             x:rightX
         } = me.getAnchorXY('r');
 
-        let startY = centerY - regionHeight / 2,
+        let startY = centerY - childCountHeight / 2,
             x = rightX + marginRight;
 
         for(let childNode of childNodes){
@@ -705,42 +802,9 @@
                 y:startY + regionHeight / 2
             } , 'c')) ;
 
-            startY += regionHeight + marginBottom ;
+            startY += regionHeight + marginBottom;
 
             childNode.layout() ;
-        }
-
-        let {
-            firstChildNode,
-            lastChildNode
-        } = me,
-        {
-            y:topY
-        } = firstChildNode.getAnchorXY('c'),
-        {
-            y:bottomY
-        } = lastChildNode.getAnchorXY('c'),
-        moveToY = topY + (bottomY - topY) / 2;
-
-        if(isRoot){
-
-            let offsetY =  -(moveToY - me.getAnchorXY('c').y) ;
-
-            if(offsetY !== 0){
-
-                for(let childNode of childNodes){
-
-                    childNode.move({
-                        y:offsetY
-                    }) ;
-                }
-            }
-
-        }else{
-
-            me.set(me.setAnchorXY({
-                y:moveToY
-            } , 'c')) ;
         }
     }
  }
@@ -995,6 +1059,31 @@
 
         depth ++ ;
     }
+ }
+
+ function getDescendantNodes(property){
+
+    let nodes = [],
+        node = this;
+
+    while(true){
+
+        let childNode = node[property] ;
+
+        if(childNode){
+
+            nodes.push(childNode) ;
+
+            node = childNode ;
+        
+        }else{
+
+            break ;
+        }
+
+    }
+
+    return nodes ;
  }
 
  function getChildNode(property){

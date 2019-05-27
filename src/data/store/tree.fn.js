@@ -135,6 +135,38 @@
         me.fireEvent('remove' , removeNodes) ;
     }
 
+    get region(){
+
+        let {
+            rootNode
+        } = this,
+        {
+            x,
+            firstDescendantNodes
+        } = rootNode,
+        y = 0;
+
+        if(x > 0){
+
+            x = 0 ;
+        }
+
+        for(let {
+            y:nodeY
+        } of firstDescendantNodes){
+
+            if(y > nodeY){
+
+                y = nodeY ;
+            }
+        }
+
+        return {
+            x,
+            y
+        } ;
+    }
+
     layout(){
 
         let me = this,
