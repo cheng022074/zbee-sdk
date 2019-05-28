@@ -22,6 +22,7 @@
         fields,
         margin = {}, 
         rootConfig,
+        depth = Number.MAX_VALUE,
         ...options
     }){
 
@@ -48,6 +49,8 @@
         let me = this ;
 
         me.rootConfig = rootConfig || {} ;
+
+        me.depth = depth ;
 
         let {
             bottom:marginBottom = 0,
@@ -79,18 +82,27 @@
 
             if(!parentNode){
                 
-                doReorder(node) ;
-
-                doHide(node) ;
-
                 let me = this,
                 {
-                    rootConfig
+                    rootConfig,
+                    depth
                 } = me ;
 
                 me.rootNode = node ;
 
                 node.set(rootConfig) ;
+
+                let nodes = node.getDepthNodes(depth) ;
+
+                for(let node of nodes){
+
+                    node.collapse() ;
+                }
+                
+                doReorder(node) ;
+
+                initNodeVisible(node) ;
+
 
                 break ;
             }
@@ -110,7 +122,7 @@
 
  }
 
- function doHide(node){
+ function initNodeVisible(node){
 
     let {
         childNodes
@@ -120,7 +132,7 @@
 
         for(let childNode of childNodes){
 
-            doHide(childNode) ;
+            initNodeVisible(childNode) ;
         }
 
     }else{

@@ -700,6 +700,8 @@
             expanded
         } = me ;
 
+
+
         if(!expanded){
 
             me.set('expanded' , true) ;
@@ -821,7 +823,7 @@
 
     for(let childNode of childNodes){
 
-        childNode.show() ;
+        childNode[value ? 'hide' : 'show']() ;
     }
  }
 

@@ -34,6 +34,11 @@
 
    for(let node of nodes){
 
+        if(node.hidden){
+
+            continue ;
+        }
+
        let {
            x:startX,
            y:startY
