@@ -19,18 +19,20 @@
         rootNode.layout() ;
 
         let {
-            region
+            region,
+            marginRight
         } = me ;
 
-        me.fireEvent('layout' , records , lines(records , region)) ;
+        me.fireEvent('layout' , records , lines(records , region , marginRight)) ;
     }
  }
 
  function lines(nodes , {
     y:regionY
-}){
+} , marginRight){
 
-   let lines = [] ;
+   let lines = [],
+       halfMargin = marginRight / 2 ;
 
    for(let node of nodes){
 
@@ -57,6 +59,10 @@
            lines.push([
                startX,
                startY - regionY,
+               startX + halfMargin,
+               startY - regionY,
+               endX - halfMargin,
+               endY - regionY,
                endX,
                endY - regionY
            ]) ;
