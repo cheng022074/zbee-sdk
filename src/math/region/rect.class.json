@@ -1,9 +1,0 @@
-{
-    "params":[
-        "config"
-    ],
-    "constructor":true,
-    "methods":[
-        "getAnchorXY"
-    ]
-}
