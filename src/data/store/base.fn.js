@@ -3,8 +3,6 @@
  * 
  * 数据存储器
  * 
- * @import observable from mixin.observable
- * 
  * @import get from data.model.get
  * 
  * @import create from data.model.create
@@ -23,11 +21,7 @@
  * 
  */
 
-class main extends mixins({
-    mixins:[
-       observable
-    ]
-}){
+class main{
 
     constructor({
         proxy = {},

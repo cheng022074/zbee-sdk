@@ -100,9 +100,12 @@
     insertNodes(index , nodes){
 
         let me = this,
+            {
+                recordset
+            } = me,
             insertNodes = [];
 
-        nodes = me.add(nodes , false) ;
+        nodes = recordset.add(nodes) ;
 
         for(let node of nodes){
 
@@ -111,7 +114,7 @@
             insertNodes.push(...node.descendantNodes) ;
         }
 
-        me.insert(index , insertNodes , false) ;
+        recordset.insert(index , insertNodes) ;
 
         me.fireEvent('insert' , insertNodes) ;
     }
@@ -121,16 +124,22 @@
         nodes = from(nodes) ;
 
         let me = this,
+            {
+                recordset
+            } = me,
             removeNodes = [] ;
 
-        for(let {
-            descendantNodes
-        } of nodes){
+        for(let node of nodes){
 
-            removeNodes.push(...me.remove(descendantNodes , false)) ;
+            let {
+                descendantNodes
+            } = node ;
+
+            removeNodes.push(...recordset.remove([
+                node,
+                ...descendantNodes
+            ])) ;
         }
-
-        removeNodes.push(...me.remove(nodes , false)) ;
 
         me.fireEvent('remove' , removeNodes) ;
     }

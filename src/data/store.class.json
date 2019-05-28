@@ -1,7 +1,10 @@
 {
     "extend":".store.base",
     "class":true,
-    "constructor":false,
+    "constructor":true,
+    "mixins":[
+        "mixin.observable"
+    ],
     "methods":[
         "add",
         "insert",
