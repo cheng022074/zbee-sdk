@@ -20,6 +20,8 @@
  * 
  * @import is.function
  * 
+ * @import clone from array.clone
+ * 
  * @param {data.Store} store 存储器
  * 
  */
@@ -37,6 +39,27 @@
         me.store = store ;
     }
 
+    /**
+     * 
+     * 转换成数组输出
+     * 
+     * @return {array}
+     * 
+     */
+    toArray(){
+
+        return clone(this.recordData) ;
+    }
+
+    /**
+     * 
+     * 根据编号获得数据记录
+     * 
+     * @param {mixed} id 数据记录编号
+     * 
+     * @return {data.Model} 
+     * 
+     */
     getById(id){
 
         let {
@@ -46,6 +69,15 @@
         return recordMap.get(id) ;
     }
 
+    /**
+     * 
+     * 根据数据记录获得在存储器中的位置
+     * 
+     * @param {data.Model} record 数据记录
+     * 
+     * @return {number} 数据记录位置
+     * 
+     */
     indexOf(record){
 
         let {
@@ -55,6 +87,17 @@
         return recordData.indexOf(record) ;
     }
 
+    /**
+     * 
+     * 查寻数据记录
+     * 
+     * @param {mixed} property 属性名称
+     *  
+     * @param {mixed} [value] 属性值
+     * 
+     * @return {array} 数据记录集合
+     *  
+     */
     findRecords(property , value){
 
         let {

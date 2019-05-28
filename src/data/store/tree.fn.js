@@ -172,8 +172,9 @@
         let me = this,
         {
             rootNode,
-            records
-        } = me ;
+            recordset
+        } = me,
+        records = recordset.toArray();
 
         if(rootNode){
 
