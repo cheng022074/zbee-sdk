@@ -10,26 +10,6 @@
         "insert",
         "remove",
         "load",
-        "clear",
-        {
-            "name":"getById",
-            "impl":".store.get.id"
-        },
-        {
-            "name":"getAt",
-            "impl":".store.get.at"
-        },
-        {
-            "name":"removeAt",
-            "impl":".store.remove.at"
-        },
-        {
-            "name":"removeById",
-            "impl":".store.remove.id"
-        },
-        {
-            "name":"findRecords",
-            "impl":".store.find.records"
-        }
+        "clear"
     ]
 }

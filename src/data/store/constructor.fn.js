@@ -17,6 +17,8 @@
  * 
  * @import createRecordset from data.recordset
  * 
+ * @import link from object.link
+ * 
  * @param {object} config 配置
  * 
  * @param {object} [config.proxy = {}] 数据代理
@@ -83,4 +85,8 @@ me.reader = createReader({
     model
 }) ;
 
-recordset ;
+link(me , recordset , [
+    'indexOf',
+    'findRecords',
+    'getById'
+]) ;
