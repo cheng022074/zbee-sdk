@@ -774,9 +774,7 @@
 
         let {
             childCountHeight,
-            store,
-            x,
-            layoutWidth
+            store
         } = me,
         {
             marginBottom,
@@ -784,11 +782,14 @@
         } = store,
         {
             y:centerY
-        } = me.getAnchorXY('c');
+        } = me.getAnchorXY('c'),
+        {
+            x
+        } = me.getAnchorXY('r');
 
         let startY = centerY - childCountHeight / 2 ;
         
-        x += layoutWidth + marginRight;
+        x += marginRight;
 
         for(let childNode of childNodes){
 

@@ -13,39 +13,19 @@
  * 
  */
 
- records = from(records) ;
- 
  let me = this,
  {
-    records:data,
-    recordMap
- } = me,
- removeRecords = [];
+    recordset
+ } = me;
 
- for(let record of records){
+ records = recordset.remove(records) ;
 
-   let {
-      id
-   } = record ;
+ if(records.length && isFireEvent){
 
-   if(recordMap.has(id)){
-
-      recordMap.delete(id) ;
-  
-      remove(data , record) ;
-  
-      record.unbindStore() ;
-  
-      removeRecords.push(record) ;
-   }
+   me.fireEvent('remove' , records) ;
  }
 
- if(removeRecords.length && isFireEvent){
-
-   me.fireEvent('remove' , removeRecords) ;
- }
-
- return removeRecords ;
+ return records ;
 
 
 

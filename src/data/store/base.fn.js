@@ -17,6 +17,8 @@
  * 
  * @import createReader from data.reader.json
  * 
+ * @import createRecordset from data.recordset
+ * 
  * @class
  * 
  */
@@ -66,9 +68,7 @@ class main extends mixins({
             scope:me
         }) ;
 
-        me.records = [] ;
-
-        me.recordMap = new Map() ;
+        me.recordset = createRecordset(me) ;
 
         if(data){
 
@@ -86,43 +86,31 @@ class main extends mixins({
             me.load() ;
         }
 
-        me.innerReader = createReader({
+        me.reader = createReader({
             model
         }) ;
     }
 
-    onProxyRead(proxy , records){
+    createRecord(data){
+
+        let records = this.reader(data) ;
 
         if(records.length){
 
-            let me = this,
-            {
-                records:data,
-                recordMap
-            } = me;
-
-            for(let record of records){
-
-                let {
-                    id
-                } = record ;
-
-                if(recordMap.has(id)){
-
-                    recordMap.get(id).set(record.data) ;
-
-                }else{
-
-                    data.push(record) ;
-
-                    recordMap.set(id , record) ;
-
-                    record.bindStore(me) ;
-                }
-            }
-
-            me.fireEvent('load' , records) ;
+            return records[0] ;
         }
+    }
+
+    onProxyRead(proxy , records){
+
+        let me = this,
+        {
+            recordset
+        } = me;
+
+        recordset.add(records) ;
+
+        me.fireEvent('load' , records) ;
     }
 
     load(options , isClear = true){
@@ -141,13 +129,10 @@ class main extends mixins({
 
         let me = this,
         {
-            records,
-            recordMap
+            recordset
         } = me ;
 
-        records.length = 0 ;
-
-        recordMap.clear() ;
+        recordset.clear() ;
 
         me.fireEvent('clear') ;
 
