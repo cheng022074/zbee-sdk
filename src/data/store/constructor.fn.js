@@ -61,7 +61,7 @@ me.fireEventDataCacheCount = 1 ;
     scope:me
 }) ;
 
-me.recordset = createRecordset(me) ;
+let recordset = me.recordset = createRecordset(me) ;
 
 if(data){
 
@@ -82,3 +82,5 @@ if(data){
 me.reader = createReader({
     model
 }) ;
+
+recordset ;

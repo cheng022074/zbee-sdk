@@ -12,11 +12,6 @@
         "load",
         "clear",
         {
-            "name":"indexOf",
-            "impl":".store.index.of"
-        },
-        "each",
-        {
             "name":"getById",
             "impl":".store.get.id"
         },
