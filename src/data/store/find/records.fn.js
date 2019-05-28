@@ -16,34 +16,7 @@
  */
 
  let {
-    records
+    recordset
  } = this ;
 
-if(isString(property)){
-
-    let result = [] ;
-
-    for(let record of records){
-
-        if(record.get(property) === value){
-
-            result.push(record) ;
-        }
-    }
-
-    return result ;
-
-}else if(isFunction(property)){
-
-    let result = [] ;
-
-    for(let record of records){
-
-        if(property.call(value , record) === true){
-
-            result.push(record) ;
-        }
-    }
-
-    return result ;
-}
+ return recordset.findRecords(property , value) ;

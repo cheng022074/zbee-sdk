@@ -3,6 +3,7 @@
     "class":true,
     "constructor":false,
     "methods":[
+        "add",
         "insert",
         "remove",
         {

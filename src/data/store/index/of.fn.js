@@ -10,7 +10,7 @@
  */
 
  let {
-    records
+    recordset
  } = this ;
 
- return records.indexOf(record) ;
+ return recordset.indexOf(record) ;

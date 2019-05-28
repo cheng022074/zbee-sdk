@@ -10,7 +10,7 @@
  */
 
  let {
-    recordMap
+    recordset
  } = this ;
 
- return recordMap.get(id) ;
+ return recordset.getById(id) ;

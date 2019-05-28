@@ -99,10 +99,10 @@
 
     insertNodes(index , nodes){
 
-        nodes = from(nodes) ;
-
         let me = this,
-            insertNodes = [] ;
+            insertNodes = [];
+
+        nodes = me.add(nodes , false) ;
 
         for(let node of nodes){
 
@@ -111,7 +111,7 @@
             insertNodes.push(...node.descendantNodes) ;
         }
 
-        insertNodes.push(...me.insert(index , insertNodes , false)) ;
+        me.insert(index , insertNodes , false) ;
 
         me.fireEvent('insert' , insertNodes) ;
     }

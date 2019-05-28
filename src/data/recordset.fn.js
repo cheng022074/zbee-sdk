@@ -1,9 +1,10 @@
-
 /**
  * 
  * 数据记录集合
  * 
  * @import remove from array.remove
+ * 
+ * @import removeIndex from array.remove.index
  * 
  * @import insert from array.insert
  * 
@@ -12,6 +13,14 @@
  * @import isModel from is.data.model
  * 
  * @import isObject from is.object.simple
+ * 
+ * @import is.defined
+ * 
+ * @import is.string
+ * 
+ * @import is.function
+ * 
+ * @param {data.Store} store 存储器
  * 
  */
 
@@ -25,7 +34,62 @@
 
         me.recordData = [] ;
 
-        me.store = [] ;
+        me.store = store ;
+    }
+
+    getById(id){
+
+        let {
+            recordMap
+        } = this ;
+
+        return recordMap.get(id) ;
+    }
+
+    indexOf(record){
+
+        let {
+            recordData
+        } = this ;
+
+        return recordData.indexOf(record) ;
+    }
+
+    findRecords(property , value){
+
+        let {
+            recordData:records
+        } = this ;
+
+        if(isString(property)){
+
+            let result = [] ;
+
+            for(let record of records){
+
+                if(record.get(property) === value){
+
+                    result.push(record) ;
+                }
+            }
+
+            return result ;
+
+        }else if(isFunction(property)){
+
+            let result = [] ;
+
+            for(let record of records){
+
+                if(property.call(value , record) === true){
+
+                    result.push(record) ;
+                }
+            }
+
+            return result ;
+
+        }
     }
 
     /**
@@ -82,6 +146,8 @@
 
         recordData.push(...records) ;
 
+        resetRecordData(recordData) ;
+
         return records ;
     }
      /**
@@ -102,6 +168,8 @@
         records = getRecords.call(me , records) ;
 
         insert(recordData , index , ...records) ;
+
+        resetRecordData(recordData) ;
 
         return records ;
     }
@@ -160,7 +228,7 @@
         recordMap,
         recordData,
         store
-    } = me,
+    } = this,
     result = [];
 
     for(let record of records){
@@ -178,16 +246,47 @@
 
             if(recordMap.has(id)){
 
-                recordMap.delete(id) ;
+                record = recordMap.get(id) ;
     
-                remove(recordData , record) ;
-            }
+                removeRecord(recordData , record) ;
 
-            recordMap.set(id , record) ;
+                record.set(record.data) ;
+            
+            }else{
+
+                recordMap.set(id , record) ;
+
+                if(record.isBindStore && record.store !== store){
+
+                    continue ;
+                }
+
+                record.bindStore(store) ;
+            }
 
             result.push(record) ;
         }
     }
 
     return result ;
+ }
+
+ function removeRecord(recordData , record){
+
+    let index = recordData.indexOf(record) ;
+
+    if(index !== -1){
+
+        recordData[index] = undefined ;
+    }
+ }
+
+ function resetRecordData(recordData){
+
+    let index ;
+
+    while((index = recordData.indexOf(undefined)) !== -1){
+
+        removeIndex(recordData , index) ;
+    }
  }

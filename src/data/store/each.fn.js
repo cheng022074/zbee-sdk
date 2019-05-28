@@ -10,10 +10,7 @@
  */
 
  let {
-    records
+    recordset
  } = this ;
 
- for(let record of records){
-
-    fn.call(scope , record) ;
- }
+ recordset.each(fn , scope) ;
