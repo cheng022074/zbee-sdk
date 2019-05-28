@@ -9,6 +9,8 @@
         "add",
         "insert",
         "remove",
+        "load",
+        "clear",
         {
             "name":"indexOf",
             "impl":".store.index.of"

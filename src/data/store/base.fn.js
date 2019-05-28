@@ -23,68 +23,6 @@
 
 class main{
 
-    constructor({
-        proxy = {},
-        data,
-        autoLoad,
-        fields,
-        model,
-    } = {}){
-
-        super() ;
-
-        if(fields){
-
-            model = create({
-                fields
-            }) ;
-        
-        }
-
-        if(model){
-
-            model = get(model) ;
-        
-        }
-
-        let me = this ;
-
-        me.fireEventDataCacheCount = 1 ;
-
-        (me.proxy = createProxy(assign({
-            type:'memory',
-            model,
-            reader:{
-                type:'json'
-            }
-        } , proxy))).addListeners({
-            read:'onProxyRead',
-            scope:me
-        }) ;
-
-        me.recordset = createRecordset(me) ;
-
-        if(data){
-
-            let {
-                proxy
-            } = me ;
-
-            if(isMemoryProxy(proxy)){
-
-                proxy.read(data)
-            }
-
-        }else if(autoLoad){
-
-            me.load() ;
-        }
-
-        me.reader = createReader({
-            model
-        }) ;
-    }
-
     createRecord(data){
 
         let records = this.reader(data) ;
@@ -105,31 +43,6 @@ class main{
         recordset.add(records) ;
 
         me.fireEvent('load' , records) ;
-    }
-
-    load(options , isClear = true){
-
-        let me = this ;
-
-        if(isClear){
-
-            me.clear() ;
-        }
-
-        me.proxy.read(options) ;
-    }
-
-    clear(){
-
-        let me = this,
-        {
-            recordset
-        } = me ;
-
-        recordset.clear() ;
-
-        me.fireEvent('clear') ;
-
     }
 }
 
