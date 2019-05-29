@@ -8,7 +8,8 @@
  */
 
 let {
-    rootNode
+    rootNode,
+    padding
 } = this,
 {
     x,
@@ -68,8 +69,9 @@ for(let node of lastDescendantNodes){
 }
 
 return {
-    x,
-    y,
-    width:right - x,
-    height:bottom - y
+    left:Math.abs(x) + padding,
+    top:Math.abs(y) + padding,
+    bottom:padding,
+    right:padding,
+    height:bottom - Math.max(y , 0)
 } ;

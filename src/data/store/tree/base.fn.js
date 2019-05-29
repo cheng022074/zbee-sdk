@@ -20,7 +20,8 @@
 
     constructor({
         fields,
-        margin = {}, 
+        margin = {},
+        padding = 0, 
         rootConfig,
         depth = Number.MAX_VALUE,
         ...options
@@ -60,6 +61,8 @@
         me.marginBottom = marginBottom ;
 
         me.marginRight = marginRight ;
+
+        me.padding = padding ;
 
         me.on('load' , 'onLoad' , me , {
             once:true,

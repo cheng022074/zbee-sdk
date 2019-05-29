@@ -28,7 +28,8 @@
  }
 
  function lines(nodes , {
-    y:regionY
+    left,
+    top
 } , marginRight){
 
    let lines = [],
@@ -57,14 +58,14 @@
            } = childNode.getAnchorXY('l') ;
 
            lines.push([
-               startX,
-               startY - regionY,
-               startX + halfMargin,
-               startY - regionY,
-               endX - halfMargin,
-               endY - regionY,
-               endX,
-               endY - regionY
+               startX + left,
+               startY + top,
+               startX + halfMargin + left,
+               startY + top,
+               endX - halfMargin + left,
+               endY + top,
+               endX + left,
+               endY + top
            ]) ;
        }
    }
