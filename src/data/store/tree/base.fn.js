@@ -106,6 +106,7 @@
 
                 initNodeVisible(node) ;
 
+                node.select() ;
 
                 break ;
             }

@@ -20,9 +20,6 @@
     107:'+',
     187:'=',
     27:'ESC'
- },
- WITH_SHIFT_KEY_CODES = {
-   187:'+'
  };
 
  function main({
@@ -30,17 +27,9 @@
     keyCode
  }){
 
-   let value ;
-
-   if(shiftKey){
-
-      value = WITH_SHIFT_KEY_CODES[keyCode] ;
-   }
-
-   if(value){
-
-      return value ;
-   }
-
-    return KEY_CODES[keyCode] ;
+    return {
+       shift:shiftKey,
+       key:KEY_CODES[keyCode],
+       code:keyCode
+    } ;
  }

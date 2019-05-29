@@ -1,0 +1,14 @@
+{
+    "extend":".tree.base",
+    "mixins":[
+        "mixin.region"
+    ],
+    "class":true,
+    "constructor":false,
+    "methods":[
+        "select",
+        "deselect",
+        "left",
+        "right"
+    ]
+}

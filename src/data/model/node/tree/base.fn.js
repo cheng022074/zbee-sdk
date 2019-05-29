@@ -17,12 +17,7 @@
  * 
  */
 
- class main extends mixins({
-     extend:Model,
-     mixins:[
-        region
-     ]
- }){
+ class main extends Model{
 
     syncSize(width , height){
 
@@ -30,32 +25,6 @@
             width,
             height
         }) ;
-    }
-
-    move({
-        x:offsetX = 0,
-        y:offsetY = 0
-    }){
-
-        let me = this,
-        {
-            childNodes,
-            x,
-            y
-        } = me;
-
-        me.set({
-            x:x + offsetX,
-            y:y + offsetY
-        }) ;
-
-        for(let childNode of childNodes){
-
-            childNode.move({
-                x:offsetX,
-                y:offsetY
-            }) ;
-        }
     }
 
     static get fieldConfigurations(){
@@ -523,93 +492,6 @@
 
         doVerticalMoveSelect.call(this , 'down') ;
 
-    }
-
-    left(){
-
-        let {
-            parentNode
-        } = this ;
-
-        if(parentNode){
-
-            parentNode.select() ;
-        }
-    }
-
-    /**
-     * 
-     * 往右移动
-     * 
-     */
-    right(){
-
-        let me = this,
-        {
-            firstChildNode
-        } = me ;
-
-        if(firstChildNode){
-
-            firstChildNode.select() ;
-        
-        }else{
-
-            let upNode = getSubNode.call(me  , 'up');
-
-            if(upNode){
-
-                upNode.select() ;
-
-                return ;
-            }
-
-            let downNode = getSubNode.call(me , 'down');
-
-            if(downNode){
-
-                downNode.select() ;
-            }
-        }
-    }
-
-    /**
-     * 
-     * 选择节点
-     * 
-     */
-    select(){
-
-        let me = this,
-        {
-            selected,
-            store
-        } = me;
-
-        if(!selected){
-
-            let {
-                previousSelectedNode
-            } = store ;
-
-            if(previousSelectedNode){
-
-                previousSelectedNode.deselect() ;
-            }
-
-            me.set('selected' , true) ;
-
-            store.previousSelectedNode = me ;
-        }
-    }
-    /**
-     * 
-     * 取消选择
-     * 
-     */
-    deselect(){
-
-        this.set('selected' , false) ;
     }
 
     /**

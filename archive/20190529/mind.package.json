@@ -2,7 +2,9 @@
   "classes": [
     "data.store.create",
     "data.store.tree",
-    "canvas.draw.line",
+    "browser.global.listener.add",
+    "browser.global.listener.remove",
+    "browser.event.key",
     "canvas.draw.line.bezierCurve"
   ],
   "type": "webpack",
