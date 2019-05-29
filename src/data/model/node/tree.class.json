@@ -8,6 +8,8 @@
     "methods":[
         "select",
         "deselect",
+        "up",
+        "down",
         "left",
         "right",{
             "name":"getDepthNodes",
