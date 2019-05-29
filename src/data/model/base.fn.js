@@ -15,22 +15,12 @@
  * 
  * @import observable from mixin.observable
  * 
- * @import getId from id.generate
- * 
  * @class
  * 
  */
 
- const createConvertFn = mapping => data => data[mapping],
-       defaultGetFn = data => data,
-       defaultEqualsFn = (value , oldValue) => value !== oldValue,
-       defaultSetFn = function(value , name){
-
-            this.data[name] = value ;
-       },
-       {
-           assign,
-           keys
+ const {
+           assign
        } = Object;
 
  class main extends mixins({
@@ -101,104 +91,6 @@
         return [] ;
     }
 
-    has(name){
-
-        let {
-            fields
-        } = this.ZBEE_CURRENT_CLASS ;
-
-        return fields.hasField(name) ;
-    }
-
-    get id(){
-
-        let me = this,
-        {
-            $id
-        } = me;
-
-        if($id){
-
-            return $id ;
-        }
-
-        let {
-            idProperty
-        } = me ;
-
-        if(me.has(idProperty)){
-
-            return me.$id =  me.get(idProperty) ;
-        
-        }
-
-        return me.$id = getId('model-') ;
-    }
-
-    get(name){
-
-        let me = this,
-        {
-            data,
-            ZBEE_CURRENT_CLASS
-        } = me,
-        {
-            fields
-        } = ZBEE_CURRENT_CLASS,
-        field = fields.getField(name);
-
-        if(field){
-
-            return field.get.call(me , data[name]) ;
-        }
-    }
-
-    set(name , value){
-
-        let values ;
-
-        if(isString(name)){
-
-            values = {
-                [name]:value
-            } ;
-
-        }else{
-
-            values = name ;
-        }
-        
-        if(isObject(values)){
-
-            let me = this,
-            {
-                ZBEE_CURRENT_CLASS
-            } = me,
-            {
-                fields
-            } = ZBEE_CURRENT_CLASS,
-            names = keys(values);
-
-            for(let name of names){
-
-                let field = fields.getField(name);
-        
-                if(field){
-        
-                    let value = values[name],
-                        oldValue = me.get(name);
-
-                    if(field.equals.call(me , value , oldValue)){
-
-                        field.set.call(me , value , name) ;
-
-                        me.fireEvent('update' , name , value , oldValue) ;
-                    }
-                }
-            }
-        }
-    }
-
     onProxyRead(proxy , records){
 
         if(records.length){
@@ -209,10 +101,5 @@
 
             me.fireEvent('load') ;
         }
-    }
-
-    load(options){
-
-        this.proxy.read(options) ;
     }
  }

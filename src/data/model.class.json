@@ -10,6 +10,9 @@
     "properties":{
         "isBindStore":{
             "get":".model.store.isBind"
+        },
+        "id":{
+            "get":".model.id"
         }
     },
     "methods":[{
@@ -19,6 +22,16 @@
         "name":"unbindStore",
         "impl":".model.store.unbind"
     },
+        "has",
+    {
+        "name":"set",
+        "impl":".model.value.set"
+    },
+    {
+        "name":"get",
+        "impl":".model.value.get"
+    },
+        "load",
         "destroy"
     ]
 }
