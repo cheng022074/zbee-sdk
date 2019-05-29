@@ -32,6 +32,27 @@ switch(anchor){
            y
        } ;
 
+   case 'tr':
+
+       return {
+           x:x + width,
+           y
+       } ;
+
+   case 'br':
+
+       return {
+           x:x + width,
+           y:y + height
+       } ;
+
+   case 'bl':
+
+       return {
+           x,
+           y:y + height
+       } ;
+
    case 'r':
 
        return {

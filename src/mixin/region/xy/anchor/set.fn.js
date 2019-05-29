@@ -55,6 +55,27 @@ switch(anchor){
            y
        } , defaultXY) ;
 
+    case 'tr':
+
+        return assign({
+            x:x - width,
+            y
+        } , defaultXY) ;
+    
+    case 'br':
+    
+        return assign({
+            x:x - width,
+            y:y - height
+        } , defaultXY) ;
+    
+    case 'bl':
+    
+        return assign({
+            x,
+            y:y - height
+        } , defaultXY) ;
+
    case 'r':
 
        return assign({
