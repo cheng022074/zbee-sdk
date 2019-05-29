@@ -2,7 +2,23 @@
     "class":true,
     "constructor":false,
     "extend":".model.base",
-    "methods":[
+    "staticProperties":{
+        "fields":{
+            "get":".model.fields"
+        }
+    },
+    "properties":{
+        "isBindStore":{
+            "get":".model.store.isBind"
+        }
+    },
+    "methods":[{
+        "name":"bindStore",
+        "impl":".model.store.bind"
+    },{
+        "name":"unbindStore",
+        "impl":".model.store.unbind"
+    },
         "destroy"
     ]
 }
