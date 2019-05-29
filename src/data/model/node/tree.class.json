@@ -5,6 +5,11 @@
     ],
     "class":true,
     "constructor":false,
+    "properties":{
+        "region":{
+            "get":".tree.region"
+        }
+    },
     "methods":[
         "select",
         "deselect",

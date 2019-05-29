@@ -3,6 +3,8 @@
  * 
  * 区域
  * 
+ * @import region from mixin.region
+ * 
  * @param {object} config 配置
  * 
  * @param {number} [config.x] 横坐标
@@ -15,7 +17,11 @@
  * 
  */
 
- class main{
+ class main extends mixins({
+    mixins:[
+      region
+    ]
+ }){
 
     constructor({
        x,
@@ -23,6 +29,8 @@
        width,
        height
     }){
+
+      super() ;
        
       let me = this ;
 
@@ -36,91 +44,76 @@
 
     }
 
+    get right(){
+
+       return this.getAnchorXY('r').x ;
+    }
+
+    get bottom(){
+
+      return this.getAnchorXY('b').y ;
+    }
+
     contains(region){
 
-      {
-         let {
-            x:currentX,
-            y:currentY
-         } = me.getAnchorXY('tl'),
-         {
-            x:regionX,
-            y:regionY
-         } = region.getAnchorXY('tl') ;
-   
-         if(currentX > regionX || currentY > regionY){
-   
-            return false ;
-         }
+      let me = this;
+ 
+      return (region.x >= me.x && (region.right || region.x) <= me.right && region.y >= me.y && (region.bottom || region.y) <= me.bottom);
+   }
+
+   containTo(region){
+
+      let me = this ;
+
+      if(me.contains(region)){
+
+         return {
+            x:0,
+            y:0
+         };
       }
 
-      {
-         let {
-            x:currentX,
-            y:currentY
-         } = me.getAnchorXY('tr'),
-         {
-            x:regionX,
-            y:regionY
-         } = region.getAnchorXY('tr') ;
-   
-         if(currentX < regionX || currentY > regionY){
-   
-            return false ;
-         }
+      let {
+         x:currentX,
+         y:currentY,
+         right:currentRight,
+         bottom:currentBottom
+      } = me,
+      offsetX = 0,
+      offsetY = 0;
+
+      let {
+         x:regionX,
+         y:regionY,
+         right:regionRight,
+         bottom:regionBottom
+      } = region;
+
+      if(regionX < currentX){
+
+         offsetX = regionX - currentX ;
       }
 
-      {
-         let {
-            x:currentX,
-            y:currentY
-         } = me.getAnchorXY('tr'),
-         {
-            x:regionX,
-            y:regionY
-         } = region.getAnchorXY('tr') ;
-   
-         if(currentX < regionX || currentY > regionY){
-   
-            return false ;
-         }
+      if(regionRight > currentRight){
+
+         offsetX = regionRight - currentRight ;
       }
 
-      {
-         let {
-            x:currentX,
-            y:currentY
-         } = me.getAnchorXY('br'),
-         {
-            x:regionX,
-            y:regionY
-         } = region.getAnchorXY('br') ;
-   
-         if(currentX < regionX || currentY < regionY){
-   
-            return false ;
-         }
+      if(regionY < currentY){
+
+         offsetY = regionY - currentY ;
       }
 
-      {
-         let {
-            x:currentX,
-            y:currentY
-         } = me.getAnchorXY('bl'),
-         {
-            x:regionX,
-            y:regionY
-         } = region.getAnchorXY('bl') ;
-   
-         if(currentX > regionX || currentY < regionY){
-   
-            return false ;
-         }
+      if(regionBottom > currentBottom){
+
+         offsetY = regionBottom - currentBottom ;
       }
 
-      return true ;
-
-    }
+      return {
+         x:offsetX,
+         y:offsetY
+      } ;
+   }
  }
 
  

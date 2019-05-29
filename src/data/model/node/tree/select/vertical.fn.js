@@ -34,6 +34,8 @@ if(node){
 
     node.select() ;
 
+    return node ;
+
 }else{
 
     let {
@@ -46,6 +48,8 @@ if(node){
     if(node){
 
         node.select() ;
+
+        return node ;
     }
 
 }

@@ -12,4 +12,6 @@ let {
 if(parentNode){
 
     parentNode.select() ;
+
+    return parentNode ;
 }

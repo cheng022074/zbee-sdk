@@ -74,7 +74,8 @@
             "browser.global.listener.add",
             "browser.global.listener.remove",
             "browser.event.key",
-            "canvas.draw.line.bezierCurve"
+            "canvas.draw.line.bezierCurve",
+            "math.region"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"

@@ -16,6 +16,8 @@ if(firstChildNode){
 
     firstChildNode.select() ;
 
+    return firstChildNode ;
+
 }else{
 
     let {
@@ -50,5 +52,7 @@ if(firstChildNode){
     if(nearestNode){
 
         nearestNode.select() ;
+
+        return nearestNode ;
     }
 }
