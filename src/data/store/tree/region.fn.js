@@ -12,18 +12,29 @@ let {
 } = this,
 {
     x,
-    firstDescendantNodes
-} = rootNode,
-y = 0;
+    y,
+    firstDescendantNodes,
+    lastDescendantNodes
+} = rootNode;
 
 if(x > 0){
 
     x = 0 ;
 }
 
-for(let {
-    y:nodeY
-} of firstDescendantNodes){
+let right = x ;
+
+for(let node of firstDescendantNodes){
+
+    let {
+        x:nodeX,
+        y:nodeY
+    } = node.getAnchorXY('tr') ;
+
+    if(right < nodeX){
+
+        right = nodeX ;
+    }
 
     if(y > nodeY){
 
@@ -31,7 +42,34 @@ for(let {
     }
 }
 
+if(y > 0){
+
+    y = 0 ;
+}
+
+let bottom = y ;
+
+for(let node of lastDescendantNodes){
+
+    let {
+        x:nodeX,
+        y:nodeY
+    } = node.getAnchorXY('br') ;
+
+    if(right < nodeX){
+
+        right = nodeX ;
+    }
+
+    if(bottom < nodeY){
+
+        bottom = nodeY ;
+    }
+}
+
 return {
     x,
-    y
+    y,
+    width:right - x,
+    height:bottom - y
 } ;

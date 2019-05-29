@@ -13,21 +13,11 @@
  * 
  * @import assign2 from object.assign.if
  * 
- * @import observable from mixin.observable
- * 
  * @class
  * 
  */
 
- const {
-           assign
-       } = Object;
-
- class main extends mixins({
-     mixins:[
-        observable
-     ]
- }){
+ class main{
 
     constructor({
         proxy = {},
@@ -35,8 +25,6 @@
         data,
         autoLoad
     } = {}){
-
-        super() ;
 
         let me = this,
         {
@@ -97,7 +85,7 @@
 
             let me = this ;
 
-            assign(me.data , records[0].data) ;
+            Object.assign(me.data , records[0].data) ;
 
             me.fireEvent('load') ;
         }

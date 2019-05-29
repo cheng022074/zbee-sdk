@@ -2,6 +2,9 @@
     "class":true,
     "constructor":false,
     "extend":".model.base",
+    "mixins":[
+        "mixin.observable"
+    ],
     "staticProperties":{
         "fields":{
             "get":".model.fields"
