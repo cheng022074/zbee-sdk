@@ -9,6 +9,9 @@
         "select",
         "deselect",
         "left",
-        "right"
+        "right",{
+            "name":"getDepthNodes",
+            "impl":".tree.nodes.depth"
+        }
     ]
 }

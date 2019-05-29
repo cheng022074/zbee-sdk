@@ -230,28 +230,6 @@
         return Math.max(height , childCountHeight) ;
     }
 
-    getDepthNodes(depth){
-
-        let nodes = [],
-        {
-            childNodes
-        } = this;
-
-        if(depth === 1){
-
-            return childNodes ;
-        }
-
-        depth -- ;
-
-        for(let childNode of childNodes){
-
-            nodes.push(...childNode.getDepthNodes(depth)) ;
-        }
-
-        return nodes ;
-    }
-
     /**
      * 
      * 返回所有子孙节点
