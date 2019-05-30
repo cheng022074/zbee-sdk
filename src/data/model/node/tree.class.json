@@ -13,10 +13,19 @@
     "methods":[
         "select",
         "deselect",
-        "up",
-        "down",
-        "left",
-        "right",{
+        {
+            "name":"selectUp",
+            "impl":".tree.select.up"
+        },{
+            "name":"selectDown",
+            "impl":".tree.select.down"
+        },{
+            "name":"selectLeft",
+            "impl":".tree.select.left"
+        },{
+            "name":"selectRight",
+            "impl":".tree.select.right"
+        },{
             "name":"getDepthNodes",
             "impl":".tree.nodes.depth"
         }
