@@ -64,29 +64,6 @@
         ];
     }
 
-    /**
-     * 
-     * 获得当前节点在树中的深度
-     * 
-     * @return {number}
-     * 
-     */
-    get depth(){
-
-        let node = this,
-        parentNode,
-        depth = 0;
-
-        while(parentNode = node.parentNode){
-
-            node = parentNode ;
-
-            depth ++ ;
-        }
-
-        return depth ;
-    }
-
     get hidden(){
 
         return this.get('hidden') ;
@@ -114,36 +91,6 @@
     get y(){
 
         return this.get('y');
-    }
-
-    /**
-     * 
-     * 获得宽度
-     * 
-     * @return {number}
-     * 
-     */
-    get layoutWidth(){
-
-        let me = this,
-        {
-            depth,
-            store
-        } = me,
-        nodes = store.rootNode.getDepthNodes(depth),
-        maxWidth = me.width;
-
-        for(let {
-            realWidth
-        } of nodes){
-
-            if(maxWidth < realWidth){
-
-                maxWidth = realWidth ;
-            }
-        }
-
-        return maxWidth ;
     }
 
     get width(){
@@ -187,116 +134,6 @@
         return getChildNodes.call(this).length === 0 ;
     }
 
-    get childCountHeight(){
-
-        let countHeight = 0,
-        {
-            childNodes,
-            store
-        } = this ;
-
-        if(childNodes.length){
-
-            for(let {
-                regionHeight
-            } of childNodes){
-    
-                countHeight += regionHeight ;
-            }
-    
-            countHeight += store.marginBottom * (childNodes.length - 1);
-    
-            return countHeight ;
-        }
-
-        return 0 ;
-    }
-
-    /**
-     * 
-     * 包括子节点在内的区域高度
-     * 
-     * @return {number}
-     * 
-     */
-    get regionHeight(){
-
-        let me = this,
-        {
-            height,
-            childCountHeight,
-        } = me ;
-
-        return Math.max(height , childCountHeight) ;
-    }
-
-    /**
-     * 
-     * 返回所有子孙节点
-     * 
-     * @param {data.model.node.Tree[]} 节点集合
-     * 
-     */
-    get descendantNodes(){
-
-        let me = this,
-        childNodes = getChildNodes.call(me),
-        result = [];
-
-        for(let childNode of childNodes){
-
-            result.push(childNode) ;
-
-            result.push(...childNode.descendantNodes) ;
-
-        }
-
-        return result ;
-    }
-
-    /**
-     * 
-     * 获得指定深度的第一个节点
-     * 
-     * @param {number} depth 深度
-     *  
-     * @param {boolean} [isStrict = true] 是否严格匹配深度指定，如果指定为 false , 则当深度达不到指定值时，返回实际最深的节点
-     * 
-     * @return {data.model.node.Tree} 节点
-     *  
-     */
-    getFirstDepthNode(depth , isStrict = true){
-
-        return getDepthNode.call(this , depth , isStrict , 'first') ;
-    }
-
-    /**
-     * 
-     * 获得指定深度的最后一个节点
-     * 
-     * @param {number} depth 深度
-     *  
-     * @param {boolean} [isStrict = true] 是否严格匹配深度指定，如果指定为 false , 则当深度达不到指定值时，返回实际最深的节点
-     * 
-     * @return {data.model.node.Tree} 节点
-     *  
-     */
-    getLastDepthNode(depth , isStrict = true){
-
-        return getDepthNode.call(this , depth , isStrict , 'last') ;
-    }
-
-    /**
-     * 
-     * 返回祖先节点
-     * 
-     * @return {data.model.node.Tree} 祖先节点
-     * 
-     */
-    getAncestorNode(depth , isStrict = true){
-
-        return getDepthNode.call(this , depth , isStrict , 'parent') ;
-    }
     /**
      * 
      * 返回上一个兄弟节点
@@ -369,58 +206,6 @@
        return getChildNodes.call(me) ;
     }
 
-    /**
-     * 
-     * 所有叶子节点
-     * 
-     */
-    get leafNodes(){
-
-        let node = this,
-            nodes = [],
-            {
-                childNodes
-            } = node;
-
-        if(childNodes.length){
-
-            for(let childNode of childNodes){
-
-                nodes.push(...childNode.leafNodes) ;
-     
-            }
-        
-        }else{
-
-            return [
-                node
-            ] ;
-        }
-
-        return nodes ;
-    }
-     /**
-     * 
-     * 返回第一个叶子节点
-     * 
-     * @return {data.model.node.Tree} 节点
-     * 
-     */
-    get firstLeafNode(){
-
-        return getLeafNode.call(this , 'firstChildNode') ;
-    }
-    /**
-     * 
-     * 返回最后一个叶子节点
-     * 
-     * @return {data.model.node.Tree} 节点
-     * 
-     */
-    get lastLeafNode(){
-
-        return getLeafNode.call(this , 'lastChildNode') ;
-    }
     /**
      * 
      * 返回第一个子节点
@@ -610,55 +395,6 @@
 
         doHidden.call(this , true) ;
     }
-
-    layout(){
-
-        let me = this,
-            {
-                childNodes
-            } = me;
-
-        if(childNodes.length === 0){
-
-            return ;
-        }
-
-        let {
-            childCountHeight,
-            store
-        } = me,
-        {
-            marginBottom,
-            marginRight
-        } = store,
-        {
-            y:centerY
-        } = me.getAnchorXY('c'),
-        {
-            x
-        } = me.getAnchorXY('r');
-
-        let startY = centerY - childCountHeight / 2 ;
-        
-        x += marginRight;
-
-        for(let childNode of childNodes){
-
-            let {
-                regionHeight
-            } = childNode ;
-
-            childNode.set('x' , x) ;
-
-            childNode.set(childNode.setAnchorXY({
-                y:startY + regionHeight / 2
-            } , 'c')) ;
-
-            startY += regionHeight + marginBottom;
-
-            childNode.layout() ;
-        }
-    }
  }
 
  function doHidden(value){
@@ -678,20 +414,12 @@
 
  function getChildNodes(){
 
-    let me = this;
+    let {
+        store,
+        id
+    } = this ;
 
-    if(!me.hasOwnProperty('$childNodes')){
-
-        let {
-            store,
-            id
-        } = me ;
-
-        me.$childNodes = store.findRecords('parentId' , id) ;
-    
-    }
-
-    return me.$childNodes ;
+    return store.findRecords('parentId' , id) ;
  }
 
  function getRegion(property , defaultValue = 0){
@@ -707,51 +435,6 @@
     }
 
     return me.get(property) ;
- }
-
- function getDepthNode(depth , isStrict , property){
-
-    let node = this,
-        i = 0;
-
-    for(; i < depth ; i ++){
-
-        let depthNode ;
-
-        switch(property){
-
-            case 'first':
-
-                depthNode = node.firstChildNode ;
-
-                break ;
-
-            case 'last':
-
-                depthNode = node.lastChildNode ;
-
-                break ;
-
-            case 'parent':
-
-                depthNode = node.parentNode ;
-        }
-
-        if(depthNode){
-
-            node = depthNode ;
-        
-        }else{
-
-            break ;
-        }
-    }
-
-    if(i === depth || isStrict !== true){
-
-        return node ;
-    
-    }
  }
 
  function getSiblingNode(property){
@@ -829,26 +512,4 @@
                 return childNodes[childNodes.length - 1] ;
         }
     }
- }
-
- function getLeafNode(property){
-
-    let me = this,
-        {
-            isLeaf
-        } = me ;
-
-        if(isLeaf){
-
-            return me ;
-        }
-
-        let node = me[property];
-
-        while(!node.isLeaf){
-
-            node = node[property] ;
-        }
-
-        return node ;
  }
