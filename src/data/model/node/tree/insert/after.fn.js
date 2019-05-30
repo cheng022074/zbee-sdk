@@ -9,11 +9,12 @@
  * 
  */
 
- let {
+ let me = this,
+ {
     store,
     children,
     expanded
-  } = this;
+  } = me;
 
   if(children.includes(existNode)){
 
@@ -22,7 +23,7 @@
         node.hide() ;
     }
 
-    let nodes = store.insert(store.indexOf(existNode) , node) ;
+    let nodes = store.insert(store.indexOf(existNode) + 1 , node) ;
 
     if(!expanded){
 
@@ -32,5 +33,5 @@
         }
     }
 
-    me.fireEvent('insert' , nodes , existNode) ;
+    me.fireEvent('insertafter' , nodes , existNode) ;
   }

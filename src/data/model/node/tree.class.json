@@ -53,8 +53,11 @@
             "name":"appendChild",
             "impl":".tree.append"
         },{
-            "name":"insertBefore",
-            "impl":".tree.insert.before"
+            "name":"insertAfter",
+            "impl":".tree.insert.after"
+        },{
+            "name":"removeChild",
+            "impl":".tree.remove"
         }
     ]
 }

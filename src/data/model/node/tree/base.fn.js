@@ -248,34 +248,6 @@
 
     /**
      * 
-     * 插入
-     * 
-     * @param {data.model.node.Tree} node
-     * 
-     * @param {data.model.node.Tree} existNode
-     * 
-     *  
-     */
-    insertBefore(node , existNode){
-
-       let {
-         store,
-         expanded
-       } = this;
-
-       if(childNodes.includes(existNode)){
-
-            if(!expanded){
-
-                node.hide() ;
-            }
-
-            store.insert(store.indexOf(existNode) , node) ;
-       }
-    }
-
-    /**
-     * 
      * 删除
      * 
      * @param {data.model.node.Tree} node 节点
