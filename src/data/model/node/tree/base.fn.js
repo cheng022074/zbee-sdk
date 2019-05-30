@@ -248,32 +248,6 @@
 
     /**
      * 
-     * 添加子节点
-     * 
-     * @param {data.model.node.} node
-     * 
-     */
-    appendChild(node){
-
-        let me = this,
-        {
-            store,
-            expanded
-        } = me,
-        childNodes = getChildNodes.call(me);
-  
-        if(!expanded){
-
-            node.hide() ;
-        }
-
-        store.insertNodes(store.indexOf(me.lastLeafNode || me) + 1 , node) ;
-
-        childNodes.push(node) ;
-    }
-
-    /**
-     * 
      * 插入
      * 
      * @param {data.model.node.Tree} node

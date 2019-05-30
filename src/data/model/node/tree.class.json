@@ -20,6 +20,9 @@
         },
         "descendantNodes":{
             "get":".tree.nodes.descendant"
+        },
+        "lastLeafNode":{
+            "get":".tree.node.leaf.last"
         }
     },
     "methods":[
@@ -43,6 +46,9 @@
         },{
             "name":"getDepthNodes",
             "impl":".tree.nodes.depth"
+        },{
+            "name":"appendChild",
+            "impl":".tree.append"
         }
     ]
 }

@@ -28,3 +28,5 @@ for(let node of nodes){
 recordset.insert(index , insertNodes) ;
 
 me.fireEvent('insert' , insertNodes) ;
+
+return nodes ;
