@@ -19,4 +19,6 @@ if(expanded){
     }
 
     me.set('expanded' , false) ;
+
+    me.fireEvent('collapse') ;
 }

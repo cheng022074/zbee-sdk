@@ -351,7 +351,18 @@
             childNodes
         } = me;
 
-    me.set('hidden' , value) ;
+    if(value){
+
+        me.set({
+            hidden:true,
+            x:0,
+            y:0
+        }) ;
+
+    }else{
+
+        me.set('hidden' , value) ;
+    }
 
     for(let childNode of childNodes){
 

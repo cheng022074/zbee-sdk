@@ -15,6 +15,11 @@
 
     let me = this ;
 
+    if(me.$suspendEvents === true){
+
+        return ;
+    }
+
     doFireBubbleEvent.call(me , event , me , ...args) ;
  }
 

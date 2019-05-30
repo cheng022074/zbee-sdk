@@ -24,4 +24,6 @@ if(!expanded){
 
         childNode.show() ;
     }
+
+    me.fireEvent('expand') ;
 }

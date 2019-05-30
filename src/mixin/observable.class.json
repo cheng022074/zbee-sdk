@@ -32,5 +32,11 @@
     },{
         "name":"fireEvent",
         "impl":".observable.fire"
+    },{
+        "name":"suspendEvents",
+        "impl":".observable.events.suspend"
+    },{
+        "name":"resumeEvents",
+        "impl":".observable.events.resume"
     }]
 }

@@ -64,10 +64,28 @@
 
         me.padding = padding ;
 
-        me.on('load' , 'onLoad' , me , {
-            once:true,
-            getOldFireEventData:'last'
+        me.addListeners({
+            load:{
+                fn:'onLoad',
+                once:true,
+                getOldFireEventData:'last'
+            },
+            expand:'onExpand',
+            collapse:'onCollapse',
+            scope:me
         }) ;
+    }
+
+    onExpand(){
+
+        this.layout() ;
+
+        console.log('展开') ;
+    }
+
+    onCollapse(){
+
+        this.layout() ;
     }
 
     onLoad(store , nodes){
@@ -99,7 +117,11 @@
 
                 for(let node of nodes){
 
+                    node.suspendEvents() ;
+
                     node.collapse() ;
+
+                    node.resumeEvents() ;
                 }
                 
                 doReorder(node) ;
