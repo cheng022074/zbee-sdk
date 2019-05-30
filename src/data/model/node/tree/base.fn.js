@@ -324,59 +324,6 @@
 
     /**
      * 
-     * 展开
-     * 
-     */
-    expand(){
-
-        let me = this,
-        {
-            expanded
-        } = me ;
-
-
-
-        if(!expanded){
-
-            me.set('expanded' , true) ;
-
-            let {
-                childNodes
-            } = me ;
-
-            for(let childNode of childNodes){
-
-                childNode.show() ;
-            }
-        }
-    }
-
-    /**
-     * 
-     * 收起
-     * 
-     */
-    collapse(){
-
-        let me = this,
-        {
-            expanded,
-            childNodes
-        } = me ;
-
-        if(expanded){
-
-            for(let childNode of childNodes){
-
-                childNode.hide() ;
-            }
-
-            me.set('expanded' , false) ;
-        }
-    }
-
-    /**
-     * 
      * 显示
      * 
      */
@@ -420,21 +367,6 @@
     } = this ;
 
     return store.findRecords('parentId' , id) ;
- }
-
- function getRegion(property , defaultValue = 0){
-
-    let me = this,
-    {
-        hidden
-    } = me ;
-
-    if(hidden){
-
-        return defaultValue;
-    }
-
-    return me.get(property) ;
  }
 
  function getSiblingNode(property){

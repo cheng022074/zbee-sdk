@@ -24,6 +24,8 @@
     },
     "methods":[
         "layout",
+        "expand",
+        "collapse",
         "select",
         "deselect",
         {
