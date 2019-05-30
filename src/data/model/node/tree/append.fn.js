@@ -21,3 +21,7 @@ if(!expanded){
         node.hide() ;
     }
 }
+
+me.fireEvent('append' , nodes) ;
+
+return nodes ;

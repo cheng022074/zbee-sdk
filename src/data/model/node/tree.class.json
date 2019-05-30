@@ -21,6 +21,9 @@
         "descendantNodes":{
             "get":".tree.nodes.descendant"
         },
+        "children":{
+            "get":".tree.nodes.child"
+        },
         "lastLeafNode":{
             "get":".tree.node.leaf.last"
         }
@@ -49,6 +52,9 @@
         },{
             "name":"appendChild",
             "impl":".tree.append"
+        },{
+            "name":"insertBefore",
+            "impl":".tree.insert.before"
         }
     ]
 }

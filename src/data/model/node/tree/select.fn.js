@@ -9,10 +9,11 @@
 let me = this,
     {
         selected,
-        store
+        store,
+        hidden
     } = me;
 
-if(!selected){
+if(!selected && !hidden){
 
     let {
         selectedNode

@@ -19,7 +19,7 @@ if(isLeaf){
 
 let node = me.lastChildNode;
 
-while(!node.isLeaf){
+while(node && !node.isLeaf){
 
     node = node.lastChildNode ;
 }

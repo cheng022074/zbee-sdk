@@ -203,7 +203,7 @@
             return [] ;
        }
 
-       return getChildNodes.call(me) ;
+       return me.children ;
     }
 
     /**
@@ -261,8 +261,7 @@
        let {
          store,
          expanded
-       } = this,
-       childNodes = getChildNodes.call(me);
+       } = this;
 
        if(childNodes.includes(existNode)){
 
@@ -272,8 +271,6 @@
             }
 
             store.insert(store.indexOf(existNode) , node) ;
-
-            insert(childNodes , childNodes.indexOf(existNode) , node) ;
        }
     }
 
@@ -413,20 +410,20 @@
  function getChildNode(property){
 
     let {
-        childNodes
+        children
     } = this ;
 
-    if(childNodes.length){
+    if(children.length){
 
         switch(property){
 
             case 'first':
 
-                return childNodes[0] ;
+                return children[0] ;
 
             case 'last':
 
-                return childNodes[childNodes.length - 1] ;
+                return children[children.length - 1] ;
         }
     }
  }

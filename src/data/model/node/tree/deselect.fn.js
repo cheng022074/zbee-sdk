@@ -9,10 +9,11 @@
 let me = this,
     {
         selected,
+        hidden,
         store
     } = me;
 
-if(selected){
+if(selected && !hidden){
 
     me.set('selected' , false) ;
 
