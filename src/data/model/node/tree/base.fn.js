@@ -11,6 +11,8 @@
  * 
  * @import region from mixin.region
  * 
+ * @import isEmpty from is.object.empty
+ * 
  * @param {mixed} data 数据
  * 
  * @class
@@ -19,12 +21,15 @@
 
  class main extends Model{
 
-    syncSize(width , height){
+    sync({
+        width,
+        height
+    }){
 
-        this.set({
+        return !isEmpty(this.set({
             width,
             height
-        }) ;
+        })) ;
     }
 
     static get fieldConfigurations(){

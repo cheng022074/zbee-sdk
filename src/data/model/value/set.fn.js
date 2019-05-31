@@ -35,7 +35,8 @@ if(isObject(values)){
     {
         fields
     } = ZBEE_CURRENT_CLASS,
-    names = Object.keys(values);
+    names = Object.keys(values),
+    updateValues = {};
 
     for(let name of names){
 
@@ -50,8 +51,12 @@ if(isObject(values)){
 
                 field.set.call(me , value , name) ;
 
+                updateValues[name] = value ;
+
                 me.fireEvent('update' , name , value , oldValue) ;
             }
         }
     }
+
+    return updateValues ;
 }

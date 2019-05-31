@@ -36,7 +36,10 @@
 
         for(let record of records){
 
-            record.syncSize(100 , 100) ;
+            record.sync({
+               width:100,
+               height:100
+            }) ;
         }
     },
     layout(store , records){
