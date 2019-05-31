@@ -26,6 +26,9 @@
         },
         "lastLeafNode":{
             "get":".tree.node.leaf.last"
+        },
+        "leafNodes":{
+            "get":".tree.nodes.leaf"
         }
     },
     "methods":[
