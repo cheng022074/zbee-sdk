@@ -37,8 +37,8 @@ function main(path , {
     suffixes
 }){
 
-    let includeFilePaths = getPaths(includes),
-        excludeFilePaths = getPaths(excludes);
+    let includeFilePaths = getPaths(path , includes),
+        excludeFilePaths = getPaths(path , excludes);
 
     if(suffixes){
 
