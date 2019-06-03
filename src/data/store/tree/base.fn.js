@@ -21,7 +21,8 @@
     constructor({
         fields,
         margin = {},
-        padding = 0, 
+        padding = 0,
+        lineOffsetX = 0, 
         rootConfig,
         depth = Number.MAX_VALUE,
         ...options
@@ -64,6 +65,8 @@
 
         me.padding = padding ;
 
+        me.lineOffsetX = lineOffsetX ;
+
         me.addListeners({
             load:{
                 fn:'onLoad',
@@ -80,7 +83,6 @@
 
         this.layout() ;
 
-        console.log('展开') ;
     }
 
     onCollapse(){

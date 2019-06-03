@@ -271,7 +271,10 @@ const dataTypeMaps = [{
 
 let socket = new XYSocket({
   socket:{
-    url:'http://113.16.174.140:8092/stock'
+    url:'http://113.16.174.140:8092/stock',
+    options:{
+        path:'/classify',
+    }
   },
   rules:[{
     test:'time\\-sharing',
@@ -298,26 +301,33 @@ let socket = new XYSocket({
 }]
 }) ;
 
+socket.subscribe('api_newAll::10').bind(data =>{
 
-const formatRe = /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/ ;
-
-
-let subscriber = socket.subscribe('time-sharing').bind(data =>{
-
-  if(!isArray(data)){
-
-    data = [
-      data
-    ] ;
-  }
-
-  console.log(data.length) ;
+  console.log('推送1') ;
 
 }) ;
 
-subscriber.open({
-  symbol:'SZ.000655'
-}) ;
 
+setTimeout(() =>{
 
+  console.log('取消订阅') ;
+
+  socket.unsubscribe('api_newAll::10') ;
+
+  return ;
+
+  setTimeout(() =>{
+
+    console.log('订阅') ;
+  
+    socket.subscribe('api_newAll::10').bind(data =>{
+  
+      console.log('推送2') ;
+  
+    }) ;
+  
+  } , 3000) ;
+  
+
+} , 5000) ;
 

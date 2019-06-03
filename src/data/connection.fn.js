@@ -252,7 +252,7 @@
 
         if(subscriber){
 
-            me.subscribers.delete(subscriber) ;
+            me.subscribers.delete(name) ;
         }
     }
  }

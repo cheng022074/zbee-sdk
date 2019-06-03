@@ -61,7 +61,7 @@ return class extends componentClass{
                 }) ;
             }
 
-            me.connection_socket_subscribed = true ;
+            me.connection_subscribed = true ;
         }
 
         if (super.componentDidMount) {

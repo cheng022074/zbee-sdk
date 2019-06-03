@@ -20,17 +20,18 @@
 
         let {
             region,
-            marginRight
+            marginRight,
+            lineOffsetX
         } = me ;
 
-        me.fireEvent('layout' , records , lines(records , region , marginRight)) ;
+        me.fireEvent('layout' , records , lines(records , region , marginRight , lineOffsetX)) ;
     }
  }
 
  function lines(nodes , {
     left,
     top
-} , marginRight){
+} , marginRight , lineOffsetX){
 
    let lines = [],
        halfMargin = marginRight / 2 ;
@@ -49,6 +50,8 @@
        {
            childNodes
        } = node;
+
+       startX += lineOffsetX ;
 
        for(let childNode of childNodes){
 
