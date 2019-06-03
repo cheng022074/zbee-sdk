@@ -1,6 +1,7 @@
 {
   "classes": [
-    "directory.includes"
+    "directory.includes",
+    "string.split"
   ],
   "type": "node",
   "memory": false,

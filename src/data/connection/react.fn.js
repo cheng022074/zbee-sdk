@@ -17,13 +17,13 @@
  const {
      socket,
      ajax
- } = mixins ;
+ } = mixins;
 
-return class extends componentClass{
+class Component extends componentClass{
 
-    constructor(...args){
+    constructor(props){
 
-        super(...args) ;
+        super(props) ;
 
         this.connection_subscribed = false ;
     }
@@ -107,3 +107,5 @@ return class extends componentClass{
     }
     
 } ;
+
+return props => <Component {...props} socket={socket} ajax={ajax}/> ;

@@ -10,13 +10,11 @@
  const {
     join
  } = require('path'),
- rootPath = join(process.env['ZBEE-APP-PATH'] , 'src');
+ rootPath ='C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src';
 
   console.log(includes(rootPath , {
       includes:[
-          'data/connection.fn.js'
+          ''
       ],
-      excludes:[
-          'data'
-      ]
+      suffixes:'.vue'
   })) ;

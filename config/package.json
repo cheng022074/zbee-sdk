@@ -85,7 +85,8 @@
         "type":"node",
         "compile":false,
         "classes":[
-           "directory.includes"
+           "directory.includes",
+           "string.split"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\loaders\\builder.js"
