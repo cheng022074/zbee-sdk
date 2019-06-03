@@ -1,0 +1,8 @@
+{
+  "classes": [
+    "directory.includes"
+  ],
+  "type": "node",
+  "memory": false,
+  "compile": false
+}

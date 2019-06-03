@@ -81,6 +81,16 @@
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
         ]
     },
+    "ok-enterprise-builder":{
+        "type":"node",
+        "compile":false,
+        "classes":[
+           "directory.includes"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\loaders\\builder.js"
+        ]
+    },
     "event-react":{
         "type":"webpack",
         "transform":false,
