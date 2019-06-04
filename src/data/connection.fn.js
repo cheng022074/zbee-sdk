@@ -157,12 +157,14 @@
 
                 currentScope = currentScope || scope ;
 
-                listeners.scope = currentScope ;
+                listeners.scope = listeners.scope || currentScope ;
 
                 subscriber = me.subscribe(name , {
+                    fn,
+                    scope:currentScope,
                     listeners,
                     ...options
-                }).bind(fn , currentScope) ;
+                }) ;
             }
 
             if(subscriber){
@@ -210,6 +212,8 @@
             subscriberListeners
         } = me,
         {
+            fn,
+            scope,
             params,
             listeners = {},
             autoOpen = true,
@@ -228,6 +232,11 @@
         subscriber.addListeners(listeners) ;
 
         subscribers.set(name , subscriber) ;
+
+        if(fn){
+
+            subscriber.bind(fn , scope) ;
+        }
 
         if(autoOpen){
 
