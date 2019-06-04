@@ -28,6 +28,7 @@
     },
     "xy":{
         "type":"library",
+        "script":false,
         "classes":[
             "array.remove",
             "array.remove.all",
