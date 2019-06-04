@@ -296,8 +296,33 @@
 
     let me = this,
         {
-            childNodes
-        } = me;
+            childNodes,
+            store
+        } = me,
+        {
+            selectedNode
+        } = store;
+
+    if(selectedNode === me){
+
+        let {
+            parentNode
+        } = me ;
+
+        while(parentNode){
+
+            if(parentNode.hidden === false){
+
+                parentNode.select() ;
+
+                break ;
+            
+            }else{
+
+                parentNode = parentNode.parentNode ;
+            }
+        }
+    }
 
     if(value){
 
