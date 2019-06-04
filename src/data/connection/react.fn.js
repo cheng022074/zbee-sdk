@@ -55,7 +55,7 @@ class Component extends componentClass{
                     loaders = {}
                 } = me ;
 
-                me.subscribers = ajax.subscribes({
+                me.loaders = ajax.subscribes({
                     ...loaders,
                     scope:me
                 }) ;

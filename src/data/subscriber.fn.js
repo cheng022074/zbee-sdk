@@ -53,13 +53,14 @@
         let {
             bindCallbacks,
             accumulationMode,
-            cache
+            cache,
+            params
         } = this,
         results = [];
 
         bindCallbacks.forEach(callback => {
 
-           let result = callback(data) ;
+           let result = callback(data , params) ;
 
            if(isDefined(result)){
 
@@ -73,7 +74,10 @@
             cache.length = 0 ;
         }
 
-        cache.push(data) ;
+        cache.push({
+            params,
+            data
+        }) ;
 
         return results ;
     }
@@ -95,9 +99,12 @@
 
         fn = get(fn , scope) ;
 
-        for(let data of cache){
+        for(let {
+            data,
+            params
+        } of cache){
 
-            fn(data) ;
+            fn(data , params) ;
         }
 
         bindCallbacks.set(fn , scope , fn) ;
