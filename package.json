@@ -52,6 +52,7 @@
   },
   "scripts": {
     "generate": "zb generate",
-    "debug": "zb debug"
+    "debug": "zb debug",
+    "install": "zb"
   }
 }
