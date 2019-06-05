@@ -121,7 +121,7 @@
 
                     node.suspendEvents() ;
 
-                    node.collapse() ;
+                    node.collapse(true) ;
 
                     node.resumeEvents() ;
                 }
