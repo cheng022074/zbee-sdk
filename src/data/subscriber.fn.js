@@ -46,9 +46,21 @@
         me.cache = [] ;
 
         me.bindCallbacks = createMap() ;
+
+        me.closed = false ;
     }
 
     acceptData(data){
+
+        let me = this,
+            {
+                closed
+            } = me ;
+
+        if(closed){
+
+            return ;
+        }
 
         let {
             bindCallbacks,
@@ -131,18 +143,6 @@
         return me ;
     }
 
-    unbindAll(){
-
-        let me = this,
-        {
-            bindCallbacks
-        } = me ;
-
-        bindCallbacks.clear() ;
-
-        return me ;
-    }
-
     /**
      * 
      * 重新打开
@@ -152,10 +152,11 @@
 
         let me = this,
         {
+            closed,
             params
         } = me ;
 
-        if(params){
+        if(!closed){
 
             me.close() ;
 
@@ -172,12 +173,17 @@
      */
     open(params = {}){
 
-        let me = this,
-        {
+        let {
+            closed,
             extraParams,
             defaultParams,
             params:oldParams
-        } = me ;
+        } = this ;
+
+        if(!closed){
+
+            return ;
+        }
 
         params = assign({} , defaultParams , params , extraParams) ;
 
@@ -186,6 +192,8 @@
             me.close() ;
 
             me.params = params ;
+
+            me.closed = false ;
             
             me.fireEvent('open' , params , oldParams) ;
         }
@@ -198,20 +206,24 @@
      */
     close(){
 
-        let me = this,
-        {
+        let {
+            closed,
             params,
             cache
-        } = me;
+        } = this;
 
-        if(params){
+        if(closed){
 
-            delete me.params ;
-
-            cache.length = 0 ;
-
-            me.fireEvent('close' , params) ;
+            return ;
         }
+
+        delete me.params ;
+
+        cache.length = 0 ;
+
+        me.closed = true ;
+
+        me.fireEvent('close' , params) ;
     }
 
     destroy(){
@@ -220,6 +232,10 @@
 
        me.close() ;
 
-       me.unbindAll() ;
+       let {
+            bindCallbacks
+       } = this ;
+
+       bindCallbacks.clear() ;
     }
  }
