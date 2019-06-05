@@ -1,0 +1,15 @@
+{
+    "mixins":[
+        "mixin.observable"
+    ],
+    "class":true,
+    "constructor":true,
+    "methods":[
+        "accept",
+        "bind",
+        "reopen",
+        "open",
+        "close",
+        "destroy"
+    ]
+}
