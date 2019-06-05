@@ -1,0 +1,11 @@
+{
+    "extend":".connection.base",
+    "class":true,
+    "constructor":false,
+    "methods":[
+        "subscribe",
+        "unsubscribe",
+        "subscribes",
+        "unsubscribes"
+    ]
+}
