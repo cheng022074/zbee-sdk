@@ -10,11 +10,12 @@
 let me = this,
 {
     store,
-    expanded
+    expanded,
+    hidden
 } = me,
 nodes = store.insert(store.indexOf(me.lastLeafNode || me) + 1 , node) ;
 
-if(!expanded){
+if(!expanded || hidden){
 
     for(let node of nodes){
 

@@ -13,19 +13,15 @@
  {
     store,
     children,
-    expanded
+    expanded,
+    hidden
   } = me;
 
   if(children.includes(existNode)){
 
-    if(!expanded){
-
-        node.hide() ;
-    }
-
     let nodes = store.insert(store.indexOf(existNode) + 1 , node) ;
 
-    if(!expanded){
+    if(!expanded || hidden){
 
         for(let node of nodes){
     
