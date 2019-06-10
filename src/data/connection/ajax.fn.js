@@ -42,10 +42,23 @@
         ] ;
     }
 
+    validateMessage(subscriber , {
+        subscriber:messageSubscriber
+    }){
+
+        return subscriber === messageSubscriber ;
+    }
+
+    processMessage(subscriber , data){
+
+        return {
+            subscriber,
+            data
+        } ;
+    }
+
     async doSubscriberOpen(subscriber , url , params){
 
-        let me = this ;
-
-        subscriber.acceptData(me.processData(await request(url , params))) ;
+        this.acceptMessage(subscriber , await request(url , params)) ;
     }
  }

@@ -1,12 +1,15 @@
 
 /**
  * 
- * 函数实现说明
+ * 批量取消订阅
  * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
+ * @param {string[]} names 订阅名称
  * 
  */
 
- // 代码实现
+let me = this;
+
+for(let name of names){
+
+   me.unsubscribe(name) ;
+}

@@ -6,6 +6,7 @@
         "subscribe",
         "unsubscribe",
         "subscribes",
-        "unsubscribes"
+        "unsubscribes",
+        "resubscribes"
     ]
 }

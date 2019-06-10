@@ -8,11 +8,15 @@
  * 
  * @import is.function
  * 
+ * @import is.boolean
+ * 
  * @import Subscriber from data.subscriber value
  * 
  * @import get from function.get
  * 
  * @import create from class.create
+ * 
+ * @import assign from object.assign
  * 
  * @require regex-parser
  * 
@@ -20,25 +24,97 @@
  * 
  */
 
+ const createRegex = require('regex-parser'); 
+
  class main{
 
     constructor({
         subscriber = (name , options) =>{
 
             return new Subscriber(name , options) ;
-        }
+        },
+        rules = []
     }){
 
         let me = this ;
 
         me.subscriber = subscriber ;
 
-        this.subscribers = new Map() ;
+        me.subscribers = new Map() ;
+
+        me.rules = me.createRules(rules) ;
     }
 
-    processData(message){
+    /**
+     * 
+     * 构建规则集合
+     * 
+     * 
+     * @param {object} rules 规则配置
+     * 
+     * @return {Map} 规则集合
+     * 
+     */
+    createRules(rules){
 
-        return message ;
+        let result = [] ;
+
+        for(let {
+            test,
+            use
+        } of rules){
+
+            if(isFunction(use)){
+
+                result.push({
+                    test:createRegex(test),
+                    use
+                }) ;
+            }
+        }
+
+        return result ;
+    }
+
+    processMessage(...args){
+
+        return {} ;
+    }
+
+    processData({
+        data
+    } , subscriber){
+
+        return data ;
+    }
+
+    validateMessage(subscriber , message){
+
+        return true ;
+    }
+
+    /**
+     * 
+     * 接收消息
+     * 
+     * @param  {mixed} [...args] 消息参数
+     * 
+     */
+    acceptMessage(...args){
+
+        let me = this,
+            message = me.processMessage(...args),
+            {
+                subscribers
+            } = me;
+
+        for(let subscriber of subscribers){
+
+            if(me.validateMessage(subscriber , message)){
+
+                subscriber.accept(me.processData(subscriber , message)) ;
+            }
+        }
     }
 
     processSubscribeParams(subscriber , params){
@@ -48,22 +124,44 @@
         ] ;
     }
 
+    convertNameToSubscriberOptions(name){
+
+        let {
+            rules
+        } = this;
+
+        for(let {
+            test,
+            use
+        } of rules){
+
+            let args = name.match(test) ;
+
+            if(args){
+
+                return use(...args) ;
+            }
+        }
+    }
+
     /**
      * 
      * 构建订阅器
      * 
-     * @param {mixed} params 订阅器参数
+     * @param {string} name  订阅名称 
+     * 
+     * @param {mixed} options 订阅器参数
      * 
      * @return {data.Subscriber} 订阅器
      * 
      */
-    createSubscriber(...args){
+    createSubscriber(name , options){
 
         let {
             subscriber
         } = this ;
 
-        return create(subscriber , ...args) ;
+        return create(subscriber , name , assign(me.convertNameToSubscriberOptions(name) , options)) ;
     }
 
     get subscriberListeners(){
@@ -120,74 +218,6 @@
             subscriber[method](...args) ;
 
             return subscriber ;
-        }
-    }
-
-    /**
-     * 
-     * 批量订阅
-     * 
-     */
-    subscribes({
-        scope,
-        ...subscribers
-    }){
-
-        let names = Object.keys(subscribers),
-            me = this,
-            result = {};
-
-        for(let name of names){
-
-            let target = subscribers[name],
-                subscriber;
-
-            if(isString(target) || isFunction(target)){
-
-                subscriber = me.subscribe(name).bind(get(subscribers[name] , scope) , scope) ;
-            
-            }else if(isObject(target)){
-
-                let {
-                    fn,
-                    scope:currentScope,
-                    listeners = {},
-                    ...options
-                } = target ;
-
-                currentScope = currentScope || scope ;
-
-                listeners.scope = listeners.scope || currentScope ;
-
-                subscriber = me.subscribe(name , {
-                    fn,
-                    scope:currentScope,
-                    listeners,
-                    ...options
-                }) ;
-            }
-
-            if(subscriber){
-
-                result[name] = subscriber ;
-            }
-        }
-
-        return result ;
-    }
-
-    /**
-     * 
-     * 批量取消订阅
-     * 
-     */
-    unsubscribes(names){
-
-        let me = this;
-
-        for(let name of names){
-
-           me.unsubscribe(name) ;
         }
     }
  }

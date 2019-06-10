@@ -24,10 +24,10 @@
         }) ;
     }
 
-    acceptData(data){
+    accept(data){
 
         let me = this,
-            results = super.acceptData(data),
+            results = super.accept(data),
             {
                 from
             } = data;

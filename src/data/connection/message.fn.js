@@ -45,11 +45,10 @@
 
     get subscriberListeners(){
 
-        let listeners = super.subscriberListeners ;
-
-        listeners.send = 'onMessageSend' ;
-
-        return listeners ;
+        return {
+            ...super.subscriberListeners,
+            send:'onMessageSend'
+        } ;
     }
 
     subscribe(name){
@@ -66,11 +65,6 @@
         this.acceptMessage(message) ;
     }
 
-    convertNameToSubscriberOptions(){
-
-        return {} ;
-    }
-
     send(address , data){
 
         if(isString(address)){
@@ -82,22 +76,15 @@
 
         if(isObject(address)){
 
-            if(isDefined(data)){
+            if(!address.hasOwnProperty('data')){
 
-                try{
-
-                    data = JSON.parse(JSON.stringify(data)) ;
-                
-                }catch(err){
-    
-                    data = undefined ;
-                }
+                address = {
+                    ...address,
+                    data
+                } ;
             }
 
-            this.acceptMessage({
-                ...address,
-                data
-            }) ;
+            this.acceptMessage(address) ;
         }
     }
  }
