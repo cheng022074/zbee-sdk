@@ -26,6 +26,47 @@
 
  const createRegex = require('regex-parser'); 
 
+ function createRules(rules){
+
+    let result = [] ;
+
+    for(let {
+        test,
+        use
+    } of rules){
+
+        if(isFunction(use)){
+
+            result.push({
+                test:createRegex(test),
+                use
+            }) ;
+        }
+    }
+
+    return result ;
+ }
+
+ function convertNameToSubscriberOptions(name){
+
+    let {
+        rules
+    } = this;
+
+    for(let {
+        test,
+        use
+    } of rules){
+
+        let args = name.match(test) ;
+
+        if(args){
+
+            return use(...args) ;
+        }
+    }
+ }
+
  class main{
 
     constructor({
@@ -42,38 +83,7 @@
 
         me.subscribers = new Map() ;
 
-        me.rules = me.createRules(rules) ;
-    }
-
-    /**
-     * 
-     * 构建规则集合
-     * 
-     * 
-     * @param {object} rules 规则配置
-     * 
-     * @return {Map} 规则集合
-     * 
-     */
-    createRules(rules){
-
-        let result = [] ;
-
-        for(let {
-            test,
-            use
-        } of rules){
-
-            if(isFunction(use)){
-
-                result.push({
-                    test:createRegex(test),
-                    use
-                }) ;
-            }
-        }
-
-        return result ;
+        me.rules = createRules(rules) ;
     }
 
     processMessage(...args){
@@ -93,55 +103,12 @@
         return true ;
     }
 
-    /**
-     * 
-     * 接收消息
-     * 
-     * @param  {mixed} [...args] 消息参数
-     * 
-     */
-    acceptMessage(...args){
-
-        let me = this,
-            message = me.processMessage(...args),
-            {
-                subscribers
-            } = me;
-
-        for(let subscriber of subscribers){
-
-            if(me.validateMessage(subscriber , message)){
-
-                subscriber.accept(me.processData(subscriber , message)) ;
-            }
-        }
-    }
 
     processSubscribeParams(subscriber , params){
 
         return [
             params
         ] ;
-    }
-
-    convertNameToSubscriberOptions(name){
-
-        let {
-            rules
-        } = this;
-
-        for(let {
-            test,
-            use
-        } of rules){
-
-            let args = name.match(test) ;
-
-            if(args){
-
-                return use(...args) ;
-            }
-        }
     }
 
     /**
@@ -161,7 +128,7 @@
             subscriber
         } = this ;
 
-        return create(subscriber , name , assign(me.convertNameToSubscriberOptions(name) , options)) ;
+        return create(subscriber , name , assign(convertNameToSubscriberOptions.call(me , name) , options)) ;
     }
 
     get subscriberListeners(){

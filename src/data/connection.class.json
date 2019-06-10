@@ -3,6 +3,10 @@
     "class":true,
     "constructor":false,
     "methods":[
+        {
+            "name":"acceptMessage",
+            "impl":".connection.accept"
+        },
         "subscribe",
         "unsubscribe",
         "subscribes",
