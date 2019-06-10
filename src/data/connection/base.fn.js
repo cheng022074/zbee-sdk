@@ -124,9 +124,10 @@
      */
     createSubscriber(name , options){
 
-        let {
+        let me = this,
+        {
             subscriber
-        } = this ;
+        } = me ;
 
         return create(subscriber , name , assign(convertNameToSubscriberOptions.call(me , name) , options)) ;
     }

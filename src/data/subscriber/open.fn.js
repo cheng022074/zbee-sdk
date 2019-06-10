@@ -5,15 +5,18 @@
  * 
  * @import equals from object.equals
  * 
+ * @import assign from object.assign
+ * 
  * @param {object} [params = {}] 订阅参数
  * 
  */
 
-let {
+let me = this,
+{
     extraParams,
     defaultParams,
     params:oldParams
-} = this ;
+} = me ;
 
 params = assign({} , defaultParams , params , extraParams) ;
 

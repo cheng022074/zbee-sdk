@@ -30,7 +30,7 @@
             {
                 messageEventName,
                 acceptMessage,
-                resubscribers,
+                resubscribes,
                 onConnect
             } = me ;
 
@@ -45,7 +45,7 @@
 
         socket.on(messageEventName , acceptMessage.bind(me)) ;
 
-        socket.on('reconnect' , resubscribers.bind(me)) ;
+        socket.on('reconnect' , resubscribes.bind(me)) ;
 
         socket.once('connect' , onConnect.bind(me)) ;
 

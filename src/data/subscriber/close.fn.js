@@ -5,11 +5,12 @@
  * 
  */
 
-let {
+let me = this,
+{
     closed,
     params,
     cache
-} = this;
+} = me;
 
 if(closed){
 

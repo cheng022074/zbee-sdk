@@ -5,6 +5,8 @@
  * 
  * @import createMap from map
  * 
+ * @param {string} name 订阅名称
+ * 
  * @param {object} config 订阅器配置
  * 
  * @param {boolean} [config.accumulationMode = false] 是否启动累积模型，当启动累积模型后则所有的接收消息都会被缓存，默认为 false
@@ -29,4 +31,4 @@ me.cache = [] ;
 
 me.bindCallbacks = createMap() ;
 
-me.closed = false ;
+me.closed = true ;
