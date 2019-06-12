@@ -65,6 +65,8 @@
             return use(...args) ;
         }
     }
+
+    return {} ;
  }
 
  class main{
@@ -91,9 +93,9 @@
         return {} ;
     }
 
-    processData({
+    processData(subscriber , {
         data
-    } , subscriber){
+    }){
 
         return data ;
     }

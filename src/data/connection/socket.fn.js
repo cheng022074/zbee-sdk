@@ -11,6 +11,8 @@
  * 
  * @import getValue from object.value.get
  * 
+ * @import equals from object.equals
+ * 
  * @class
  * 
  */
@@ -25,23 +27,7 @@
 
         if(isObject(baseParams) && isObject(equalParams)){
 
-            let keys = getKeys(baseParams),
-                equalKeys = getKeys(equalParams);
-
-            for(let key of keys){
-
-                if(!equalKeys.includes(key)){
-
-                    continue ;
-                }
-
-                if(getValue(baseParams , key) !== getValue(equalParams , key)){
-
-                    return false ;
-                }
-            }
-
-            return true ;
+            return equals(baseParams , equalParams) ;
         }
 
         return false ;

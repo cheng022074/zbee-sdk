@@ -15,10 +15,11 @@ let me = this,
         subscribers
     } = me;
 
-for(let subscriber of subscribers){
+subscribers.forEach(subscriber => {
 
     if(me.validateMessage(subscriber , message)){
 
         subscriber.accept(me.processData(subscriber , message)) ;
     }
-}
+
+}) ;

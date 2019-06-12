@@ -54,7 +54,7 @@
 
     onConnect(){
 
-        this.firstConnected === true ;
+        this.firstConnected = true ;
     }
 
     get messageEventName(){
