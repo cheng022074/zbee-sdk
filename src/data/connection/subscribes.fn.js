@@ -3,15 +3,27 @@
  * 
  * 批量订阅
  * 
+ * @import is.string
+ * 
+ * @import is.function
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import get from function.get
+ * 
  * @param {object} config 批量订阅配置
  * 
  * @return {mixed} 返回说明 
  * 
  */
 
-let names = Object.keys(subscribers),
-    me = this,
-    result = {};
+let {
+    scope,
+    ...subscribers
+} = config,
+me = this,
+names = Object.keys(subscribers),
+result = {};
 
 for(let name of names){
 

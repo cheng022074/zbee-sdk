@@ -20,7 +20,8 @@
     mounted = empty,
     destroyed = empty,
     subscribers = {},
-    loaders = {}
+    loaders = {},
+    ...options
  } = component,
  {
     keys
@@ -65,5 +66,7 @@
 
             ajax.unsubscribes(keys(loaders)) ;
         }
-    }
+    },
+
+    ...options
  } ;
