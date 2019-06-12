@@ -1960,11 +1960,6 @@ ignore-walk@^3.0.1:
   dependencies:
     minimatch "^3.0.4"
 
-immediate@~3.0.5:
-  version "3.0.6"
-  resolved "https://registry.npm.taobao.org/immediate/download/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
-  integrity sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=
-
 indexof@0.0.1:
   version "0.0.1"
   resolved "https://registry.npm.taobao.org/indexof/download/indexof-0.0.1.tgz#82dc336d232b9062179d05ab3293a66059fd435d"
@@ -2274,16 +2269,6 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jszip@^3.2.0:
-  version "3.2.1"
-  resolved "https://registry.npm.taobao.org/jszip/download/jszip-3.2.1.tgz#c5d32df7274042282b157efb16e522b43435e01a"
-  integrity sha1-xdMt9ydAQigrFX77FuUitDQ14Bo=
-  dependencies:
-    lie "~3.3.0"
-    pako "~1.0.2"
-    readable-stream "~2.3.6"
-    set-immediate-shim "~1.0.1"
-
 keygrip@~1.0.3:
   version "1.0.3"
   resolved "https://registry.npm.taobao.org/keygrip/download/keygrip-1.0.3.tgz#399d709f0aed2bab0a059e0cdd3a5023a053e1dc"
@@ -2421,13 +2406,6 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
-
-lie@~3.3.0:
-  version "3.3.0"
-  resolved "https://registry.npm.taobao.org/lie/download/lie-3.3.0.tgz#dcf82dee545f46074daf200c7c1c5a08e0f40f6a"
-  integrity sha1-3Pgt7lRfRgdNryAMfBxaCOD0D2o=
-  dependencies:
-    immediate "~3.0.5"
 
 lodash.sortby@^4.7.0:
   version "4.7.0"
@@ -2874,11 +2852,6 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
-pako@~1.0.2:
-  version "1.0.10"
-  resolved "https://registry.npm.taobao.org/pako/download/pako-1.0.10.tgz#4328badb5086a426aa90f541977d4955da5c9732"
-  integrity sha1-Qyi621CGpCaqkPVBl31JVdpclzI=
-
 param-case@2.1.x:
   version "2.1.1"
   resolved "https://registry.npm.taobao.org/param-case/download/param-case-2.1.1.tgz#df94fd8cf6531ecf75e6bef9a0858fbc72be2247"
@@ -3074,7 +3047,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@~2.3.6:
+readable-stream@^2.0.2, readable-stream@^2.0.6:
   version "2.3.6"
   resolved "https://registry.npm.taobao.org/readable-stream/download/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   integrity sha1-sRwn2IuP8fvgcGQ8+UsMea4bCq8=
@@ -3324,11 +3297,6 @@ set-blocking@~2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/set-blocking/download/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
   integrity sha1-BF+XgtARrppoA93TgrJDkrPYkPc=
-
-set-immediate-shim@~1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npm.taobao.org/set-immediate-shim/download/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
-  integrity sha1-SysbJ+uAip+NzEgaWOXlb1mfP2E=
 
 set-value@^0.4.3:
   version "0.4.3"
@@ -3957,20 +3925,15 @@ yallist@^3.0.0, yallist@^3.0.2:
   resolved "https://registry.npm.taobao.org/yallist/download/yallist-3.0.3.tgz#b4b049e314be545e3ce802236d6cd22cd91c3de9"
   integrity sha1-tLBJ4xS+VF486AIjbWzSLNkcPek=
 
-yarn@^1.15.2:
-  version "1.15.2"
-  resolved "https://registry.npm.taobao.org/yarn/download/yarn-1.15.2.tgz#7a064ca81ca34235f16376ad2f796ed432f9e285"
-  integrity sha1-egZMqByjQjXxY3atL3lu1DL54oU=
-
 ylru@^1.2.0:
   version "1.2.1"
   resolved "https://registry.npm.taobao.org/ylru/download/ylru-1.2.1.tgz#f576b63341547989c1de7ba288760923b27fe84f"
   integrity sha1-9Xa2M0FUeYnB3nuiiHYJI7J/6E8=
 
-zbee@^0.0.72:
-  version "0.0.72"
-  resolved "https://registry.npm.taobao.org/zbee/download/zbee-0.0.72.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fzbee%2Fdownload%2Fzbee-0.0.72.tgz#3fcc32330e658332bf25340b109b227c1baabce9"
-  integrity sha1-P8wyMw5lgzK/JTQLEJsifBuqvOk=
+zbee@^0.0.75:
+  version "0.0.75"
+  resolved "https://registry.npmjs.org/zbee/-/zbee-0.0.75.tgz#20dd04516bf2e294226504f4a912e784e58ae585"
+  integrity sha512-oVgxEXlN7K20WUB9SWiglMWWX7zUlqGl0AijywGqNsba6prqncgVYsKW0LhwcR1ssaHJ4m15+ARI+6V8c0IjIQ==
   dependencies:
     "@babel/core" "^7.3.4"
     "@babel/parser" "^7.3.1"
@@ -3986,8 +3949,6 @@ zbee@^0.0.72:
     js-beautify "^1.7.5"
     jsdom "^13.0.0"
     jsmin "^1.0.1"
-    jszip "^3.2.0"
     strip-comment "^1.1.3"
     xmldom "^0.1.27"
     xpath "^0.0.27"
-    yarn "^1.15.2"
