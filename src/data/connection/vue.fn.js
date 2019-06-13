@@ -34,7 +34,7 @@
 
         if(socket){
             
-            me.subscribers = socket.subscribes({
+            me.$subscribers = socket.subscribes({
                 ...subscribers,
                 scope:me
             }) ;
@@ -42,7 +42,7 @@
 
         if(ajax){
 
-            me.loaders = ajax.subscribes({
+            me.$loaders = ajax.subscribes({
                 ...loaders,
                 scope:me
             }) ;
