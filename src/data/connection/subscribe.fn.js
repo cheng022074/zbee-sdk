@@ -3,47 +3,77 @@
  * 
  * 单次订阅
  * 
+ * @import assign from object.assign
+ * 
  * @param {string} name 订阅名称
  * 
  * @param {object} [options = {}] 订阅配置
  * 
  */
 
-let me = this,
-{
-    subscribers,
-    subscriberListeners
-} = me,
-{
-    fn,
-    scope,
-    params,
-    listeners = {},
-    autoOpen = true,
-    ...currentOptions
-} = options;
+function main(name , options){
 
-if(subscribers.has(name)){
+    let me = this ;
 
-    return subscribers.get(name) ;
+    options = assign({} , convertNameToSubscriberOptions.call(me , name) , options) ;
+
+    let {
+        subscribers,
+        subscriberListeners
+    } = me,
+    {
+        fn,
+        scope,
+        params,
+        listeners = {},
+        autoOpen = true,
+        ...currentOptions
+    } = options;
+
+    if(subscribers.has(name)){
+
+        return subscribers.get(name) ;
+    }
+
+    let subscriber = me.createSubscriber(name , currentOptions) ;
+
+    subscriber.addListeners(subscriberListeners) ;
+
+    subscriber.addListeners(listeners) ;
+
+    subscribers.set(name , subscriber) ;
+
+    if(fn){
+
+        subscriber.bind(fn , scope) ;
+    }
+
+    if(autoOpen){
+
+        subscriber.open(params) ;
+    }
+
+    return subscriber ;
 }
 
-let subscriber = me.createSubscriber(name , currentOptions) ;
+function convertNameToSubscriberOptions(name){
 
-subscriber.addListeners(subscriberListeners) ;
+    let {
+        rules
+    } = this;
 
-subscriber.addListeners(listeners) ;
+    for(let {
+        test,
+        use
+    } of rules){
 
-subscribers.set(name , subscriber) ;
+        let args = name.match(test) ;
 
-if(fn){
+        if(args){
 
-    subscriber.bind(fn , scope) ;
-}
+            return use(...args) ;
+        }
+    }
 
-if(autoOpen){
-
-    subscriber.open(params) ;
-}
-
-return subscriber ;
+    return {} ;
+ }

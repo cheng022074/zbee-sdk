@@ -10,13 +10,13 @@
  * 
  * @import is.boolean
  * 
+ * @import is.array
+ * 
  * @import Subscriber from data.subscriber value
  * 
  * @import get from function.get
  * 
  * @import create from class.create
- * 
- * @import assign from object.assign
  * 
  * @require regex-parser
  * 
@@ -45,28 +45,6 @@
     }
 
     return result ;
- }
-
- function convertNameToSubscriberOptions(name){
-
-    let {
-        rules
-    } = this;
-
-    for(let {
-        test,
-        use
-    } of rules){
-
-        let args = name.match(test) ;
-
-        if(args){
-
-            return use(...args) ;
-        }
-    }
-
-    return {} ;
  }
 
  class main{
@@ -131,7 +109,7 @@
             subscriber
         } = me ;
 
-        return create(subscriber , name , assign(convertNameToSubscriberOptions.call(me , name) , options)) ;
+        return create(subscriber , name , options) ;
     }
 
     get subscriberListeners(){
@@ -147,7 +125,12 @@
 
         let me = this;
 
-        me.doSubscriberOpen(subscriber , ...me.processSubscribeParams(subscriber , params)) ;
+        params = me.processSubscribeParams(subscriber , params , 'open') ;
+
+        if(isArray(params)){
+
+            me.doSubscriberOpen(subscriber , ...params) ;
+        }
     }
 
     doSubscriberOpen(subscriber , ...args){
@@ -159,7 +142,13 @@
 
         let me = this;
 
-        me.doSubscriberClose(subscriber , ...me.processSubscribeParams(subscriber , params)) ;
+        params = me.processSubscribeParams(subscriber , params , 'close') ;
+
+        if(isArray(params)){
+
+            me.doSubscriberClose(subscriber , ...params) ;
+        }
+
     }
 
     doSubscriberClose(subscriber , ...args){
