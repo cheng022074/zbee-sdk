@@ -10,7 +10,9 @@
  * 
  * @param {mixed} componentClass 组件类引用
  * 
- * @return {mixed} 组件类引用 
+ * @return {mixed} 组件类引用
+ * 
+ * @non-standard
  * 
  */
 
