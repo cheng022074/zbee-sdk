@@ -125,7 +125,7 @@
 
                     node.resumeEvents() ;
                 }
-                
+
                 doReorder(node) ;
 
                 initNodeVisible(node) ;
@@ -135,6 +135,8 @@
                 break ;
             }
         }
+
+        store.layout() ;
     }
  }
 

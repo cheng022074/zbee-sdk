@@ -12,7 +12,7 @@
             rootNode,
             recordset
         } = me,
-        records = recordset.toArray();
+        records = recordset.findRecords('hidden' , false);
 
     if(rootNode){
 

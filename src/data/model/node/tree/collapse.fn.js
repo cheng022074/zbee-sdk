@@ -19,7 +19,11 @@ if(expanded){
 
         if(deep){
 
+            childNode.suspendEvents() ;
+
             childNode.collapse(deep) ;
+
+            childNode.resumeEvents() ;
         }
 
         childNode.hide() ;
