@@ -3,9 +3,15 @@
  * 
  * 开始事件监听
  * 
- * @import getEventProperties from browser.event.point.single.get
+ * @import getEvent from browser.event.single
+ * 
+ * @import getTouchEvents from browser.event.touches
+ * 
+ * @import stop from browser.event.stop
  * 
  * @import enabled from ..enabled scoped
+ * 
+ * @import disabled from ..disabled scoped
  * 
  * @config timeout from event.tap...timeout
  * 
@@ -13,20 +19,24 @@
  * 
  */
 
-let me = this ;
+ stop(e) ;
 
-e.preventDefault() ;
+ if(getTouchEvents(e)){
 
-let {
-    pageX,
-    pageY
-} = getEventProperties(e , [
-    'pageX',
-    'pageY'
-]) ;
+    disabled() ;
 
-me.startX = pageX ;
+ }else{
 
-me.startY = pageY ;
+    let me = this ;
 
-enabled() ;
+    let {
+        pageX,
+        pageY
+    } = getEvent(e , 'start') ;
+
+    me.startX = pageX ;
+
+    me.startY = pageY ;
+
+    enabled() ;
+ }

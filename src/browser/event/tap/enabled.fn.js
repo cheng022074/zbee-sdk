@@ -3,18 +3,22 @@
  * 
  * 监听全局事件
  * 
- * @import onMove from browser.event.tap.move scoped
+ * @import getName from browser.event.name.single
  * 
- * @import onEnd from browser.event.tap.end scoped
+ * @import onMove from ..move scoped
  * 
- * @import on from browser.global.listener.add
+ * @import onEnd from ..end scoped
+ * 
+ * @import onStart from ..start.global scoped
  * 
  */
 
  let me = this ;
 
- on('touchmove' ,  me.onMove = onMove) ;
+ on(getName('start') , me.onStart = onStart) ;
 
- on('touchend' , me.onEnd = onEnd) ;
+ on(getName('move') ,  me.onMove = onMove) ;
+
+ on(getName('end') , me.onEnd = onEnd) ;
 
  

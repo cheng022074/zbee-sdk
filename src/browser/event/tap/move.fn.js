@@ -7,11 +7,13 @@
  * 
  * @import getDistance from math.point.distance
  * 
- * @import dispatch from browser.event.dispatch scoped
+ * @import dispatch from browser.event.dispatch
  * 
  * @import disabled from ..disabled scoped
  * 
  * @import getScale from browser.scale
+ * 
+ * @import stop from browser.event.stop
  * 
  * @config moveDistance from event.tap...moveDistance
  * 
@@ -19,7 +21,12 @@
  * 
  */
 
-e.preventDefault() ;
+stop(e) ;
+
+const {
+    round,
+    abs
+} = Math ;
 
 let me = this,
     {
@@ -31,10 +38,11 @@ let me = this,
     ]),
     {
         startX,
-        startY
+        startY,
+        el
     } = me;
 
-if(Math.round(Math.abs(getDistance({
+if(round(abs(getDistance({
     x:pageX,
     y:pageY
 } , {
@@ -42,7 +50,7 @@ if(Math.round(Math.abs(getDistance({
     y:startY
 }))) * getScale() >= moveDistance){
 
-    dispatch('tapcancel' , e) ;
+    dispatch(el , 'touch:tapcancel' , e) ;
 
     disabled() ;
 }

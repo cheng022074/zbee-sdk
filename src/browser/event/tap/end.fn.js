@@ -11,7 +11,7 @@
  * 
  */
 
-dispatch('tap' , e) ;
+dispatch(this.el , 'touch:tap' , e) ;
 
 disabled() ;
 
