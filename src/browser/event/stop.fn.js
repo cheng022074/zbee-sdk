@@ -1,12 +1,12 @@
 
 /**
  * 
- * 函数实现说明
+ * 停止事件
  * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
+ * @param {Event} e 事件对象
  * 
  */
 
- // 代码实现
+ e.preventDefault() ;
+
+ e.stopPropagation() ;

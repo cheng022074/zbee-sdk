@@ -3,8 +3,6 @@
  * 
  * 移动事件监听
  * 
- * @import getEventProperties from browser.event.point.single.get
- * 
  * @import getDistance from math.point.distance
  * 
  * @import dispatch from browser.event.dispatch
