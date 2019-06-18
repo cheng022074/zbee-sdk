@@ -79,7 +79,9 @@
             "browser.global.listener.remove",
             "browser.event.key",
             "canvas.draw.line.bezierCurve",
-            "math.region"
+            "math.region",
+            "browser.event.gesture.tap",
+            "browser.event.gesture.manager.dom"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"

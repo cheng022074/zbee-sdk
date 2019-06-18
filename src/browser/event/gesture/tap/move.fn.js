@@ -48,7 +48,7 @@ if(round(abs(getDistance({
     y:startY
 }))) * getScale() >= moveDistance){
 
-    dispatch(el , 'touch:tapcancel' , e) ;
+    dispatch(el , 'gesture:tapcancel' , e) ;
 
     disabled() ;
 }
