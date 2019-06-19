@@ -3,8 +3,6 @@
  * 
  * 监听全局事件
  * 
- * @import getEventName from browser.event.name
- * 
  * @import getMap from ..map
  * 
  * @import is from browser.selector.parent
@@ -19,8 +17,6 @@
  * 
  */
 
-event = getEventName(event) ;
- 
 let map = getMap(),
     listenerFn = e =>{
 

@@ -3,6 +3,8 @@
  * 
  * 移动事件监听
  * 
+ *  @import getEvent from browser.event.single
+ * 
  * @import getDistance from math.point.distance
  * 
  * @import dispatch from browser.event.dispatch
@@ -30,10 +32,7 @@ let me = this,
     {
         pageX,
         pageY
-    } = getEventProperties(e , [
-        'pageX',
-        'pageY'
-    ]),
+    } = getEvent(e),
     {
         startX,
         startY,
