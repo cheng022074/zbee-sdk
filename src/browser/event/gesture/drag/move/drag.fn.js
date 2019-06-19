@@ -29,18 +29,15 @@ point = {
     y
 };
 
-if(has(el , 'drag:lastPoint')){
-
-    set(el , 'drag:previousPoint' , get(el , 'drag:lastPoint')) ;
-}
-
 me.lastPoint = point ;
 
 updateInfo('x' , true);
 
 updateInfo('y' , true);
 
-let info = get(el , 'drag:info') ;
+let {
+    info
+} = me;
 
 info.time = Date.now();
 
