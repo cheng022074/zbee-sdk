@@ -25,54 +25,53 @@
 
  if(getTouchEvents(e)){
 
-    disabled() ;
+    return ;
 
- }else{
+ }
 
-    let me = this,
-    {
-        pageX:x,
-        pageY:y
-    } = getEvent(e , 'start');
+let me = this,
+{
+    pageX:x,
+    pageY:y
+} = getEvent(e , 'start');
 
-    me.info = {
-        previous: {
-            x: 0,
-            y: 0
-        },
+me.info = {
+    previous: {
         x: 0,
-        y: 0,
-        delta: {
-            x: 0,
-            y: 0
-        },
-        absDelta: {
-            x: 0,
-            y: 0
-        },
-        flick: {
-            velocity: {
-                x: 0,
-                y: 0
-            }
-        },
-        direction: {
-            x: 0,
-            y: 0
-        },
-        time: 0,
-        previousTime: {
+        y: 0
+    },
+    x: 0,
+    y: 0,
+    delta: {
+        x: 0,
+        y: 0
+    },
+    absDelta: {
+        x: 0,
+        y: 0
+    },
+    flick: {
+        velocity: {
             x: 0,
             y: 0
         }
-    } ;
+    },
+    direction: {
+        x: 0,
+        y: 0
+    },
+    time: 0,
+    previousTime: {
+        x: 0,
+        y: 0
+    }
+} ;
 
-    me.startTime = Date.now() ;
+me.startTime = Date.now() ;
 
-    me.startPoint = {
-        x,
-        y
-    } ;
- }
+me.startPoint = {
+    x,
+    y
+} ;
 
- on(getName('move') , onMove) ;
+on(getName('move') , onMove) ;

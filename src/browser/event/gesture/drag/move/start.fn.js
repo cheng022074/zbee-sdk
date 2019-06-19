@@ -6,8 +6,6 @@ import { ALPN_ENABLED } from "constants";
  * 
  * @import stop from browser.event.stop
  * 
- * @import getTouchEvents from browser.event.touches
- * 
  * @import getEvent from browser.event.single
  * 
  * @import getName from browser.event.name.single
@@ -18,7 +16,7 @@ import { ALPN_ENABLED } from "constants";
  * 
  * @import scale from browser.scale
  * 
- * @import resetInfo from ....info.reset
+ * @import resetInfo from ....info.reset scoped
  * 
  * @import onMove from ..start
  * 
@@ -35,42 +33,35 @@ import { ALPN_ENABLED } from "constants";
 
 stop(e) ;
 
-if(getTouchEvents(e)){
+let me = this,{
+    pageX:x,
+    pageY:y
+} = getEvent(e , 'move'),
+{
+    startPoint,
+    info,
+    el
+} = me,
+point = {
+    x,
+    y
+};
 
-    disabled() ;
+if (Math.round(startPoint , point) * scale() >= minDistance) {
 
-}else{
+    me.previousPoint = point ;
 
-    let me = this,{
-        pageX:x,
-        pageY:y
-    } = getEvent(e , 'move'),
-    {
-        startPoint,
-        info,
-        el
-    } = me,
-    point = {
-        x,
-        y
-    };
+    me.lastPoint = point ;
 
-    if (Math.round(startPoint , point) * scale() >= minDistance) {
-
-        me.previousPoint = point ;
+    resetInfo('x');
     
-        me.lastPoint = point ;
-    
-        resetInfo(info , 'x');
-        
-        resetInfo(info , 'y');
-    
-        info.time = Date.now();
-    
-        dispatch(el , 'gesture:dragstart', info);
+    resetInfo('y');
 
-        un(getName('move') , onMove) ;
-    
-        enabled() ;
-    }  
+    info.time = Date.now();
+
+    dispatch(el , 'gesture:dragstart', info);
+
+    un(getName('move') , onMove) ;
+
+    enabled() ;
 }

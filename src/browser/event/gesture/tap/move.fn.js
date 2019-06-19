@@ -11,8 +11,6 @@
  * 
  * @import stop from browser.event.stop
  * 
- * @import dispatchCancelEvent from ..dispatch.cancel scoped
- * 
  * @config moveDistance from event.tap...moveDistance
  * 
  * @param {Event} e 事件对象
@@ -36,5 +34,7 @@ if(Math.round(getDistance({
     y:pageY
 } , startPoint)) * getScale() >= moveDistance){
 
-    dispatchCancelEvent() ;
+    dispatch(el , 'gesture:tapcancel') ;
+
+    disabled() ;
 }
