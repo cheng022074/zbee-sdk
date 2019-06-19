@@ -17,8 +17,6 @@
 
  if(getTouchEvents(e)){
 
-    dispatch(el , 'gesture:tapcancel' , e) ;
-
     disabled() ;
  }
  

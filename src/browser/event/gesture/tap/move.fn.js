@@ -7,13 +7,11 @@
  * 
  * @import getDistance from math.point.distance
  * 
- * @import dispatch from browser.event.dispatch
- * 
- * @import disabled from ..disabled scoped
- * 
  * @import getScale from browser.scale
  * 
  * @import stop from browser.event.stop
+ * 
+ * @import dispatchCancelEvent from ..dispatch.cancel scoped
  * 
  * @config moveDistance from event.tap...moveDistance
  * 
@@ -23,31 +21,20 @@
 
 stop(e) ;
 
-const {
-    round,
-    abs
-} = Math ;
-
 let me = this,
     {
         pageX,
         pageY
-    } = getEvent(e),
+    } = getEvent(e , 'move'),
     {
-        startX,
-        startY,
+        startPoint,
         el
     } = me;
 
-if(round(abs(getDistance({
+if(Math.round(getDistance({
     x:pageX,
     y:pageY
-} , {
-    x:startX,
-    y:startY
-}))) * getScale() >= moveDistance){
+} , startPoint)) * getScale() >= moveDistance){
 
-    dispatch(el , 'gesture:tapcancel' , e) ;
-
-    disabled() ;
+    dispatchCancelEvent() ;
 }

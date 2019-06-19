@@ -13,6 +13,8 @@
  * 
  * @import disabled from ..disabled scoped
  * 
+ * @import dispatchCancelEvent from ..dispatch.cancel scoped
+ * 
  * @config timeout from event.tap...timeout
  * 
  * @param {Event} e 事件对象
@@ -23,20 +25,20 @@
 
  if(getTouchEvents(e)){
 
-    disabled() ;
+   dispatchCancelEvent() ;
 
  }else{
 
-    let me = this ;
-
-    let {
-        pageX,
-        pageY
+    let me = this,
+    {
+        pageX:x,
+        pageY:y
     } = getEvent(e , 'start') ;
 
-    me.startX = pageX ;
-
-    me.startY = pageY ;
+    me.startPoint = {
+       x,
+       y
+    } ;
 
     enabled() ;
  }
