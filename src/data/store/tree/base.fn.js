@@ -24,7 +24,6 @@
         padding = 0,
         lineOffsetX = 0, 
         rootConfig,
-        depth = Number.MAX_VALUE,
         ...options
     }){
 
@@ -51,8 +50,6 @@
         let me = this ;
 
         me.rootConfig = rootConfig || {} ;
-
-        me.depth = depth ;
 
         let {
             bottom:marginBottom = 0,
@@ -107,30 +104,24 @@
                 
                 let me = this,
                 {
-                    rootConfig,
-                    depth
+                    rootConfig
                 } = me ;
 
                 me.rootNode = node ;
 
                 node.set(rootConfig) ;
 
-                let nodes = node.getDepthNodes(depth) ;
-
-                for(let node of nodes){
-
-                    node.suspendEvents() ;
-
-                    node.collapse(true) ;
-
-                    node.resumeEvents() ;
-                }
-
                 doReorder(node) ;
 
-                initNodeVisible(node) ;
+                node.suspendEvents() ;
+
+                node.show() ;
 
                 node.select() ;
+
+                node.expand() ;
+
+                node.resumeEvents() ;
 
                 break ;
             }
@@ -150,26 +141,4 @@
 
     store.insert(store.indexOf(node) + 1 , childNodes) ;
 
- }
-
- function initNodeVisible(node){
-
-    let {
-        childNodes
-    } = node ;
-
-    if(node.expanded){
-
-        for(let childNode of childNodes){
-
-            initNodeVisible(childNode) ;
-        }
-
-    }else{
-
-        for(let childNode of childNodes){
-
-            childNode.hide() ;
-        }
-    }
  }

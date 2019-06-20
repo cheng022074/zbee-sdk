@@ -40,7 +40,7 @@
             {
                 name:'expanded',
                 persistent:true,
-                defaultValue:true
+                defaultValue:false
             },{
                 name:'width',
                 persistent:true,
@@ -64,6 +64,10 @@
             },{
                 name:'hidden',
                 persistent:true,
+                defaultValue:true
+            },
+            {
+                name:'leaf',
                 defaultValue:false
             }
         ];
@@ -136,7 +140,24 @@
      */
     get isLeaf(){
 
-        return getChildNodes.call(this).length === 0 ;
+        return this.get('leaf') ;
+    }
+
+    /**
+     * 
+     * 判断当前节点是否加载
+     * 
+     * @return {boolean}
+     * 
+     */
+    get isLoaded(){
+
+        let {
+            isLeaf,
+            children
+        } = this ;
+
+        return !isLeaf && children.length === 0 ;
     }
 
     /**
@@ -341,16 +362,6 @@
 
         childNode[value ? 'hide' : 'show']() ;
     }
- }
-
- function getChildNodes(){
-
-    let {
-        store,
-        id
-    } = this ;
-
-    return store.findRecords('parentId' , id) ;
  }
 
  function getSiblingNode(property){

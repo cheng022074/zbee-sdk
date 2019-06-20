@@ -1,0 +1,16 @@
+{
+  "classes": [
+    "data.store.create",
+    "data.store.tree",
+    "browser.global.listener.add",
+    "browser.global.listener.remove",
+    "browser.event.key",
+    "canvas.draw.line.bezierCurve",
+    "math.region",
+    "browser.event.gesture.tap.start",
+    "browser.event.gesture.manager.dom"
+  ],
+  "type": "webpack",
+  "memory": false,
+  "compile": false
+}

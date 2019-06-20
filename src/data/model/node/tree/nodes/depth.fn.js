@@ -11,19 +11,19 @@
 
 let nodes = [],
 {
-    childNodes
+    children
 } = this;
 
 if(depth === 1){
 
-    return childNodes ;
+    return children ;
 }
 
 depth -- ;
 
-for(let childNode of childNodes){
+for(let childNode of children){
 
-    nodes.push(...childNode.getDepthNodes(depth)) ;
+    nodes.push(childNode , ...childNode.getDepthNodes(depth)) ;
 }
 
 return nodes ;

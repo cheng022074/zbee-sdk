@@ -12,7 +12,7 @@
     },
     "properties":{
         "isBindStore":{
-            "get":".model.store.isBind"
+            "get":".model.store.bind.is"
         },
         "id":{
             "get":".model.id"
