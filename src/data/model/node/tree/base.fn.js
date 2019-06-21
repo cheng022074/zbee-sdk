@@ -150,7 +150,7 @@
      * @return {boolean}
      * 
      */
-    get isLoaded(){
+    get synchronized(){
 
         let {
             isLeaf,
@@ -158,6 +158,27 @@
         } = this ;
 
         return !isLeaf && children.length === 0 ;
+    }
+
+    sync(nodes){
+
+        let me = this ;
+
+        if(!me.synchronized){
+
+            if(nodes.length === 0){
+
+                me.set('leaf' , true) ;
+            
+            }else{
+
+                me.suspendEvents() ;
+    
+                me.appendChild(nodes) ;
+
+                me.resumeEvents() ;
+            }
+        }
     }
 
     /**
