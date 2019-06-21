@@ -19,7 +19,7 @@ if(!expanded){
 
     if(!synchronized){
 
-        me.sync(await store.syncChildNodes(node)) ;
+        me.syncChildNodes(await store.syncChildNodes(me)) ;
     }
 
     me.set('expanded' , true) ;
@@ -33,5 +33,5 @@ if(!expanded){
         childNode.show() ;
     }
 
-    me.fireEvent('expand') ;
+    me.fireEvent('expand' , synchronized) ;
 }

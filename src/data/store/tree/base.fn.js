@@ -129,8 +129,6 @@
                 break ;
             }
         }
-
-        store.layout() ;
     }
  }
 

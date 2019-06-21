@@ -21,7 +21,7 @@
 
  class main extends Model{
 
-    sync({
+    syncSize({
         width,
         height
     }){
@@ -157,10 +157,10 @@
             children
         } = this ;
 
-        return !isLeaf && children.length === 0 ;
+        return !isLeaf && children.length !== 0 ;
     }
 
-    sync(nodes){
+    syncChildNodes(nodes){
 
         let me = this ;
 
@@ -174,10 +174,12 @@
 
                 me.suspendEvents() ;
     
-                me.appendChild(nodes) ;
+                nodes = me.appendChild(nodes) ;
 
                 me.resumeEvents() ;
             }
+
+            me.fireEvent('syncchildnodes' , nodes) ;
         }
     }
 
