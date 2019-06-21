@@ -21,11 +21,13 @@
 
     let nodes = store.insert(store.indexOf(existNode) + 1 , node) ;
 
-    if(!expanded || hidden){
+    me.set('leaf' , false) ;
+
+    if(expanded && !hidden){
 
         for(let node of nodes){
     
-            node.hide() ;
+            node.show() ;
         }
     }
 

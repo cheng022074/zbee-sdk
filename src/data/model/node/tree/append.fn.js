@@ -15,11 +15,13 @@ let me = this,
 } = me,
 nodes = store.insert(store.indexOf(me.lastLeafNode || me) + 1 , node) ;
 
-if(!expanded || hidden){
+me.set('leaf' , false) ;
+
+if(expanded && !hidden){
 
     for(let node of nodes){
 
-        node.hide() ;
+        node.show() ;
     }
 }
 

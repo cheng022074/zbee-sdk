@@ -113,5 +113,14 @@
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\STARTER\\WEBPACK"
         ]
+    },
+    "miniprogram":{
+        "type":"node",
+        "classes":[
+            "miniprogram.page"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\WeChatProjects\\miniprogram-test-3\\sdk\\lib.js"
+        ]
     }
 }
