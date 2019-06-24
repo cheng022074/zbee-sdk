@@ -43,7 +43,7 @@
 
             } ;
 
-            me.$computed = computed ; 
+            me.computed = computed ; 
 
             onLoad.call(this , query) ;
         },
@@ -52,14 +52,38 @@
      } ;
  }
 
- const {
-     keys
- } = Object ;
+ class Data{
 
- function onSetData(data){
+    constructor(program){
 
-    let names = Object.keys(data) ;
+        let {
+            data,
+            computed
+        } = program ;
 
-    console.log(names) ;
+        let me = this ;
+
+        me.data = data ;
+
+        me.computed = computed ;
+    }
+
+    get(name){
+
+        let me = this,
+        {
+            data,
+            computed
+        } = me ;
+    
+        if(data.hasOwnProperty(name)){
+    
+            return data[name] ;
+        
+        }else if(computed.hasOwnProperty(name)){
+    
+            return computed[name](me) ;
+        }
+    }
  }
  
