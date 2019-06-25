@@ -116,6 +116,7 @@
     },
     "miniprogram":{
         "type":"node",
+        "minify":true,
         "classes":[
             "miniprogram.page"
         ],

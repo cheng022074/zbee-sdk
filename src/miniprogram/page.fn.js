@@ -7,6 +7,8 @@
  * 
  * @import is.function
  * 
+ * @import get from object.value.get
+ * 
  * @param {object} config 页面设置
  * 
  * @return {object} 封装后的页面配置 
@@ -33,19 +35,14 @@
                 data
             } = me ;
 
-            me.setData = values =>{
+            data = new Data(me , {
+                computed,
+                setData:nativeSetData
+            }) ;
 
-                nativeSetData.call(me , values , () =>{
+            me.setData = values => nativeSetData.call(me , values , () => refresh.call(data)) ;
 
-                    console.log('设置完成') ;
-
-                }) ;
-
-            } ;
-
-            me.computed = computed ; 
-
-            onLoad.call(this , query) ;
+            onLoad.call(me , query) ;
         },
 
         ...options
@@ -54,36 +51,58 @@
 
  class Data{
 
-    constructor(program){
-
-        let {
-            data,
-            computed
-        } = program ;
+    constructor(program , {
+        computed,
+        setData
+    }){
 
         let me = this ;
 
-        me.data = data ;
+        me.program = program ;
 
         me.computed = computed ;
+
+        me.setData = setData ;
     }
 
     get(name){
 
-        let me = this,
+        let me = this,{
+            computed,
+            program
+        } = me,
         {
-            data,
-            computed
-        } = me ;
-    
-        if(data.hasOwnProperty(name)){
-    
-            return data[name] ;
-        
-        }else if(computed.hasOwnProperty(name)){
+            data
+        } = program ;
+
+        if(computed.hasOwnProperty(name)){
     
             return computed[name](me) ;
         }
+    
+        return get(data , name) ;
+        
     }
+ }
+
+ function refresh(){
+
+    let me = this,
+    {
+        program,
+        setData,
+        computed
+    } = me,
+    {
+        data
+    } = program,
+    names = Object.keys(computed);
+
+    for(let name of names){
+
+        data[name] = computed[name](me) ;
+    }
+
+    setData.call(program , data) ;
  }
  
