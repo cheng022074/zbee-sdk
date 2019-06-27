@@ -1,0 +1,13 @@
+
+{
+    "name": "miniprogram",
+    "version":"0.0.30",
+    "private": true,
+    "zbeeModule":false,
+    "files":[
+        "index.js"
+    ],
+    "dependencies": {
+  "@babel/runtime-corejs3": "^7.4.2"
+}
+}

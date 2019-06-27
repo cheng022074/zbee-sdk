@@ -1,0 +1,9 @@
+{
+  "classes": [
+    "miniprogram.page",
+    "json.stringify"
+  ],
+  "type": "webpack",
+  "memory": false,
+  "compile": false
+}

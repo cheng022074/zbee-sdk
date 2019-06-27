@@ -54,6 +54,8 @@
 
     onConnect(){
 
+        console.log('connect') ;
+
         this.firstConnected = true ;
     }
 

@@ -256,6 +256,8 @@ const dataTypeMaps = [{
         
         if(arrayFlag){
 
+            console.log(root.decode.toString) ;
+
             newData = Array.from(data, item => root.decode(new Uint8Array(item)));
 
 
@@ -271,7 +273,7 @@ const dataTypeMaps = [{
 
 let socket = new XYSocket({
   socket:{
-    url:'http://113.16.174.140:8092/stock',
+    url:'wss://quote.xinyusoft.com/stock',
     options:{
         path:'/classify',
     }
@@ -300,6 +302,9 @@ let socket = new XYSocket({
     }
 }]
 }) ;
+
+return ;
+
 
 socket.subscribe('api_newAll::10').bind(data =>{
 

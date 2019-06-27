@@ -115,13 +115,14 @@
         ]
     },
     "miniprogram":{
-        "type":"node",
-        "minify":true,
+        "type":"webpack",
+        "compile":false,
         "classes":[
-            "miniprogram.page"
+            "miniprogram.page",
+            "json.stringify"
         ],
         "to":[
-            "C:\\Users\\nero.chen\\WeChatProjects\\miniprogram-test-3\\sdk\\lib.js"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\TEST\\WEAPP\\sdk\\lib.js"
         ]
     }
 }
