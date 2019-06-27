@@ -68,7 +68,9 @@
             "date.parse",
             "date.get.properties",
             "is.array",
-            "number.format"
+            "number.format",
+            "miniprogram.page",
+            "json.stringify"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
