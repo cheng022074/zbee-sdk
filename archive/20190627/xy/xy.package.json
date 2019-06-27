@@ -7,6 +7,7 @@
     "data.connection.message",
     "data.connection.react",
     "data.connection.vue",
+    "data.connection.miniprogram",
     "data.store.create",
     "data.store.tree",
     "object.equals",

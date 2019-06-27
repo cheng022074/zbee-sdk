@@ -36,6 +36,7 @@
             "data.connection.message",
             "data.connection.react",
             "data.connection.vue",
+            "data.connection.miniprogram",
             "data.store.create",
             "data.store.tree",
             "object.equals",
@@ -114,17 +115,6 @@
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\STARTER\\WEBPACK"
-        ]
-    },
-    "miniprogram":{
-        "type":"webpack",
-        "compile":false,
-        "classes":[
-            "miniprogram.page",
-            "json.stringify"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\TEST\\WEAPP\\sdk\\lib.js"
         ]
     }
 }
