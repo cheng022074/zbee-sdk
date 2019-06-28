@@ -5,8 +5,6 @@
  * 
  * @import Connection from data.connection value
  * 
- * @import request from .ajax.request
- * 
  * @require url-join
  * 
  * @param {object} options 配置
@@ -23,11 +21,15 @@
 
         super() ;
 
-        let {
-            url:ajaxURL
+        let me = this,
+        {
+            url:ajaxURL,
+            request
         } = ajax ;
 
-        this.ajaxURL = ajaxURL ;
+        me.ajaxURL = ajaxURL ;
+
+        me.request = request ;
     }
 
     processSubscribeParams(subscriber , params){

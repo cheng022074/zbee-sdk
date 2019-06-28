@@ -9,12 +9,6 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import createReader from data.reader.json
- * 
- * @require axios
- * 
- * @require qs
- * 
  * @param {string} url 请求路径
  * 
  * @param {object} [config] 请求配置
@@ -43,10 +37,9 @@ if(path){
     url = apply(url , path) ;
 }
 
-const axios = require('axios'),
-{
-    stringify
-} = require('qs');
+let form = false ;
+
+method = method.toUpperCase() ;
 
 switch(method){
 
@@ -62,23 +55,14 @@ switch(method){
 
         if(requestJSON === false){
 
-            params = stringify(params) ;
+            form = true ;
         }
 }
 
-let result = axios[method.toLowerCase()](url , params) ;
-
-if(responseHeaders){
-
-    return result.then(({
-        data,
-        headers
-    }) => {
-        data,
-        headers
-    }) ;
-}
-
-return result.then(({
-    data
-}) => data) ;
+return {
+    url,
+    method,
+    data:params,
+    form,
+    responseHeaders
+} ;
