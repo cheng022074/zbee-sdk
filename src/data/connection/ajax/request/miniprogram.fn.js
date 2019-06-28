@@ -12,7 +12,7 @@
  */
 
 let {
-    url,
+    url:requestURL,
     method,
     data,
     form,
@@ -29,7 +29,7 @@ return new Promise(callback =>{
 
     wx.request({
         header,
-        url,
+        url:requestURL,
         method,
         data,
         success({

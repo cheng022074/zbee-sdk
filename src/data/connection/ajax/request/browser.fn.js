@@ -16,7 +16,7 @@
  */
 
 let {
-    url,
+    url:requestURL,
     method,
     data,
     form,
@@ -34,7 +34,7 @@ if(form === true){
     data = stringify(data) ;
 }
 
-let result = axios[method.toLowerCase()](url , data) ;
+let result = axios[method.toLowerCase()](requestURL , data) ;
 
 if(responseHeaders){
 

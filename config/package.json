@@ -33,6 +33,8 @@
             "array.remove.all",
             "data.connection.socket.io",
             "data.connection.ajax",
+            "data.connection.ajax.request.browser",
+            "data.connection.ajax.request.miniprogram",
             "data.connection.message",
             "data.connection.react",
             "data.connection.vue",
