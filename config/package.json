@@ -73,7 +73,10 @@
             "is.array",
             "number.format",
             "miniprogram.page",
-            "json.stringify"
+            "json.stringify",
+            "directory.readAllFilePaths",
+            "file.write",
+            "file.read.text"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

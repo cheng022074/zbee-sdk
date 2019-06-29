@@ -44,7 +44,10 @@
     "is.array",
     "number.format",
     "miniprogram.page",
-    "json.stringify"
+    "json.stringify",
+    "directory.readAllFilePaths",
+    "file.write",
+    "file.read.text"
   ],
   "type": "library",
   "memory": false
