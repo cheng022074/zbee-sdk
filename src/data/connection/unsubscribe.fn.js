@@ -5,15 +5,26 @@
  * 
  * @param {string} name 订阅名称
  * 
+ * @param {string} fn 订阅函数
+ * 
+ * @param {mixed} scope 订阅函数作用域
+ * 
  */
 
 let me = this,
     {
         subscribers
     } = me,
-    subscriber = me.doSubscriberMethod(name , 'destroy') ;
+    subscriber = subscribers.get(name) ;
 
 if(subscriber){
 
-    subscribers.delete(name) ;
+    subscriber.unbind(fn , scope) ;
+
+    if(!subscriber.hasBind){
+
+        subscriber.destroy() ;
+
+        subscribers.delete(name) ;
+    }
 }
