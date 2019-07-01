@@ -1,31 +1,4 @@
 {
-    "vue":{
-        "type":"webpack",
-        "classes":[
-            "message.plugin.normal",
-            "message.address.init",
-            "message.address.vue"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\sdk\\lib.js"
-        ]
-    },
-    "webpack":{
-        "type":"library",
-        "classes":[
-            "webpack.*",
-            "directory.readAllFilePaths",
-            "path.ext.remove",
-            "file.write.json",
-            "file.read.json",
-            "is.file",
-            "path.url",
-            "path.unix",
-            "path.short",
-            "path.name.element",
-            "object.get"
-        ]
-    },
     "xy":{
         "type":"library",
         "classes":[
@@ -80,46 +53,6 @@
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
-        ]
-    },
-    "mind":{
-        "type":"webpack",
-        "compile":false,
-        "classes":[
-            "data.store.create",
-            "data.store.tree",
-            "browser.global.listener.add",
-            "browser.global.listener.remove",
-            "browser.event.key",
-            "canvas.draw.line.bezierCurve",
-            "math.region",
-            "browser.event.gesture.tap.start",
-            "browser.event.gesture.manager.dom"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
-        ]
-    },
-    "ok-enterprise-builder":{
-        "type":"node",
-        "compile":false,
-        "classes":[
-           "directory.includes",
-           "string.split"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\loaders\\builder.js"
-        ]
-    },
-    "event-react":{
-        "type":"webpack",
-        "transform":false,
-        "classes":[
-            "react.createElement",
-            "browser.event.touch.init"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\STARTER\\WEBPACK"
         ]
     }
 }
