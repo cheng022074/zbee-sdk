@@ -18,7 +18,7 @@
 let {
     mounted,
     unmounted
-} = deploy(component) ;
+} = deploy(connections , component) ;
 
 const {
    onLoad:originMounted = empty,

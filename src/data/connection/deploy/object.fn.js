@@ -23,7 +23,11 @@
 
     if(subscribers){
 
-        config[name] = subscribers ;
+        config[name] ={
+            varName:`$${name}`,
+            connection:connections[name],
+            subscribers
+        } ;
 
         delete component[field] ;
     }

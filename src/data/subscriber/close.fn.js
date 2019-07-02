@@ -5,7 +5,11 @@
  * 
  */
 
-let me = this ;
+let me = this,
+{
+    params,
+    closed
+} = me;
 
 if(closed){
 
