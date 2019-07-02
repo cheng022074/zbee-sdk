@@ -3,7 +3,7 @@
  * 
  * 实现部署
  * 
- * @once
+ * @param {object} subscriberMap 订阅器定义集合
  * 
  * @return {object}
  * 
@@ -15,20 +15,22 @@
 
  return {
 
-    mounted(scope , subscriberSet , connections){
+    mounted(){
 
-        let names = keys(connections),
-            subscribers;
+        let scope = this,
+            names = keys(subscriberMap);
 
         for(let name of names){
 
-            let varName = name === 'default' ? 'subscribers' : `${name}_subscribers` ;
-
-            subscribers = subscriberSet[varName] ;
+            let {
+                varName,
+                connection,
+                subscribers
+            } = subscriberMap[name] ;
 
             if(subscribers){
 
-                scope[`$${varName}`] = connections[name].subscribes({
+                scope[varName] = connection.subscribes({
                     ...subscribers,
                     scope
                 }) ;
@@ -36,19 +38,22 @@
         }
     },
 
-    unmounted(scope , connections){
+    unmounted(){
 
-        let names = keys(connections),
-            subscribers;
+        let scope = this,
+            names = keys(subscriberMap);
 
         for(let name of names){
 
-            let subscribers = scope[`$${name === 'default' ? 'subscribers' : `${name}_subscribers`}`];
+            let {
+                varName,
+                connection,
+                subscribers
+            } = subscriberMap[name] ;
 
-            if(subscribers){
+            connection.unsubscribes(keys(subscribers)) ;
 
-                connections[name].unsubscribes(keys(subscribers)) ;
-            }
+            delete scope[varName] ;
         }
     }
 
