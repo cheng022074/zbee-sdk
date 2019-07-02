@@ -5,6 +5,8 @@
  * 
  * @import is.string
  * 
+ * @import is.function
+ * 
  * @import isObject from is.object.simple
  * 
  * @import get from function.get
@@ -28,7 +30,7 @@ for(let name of names){
     let target = subscribers[name],
         subscriber;
 
-    if(isString(target)){
+    if(isString(target) || isFunction(target)){
 
         subscriber = me.subscribe(name , {
             fn:target,
