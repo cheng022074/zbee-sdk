@@ -5,7 +5,7 @@
  * 
  * @import get from function.get
  * 
- * @param {string} fn 绑定函数名称
+ * @param {mixed} fn 绑定函数名称
  * 
  * @param {mixed} scope 绑定函数作用域
  * 
@@ -13,22 +13,24 @@
 
 let me = this,{
     bindCallbacks,
-    cache
+    recentData
 } = me;
 
 if(!bindCallbacks.has(fn , scope)){
 
-    fn = get(fn , scope) ;
+    let bindFn = get(fn , scope) ;
 
-    for(let {
-        data,
-        params
-    } of cache){
+    if(recentData){
 
-        fn(data , params) ;
+        let {
+            data,
+            params
+        } = recentData ;
+
+        bindFn(data , params) ;
     }
 
-    bindCallbacks.set(fn , scope , fn) ;
+    bindCallbacks.set(fn , scope , bindFn) ;
 
 }
 

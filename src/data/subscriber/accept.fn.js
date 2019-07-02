@@ -10,13 +10,12 @@
  * 
  */
 
-let {
+let me = this,
+{
     closed,
     bindCallbacks,
-    accumulationMode,
-    cache,
     params
-} = this,
+} = me,
 results = [];
 
 if(closed){
@@ -35,14 +34,9 @@ bindCallbacks.forEach(callback => {
 
 }) ;
 
-if(accumulationMode === false){
-
-    cache.length = 0 ;
-}
-
-cache.push({
-    params,
-    data
-}) ;
+me.recentData = {
+    data,
+    params
+} ;
 
 return results ;

@@ -54,6 +54,7 @@
   "scripts": {
     "package": "zb package",
     "generate": "zb generate",
-    "debug": "zb debug"
+    "debug": "zb debug",
+    "plan":"zb plan"
   }
 }

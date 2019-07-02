@@ -19,7 +19,7 @@ if(closed){
 
 delete me.params ;
 
-cache.length = 0 ;
+delete me.recentData ;
 
 me.closed = true ;
 

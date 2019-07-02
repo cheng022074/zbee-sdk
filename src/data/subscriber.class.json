@@ -2,11 +2,17 @@
     "mixins":[
         "mixin.observable"
     ],
+    "properties":{
+        "isBind":{
+            "get":".subscriber.bind.is"
+        }
+    },
     "class":true,
     "constructor":true,
     "methods":[
         "accept",
         "bind",
+        "unbind",
         "reopen",
         "open",
         "close",
