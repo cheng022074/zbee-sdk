@@ -13,18 +13,17 @@
 
 function main(name , options){
 
-    let me = this ;
-
-    options = assign({} , convertNameToSubscriberOptions.call(me , name) , options) ;
-
-    let {
+    let me = this,
+    {
         subscribers
     } = me;
 
     if(subscribers.has(name)){
 
-        return subscribers.get(name) ;
+        return ;
     }
+
+    options = assign({} , convertNameToSubscriberOptions.call(me , name) , options) ;
 
     let {
         subscriberListeners
