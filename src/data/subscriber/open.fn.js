@@ -25,8 +25,6 @@ if(!oldParams || !equals(params , oldParams)){
     me.close() ;
 
     me.params = params ;
-
-    me.closed = false ;
     
     me.fireEvent('open' , params , oldParams) ;
 }

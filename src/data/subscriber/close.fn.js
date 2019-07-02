@@ -18,6 +18,4 @@ if(closed){
 
 delete me.params ;
 
-me.closed = true ;
-
 me.fireEvent('close' , params) ;

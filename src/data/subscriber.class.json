@@ -2,6 +2,11 @@
     "mixins":[
         "mixin.observable"
     ],
+    "properties":{
+        "closed":{
+            "get":".subscriber.closed"
+        }
+    },
     "class":true,
     "constructor":true,
     "methods":[

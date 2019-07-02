@@ -37,8 +37,6 @@ me.defaultParams = defaultParams ;
 
 me.bindFn = get(fn , scope) ;
 
-me.closed = true ;
-
 me.addListeners(innerListeners) ;
 
 me.addListeners({
