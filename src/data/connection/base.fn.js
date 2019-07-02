@@ -116,8 +116,7 @@
 
         return {
             open:'onSubscriberOpen',
-            close:'onSubscriberClose',
-            scope:this
+            close:'onSubscriberClose'
         } ;
     }
 

@@ -30,23 +30,16 @@ for(let name of names){
 
     if(isString(target)){
 
-        subscriber = me.subscribe(name).bind(target , scope) ;
+        subscriber = me.subscribe(name , {
+            fn:target,
+            scope
+        }) ;
 
     }else if(isObject(target)){
 
-        let {
-            fn,
-            listeners = {},
-            ...options
-        } = target ;
-
-        listeners.scope = scope ;
-
         subscriber = me.subscribe(name , {
-            fn,
-            scope:currentScope,
-            listeners,
-            ...options
+            ...target,
+            scope
         }) ;
     }
 

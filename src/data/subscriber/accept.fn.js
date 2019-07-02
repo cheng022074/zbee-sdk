@@ -13,30 +13,18 @@
 let me = this,
 {
     closed,
-    bindCallbacks,
+    bindFn,
     params
-} = me,
-results = [];
+} = me;
 
 if(closed){
 
-    return results;
+    return;
 }
 
-bindCallbacks.forEach(callback => {
+me.fireEvent('data' , data , params) ;
 
-    let result = callback(data , params) ;
+if(bindFn){
 
-    if(isDefined(result)){
-
-        results.push(result) ;
-    }
-
-}) ;
-
-me.recentData = {
-    data,
-    params
-} ;
-
-return results ;
+    return bindFn(data , params) ;
+}

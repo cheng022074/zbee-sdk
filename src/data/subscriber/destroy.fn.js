@@ -9,8 +9,12 @@ let me = this ;
 
 me.close() ;
 
-let {
-     bindCallbacks
-} = this ;
+delete me.bindFn ;
 
-bindCallbacks.clear() ;
+delete me.extraParams ;
+
+delete me.defaultParams ;
+
+me.fireEvent('destroy') ;
+
+me.clearAllListeners() ;

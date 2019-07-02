@@ -18,40 +18,27 @@ function main(name , options){
     options = assign({} , convertNameToSubscriberOptions.call(me , name) , options) ;
 
     let {
-        subscribers,
-        subscriberListeners
-    } = me,
-    {
-        fn,
-        scope,
-        params,
-        listeners = {},
-        autoOpen = true,
-        ...currentOptions
-    } = options;
+        subscribers
+    } = me;
 
     if(subscribers.has(name)){
 
         return subscribers.get(name) ;
     }
 
-    let subscriber = me.createSubscriber(name , currentOptions) ;
+    let {
+        subscriberListeners
+    } = me;
 
-    subscriber.addListeners(subscriberListeners) ;
-
-    subscriber.addListeners(listeners) ;
+    let subscriber = me.createSubscriber(name , {
+        ...options,
+        innerListeners:{
+            ...subscriberListeners,
+            scope:me
+        }
+    }) ;
 
     subscribers.set(name , subscriber) ;
-
-    if(fn){
-
-        subscriber.bind(fn , scope) ;
-    }
-
-    if(autoOpen){
-
-        subscriber.open(params) ;
-    }
 
     return subscriber ;
 }

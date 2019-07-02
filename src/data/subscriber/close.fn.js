@@ -5,12 +5,7 @@
  * 
  */
 
-let me = this,
-{
-    closed,
-    params,
-    cache
-} = me;
+let me = this ;
 
 if(closed){
 
@@ -18,8 +13,6 @@ if(closed){
 }
 
 delete me.params ;
-
-delete me.recentData ;
 
 me.closed = true ;
 
