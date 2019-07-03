@@ -55,6 +55,7 @@
     "package": "zb package",
     "generate": "zb generate",
     "debug": "zb debug",
-    "plan":"zb plan"
+    "plan":"zb plan",
+    "compile":"zb compile"
   }
 }

@@ -3,8 +3,21 @@
  * 
  * 会话键值存储器
  * 
- * @return {Storage} 键值存储器
+ * @import Storage from ....storage
+ * 
+ * @singleton
  * 
  */
 
-return sessionStorage ;
+class main extends Storage{
+
+    doSetItem(key , value){
+
+        return sessionStorage.setItem(key , value) ;
+    }
+
+    doGetItem(key){
+
+        return sessionStorage.getItem(key) ;
+    }
+ }
