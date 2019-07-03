@@ -1,23 +1,18 @@
 
 /**
  * 
- * 本地键值存储器
+ * 会话键值存储器
  * 
- * @import Storage from ....storage
+ * @import Storage from ..standard value
  * 
  * @singleton
  * 
  */
 
- class main extends Storage{
+class main extends Storage{
 
-    doSetItem(key , value){
+    get storage(){
 
-        return localStorage.setItem(key , value) ;
-    }
-
-    doGetItem(key){
-
-        return localStorage.getItem(key) ;
+        return localStorage ;
     }
  }

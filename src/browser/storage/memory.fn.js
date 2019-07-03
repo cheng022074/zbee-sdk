@@ -3,15 +3,17 @@
  * 
  * 内存键值存储器
  * 
+ * @import Storage from ....storage value
+ * 
  * @import clear from object.clear
  * 
  * @import remove from array.remove
  * 
- * @return {Storage} 键值存储器 
+ * @singleton
  * 
  */
 
- class main{
+ class main extends Storage{
 
     constructor(){
 
@@ -31,7 +33,7 @@
       return keys.length ;
     }
 
-    setItem(key , value){
+    doSetItem(key , value){
 
       let {
          storage,
@@ -47,7 +49,7 @@
 
     }
 
-    getItem(key){
+    doGetItem(key){
 
       let {
          storage
@@ -56,7 +58,7 @@
       return storage[key] ;
     }
 
-    removeItem(key){
+    doRemoveItem(key){
 
       let {
          storage
@@ -68,25 +70,23 @@
 
          delete storage[key] ;
       }
+   }
 
-      
-    }
-
-    clear(){
+   doClear(){
 
       let {
          storage
       } = this ;
 
       clear(storage) ;
-    }
+   }
 
-    key(index){
+   doKey(index){
 
       let {
          keys
       } = this ;
 
       return keys[index] ;
-    }
+   }
  }
