@@ -24,7 +24,7 @@
     if(subscribers){
 
         config[name] ={
-            varName:`$${name}`,
+            varName:`$${field}`,
             connection:connections[name],
             subscribers
         } ;
