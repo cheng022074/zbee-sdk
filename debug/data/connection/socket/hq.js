@@ -256,8 +256,6 @@ const dataTypeMaps = [{
         
         if(arrayFlag){
 
-            console.log(root.decode.toString) ;
-
             newData = Array.from(data, item => root.decode(new Uint8Array(item)));
 
 
@@ -269,14 +267,34 @@ const dataTypeMaps = [{
 
         return newData;
     }
+
+    validateMessage(subscriber , messages){
+
+        let {
+            params:baseParams
+        } = subscriber,{
+            params:equalParams
+        } = messages,{
+          symbol:equalSymbol,
+          dataType:equalDataType
+        } = equalParams,
+        {
+          symbol:baseSymbol,
+          dataType:baseDataType
+        } = baseParams;
+
+        if(equalDataType === baseDataType && equalDataType === 0){
+
+          return equalSymbol === `${baseSymbol}_OLD` ;
+        }
+
+        return super.validateMessage(subscriber , messages) ;
+    }
  }
 
 let socket = new XYSocket({
   socket:{
-    url:'wss://quote.xinyusoft.com/stock',
-    options:{
-        path:'/classify',
-    }
+    url:'wss://quote.xinyusoft.com/stock'
   },
   rules:[{
     test:'time\\-sharing',
@@ -303,36 +321,10 @@ let socket = new XYSocket({
 }]
 }) ;
 
-return ;
+socket.subscribe('api_sign::SH' , {
+  fn:data =>{
 
-
-socket.subscribe('api_newAll::10').bind(data =>{
-
-  console.log('推送1') ;
-
+    console.log('推送1' , data) ;
+  
+  }
 }) ;
-
-
-setTimeout(() =>{
-
-  console.log('取消订阅') ;
-
-  socket.unsubscribe('api_newAll::10') ;
-
-  return ;
-
-  setTimeout(() =>{
-
-    console.log('订阅') ;
-  
-    socket.subscribe('api_newAll::10').bind(data =>{
-  
-      console.log('推送2') ;
-  
-    }) ;
-  
-  } , 3000) ;
-  
-
-} , 5000) ;
-
