@@ -17,7 +17,9 @@ let me = this,
 
 subscribers.forEach(subscriber => {
 
-    if(me.validateMessage(subscriber , message)){
+
+
+    if(!subscriber.closed && me.validateMessage(subscriber , message)){
 
         subscriber.accept(me.processData(subscriber , message)) ;
     }

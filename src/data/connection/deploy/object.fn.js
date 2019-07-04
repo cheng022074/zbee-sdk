@@ -9,6 +9,8 @@
  * 
  * @param {object} component 组件定义对象
  * 
+ * @param {string} [prefix = '$'] 订阅器变量前缀
+ * 
  * @return {object} 增加订阅功能的组件定义对象
  * 
  */
@@ -24,7 +26,7 @@
     if(subscribers){
 
         config[name] ={
-            varName:`$${field}`,
+            varName:`${prefix}${field}`,
             connection:connections[name],
             subscribers
         } ;

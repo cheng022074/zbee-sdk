@@ -34,6 +34,7 @@
                 connection,
                 subscribers
             } = subscriberMap[name] ;
+            
 
             if(subscribers){
 

@@ -25,21 +25,16 @@
         params:equalParams
     }){
 
-        if(isObject(baseParams) && isObject(equalParams)){
+        let names = Object.keys(equalParams) ;
 
-            let names = Object.keys(equalParams) ;
+        for(let name of names){
 
-            for(let name of names){
+            if(baseParams[name] !== equalParams[name]){
 
-                if(baseParams[name] !== equalParams[name]){
-
-                    return false ;
-                }
+                return false ;
             }
-
-            return true ;
         }
 
-        return false ;
+        return true ;
     }
  }
