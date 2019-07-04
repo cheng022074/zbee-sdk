@@ -5,7 +5,14 @@
  * 
  * @param {string} name 订阅名称
  * 
+ * @param {string} [instanceId] 实例编号
+ * 
  */
+
+ if(instanceId){
+
+    name = `${name}<${instanceId}>` ;
+ }
 
 let me = this,
     {

@@ -11,7 +11,14 @@
  * 
  */
 
-function main(name , options){
+ const nameRe = /\<|\>/g ;
+
+function main(name , {
+    instanceId,
+    ...options
+}){
+
+    name = name.replace(nameRe , '') ;
 
     let me = this,
     {
@@ -28,6 +35,11 @@ function main(name , options){
     let {
         subscriberListeners
     } = me;
+
+    if(instanceId){
+
+        name = `${name}<${instanceId}>` ;
+    }
 
     let subscriber = me.createSubscriber(name , {
         ...options,

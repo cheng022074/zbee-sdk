@@ -84,7 +84,7 @@
     }
 
 
-    processSubscribeParams(subscriber , params){
+    processSubscribeParams(subscriber , params , operation){
 
         return [
             params

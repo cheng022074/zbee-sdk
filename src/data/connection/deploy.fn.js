@@ -3,6 +3,8 @@
  * 
  * 实现部署
  * 
+ * @import generate from id.generate
+ * 
  * @param {object} subscriberMap 订阅器定义集合
  * 
  * @param {object} connections 连接集合
@@ -15,7 +17,8 @@
 
  let {
     keys
- } = Object ;
+ } = Object,
+ instanceId = generate('connection-');
 
  return {
 
@@ -36,6 +39,7 @@
 
                 scope[varName] = connection.subscribes({
                     ...subscribers,
+                    instanceId,
                     scope
                 }) ;
             }
@@ -55,7 +59,7 @@
                 subscribers
             } = subscriberMap[name] ;
 
-            connection.unsubscribes(keys(subscribers)) ;
+            connection.unsubscribes(keys(subscribers) , instanceId) ;
 
             delete scope[varName] ;
         }
