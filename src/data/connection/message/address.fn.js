@@ -5,6 +5,8 @@
  * 
  * @import Subscriber from data.Subscriber value
  * 
+ * @import is.defined
+ * 
  * @param {string} name 消息地址
  * 
  * @param {object} options 消息配置
@@ -27,14 +29,14 @@
     accept(data){
 
         let me = this,
-            results = super.accept(data),
+            result = super.accept(data),
             {
                 from
             } = data;
 
         if(from){
 
-            for(let result of results){
+            if(isDefined(result)){
 
                 if(result instanceof Promise){
 

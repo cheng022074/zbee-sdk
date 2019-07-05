@@ -12,6 +12,8 @@
  * 
  * @import is.defined
  * 
+ * @import assign from object.assign
+ * 
  * @singleton
  * 
  */
@@ -51,13 +53,13 @@
         } ;
     }
 
-    subscribe(name){
+    subscribe(name , options = {}){
 
-        return super.subscribe(name , {
+        return super.subscribe(name , assign(options , {
             params:{
                 address:name
             }
-        }) ;
+        })) ;
     }
 
     onMessageSend(address , message){

@@ -27,10 +27,21 @@
  } ;
 
 
-Message.subscribe('xxxxx').bind('aaa' , A) ;
+Message.subscribe('xxxxx' , {
+  fn:'aaa',
+  scope:A
+}) ;
 
-Message.subscribe('xxxxx').bind('ccc' , A) ;
+Message.unsubscribe('xxxxx') ;
 
-let subscriber = Message.subscribe('yyyyy').bind('bbb' , A) ;
+Message.subscribe('xxxxx' , {
+  fn:'ccc',
+  scope:A
+}) ;
+
+let subscriber = Message.subscribe('yyyyy' , {
+  fn:'bbb',
+  scope:A
+}) ;
 
 subscriber.send('xxxxx' , 'Hello World') ;
