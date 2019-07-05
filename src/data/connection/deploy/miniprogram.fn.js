@@ -34,6 +34,8 @@ return {
        mounted.call(me) ;
       
        originMounted.call(me) ;
+
+       me.$connections = connections ;
    },
 
    onUnload(){
@@ -41,6 +43,8 @@ return {
        let me = this ;
 
        originUnmounted.call(me) ;
+
+       delete me.$connections ;
 
        unmounted.call(me) ;
    },

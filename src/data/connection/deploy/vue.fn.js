@@ -32,6 +32,8 @@
         let me = this ;
 
         mounted.call(me) ;
+
+        me.$connections = connections ;
        
         originMounted.call(me) ;
     },
@@ -41,6 +43,8 @@
         let me = this ;
 
         originUnmounted.call(me) ;
+
+        delete me.$connections ;
 
         unmounted.call(me) ;
     },

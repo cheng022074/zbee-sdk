@@ -7,10 +7,6 @@
  * 
  * @param {object} subscriberMap 订阅器定义集合
  * 
- * @param {object} connections 连接集合
- * 
- * @param {string} connectionVarName 连接集合的变量名称
- * 
  * @return {object}
  * 
  */
@@ -18,7 +14,7 @@
  let {
     keys
  } = Object,
- instanceId = generate('connection-');
+ instanceId;
 
  return {
 
@@ -26,6 +22,8 @@
 
         let scope = this,
             names = keys(subscriberMap);
+
+        instanceId = scope.instanceId || generate('connection-') ;
 
         for(let name of names){
 

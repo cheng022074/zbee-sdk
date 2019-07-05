@@ -13,13 +13,18 @@ let me = this,
     message = me.processMessage(...args),
     {
         subscribers
-    } = me;
+    } = me,
+    results = [];
 
 subscribers.forEach(subscriber => {
 
     if(!subscriber.closed && me.validateMessage(subscriber , message)){
 
         subscriber.accept(me.processData(subscriber , message)) ;
+
+        results.push(subscriber) ;
     }
 
 }) ;
+
+return results ;
