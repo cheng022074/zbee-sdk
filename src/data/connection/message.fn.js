@@ -29,6 +29,8 @@
         super({
             subscriber:createAddress
         }) ;
+
+        this.notSendMessages = [] ;
     }
 
     processMessage(message){
@@ -75,6 +77,21 @@
     onMessageSend(address , message){
 
         this.send(message) ;
+    }
+
+    onCreateSubscriber(){
+
+        let me = this , {
+            notSendMessages
+        } = me,
+        messages = from(notSendMessages);
+
+        notSendMessages.length = 0 ;
+
+        for(let message of messages){
+
+            me.send(message) ;
+        }
     }
 
     send(address , data){
@@ -130,7 +147,10 @@
             address.to = to ;
 
             let me = this,
-                addresses = me.acceptMessage(address) ;
+                addresses = me.acceptMessage(address),
+                {
+                    notSendMessages
+                } = me;
 
             for(let toRe of to){
 
@@ -150,10 +170,10 @@
 
                 if(!isServiced){
 
-                    setTimeout(() => me.send({
+                    notSendMessages.push({
                         ...message,
                         to:toRe
-                    }) , 0) ;
+                    }) ;
                 }
             }
         }

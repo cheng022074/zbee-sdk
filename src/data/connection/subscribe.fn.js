@@ -51,6 +51,8 @@ function main(name , {
 
     subscribers.set(name , subscriber) ;
 
+    me.onCreateSubscriber(subscriber) ;
+
     return subscriber ;
 }
 

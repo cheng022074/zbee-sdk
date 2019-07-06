@@ -112,6 +112,11 @@
         return create(subscriber , name , options) ;
     }
 
+    onCreateSubscriber(subscriber){
+
+
+    }
+
     get subscriberListeners(){
 
         return {
