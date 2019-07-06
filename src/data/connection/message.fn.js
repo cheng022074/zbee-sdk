@@ -79,7 +79,7 @@
         this.send(message) ;
     }
 
-    onCreateSubscriber(){
+    onCreateSubscriber(subscriber){
 
         let me = this , {
             notSendMessages
@@ -90,7 +90,14 @@
 
         for(let message of messages){
 
-            me.send(message) ;
+            if(me.validateMessage(subscriber , message)){
+
+                subscriber.acceptMessage(me.processData(message)) ;
+            
+            }else{
+
+                notSendMessages.push(message) ;
+            }
         }
     }
 
