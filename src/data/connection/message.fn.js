@@ -55,15 +55,7 @@
         to
     }){
 
-        for(let toRe of to){
-
-            if(toRe.test(name)){
-
-                return true ;
-            }
-        }
-
-        return false ;
+        return to.test(name) ;
     }
 
     get subscriberListeners(){
@@ -92,7 +84,7 @@
 
             if(me.validateMessage(subscriber , message)){
 
-                subscriber.acceptMessage(me.processData(message)) ;
+                subscriber.accept(me.processData(subscriber , message)) ;
             
             }else{
 
@@ -126,61 +118,31 @@
                 ...message
             } = address ;
 
-            to = from(to) ;
+            if(isString(to)){
 
-            let {
-                length
-            } = to ;
+                if(exactAddressRe.test(to)){
 
-            for(let i = 0 ; i < length ; i ++){
-
-                let toName = to[i] ;
-
-                if(toName instanceof RegExp){
-
-                    continue ;
-                }
-
-                if(exactAddressRe.test(toName)){
-
-                    to[i] = new RegExp(toName) ;
+                    to = new RegExp(to) ;
                 
                 }else{
-
-                    to[i] = new RegExp(`^${toName}(?:<[^<>]+>)?$`) ;
+    
+                    to = new RegExp(`^${to}(?:<[^<>]+>)?$`) ;
                 }
             }
 
-            address.to = to ;
+            if(to instanceof RegExp){
 
-            let me = this,
-                addresses = me.acceptMessage(address),
-                {
-                    notSendMessages
-                } = me;
+                address.to = to ;
 
-            for(let toRe of to){
-
-                let isServiced = false ;
-
-                for(let {
-                    name
-                } of addresses){
-
-                    if(toRe.test(name)){
-
-                        isServiced = true ;
-
-                        break ;
-                    }
-                }
+                let me = this,
+                    isServiced = me.acceptMessage(address),
+                    {
+                        notSendMessages
+                    } = me;
 
                 if(!isServiced){
 
-                    notSendMessages.push({
-                        ...message,
-                        to:toRe
-                    }) ;
+                    notSendMessages.push(address) ;
                 }
             }
         }

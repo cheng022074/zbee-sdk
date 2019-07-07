@@ -5,43 +5,23 @@
  * 
  * @import Message from data.connection.message value
  * 
+ * @import deploy from data.connection.deploy.module
+ * 
  */
 
- let A = {
-    aaa(){
+ deploy({
+   message:Message
+ } , {
 
-      return '哈哈' ;
+    message_subscribers:{
+      'test':'test'
     },
 
-    ccc(){
+    test(){
 
-     return '嘿嘿' ;
-   },
-
-    bbb({
-       data
-    }){
-
-      console.log('返回数据' , data) ;
+      console.log('此方法被调用') ;
     }
- } ;
 
+ }) ;
 
-Message.subscribe('xxxxx' , {
-  fn:'aaa',
-  scope:A
-}) ;
-
-Message.unsubscribe('xxxxx') ;
-
-Message.subscribe('xxxxx' , {
-  fn:'ccc',
-  scope:A
-}) ;
-
-let subscriber = Message.subscribe('yyyyy' , {
-  fn:'bbb',
-  scope:A
-}) ;
-
-subscriber.send('xxxxx' , 'Hello World') ;
+ Message.send('test') ;

@@ -23,7 +23,7 @@
         let scope = this,
             names = keys(subscriberMap);
 
-        instanceId = scope.instanceId || generate('connection-') ;
+        instanceId = scope.connectionId || generate('connection-') ;
 
         for(let name of names){
 
