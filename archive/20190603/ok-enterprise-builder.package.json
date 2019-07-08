@@ -1,9 +1,0 @@
-{
-  "classes": [
-    "directory.includes",
-    "string.split"
-  ],
-  "type": "node",
-  "memory": false,
-  "compile": false
-}

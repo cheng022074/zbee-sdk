@@ -60,16 +60,22 @@
                y:endY
            } = childNode.getAnchorXY('l') ;
 
-           lines.push([
-               startX + left,
-               startY + top,
-               startX + halfMargin + left,
-               startY + top,
-               endX - halfMargin + left,
-               endY + top,
-               endX + left,
-               endY + top
-           ]) ;
+           lines.push({
+               nodes:[
+                node,
+                childNode 
+               ],
+               points:[
+                startX + left,
+                startY + top,
+                startX + halfMargin + left,
+                startY + top,
+                endX - halfMargin + left,
+                endY + top,
+                endX + left,
+                endY + top
+            ]
+           }) ;
        }
    }
 

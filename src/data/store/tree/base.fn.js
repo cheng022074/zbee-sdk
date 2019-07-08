@@ -118,11 +118,7 @@
 
                 node.suspendEvents() ;
 
-                node.show() ;
-
-                node.select() ;
-
-                node.expand() ;
+                me.fireEvent('root' , node) ;
 
                 node.resumeEvents() ;
 
