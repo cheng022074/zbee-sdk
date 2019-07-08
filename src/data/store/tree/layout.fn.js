@@ -62,8 +62,8 @@
 
            lines.push({
                nodes:[
-                node,
-                childNode 
+                    node,
+                    childNode 
                ],
                points:[
                 startX + left,
