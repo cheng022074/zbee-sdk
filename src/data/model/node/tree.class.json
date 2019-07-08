@@ -61,6 +61,7 @@
         },{
             "name":"removeChild",
             "impl":".tree.remove"
-        }
+        },
+        "contains"
     ]
 }
