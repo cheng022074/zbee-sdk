@@ -40,7 +40,7 @@
 
         let currentMethods = me.methods = {},
             instanceId = me.flowId = generate('flow-'),
-            scope = {},
+            methodScope = {},
             {
                 next
             } = me,
@@ -58,7 +58,7 @@
                     data
                 }) => {
 
-                    let result = method.call(scope , data) ;
+                    let result = method.call(methodScope , data) ;
 
                     if(isPromise(result)){
 
@@ -83,17 +83,22 @@
         me.callback = get(callback , scope) ;
     }
 
-    send(method , value){
+    getFullAddress(name){
 
-        let {
-            message,
-            flowId
-        } = this ;
-
-        message.send(`${method}<${flowId}>` , value) ;
+        return `${name}<${this.flowId}>` ;
     }
 
-    start(name , value){
+    send(name , value){
+
+        let me = this,
+        {
+            message
+        } = me ;
+
+        message.send(me.getFullAddress(name) , value) ;
+    }
+
+    start(value , name = 'start'){
 
         this.send(name , value) ;
     }
@@ -115,6 +120,7 @@
         let me = this,
         {
             flows,
+            message,
             callback
         } = me,
         next = flows[name];
@@ -123,6 +129,18 @@
 
             me.send(next , value) ;
         
+        }else if(isObject(next)){
+
+            let {
+                external,
+                next:from
+            } = next ;
+
+            message.send({
+                from:me.getFullAddress(from),
+                to:external
+            } , value) ;
+
         }else if(isArray(next)){
 
             for(let {
