@@ -10,6 +10,10 @@
         "insert",
         "remove",
         "load",
-        "clear"
+        "clear",
+        {
+            "name":"getById",
+            "impl":".store.get.id"
+        }
     ]
 }
