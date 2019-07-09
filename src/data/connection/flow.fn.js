@@ -143,10 +143,32 @@
 
         }else if(isArray(next)){
 
+            let defaultNext ;
+
             for(let {
                 value:caseValue,
+                type,
                 next:caseNext
             } of next){
+
+                if(!isDefined(caseValue)){
+
+                    defaultNext = caseNext ;
+
+                    continue ;
+                }
+
+                if(type){
+
+                    if(typeof value === type){
+
+                        me.send(caseNext , value) ;
+
+                        break ;
+                    }
+
+                    continue ;
+                }
 
                 if(caseValue === value){
 
@@ -154,6 +176,11 @@
 
                     break ;
                 }
+            }
+
+            if(defaultNext){
+
+                me.send(defaultNext , value) ;
             }
 
         }else if(!isDefined(next)){
