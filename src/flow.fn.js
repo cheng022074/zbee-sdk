@@ -26,7 +26,7 @@
 
  class main{
 
-    constructor(message , methods , flows , callback , scope){
+    constructor(message , flows , methods , callback , scope){
 
         let me = this ;
         
@@ -88,6 +88,18 @@
     start(name , value){
 
         this.send(name , value) ;
+    }
+
+    end(){
+
+        let me = this,
+        {
+            message,
+            methods,
+            flowId
+        } = me ;
+
+        message.unsubscribes(Object.keys(methods) , flowId) ;
     }
 
     next(name , value){
