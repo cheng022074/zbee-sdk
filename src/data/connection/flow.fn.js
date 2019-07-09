@@ -18,9 +18,15 @@
  * 
  * @import get from function.get
  * 
+ * @param {data.connection.Mesage} message 消息机
+ * 
  * @param {object} flows 流程定义
  * 
- * @param {object} nodes 流程节点定义
+ * @param {object} methods 流程节点定义
+ * 
+ * @param {mixed} callback 回调函数
+ * 
+ * @param {mixed} scoped 回调函数作用域
  * 
  */
 
@@ -39,6 +45,8 @@
                 next
             } = me,
             names = Object.keys(methods) ;
+
+        me.methodNames = names ;
 
         for(let name of names){
 
@@ -95,11 +103,11 @@
         let me = this,
         {
             message,
-            methods,
+            methodNames,
             flowId
         } = me ;
 
-        message.unsubscribes(Object.keys(methods) , flowId) ;
+        message.unsubscribes(methodNames , flowId) ;
     }
 
     next(name , value){
@@ -109,37 +117,30 @@
             flows,
             callback
         } = me,
-        flow = flows[name];
-
-        if(isObject(flow)){
-
-            let  {
-                next
-            } = flow ;
-
-            if(isString(next)){
-
-                me.send(next , value) ;
-            
-            }else if(isArray(next)){
+        next = flows[name];
     
-                for(let {
-                    value:caseValue,
-                    call
-                } of next){
-    
-                    if(caseValue === value){
-    
-                        me.send(call , value) ;
-    
-                        break ;
-                    }
+        if(isString(next)){
+
+            me.send(next , value) ;
+        
+        }else if(isArray(next)){
+
+            for(let {
+                value:caseValue,
+                next:caseNext
+            } of next){
+
+                if(caseValue === value){
+
+                    me.send(caseNext , value) ;
+
+                    break ;
                 }
-    
-            }else if(!isDefined(next)){
-    
-                callback(value) ;
             }
+
+        }else if(!isDefined(next)){
+
+            callback(value) ;
         }
     }
  }
