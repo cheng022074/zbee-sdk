@@ -32,7 +32,7 @@
 
  class main{
 
-    constructor(message , flows , methods , callback , scope){
+    constructor(message , flows , methods , context){
 
         let me = this ;
         
@@ -40,7 +40,7 @@
 
         let currentMethods = me.methods = {},
             instanceId = me.flowId = generate('flow-'),
-            methodScope = {},
+            innerContext = {},
             {
                 next
             } = me,
@@ -58,7 +58,7 @@
                     data
                 }) => {
 
-                    let result = method.call(methodScope , data) ;
+                    let result = method.call(innerContext , data , context) ;
 
                     if(isPromise(result)){
 
@@ -79,8 +79,6 @@
         }) ;
 
         me.message = message ;
-
-        me.callback = get(callback , scope) ;
     }
 
     getFullAddress(name){
@@ -120,8 +118,7 @@
         let me = this,
         {
             flows,
-            message,
-            callback
+            message
         } = me,
         next = flows[name];
     
@@ -183,9 +180,6 @@
                 me.send(defaultNext , value) ;
             }
 
-        }else if(!isDefined(next)){
-
-            callback(value) ;
         }
     }
  }
