@@ -49,6 +49,15 @@
         } ;
     }
 
+    hasAddress(name){
+
+        let {
+            subscribers
+        } = this ;
+
+        return subscribers.has(name) ;
+    }
+
     validateMessage({
         name
     },{

@@ -39,14 +39,11 @@
         me.flows = flows ;
 
         let currentMethods = me.methods = {},
-            instanceId = me.flowId = generate('flow-'),
             innerContext = {},
             {
                 next
             } = me,
-            names = Object.keys(methods) ;
-
-        me.methodNames = names ;
+            names =  me.methodNames = Object.keys(methods) ;
 
         for(let name of names){
 
@@ -73,12 +70,9 @@
             }
         }
 
-        message.subscribes({
-            ...currentMethods,
-            instanceId
-        }) ;
-
         me.message = message ;
+
+        me.started = false ;
     }
 
     getFullAddress(name){
@@ -98,19 +92,54 @@
 
     start(value , name = 'start'){
 
-        this.send(name , value) ;
+        let me = this ;
+
+        let {
+            started
+        } = me ;
+
+        if(!started){
+
+            me.started = true ;
+
+            let {
+                methods
+            } = me ;
+
+            message.subscribes({
+                ...methods,
+                instanceId:me.flowId = generate('flow-')
+            }) ;
+
+            me.send(name , value) ;
+        
+        }else{
+
+            me.end() ;
+
+            me.start(value , name) ;
+        }
     }
 
     end(){
 
         let me = this,
         {
-            message,
-            methodNames,
-            flowId
-        } = me ;
+            started
+        } = me;
 
-        message.unsubscribes(methodNames , flowId) ;
+        if(started){
+
+            let {
+                message,
+                methodNames,
+                flowId
+            } = me ;
+    
+            message.unsubscribes(methodNames , flowId) ;
+    
+            me.started = false ;
+        }
     }
 
     next(name , value){
