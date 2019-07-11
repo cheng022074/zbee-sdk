@@ -5,7 +5,7 @@
  * 
  * @import Store from data.store value
  * 
- * @import model from data.model.node.tree value
+ * @import Model from data.model.node.tree value
  * 
  * @import define from class.define
  * 
@@ -28,9 +28,11 @@
         ...options
     }){
 
+        let currentModel ;
+
         if(fields){
 
-            model = define(class extends model{
+            currentModel = define(class extends Model{
 
                 static get fieldConfigurations(){
 
@@ -45,7 +47,7 @@
 
         super({
             ...options,
-            model
+            model:currentModel
         }) ;
 
         let me = this ;
