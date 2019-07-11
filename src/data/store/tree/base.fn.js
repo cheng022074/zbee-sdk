@@ -72,7 +72,6 @@
         me.addListeners({
             load:{
                 fn:'onLoad',
-                once:true,
                 getOldFireEventData:'last'
             },
             expand:'onExpand',

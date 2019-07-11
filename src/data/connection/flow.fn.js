@@ -177,7 +177,7 @@
                 next:caseNext
             } of next){
 
-                if(!isDefined(caseValue)){
+                if(!isDefined(caseValue) && !isDefined(type)){
 
                     defaultNext = caseNext ;
 
