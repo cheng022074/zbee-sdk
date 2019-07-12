@@ -7,6 +7,8 @@
  * 
  * @param {object} subscriberMap 订阅器定义集合
  * 
+ * @param {object} flowMap 流程定义
+ * 
  * @return {object}
  * 
  */
@@ -42,6 +44,18 @@
                     scope
                 }) ;
             }
+        }
+
+        let names = keys(flowMap) ;
+
+        for(let name of names){
+
+            let {
+                varName,
+                flow
+            } =  flowMap[name] ;
+
+            scope[varName] = flow(me) ;
         }
     },
 
