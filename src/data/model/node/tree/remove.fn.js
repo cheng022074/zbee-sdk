@@ -12,10 +12,10 @@
 let me = this,
 {
     store,
-    children
+    cache
 } = me ;
 
-if(children.includes(node)){
+if(cache.get('children').includes(node)){
 
     store.remove(node) ;
 
