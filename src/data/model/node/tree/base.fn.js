@@ -13,9 +13,7 @@
  * 
  * @import isEmpty from is.object.empty
  * 
- * @import createVisualization from ..visualization
- * 
- * @import createCache from object.cach2e
+ * @import defineProperties from object.properties.define
  * 
  * @param {mixed} data 数据
  * 
@@ -29,82 +27,9 @@
 
         super(config) ;
 
-        let me = this ;
-
-        me.cache = createCache(me) ;
-
-        me.visualization = createVisualization(me) ;
-    }
-
-    static get fieldConfigurations(){
-
-        return [
-            'id',
-            'parentId',
-            {
-                name:'expanded',
-                persistent:true,
-                defaultValue:false
-            },{
-                name:'selected',
-                persistent:true,
-                defaultValue:false
-            },{
-                name:'hidden',
-                persistent:true,
-                defaultValue:true
-            },
-            {
-                name:'leaf',
-                defaultValue:false
-            }
-        ];
-    }
-
-    get hidden(){
-
-        return this.get('hidden') ;
-    }
-
-    /**
-     * 
-     * 判断当前节点是否为根节点
-     * 
-     * @return {boolean} 如果为根节点则返回 true , 否则返回 false
-     * 
-     */
-    get isRoot(){
-
-        return !this.parentNode ;
-    }
-
-    /**
-     * 
-     * 判断当前节点是否为叶子节点
-     * 
-     * @return {boolean} 如果为叶子节点则返回 true , 否则返回 false
-     * 
-     */
-    get isLeaf(){
-
-        return this.get('leaf') ;
-    }
-
-    /**
-     * 
-     * 判断当前节点是否加载
-     * 
-     * @return {boolean}
-     * 
-     */
-    get synchronized(){
-
-        let {
-            isLeaf,
-            children
-        } = this ;
-
-        return !isLeaf && children.length !== 0 ;
+        defineProperties(this , [
+            'parentNode'
+        ]) ;
     }
 
     syncChildNodes(nodes){
@@ -148,7 +73,7 @@
      * @return {data.model.node.Tree} 父节点
      * 
      */
-    get parentNode(){
+    getParentNode(){
 
         let me = this,
         {
@@ -165,9 +90,16 @@
      * @return {data.model.node.Tree} 节点
      * 
      */
-    get firstVisibleChildNode(){
+    get firstChildNode(){
 
-       return getChildNode.call(this , 'first') ;
+        let {
+            children
+        } = this;
+    
+        if(children.length){
+    
+            return children[0] ;
+        }
     }
 
      /**
@@ -177,29 +109,120 @@
      * @return {data.model.node.Tree} 节点
      * 
      */
-    get lastVisibleChildNode(){
+    get lastChildNode(){
 
-        return getChildNode.call(this , 'last') ;
+        let {
+            children
+        } = this;
+    
+        if(children.length){
+    
+            return children[children.length - 1] ;
+        }
     }
-
-    get firstDescendantNodes(){
-
-        return getDescendantNodes.call(this , 'firstChildNode') ;
-    }
-
-    get lastDescendantNodes(){
-
-        return getDescendantNodes.call(this , 'lastChildNode') ;
-    }
-
 
     get selected(){
 
         return this.get('selected') ;
     }
+
+      /**
+     * 
+     * 显示
+     * 
+     */
+    show(){
+
+        doHidden.call(this , false) ;
+        
+    }
+
+    /**
+     * 
+     * 隐藏
+     * 
+     */
+    hide(){
+
+        doHidden.call(this , true) ;
+    }
+
+    /**
+     * 
+     * 返回上一个兄弟节点
+     * 
+     * @return {data.model.node.Tree} 父节点
+     * 
+     */
+    get previousSiblingNode(){
+
+        return getSiblingNode.call(this , -1) ;
+    }
+    /**
+     * 
+     * 返回下一个兄弟节点
+     * 
+     * @return {data.model.node.Tree} 父节点
+     * 
+     */
+    get nextSiblingNode(){
+
+        return getSiblingNode.call(this , 1) ;
+    }
  }
 
- function getSiblingNode(property){
+ function doHidden(value){
+
+    let me = this,
+        {
+            children,
+            store
+        } = me,
+        {
+            selectedNode
+        } = store;
+
+    if(selectedNode === me && value){
+
+        let {
+            parentNode
+        } = me ;
+
+        while(parentNode){
+
+            if(parentNode.hidden === false){
+
+                parentNode.select() ;
+
+                break ;
+            
+            }else{
+
+                parentNode = parentNode.parentNode ;
+            }
+        }
+    }
+
+    if(value){
+
+        me.set({
+            hidden:true,
+            x:0,
+            y:0
+        }) ;
+
+    }else{
+
+        me.set('hidden' , value) ;
+    }
+
+    for(let childNode of children){
+
+        childNode[value ? 'hide' : 'show']() ;
+    }
+ }
+
+ function getSiblingNode(offset){
 
     let me = this,
         {
@@ -209,69 +232,9 @@
     if(parentNode){
 
         let {
-            cache
-        } = parentNode,
-        index = cache.get('children').indexOf(me);
+            children
+        } = parentNode;
 
-        switch(property){
-
-            case 'next':
-
-                index ++ ;
-
-                break ;
-
-            case 'previous':
-
-                index -- ;
-        }
-
-        return childNodes[index] ;
-    }
- }
-
- function getDescendantNodes(property){
-
-    let nodes = [],
-        node = this;
-
-    while(true){
-
-        let childNode = node[property] ;
-
-        if(childNode){
-
-            nodes.push(childNode) ;
-
-            node = childNode ;
-        
-        }else{
-
-            break ;
-        }
-
-    }
-
-    return nodes ;
- }
-
- function getChildNode(property){
-
-    let {
-        children
-    } = this ;
-
-    if(children.length){
-
-        switch(property){
-
-            case 'first':
-
-                return children[0] ;
-
-            case 'last':
-
-                return children[children.length - 1] ;
-        }
+        return childNodes[children.indexOf(me) + offset] ;
     }
  }

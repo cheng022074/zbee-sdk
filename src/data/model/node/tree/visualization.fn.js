@@ -30,100 +30,43 @@
        return cache.get('children') ;
     }
 
-     /**
-     * 
-     * 显示
-     * 
-     */
-    show(){
+    get firstDescendantNodes(){
 
-        doHidden.call(this , false) ;
-        
+        return getDescendantNodes.call(this , 'firstChildNode') ;
     }
 
-    /**
-     * 
-     * 隐藏
-     * 
-     */
-    hide(){
+    get lastDescendantNodes(){
 
-        doHidden.call(this , true) ;
-    }
-
-    /**
-     * 
-     * 返回上一个兄弟节点
-     * 
-     * @return {data.model.node.Tree} 父节点
-     * 
-     */
-    get previousSiblingNode(){
-
-        return getSiblingNode.call(this , 'previous') ;
-    }
-    /**
-     * 
-     * 返回下一个兄弟节点
-     * 
-     * @return {data.model.node.Tree} 父节点
-     * 
-     */
-    get nextSiblingNode(){
-
-        return getSiblingNode.call(this , 'next') ;
+        return getDescendantNodes.call(this , 'lastChildNode') ;
     }
  }
 
- function doHidden(value){
+ function getDescendantNodes(property){
 
-    let me = this,
-        {
-            cache,
-            store
-        } = me,
-        {
-            selectedNode
-        } = store;
+    let nodes = [],
+        node = this;
 
-    if(selectedNode === me){
+    while(true){
 
-        let {
-            parentNode
-        } = me ;
+        let childNode = node[property] ;
 
-        while(parentNode){
+        if(childNode.hidden){
 
-            if(parentNode.hidden === false){
-
-                parentNode.select() ;
-
-                break ;
-            
-            }else{
-
-                parentNode = parentNode.parentNode ;
-            }
+            break ;
         }
+
+        if(childNode){
+
+            nodes.push(childNode) ;
+
+            node = childNode ;
+        
+        }else{
+
+            break ;
+        }
+
     }
 
-    if(value){
-
-        me.set({
-            hidden:true,
-            x:0,
-            y:0
-        }) ;
-
-    }else{
-
-        me.set('hidden' , value) ;
-    }
-
-    let children = cache.get('children') ;
-
-    for(let childNode of children){
-
-        childNode[value ? 'hide' : 'show']() ;
-    }
+    return nodes ;
  }

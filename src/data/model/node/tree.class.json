@@ -5,7 +5,24 @@
     ],
     "class":true,
     "constructor":false,
+    "staticProperties":{
+        "fieldConfigurations":{
+            "get":".tree.configurations"
+        }  
+    },
     "properties":{
+        "synchronized":{
+            "get":".tree.nodes.synchronized"
+        },
+        "isRoot":{
+            "get":".tree.is.root"
+        },
+        "isLeaf":{
+            "get":".tree.is.leaf"
+        },
+        "hidden":{
+            "get":".tree.hidden"
+        },
         "region":{
             "get":".tree.region"
         },
@@ -37,6 +54,10 @@
         "collapse",
         "select",
         "deselect",
+        {
+            "name":"synchronize",
+            "impl":".tree.nodes.synchronize"
+        },
         {
             "name":"selectUp",
             "impl":".tree.select.up"
