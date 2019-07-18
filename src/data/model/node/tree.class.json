@@ -11,6 +11,15 @@
         }  
     },
     "properties":{
+        "firstChildNode":{
+            "get":".tree.node.first"
+        },
+        "lastChildNode":{
+            "get":".tree.node.last"
+        },
+        "expanded":{
+            "get":".tree.expanded"
+        },
         "synchronized":{
             "get":".tree.nodes.synchronized"
         },

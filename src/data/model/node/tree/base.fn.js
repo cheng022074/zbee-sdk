@@ -32,40 +32,6 @@
         ]) ;
     }
 
-    syncChildNodes(nodes){
-
-        let me = this ;
-
-        if(!me.synchronized){
-
-            if(nodes.length === 0){
-
-                me.set('leaf' , true) ;
-            
-            }else{
-
-                me.suspendEvents() ;
-    
-                nodes = me.appendChild(nodes) ;
-
-                me.resumeEvents() ;
-            }
-
-            me.fireEvent('syncchildnodes' , nodes) ;
-        }
-    }
-
-    /**
-     * 
-     * 表达当前节点是否展开
-     * 
-     * @return {boolean} 节点展开标志
-     * 
-     */
-    get expanded(){
-
-        return this.get('expanded') ;
-    }
     /**
      * 
      * 返回父节点
@@ -81,25 +47,6 @@
         } = me ;
 
         return store.getById(me.get('parentId')) ;
-    }
-
-    /**
-     * 
-     * 返回第一个子节点
-     * 
-     * @return {data.model.node.Tree} 节点
-     * 
-     */
-    get firstChildNode(){
-
-        let {
-            children
-        } = this;
-    
-        if(children.length){
-    
-            return children[0] ;
-        }
     }
 
      /**
