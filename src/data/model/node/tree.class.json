@@ -11,6 +11,15 @@
         }  
     },
     "properties":{
+        "selected":{
+            "get":".tree.node.selected"
+        },
+        "previousSiblingNode":{
+            "get":".tree.node.sibling.previous"
+        },
+        "nextSiblingNode":{
+            "get":".tree.node.sibling.next"
+        },
         "firstChildNode":{
             "get":".tree.node.first"
         },
@@ -58,6 +67,8 @@
         }
     },
     "methods":[
+        "show",
+        "hide",
         "layout",
         "expand",
         "collapse",

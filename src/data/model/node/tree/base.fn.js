@@ -28,7 +28,8 @@
         super(config) ;
 
         defineProperties(this , [
-            'parentNode'
+            'parentNode',
+            'children'
         ]) ;
     }
 
@@ -48,140 +49,20 @@
 
         return store.getById(me.get('parentId')) ;
     }
-
-     /**
+    /**
      * 
-     * 返回最后一个子节点
+     * 返回子节点
      * 
-     * @return {data.model.node.Tree} 节点
+     * @return {array} 父节点
      * 
      */
-    get lastChildNode(){
+    getChildren(){
 
         let {
-            children
-        } = this;
-    
-        if(children.length){
-    
-            return children[children.length - 1] ;
-        }
-    }
-
-    get selected(){
-
-        return this.get('selected') ;
-    }
-
-      /**
-     * 
-     * 显示
-     * 
-     */
-    show(){
-
-        doHidden.call(this , false) ;
+            store,
+            id
+        } = this ;
         
-    }
-
-    /**
-     * 
-     * 隐藏
-     * 
-     */
-    hide(){
-
-        doHidden.call(this , true) ;
-    }
-
-    /**
-     * 
-     * 返回上一个兄弟节点
-     * 
-     * @return {data.model.node.Tree} 父节点
-     * 
-     */
-    get previousSiblingNode(){
-
-        return getSiblingNode.call(this , -1) ;
-    }
-    /**
-     * 
-     * 返回下一个兄弟节点
-     * 
-     * @return {data.model.node.Tree} 父节点
-     * 
-     */
-    get nextSiblingNode(){
-
-        return getSiblingNode.call(this , 1) ;
-    }
- }
-
- function doHidden(value){
-
-    let me = this,
-        {
-            children,
-            store
-        } = me,
-        {
-            selectedNode
-        } = store;
-
-    if(selectedNode === me && value){
-
-        let {
-            parentNode
-        } = me ;
-
-        while(parentNode){
-
-            if(parentNode.hidden === false){
-
-                parentNode.select() ;
-
-                break ;
-            
-            }else{
-
-                parentNode = parentNode.parentNode ;
-            }
-        }
-    }
-
-    if(value){
-
-        me.set({
-            hidden:true,
-            x:0,
-            y:0
-        }) ;
-
-    }else{
-
-        me.set('hidden' , value) ;
-    }
-
-    for(let childNode of children){
-
-        childNode[value ? 'hide' : 'show']() ;
-    }
- }
-
- function getSiblingNode(offset){
-
-    let me = this,
-        {
-            parentNode
-        } = me ;
-
-    if(parentNode){
-
-        let {
-            children
-        } = parentNode;
-
-        return childNodes[children.indexOf(me) + offset] ;
+        return store.findRecords('parentId' , id) ;
     }
  }
