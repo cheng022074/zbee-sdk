@@ -19,16 +19,16 @@ if(!expanded){
 
     if(!synchronized){
 
-        me.syncChildNodes(await store.syncChildNodes(me)) ;
+        me.synchronize(await store.synchronize(me)) ;
     }
 
     me.set('expanded' , true) ;
 
     let {
-        childNodes
+        children
     } = me ;
 
-    for(let childNode of childNodes){
+    for(let childNode of children){
 
         childNode.show() ;
     }

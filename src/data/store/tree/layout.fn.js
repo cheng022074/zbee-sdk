@@ -48,12 +48,17 @@
            y:startY
        } = node.getAnchorXY('r'),
        {
-           childNodes
+           children
        } = node;
 
        startX += lineOffsetX ;
 
-       for(let childNode of childNodes){
+       for(let childNode of children){
+
+            if(!nodes.includes(childNode)){
+
+                continue ;
+            }
 
            let {
                x:endX,
