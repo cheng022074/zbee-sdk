@@ -25,6 +25,8 @@ if(!expanded){
     ] ;
 }
 
+let nodes = [] ;
+
 while(true){
 
     let {
