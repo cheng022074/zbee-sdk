@@ -9,22 +9,25 @@
 
  let me = this,
  {
-    childNodes
+    expanded
  } = me;
 
- if(childNodes.length){
+ if(!expanded){
 
-    let leafNodes = [] ;
-
-    for(let childNode of childNodes){
-
-        leafNodes.push(...childNode.leafNodes) ;
-    }
-
-    return leafNodes ;
-
+   return [
+      me
+   ] ;
  }
 
- return [
-    me
-] ;
+
+let leafNodes = [],
+   {
+      children
+   } = me;
+
+for(let childNode of children){
+
+   leafNodes.push(...childNode.leafNodes) ;
+}
+
+return leafNodes ;

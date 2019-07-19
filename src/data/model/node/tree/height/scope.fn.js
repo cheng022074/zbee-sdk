@@ -19,7 +19,6 @@ if(!expanded){
 }
 
 let {
-    height,
     childCountScopeHeight,
 } = me ;
 
