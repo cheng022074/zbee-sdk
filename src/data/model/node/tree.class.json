@@ -56,6 +56,12 @@
         "descendantNodes":{
             "get":".tree.nodes.descendant"
         },
+        "firstDescendantNodes":{
+            "get":".tree.nodes.descendant.first"
+        },
+        "lastDescendantNodes":{
+            "get":".tree.nodes.descendant.last"
+        },
         "lastLeafNode":{
             "get":".tree.node.leaf.last"
         },

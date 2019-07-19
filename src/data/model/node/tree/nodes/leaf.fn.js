@@ -9,8 +9,14 @@
 
  let me = this,
  {
-    expanded
+    expanded,
+    hidden
  } = me;
+
+ if(hidden){
+
+   return [] ;
+ }
 
  if(!expanded){
 

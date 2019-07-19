@@ -3,21 +3,28 @@
  * 
  * 获得所有子孙节点
  * 
- * @import getChildNodes from ..child scoped
- * 
  * @return {array} 节点集合 
  * 
  */
-
+ 
 let me = this,
-    childNodes = getChildNodes(),
+    {
+        expanded
+    } = me;
+
+if(!expanded){
+
+    return [] ;
+}
+
+let {
+        children
+    } = me,
     result = [];
 
-for(let childNode of childNodes){
+for(let childNode of children){
 
-    result.push(childNode) ;
-
-    result.push(...childNode.descendantNodes) ;
+    result.push(childNode , ...childNode.descendantNodes) ;
 
 }
 
