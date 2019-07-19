@@ -9,8 +9,14 @@
 
 let node = this,
     {
-        expanded
+        expanded,
+        hidden
     } = node;
+
+if(hidden){
+
+    return [] ;
+}
 
 if(!expanded){
 
