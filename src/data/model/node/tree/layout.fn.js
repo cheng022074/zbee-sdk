@@ -8,10 +8,10 @@
 
 let me = this,
     {
-        childNodes
+        expanded
     } = me;
 
-if(childNodes.length === 0){
+if(!expanded){
 
     return ;
 }
@@ -31,11 +31,14 @@ let {
     x
 } = me.getAnchorXY('r');
 
-let startY = centerY - childCountScopeHeight / 2 ;
+let startY = centerY - childCountScopeHeight / 2,
+    {
+        children
+    } = me;
 
 x += marginRight;
 
-for(let childNode of childNodes){
+for(let childNode of children){
 
     let {
         scopeHeight

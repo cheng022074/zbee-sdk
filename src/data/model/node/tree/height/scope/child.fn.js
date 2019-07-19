@@ -7,24 +7,29 @@
  * 
  */
 
+let me = this,
+    {
+        expanded
+    } = me ;
+
+if(!expanded){
+
+    return 0 ;
+}
+
 let countHeight = 0,
     {
-        childNodes,
+        children,
         store
     } = this ;
 
-if(childNodes.length){
+for(let {
+    scopeHeight
+} of children){
 
-    for(let {
-        scopeHeight
-    } of childNodes){
-
-        countHeight += scopeHeight ;
-    }
-
-    countHeight += store.marginBottom * (childNodes.length - 1);
-
-    return countHeight ;
+    countHeight += scopeHeight ;
 }
 
-return 0 ;
+countHeight += store.marginBottom * (children.length - 1);
+
+return countHeight ;

@@ -5,6 +5,10 @@
  * 
  * @import Model from ....tree value
  * 
+ * @import isEmpty from is.object.empty
+ * 
+ * @class
+ * 
  */
 
  class main extends Model{
@@ -23,7 +27,7 @@
     static get fieldConfigurations(){
 
         return [
-            ...super.fieldConfigurations(),
+            ...super.fieldConfigurations,
             {
                 name:'width',
                 persistent:true,

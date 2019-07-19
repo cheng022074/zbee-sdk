@@ -8,7 +8,17 @@
  */
 
 let me = this,
-{
+    {
+        height,
+        expanded
+    } = me ;
+
+if(!expanded){
+
+    return height;
+}
+
+let {
     height,
     childCountScopeHeight,
 } = me ;

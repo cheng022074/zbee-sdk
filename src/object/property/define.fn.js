@@ -8,6 +8,8 @@
  * 
  * @import is.defined
  * 
+ * @import is.function
+ * 
  * @param {object} target 目标对象
  * 
  * @param {string} name 属性名称
@@ -69,7 +71,7 @@
 
         if(!me.hasOwnProperty(innerName) && method){
 
-            if(is_function(method) && method.length === 0){
+            if(isFunction(method) && method.length === 0){
 
                 return me[innerName] = method.call(me) ;
             }

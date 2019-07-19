@@ -5,7 +5,7 @@
  * 
  * @import Store from data.store value
  * 
- * @import Model from data.model.node.tree value
+ * @import Model from data.model.node.tree.mind value
  * 
  * @import define from class.define
  * 
