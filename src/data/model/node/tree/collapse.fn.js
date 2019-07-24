@@ -10,12 +10,12 @@
 let me = this,
 {
     expanded,
-    childNodes
+    children
 } = me ;
 
 if(expanded){
 
-    for(let childNode of childNodes){
+    for(let childNode of children){
 
         if(deep){
 
