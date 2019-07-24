@@ -24,7 +24,7 @@
         padding = 0,
         lineOffsetX = 0, 
         rootConfig,
-        syncChildNodes,
+        synchronize,
         ...options
     }){
 
@@ -54,7 +54,7 @@
 
         me.rootConfig = rootConfig || {} ;
 
-        me.syncChildNodes = syncChildNodes || (() => []) ;
+        me.synchronize = synchronize || (() => []) ;
 
         let {
             bottom:marginBottom = 0,

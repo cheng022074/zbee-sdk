@@ -3,6 +3,8 @@
  * 
  * 添加节点
  * 
+ * @import resetProperty from object.property.reset
+ * 
  * @param {mixed} node 节点信息
  * 
  */
@@ -24,6 +26,8 @@ if(expanded && !hidden){
         node.show() ;
     }
 }
+
+resetProperty(me , 'children') ;
 
 me.fireEvent('append' , nodes) ;
 

@@ -8,7 +8,8 @@
 let me = this,
 {
     children,
-    store
+    store,
+    expanded
 } = me,
 {
     selectedNode
@@ -17,7 +18,10 @@ let me = this,
 
 me.set('hidden' , false) ;
 
-for(let childNode of children){
+if(expanded){
 
-    childNode.show() ;
+    for(let childNode of children){
+
+        childNode.show() ;
+    }
 }
