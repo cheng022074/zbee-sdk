@@ -27,15 +27,15 @@ const {
 } = component;
 
 return {
-    onLoad(){
+    onLoad(options){
 
        let me = this ;
 
        mounted.call(me) ;
-      
-       originMounted.call(me) ;
 
        me.$connections = connections ;
+      
+       originMounted.call(me , options) ;
    },
 
    onUnload(){

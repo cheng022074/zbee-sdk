@@ -3,7 +3,7 @@
  * 
  * 打开订阅器
  * 
- * @import equals from object.equals
+ * @import equals from data.equals
  * 
  * @import assign from object.assign
  * 

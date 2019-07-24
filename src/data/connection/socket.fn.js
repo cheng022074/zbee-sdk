@@ -11,8 +11,6 @@
  * 
  * @import getValue from object.value.get
  * 
- * @import equals from object.equals
- * 
  * @class
  * 
  */
