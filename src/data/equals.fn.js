@@ -61,14 +61,14 @@
         return false ;
     }
 
-    for(let name1 of names1){
+    for(let name of names1){
 
-        if(!names2.includes(name1)){
+        if(!names2.includes(name)){
 
             return false ;
         }
 
-        if(!main(value1[name1] , value2[name2])){
+        if(!main(value1[name] , value2[name])){
 
             return false ;
         }

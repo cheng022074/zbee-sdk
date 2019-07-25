@@ -3,7 +3,7 @@
  * 
  * 返回指定项目对应的下标
  * 
- * @import equals from data.requals
+ * @import equals from data.equals
  * 
  * @param {mixed} data 数组
  * 
@@ -19,7 +19,7 @@
 
 for(let i = 0 ; i < length ; i ++){
 
-    if(equals(item , checkItem)){
+    if(equals(data[i] , checkItem)){
 
         return i ;
     }

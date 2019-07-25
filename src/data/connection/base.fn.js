@@ -137,7 +137,7 @@
 
         let me = this;
 
-        params = me.processSubscribeParams(subscriber , params , 'open') ;
+        params = me.processSubscribeParams(subscriber , params) ;
 
         if(isArray(params)){
 
@@ -146,6 +146,8 @@
             } = me ;
 
             if(includes(subscribeParamList , params)){
+
+                subscribeParamList.push(params) ;
 
                 return ;
             }
@@ -165,7 +167,7 @@
 
         let me = this ;
 
-        params = me.processSubscribeParams(subscriber , params , 'close') ;
+        params = me.processSubscribeParams(subscriber , params) ;
 
         if(isArray(params)){
 
@@ -181,7 +183,10 @@
     
             remove(subscribeParamList , index) ;
 
-            me.doSubscriberClose(subscriber , ...params) ;
+            if(!includes(subscribeParamList , params)){
+
+                me.doSubscriberClose(subscriber , ...params) ;
+            }
         }
 
     }
