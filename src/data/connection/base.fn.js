@@ -18,6 +18,10 @@
  * 
  * @import create from class.create
  * 
+ * @import includes from array.includes
+ * 
+ * @import remove from array.remove.index
+ * 
  * @require regex-parser
  * 
  * @class
@@ -64,6 +68,8 @@
         me.subscribers = new Map() ;
 
         me.rules = createRules(rules) ;
+
+        me.subscribeParamList = [] ;
     }
 
     processMessage(...args){
@@ -127,9 +133,19 @@
 
     onSubscriberOpen(subscriber , params){
 
-        let me = this;
+        let me = this,
+        {
+            subscribeParamList
+        } = me;
 
         params = me.processSubscribeParams(subscriber , params , 'open') ;
+
+        if(includes(subscribeParamList , params)){
+
+            return ;
+        }
+
+        subscribeParamList.push(params) ;
 
         if(isArray(params)){
 
@@ -147,6 +163,13 @@
         let me = this;
 
         params = me.processSubscribeParams(subscriber , params , 'close') ;
+
+        if(includes(subscribeParamList , params)){
+
+            return ;
+        }
+
+        subscribeParamList.push(params) ;
 
         if(isArray(params)){
 

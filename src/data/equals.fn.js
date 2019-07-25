@@ -14,6 +14,11 @@
 
  function main(value1 , value2){
 
+    if(value1 === value2){
+
+        return true ;
+    }
+
     let type1 = getType(value1),
         type2 = getType(value2) ;
 

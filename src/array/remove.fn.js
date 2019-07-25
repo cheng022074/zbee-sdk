@@ -5,6 +5,8 @@
  * 
  * @import remove from array.remove.index
  * 
+ * @import indexOf from array.indexOf
+ * 
  * @param {array} data 数组
  * 
  * @param {mixed} [...items] 项目
@@ -13,5 +15,5 @@
 
  for(let item of items){
 
-    remove(data , data.indexOf(item)) ;
+    remove(data , indexOf(data , item)) ;
  }
