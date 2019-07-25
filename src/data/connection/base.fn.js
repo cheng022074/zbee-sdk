@@ -20,6 +20,8 @@
  * 
  * @import includes from array.includes
  * 
+ * @import indexOf from array.indexOf
+ * 
  * @import remove from array.remove.index
  * 
  * @require regex-parser
@@ -133,21 +135,22 @@
 
     onSubscriberOpen(subscriber , params){
 
-        let me = this,
-        {
-            subscribeParamList
-        } = me;
+        let me = this;
 
         params = me.processSubscribeParams(subscriber , params , 'open') ;
 
-        if(includes(subscribeParamList , params)){
-
-            return ;
-        }
-
-        subscribeParamList.push(params) ;
-
         if(isArray(params)){
+
+            let  {
+                subscribeParamList
+            } = me ;
+
+            if(includes(subscribeParamList , params)){
+
+                return ;
+            }
+    
+            subscribeParamList.push(params) ;
 
             me.doSubscriberOpen(subscriber , ...params) ;
         }
@@ -160,18 +163,23 @@
 
     onSubscriberClose(subscriber , params){
 
-        let me = this;
+        let me = this ;
 
         params = me.processSubscribeParams(subscriber , params , 'close') ;
 
-        if(includes(subscribeParamList , params)){
-
-            return ;
-        }
-
-        subscribeParamList.push(params) ;
-
         if(isArray(params)){
+
+            let {
+                subscribeParamList
+            } = me,
+            index = indexOf(subscribeParamList , params);
+
+            if(index === -1){
+    
+                return ;
+            }
+    
+            remove(subscribeParamList , index) ;
 
             me.doSubscriberClose(subscriber , ...params) ;
         }
