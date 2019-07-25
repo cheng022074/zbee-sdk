@@ -12,6 +12,8 @@
  * 
  * @import is.boolean
  * 
+ * @import is.date
+ * 
  * @param {mixed} data 数据
  * 
  * @return {string} 数据类型描述 
@@ -36,6 +38,12 @@
  if(isBoolean(data)){
 
    return 'boolean' ;
+ }
+
+ if(isDate(data)){
+
+  return 'date' ;
+  
  }
 
  return 'other' ;

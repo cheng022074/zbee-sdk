@@ -29,6 +29,10 @@
 
                 return array_equals(value1 , value2) ;
 
+            case 'date':
+
+                return date_equals(value1 , value2) ;
+
             default:
 
                 return base_equals(value1 , value2) ;
@@ -87,6 +91,11 @@
     }
 
     return true ;
+ }
+
+ function date_equals(value1 , value2){
+
+    return value1.getTime() === value2.getTime() ;
  }
 
  function base_equals(value1 , value2){
