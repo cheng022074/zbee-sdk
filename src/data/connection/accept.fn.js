@@ -14,7 +14,7 @@ let me = this,
     {
         subscribers
     } = me,
-    count = 0;
+    acceptSubscribers = [];
 
 subscribers.forEach(subscriber => {
 
@@ -22,9 +22,9 @@ subscribers.forEach(subscriber => {
 
         subscriber.accept(me.processData(subscriber , message)) ;
 
-        count ++ ;
+        acceptSubscribers.push(subscriber) ; 
     }
 
 }) ;
 
-return count !== 0;
+return acceptSubscribers;

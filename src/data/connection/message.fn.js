@@ -124,6 +124,7 @@
 
             let {
                 to,
+                validateServiced = default_validate_serviced,
                 ...message
             } = address ;
 
@@ -144,7 +145,7 @@
                 address.to = to ;
 
                 let me = this,
-                    isServiced = me.acceptMessage(address),
+                    isServiced = validateServiced(me.acceptMessage(address)),
                     {
                         notSendMessages
                     } = me;
@@ -156,4 +157,9 @@
             }
         }
     }
+ }
+
+ function default_validate_serviced(subscribers){
+
+    return subscribers.length !== 0 ;
  }
