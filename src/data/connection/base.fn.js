@@ -145,16 +145,12 @@
                 subscribeParamList
             } = me ;
 
-            if(includes(subscribeParamList , params)){
+            if(!includes(subscribeParamList , params)){
 
-                subscribeParamList.push(params) ;
-
-                return ;
+                me.doSubscriberOpen(subscriber , ...params) ;
             }
     
             subscribeParamList.push(params) ;
-
-            me.doSubscriberOpen(subscriber , ...params) ;
         }
     }
 
