@@ -10,8 +10,6 @@ import { ALPN_ENABLED } from "constants";
  * 
  * @import getName from browser.event.name.single
  * 
- * @import disabled from ....disabled scoped
- * 
  * @import enabled from ....enabled scoped
  * 
  * @import scale from browser.scale

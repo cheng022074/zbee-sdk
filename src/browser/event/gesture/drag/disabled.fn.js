@@ -1,12 +1,28 @@
 
 /**
  * 
- * 函数实现说明
+ * 禁用监听全局事件
  * 
- * @param {mixed} data 参数说明
+ * @import getName from browser.event.name.single
  * 
- * @return {mixed} 返回说明 
+ * @import onMove from move.drag scoped
+ * 
+ * @import onEnd from ..end scoped
+ * 
+ * @import un from browser.global.listener.remove
  * 
  */
 
- // 代码实现
+let me = this,
+{
+    onMove,
+    onEnd
+} = me;
+
+un(getName('move') ,  onMove) ;
+
+un(getName('end') , onEnd) ;
+
+delete me.onMove ;
+
+delete me.onEnd ;

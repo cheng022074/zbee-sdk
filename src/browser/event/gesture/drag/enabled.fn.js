@@ -1,7 +1,7 @@
 
 /**
  * 
- * 监听全局事件
+ * 启用监听全局事件
  * 
  * @import getName from browser.event.name.single
  * 
