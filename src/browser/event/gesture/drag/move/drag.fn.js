@@ -27,7 +27,15 @@ let me = this,
 point = {
     x,
     y
-};
+},
+{
+    lastPoint
+} = me;
+
+if(lastPoint){
+
+    me.previousPoint = lastPoint ;
+}
 
 me.lastPoint = point ;
 

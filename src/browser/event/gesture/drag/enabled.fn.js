@@ -5,19 +5,15 @@
  * 
  * @import getName from browser.event.name.single
  * 
- * @import onMove from ..move scoped
+ * @import onMove from move.drag scoped
  * 
  * @import onEnd from ..end scoped
- * 
- * @import onStart from ..start.global scoped
  * 
  * @import on from browser.global.listener.add
  * 
  */
 
 let me = this ;
-
-on(getName('start') , me.onStart = onStart) ;
 
 on(getName('move') ,  me.onMove = onMove) ;
 
