@@ -1,10 +1,8 @@
-import { ALPN_ENABLED } from "constants";
-
 /**
  * 
  * 检查是否启用拖曳事件
  * 
- * @import stop from browser.event.stop
+ * @import prevent from browser.event.prevent
  * 
  * @import getEvent from browser.event.single
  * 
@@ -29,7 +27,7 @@ import { ALPN_ENABLED } from "constants";
  */
 
 
-stop(e) ;
+prevent(e) ;
 
 let me = this,{
     pageX:x,

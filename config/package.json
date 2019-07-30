@@ -28,6 +28,7 @@
             "browser.global.listener.remove",
             "browser.event.key",
             "browser.event.gesture.tap.start",
+            "browser.event.gesture.drag.start",
             "browser.event.gesture.manager.dom",
             "os.name",
             "number.format",

@@ -5,7 +5,7 @@
  * 
  * @import disabled from ..disabled scoped
  * 
- * @import stop from browser.event.stop
+ * @import prevent from browser.event.prevent
  * 
  * @import dispatch from browser.event.dispatch scoped
  * 
@@ -13,7 +13,7 @@
  * 
  */
 
- stop(e) ;
+prevent(e) ;
 
  dispatch(this.el , 'gesture:tap') ;
 

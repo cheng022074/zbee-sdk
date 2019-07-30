@@ -9,7 +9,7 @@
  * 
  * @import getScale from browser.scale
  * 
- * @import stop from browser.event.stop
+ * @import prevent from browser.event.prevent
  * 
  * @config moveDistance from event.tap...moveDistance
  * 
@@ -17,7 +17,7 @@
  * 
  */
 
-stop(e) ;
+prevent(e) ;
 
 let me = this,
     {

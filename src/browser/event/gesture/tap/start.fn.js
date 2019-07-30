@@ -7,7 +7,7 @@
  * 
  * @import getTouchEvents from browser.event.touches
  * 
- * @import stop from browser.event.stop
+ * @import prevent from browser.event.prevent
  * 
  * @import enabled from ..enabled scoped
  * 
@@ -19,7 +19,7 @@
  * 
  */
 
-stop(e) ;
+prevent(e) ;
 
 if(getTouchEvents(e)){
 

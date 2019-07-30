@@ -3,7 +3,7 @@
  * 
  * 拖动事件监听
  * 
- * @import stop from browser.event.stop
+ * @import prevent from browser.event.prevent
  * 
  * @import getEvent from browser.event.single
  * 
@@ -17,7 +17,7 @@
  * 
  */
 
-stop(e) ;
+prevent(e) ;
 
 let me = this,
 {
