@@ -13,7 +13,7 @@
  * 
  */
 
-prevent(e) ;
+ prevent(e) ;
 
  dispatch(this.el , 'gesture:tap') ;
 

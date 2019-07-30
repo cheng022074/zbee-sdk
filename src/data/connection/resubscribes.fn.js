@@ -3,10 +3,22 @@
  * 
  * 重新订阅
  * 
+ * @import includes from array.includes
+ * 
  */
 
-let {
-    subscribers
-} = this;
+let me = this,
+{
+    subscribeParamList
+} = me,
+subscribedParamList = [];
 
-subscribers.forEach(subscriber => subscriber.reopen()) ;
+for(let params of subscribeParamList){
+
+    if(!includes(subscribedParamList , params)){
+
+        subscribedParamList.push(params) ;
+            
+        me.doSubscriberOpen(...params) ;
+    }
+}

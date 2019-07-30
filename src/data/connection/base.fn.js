@@ -147,7 +147,7 @@
 
             if(!includes(subscribeParamList , params)){
                 
-                me.doSubscriberOpen(subscriber , ...params) ;
+                me.doSubscriberOpen(...params) ;
             }
     
             subscribeParamList.push(params) ;
@@ -155,7 +155,7 @@
         }
     }
 
-    doSubscriberOpen(subscriber , ...args){
+    doSubscriberOpen(...args){
 
 
     }
@@ -182,13 +182,13 @@
 
             if(!includes(subscribeParamList , params)){
 
-                me.doSubscriberClose(subscriber , ...params) ;
+                me.doSubscriberClose(...params) ;
             }
         }
 
     }
 
-    doSubscriberClose(subscriber , ...args){
+    doSubscriberClose(...args){
 
 
     }

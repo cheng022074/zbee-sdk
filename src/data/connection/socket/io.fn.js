@@ -30,8 +30,7 @@
             {
                 messageEventName,
                 acceptMessage,
-                resubscribes,
-                onConnect
+                resubscribes
             } = me ;
 
         socket = me.socket = IO(socketURL , {
@@ -46,15 +45,6 @@
         socket.on(messageEventName , acceptMessage.bind(me)) ;
 
         socket.on('reconnect' , resubscribes.bind(me)) ;
-
-        socket.once('connect' , onConnect.bind(me)) ;
-
-        me.firstConnected = false ;
-    }
-
-    onConnect(){
-
-        this.firstConnected = true ;
     }
 
     get messageEventName(){
@@ -78,24 +68,14 @@
 
         let me = this,
         {
-            firstConnected,
             socket
         } = me;
 
-        if(firstConnected){
-
-            if(socket.connected){
-
-                socket.emit(event , ...params) ;
-            }
-
-        }else{
-
-            socket.once('connect' , () => me.emit(event , ...params)) ;
-        }
+        socket.emit(event , ...params) ;
+    
     }
 
-    doSubscriberOpen(subscriber , ...args){
+    doSubscriberOpen(...args){
 
         let me = this,
         {
@@ -105,7 +85,7 @@
         me.emit(subscribeEventName , ...args) ;
     }
 
-    doSubscriberClose(subscriber , ...args){
+    doSubscriberClose(...args){
 
         let me = this,
         {
