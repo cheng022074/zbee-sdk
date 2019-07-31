@@ -5,7 +5,7 @@
  * 
  * @import getListeners from ..browser.event.listeners
  * 
- * @param {mixed} 
+ * @param {mixed} target
  * 
  * @param {string} event 目标监听事件
  * 

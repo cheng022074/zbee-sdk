@@ -5,7 +5,7 @@
  * 
  * @import getName from browser.event.name.single
  * 
- * @import un from browser.global.listener.remove
+ * @import un from browser.event.listener.global.remove
  * 
  */
 

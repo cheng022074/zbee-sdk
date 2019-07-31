@@ -11,7 +11,7 @@
  * 
  * @import onStart from ..start.global scoped
  * 
- * @import on from browser.global.listener.add
+ * @import on from browser.event.listener.global.add
  * 
  */
 
