@@ -7,6 +7,4 @@
  * 
  */
 
- e.preventDefault() ;
-
  e.stopPropagation() ;
