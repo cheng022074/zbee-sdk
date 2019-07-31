@@ -3,7 +3,7 @@
  * 
  * 去除监听事件
  * 
- * @import getListeners from ..browser.event.listeners
+ * @import getListeners from ....listeners
  * 
  * @param {mixed} target
  * 

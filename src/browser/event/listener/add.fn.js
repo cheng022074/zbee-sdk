@@ -3,7 +3,7 @@
  * 
  * 监听事件
  * 
- * @import getListeners from ..browser.event.listeners
+ * @import getListeners from ....listeners
  * 
  * @import is from browser.selector.parent
  * 
@@ -66,6 +66,6 @@ let listeners = getListeners(),
         }
     };
 
-map.set(target , event , fn , listenerFn) ;
+listeners.set(target , event , fn , listenerFn) ;
 
 target.addEventListener(event , listenerFn) ;
