@@ -12,4 +12,4 @@
  * 
  */
 
-remove(window , fn) ;
+remove(window , event , fn) ;

@@ -16,7 +16,7 @@
  */
 
 let listeners = getListeners(),
-listenerFn = listeners.get(event , fn , selector);
+listenerFn = listeners.get(target , event , fn);
 
 if(listenerFn){
 

@@ -14,4 +14,4 @@
  * 
  */
 
- add(window , fn , config) ;
+ add(window , event , fn , config) ;

@@ -7,7 +7,7 @@
  * 
  * @import prevent from browser.event.prevent
  * 
- * @import disabled from ..disabled scoped
+ * @import disabled from ....disabled scoped
  * 
  * @param {Event} e 事件
  * 
