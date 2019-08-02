@@ -29,7 +29,7 @@
             "browser.event.key",
             "browser.event.gesture.tap.start",
             "browser.event.gesture.drag.start",
-            "browser.event.gesture.manager.dom",
+            "browser.event.gesture.vue",
             "os.name",
             "number.format",
             "miniprogram.page",
