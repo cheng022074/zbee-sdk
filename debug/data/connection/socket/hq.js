@@ -338,7 +338,7 @@ let socket = new XYSocket({
 socket.subscribe('hot-industry' , {
   fn:data =>{
 
-    console.log('推送' , data) ;
+    //console.log('推送' , data) ;
   
   }
 }) ;

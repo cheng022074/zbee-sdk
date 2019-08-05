@@ -71,6 +71,8 @@
             socket
         } = me;
 
+        console.log(...params) ;
+
         socket.emit(event , ...params) ;
     
     }

@@ -14,9 +14,7 @@
  * @import enabled from ..enabled scoped
  * 
  * @import disabled from ..disabled scoped
- * 
- * @config timeout from event.tap...timeout
- * 
+ *
  * @param {Event} e 事件对象
  * 
  */
@@ -25,7 +23,7 @@ prevent(e) ;
 
 stop(e) ;
 
-if(getTouchEvents(e)){
+if(getTouchEvents(e , 'start')){
 
    return ;
 
