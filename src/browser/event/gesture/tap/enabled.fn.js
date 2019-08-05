@@ -9,15 +9,11 @@
  * 
  * @import onEnd from ..end scoped
  * 
- * @import onStart from ..start.global scoped
- * 
  * @import on from browser.event.listener.global.add
  * 
  */
 
  let me = this ;
-
- on(getName('start') , me.onStart = onStart) ;
 
  on(getName('move') ,  me.onMove = onMove) ;
 

@@ -28,3 +28,9 @@ delete me.onStart ;
 delete me.onMove ;
 
 delete me.onEnd ;
+
+delete me.info ;
+
+delete me.startTime ;
+
+delete me.startPoint ;

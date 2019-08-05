@@ -25,6 +25,8 @@ stop(e) ;
 
 if(getTouchEvents(e , 'start')){
 
+   disabled() ;
+
    return ;
 
 }

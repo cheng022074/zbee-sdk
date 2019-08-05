@@ -11,18 +11,13 @@
 
  let me = this,
  {
-    onStart,
     onMove,
     onEnd
  } = me;
 
- un(getName('start') , onStart) ;
-
  un(getName('move') ,  onMove) ;
 
  un(getName('end') ,  onEnd) ;
-
- delete me.onStart ;
 
  delete me.onMove ;
 
