@@ -17,8 +17,6 @@
 
  prevent(e) ;
 
- stop(e) ;
-
  dispatch(this.el , 'gesture:tap') ;
 
  disabled() ;
