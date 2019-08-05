@@ -9,7 +9,7 @@
  * 
  */
 
- const nameRe = /(?:start|move|end)$/ ;
+ const nameRe = /(?:start|end)$/ ;
 
  class main {
 

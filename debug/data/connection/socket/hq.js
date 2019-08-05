@@ -294,10 +294,7 @@ const dataTypeMaps = [{
 
 let socket = new XYSocket({
   socket:{
-    url:'wss://quote.xinyusoft.com/stock',
-    options:{
-      path:'/classify'
-    }
+    url:'wss://quote.xinyusoft.com/stock'
   },
   rules:[{
     test:'hot\\-industry', //热门行业
@@ -332,13 +329,23 @@ let socket = new XYSocket({
             }
         } ;
     }
+},{
+  test:'^plate\\-detail-(.+)$', //板块
+  use(id , symbol){
+      return {
+          params:{
+              dataType:name2type['api_one'],
+              symbol
+          }
+      } ;
+  }
 }]
 }) ;
 
-socket.subscribe('hot-industry' , {
+socket.subscribe('plate-detail-INDEX.330000' , {
   fn:data =>{
 
-    //console.log('推送' , data) ;
+    console.log('推送' , data) ;
   
   }
 }) ;
