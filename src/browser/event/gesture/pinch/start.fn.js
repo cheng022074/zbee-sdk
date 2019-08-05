@@ -9,11 +9,13 @@
  * 
  * @import stop from browser.event.stop
  * 
- * @import on from browser.global.listener.add
+ * @import on from browser.event.listener.global.add
  * 
  * @import onMove from .move.start scoped
  * 
  * @import onEnd from .end scoped
+ * 
+ * @import .start.name
  *
  * @param {Event} e 事件对象
  * 

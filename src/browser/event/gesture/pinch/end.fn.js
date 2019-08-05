@@ -7,9 +7,9 @@
  * 
  * @import stop from browser.event.stop
  * 
- * @import un from browser.global.listener.remove
+ * @import un from browser.event.listener.global.remove
  * 
- * @import dispatch from ......dispatch
+ * @import dispatch from browser.event.dispatch
  * 
  * @param {Event} e 事件对象
  * 

@@ -9,6 +9,8 @@
  * 
  */
 
+ const nameRe = /(?:start|move|end)$/ ;
+
  class main {
 
     constructor(){
@@ -23,8 +25,17 @@
 
         let {
             events
-        } = this,
-        listener = include(`browser.event.gesture.${name}.start`).bind({
+        } = this ;
+
+        name = name.replace(nameRe , '') ;
+
+        if(events.has(el , name)){
+
+            return ;
+        }
+
+
+        let listener = include(`browser.event.gesture.${name}.start`).bind({
             el
         });
 

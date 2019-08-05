@@ -19,6 +19,8 @@
  * 
  * @import onStart from ..move.start scoped
  * 
+ * @import .start.name
+ * 
  * @param {Event} e 事件对象
  * 
  */

@@ -14,6 +14,8 @@
  * @import enabled from ..enabled scoped
  * 
  * @import disabled from ..disabled scoped
+ * 
+ * @import .start.name
  *
  * @param {Event} e 事件对象
  * 
