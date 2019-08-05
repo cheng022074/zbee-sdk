@@ -1,6 +1,6 @@
 /**
  * 
- * 移动事件监听
+ * 缩放开始事件监听
  * 
  * @import getTouchEvents from browser.event.touches
  * 
@@ -25,11 +25,7 @@ prevent(e) ;
 stop(e) ;
 
 let touches = getTouchEvents(e , 'move'),
-    me = this;
-
-if(touches){
-
-    let [
+    [
         firstTouch,
         lastTouch
     ] = touches,
@@ -39,21 +35,21 @@ if(touches){
     } , {
         x:lastTouch.pageX,
         y:lastTouch.pageY
-    });
+    }),
+    me = this;
 
-    if(distance === 0){
+if(distance === 0){
 
-        return ;
-    }
-
-    me.startDistance = distance ;
-
-    dispatch('gesture:pinchstart', {
-        distance,
-        scale: 1
-    });
-
-    un('touchmove' , me.onStart) ;
-
-    on('touchmove' , me.onMove = onMove) ;
+    return ;
 }
+
+me.startDistance = distance ;
+
+dispatch('gesture:pinchstart', {
+    distance,
+    scale: 1
+});
+
+un('touchmove' , me.onStart) ;
+
+on('touchmove' , me.onMove = onMove) ;

@@ -28,3 +28,5 @@ delete me.onStart ;
 delete me.onMove ;
 
 delete me.onEnd ;
+
+delete 
