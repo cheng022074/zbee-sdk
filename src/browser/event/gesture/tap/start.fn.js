@@ -9,6 +9,8 @@
  * 
  * @import prevent from browser.event.prevent
  * 
+ * @import stop from browser.event.stop
+ * 
  * @import enabled from ..enabled scoped
  * 
  * @import disabled from ..disabled scoped
@@ -20,6 +22,8 @@
  */
 
 prevent(e) ;
+
+stop(e) ;
 
 if(getTouchEvents(e)){
 

@@ -7,6 +7,10 @@
  * 
  * @import EventDom from browser.event.gesture.manager.dom value
  * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.function
+ * 
  * @import on from browser.event.listener.element.add
  * 
  * @import un from browser.event.listener.element.remove
@@ -15,8 +19,6 @@
  * 
  * 
  */
-
- const prefix = generate('gestureoptions') ;
 
 Vue.directive('gesture' , {
 
@@ -27,7 +29,7 @@ Vue.directive('gesture' , {
 
       EventDom.install(el, name);
 
-      addEventListener(el , `gesture:${name}` , fn) ;
+      addEventListener(el , name , `gesture:${name}` , fn) ;
 
     },
   
@@ -41,7 +43,7 @@ Vue.directive('gesture' , {
   
       el.removeEventListener(event, oldFn);
   
-      addEventListener(el , event , fn) ;
+      addEventListener(el , name , event , fn) ;
     },
   
     unbind(el, {
@@ -49,33 +51,37 @@ Vue.directive('gesture' , {
         value:fn
     }){
 
-      un(el , `gesture:${name}`, fn);
-  
-      EventDom.uninstall(el, name);
+        let event = `gesture:${name}` ;
+
+        if(isObject(fn)){
+        
+            on(el , event , fn.fn);
+
+        }else if(isFunction(fn)){
+
+            on(el , event , fn) ;
+        }
+
+        un(el , `gesture:${name}`, fn);
+    
+        EventDom.uninstall(el, name);
       
     }
 }) ;
 
-Vue.directive('gesture-options' , {
+function addEventListener(el , name , event , fn){
 
-    bind(el, {
-        arg:name,
-        value:options
-    }){
+    if(isObject(fn)){
 
-      el.dataset[`${prefix}${name}`] = JSON.stringify(options) ;
+        let {
+            fn:listenerFn,
+            ...options
+        } = fn ;
+        
+        on(el , event , listenerFn , options);
 
+    }else if(isFunction(fn)){
+
+        on(el , event , fn) ;
     }
-}) ;
-
-function addEventListener(el , event , fn){
-
-    let options = el.dataset[`${prefix}${name}`] ;
-
-    if(options){
-
-        options = JSON.parse(options) ;
-    }
-
-    on(el , event , fn , options);
 }

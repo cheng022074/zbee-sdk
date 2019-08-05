@@ -39,7 +39,7 @@ let listeners = getListeners(),
         } = e ;
 
         if(stop){
-
+            
             stopEvent(e) ;
         }
 
