@@ -294,9 +294,23 @@ const dataTypeMaps = [{
 
 let socket = new XYSocket({
   socket:{
-    url:'wss://quote.xinyusoft.com/stock'
+    url:'wss://quote.xinyusoft.com/stock',
+    options:{
+      path:'/classify'
+    }
   },
   rules:[{
+    test:'hot\\-industry', //热门行业
+    use(){
+        return {
+            params:{
+                dataType:name2type['api_newAll'],
+                symbol:'10',
+                order:'turnoverRatio_desc'
+            }
+        } ;
+    }
+  },{
     test:'time\\-sharing',
     use(){
         return {
@@ -321,10 +335,10 @@ let socket = new XYSocket({
 }]
 }) ;
 
-socket.subscribe('api_sign::SH' , {
+socket.subscribe('hot-industry' , {
   fn:data =>{
 
-    console.log('推送1' , data) ;
+    console.log('推送' , data) ;
   
   }
 }) ;
