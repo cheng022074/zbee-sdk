@@ -1,4 +1,3 @@
-
 /**
  * 
  * 移动事件监听
@@ -15,7 +14,7 @@
  * 
  * @import un from browser.global.listener.remove
  * 
- * @import enabled from ..enabled scoped
+ * @import onMove from .pinch scoped
  * 
  * @param {Event} e 事件对象
  * 
@@ -54,7 +53,7 @@ if(touches){
         scale: 1
     });
 
-    un('touchmove' , me.onMoveStart) ;
+    un('touchmove' , me.onStart) ;
 
-    enabled() ;
+    on('touchmove' , me.onMove = onMove) ;
 }

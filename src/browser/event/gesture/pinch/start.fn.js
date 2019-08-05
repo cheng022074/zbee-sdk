@@ -12,6 +12,8 @@
  * @import on from browser.global.listener.add
  * 
  * @import onMove from .move.start scoped
+ * 
+ * @import onEnd from .end scoped
  *
  * @param {Event} e 事件对象
  * 
@@ -21,9 +23,18 @@ prevent(e) ;
 
 stop(e) ;
 
+let me = this ;
+
+if(me.onStart){
+
+    return ;
+}
+
 let touches = getTouchEvents(e , 'start') ;
 
 if(touches){
 
-    on('touchmove' , this.onMoveStart = onMove) ;
+    on('touchmove' , me.onStart = onMove) ;
+
+    on('touchend' , me.onEnd = onEnd) ;
 }
