@@ -29,4 +29,4 @@ delete me.onMove ;
 
 delete me.onEnd ;
 
-delete 
+delete me.startDistance ;

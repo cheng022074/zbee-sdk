@@ -21,4 +21,6 @@ listenerFn = listeners.get(target , event , fn);
 if(listenerFn){
 
     target.removeEventListener(event , listenerFn) ;
+
+    listeners.delete(target , event , fn) ;
 }

@@ -31,8 +31,14 @@
  * 
  */
 
-let listeners = getListeners(),
-    listenerFn = e =>{
+let listeners = getListeners() ;
+
+if(listeners.has(target , event , fn)){
+
+    return ;
+}
+
+let listenerFn = e =>{
 
         let {
             target
