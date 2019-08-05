@@ -14,8 +14,6 @@
  * 
  * @import resetInfo from ....info.reset scoped
  * 
- * @import onMove from ..start
- * 
  * @import dispatch from browser.event.dispatch
  * 
  * @import un from browser.global.listener.remove
@@ -57,7 +55,7 @@ if (Math.round(startPoint , point) * scale() >= minDistance) {
 
     dispatch(el , 'gesture:dragstart', info);
 
-    un(getName('move') , onMove) ;
+    un(getName('move') , me.onStart) ;
 
     enabled() ;
 }

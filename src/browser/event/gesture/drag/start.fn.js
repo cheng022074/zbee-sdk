@@ -5,6 +5,8 @@
  * 
  * @import prevent from browser.event.prevent
  * 
+ * @import stop from browser.event.stop
+ * 
  * @import getTouchEvents from browser.event.touches
  * 
  * @import getEvent from browser.event.single
@@ -15,7 +17,7 @@
  * 
  * @import on from browser.global.listener.add
  * 
- * @import onMove from ..move.start scoped
+ * @import onStart from ..move.start scoped
  * 
  * @param {Event} e 事件对象
  * 
@@ -23,11 +25,13 @@
 
 prevent(e) ;
 
- if(getTouchEvents(e)){
+stop(e) ;
+
+if(getTouchEvents(e)){
 
     return ;
 
- }
+}
 
 let me = this,
 {
@@ -74,4 +78,4 @@ me.startPoint = {
     y
 } ;
 
-on(getName('move') , onMove) ;
+on(getName('move') , me.onStart = onStart) ;

@@ -23,6 +23,8 @@ un(getName('move') ,  onMove) ;
 
 un(getName('end') , onEnd) ;
 
+delete me.onStart ;
+
 delete me.onMove ;
 
 delete me.onEnd ;
