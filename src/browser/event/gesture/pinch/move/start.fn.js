@@ -17,8 +17,6 @@
  * 
  * @import enabled from ..enabled scoped
  * 
- * @import disabled from ..disabled scoped
- * 
  * @param {Event} e 事件对象
  * 
  */
