@@ -3,8 +3,6 @@
  * 
  * 传统事件管理
  * 
- * @import getName from ....name.start
- * 
  * @import createMap from map
  * 
  * @once
@@ -30,7 +28,7 @@
             el
         });
 
-        el.addEventListener(getName(name) , listener) ;
+        el.addEventListener(include(`browser.event.gesture.${name}.start.name`)() , listener) ;
 
         events.set(el , name , listener) ;
     }
