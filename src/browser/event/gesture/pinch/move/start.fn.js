@@ -43,9 +43,13 @@ if(distance === 0){
     return ;
 }
 
+let {
+    el
+} = me ;
+
 me.startDistance = distance ;
 
-dispatch('gesture:pinchstart', {
+dispatch(el , 'gesture:pinchstart', {
     distance,
     scale: 1
 });

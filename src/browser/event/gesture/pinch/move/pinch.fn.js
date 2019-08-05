@@ -35,9 +35,15 @@ let touches = getTouchEvents(e , 'move'),
     } , {
         x:lastTouch.pageX,
         y:lastTouch.pageY
-    });
+    }),
+    {
+        startDistance,
+        el
+    } = this;
 
-dispatch('gesture:pinch', {
+
+
+dispatch(el , 'gesture:pinch', {
     distance,
-    scale:distance / this.startDistance
+    scale:distance / startDistance
 });
