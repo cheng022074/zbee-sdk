@@ -9,4 +9,4 @@
  * 
  */
 
-return window.hasOwnProperty('onpointerdown');
+return global.hasOwnProperty('onpointerdown');

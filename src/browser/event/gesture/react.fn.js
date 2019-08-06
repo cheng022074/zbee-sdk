@@ -1,12 +1,14 @@
 
 /**
  * 
- * 函数实现说明
+ * 基于 React 的手势事件实现
  * 
- * @param {mixed} data 参数说明
+ * @import jsx from browser.event.gesture.manager.jsx
  * 
- * @return {mixed} 返回说明 
+ * @param {object} config 未经识别的事件集合
+ * 
+ * @return {object} 已识别事件属性集合
  * 
  */
 
- // 代码实现
+ return jsx(config) ;

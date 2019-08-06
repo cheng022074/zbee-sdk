@@ -9,4 +9,4 @@
  * 
  */
 
-return window.hasOwnProperty('ontouchstart');
+return global.hasOwnProperty('ontouchstart');

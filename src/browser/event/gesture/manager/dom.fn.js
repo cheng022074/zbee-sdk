@@ -20,7 +20,7 @@
 
  function getName(name){
 
-    include(`browser.event.gesture.${name}.start.name`)() ;
+    return include(`browser.event.gesture.${name}.start.name`)() ;
  }
 
  class main {

@@ -5,10 +5,14 @@
  * 
  * @import capitalize from string.capitalize
  * 
+ * @param {object} config 未经识别的事件集合
+ * 
+ * @return {object} 已识别事件属性集合
+ * 
  */
 
- const eventSuffixRe = /(?:start|move|end)$/,
- nameRe = /^(.+)(start|end)?$/,
+ const eventSuffixRe = /(?:start|end)$/,
+ eventPropertyRe = /^on/,
  {
     keys
  } = Object;
@@ -22,7 +26,7 @@
 
     try{
 
-        include(include(`browser.event.gesture.${event}.start.name`)) ;
+        include(`browser.event.gesture.${event}.start.name`) ;
 
         return true ;
 
@@ -35,27 +39,9 @@
 
  function getGestureImplStartEventName(event){
 
-    return include(include(`browser.event.gesture.${event}.start.name`))() ;
- }
+    console.log(include(`browser.event.gesture.${event}.start.name`)()) ;
 
- function getGestureImplStartEventListener(event , listeners){
-
-    return include(`browser.event.gesture.${event}.start`).bind({
-        dispatch(event , params){
-
-            let property = getEventPropertyName(event) ;
-
-            if(listeners.hasOwnProeprty(property)){
-
-                listeners[property](params) ;
-            }
-        }
-    });
-}
-
-function getEventPropertyName(event){
-
-   switch(event){
+    switch(include(`browser.event.gesture.${event}.start.name`)()){
 
         case 'pointerdown':
 
@@ -69,28 +55,56 @@ function getEventPropertyName(event){
 
             return 'onTouchStart' ;
    }
+
+ }
+
+ function getGestureImplStartEventListener(event , listeners){
+
+    return include(`browser.event.gesture.${event}.start`).bind({
+        dispatch(event , params){
+
+            if(listeners.hasOwnProperty(event)){
+
+                listeners[event](params) ;
+            }
+        }
+    });
 }
 
 function addListener(listeners , event , fn){
 
-    let property = getEventPropertyName(event) ;
+    if(listeners.hasOwnProperty(event)){
 
-    if(listeners.hasOwnProeprty(property)){
+        listeners[event] = (...args) =>{
 
-        listeners[property] = (...args) =>{
-
-            listeners[property](...args) ;
+            listeners[event](...args) ;
 
             fn(...args) ;
         } ;
     
     }else{
 
-        listeners[property] = fn ;
+        listeners[event] = fn ;
     }
 }
 
- function main(config = {}){
+function getEventProperties(listeners){
+
+    let events = keys(listeners),
+        properties = {};
+
+    for(let event of events){
+
+        if(eventPropertyRe.test(event)){
+
+            properties[event] = listeners[event];
+        }
+    }
+
+    return properties ;
+}
+
+ function main(config){
 
     let events = keys(config),
         listeners = {},
@@ -106,15 +120,10 @@ function addListener(listeners , event , fn){
 
             addListener(listeners , getGestureImplStartEventName(eventImpl) , getGestureImplStartEventListener(eventImpl , listeners)) ;
         
-        }else if(event === 'pointerdown' || event === 'mousedown' || event === 'touchstart'){
-
-            addListener(listeners , event , config[event]) ;
-        
-        }else{
-
-            throw new Error('仅支持 gesture、pointerdown、mousedown、touchstart 事件') ;
         }
+
+        addListener(listeners , event , config[event]) ;
     }
 
-    return listeners ;
+    return getEventProperties(listeners) ;
  }
