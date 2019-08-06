@@ -10,8 +10,6 @@
  * 
  * @import getDistance from math.point.distance
  * 
- * @import dispatch from browser.event.dispatch
- * 
  * @import un from browser.event.listener.global.remove
  * 
  * @import on from browser.event.listener.global.add

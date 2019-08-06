@@ -11,8 +11,6 @@
  * 
  * @import getEvent from browser.event.pointer
  * 
- * @import dispatch from browser.event.dispatch
- * 
  * @param {Event} e 事件对象
  * 
  */

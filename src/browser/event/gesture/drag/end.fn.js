@@ -11,8 +11,6 @@
  * 
  * @import onAxisEnd from end.axis scoped
  * 
- * @import dispatch from browser.event.dispatch
- * 
  * @import disabled from ..disabled scoped
  * 
  * @param {Event} e 事件对象

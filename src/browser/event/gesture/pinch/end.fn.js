@@ -9,8 +9,6 @@
  * 
  * @import un from browser.event.listener.global.remove
  * 
- * @import dispatch from browser.event.dispatch
- * 
  * @param {Event} e 事件对象
  * 
  */

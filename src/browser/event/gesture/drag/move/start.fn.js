@@ -14,8 +14,6 @@
  * 
  * @import resetInfo from ....info.reset scoped
  * 
- * @import dispatch from browser.event.dispatch
- * 
  * @import un from browser.global.listener.remove
  * 
  * @config minDistance from gesture.drag...minDistance

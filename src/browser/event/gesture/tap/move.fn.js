@@ -11,8 +11,6 @@
  * 
  * @import prevent from browser.event.prevent
  * 
- * @import dispatch from ......dispatch
- * 
  * @import disabled from ..disabled scoped
  * 
  * @config moveDistance from event.tap...moveDistance

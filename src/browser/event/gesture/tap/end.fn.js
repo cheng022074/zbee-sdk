@@ -9,8 +9,6 @@
  * 
  * @import stop from browser.event.stop
  * 
- * @import dispatch from browser.event.dispatch scoped
- * 
  * @param {Event} e 事件对象
  * 
  */
