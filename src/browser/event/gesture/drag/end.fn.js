@@ -23,7 +23,8 @@ prevent(e) ;
 
 let me = this,
 {
-    info
+    info,
+    dispatch
 } = me,
 {
     pageX:x,
@@ -45,7 +46,7 @@ onAxisEnd('x', info);
 
 onAxisEnd('y', info);
 
-dispatch(el , 'touch:dragend', info);
+dispatch('dragend', info);
 
 disabled() ;
 

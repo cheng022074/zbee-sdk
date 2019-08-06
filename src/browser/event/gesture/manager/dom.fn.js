@@ -5,11 +5,18 @@
  * 
  * @import createMap from map
  * 
+ * @import doDispatch from browser.event.dispatch
+ * 
  * @once
  * 
  */
 
  const nameRe = /(?:start|end)$/ ;
+
+ function dispatch(event , params){
+
+    doDispatch(this , `gesture:${event}`  , params) ;
+ }
 
  class main {
 
@@ -36,7 +43,7 @@
 
 
         let listener = include(`browser.event.gesture.${name}.start`).bind({
-            el
+            dispatch:dispatch.bind(el)
         });
 
         el.addEventListener(include(`browser.event.gesture.${name}.start.name`)() , listener) ;

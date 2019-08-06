@@ -34,7 +34,7 @@ let me = this,{
 {
     startPoint,
     info,
-    el
+    dispatch
 } = me,
 point = {
     x,
@@ -53,7 +53,7 @@ if (Math.round(startPoint , point) * scale() >= minDistance) {
 
     info.time = Date.now();
 
-    dispatch(el , 'gesture:dragstart', info);
+    dispatch('dragstart', info);
 
     un(getName('move') , me.onStart) ;
 

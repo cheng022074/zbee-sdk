@@ -23,7 +23,8 @@ let me = this,
 {
     el,
     onMove,
-    onEnd
+    onEnd,
+    dispatch
 } = me;
 
 un('touchmove' , onMove) ;
@@ -38,4 +39,4 @@ delete me.onEnd ;
 
 delete me.startDistance ;
 
-dispatch(el , 'gesture:pinchend') ;
+dispatch('pinchend') ;

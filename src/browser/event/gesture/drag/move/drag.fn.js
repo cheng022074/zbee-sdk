@@ -25,7 +25,8 @@ let me = this,
     pageY:y
 } = getEvent(e , 'move'),
 {
-    lastPoint
+    lastPoint,
+    dispatch
 } = me;
 
 if(lastPoint){
@@ -48,4 +49,4 @@ let {
 
 info.time = Date.now();
 
-dispatch(el , 'touch:drag' , info) ;
+dispatch('drag' , info) ;

@@ -30,15 +30,15 @@ let me = this,
     } = getEvent(e , 'move'),
     {
         startPoint,
-        el
-    } = me;
+        dispatch
+    } = this;
 
 if(Math.round(getDistance({
     x:pageX,
     y:pageY
 } , startPoint)) * getScale() >= moveDistance){
 
-    dispatch(el , 'gesture:tapcancel') ;
+    dispatch('tapcancel') ;
 
     disabled() ;
 }
