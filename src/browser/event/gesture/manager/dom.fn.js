@@ -18,6 +18,11 @@
     doDispatch(this , `gesture:${event}`  , params) ;
  }
 
+ function getName(name){
+
+    include(`browser.event.gesture.${name}.start.name`)() ;
+ }
+
  class main {
 
     constructor(){
@@ -46,7 +51,7 @@
             dispatch:dispatch.bind(el)
         });
 
-        el.addEventListener(include(`browser.event.gesture.${name}.start.name`)() , listener) ;
+        el.addEventListener(getName(name) , listener) ;
 
         events.set(el , name , listener) ;
     }
