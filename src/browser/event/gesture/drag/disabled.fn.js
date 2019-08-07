@@ -15,9 +15,12 @@
 
 let me = this,
 {
+    onStart,
     onMove,
     onEnd
 } = me;
+
+un(getName('move') , onStart) ;
 
 un(getName('move') ,  onMove) ;
 
