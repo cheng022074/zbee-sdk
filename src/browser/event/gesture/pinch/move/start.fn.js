@@ -4,8 +4,6 @@
  * 
  * @import getTouchEvents from browser.event.touches
  * 
- * @import prevent from browser.event.prevent
- * 
  * @import stop from browser.event.stop
  * 
  * @import getDistance from math.point.distance
@@ -19,8 +17,6 @@
  * @param {Event} e 事件对象
  * 
  */
-
-prevent(e) ;
 
 stop(e) ;
 

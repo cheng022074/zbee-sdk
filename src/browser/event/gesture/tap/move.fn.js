@@ -9,8 +9,6 @@
  * 
  * @import getScale from browser.scale
  * 
- * @import prevent from browser.event.prevent
- * 
  * @import disabled from ..disabled scoped
  * 
  * @config moveDistance from event.tap...moveDistance
@@ -18,8 +16,6 @@
  * @param {Event} e 事件对象
  * 
  */
-
-prevent(e) ;
 
 let me = this,
     {

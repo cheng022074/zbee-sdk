@@ -5,15 +5,13 @@
  * 
  * @import getTouchEvents from browser.event.touches
  * 
- * @import prevent from browser.event.prevent
- * 
  * @import stop from browser.event.stop
  * 
  * @import on from browser.event.listener.global.add
  * 
- * @import onMove from .move.start scoped
+ * @import enabled from ..enabled scoped
  * 
- * @import onEnd from .end scoped
+ * @import disabled from ..disabled scoped
  * 
  * @import .start.name
  *
@@ -21,22 +19,18 @@
  * 
  */
 
-prevent(e) ;
-
 stop(e) ;
 
 let me = this ;
 
 if(me.onStart){
 
-    return ;
+    disabled() ;
 }
 
 let touches = getTouchEvents(e , 'start') ;
 
 if(touches){
 
-    on('touchmove' , me.onStart = onMove) ;
-
-    on('touchend' , me.onEnd = onEnd) ;
+    enabled() ;
 }

@@ -7,8 +7,6 @@
  * 
  * @import getTouchEvents from browser.event.touches
  * 
- * @import prevent from browser.event.prevent
- * 
  * @import stop from browser.event.stop
  * 
  * @import enabled from ..enabled scoped
@@ -20,8 +18,6 @@
  * @param {Event} e 事件对象
  * 
  */
-
-prevent(e) ;
 
 stop(e) ;
 

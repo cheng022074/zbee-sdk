@@ -29,6 +29,7 @@
     "browser.event.gesture.drag.start",
     "browser.event.gesture.pinch.start",
     "browser.event.gesture.vue",
+    "browser.event.gesture.react",
     "browser.event.touch.init",
     "os.name",
     "number.format",

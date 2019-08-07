@@ -39,8 +39,6 @@
 
  function getGestureImplStartEventName(event){
 
-    console.log(include(`browser.event.gesture.${event}.start.name`)()) ;
-
     switch(include(`browser.event.gesture.${event}.start.name`)()){
 
         case 'pointerdown':
