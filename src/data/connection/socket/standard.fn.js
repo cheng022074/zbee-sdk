@@ -2,143 +2,177 @@
  * 
  * 基于标准 WebSocket 进行开发
  * 
+ * @import Connection from data.connection.socket value
+ * 
  * @import createTimer from timer
  * 
- * @param {string} url socket 连接地址
- * 
- * @param {object} config socket 连接配置
+ * @class
  * 
  */
 
-function main(url , options = {}){
+ class main extends Connection{
 
-    return new Socket(url , options) ;
-}
+    constructor({
+        socket
+    }){
 
-const EventEmitter = require('events') ;
+        let me = this,
+            {
+                url:socketURL
+            } = socket,
+            {
+                onConnect,
+                onErrorEvent
+            } = me;
 
-class Socket extends EventEmitter{
+        me.onConnect = onConnect.bind(me) ;
 
-    constructor(url , options){
+        me.onErrorEvent = onErrorEvent.bind(me) ;
 
-        super() ;
+        me.socketURL = socketURL ;
 
-        let me = this ;
+        me.createWebSocket() ;
 
-        me.url = url;
-
-        me.options = options ;
-
-        let {
-            timeout = 20000,
-            parse
-        } = options ;
-
-        me.timer = createTimer(timeout) ;
-
-        createSocket.call(me) ;
-
-        let {
-            socket
-        } = me ;
-
-        socket.addEventListener('message' , ({
-            data
-        }) =>{
-
-            let {
-                event,
-                params
-            } = parse(data);
-
-            me.emit(event , params) ;
-
-        }) ;
-
-        let onException =() => reconnect.call(me) ;
-
-        me.once('connect' , () => {
-
-            socket.addEventListener('error' , onException) ;
-
-            socket.addEventListener('close' , onException) ;
-
-        }) ;
+        me.unsendMessages = [] ;
     }
 
-    get connected(){
-
-        let {
-            socket
-        } = this ;
-
-        return socket.readyState === 1 ;
-    }
-
-    emit(event , ...args){
+    async createWebSocket(){
 
         let me = this,
         {
-            connected,
-            options,
-            socket
-        } = me,
+            socketURL,
+            onConnect,
+            onErrorEvent
+        } = me ;
+
+        await me.destroyWebSocket() ;
+
+        me.state ='connecting' ;
+
+        socket = me.socket = new WebSocket(socketURL) ;
+
+        socket.addEventListener('open' , onConnect) ;
+
+        socket.addEventListener('error' , onErrorEvent) ;
+
+        await new Promise(callback =>{
+
+            const onOpen = () => {
+    
+                socket.removeEventListener('open' , onOpen) ; 
+    
+                callback() ;
+    
+             } ;
+    
+            socket.addEventListener('open' , onOpen) ;
+
+        }) ;
+    }
+
+    destroyWebSocket(){
+
+        let me = this,
         {
-            stringify
-        } = options;
+            socket,
+            onConnect,
+            onErrorEvent
+        } = me;
 
-        if(connected){
+        return new Promise(callback =>{
 
-            socket.send(stringify(event , args)) ;
-        
-        }else{
+            if(socket){
 
-            me.on('connect' , () => me.emit(event , ...args)) ;
+                socket.removeEventListener('open' , onConnect) ;
+    
+                socket.removeEventListener('error' , onErrorEvent) ;
+
+                me.state = 'disconnecting' ;
+    
+                const onClose = () => {
+    
+                   socket.removeEventListener('close' , onClose) ; 
+    
+                   me.state = 'disconnect' ;
+
+                   callback() ;
+
+                } ;
+    
+                socket.addEventListener('close' , onClose) ;
+    
+                socket.close() ;
+    
+                delete me.socket ;
+            
+            }else{
+
+                callback() ;
+            }
+
+        }) ;
+    }
+
+    onConnect(){
+
+        let me = this ;
+
+        me.state = 'connected' ;
+
+        me.resubscribes() ;
+    }
+
+    onErrorEvent(){
+
+        this.createSocket() ;
+    }
+
+    send(message){
+
+        let {
+            state,
+            socket
+        } = this ;
+
+        if(state === 'connected'){
+
+            socket.send(message) ;
         }
     }
 
-    on(eventName , fn){
+    open(){
 
-        this.addListener(eventName , fn) ;
-    }
-}
-
-function reconnect(){
-
-    let me = this;
-
-    if(me.connected){
-
-        me.socket.close() ;
-    }
-
-    return createSocket.call(me) ;
-}
-
-function createSocket(){
-
-    let me = this,
-        socket = me.socket = new WebSocket(url),
+        let me = this,
         {
-            timer
-        } = me,
-        onConnectError = () => me.emit('connect_error');
+            state
+        } = me ;
 
-    timer.start() ;
+        switch(state){
 
-    timer.on('timeout' , () => me.emit('connect_timeout')) ;
+            case 'connecting':
+            case 'connected':
 
-    socket.addEventListener('open' , () =>{
+                return ;
+        }
 
-        socket.removeEventListener('error' , onConnectError) ;
+        me.createWebSocket() ;
+    }
 
-        timer.end() ;
+    close(){
 
-        me.emit('connect') ;
+        let me = this,
+        {
+            state
+        } = me;
 
-    }) ;
+        switch(state){
 
-    socket.addEventListener('error' , onConnectError) ;
+            case 'disconnecting':
+            case 'disconnect':
 
-    return me.socket ;
-}
+                return ;
+        }
+
+        this.destroyWebSocket() ;
+    }
+ }

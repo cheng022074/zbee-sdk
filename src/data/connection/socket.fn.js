@@ -17,6 +17,24 @@
 
  class main extends Connection{
 
+    async reopen(){
+
+        let me = this ;
+
+        await me.close() ;
+
+        await me.open() ;
+    }
+
+    open(){
+
+    }
+
+    close(){
+
+        
+    }
+
     validateMessage({
         params:baseParams
     },{

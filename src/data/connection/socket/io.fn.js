@@ -100,32 +100,37 @@
         me.state = 'connected' ;
     }
 
-    reopen(){
-
-        let me = this ;
-
-        me.close() ;
-
-        me.open() ;
-    }
-
     open(){
 
         let me = this,
         {
             socket,
-            state,
-            onReConnect
+            state
         } = me ;
 
-        if(state === 'connecting'){
+        return new Promise(callback =>{
 
-            return ;
-        }
+            switch(state){
 
-        socket.once('connect' , onReConnect.bind(me)) ;
+                case 'connecting':
+                case 'connected':
 
-        socket.open() ;
+                    callback() ;
+    
+                    return ;
+            }
+    
+            socket.once('connect' , () =>{
+
+                me.onReConnect() ;
+
+                callback() ;
+
+            }) ;
+    
+            socket.open() ;
+
+        }) ;
     }
 
     close(){
@@ -137,14 +142,36 @@
             onConnect
         } = me ;
 
-        if(state === 'connecting'){
+        return new Promise(callback =>{
 
-            socket.un('connect' , onConnect) ;
-        }
+            switch(state){
 
-        socket.once('disconnect' , () => me.state = 'disconnect') ;
+                case 'disconnecting':
+                case 'disconnect':
 
-        socket.close() ;
+                    callback() ;
+
+                    return ;
+            }
+    
+            if(state === 'connecting'){
+    
+                socket.un('connect' , onConnect) ;
+            }
+
+            me.state = 'disconnecting' ;
+    
+            socket.once('disconnect' , () => {
+
+                me.state = 'disconnect' ;
+
+                callback() ;
+
+            }) ;
+    
+            socket.close() ;
+
+        }) ;
     }
 
     get messageEventName(){
