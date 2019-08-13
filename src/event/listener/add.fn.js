@@ -1,12 +1,14 @@
 
 /**
  * 
- * 函数实现说明
+ * 添加事件监听
  * 
- * @param {mixed} data 参数说明
+ * @param {mixed} target 事件主体
  * 
- * @return {mixed} 返回说明 
+ * @param {string} name 事件名称
+ * 
+ * @param {function} fn 事件回调
  * 
  */
 
- // 代码实现
+ target.addEventListener(name , fn) ;
