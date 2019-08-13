@@ -6,17 +6,19 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import add from event.listener.add
+ * @import add from ..add
  * 
- * @import remove from event.listener.remove
+ * @import remove from ..remove
  * 
  * @import get from function.get
+ * 
+ * @import listeners from ....listeners value
  * 
  * @param {mixed} target 事件主体
  * 
  * @param {string|object} name 事件名称
  * 
- * @param {function} fn 事件回调
+ * @param {mixed} fn 事件回调
  * 
  * @param {object} [options = {}] 事件配置
  * 
@@ -24,30 +26,37 @@
 
  if(isString(name)){
 
+    if(listeners.has(target , name , fn)){
+
+        return ;
+    }
+
     let {
         scope,
         once = false
-    } = options ;
+    } = options,
+    listener,
+    listenerFn = get(fn , scope) ;
 
-    fn = get(fn , scope) ;
-
-    if(fn){
+    if(listenerFn){
 
         if(once){
 
-            let onceFn = function(...args){
+            listener = function(...args){
 
-                fn(args) ;
+                listenerFn(args) ;
 
-                remove(target , name , onceFn) ;
-            }
-
-            target.addEventListener(name , fn) ;
+                remove(target , name , listener) ;
+            } ;
         
         }else{
 
-            target.addEventListener(name , fn) ;
+            listener = listenerFn ;
         }
+
+        target.addEventListener(name , listener) ;
+
+        listeners.set(target , name , fn , listener) ;
     }
 
  }else if(isObject(name)){
@@ -55,9 +64,8 @@
     let {
         scope,
         ...listeners
-    } = name ;
-
-    let names = Object.keys(listeners) ;
+    } = name,
+    names = Object.keys(listeners) ;
 
     for(let name of names){
 

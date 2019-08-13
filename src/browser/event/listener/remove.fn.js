@@ -3,7 +3,9 @@
  * 
  * 去除监听事件
  * 
- * @import getListeners from ....listeners
+ * @import listeners from ....listeners value
+ * 
+ * @import remove from event.listener.remove
  * 
  * @param {mixed} target
  * 
@@ -15,12 +17,11 @@
  * 
  */
 
-let listeners = getListeners(),
-listenerFn = listeners.get(target , event , fn);
+let listener = listeners.get(target , event , fn);
 
-if(listenerFn){
+if(listener){
 
-    target.removeEventListener(event , listenerFn) ;
+    remove(target , event , listener) ;
 
     listeners.delete(target , event , fn) ;
 }

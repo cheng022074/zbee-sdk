@@ -3,7 +3,7 @@
  * 
  * 监听事件
  * 
- * @import getListeners from ....listeners
+ * @import listeners from ....listeners value
  * 
  * @import is from browser.selector.parent
  * 
@@ -11,11 +11,13 @@
  * 
  * @import preventEvent from ....prevent
  * 
+ * @import add from event.listener.add
+ * 
  * @param {mixed} target 目标
  * 
  * @param {string} event 目标监听事件
  * 
- * @param {function} fn 目标监听回调
+ * @param {mixed} fn 目标监听回调
  * 
  * @param {object} [config = {}] 配置
  * 
@@ -31,14 +33,12 @@
  * 
  */
 
-let listeners = getListeners() ;
-
 if(listeners.has(target , event , fn)){
 
     return ;
 }
 
-let listenerFn = e =>{
+let listener = e =>{
 
         let {
             target
@@ -65,13 +65,10 @@ let listenerFn = e =>{
 
             fn(e) ;
         }
-
-        if(once){
-
-            target.removeEventListener(event , listenerFn) ;
-        }
     };
 
-listeners.set(target , event , fn , listenerFn) ;
+listeners.set(target , event , fn , listener) ;
 
-target.addEventListener(event , listenerFn) ;
+add(target , event , listener , {
+    once
+}) ;
