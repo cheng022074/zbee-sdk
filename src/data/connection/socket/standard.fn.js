@@ -34,7 +34,8 @@
         {
             socketURL,
             onConnect,
-            onErrorEvent
+            onError,
+            onMessage
         } = me ;
 
         await me.destroyWebSocket() ;
@@ -45,7 +46,8 @@
 
         add(socket , {
             open:onConnect,
-            error:onErrorEvent,
+            message:onMessage,
+            error:onError,
             scope:me
         }) ;
 
@@ -60,7 +62,8 @@
         {
             socket,
             onConnect,
-            onErrorEvent
+            onError,
+            onMessage
         } = me;
 
         return new Promise(callback =>{
@@ -69,7 +72,8 @@
 
                 remove(socket , {
                     open:onConnect,
-                    error:onErrorEvent
+                    error:onError,
+                    message:onMessage
                 }) ;
 
                 me.state = 'disconnecting' ;
@@ -105,7 +109,14 @@
         me.resubscribes() ;
     }
 
-    onErrorEvent(){
+    onMessage({
+        data
+    }){
+
+        this.acceptMessage(data) ;
+    }
+
+    onError(){
 
         this.createSocket() ;
     }

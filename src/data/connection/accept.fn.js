@@ -3,6 +3,8 @@
  * 
  * 接收消息数据
  * 
+ * @import is.defined
+ * 
  * @param {mixed} [...args] 可选参数
  * 
  * @return {object} 消息体 
@@ -16,15 +18,18 @@ let me = this,
     } = me,
     acceptSubscribers = [];
 
-subscribers.forEach(subscriber => {
+if(isDefined(message)){
 
-    if(!subscriber.closed && me.validateMessage(subscriber , message)){
+    subscribers.forEach(subscriber => {
 
-        subscriber.accept(me.processData(subscriber , message)) ;
-
-        acceptSubscribers.push(subscriber) ; 
-    }
-
-}) ;
+        if(!subscriber.closed && me.validateMessage(subscriber , message)){
+    
+            subscriber.accept(me.processData(subscriber , message)) ;
+    
+            acceptSubscribers.push(subscriber) ; 
+        }
+    
+    }) ;
+}
 
 return acceptSubscribers;
