@@ -4,7 +4,9 @@
  * 
  * @import Connection from data.connection.socket value
  * 
- * @import add from event.listener.add.once
+ * @import add from event.listener.add
+ * 
+ * @import remove from event.listener.remove
  * 
  * @class
  * 
@@ -19,21 +21,11 @@
         let me = this,
             {
                 url:socketURL
-            } = socket,
-            {
-                onConnect,
-                onErrorEvent
-            } = me;
-
-        me.onConnect = onConnect.bind(me) ;
-
-        me.onErrorEvent = onErrorEvent.bind(me) ;
+            } = socket;
 
         me.socketURL = socketURL ;
 
         me.createWebSocket() ;
-
-        me.unsendMessages = [] ;
     }
 
     async createWebSocket(){
@@ -51,27 +43,15 @@
 
         socket = me.socket = new WebSocket(socketURL) ;
 
-        socket.addEventListener('open' , onConnect) ;
-
-        socket.addEventListener('error' , onErrorEvent) ;
-
-        add(socket , 'open' , onConnect) ;
-
-        add(socket , 'error' , onErrorEvent) ;
-
-        await new Promise(callback =>{
-
-            const onOpen = () => {
-    
-                socket.removeEventListener('open' , onOpen) ; 
-    
-                callback() ;
-    
-             } ;
-    
-            socket.addEventListener('open' , onOpen) ;
-
+        add(socket , {
+            open:onConnect,
+            error:onErrorEvent,
+            scope:me
         }) ;
+
+        await new Promise(callback => add(socket , 'open' , callback , {
+            once:true
+        })) ;
     }
 
     destroyWebSocket(){
@@ -87,23 +67,22 @@
 
             if(socket){
 
-                socket.removeEventListener('open' , onConnect) ;
-    
-                socket.removeEventListener('error' , onErrorEvent) ;
+                remove(socket , {
+                    open:onConnect,
+                    error:onErrorEvent
+                }) ;
 
                 me.state = 'disconnecting' ;
-    
-                const onClose = () => {
-    
-                   socket.removeEventListener('close' , onClose) ; 
-    
-                   me.state = 'disconnect' ;
 
-                   callback() ;
+                add(socket , 'close' , () =>{
 
-                } ;
-    
-                socket.addEventListener('close' , onClose) ;
+                    me.state = 'disconnect' ;
+
+                    callback() ;
+
+                } , {
+                    once:true
+                }) ;
     
                 socket.close() ;
     
@@ -159,7 +138,7 @@
                 return ;
         }
 
-        me.createWebSocket() ;
+        return me.createWebSocket() ;
     }
 
     close(){
@@ -177,6 +156,6 @@
                 return ;
         }
 
-        this.destroyWebSocket() ;
+        return this.destroyWebSocket() ;
     }
  }
