@@ -4,7 +4,7 @@
  * 
  * @import Connection from data.connection.socket value
  * 
- * @import createTimer from timer
+ * @import add from event.listener.add.once
  * 
  * @class
  * 
@@ -54,6 +54,10 @@
         socket.addEventListener('open' , onConnect) ;
 
         socket.addEventListener('error' , onErrorEvent) ;
+
+        add(socket , 'open' , onConnect) ;
+
+        add(socket , 'error' , onErrorEvent) ;
 
         await new Promise(callback =>{
 
