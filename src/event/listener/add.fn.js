@@ -84,7 +84,7 @@
         
         }else{
 
-            add(target , name , fn , {
+            add(target , name , listeners[name] , {
                 scope
             }) ;
         }        

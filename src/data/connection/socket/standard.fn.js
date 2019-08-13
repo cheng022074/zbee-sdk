@@ -8,15 +8,22 @@
  * 
  * @import remove from event.listener.remove
  * 
+ * @require ws
+ * 
  * @class
  * 
  */
 
+ const WebSocket = require('ws') ;
+
  class main extends Connection{
 
     constructor({
-        socket
+        socket,
+        ...options
     }){
+
+        super(options) ;
 
         let me = this,
             {
@@ -42,13 +49,19 @@
 
         me.state ='connecting' ;
 
-        socket = me.socket = new WebSocket(socketURL) ;
+        let socket = me.socket = new WebSocket(socketURL) ;
 
         add(socket , {
             open:onConnect,
             message:onMessage,
             error:onError,
             scope:me
+        }) ;
+
+        socket.on('close' , () =>{
+
+            console.log('close') ;
+
         }) ;
 
         await new Promise(callback => add(socket , 'open' , callback , {
@@ -102,11 +115,7 @@
 
     onConnect(){
 
-        let me = this ;
-
-        me.state = 'connected' ;
-
-        me.resubscribes() ;
+        this.state = 'connected' ;
     }
 
     onMessage({
