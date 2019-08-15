@@ -2,9 +2,9 @@
  * 
  * 基于 socket.io 标准进行开发
  * 
- * @import observable from mixin.observable
- * 
  * @import Connection from data.connection.socket value
+ * 
+ * @import get from function.get
  * 
  * @require socket.io-client
  * 
@@ -14,16 +14,10 @@
 
  const IO = require('socket.io-client') ;
 
- class main extends mixins({
-     extend:Connection,
-     mixins:[
-        observable
-     ]
- }){
+ class main extends Connection{
 
     constructor({
         socket,
-        listeners = {},
         ...options
     }){
 
@@ -32,44 +26,115 @@
         let {
             url:socketURL,
             options:socketOptions
-        } = socket ;
-
-        let me = this,
-            {
-                messageEventName,
-                acceptMessage,
-                onReConnect,
-                onConnect
-            } = me ;
-
-        me.onConnect = onConnect.bind(me) ;
-
-        socket = me.socket = IO(socketURL , {
-            'force new connection': true,
+        } = socket,
+        me = this,
+        socket = me.socket =  IO(socketURL , {
+            autoConnect:false,
+            forceNew: true,
             transports: [
                 'websocket',
                 'polling'
             ],
             ...socketOptions
-        }) ;
+        }),
+        onConnect = get('onConnect' , me);
 
-        me.addListeners(listeners) ;
+        socket.on('connect' , onConnect) ;
 
-        me.state ='connecting' ;
+        socket.on('reconnect' , onConnect) ;
 
-        socket.on(messageEventName , acceptMessage.bind(me)) ;
+        socket.on('reconnecting' , get('onReconnecting' , me)) ;
 
-        socket.once('connect' , me.onConnect) ;
+        socket.on('close' , get('onClose' , me)) ;
 
-        socket.on('reconnect' , onReConnect.bind(me)) ;
-
-        socket.on('reconnect_error' , () => me.state = 'connecting') ;
+        socket.on(messageEventName , get('acceptMessage' , me)) ;
 
         socket.on('subresp' , data =>{
 
             console.log('订阅确认' , data) ;
 
         }) ;
+    }
+
+    set state(state){
+
+        let me = this,
+        {
+            $state
+        } = me ;
+
+        if($state !== state){
+
+            me.$state = state ;
+
+            me.fireEvent('statechange' , state , $state) ;
+        }
+    }
+
+    get state(){
+
+        let {
+            $state
+        } = this ;
+
+        if(!$state){
+
+            return 'disconnect' ;
+        }
+
+        return $state ;
+    }
+
+    get isConnected(){
+
+        let {
+            socket
+        } = this ;
+
+        return socket.connected ;
+    }
+
+    get isDisconnected(){
+
+        let {
+            socket
+        } = this ;
+
+        return socket.disconnected ;
+  
+    }
+
+    get isConnecting(){
+
+        return this.state === 'connecting' ;
+    }
+
+    get isDisconnect(){
+
+        return this.state === 'disconnect' ;
+    }
+
+    get isDisconnecting(){
+
+        return this.state === 'disconnecting' ;
+    }
+
+    doStart(){
+
+        let {
+            socket
+        } = this ;
+
+        socket.connect() ;
+    }
+
+    doEnd(){
+
+        let {
+            socket
+        } = this ;
+
+        socket.disconnect() ;
     }
 
     set state(value){
@@ -88,16 +153,21 @@
 
     onConnect(){
 
-        this.state = 'connected' ;
-    }
-
-    onReConnect(){
-
         let me = this ;
 
-        me.resubscribes() ;
-
         me.state = 'connected' ;
+
+        me.activate() ;
+    }
+
+    onReconnecting(){
+
+        this.state = 'reconnecting' ;
+    }
+
+    onDisconnect(){
+
+        this.state = 'disconnect' ;
     }
 
     open(){

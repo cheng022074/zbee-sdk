@@ -7,7 +7,7 @@
  * 
  * @require url-join
  * 
- * @param {object} options 配置
+ * @param {object}  配置
  * 
  */
 

@@ -9,7 +9,9 @@
 
 const EventEmitter = require('events') ;
 
-function main(){
+function main({
+    listeners
+}){
 
     let me = this ;
 
@@ -18,5 +20,10 @@ function main(){
     me.listeners = createMap() ;
 
     me.cacheFireEventDataList = [] ;
+
+    if(listeners){
+
+        me.addListeners(listeners) ;
+    }
 }
 

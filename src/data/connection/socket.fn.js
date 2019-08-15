@@ -11,28 +11,117 @@
  * 
  * @import getValue from object.value.get
  * 
+ * @import createTimer from timer
+ * 
+ *  @import observable from mixin.observable
+ * 
  * @class
  * 
  */
 
- class main extends Connection{
+ class main extends mixins({
+    extend:Connection,
+    mixins:[
+       observable
+    ]
+}){
 
-    async reopen(){
+    constructor({
+        autoStart = true,
+        ...options
+    }){
+
+        super(options) ;
 
         let me = this ;
 
-        await me.close() ;
+        me.initialize() ;
 
-        await me.open() ;
+        if(autoStart){
+
+            this.start() ;
+        }
     }
 
-    open(){
-
-    }
-
-    close(){
+    initialize(){
 
         
+    }
+
+    get isConnecting(){
+
+        return false ;
+    }
+
+    get isConnected(){
+
+        return false ;
+    }
+
+    get isDisconnecting(){
+
+        return false ;
+    }
+
+    get isDisconnected(){
+
+        return false ;
+    }
+
+    async get isValid(){
+
+        return false ;
+    }
+
+    restart(){
+
+        let me = this ;
+
+        await me.end() ;
+
+        await me.start() ;
+    }
+
+    async start(){
+
+        let me = this,
+        {
+            isConnected,
+            isConnecting
+        } = me ;
+
+        if(isConnected || isConnecting){
+
+            return ;
+        }
+
+        await me.doStart() ;
+    }
+
+    doStart(){
+
+
+    }
+
+    async end(){
+
+        let me = this,
+        {
+            isDisconnected,
+            isDisconnecting
+        } = me ;
+
+        if(isDisconnected || isDisconnecting){
+
+            return ;
+        }
+
+        await me.doEnd() ;
+    }
+
+    doEnd(){
+
+
     }
 
     validateMessage({
