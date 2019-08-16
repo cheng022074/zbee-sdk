@@ -16,38 +16,32 @@
 
  class main extends Connection{
 
-    constructor({
+    initializes({
         socket,
         ...options
     }){
-
-        super(options) ;
 
         let {
             url:socketURL,
             options:socketOptions
         } = socket,
-        me = this,
+        me = this ;
+
+
         socket = me.socket =  IO(socketURL , {
+            ...socketOptions,
             autoConnect:false,
             forceNew: true,
+            reconnection:false,
             transports: [
                 'websocket',
                 'polling'
-            ],
-            ...socketOptions
-        }),
-        onConnect = get('onConnect' , me);
-
-        socket.on('connect' , onConnect) ;
-
-        socket.on('reconnect' , onConnect) ;
-
-        socket.on('reconnecting' , get('onReconnecting' , me)) ;
-
-        socket.on('close' , get('onClose' , me)) ;
+            ]
+        });
 
         socket.on(messageEventName , get('acceptMessage' , me)) ;
+
+        socket.on('connect_error' , () => me.restart()) ;
 
         socket.on('subresp' , data =>{
 
@@ -55,191 +49,33 @@
 
         }) ;
     }
-
-    set state(state){
-
-        let me = this,
-        {
-            $state
-        } = me ;
-
-        if($state !== state){
-
-            me.$state = state ;
-
-            me.fireEvent('statechange' , state , $state) ;
-        }
-    }
-
-    get state(){
-
-        let {
-            $state
-        } = this ;
-
-        if(!$state){
-
-            return 'disconnect' ;
-        }
-
-        return $state ;
-    }
-
-    get isConnected(){
-
-        let {
-            socket
-        } = this ;
-
-        return socket.connected ;
-    }
-
-    get isDisconnected(){
-
-        let {
-            socket
-        } = this ;
-
-        return socket.disconnected ;
-  
-    }
-
-    get isConnecting(){
-
-        return this.state === 'connecting' ;
-    }
-
-    get isDisconnect(){
-
-        return this.state === 'disconnect' ;
-    }
-
-    get isDisconnecting(){
-
-        return this.state === 'disconnecting' ;
-    }
-
+    
     doStart(){
 
-        let {
-            socket
-        } = this ;
+        return new Promise(callback => {
 
-        socket.connect() ;
-    }
-
-    doEnd(){
-
-        let {
-            socket
-        } = this ;
-
-        socket.disconnect() ;
-    }
-
-    set state(value){
-
-        let me = this ;
-
-        me.fireEvent('state' , value) ;
-
-        me.$state = value ;
-    }
-
-    get state(){
-
-        return this.$state ;
-    }
-
-    onConnect(){
-
-        let me = this ;
-
-        me.state = 'connected' ;
-
-        me.activate() ;
-    }
-
-    onReconnecting(){
-
-        this.state = 'reconnecting' ;
-    }
-
-    onDisconnect(){
-
-        this.state = 'disconnect' ;
-    }
-
-    open(){
-
-        let me = this,
-        {
-            socket,
-            state
-        } = me ;
-
-        return new Promise(callback =>{
-
-            switch(state){
-
-                case 'connecting':
-                case 'connected':
-
-                    callback() ;
+            let {
+                socket
+            } = this ;
     
-                    return ;
-            }
-    
-            socket.once('connect' , () =>{
+            socket.connect() ;
 
-                me.onReConnect() ;
-
-                callback() ;
-
-            }) ;
-    
-            socket.open() ;
+            socket.once('connect' , callback) ;
 
         }) ;
     }
 
-    close(){
-
-        let me = this,
-        {
-            socket,
-            state,
-            onConnect
-        } = me ;
+    doEnd(){
 
         return new Promise(callback =>{
 
-            switch(state){
-
-                case 'disconnecting':
-                case 'disconnect':
-
-                    callback() ;
-
-                    return ;
-            }
+            let {
+                socket
+            } = this ;
     
-            if(state === 'connecting'){
-    
-                socket.un('connect' , onConnect) ;
-            }
+            socket.disconnect() ;
 
-            me.state = 'disconnecting' ;
-    
-            socket.once('disconnect' , () => {
-
-                me.state = 'disconnect' ;
-
-                callback() ;
-
-            }) ;
-    
-            socket.close() ;
+            socket.once('disconnect' , callback) ;
 
         }) ;
     }
@@ -260,37 +96,34 @@
         return 'unsub' ;
     }
 
-
-    emit(event , ...params){
-
-        let me = this,
-        {
-            socket
-        } = me;
-
-        socket.emit(event , ...params) ;
-    
-    }
-
     doSubscriberOpen(...args){
 
         let me = this,
         {
-            subscribeEventName
+            subscribeEventName,
+            socket,
+            isDisconnect
         } = me ;
 
-        console.log('发起订阅' , ...args) ;
+        if(!isDisconnect){
 
-        me.emit(subscribeEventName , ...args) ;
+            socket.emit(subscribeEventName , ...args) ;
+        }
+
     }
 
     doSubscriberClose(...args){
 
         let me = this,
         {
+            isDisconnect,
+            socket,
             unsubscribeEventName
         } = me ;
 
-        me.emit(unsubscribeEventName , ...args) ;
+        if(!isDisconnect){
+
+            socket.emit(unsubscribeEventName , ...args) ;
+        }
     }
  }

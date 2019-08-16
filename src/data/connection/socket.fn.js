@@ -1,19 +1,12 @@
 
+
 /**
  * 
  * Socket 通信
  * 
  * @import Connection from data.connection value
  * 
- * @import isObject from is.object.simple
- * 
- * @import getKeys from object.keys
- * 
- * @import getValue from object.value.get
- * 
- * @import createTimer from timer
- * 
- *  @import observable from mixin.observable
+ * @import observable from mixin.observable
  * 
  * @class
  * 
@@ -35,7 +28,7 @@
 
         let me = this ;
 
-        me.initialize() ;
+        me.initialize(options) ;
 
         if(autoStart){
 
@@ -43,43 +36,70 @@
         }
     }
 
-    initialize(){
+    initialize(options){
 
         
     }
 
     get isConnecting(){
 
-        return false ;
+        return this.state === 'connecting' ;
     }
 
     get isConnected(){
 
-        return false ;
+        me.state = 'connected' ;
     }
 
     get isDisconnecting(){
 
-        return false ;
+        return this.state === 'disconnecting' ;
     }
 
-    get isDisconnected(){
+    get isDisconnect(){
 
-        return false ;
+        return this.state === 'disconnected' ;
     }
 
-    async get isValid(){
+  
+    set state(state){
 
-        return false ;
+        let me = this,
+        {
+            $state
+        } = me ;
+
+        if($state !== state){
+
+            me.$state = state ;
+
+            me.fireEvent('statechange' , state , $state) ;
+        }
     }
 
-    restart(){
+    get state(){
+
+        let {
+            $state
+        } = this ;
+
+        if(!$state){
+
+            return 'disconnected' ;
+        }
+
+        return $state ;
+    }
+
+    async restart(){
 
         let me = this ;
 
         await me.end() ;
 
         await me.start() ;
+
+        me.fireEvent('restart') ;
     }
 
     async start(){
@@ -95,7 +115,26 @@
             return ;
         }
 
+        me.state = 'connecting' ;
+
         await me.doStart() ;
+
+        me.state = 'connected' ;
+
+        me.activate() ;
+    }
+
+    activate(){
+
+        let me = this,
+        {
+            state
+        } = me;
+
+        if(state === 'disconnected'){
+
+            super.activate() ;
+        }
     }
 
     doStart(){
@@ -108,7 +147,8 @@
         let me = this,
         {
             isDisconnected,
-            isDisconnecting
+            isDisconnecting,
+
         } = me ;
 
         if(isDisconnected || isDisconnecting){
@@ -116,7 +156,26 @@
             return ;
         }
 
+        me.state = 'disconnecting' ;
+
+        await me.deactivate() ;
+
         await me.doEnd() ;
+
+        me.state = 'disconnected' ;
+    }
+
+    async deactivate(){
+
+        let me = this,
+        {
+            state
+        } = me;
+
+        if(state === 'disconnected'){
+
+           super.deactivate() ;
+        }
     }
 
     doEnd(){

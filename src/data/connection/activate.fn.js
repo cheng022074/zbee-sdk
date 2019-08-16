@@ -1,7 +1,7 @@
 
 /**
  * 
- * 重新订阅
+ * 激活
  * 
  * @import includes from array.includes
  * 

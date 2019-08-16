@@ -11,6 +11,7 @@
         "unsubscribe",
         "subscribes",
         "unsubscribes",
-        "resubscribes"
+        "activate",
+        "deactivate"
     ]
 }
