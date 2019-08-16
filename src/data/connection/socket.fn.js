@@ -21,6 +21,8 @@
 
     constructor({
         autoStart = true,
+        heartbeatInterval = 3000,
+        heartbeatTimeout = 3000,
         ...options
     }){
 
@@ -32,7 +34,32 @@
 
         if(autoStart){
 
-            this.start() ;
+            me.start() ;
+        }
+
+        me.heartbeatInterval = heartbeatInterval ;
+
+        me.heartbeatTimeout = heartbeatTimeout ;
+    }
+
+    onHeartbeatStart(){
+
+        let me = this,
+            timeoutId = setTimeout(() => me.restart() , me.heartbeatTimeout) ;
+
+        me.doHeartbeat(timeoutId) ;
+    }
+
+    onHeartbeat(){
+
+
+    }
+
+    onHeartbeatEnd(result){
+
+        if(result === false){
+
+            this.restart() ;
         }
     }
 
@@ -48,7 +75,7 @@
 
     get isConnected(){
 
-        me.state = 'connected' ;
+        return this.state === 'connected' ;
     }
 
     get isDisconnecting(){

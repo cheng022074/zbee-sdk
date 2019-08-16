@@ -3,6 +3,8 @@
  * 
  * 初始化观察者
  * 
+ * @param {object} options 配置
+ * 
  * @import createMap from map
  * 
  */

@@ -16,7 +16,7 @@
 
  class main extends Connection{
 
-    initializes({
+    initialize({
         socket,
         ...options
     }){
@@ -25,7 +25,7 @@
             url:socketURL,
             options:socketOptions
         } = socket,
-        me = this ;
+        me = this;
 
 
         socket = me.socket =  IO(socketURL , {
@@ -39,7 +39,7 @@
             ]
         });
 
-        socket.on(messageEventName , get('acceptMessage' , me)) ;
+        socket.on(me.messageEventName , get('acceptMessage' , me)) ;
 
         socket.on('connect_error' , () => me.restart()) ;
 
