@@ -1,7 +1,9 @@
 {
     "constructor":true,
     "properties":{
-        "size":"get"
+        "size":{
+            "get":"map.size"
+        }
     },
     "methods":[
         "set",
