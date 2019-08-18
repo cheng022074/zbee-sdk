@@ -1,15 +1,8 @@
 {
     "constructor":true,
-    "staticProperties":{
-        "property":true
-    },
-    "staticMethods":[
-        "method"
-    ],
-    "properties":{
-        "property":true
-    },
     "methods":[
-        "method"
+        "start",
+        "suspend",
+        "end"
     ]
 }
