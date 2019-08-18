@@ -1,9 +1,0 @@
-{
-    "constructor":true,
-    "methods":[
-        "bind",
-        "unbind",
-        "receive",
-        "send"
-    ]
-}
