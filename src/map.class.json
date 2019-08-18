@@ -11,6 +11,9 @@
         "has",
         "delete",
         "forEach",
-        "clear"
+        "clear",{
+            "name":"find",
+            "impl":"map.find.fuzzy"
+        }
     ]
 }
