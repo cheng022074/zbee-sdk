@@ -14,6 +14,8 @@
  * 
  * @import listeners from ....listeners value
  * 
+ * @import native from .native.add
+ * 
  * @param {mixed} target 事件主体
  * 
  * @param {string|object} name 事件名称
@@ -54,7 +56,7 @@
             listener = listenerFn ;
         }
 
-        target.addEventListener(name , listener) ;
+        native(target , name , listener) ;
 
         listeners.set(target , name , fn , listener) ;
     }

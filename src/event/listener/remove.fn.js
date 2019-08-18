@@ -10,6 +10,8 @@
  * 
  * @import listeners from ....listeners value
  * 
+ * @import native from .native.remove
+ * 
  * @param {mixed} target 事件主体
  * 
  * @param {string} name 事件名称
@@ -24,7 +26,7 @@
 
     if(listener){
 
-        target.removeEventListener(name , listener) ;
+        native(target , name , listener) ;
     }
  
  }else if(isObject(name)){
