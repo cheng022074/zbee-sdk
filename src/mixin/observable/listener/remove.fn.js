@@ -7,21 +7,11 @@
  * 
  * @param {function} fn 事件回调函数
  * 
- * @param {mixed} [scope] 事件作用域
- * 
  * 
  */
 
-let me = this,
-{
-    listeners,
+let {
     emitter
-} = me,
-listener = listeners.get(event , fn , scope) ;
+} = this ;
 
-if(listener){
-
-    emitter.removeListener(event , listener) ;
-
-    listeners.delete(event , fn , scope) ;
-}
+emitter.removeListener(event , fn) ;

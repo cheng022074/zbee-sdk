@@ -1,24 +1,7 @@
 {
     "mixin":true,
     "constructor":true,
-    "properties":{
-        "lastFireEventData":{
-            "get":".observable.fire.data.last"
-        }
-    },
     "methods":[{
-        "name":"clearAllListeners",
-        "impl":".observable.listeners.clear.all"
-    },{
-        "name":"clearListeners",
-        "impl":".observable.listeners.clear"
-    },{
-        "name":"addListeners",
-        "impl":".observable.listeners.add"
-    },{
-        "name":"removeListeners",
-        "impl":".observable.listeners.remove"
-    },{
         "name":"addListener",
         "alias":"on",
         "impl":".observable.listener.add"
@@ -27,11 +10,8 @@
         "alias":"un",
         "impl":".observable.listener.remove"
     },{
-        "name":"hasListener",
-        "impl":".observable.listener.has"
-    },{
         "name":"fireEvent",
-        "impl":".observable.fire"
+        "impl":".observable.event.fire"
     },{
         "name":"suspendEvents",
         "impl":".observable.events.suspend"

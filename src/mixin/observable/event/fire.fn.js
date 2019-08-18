@@ -27,25 +27,8 @@
 
     let me = this,{
         bubbleTarget,
-        emitter,
-        fireEventDataCacheCount = 0,
-        cacheFireEventDataList
+        emitter
     } = me ;
-
-    if(fireEventDataCacheCount !== 0){
-
-        cacheFireEventDataList.push([
-            target,
-            ...args
-        ]) ;
-
-        let deleteCount =  cacheFireEventDataList.length - fireEventDataCacheCount;
-
-        if(deleteCount > 0){
-
-            cacheFireEventDataList.splice(0 , deleteCount) ;
-        }
-    }
 
     emitter.emit(event , target ,  ...args) ;
 

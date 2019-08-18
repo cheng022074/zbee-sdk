@@ -3,9 +3,9 @@
  * 
  * 初始化观察者
  * 
- * @param {object} options 配置
+ * @import add from event.listener.add
  * 
- * @import createMap from map
+ * @param {object} options 配置
  * 
  */
 
@@ -19,13 +19,11 @@ function main({
 
     me.emitter = new EventEmitter() ;
 
-    me.listeners = createMap() ;
-
-    me.cacheFireEventDataList = [] ;
+    me.$suspendEvents = false ;
 
     if(listeners){
 
-        me.addListeners(listeners) ;
+        add(me , listeners) ;
     }
 }
 
