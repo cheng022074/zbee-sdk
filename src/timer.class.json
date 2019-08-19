@@ -2,7 +2,6 @@
     "constructor":true,
     "methods":[
         "start",
-        "suspend",
-        "end"
+        "cancel"
     ]
 }
