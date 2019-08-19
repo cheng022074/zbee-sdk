@@ -6,6 +6,12 @@
  * 
  * @import get from function.get
  * 
+ * @import add from event.listener.add
+ * 
+ * @import remove from event.listener.remove
+ * 
+ * @import removeAll from event.listener.remove.all 
+ * 
  * @require socket.io-client
  * 
  * @class
@@ -17,8 +23,7 @@
  class main extends Connection{
 
     initialize({
-        socket,
-        ...options
+        socket
     }){
 
         let {
@@ -27,42 +32,64 @@
         } = socket,
         me = this;
 
+        me.socketURL = socketURL ;
 
-        socket = me.socket =  IO(socketURL , {
-            ...socketOptions,
-            autoConnect:false,
-            forceNew: true,
-            reconnection:false,
-            transports: [
-                'websocket',
-                'polling'
-            ]
-        });
-
-        socket.on(me.messageEventName , get('acceptMessage' , me)) ;
-
-        socket.on('connect_error' , () => me.restart()) ;
-
-        socket.on('subresp' , data =>{
-
-            console.log('订阅确认' , data) ;
-
-        }) ;
+        me.socketOptions = socketOptions ;
     }
     
     doStart(){
 
+        let me = this,
+            {
+                messageEventName,
+                socketURL,
+                socketOptions
+            } = me;
+
         return new Promise((resolve , reject) => {
 
-            let {
-                socket
-            } = this ;
+            let socket = IO(socketURL , {
+                ...socketOptions,
+                autoConnect:true,
+                forceNew: true,
+                reconnection:false,
+                transports: [
+                    'websocket',
+                    'polling'
+                ]
+            }),
+            initSocket = () => {
+
+                me.socket = socket ;
+
+                removeAll(socket) ;
+
+                add(socket , {
+                    [messageEventName]:{
+                        fn:'acceptMessage',
+                        scope:me
+                    },
+                    connect_error(){
+
+                        me.restart() ;
+                    }
+                }) ;
+            };
     
-            socket.connect() ;
+            add(socket , {
+                connect(){
 
-            socket.once('connect' , resolve) ;
+                    initSocket() ;
 
-            socket.once('connect_error' , reject) ;
+                    resolve() ;
+                },
+                connect_error(){
+
+                    initSocket() ;
+
+                    reject() ;
+                }
+            }) ;
 
         }) ;
     }
@@ -71,13 +98,18 @@
 
         return new Promise(callback =>{
 
-            let {
+            let me = this,
+            {
                 socket
-            } = this ;
+            } = me ;
+
+            socket.once('disconnect' , callback) ;
     
             socket.disconnect() ;
 
-            socket.once('disconnect' , callback) ;
+            removeAll(socket) ;
+
+            delete me.socket ;
 
         }) ;
     }
@@ -98,34 +130,37 @@
         return 'unsub' ;
     }
 
+    emit(event , ...params){
+
+        let me = this,
+        {
+            socket
+        } = me ;
+
+        if(socket){
+
+            socket.emit(event , ...params) ;
+        
+        }
+    }
+
     doSubscriberOpen(...args){
 
         let me = this,
         {
-            subscribeEventName,
-            socket,
-            isDisconnect
+            subscribeEventName
         } = me ;
 
-        if(!isDisconnect){
-
-            socket.emit(subscribeEventName , ...args) ;
-        }
-
+        me.emit(subscribeEventName , ...args) ;
     }
 
     doSubscriberClose(...args){
 
         let me = this,
         {
-            isDisconnect,
-            socket,
             unsubscribeEventName
         } = me ;
 
-        if(!isDisconnect){
-
-            socket.emit(unsubscribeEventName , ...args) ;
-        }
+        me.emit(unsubscribeEventName , ...args) ;
     }
  }

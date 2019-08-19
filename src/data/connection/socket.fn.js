@@ -43,6 +43,7 @@
         me.heartbeatTimer = createTimer({
             duration:heartbeatInterval,
             interval:heartbeatInterval,
+            autoStart:false,
             listeners:{
                 timeend:'onHeartbeat',
                 scope:me
@@ -63,6 +64,8 @@
 
     onHeartbeatTimeout(){
 
+        return ;
+
         let me = this ;
 
         me.doHeartbeatCancel(me.heartbeatCancel) ;
@@ -73,6 +76,8 @@
     }
 
     onHeartbeat(){
+
+        return ;
 
         let me = this,
             {
@@ -158,11 +163,16 @@
 
     async restart(){
 
-        let me = this ;
+        let me = this,
+        {
+            heartbeatTimer
+        } = me;
 
         await me.end() ;
 
         await me.start() ;
+
+        heartbeatTimer.start() ;
 
         me.fireEvent('restart') ;
     }
@@ -182,11 +192,11 @@
 
         me.state = 'connecting' ;
 
-        try{
+      // try{
 
             await me.doStart() ;
         
-        }catch(err){
+        /*}catch(err){
 
             let {
                 reconnectDelay
@@ -195,24 +205,11 @@
             setTimeout(() => me.start() , reconnectDelay) ;
 
             return ;
-        }
+        }*/
 
         me.state = 'connected' ;
 
         me.activate() ;
-    }
-
-    activate(){
-
-        let me = this,
-        {
-            state
-        } = me;
-
-        if(state === 'disconnected'){
-
-            super.activate() ;
-        }
     }
 
     doStart(){
@@ -241,19 +238,6 @@
         await me.doEnd() ;
 
         me.state = 'disconnected' ;
-    }
-
-    async deactivate(){
-
-        let me = this,
-        {
-            state
-        } = me;
-
-        if(state === 'disconnected'){
-
-           super.deactivate() ;
-        }
     }
 
     doEnd(){

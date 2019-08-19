@@ -24,6 +24,10 @@
  * 
  * @param {object} [options = {}] 事件配置
  * 
+ * @param {boolean} [options.once = false] 只监听一次
+ * 
+ * @param {mixed} [options.scope] 事件作用域
+ * 
  */
 
  if(isString(name)){
@@ -33,12 +37,8 @@
         return ;
     }
 
-    let {
-        scope,
-        once = false
-    } = options,
-    listener,
-    listenerFn = get(fn , scope) ;
+    let listener,
+        listenerFn = get(fn , scope) ;
 
     if(listenerFn){
 
