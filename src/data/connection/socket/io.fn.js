@@ -52,7 +52,7 @@
     
     doStart(){
 
-        return new Promise(callback => {
+        return new Promise((resolve , reject) => {
 
             let {
                 socket
@@ -60,7 +60,9 @@
     
             socket.connect() ;
 
-            socket.once('connect' , callback) ;
+            socket.once('connect' , resolve) ;
+
+            socket.once('connect_error' , reject) ;
 
         }) ;
     }

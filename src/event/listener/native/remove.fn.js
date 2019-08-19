@@ -11,6 +11,6 @@
  * 
  */
 
-const remove = target.removeEventListener || target.un ;
+const remove = target.removeEventListener || target.un || target.off;
 
 remove.call(target , name , fn) ;

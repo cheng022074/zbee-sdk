@@ -4,6 +4,8 @@
  * 
  * Socket 通信
  * 
+ * @import createTimer from timer
+ * 
  * @import Connection from data.connection value
  * 
  * @import observable from mixin.observable
@@ -23,6 +25,7 @@
         autoStart = true,
         heartbeatInterval = 3000,
         heartbeatTimeout = 3000,
+        reconnectDelay = 1000,
         ...options
     }){
 
@@ -37,30 +40,65 @@
             me.start() ;
         }
 
-        me.heartbeatInterval = heartbeatInterval ;
+        me.heartbeatTimer = createTimer({
+            duration:heartbeatInterval,
+            interval:heartbeatInterval,
+            listeners:{
+                timeend:'onHeartbeat',
+                scope:me
+            }
+        }) ;
 
-        me.heartbeatTimeout = heartbeatTimeout ;
+        me.heartbeatTimeoutTimer = createTimer({
+            duration:heartbeatTimeout,
+            autoStart:false,
+            listeners:{
+                timeend:'onHeartbeatTimeout',
+                scope:me
+            }
+        }) ;
+
+        me.reconnectDelay = reconnectDelay ;
     }
 
-    onHeartbeatStart(){
+    onHeartbeatTimeout(){
 
-        let me = this,
-            timeoutId = setTimeout(() => me.restart() , me.heartbeatTimeout) ;
+        let me = this ;
 
-        me.doHeartbeat(timeoutId) ;
+        me.doHeartbeatCancel(me.heartbeatCancel) ;
+
+        delete me.heartbeatCancel ;
+
+        me.restart() ;
     }
 
     onHeartbeat(){
 
+        let me = this,
+            {
+                heartbeatTimer,
+                heartbeatTimeoutTimer
+            } = me ;
+
+        heartbeatTimeoutTimer.start() ;
+
+        me.heartbeatCancel = me.doHeartbeatStart(() =>{
+
+            heartbeatTimeoutTimer.cancel() ;
+
+            heartbeatTimer.start() ;
+
+        }) ;
+    }
+
+    doHeartbeatStart(){
+
 
     }
 
-    onHeartbeatEnd(result){
+    doHeartbeatCancel(cancel){
 
-        if(result === false){
 
-            this.restart() ;
-        }
     }
 
     initialize(options){
@@ -144,7 +182,20 @@
 
         me.state = 'connecting' ;
 
-        await me.doStart() ;
+        try{
+
+            await me.doStart() ;
+        
+        }catch(err){
+
+            let {
+                reconnectDelay
+            } = me ;
+
+            setTimeout(() => me.start() , reconnectDelay) ;
+
+            return ;
+        }
 
         me.state = 'connected' ;
 

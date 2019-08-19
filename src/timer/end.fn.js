@@ -7,9 +7,9 @@
  * 
  */
 
-let {
+let me = this,{
     intervalId
-} = this ;
+} = me ;
 
 if(intervalId){
 

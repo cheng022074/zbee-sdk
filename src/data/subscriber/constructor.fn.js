@@ -5,6 +5,8 @@
  * 
  * @import get from function.get
  * 
+ * @import add from event.listener.add
+ * 
  * @param {string} name 订阅名称
  * 
  * @param {object} config 订阅器配置
@@ -37,9 +39,9 @@ me.defaultParams = defaultParams ;
 
 me.bindFn = get(fn , scope) ;
 
-me.addListeners(innerListeners) ;
+add(me , innerListeners) ;
 
-me.addListeners({
+add(me , {
     ...listeners,
     scope
 }) ;

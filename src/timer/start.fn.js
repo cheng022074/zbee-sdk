@@ -38,12 +38,11 @@ function onInterval(duration , startTime){
     }
  }
 
-function main(){
+function main(duration){
 
     let me = this,
     {
         interval,
-        onInterval,
         defaultDuration
     } = me;
 
@@ -51,5 +50,5 @@ function main(){
 
     me.fireEvent('timestart') ;
 
-    me.intervalId = setInterval( me.onInterval = onInterval.bind(me , duration , Date.now()) , interval) ;
+    me.intervalId = setInterval(me.onInterval = onInterval.bind(me , duration , Date.now()) , interval) ;
 }
