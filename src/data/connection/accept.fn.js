@@ -14,22 +14,23 @@
 let me = this,
     message = me.processMessage(...args),
     {
-        subscribers
+        subscribers,
+        data
     } = me,
-    acceptSubscribers = [];
+    isAccept = false;
 
 if(isDefined(message)){
 
     subscribers.forEach(subscriber => {
 
         if(!subscriber.closed && me.validateMessage(subscriber , message)){
-    
+
             subscriber.accept(me.processData(subscriber , message)) ;
     
-            acceptSubscribers.push(subscriber) ; 
+            isAccept = true ;
         }
     
     }) ;
 }
 
-return acceptSubscribers;
+return isAccept;

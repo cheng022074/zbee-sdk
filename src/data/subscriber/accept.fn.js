@@ -14,13 +14,22 @@ let me = this,
 {
     closed,
     bindFn,
-    params
+    params,
+    connection,
+    name
 } = me;
 
 if(closed){
 
     return;
 }
+
+if(!isDefined(data)){
+
+    return;
+}
+
+connection.data[name] = data ;
 
 me.fireEvent('data' , data , params) ;
 

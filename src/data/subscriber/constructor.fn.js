@@ -1,4 +1,3 @@
-
 /**
  * 
  * 初始化订阅器
@@ -7,9 +6,15 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import emptyFn from function.empty value
+ * 
  * @param {string} name 订阅名称
  * 
  * @param {object} config 订阅器配置
+ * 
+ * @param {mixed} config.connection 当前订阅器所在的连接对象
+ * 
+ * @param {function} [config.processData] 处理数据方法
  * 
  * @param {object} [config.innerListeners = {}] 来自于内部事件监听
  * 
@@ -33,11 +38,15 @@ let me = this ;
 
 me.name = name ;
 
+me.connection = connection ;
+
+me.processData = processData || (data => data) ;
+
 me.extraParams = extraParams ;
 
 me.defaultParams = defaultParams ;
 
-me.bindFn = get(fn , scope) ;
+me.bindFn = get(fn , scope) || emptyFn;
 
 add(me , innerListeners) ;
 
