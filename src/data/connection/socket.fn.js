@@ -4,8 +4,6 @@
  * 
  * Socket 通信
  * 
- * @import createTimer from timer
- * 
  * @import Connection from data.connection value
  * 
  * @import observable from mixin.observable
@@ -23,8 +21,6 @@
 
     constructor({
         autoStart = true,
-        heartbeatInterval = 3000,
-        heartbeatTimeout = 3000,
         reconnectDelay = 1000,
         ...options
     }){
@@ -40,70 +36,7 @@
             me.start() ;
         }
 
-        me.heartbeatTimer = createTimer({
-            duration:heartbeatInterval,
-            interval:heartbeatInterval,
-            autoStart:false,
-            listeners:{
-                timeend:'onHeartbeat',
-                scope:me
-            }
-        }) ;
-
-        me.heartbeatTimeoutTimer = createTimer({
-            duration:heartbeatTimeout,
-            autoStart:false,
-            listeners:{
-                timeend:'onHeartbeatTimeout',
-                scope:me
-            }
-        }) ;
-
         me.reconnectDelay = reconnectDelay ;
-    }
-
-    onHeartbeatTimeout(){
-
-        return ;
-
-        let me = this ;
-
-        me.doHeartbeatCancel(me.heartbeatCancel) ;
-
-        delete me.heartbeatCancel ;
-
-        me.restart() ;
-    }
-
-    onHeartbeat(){
-
-        return ;
-
-        let me = this,
-            {
-                heartbeatTimer,
-                heartbeatTimeoutTimer
-            } = me ;
-
-        heartbeatTimeoutTimer.start() ;
-
-        me.heartbeatCancel = me.doHeartbeatStart(() =>{
-
-            heartbeatTimeoutTimer.cancel() ;
-
-            heartbeatTimer.start() ;
-
-        }) ;
-    }
-
-    doHeartbeatStart(){
-
-
-    }
-
-    doHeartbeatCancel(cancel){
-
-
     }
 
     initialize(options){
@@ -163,21 +96,16 @@
 
     async restart(){
 
-        let me = this,
-        {
-            heartbeatTimer
-        } = me;
+        let me = this;
 
         await me.end() ;
 
         await me.start() ;
 
-        heartbeatTimer.start() ;
-
         me.fireEvent('restart') ;
     }
 
-    async start(){
+    async start(isTry = true){
 
         let me = this,
         {
@@ -187,29 +115,51 @@
 
         if(isConnected || isConnecting){
 
-            return ;
+            return true;
         }
 
         me.state = 'connecting' ;
 
-      // try{
+        try{
 
             await me.doStart() ;
         
-        /*}catch(err){
+        }catch(err){
 
-            let {
-                reconnectDelay
-            } = me ;
+            if(isTry){
 
-            setTimeout(() => me.start() , reconnectDelay) ;
+                me.tryStart() ;
+            }
 
-            return ;
-        }*/
+            return false;
+        }
 
         me.state = 'connected' ;
 
         me.activate() ;
+
+        return true ;
+    }
+
+    tryStart(count = 1){
+
+        let me = this,
+        {
+            reconnectDelay,
+            reconnectCount
+        } = me ;
+
+
+        if(!me.start(false)){
+
+            count ++ ;
+
+            if(count <= reconnectCount){
+
+                setTimeout(() => me.tryStart(++ count) , reconnectDelay) ;
+            }
+        }
+
     }
 
     doStart(){
