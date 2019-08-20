@@ -40,6 +40,8 @@ me.name = name ;
 
 me.connection = connection ;
 
+me.data = {} ;
+
 me.processData = processData || (({
     data
 }) => data) ;
