@@ -144,7 +144,7 @@
 
             if(count <= reconnectCount){
 
-                setTimeout(() => me.tryStart(++ count) , reconnectDelay) ;
+                setTimeout(() => me.tryStart(count) , reconnectDelay) ;
             }
         }
     }

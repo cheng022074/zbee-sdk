@@ -1,7 +1,7 @@
 
 /**
  * 
- * 冻结s
+ * 冻结
  * 
  * @import includes from array.includes
  * 
