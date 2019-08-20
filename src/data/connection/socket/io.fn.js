@@ -57,35 +57,31 @@
                     'websocket',
                     'polling'
                 ]
-            }),
-            initSocket = () => {
-
-                me.socket = socket ;
-
-                removeAll(socket) ;
-
-                add(socket , {
-                    [messageEventName]:{
-                        fn:'acceptMessage',
-                        scope:me
-                    },
-                    connect_error(){
-
-                        me.restart() ;
-                    }
-                }) ;
-            };
+            });
     
             add(socket , {
                 connect(){
 
-                    initSocket() ;
+                    me.socket = socket ;
+
+                    removeAll(socket) ;
+
+                    add(socket , {
+                        [messageEventName]:{
+                            fn:'acceptMessage',
+                            scope:me
+                        },
+                        connect_error(){
+
+                            me.restart() ;
+                        }
+                    }) ;
 
                     resolve() ;
                 },
                 connect_error(){
 
-                    initSocket() ;
+                    removeAll(socket) ;
 
                     reject() ;
                 }
@@ -103,11 +99,15 @@
                 socket
             } = me ;
 
-            socket.once('disconnect' , callback) ;
+            socket.once('disconnect' , () =>{
+
+                removeAll(socket) ;
+
+                callback() ;
+
+            }) ;
     
             socket.disconnect() ;
-
-            removeAll(socket) ;
 
             delete me.socket ;
 
