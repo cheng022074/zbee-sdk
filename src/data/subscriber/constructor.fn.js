@@ -40,7 +40,9 @@ me.name = name ;
 
 me.connection = connection ;
 
-me.processData = processData || (data => data) ;
+me.processData = processData || (({
+    data
+}) => data) ;
 
 me.extraParams = extraParams ;
 

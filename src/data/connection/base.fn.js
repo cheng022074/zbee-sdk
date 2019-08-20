@@ -81,11 +81,9 @@
         return {} ;
     }
 
-    processData(subscriber , {
-        data
-    }){
+    processData(subscriber , message){
 
-        return subscriber.processData(data) ;
+        return subscriber.processData(message) ;
     }
 
     validateMessage(subscriber , message){

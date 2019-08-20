@@ -17,7 +17,7 @@ let me = this,
         subscribers,
         data
     } = me,
-    isAccept = false;
+    acceptedSubscribers = [] ;
 
 if(isDefined(message)){
 
@@ -25,12 +25,17 @@ if(isDefined(message)){
 
         if(!subscriber.closed && me.validateMessage(subscriber , message)){
 
-            subscriber.accept(me.processData(subscriber , message)) ;
-    
-            isAccept = true ;
+            let processedData = me.processData(subscriber , message) ;
+
+            if(processedData){
+
+                subscriber.accept(processedData) ;
+
+                acceptedSubscribers.push(subscriber) ;
+            }
         }
     
     }) ;
 }
 
-return isAccept;
+return acceptedSubscribers;

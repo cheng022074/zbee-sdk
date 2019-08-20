@@ -124,8 +124,7 @@
 
             let {
                 to,
-                validateServiced = default_validate_serviced,
-                ...message
+                validateServiced = default_validate_serviced
             } = address ;
 
             if(isString(to)){
