@@ -134,10 +134,12 @@
 
         let me = this,
         {
-            socket
+            socket,
+            isConnecting,
+            isDisconnect
         } = me ;
 
-        if(socket){
+        if(!isConnecting && !isDisconnect){
 
             socket.emit(event , ...params) ;
         

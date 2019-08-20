@@ -22,6 +22,7 @@
     constructor({
         autoStart = true,
         reconnectDelay = 1000,
+        reconnectCount = Number.MAX_VALUE,
         ...options
     }){
 
@@ -37,6 +38,8 @@
         }
 
         me.reconnectDelay = reconnectDelay ;
+
+        me.reconnectCount = reconnectCount ;
     }
 
     initialize(options){
@@ -105,7 +108,7 @@
         me.fireEvent('restart') ;
     }
 
-    async start(isTry = true){
+    async start(){
 
         let me = this,
         {
@@ -115,33 +118,18 @@
 
         if(isConnected || isConnecting){
 
-            return true;
+            return;
         }
 
         me.state = 'connecting' ;
 
-        try{
+        if(!await me.onStart()){
 
-            await me.doStart() ;
-        
-        }catch(err){
-
-            if(isTry){
-
-                me.tryStart() ;
-            }
-
-            return false;
+            me.tryStart() ;
         }
-
-        me.state = 'connected' ;
-
-        me.activate() ;
-
-        return true ;
     }
 
-    tryStart(count = 1){
+    async tryStart(count = 1){
 
         let me = this,
         {
@@ -149,8 +137,7 @@
             reconnectCount
         } = me ;
 
-
-        if(!me.start(false)){
+        if(!await me.onStart()){
 
             count ++ ;
 
@@ -159,7 +146,26 @@
                 setTimeout(() => me.tryStart(++ count) , reconnectDelay) ;
             }
         }
+    }
 
+    async onStart(){
+
+        let me = this ;
+
+        try{
+
+            await me.doStart() ;
+
+        }catch(err){
+
+            return false ;
+        }
+
+        me.state = 'connected' ;
+
+        me.activate() ;
+
+        return true ;
     }
 
     doStart(){
