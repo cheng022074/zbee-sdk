@@ -134,10 +134,11 @@
         let me = this,
         {
             reconnectDelay,
-            reconnectCount
+            reconnectCount,
+            isConnecting
         } = me ;
 
-        if(!await me.onStart()){
+        if(isConnecting && !await me.onStart()){
 
             count ++ ;
 
