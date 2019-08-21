@@ -24,6 +24,8 @@
  * 
  * @import remove from array.remove.index
  * 
+ * @import getName from .subscribe.name
+ * 
  * @require regex-parser
  * 
  * @class
@@ -194,6 +196,29 @@
     doSubscriberClose(...args){
 
 
+    }
+
+    getSubscribers(names , instanceId){
+
+        let subscribers = [],
+            me = this;
+
+        for(let name of names){
+
+            let subscriber = me.getSubscriber(name , instanceId) ;
+
+            if(subscriber){
+
+                subscribers.push(subscriber) ;
+            }
+        }
+
+        return subscribers ;
+    }
+
+    getSubscriber(name , instanceId){
+
+        return this.subscribers.get(getName(name , instanceId)) ;
     }
 
     /**

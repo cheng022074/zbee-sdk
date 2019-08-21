@@ -29,8 +29,6 @@ if(!isDefined(data)){
     return;
 }
 
-connection.data[name] = data ;
-
 me.fireEvent('data' , data , params) ;
 
 if(bindFn){

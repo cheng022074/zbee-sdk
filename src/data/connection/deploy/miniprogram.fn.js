@@ -17,7 +17,9 @@
 
 let {
     mounted,
-    unmounted
+    unmounted,
+    open,
+    close
 } = deploy(connections , component) ;
 
 const {
@@ -27,6 +29,7 @@ const {
 } = component;
 
 return {
+    ...options,
     onLoad(options){
 
        let me = this ;
@@ -49,5 +52,13 @@ return {
        unmounted.call(me) ;
    },
 
-   ...options
+   closeConnection(){
+
+        close() ;
+   },
+
+   openConnection(){
+
+        open() ;
+   }
 } ;

@@ -9,7 +9,10 @@
     },
     "class":true,
     "constructor":true,
-    "methods":[
+    "methods":[{
+            "name":"prevOpen",
+            "impl":".subscriber.open.prev"
+        },
         "accept",
         "reopen",
         "open",

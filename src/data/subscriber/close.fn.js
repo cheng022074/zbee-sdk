@@ -16,6 +16,8 @@ if(closed){
     return ;
 }
 
+me.prevParams = me.params ;
+
 delete me.params ;
 
 me.fireEvent('close' , params) ;

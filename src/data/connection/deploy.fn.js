@@ -18,6 +18,26 @@
  } = Object,
  instanceId;
 
+ function doSubscribers(method){
+
+    let names = keys(subscriberMap);
+
+    for(let name of names){
+
+        let {
+            connection,
+            subscribers
+        } = subscriberMap[name] ;
+        
+        subscribers = connection.getSubscribers(keys(subscribers) , instanceId) ;
+
+        for(let subscriber of subscribers){
+
+            subscriber[method]() ;
+        }
+    }
+ }
+
  return {
 
     mounted(){
@@ -59,6 +79,16 @@
                 scope[varName] = flow(me) ;
             }
         }
+    },
+
+    open(){
+
+        doSubscribers('prevOpen') ;
+    },
+
+    close(){
+
+        doSubscribers('close') ;
     },
 
     unmounted(){
