@@ -5,6 +5,8 @@
  * 
  * @import Connection from data.connection.socket value
  * 
+ * @class
+ * 
  * 
  */
 

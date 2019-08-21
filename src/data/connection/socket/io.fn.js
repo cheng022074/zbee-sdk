@@ -120,16 +120,14 @@
 
         let me = this,
         {
-            socket,
-            isConnecting,
-            isDisconnect
+            socket
         } = me ;
 
-        if(!isConnecting && !isDisconnect){
+        if(socket){
 
             socket.emit(event , ...params) ;
-        
         }
+        
     }
 
     doSubscriberOpen(...args){

@@ -25,6 +25,7 @@ let {
 const {
    onLoad:originMounted = empty,
    onUnload:originUnmounted = empty,
+   connections:connectionNames = [],
    ...options
 } = component;
 
@@ -32,13 +33,41 @@ return {
     ...options,
     onLoad(options){
 
-       let me = this ;
+       let me = this,
+           names = Object.keys(connections),
+           result = [];
 
-       mounted.call(me) ;
+        for(let name of names){
 
-       me.$connections = connections ;
-      
-       originMounted.call(me , options) ;
+            if(!connectionNames.includes(name)){
+
+                result.push(connections[name].end()) ;
+            }
+        }
+
+        Promise.all(result).then(() =>{
+
+            result.length = 0 ;
+
+            for(let name of names){
+
+                if(connectionNames.includes(name)){
+    
+                    result.push(connections[name].start()) ;
+                }
+            }
+
+            Promise.all(result).then(() =>{
+
+                mounted.call(me) ;
+
+                me.$connections = connections ;
+                
+                originMounted.call(me , options) ;
+
+            }) ;
+
+        }) ;
    },
 
    onUnload(){

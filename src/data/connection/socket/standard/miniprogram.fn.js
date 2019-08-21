@@ -92,8 +92,11 @@
             socket
         } = me ;
 
-        socket.send({
-            data:message
-        }) ;
+        if(socket){
+
+            socket.send({
+                data:message
+            }) ;
+        }
     }
  }

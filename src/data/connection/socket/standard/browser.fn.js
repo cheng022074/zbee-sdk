@@ -41,7 +41,7 @@
                     add(socket , {
                         message(data){
 
-                            console.log('收到消息' , data) ;
+                            me.acceptMessage(data) ;
                         },
                         error(){
 
@@ -95,6 +95,9 @@
             socket
         } = me ;
 
-        socket.send(message) ;
+        if(socket){
+
+            socket.send(message) ;
+        }
     }
  }

@@ -72,7 +72,7 @@
         return this.state === 'disconnecting' ;
     }
 
-    get isDisconnect(){
+    get isDisconnected(){
 
         return this.state === 'disconnected' ;
     }
