@@ -89,8 +89,15 @@
 
             me.$state = state ;
 
+            me.onStateChange(state , $state) ;
+
             me.fireEvent('statechange' , state , $state) ;
         }
+    }
+
+    onStateChange(){
+
+
     }
 
     get state(){
