@@ -8,11 +8,11 @@
  * 
  * @import emptyFn from function.empty value
  * 
+ * @param {data.connection} connection 当前订阅器所在的连接对象
+ * 
  * @param {string} name 订阅名称
  * 
  * @param {object} config 订阅器配置
- * 
- * @param {mixed} config.connection 当前订阅器所在的连接对象
  * 
  * @param {function} [config.processData] 处理数据方法
  * 
@@ -39,6 +39,8 @@ let me = this ;
 me.name = name ;
 
 me.connection = connection ;
+
+me.bubbleTarget = connection ;
 
 me.data = {} ;
 

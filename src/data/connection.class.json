@@ -1,5 +1,8 @@
 {
     "extend":".connection.base",
+    "mixins":[
+        "mixin.observable"
+    ],
     "class":true,
     "constructor":false,
     "methods":[

@@ -74,8 +74,6 @@
         me.rules = createRules(rules) ;
 
         me.subscribeParamList = [] ;
-
-        me.data = {} ;
     }
 
     processMessage(...args){
@@ -119,10 +117,7 @@
             subscriber
         } = me ;
 
-        return create(subscriber , name , {
-            ...options,
-            connection:me
-        }) ;
+        return create(subscriber , me , name , options) ;
     }
 
     onCreateSubscriber(subscriber){
