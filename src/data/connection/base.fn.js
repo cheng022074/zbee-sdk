@@ -58,10 +58,7 @@
  class main{
 
     constructor({
-        subscriber = (name , options) =>{
-
-            return new Subscriber(name , options) ;
-        },
+        subscriber = Subscriber,
         rules = []
     }){
 

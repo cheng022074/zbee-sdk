@@ -3,6 +3,8 @@
  * 
  * 销毁
  * 
+ * @import removeAll from event.listener.remove.all
+ * 
  */
 
 let me = this ;
@@ -17,4 +19,4 @@ delete me.defaultParams ;
 
 me.fireEvent('destroy') ;
 
-me.clearAllListeners() ;
+removeAll(me) ;

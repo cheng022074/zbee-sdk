@@ -1,7 +1,7 @@
 
 /**
  * 
- * 基于数据连接的 VUE 封装
+ * 基于数据连接的小程序封装
  * 
  * @import empty from function.empty value
  * 

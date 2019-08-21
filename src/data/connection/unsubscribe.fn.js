@@ -11,11 +11,6 @@
  * 
  */
 
- if(instanceId){
-
-    name = `${name}<${instanceId}>` ;
- }
-
  name = getName(name , instanceId) ;
 
 let me = this,

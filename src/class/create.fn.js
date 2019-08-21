@@ -15,12 +15,16 @@
  * 
  */
 
+
+
 if(isString(baseClass)){
 
     baseClass = include(baseClass) ;
 }
 
 if(isFunction(baseClass)){
+
+    console.log(baseClass.toString()) ;
 
     baseClass = baseClass(...args) ;
 
