@@ -21,21 +21,6 @@
  const IO = require('socket.io-client') ;
 
  class main extends Connection{
-
-    initialize({
-        socket
-    }){
-
-        let {
-            url:socketURL,
-            options:socketOptions
-        } = socket,
-        me = this;
-
-        me.socketURL = socketURL ;
-
-        me.socketOptions = socketOptions ;
-    }
     
     doStart(){
 
@@ -92,10 +77,11 @@
 
     doEnd(){
 
+        let me = this ;
+
         return new Promise(callback =>{
 
-            let me = this,
-            {
+            let {
                 socket
             } = me ;
 

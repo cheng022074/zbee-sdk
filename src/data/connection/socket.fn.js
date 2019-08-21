@@ -42,9 +42,19 @@
         me.reconnectCount = reconnectCount ;
     }
 
-    initialize(options){
+    initialize({
+        socket
+    }){
 
-        
+        let {
+            url:socketURL,
+            options:socketOptions
+        } = socket,
+        me = this;
+
+        me.socketURL = socketURL ;
+
+        me.socketOptions = socketOptions ;
     }
 
     get isConnecting(){
