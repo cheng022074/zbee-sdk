@@ -15,59 +15,32 @@
  * 
  */
 
+const {
+    onLoad:originMounted = empty,
+    onUnload:originUnmounted = empty,
+    connections:connectionNames = [],
+    ...options
+ } = component;
+
 let {
     mounted,
     unmounted,
     open,
     close
-} = deploy(connections , component) ;
-
-const {
-   onLoad:originMounted = empty,
-   onUnload:originUnmounted = empty,
-   connections:connectionNames = [],
-   ...options
-} = component;
+} = deploy(connectionNames , connections , component) ;
 
 return {
     ...options,
     onLoad(options){
 
-       let me = this,
-           names = Object.keys(connections),
-           result = [];
+       let me = this ;
+           
+        mounted.call(me).then(() =>{
 
-        for(let name of names){
-
-            if(!connectionNames.includes(name)){
-
-                result.push(connections[name].end()) ;
-            }
-        }
-
-        Promise.all(result).then(() =>{
-
-            result.length = 0 ;
-
-            for(let name of names){
-
-                if(connectionNames.includes(name)){
-    
-                    result.push(connections[name].start()) ;
-                }
-            }
-
-            Promise.all(result).then(() =>{
-
-                mounted.call(me) ;
-
-                me.$connections = connections ;
-                
-                originMounted.call(me , options) ;
-
-            }) ;
+            originMounted.call(me , options) ;
 
         }) ;
+        
    },
 
    onUnload(){
