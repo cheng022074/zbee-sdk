@@ -29,8 +29,8 @@ const {
 let {
     mounted,
     unmounted,
-    open,
-    close
+    subscribe,
+    unsubscribe
 } = deploy(connectionNames , connections , component) ;
 
 return {
@@ -75,14 +75,6 @@ return {
 
        unmounted.call(me) ;
    },
-
-   closeConnection(){
-
-        close() ;
-   },
-
-   openConnection(){
-
-        open() ;
-   }
+   subscribe,
+   unsubscribe
 } ;

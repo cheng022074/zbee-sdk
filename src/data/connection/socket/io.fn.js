@@ -85,17 +85,17 @@
                 socket
             } = me ;
 
-            socket.once('disconnect' , () =>{
+            socket.io.engine.transport.ws.onclose = () =>{
+
+                delete me.socket ;
 
                 removeAll(socket) ;
 
                 callback() ;
 
-            }) ;
-    
-            socket.disconnect() ;
+            } ;
 
-            delete me.socket ;
+            socket.disconnect() ;
 
         }) ;
     }

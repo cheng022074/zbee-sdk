@@ -74,6 +74,8 @@
 
             socket.onClose(() =>{
 
+                console.log('socket 关闭') ;
+
                 callback() ;
 
             }) ;

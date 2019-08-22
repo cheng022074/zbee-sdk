@@ -5,6 +5,8 @@
  * 
  * @import generate from id.generate
  * 
+ * @import isObject from is.object.simple
+ * 
  * @param {array} connectionNames 连接名称集合
  * 
  * @param {string} connectionsVarName 连接实例集合名称
@@ -12,8 +14,6 @@
  * @param {array} connections 连接实例集合
  * 
  * @param {object} subscriberMap 订阅器定义集合
- * 
- * @param {object} [flowMap = {}] 流程定义
  * 
  * @return {object}
  * 
@@ -23,26 +23,6 @@
     keys
  } = Object,
  instanceId;
-
- function doSubscribers(method){
-
-    let names = keys(subscriberMap);
-
-    for(let name of names){
-
-        let {
-            connection,
-            subscribers
-        } = subscriberMap[name] ;
-        
-        subscribers = connection.getSubscribers(keys(subscribers) , instanceId) ;
-
-        for(let subscriber of subscribers){
-
-            subscriber[method]() ;
-        }
-    }
- }
 
  async function connect(){
 
@@ -110,20 +90,6 @@
                         }) ;
                     }
                 }
-    
-                {
-                    let names = keys(flowMap) ;
-    
-                    for(let name of names){
-    
-                        let {
-                            varName,
-                            flow
-                        } =  flowMap[name] ;
-    
-                        scope[varName] = flow(me) ;
-                    }
-                }
 
                 callback() ;
     
@@ -134,26 +100,54 @@
         }) ;
     },
 
-    open(){
+    unsubscribe(name , connectionName){
 
-        let me = this ;
+        let {
+            subscribers
+        } = subscriberMap[connectionName] ;
 
-        return new Promise(callback =>{
+        delete subscribers[name] ;
 
-            connect().then(() =>{
-
-                doSubscribers('prevOpen') ;
-
-                callback() ;
-            
-            }) ;
-
-        }) ;
+        connections[connectionName].unsubscribe(name , instanceId) ;
     },
 
-    close(){
+    subscribe(name , options){
 
-        doSubscribers('close') ;
+        let scope = this,
+            connectionName,
+            subscriber;
+
+        if(isObject(options)){
+
+            let {
+                connection = 'default',
+                ...params
+            } = options ;
+
+            connectionName = connection ;
+
+            subscriber = params ;
+        
+        }else{
+
+            name = 'default' ;
+
+            subscriber = {
+                fn:options
+            } ;
+        }
+
+        connections[connectionName].subscribe(name , {
+            ...subscriber,
+            instanceId,
+            scope
+        }) ;
+
+        let {
+            subscribers
+        } = subscriberMap[connectionName] ;
+
+        subscribers[name] = subscriber ;
     },
 
     unmounted(){
