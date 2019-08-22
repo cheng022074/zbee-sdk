@@ -22,8 +22,7 @@
  let {
     keys
  } = Object,
- instanceId,
- resumeConnections = [];
+ instanceId;
 
  function doSubscribers(method){
 
@@ -45,26 +44,6 @@
     }
  }
 
- async function disconnect(){
-
-    let names = Object.keys(connections);
-
-    for(let name of names){
-
-        if(connectionNames.includes(name)){
-
-           await connections[name].end() ;
-        }
-    }
-
-    for(let connection of resumeConnections){
-
-        await connection.start() ;
-    }
-
-    resumeConnections.length = 0 ;
- }
-
  async function connect(){
 
     let names = Object.keys(connections);
@@ -73,14 +52,8 @@
 
         if(!connectionNames.includes(name)){
 
-            let connection = connection[name];
-
-            if(connection.isConnected || connection.isConnecting){
-
-                resumeConnections.push(connection) ;
-
-                await connection.end() ;
-            }
+            await connections[name].end() ;
+            
         }
     }
 
@@ -93,6 +66,11 @@
     }
  }
 
+ function isMounted(){
+
+    return !!this[connectionsVarName] ;
+ }
+
  return {
 
     mounted(){
@@ -100,6 +78,13 @@
         let scope = this ;
 
         return new Promise(callback =>{
+
+            if(isMounted.call(scope)){
+
+                callback() ;
+
+                return ;
+            }
 
             connect().then(() =>{
 
@@ -168,42 +153,34 @@
 
     close(){
 
-        let me = this ;
-
-        return new Promise(callback =>{
-
-            doSubscribers('close') ;
-
-            disconnect().then(callback) ;
-
-        }) ;
+        doSubscribers('close') ;
     },
 
     unmounted(){
 
-        let scope = this,
-            names = keys(subscriberMap);
+        let scope = this ;
 
-        return new Promise(callback =>{
+        if(!isMounted.call(scope)){
 
-            for(let name of names){
+            return ;
+        }
 
-                let {
-                    varName,
-                    connection,
-                    subscribers
-                } = subscriberMap[name] ;
-    
-                connection.unsubscribes(keys(subscribers) , instanceId) ;
-    
-                delete scope[varName] ;
-            }
-    
-            disconnect().then(callback) ;
+        let names = keys(subscriberMap);
 
-        }) ;
+        for(let name of names){
 
-       
+            let {
+                varName,
+                connection,
+                subscribers
+            } = subscriberMap[name] ;
+
+            connection.unsubscribes(keys(subscribers) , instanceId) ;
+
+            delete scope[varName] ;
+        }
+
+        delete scope[connectionsVarName] ;
     }
 
  } ;

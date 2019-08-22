@@ -11,14 +11,18 @@
  * 
  * @param {object} component 组件定义对象
  * 
+ * @param {array} [defaultConnectionNames = []] 默认连接名称集合
+ * 
  * @return {object} 增加订阅功能的组件定义对象
  * 
  */
 
-const {
-    onLoad:originMounted = empty,
-    onUnload:originUnmounted = empty,
-    connections:connectionNames = [],
+const {                 
+    onLoad:originLoad = empty,
+    onShow:originShow = empty,
+    onHide:originHide = empty,
+    onUnload:originUnload = empty,
+    connections:connectionNames = defaultConnectionNames,
     ...options
  } = component;
 
@@ -37,19 +41,37 @@ return {
            
         mounted.call(me).then(() =>{
 
-            originMounted.call(me , options) ;
+            originLoad.call(me , options) ;
 
         }) ;
         
+   },
+
+   onShow(){
+
+        let me = this ;
+            
+        mounted.call(me).then(() =>{
+
+            originShow.call(me , options) ;
+
+        }) ;
+   },
+
+   onHide(){
+
+        let me = this ;
+
+        originHide.call(me) ;
+
+        unmounted.call(me) ;
    },
 
    onUnload(){
 
        let me = this ;
 
-       originUnmounted.call(me) ;
-
-       delete me.$connections ;
+       originUnload.call(me) ;
 
        unmounted.call(me) ;
    },
