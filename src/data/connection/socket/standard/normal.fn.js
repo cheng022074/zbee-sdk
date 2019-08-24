@@ -1,14 +1,16 @@
 /**
  * 
- * 基于小程序进行开发
+ * 基于标准 WebSocket 进行开发
  * 
  * @import Connection from data.connection.socket.standard value
- *
- * @imoport WebSocket from miniprogram.socket value
+ * 
+ * @require ws
  * 
  * @class
  * 
  */
+
+ const WebSocket = require('ws') ;
 
  class main extends Connection{
 
@@ -16,4 +18,6 @@
 
         return WebSocket ;
     }
+
+    
  }

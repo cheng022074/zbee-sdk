@@ -34,7 +34,7 @@ function onInterval(duration , startTime){
     
     }else{
 
-        end('timeend') ;
+        end() ;
     }
  }
 

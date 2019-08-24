@@ -19,5 +19,5 @@ if(intervalId){
 
     delete me.intervalId ;
 
-    me.fireEvent(name) ;
+    me.fireEvent('timeend') ;
 }

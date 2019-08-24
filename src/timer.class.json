@@ -1,13 +1,14 @@
 {
-    "constructor":true,
     "params":[
         "config"
     ],
+    "constructor":true,
     "mixins":[
         "mixin.observable"
     ],
     "methods":[
         "start",
-        "cancel"
+        "restart",
+        "end"
     ]
 }
