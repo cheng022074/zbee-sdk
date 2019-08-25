@@ -4,13 +4,7 @@
  * 
  * @import Connection from data.connection.socket value
  * 
- * @import get from function.get
- * 
  * @import add from event.listener.add
- * 
- * @import remove from event.listener.remove
- * 
- * @import removeAll from event.listener.remove.all 
  * 
  * @require socket.io-client
  * 
@@ -21,81 +15,114 @@
  const IO = require('socket.io-client') ;
 
  class main extends Connection{
-    
-    doStart(){
+
+    initialize(url , options){
 
         let me = this,
-            {
-                messageEventName,
-                socketURL,
-                socketOptions
-            } = me;
+            socket = IO(url , options) ;
 
-        return new Promise((resolve , reject) => {
+        add(socket , {
+            connect:'onSocketConnect',
+            reconnect:'onSocketConnect',
+            [me.messageEventName]:'onSocketMessage',
+            scope:me
+        }) ;
+    }
 
-            let socket = IO(socketURL , {
-                ...socketOptions,
-                autoConnect:true,
-                forceNew: true,
-                reconnection:false,
-                transports: [
-                    'websocket',
-                    'polling'
-                ]
-            });
+    onSocketMessage(...args){
+
+        this.acceptMessage(...args) ;
+    }
     
-            add(socket , {
-                connect(){
+    onSocketConnect(){
 
-                    me.socket = socket ;
+        this.activate() ;
+    }
 
-                    removeAll(socket) ;
+    start(){
 
-                    add(socket , {
-                        [messageEventName]:{
-                            fn:'acceptMessage',
-                            scope:me
-                        },
-                        connect_error(){
+        let me = this,
+        {
+            socket,
+            isSocketConnecting,
+        } = me ;
 
-                            me.restart() ;
-                        }
-                    }) ;
+        return new Promise((resolve , reject) =>{
 
-                    resolve() ;
-                },
-                connect_error(){
+            if(socket.disconnected || isSocketConnecting){
 
-                    removeAll(socket) ;
+                add(socket , {
+                    connect(){
 
-                    reject() ;
-                }
-            }) ;
+                        delete me.isSocketConnecting ;
+
+                        callback() ;
+                    },
+                    once:true
+                }) ;
+            }
+
+            if(socket.disconnected){
+
+                me.isSocketConnecting = true ;
+
+                me.open() ;
+
+                resolve() ;
+            
+            }else if(socket.connected || isSocketConnecting){
+
+                resolve() ;
+            
+            }else{
+
+                reject() ;
+            }
 
         }) ;
     }
 
-    doEnd(){
+    end(){
 
-        let me = this ;
+        let me = this,
+            {
+                socket,
+                isSocketClosing
+            } = me;
 
-        return new Promise(callback =>{
+        return new Promise((resolve , reject) =>{
 
-            let {
-                socket
-            } = me ;
+            if(socket.connected || isSocketClosing){
 
-            socket.io.engine.transport.ws.onclose = () =>{
+                add(socket , {
+                    disconnect(){
 
-                delete me.socket ;
+                        delete me.isSocketClosing ;
 
-                removeAll(socket) ;
+                        callback() ;
+                    },
+                    once:true
+                }) ;
+            }
 
-                callback() ;
+            if(socket.connected){
 
-            } ;
+                me.deactivate() ;
 
-            socket.disconnect() ;
+                me.isSocketClosing = true ;
+
+                socket.close() ;
+
+                resolve() ;
+            
+            }else if(socket.disconnected || isSocketClosing){
+
+                resolve() ;
+            
+            }else{
+
+                reject() ;
+            }
 
         }) ;
     }
@@ -123,30 +150,20 @@
             socket
         } = me ;
 
-        if(socket){
+        if(socket.connected){
 
-            socket.emit(event , ...params) ;
+            socket.emit(me[event] , ...params) ;
         }
         
     }
 
     doSubscriberOpen(...args){
 
-        let me = this,
-        {
-            subscribeEventName
-        } = me ;
-
-        me.emit(subscribeEventName , ...args) ;
+        this.emit('subscribeEventName' , ...args) ;
     }
 
     doSubscriberClose(...args){
 
-        let me = this,
-        {
-            unsubscribeEventName
-        } = me ;
-
-        me.emit(unsubscribeEventName , ...args) ;
+        this.emit('unsubscribeEventName' , ...args) ;
     }
  }

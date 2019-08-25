@@ -1,3 +1,4 @@
+import { isS } from "xmlchars/xml/1.0/ed5";
 
 /**
  * 
@@ -82,11 +83,6 @@
         me.activate() ;
     }
 
-    onSocketError(){
-
-        me.close() ;
-    }
-
     onSocketClose(){
 
         let me = this,
@@ -108,7 +104,7 @@
         }
     }
 
-    onSocketMesasge(data){
+    onSocketMessage(data){
 
         let me = this ;
 
@@ -179,27 +175,47 @@
         {
             WebSocket,
             socketURL,
-            socket
+            socket,
+            isSocketClosd,
+            isSocketConnecting,
+            isSocketConnected
         } = me ;
 
-        if(socket){
+        return new Promise((resolve , reject) =>{
 
-            return false;
-        }
+            if(isSocketClosd || isSocketConnecting){
 
-        let socket = new WebSocket(socketURL) ;
+                add(socket , {
+                    open:callback,
+                    once:true
+                }) ;
+            }
 
-        add(socket , {
-            open:'onSocketOpen',
-            close:'onSocketClose',
-            error:'onSocketError',
-            message:'onMessage',
-            scope:me
+            if(isSocketClosd){
+
+                let socket = new WebSocket(socketURL) ;
+    
+                add(socket , {
+                    open:'onSocketOpen',
+                    close:'onSocketClose',
+                    message:'onSocketMessage',
+                    scope:me
+                }) ;
+        
+                me.socket = socket ;
+
+                resolve() ;
+            
+            }else if(isSocketConnected || isSocketConnecting){
+
+                resolve() ;
+            
+            }else{
+
+                reject() ;
+            }
+
         }) ;
-
-        me.socket = socket ;
-
-        return true ;
     }
 
     doClose(){
@@ -207,44 +223,71 @@
         let me = this,
             {
                 socket,
-                $doClose,
-                isConnected
+                isSocketConnected,
+                isSocketClosing,
+                isSocketClosd
             } = me;
 
-        if(socket && !$doClose){
+        return new Promise((resolve , reject) =>{
 
-            if(isConnected){
+            if(isSocketConnected || isSocketClosing){
 
-                me.deactivate() ;
+                add(socket , {
+                    close:resolve,
+                    once:true
+                }) ;
             }
 
-            me.$doClose = true ;
+            if(isSocketConnected){
 
-            socket.close() ;
+                me.deactivate() ;
+    
+                me.$doClose = true ;
+    
+                socket.close() ;
 
-            return true ;
-        }
+                resolve() ;
+            
+            }else if(isSocketClosd || isSocketClosing){
 
-        return false ;
+                resolve() ;
+            
+            }else{
+
+                reject() ;
+            }
+
+        }) ;
     }
 
-    isConnected(){
+    isSocketConnected(){
 
-        let {
-            socket
-        } = this ;
+        return isState.call(this , 1) ;
+    }
 
-        return socket && socket.readyState === 1 ;
+    isSocketConnecting(){
+
+        return isState.call(this , 0) ;
+    }
+
+    isSocketClosing(){
+
+        return isState.call(this , 2) ;
+    }
+
+    isSocketClosd(){
+
+        return isState.call(this , 3) ;
     }
 
     start(){
 
-        doMethod.call(this , 'start') ;
+        return doMethod.call(this , 'start') ;
     }
 
     end(){
 
-        doMethod.call(this , 'end') ;
+        return doMethod.call(this , 'end') ;
     }
 
     send(message){
@@ -262,7 +305,21 @@
     }
  }
 
- function doMethod(name){
+ function isState(state){
+
+    let {
+        socket
+    } = this ;
+
+    if(!socket && state === 3){
+
+        return true ;
+    }
+
+    return socket && socket.readyState === state ;
+ }
+
+ async function doMethod(name){
 
     let me = this,
         {
@@ -277,6 +334,6 @@
 
     socketTimeoutTimer[name]() ;
 
-    return me[`do${capitalize(name)}`]() ;
+    await me[`do${capitalize(name)}`]() ;
  }
 
