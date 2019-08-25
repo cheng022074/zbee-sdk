@@ -1,5 +1,3 @@
-import { isS } from "xmlchars/xml/1.0/ed5";
-
 /**
  * 
  * 标准推送

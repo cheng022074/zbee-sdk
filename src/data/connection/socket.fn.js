@@ -19,6 +19,28 @@
     ]
 }){
 
+    constructor({
+        socket,
+        ...superOptions
+    }){
+
+        super(superOptions) ;
+
+        let me = this ;
+
+        let {
+            url,
+            options = {}
+        } = socket ;
+
+        me.initialize(url , options) ;
+    }
+
+    initialize(url , options){
+
+
+    }
+
     validateMessage({
         params:baseParams
     },{

@@ -19,7 +19,13 @@
     initialize(url , options){
 
         let me = this,
-            socket = IO(url , options) ;
+            socket = me.socket = IO(url , {
+                forceNew: true,
+                transports: [
+                    'websocket'
+                ],
+                ...options
+            }) ;
 
         add(socket , {
             connect:'onSocketConnect',
