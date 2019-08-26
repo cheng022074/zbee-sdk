@@ -52,7 +52,7 @@
             url,
             protocols
         }),
-            me = this;
+        me = this;
 
         socket.onOpen(get(onOpen , me)) ;
 
@@ -61,6 +61,8 @@
         socket.onError(get(onError , me)) ;
 
         socket.onClose(get(onClose , me)) ;
+
+        me.socket = socket ;
     }
 
     get readyState(){

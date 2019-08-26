@@ -4,7 +4,7 @@
  * 
  * @import Connection from data.connection.socket.standard value
  *
- * @imoport WebSocket from miniprogram.socket value
+ * @import WebSocket from miniprogram.socket value
  * 
  * @class
  * 

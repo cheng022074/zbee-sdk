@@ -68,7 +68,7 @@
 
         if(me.socketReconnection){
 
-            me.beginRestartMode() ;
+            me.beginTryStartMode() ;
         }
     }
 
@@ -121,7 +121,7 @@
 
             me.$isTryStartMode = true ;
 
-            me.close() ;
+            me.end() ;
         
         }else{
 
@@ -173,26 +173,33 @@
         {
             WebSocket,
             socketURL,
-            socket,
             isSocketClosd,
             isSocketConnecting,
             isSocketConnected
-        } = me ;
+        } = me,
+        socket;
 
         return new Promise((resolve , reject) =>{
+
+            if(isSocketClosd){
+
+                socket = new WebSocket(socketURL) ;
+            
+            }else{
+
+                socket = me.socket ;
+            }
 
             if(isSocketClosd || isSocketConnecting){
 
                 add(socket , {
-                    open:callback,
+                    open:resolve,
                     once:true
                 }) ;
             }
 
             if(isSocketClosd){
 
-                let socket = new WebSocket(socketURL) ;
-    
                 add(socket , {
                     open:'onSocketOpen',
                     close:'onSocketClose',
@@ -216,7 +223,7 @@
         }) ;
     }
 
-    doClose(){
+    doEnd(){
 
         let me = this,
             {
@@ -258,22 +265,22 @@
         }) ;
     }
 
-    isSocketConnected(){
+    get isSocketConnected(){
 
         return isState.call(this , 1) ;
     }
 
-    isSocketConnecting(){
+    get isSocketConnecting(){
 
         return isState.call(this , 0) ;
     }
 
-    isSocketClosing(){
+    get isSocketClosing(){
 
         return isState.call(this , 2) ;
     }
 
-    isSocketClosd(){
+    get isSocketClosd(){
 
         return isState.call(this , 3) ;
     }
@@ -293,10 +300,10 @@
         let me = this,
         {
             socket,
-            isConnected
+            isSocketConnected
         } = me ;
 
-        if(isConnected){
+        if(isSocketConnected){
 
             socket.send(message) ;
         }
