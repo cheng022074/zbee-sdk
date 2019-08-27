@@ -2,9 +2,7 @@
 /**
  * 
  * 结束计时
- * 
- * @param {string} name 结果计时的事件名称
- * 
+ *
  */
 
 let me = this,{

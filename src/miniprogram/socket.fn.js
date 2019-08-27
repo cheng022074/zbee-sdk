@@ -72,22 +72,22 @@
 
     set onopen(fn){
 
-        on('open' , fn) ;
+        on.call(this , 'open' , fn) ;
     }
 
     set onmessage(fn){
 
-        on('message' , fn) ;
+        on.call(this , 'message' , fn) ;
     }
 
     set onerror(fn){
 
-        on('error' , fn) ;
+        on.call(this , 'error' , fn) ;
     }
 
     set onclose(fn){
 
-        on('close' , fn) ;
+        on.call(this , 'close' , fn) ;
     }
 
     send(data){

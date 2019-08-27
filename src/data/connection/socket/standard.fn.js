@@ -161,7 +161,7 @@
 
         if(me.isTryStartMode){
 
-            delete me.$restartCount ;
+            delete me.$tryStartCount ;
 
             delete me.$isTryStartMode ;
         }
@@ -208,10 +208,8 @@
                 }) ;
         
                 me.socket = socket ;
-
-                resolve() ;
             
-            }else if(isSocketConnected || isSocketConnecting){
+            }else if(isSocketConnected){
 
                 resolve() ;
             
@@ -335,7 +333,11 @@
         return ;
     }
 
+    socketTimeoutTimer.suspendEvents() ;
+
     socketTimeoutTimer[name]() ;
+
+    socketTimeoutTimer.resumeEvents() ;
 
     await me[`do${capitalize(name)}`]() ;
  }

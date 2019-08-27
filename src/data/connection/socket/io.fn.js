@@ -73,10 +73,8 @@
                 me.isSocketConnecting = true ;
 
                 socket.open() ;
-
-                resolve() ;
             
-            }else if(socket.connected || isSocketConnecting){
+            }else if(socket.connected){
 
                 resolve() ;
             
@@ -105,7 +103,9 @@
 
                         delete me.isSocketClosing ;
 
-                        callback() ;
+                        console.log('关闭 socket.io') ;
+
+                        resolve() ;
                     },
                     once:true
                 }) ;
@@ -118,10 +118,8 @@
                 me.isSocketClosing = true ;
 
                 socket.close() ;
-
-                resolve() ;
             
-            }else if(socket.disconnected || isSocketClosing){
+            }else if(socket.disconnected){
 
                 resolve() ;
             
