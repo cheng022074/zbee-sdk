@@ -250,10 +250,8 @@
                 me.$doClose = true ;
     
                 socket.close() ;
-
-                resolve() ;
             
-            }else if(isSocketClosd || isSocketClosing){
+            }else if(isSocketClosd){
 
                 resolve() ;
             

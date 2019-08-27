@@ -62,7 +62,7 @@
 
                         delete me.isSocketConnecting ;
 
-                        callback() ;
+                        resolve() ;
                     },
                     once:true
                 }) ;
