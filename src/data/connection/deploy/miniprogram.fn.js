@@ -33,29 +33,36 @@ let {
     unsubscribe
 } = deploy(connectionNames , connections , component) ;
 
+async function onLoad(options){
+
+    let me = this ;
+
+    await mounted.call(me) ;
+           
+    originLoad.call(me , options) ;
+    
+}
+
+async function onShow(){
+
+    let me = this ;
+
+    await mounted.call(me) ;
+           
+    originShow.call(me , options) ;
+}
+
 return {
     ...options,
     onLoad(options){
 
-       let me = this ;
-           
-        mounted.call(me).then(() =>{
-
-            originLoad.call(me , options) ;
-
-        }) ;
+        onLoad.call(this , options) ;
         
    },
 
    onShow(){
 
-        let me = this ;
-            
-        mounted.call(me).then(() =>{
-
-            originShow.call(me , options) ;
-
-        }) ;
+        onShow.call(this) ;
    },
 
    onHide(){

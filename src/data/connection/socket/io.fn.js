@@ -72,7 +72,7 @@
 
                 me.isSocketConnecting = true ;
 
-                me.open() ;
+                socket.open() ;
 
                 resolve() ;
             

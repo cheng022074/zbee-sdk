@@ -97,4 +97,9 @@
         }) ;
     }
 
+    close(){
+
+        this.socket.close() ;
+    }
+
  }

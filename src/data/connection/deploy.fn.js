@@ -45,70 +45,55 @@
         }
     }
  }
- 
- async function disconnect(){
-
-    let names = Object.keys(connections);
-
-    for(let name of names){
-
-        await connections[name].end() ;
-        
-    }
- }
 
  function isMounted(){
 
     return !!this[connectionsVarName] ;
  }
 
+ async function mounted(){
+
+    let scope = this ;
+
+    if(isMounted.call(scope)){
+
+        return ;
+    }
+
+    scope[connectionsVarName] = connections ;
+
+    await connect() ;
+
+    let names = keys(subscriberMap);
+
+    instanceId = scope.connectionId || generate('connection-') ;
+
+    for(let name of names){
+
+        let {
+            varName,
+            connection,
+            subscribers
+        } = subscriberMap[name] ;
+        
+
+        if(subscribers){
+
+            scope[varName] = connection.subscribes({
+                ...subscribers,
+                instanceId,
+                scope
+            }) ;
+        }
+    }
+
+ }
+
  return {
 
     mounted(){
 
-        let scope = this ;
-
-        return new Promise(callback =>{
-
-            if(isMounted.call(scope)){
-
-                callback() ;
-
-                return ;
-            }
-
-            connect().then(() =>{
-
-                let names = keys(subscriberMap);
-    
-                instanceId = scope.connectionId || generate('connection-') ;
-    
-                for(let name of names){
-    
-                    let {
-                        varName,
-                        connection,
-                        subscribers
-                    } = subscriberMap[name] ;
-                    
-    
-                    if(subscribers){
-    
-                        scope[varName] = connection.subscribes({
-                            ...subscribers,
-                            instanceId,
-                            scope
-                        }) ;
-                    }
-                }
-
-                callback() ;
-    
-            }) ;
-    
-            scope[connectionsVarName] = connections ;
-
-        }) ;
+        return mounted.call(this) ;
     },
 
     unsubscribe(name , connectionName){
@@ -186,8 +171,6 @@
         }
 
         delete scope[connectionsVarName] ;
-
-        disconnect() ;
     }
 
  } ;
