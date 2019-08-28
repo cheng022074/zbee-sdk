@@ -76,6 +76,8 @@
 
         let me = this ;
 
+        me.socketTimeoutTimer.end() ;
+
         me.endTryStartMode() ;
 
         me.activate() ;
@@ -105,8 +107,6 @@
     onSocketMessage(data){
 
         let me = this ;
-
-        me.socketTimeoutTimer.restart() ;
 
         me.acceptMessage(data) ;
     }
@@ -173,13 +173,27 @@
         {
             WebSocket,
             socketURL,
+            isSocketClosing,
             isSocketClosd,
             isSocketConnecting,
             isSocketConnected
         } = me,
         socket;
 
-        return new Promise((resolve , reject) =>{
+        return new Promise(resolve =>{
+
+            if(isSocketClosing){
+
+                add(socket , {
+                    close(){
+
+                        me.start().then(resolve) ;
+                    },
+                    once:true
+                }) ;
+
+                return ;
+            }
 
             if(isSocketClosd){
 
@@ -213,9 +227,6 @@
 
                 resolve() ;
             
-            }else{
-
-                reject() ;
             }
 
         }) ;
@@ -226,12 +237,26 @@
         let me = this,
             {
                 socket,
+                isSocketConnecting,
                 isSocketConnected,
                 isSocketClosing,
                 isSocketClosd
             } = me;
 
-        return new Promise((resolve , reject) =>{
+        return new Promise(resolve =>{
+
+            if(isSocketConnecting){
+
+                add(socket , {
+                    open(){
+
+                        me.end().then(resolve) ;
+                    },
+                    once:true
+                }) ;
+
+                return ;
+            }
 
             if(isSocketConnected || isSocketClosing){
 
@@ -253,9 +278,6 @@
 
                 resolve() ;
             
-            }else{
-
-                reject() ;
             }
 
         }) ;
@@ -283,12 +305,26 @@
 
     start(){
 
-        return doMethod.call(this , 'start') ;
+        let me = this,
+        {
+            socketTimeoutTimer
+        } = me ;
+
+        socketTimeoutTimer.start() ;
+
+        return doMethod.call(me , 'start') ;
     }
 
     end(){
 
-        return doMethod.call(this , 'end') ;
+        let me = this,
+        {
+            socketTimeoutTimer
+        } = me ;
+
+        socketTimeoutTimer.end(false) ;
+
+        return doMethod.call(me , 'end') ;
     }
 
     send(message){
@@ -324,20 +360,13 @@
 
     let me = this,
         {
-            isTryStartMode,
-            socketTimeoutTimer
+            isTryStartMode
         } = me;
 
     if(isTryStartMode){
 
         return ;
     }
-
-    socketTimeoutTimer.suspendEvents() ;
-
-    socketTimeoutTimer[name]() ;
-
-    socketTimeoutTimer.resumeEvents() ;
 
     await me[`do${capitalize(name)}`]() ;
  }

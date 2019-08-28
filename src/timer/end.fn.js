@@ -2,6 +2,8 @@
 /**
  * 
  * 结束计时
+ * 
+ * @param {boolean} isFireEvent = true 是否触发事件
  *
  */
 
@@ -17,5 +19,8 @@ if(intervalId){
 
     delete me.intervalId ;
 
-    me.fireEvent('timeend') ;
+    if(isFireEvent){
+
+        me.fireEvent('timeend') ;
+    }
 }

@@ -46,6 +46,19 @@
     }
  }
 
+ async function disconnect(){
+
+    let names = Object.keys(connections);
+
+    for(let name of names){
+
+        if(connectionNames.includes(name)){
+
+           await connections[name].end() ;
+        }
+    }
+ }
+
  function isMounted(){
 
     return !!this[connectionsVarName] ;
@@ -171,6 +184,8 @@
         }
 
         delete scope[connectionsVarName] ;
+
+        disconnect() ;
     }
 
  } ;

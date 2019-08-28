@@ -6,6 +6,8 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import getWS from socket.io.ws
+ * 
  * @require socket.io-client
  * 
  * @class
@@ -50,10 +52,24 @@
         let me = this,
         {
             socket,
+            isSocketClosing,
             isSocketConnecting,
         } = me ;
 
-        return new Promise((resolve , reject) =>{
+        return new Promise(resolve =>{
+
+            if(isSocketClosing){
+
+                add(getWS(socket) , {
+                    close(){
+
+                        me.start().then(resolve) ;
+                    },
+                    once:true
+                }) ;
+
+                return ;
+            }
 
             if(socket.disconnected || isSocketConnecting){
 
@@ -78,9 +94,6 @@
 
                 resolve() ;
             
-            }else{
-
-                reject() ;
             }
 
         }) ;
@@ -91,24 +104,36 @@
         let me = this,
             {
                 socket,
+                isSocketConnecting,
                 isSocketClosing
             } = me;
 
-        return new Promise((resolve , reject) =>{
+        return new Promise(resolve =>{
+
+            if(isSocketConnecting){
+
+                add(socket , {
+                    connect(){
+
+                        me.end().then(resolve) ;
+                    },
+                    once:true
+                }) ;
+
+                return ;
+            }
 
             if(socket.connected || isSocketClosing){
 
-                add(socket , {
-                    disconnect(){
+                add(getWS(socket) , {
+                    close(){
 
                         delete me.isSocketClosing ;
-
-                        console.log('关闭 socket.io') ;
 
                         resolve() ;
                     },
                     once:true
-                }) ;
+                })
             }
 
             if(socket.connected){
@@ -123,9 +148,6 @@
 
                 resolve() ;
             
-            }else{
-
-                reject() ;
             }
 
         }) ;
