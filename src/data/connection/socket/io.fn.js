@@ -58,33 +58,54 @@
             io
         } = me ;
 
-        if(io.disconnected){
+        return new Promise(resolve =>{
 
-            socket.open() ;
+            if(io.disconnected){
 
-            return true ;
-        }
+                add(io , 'connect' , () => resolve(true) , {
+                    once:true
+                }) ;
 
-        return false ;
+                io.open() ;
+    
+            }else{
+
+                resolve(false) ;
+            }
+
+        }) ;
+
+        
     }
 
     end(){
 
         let me = this,
             {
-                io
+                io,
+                socket
             } = me;
 
-        if(socket.connected){
+        return new Promise(resolve => {
 
-            me.deactivate() ;
+            if(io.connected){
 
-            io.close() ;
+                add(socket , 'close' , () => resolve(true) , {
+                    once:true
+                }) ;
+
+                me.deactivate() ;
+    
+                io.close() ;
+            
+            }else{
+
+                resolve(false) ;
+            }
+
+        }) ;
+
         
-            return true ;
-        }
-
-        return false ;
     }
 
     get messageEventName(){
@@ -107,12 +128,12 @@
 
         let me = this,
         {
-            socket
+            io
         } = me ;
 
-        if(socket.connected){
+        if(io.connected){
 
-            socket.emit(me[event] , ...params) ;
+            io.emit(me[event] , ...params) ;
         }
         
     }

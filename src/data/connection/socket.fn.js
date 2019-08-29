@@ -8,6 +8,8 @@
  * 
  * @import observable from mixin.observable
  * 
+ * @import add from event.listener.add
+ * 
  * @class
  * 
  */
@@ -22,7 +24,9 @@
 
     for(let socket of sockets){
 
-        if(!(socket.isConnected || socket.isDisconnectd))){
+        if(socket.socket)
+
+        if(!(socket.isConnected || socket.isDisconnectd)){
 
             isReady = false ;
 
@@ -34,6 +38,8 @@
 
         eventEmitter.emit('ready') ;
     }
+
+    return isReady ;
 
  }
 
@@ -56,7 +62,16 @@
 
     static ready(fn){
 
-        eventEmitter.once('ready' , fn) ;
+        if(ensureSocketsReady()){
+
+            fn() ;
+        
+        }else{
+
+            eventEmitter.removeAllListeners('ready') ;
+
+            eventEmitter.once('ready' , fn) ;
+        }
     }
 
     constructor({
@@ -129,10 +144,10 @@
         socket
     } = this ;
 
-    if(!socket && state === 3){
+    if(!socket){
 
-        return true ;
+        return state === 3 ;
     }
 
-    return socket && socket.readyState === state ;
+    return socket.readyState === state ;
  }

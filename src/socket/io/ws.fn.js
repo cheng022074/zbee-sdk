@@ -9,4 +9,11 @@
  * 
  */
 
- return socket.io.engine.transport.ws ;
+ let {
+    engine
+ } = socket.io ;
+
+ if(engine){
+
+    return engine.transport.ws ;
+ }

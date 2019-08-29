@@ -1,4 +1,3 @@
-
 /**
  * 
  * 实现部署
@@ -6,6 +5,8 @@
  * @import generate from id.generate
  * 
  * @import isObject from is.object.simple
+ * 
+ * @import Socket from data.connection.socket value
  * 
  * @param {array} connectionNames 连接名称集合
  * 
@@ -24,39 +25,57 @@
  } = Object,
  instanceId;
 
- async function connect(){
+ function connect(){
 
-    let names = Object.keys(connections);
+    return new Promise(resolve =>{
 
-    for(let name of names){
+        Socket.ready(async () =>{
 
-        if(!connectionNames.includes(name)){
+            let names = Object.keys(connections);
 
-            await connections[name].end() ;
-            
-        }
-    }
+            for(let name of names){
 
-    for(let name of names){
+                if(!connectionNames.includes(name)){
 
-        if(connectionNames.includes(name)){
+                    await connections[name].end() ;
+                    
+                }
+            }
 
-           await connections[name].start() ;
-        }
-    }
+            for(let name of names){
+
+                if(connectionNames.includes(name)){
+
+                    await connections[name].start() ;
+                }
+            }
+
+            resolve() ;
+
+        }) ;
+
+    }) ;
  }
 
- async function disconnect(){
+ function disconnect(){
 
-    let names = Object.keys(connections);
+    return new Promise(resolve =>{
 
-    for(let name of names){
+        Socket.ready(async () =>{
 
-        if(connectionNames.includes(name)){
+            let names = Object.keys(connections);
 
-           await connections[name].end() ;
-        }
-    }
+            for(let name of names){
+
+                if(connectionNames.includes(name)){
+
+                    await connections[name].end() ;
+                }
+            }
+
+            resolve() ;
+        }) ;
+    }) ;
  }
 
  function isMounted(){
@@ -79,7 +98,7 @@
 
     let names = keys(subscriberMap);
 
-    instanceId = scope.connectionId || generate('connection-') ;
+    instanceId = instanceId || scope.connectionId || generate('connection-') ;
 
     for(let name of names){
 

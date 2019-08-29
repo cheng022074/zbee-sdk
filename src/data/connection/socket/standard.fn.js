@@ -78,7 +78,7 @@
 
         me.socketTimeoutTimer.end() ;
 
-        me.endTryStartMode() ;
+        me.endTryStart() ;
 
         me.activate() ;
     }
@@ -100,7 +100,7 @@
 
         if(socketReconnection && !$doClose){
 
-            me.beginTryStartMode() ;
+            me.beginTryStart() ;
         }
     }
 
@@ -109,15 +109,15 @@
         this.acceptMessage(data) ;
     }
 
-    beginTryStartMode(){
+    beginTryStart(){
 
         let me = this ;
 
-        if(!me.isTryStartMode){
+        if(!me.$isTryStart){
 
             me.$tryStartCount = 0 ;
 
-            me.$isTryStartMode = true ;
+            me.$isTryStart = true ;
 
             me.end() ;
         
@@ -125,11 +125,6 @@
 
             me.tryStart() ;
         }
-    }
-
-    get isTryStartMode(){
-
-        return this.$isTryStartMode === true ;
     }
 
     tryStart(){
@@ -149,20 +144,18 @@
         
         }else{
 
-            me.endTryStartMode() ;
+            me.endTryStart() ;
         }
     }
 
-    endTryStartMode(){
+    endTryStart(){
 
         let me = this ;
 
-        if(me.isTryStartMode){
+        delete me.$tryStartCount ;
 
-            delete me.$tryStartCount ;
-
-            delete me.$isTryStartMode ;
-        }
+        delete me.$isTryStart ;
+        
     }
 
     doStart(){
@@ -174,20 +167,27 @@
             isDisconnectd
         } = me;
 
-        if(isDisconnectd){
+        return new Promise(resolve =>{
 
-            add(me.socket = new WebSocket(socketURL) , {
-                open:'onSocketOpen',
-                close:'onSocketClose',
-                message:'onSocketMessage',
-                scope:me
-            }) ;
+            if(isDisconnectd){
 
-            return true ;
-        
-        }
+                add(me.socket = new WebSocket(socketURL) , {
+                    open:'onSocketOpen',
+                    close:'onSocketClose',
+                    message:'onSocketMessage',
+                    scope:me
+                }) ;
+    
+                add(me.socket , 'open' , () => resolve(true) , {
+                    once:true
+                }) ;
+    
+            }else{
+    
+                resolve(false) ;
+            }
 
-        return false ;
+        }) ;
     }
 
     doEnd(){
@@ -198,19 +198,26 @@
                 isConnected
             } = me;
 
-        if(isConnected){
+        return new Promise(resolve =>{
 
-            me.deactivate() ;
+            if(isConnected){
 
-            me.$doClose = true ;
+                add(socket , 'close' , () => resolve(true) , {
+                    once:true
+                }) ;
 
-            socket.close() ;
+                me.deactivate() ;
+    
+                me.$doClose = true ;
+    
+                socket.close() ;
+            
+            }else{
 
-            return true ;
-
-        }
-
-        return false ;
+                resolve(false) ;
+            }
+    
+        }) ;
     }
 
     start(){
@@ -242,28 +249,22 @@
         let me = this,
         {
             socket,
-            isSocketConnected
+            isConnected
         } = me ;
 
-        if(isSocketConnected){
+        if(isConnected){
 
             socket.send(message) ;
         }
     }
  }
 
- function doMethod(name){
+ async function doMethod(name){
 
-    let me = this,
-        {
-            isTryStartMode
-        } = me;
+    let me = this;
 
-    if(isTryStartMode){
+    me.endTryStart() ;
 
-        return ;
-    }
-
-    me[`do${capitalize(name)}`]() ;
+    await me[`do${capitalize(name)}`]() ;
  }
 
