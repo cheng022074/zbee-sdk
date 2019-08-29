@@ -71,6 +71,7 @@
         me.rules = createRules(rules) ;
 
         me.subscribeParamList = [] ;
+
     }
 
     processMessage(...args){

@@ -5,6 +5,8 @@
  * 
  * @import is.defined
  * 
+ * @import clone from json.clone
+ * 
  * @param {mixed} data 数据
  * 
  * 
@@ -16,7 +18,8 @@ let me = this,
     bindFn,
     params,
     connection,
-    name
+    name,
+    cache
 } = me;
 
 if(closed){
@@ -27,6 +30,11 @@ if(closed){
 if(!isDefined(data)){
 
     return;
+}
+
+if(cache){
+
+    me.cacheData = clone(data) ;   
 }
 
 me.fireEvent('data' , data , params) ;
