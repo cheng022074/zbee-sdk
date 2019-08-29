@@ -26,6 +26,10 @@
  * 
  * @import getName from .subscribe.name
  * 
+ * @import Observable from mixin.observable
+ * 
+ * @import add from event.listener.add
+ * 
  * @require regex-parser
  * 
  * @class
@@ -55,12 +59,18 @@
     return result ;
  }
 
- class main{
+ class main extends mixins({
+     mixins:[
+        Observable
+     ]
+ }){
 
     constructor({
         subscriber = Subscriber,
         rules = []
     }){
+
+        super() ;
 
         let me = this ;
 
@@ -72,6 +82,10 @@
 
         me.subscribeParamList = [] ;
 
+        add(me , {
+            ...me.subscriberListeners,
+            scope:me
+        }) ;
     }
 
     processMessage(...args){

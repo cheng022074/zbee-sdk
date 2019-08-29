@@ -15,9 +15,7 @@
  * @param {object} config 订阅器配置
  * 
  * @param {function} [config.processData] 处理数据方法
- * 
- * @param {object} [config.innerListeners = {}] 来自于内部事件监听
- * 
+ *  
  * @param {object} [config.listeners = {}] 来自古地外部事件监听
  * 
  * @param {mixed} [config.params] 默认打开的订阅参数
@@ -35,6 +33,7 @@
  * @param {mixed} [config.scope] 订阅函数作用域
  * 
  */
+
 
 let me = this ;
 
@@ -55,8 +54,6 @@ me.extraParams = extraParams ;
 me.defaultParams = defaultParams ;
 
 me.bindFn = get(fn , scope) || emptyFn;
-
-add(me , innerListeners) ;
 
 add(me , {
     ...listeners,

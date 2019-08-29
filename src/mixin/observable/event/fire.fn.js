@@ -30,6 +30,8 @@
         emitter
     } = me ;
 
+    console.log(emitter , event) ;
+
     emitter.emit(event , target ,  ...args) ;
 
     if(bubbleTarget){

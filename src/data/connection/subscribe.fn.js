@@ -34,19 +34,9 @@ function main(name , {
 
     options = assign({} , convertNameToSubscriberOptions.call(me , name) , options) ;
 
-    let {
-        subscriberListeners
-    } = me;
-
     name = getName(name , instanceId) ;
 
-    let subscriber = me.createSubscriber(name , {
-        ...options,
-        innerListeners:{
-            ...subscriberListeners,
-            scope:me
-        }
-    }) ;
+    let subscriber = me.createSubscriber(name , options) ;
 
     subscribers.set(name , subscriber) ;
 

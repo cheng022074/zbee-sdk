@@ -43,19 +43,14 @@
 
  }
 
- class main extends mixins({
-    extend:Connection,
-    mixins:[
-       observable
-    ]
-}){
+ class main extends Connection{
 
     static register(socket){
 
-        add(socket , {
+        /*add(socket.socket , {
             open:ensureSocketsReady,
             close:ensureSocketsReady
-        }) ;
+        }) ;*/
 
         sockets.push(socket) ;
     }
@@ -88,9 +83,13 @@
             options = {}
         } = socket ;
 
+        console.log('前' , me.eventEmitter) ;
+
         me.initialize(url , options) ;
 
         main.register(me) ;
+
+        console.log('后' , me.eventEmitter) ;
     }
 
     initialize(url , options){
