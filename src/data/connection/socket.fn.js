@@ -12,12 +12,52 @@
  * 
  */
 
+ const sockets = [],
+       eventEmitter = new (require('events'))();
+
+
+ function ensureSocketsReady(){
+
+    let isReady = true ;
+
+    for(let socket of sockets){
+
+        if(!(socket.isConnected || socket.isDisconnectd))){
+
+            isReady = false ;
+
+            break ;
+        }
+    }
+
+    if(isReady){
+
+        eventEmitter.emit('ready') ;
+    }
+
+ }
+
  class main extends mixins({
     extend:Connection,
     mixins:[
        observable
     ]
 }){
+
+    static register(socket){
+
+        add(socket , {
+            open:ensureSocketsReady,
+            close:ensureSocketsReady
+        }) ;
+
+        sockets.push(socket) ;
+    }
+
+    static ready(fn){
+
+        eventEmitter.once('ready' , fn) ;
+    }
 
     constructor({
         socket,
@@ -34,11 +74,33 @@
         } = socket ;
 
         me.initialize(url , options) ;
+
+        main.register(me) ;
     }
 
     initialize(url , options){
 
 
+    }
+
+    get isConnected(){
+
+        return isState.call(this , 1) ;
+    }
+
+    get isConnecting(){
+
+        return isState.call(this , 0) ;
+    }
+
+    get isDisconnecting(){
+
+        return isState.call(this , 2) ;
+    }
+
+    get isDisconnectd(){
+
+        return isState.call(this , 3) ;
     }
 
     validateMessage({
@@ -59,4 +121,18 @@
 
         return true ;
     }
+ }
+
+ function isState(state){
+
+    let {
+        socket
+    } = this ;
+
+    if(!socket && state === 3){
+
+        return true ;
+    }
+
+    return socket && socket.readyState === state ;
  }

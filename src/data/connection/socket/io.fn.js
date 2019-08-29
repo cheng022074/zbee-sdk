@@ -20,21 +20,25 @@
 
     initialize(url , options){
 
-        let me = this,
-            socket = me.socket = IO(url , {
-                forceNew: true,
-                transports: [
-                    'websocket'
-                ],
-                ...options
-            }) ;
+        let me = this ;
 
-        add(socket , {
+        add(me.io = IO(url , {
+            forceNew: true,
+            transports: [
+                'websocket'
+            ],
+            ...options
+        }) , {
             connect:'onSocketConnect',
             reconnect:'onSocketConnect',
             [me.messageEventName]:'onSocketMessage',
             scope:me
         }) ;
+    }
+
+    get socket(){
+
+        return getWS(this.io) ;
     }
 
     onSocketMessage(...args){
@@ -51,106 +55,36 @@
 
         let me = this,
         {
-            socket,
-            isSocketClosing,
-            isSocketConnecting,
+            io
         } = me ;
 
-        return new Promise(resolve =>{
+        if(io.disconnected){
 
-            if(isSocketClosing){
+            socket.open() ;
 
-                add(getWS(socket) , {
-                    close(){
+            return true ;
+        }
 
-                        me.start().then(resolve) ;
-                    },
-                    once:true
-                }) ;
-
-                return ;
-            }
-
-            if(socket.disconnected || isSocketConnecting){
-
-                add(socket , {
-                    connect(){
-
-                        delete me.isSocketConnecting ;
-
-                        resolve() ;
-                    },
-                    once:true
-                }) ;
-            }
-
-            if(socket.disconnected){
-
-                me.isSocketConnecting = true ;
-
-                socket.open() ;
-            
-            }else if(socket.connected){
-
-                resolve() ;
-            
-            }
-
-        }) ;
+        return false ;
     }
 
     end(){
 
         let me = this,
             {
-                socket,
-                isSocketConnecting,
-                isSocketClosing
+                io
             } = me;
 
-        return new Promise(resolve =>{
+        if(socket.connected){
 
-            if(isSocketConnecting){
+            me.deactivate() ;
 
-                add(socket , {
-                    connect(){
+            io.close() ;
+        
+            return true ;
+        }
 
-                        me.end().then(resolve) ;
-                    },
-                    once:true
-                }) ;
-
-                return ;
-            }
-
-            if(socket.connected || isSocketClosing){
-
-                add(getWS(socket) , {
-                    close(){
-
-                        delete me.isSocketClosing ;
-
-                        resolve() ;
-                    },
-                    once:true
-                })
-            }
-
-            if(socket.connected){
-
-                me.deactivate() ;
-
-                me.isSocketClosing = true ;
-
-                socket.close() ;
-            
-            }else if(socket.disconnected){
-
-                resolve() ;
-            
-            }
-
-        }) ;
+        return false ;
     }
 
     get messageEventName(){
