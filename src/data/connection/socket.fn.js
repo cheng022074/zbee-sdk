@@ -14,60 +14,7 @@
  * 
  */
 
- const sockets = [],
-       eventEmitter = new (require('events'))();
-
-
- function ensureSocketsReady(){
-
-    let isReady = true ;
-
-    for(let socket of sockets){
-
-        if(socket.socket)
-
-        if(!(socket.isConnected || socket.isDisconnectd)){
-
-            isReady = false ;
-
-            break ;
-        }
-    }
-
-    if(isReady){
-
-        eventEmitter.emit('ready') ;
-    }
-
-    return isReady ;
-
- }
-
  class main extends Connection{
-
-    static register(socket){
-
-        /*add(socket.socket , {
-            open:ensureSocketsReady,
-            close:ensureSocketsReady
-        }) ;*/
-
-        sockets.push(socket) ;
-    }
-
-    static ready(fn){
-
-        if(ensureSocketsReady()){
-
-            fn() ;
-        
-        }else{
-
-            eventEmitter.removeAllListeners('ready') ;
-
-            eventEmitter.once('ready' , fn) ;
-        }
-    }
 
     constructor({
         socket,
@@ -83,13 +30,7 @@
             options = {}
         } = socket ;
 
-        console.log('前' , me.eventEmitter) ;
-
         me.initialize(url , options) ;
-
-        main.register(me) ;
-
-        console.log('后' , me.eventEmitter) ;
     }
 
     initialize(url , options){

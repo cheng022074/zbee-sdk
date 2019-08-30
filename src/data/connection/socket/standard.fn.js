@@ -81,6 +81,8 @@
         me.endTryStart() ;
 
         me.activate() ;
+
+        me.fireEvent('socketopen') ;
     }
 
     onSocketClose(){
@@ -101,6 +103,10 @@
         if(socketReconnection && !$doClose){
 
             me.beginTryStart() ;
+        
+        }else{
+
+            me.fireEvent('socketclose') ;
         }
     }
 
@@ -164,7 +170,10 @@
         {
             WebSocket,
             socketURL,
-            isDisconnectd
+            isDisconnectd,
+            isConnecting,
+            isDisconnecting,
+            isConnected
         } = me;
 
         return new Promise(resolve =>{
@@ -178,13 +187,25 @@
                     scope:me
                 }) ;
     
-                add(me.socket , 'open' , () => resolve(true) , {
+                add(me , 'socketopen' , () => resolve() , {
                     once:true
                 }) ;
     
-            }else{
+            }else if(isConnected){
     
-                resolve(false) ;
+                resolve() ;
+            
+            }else if(isConnecting){
+
+                add(me , 'socketopen' , () => resolve() , {
+                    once:true
+                }) ;
+            
+            }else if(isDisconnecting){
+
+                add(me , 'socketclose' , () => me.start().then(resolve) , {
+                    once:true
+                }) ;
             }
 
         }) ;
@@ -195,6 +216,9 @@
         let me = this,
             {
                 socket,
+                isDisconnectd,
+                isConnecting,
+                isDisconnecting,
                 isConnected
             } = me;
 
@@ -202,7 +226,7 @@
 
             if(isConnected){
 
-                add(socket , 'close' , () => resolve(true) , {
+                add(me , 'socketclose' , () => resolve() , {
                     once:true
                 }) ;
 
@@ -212,9 +236,21 @@
     
                 socket.close() ;
             
-            }else{
+            }else if(isDisconnectd){
 
-                resolve(false) ;
+                resolve() ;
+
+            }else if(isConnecting){
+
+                add(me , 'socketopen' , () => me.end().then(resolve) , {
+                    once:true
+                }) ;
+            
+            }else if(isDisconnecting){
+
+                add(me , 'socketclose' , () => resolve() , {
+                    once:true
+                }) ;
             }
     
         }) ;

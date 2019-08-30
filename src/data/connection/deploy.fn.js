@@ -6,8 +6,6 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import Socket from data.connection.socket value
- * 
  * @param {array} connectionNames 连接名称集合
  * 
  * @param {string} connectionsVarName 连接实例集合名称
@@ -25,57 +23,39 @@
  } = Object,
  instanceId;
 
- function connect(){
+ async function connect(){
 
-    return new Promise(resolve =>{
+    let names = Object.keys(connections);
 
-        Socket.ready(async () =>{
+    for(let name of names){
 
-            let names = Object.keys(connections);
+        if(!connectionNames.includes(name)){
 
-            for(let name of names){
+            await connections[name].end() ;
+            
+        }
+    }
 
-                if(!connectionNames.includes(name)){
+    for(let name of names){
 
-                    await connections[name].end() ;
-                    
-                }
-            }
+        if(connectionNames.includes(name)){
 
-            for(let name of names){
-
-                if(connectionNames.includes(name)){
-
-                    await connections[name].start() ;
-                }
-            }
-
-            resolve() ;
-
-        }) ;
-
-    }) ;
+            await connections[name].start() ;
+        }
+    }
  }
 
- function disconnect(){
+ async function disconnect(){
 
-    return new Promise(resolve =>{
+    let names = Object.keys(connections);
 
-        Socket.ready(async () =>{
+    for(let name of names){
 
-            let names = Object.keys(connections);
+        if(connectionNames.includes(name)){
 
-            for(let name of names){
-
-                if(connectionNames.includes(name)){
-
-                    await connections[name].end() ;
-                }
-            }
-
-            resolve() ;
-        }) ;
-    }) ;
+            await connections[name].end() ;
+        }
+    }
  }
 
  function isMounted(){
