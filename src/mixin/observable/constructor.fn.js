@@ -15,9 +15,10 @@ function main({
     listeners
 }){
 
-    let me = this ;
+    let me = this,
+        emitter = me.emitter = new EventEmitter() ;
 
-    me.emitter = new EventEmitter() ;
+    emitter.setMaxListeners(Number.MAX_VALUE) ;
 
     me.$suspendEvents = false ;
 
