@@ -67,10 +67,11 @@
 
     constructor({
         subscriber = Subscriber,
-        rules = []
+        rules = [],
+        ...options
     }){
 
-        super() ;
+        super(options) ;
 
         let me = this ;
 
