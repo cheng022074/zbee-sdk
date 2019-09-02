@@ -16,6 +16,8 @@
             "is.object.empty",
             "is.number",
             "is.array",
+            "is.directory",
+            "directory.copy",
             "date.get",
             "date.list",
             "date.parse",

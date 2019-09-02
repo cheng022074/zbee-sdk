@@ -9,7 +9,7 @@
  * 
  * @import is.directory
  * 
- * @import getFilePaths from ..readAllFilePaths
+ * @import getFilePaths from .paths.file.all
  * 
  * @import ext from path.ext
  * 
