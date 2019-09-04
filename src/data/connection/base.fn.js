@@ -224,6 +224,11 @@
         return subscribers ;
     }
 
+    hasSubscriber(name , instanceId){
+
+        return !!this.getSubscriber(name , instanceId) ;
+    }
+
     getSubscriber(name , instanceId){
 
         return this.subscribers.get(getName(name , instanceId)) ;
