@@ -25,6 +25,7 @@
         lineOffsetX = 0, 
         rootConfig,
         synchronize,
+        listeners = {},
         ...options
     }){
 
@@ -47,7 +48,15 @@
 
         super({
             ...options,
-            model:currentModel
+            model:currentModel,
+            listeners:[{
+                load:{
+                    fn:'onLoad'
+                },
+                expand:'onExpand',
+                collapse:'onCollapse',
+                scope:me
+            } , listeners]
         }) ;
 
         let me = this ;
@@ -68,16 +77,6 @@
         me.padding = padding ;
 
         me.lineOffsetX = lineOffsetX ;
-
-        me.addListeners({
-            load:{
-                fn:'onLoad',
-                getOldFireEventData:'last'
-            },
-            expand:'onExpand',
-            collapse:'onCollapse',
-            scope:me
-        }) ;
     }
 
     onExpand(){

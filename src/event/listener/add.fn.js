@@ -91,4 +91,11 @@
             }) ;
         }        
     }
+
+ }else if(isArray(name)){
+
+    for(let config of name){
+
+        add(target , config) ;
+    }
  }
