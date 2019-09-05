@@ -50,12 +50,9 @@
             ...options,
             model:currentModel,
             listeners:[{
-                load:{
-                    fn:'onLoad'
-                },
+                load:'onLoad',
                 expand:'onExpand',
-                collapse:'onCollapse',
-                scope:me
+                collapse:'onCollapse'
             } , listeners]
         }) ;
 

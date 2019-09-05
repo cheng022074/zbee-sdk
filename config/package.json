@@ -47,5 +47,21 @@
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
         ]
+    },
+    "mind-sdk":{
+        "type":"webpack",
+        "compile":false,
+        "classes":[
+            "data.store.create",
+            "data.store.tree",
+            "data.proxy.memory",
+            "canvas.draw.line.bezierCurve",
+            "browser.event.listener.global.*",
+            "browser.event.key",
+            "event.listener.add"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
+        ]
     }
 }

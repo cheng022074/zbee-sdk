@@ -24,8 +24,6 @@ if(isString(baseClass)){
 
 if(isFunction(baseClass)){
 
-    console.log(baseClass.toString()) ;
-
     baseClass = baseClass(...args) ;
 
     if(!isClass(baseClass)){

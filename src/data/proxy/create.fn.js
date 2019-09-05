@@ -5,8 +5,6 @@
  * 
  * @import create from class.create.option
  * 
- * @import ..memory
- * 
  * @param {mixed} [proxy = 'memory'] 数据代理
  * 
  * @return {mixed} 数据代理 

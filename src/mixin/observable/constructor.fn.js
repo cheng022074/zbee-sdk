@@ -5,6 +5,10 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.array
+ * 
  * @param {object} options 配置
  * 
  */
@@ -22,9 +26,10 @@ function main({
 
     me.$suspendEvents = false ;
 
-    if(listeners){
+    if(isObject(listeners) || isArray(listeners)){
 
         add(me , listeners) ;
+
     }
 }
 

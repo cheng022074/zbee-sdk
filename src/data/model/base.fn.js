@@ -31,19 +31,18 @@
             ZBEE_CURRENT_CLASS
         } = me;
 
-        me.fireEventDataCacheCount = 1 ;
-
-        (me.proxy = createProxy(assign2({
+        me.proxy = createProxy(assign2({
             type:'memory',
             model:ZBEE_CURRENT_CLASS,
             reader:{
                 type:'json',
                 isModelData:false
+            },
+            listeners:{
+                read:'onProxyRead',
+                scope:me
             }
-        } , proxy))).addListeners({
-            read:'onProxyRead',
-            scope:me
-        }) ;
+        } , proxy)) ;
 
         me.data = innerData || {} ;
 

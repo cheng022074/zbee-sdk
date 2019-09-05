@@ -50,18 +50,17 @@ if(model){
 
 let me = this ;
 
-me.fireEventDataCacheCount = 1 ;
-
-(me.proxy = createProxy(assign({
+me.proxy = createProxy(assign({
     type:'memory',
     model,
     reader:{
         type:'json'
+    },
+    listeners:{
+        read:'onProxyRead',
+        scope:me
     }
-} , proxy))).addListeners({
-    read:'onProxyRead',
-    scope:me
-}) ;
+} , proxy)) ;
 
 let recordset = me.recordset = createRecordset(me) ;
 

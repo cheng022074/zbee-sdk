@@ -16,6 +16,8 @@
  * 
  * @import native from .native.add
  * 
+ * @import is.array
+ * 
  * @param {mixed} target 事件主体
  * 
  * @param {string|object} name 事件名称
@@ -29,6 +31,8 @@
  * @param {mixed} [options.scope] 事件作用域
  * 
  */
+
+ scope = scope || target ;
 
  if(isString(name)){
 
@@ -58,7 +62,7 @@
 
         native(target , name , listener) ;
 
-        listeners.set(target , name , fn , listener) ;
+        listeners.set(target , name , fn , scope , listener) ;
     }
 
  }else if(isObject(name)){
