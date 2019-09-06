@@ -21,7 +21,6 @@
     initialize(url , options){
 
         let me = this ;
-
         add(me.io = IO(url , {
             forceNew: true,
             transports: [
@@ -45,7 +44,7 @@
 
         this.acceptMessage(...args) ;
     }
-    
+
     onSocketConnect(){
 
         let me = this ;

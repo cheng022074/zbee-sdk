@@ -6,6 +6,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import is.array
+ * 
  * @param {array} connectionNames 连接名称集合
  * 
  * @param {string} connectionsVarName 连接实例集合名称
@@ -24,6 +26,11 @@
  instanceId;
 
  async function connect(){
+
+    if(connectionNames === false){
+
+        return ;
+    }
 
     let names = Object.keys(connections);
 
