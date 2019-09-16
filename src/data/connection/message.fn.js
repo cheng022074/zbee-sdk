@@ -30,7 +30,7 @@
             subscriber:createAddress
         }) ;
 
-        this.notSendMessages = [] ;
+        this.resendMessages = [] ;
     }
 
     processMessage(message){
@@ -80,25 +80,18 @@
         this.send(message) ;
     }
 
-    onCreateSubscriber(subscriber){
+    onCreateSubscriber(){
 
-        let me = this , {
-            notSendMessages
+        let me = this,{
+            resendMessages
         } = me,
-        messages = from(notSendMessages);
+        messages = from(resendMessages);
 
-        notSendMessages.length = 0 ;
+        resendMessages.length = 0 ;
 
         for(let message of messages){
 
-            if(me.validateMessage(subscriber , message)){
-
-                subscriber.accept(me.processData(subscriber , message)) ;
-            
-            }else{
-
-                notSendMessages.push(message) ;
-            }
+            me.send(message) ;
         }
     }
 
@@ -122,9 +115,11 @@
                 } ;
             }
 
+            address.getResendMessages = address.getResendMessages || default_get_resend_messages ;
+
             let {
                 to,
-                validateServiced = default_validate_serviced
+                getResendMessages
             } = address ;
 
             if(isString(to)){
@@ -143,22 +138,20 @@
 
                 address.to = to ;
 
-                let me = this,
-                    isServiced = validateServiced(me.acceptMessage(address)),
-                    {
-                        notSendMessages
-                    } = me;
+                let {
+                        reSendMessages
+                    } = this;
 
-                if(!isServiced){
-
-                    notSendMessages.push(address) ;
-                }
+                reSendMessages.push(...from(getResendMessages(address , me.acceptMessage(address)))) ;
             }
         }
     }
  }
 
- function default_validate_serviced(subscribers){
+ function default_get_resend_messages(message , subscribers){
 
-    return subscribers.length !== 0 ;
+    if(subscribers.length !== 0){
+
+        return message ;
+    }
  }
