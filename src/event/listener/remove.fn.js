@@ -18,15 +18,23 @@
  * 
  * @param {mixed} fn 事件回调
  * 
+ * @param {object} [options = {}] 事件配置
+ * 
+ * @param {mixed} [options.scope] 事件作用域
+ * 
  */
+
+ scope = scope || target ;
 
  if(isString(name)){
 
-    let listener = listeners.get(target , name , fn) ;
+    let listener = listeners.get(target , name , fn , scope) ;
 
     if(listener){
 
         native(target , name , listener) ;
+
+        listeners.delete(target , name , fn , scope) ;
     }
  
  }else if(isObject(name)){

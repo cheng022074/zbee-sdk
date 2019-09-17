@@ -23,13 +23,20 @@
    return [
       me
    ] ;
+ 
  }
-
 
 let leafNodes = [],
    {
       children
    } = me;
+
+if(children.length === 0){
+
+   return [
+      me
+   ] ;
+}
 
 for(let childNode of children){
 

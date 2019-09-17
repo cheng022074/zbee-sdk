@@ -29,7 +29,7 @@ Vue.directive('gesture' , {
 
       EventDom.install(el, name);
 
-      addEventListener(el , name , `gesture:${name}` , fn) ;
+      addEventListener(el , name , fn) ;
 
     },
   
@@ -39,11 +39,9 @@ Vue.directive('gesture' , {
         oldValue:oldFn
     }) {
 
-      let event = `gesture:${name}`;
+      removeEventListener(el , name , oldFn) ;
   
-      el.removeEventListener(event, oldFn);
-  
-      addEventListener(el , name , event , fn) ;
+      addEventListener(el , name , fn) ;
     },
   
     unbind(el, {
@@ -51,25 +49,16 @@ Vue.directive('gesture' , {
         value:fn
     }){
 
-        let event = `gesture:${name}` ;
+        removeEventListener(el , name , fn) ;
 
-        if(isObject(fn)){
-        
-            on(el , event , fn.fn);
-
-        }else if(isFunction(fn)){
-
-            on(el , event , fn) ;
-        }
-
-        un(el , `gesture:${name}`, fn);
-    
         EventDom.uninstall(el, name);
       
     }
 }) ;
 
-function addEventListener(el , name , event , fn){
+function addEventListener(el , name , fn){
+
+    let event = `gesture:${name}` ;
 
     if(isObject(fn)){
 
@@ -80,8 +69,22 @@ function addEventListener(el , name , event , fn){
         
         on(el , event , listenerFn , options);
 
-    }else if(isFunction(fn)){
+    }else{
 
         on(el , event , fn) ;
+    }
+}
+
+function removeEventListener(el , name , fn){
+
+    let event = `gesture:${name}` ;
+
+    if(isObject(fn)){
+        
+        un(el , event , fn.fn);
+
+    }else if(isFunction(fn)){
+
+        un(el , event , fn) ;
     }
 }

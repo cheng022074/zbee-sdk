@@ -36,7 +36,7 @@
 
  if(isString(name)){
 
-    if(listeners.has(target , name , fn)){
+    if(listeners.has(target , name , fn , scope)){
 
         return ;
     }

@@ -29,8 +29,8 @@
  }
 
  function lines(nodes , {
-    left,
-    top
+    x,
+    y
 } , marginRight , lineOffsetX){
 
    let lines = [],
@@ -65,14 +65,14 @@
                y:endY
            } = childNode.getAnchorXY('l'),
            points = [
-            startX + left,
-            startY + top,
-            startX + left,
-            endY + top,
-            startX + left,
-            endY + top,
-            endX + left,
-            endY + top
+            startX + x,
+            startY + y,
+            startX + x,
+            endY + y,
+            startX + x,
+            endY + y,
+            endX + x,
+            endY + y
            ];
 
            lines.push({

@@ -19,15 +19,9 @@ let {
     leafNodes
 } = rootNode;
 
-if(x > 0){
-
-    x = 0 ;
-}
-
 for(let node of firstDescendantNodes){
 
     let {
-        x:nodeX,
         y:nodeY
     } = node.getAnchorXY('tr') ;
 
@@ -35,11 +29,6 @@ for(let node of firstDescendantNodes){
 
         y = nodeY ;
     }
-}
-
-if(y > 0){
-
-    y = 0 ;
 }
 
 let bottom = y ;
@@ -56,13 +45,15 @@ for(let node of lastDescendantNodes){
     }
 }
 
-let right = rootNode.getAnchorXY('r').x ;
+let {
+    x:right
+} = rootNode.getAnchorXY('r') ;
 
 for(let leafNode of leafNodes){
 
     let {
         x
-    } = leafNode.getAnchorXY('c') ;
+    } = leafNode.getAnchorXY('r') ;
 
     if(right < x){
 
@@ -70,11 +61,17 @@ for(let leafNode of leafNodes){
     }
 }
 
+const {
+    min,
+    abs
+} = Math ;
+
+x = min(x , 0),
+y = min(y , 0) ;
+
 return {
-    left:Math.abs(x) + padding,
-    top:Math.abs(y) + padding,
-    bottom:padding,
-    right:padding,
-    width:right - Math.max(x , 0),
-    height:bottom - Math.max(y , 0)
+    x:abs(x),
+    y:abs(y),
+    width:right,
+    height:bottom
 } ;
