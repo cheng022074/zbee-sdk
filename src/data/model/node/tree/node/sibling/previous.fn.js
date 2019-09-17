@@ -3,7 +3,7 @@
  * 
  * 上同级节点
  * 
- * @import getSiblingNode from ....sibling
+ * @import getSiblingNode from ....sibling scoped
  * 
  * @return {data.model.node.Tree} 节点
  * 
