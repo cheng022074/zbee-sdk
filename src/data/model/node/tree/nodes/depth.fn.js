@@ -23,7 +23,7 @@ depth -- ;
 
 for(let childNode of children){
 
-    nodes.push(childNode , ...childNode.getDepthNodes(depth)) ;
+    nodes.push(...childNode.getDepthNodes(depth)) ;
 }
 
 return nodes ;

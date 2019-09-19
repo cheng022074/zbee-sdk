@@ -4,6 +4,7 @@
         "classes":[
             "array.*",
             "data.connection.*",
+            "data.proxy.memory",
             "data.store.create",
             "data.store.tree",
             "data.reader.json",
@@ -26,8 +27,7 @@
             "id.generate",
             "math.region",
             "calendar.month.view",
-            "browser.event.listener.global.add",
-            "browser.event.listener.global.remove",
+            "browser.event.listener.global.*",
             "browser.event.key",
             "browser.event.gesture.tap.start",
             "browser.event.gesture.drag.start",

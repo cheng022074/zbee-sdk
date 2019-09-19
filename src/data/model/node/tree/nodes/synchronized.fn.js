@@ -12,4 +12,9 @@ let {
     children
 } = this ;
 
-return !isLeaf && children.length !== 0 ;
+if(isLeaf){
+
+    return true ;
+}
+
+return children.length !== 0 ;

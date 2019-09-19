@@ -2,8 +2,8 @@
 /**
  * 
  * 删除子节点
- * 
- * @import remove from array.remove
+
+ * @import resetProperty from object.property.reset
  * 
  * @param {data.model.node.Tree} node 树型节点
  * 
@@ -12,14 +12,14 @@
 let me = this,
 {
     store,
-    cache
+    children
 } = me ;
 
-if(cache.get('children').includes(node)){
+if(children.includes(node)){
 
     store.remove(node) ;
 
-    remove(children , node) ;
+    resetProperty(me , 'children') ;
 
     if(children.length === 0){
 

@@ -10,23 +10,31 @@ let me = this,
     {
         selected,
         store,
-        hidden
+        hidden,
+        parentNode
     } = me;
 
-if(!selected && !hidden){
+if(!selected){
 
-    let {
-        selectedNode
-    } = store ;
+    if(!hidden){
 
-    if(selectedNode){
+        let {
+            selectedNode
+        } = store ;
+    
+        if(selectedNode){
+    
+            selectedNode.deselect() ;
+        }
+    
+        me.set('selected' , true) ;
+    
+        store.selectedNode = me ;
+    
+        me.fireEvent('select') ;
+    
+    }else if(parentNode){
 
-        selectedNode.deselect() ;
+        parentNode.select() ;
     }
-
-    me.set('selected' , true) ;
-
-    store.selectedNode = me ;
-
-    me.fireEvent('select') ;
 }
