@@ -20,21 +20,19 @@
 
         let {
             region,
-            marginRight,
             lineOffsetX
         } = me ;
 
-        me.fireEvent('layout' , records , lines(records , region , marginRight , lineOffsetX)) ;
+        me.fireEvent('layout' , records , lines(records , region , lineOffsetX)) ;
     }
  }
 
  function lines(nodes , {
     x,
     y
-} , marginRight , lineOffsetX){
+} , lineOffsetX){
 
-   let lines = [],
-       halfMargin = marginRight / 2 ;
+   let lines = [];
 
    for(let node of nodes){
 
