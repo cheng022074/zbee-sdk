@@ -3,6 +3,8 @@
  * 
  * 隐藏节点
  * 
+ * @param {boolean} [isPassive = false] 是否被动隐藏
+ * 
  */
 
 let me = this,
@@ -41,8 +43,19 @@ me.set({
     y:0
 }) ;
 
+me.resetProperties([
+    'leafNode'
+]) ;
+
+if(!isPassive){
+
+    me.resetAncestorProperties([
+        'leafNode'
+    ]) ;
+}
+
 
 for(let childNode of children){
 
-    childNode.hide() ;
+    childNode.hide(true) ;
 }

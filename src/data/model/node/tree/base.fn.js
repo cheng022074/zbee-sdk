@@ -15,6 +15,10 @@
  * 
  * @import defineProperties from object.properties.define
  * 
+ * @import from from array.from
+ * 
+ * @import resetProperties from object.properties.reset
+ * 
  * @param {mixed} data 数据
  * 
  * @class
@@ -29,8 +33,83 @@
 
         defineProperties(this , [
             'parentNode',
-            'children'
+            'children',
+            'leafNodes',
+            'depth'
         ]) ;
+    }
+
+    resetProperties(names){
+
+        resetProperties(this , from(names)) ;
+    }
+
+    resetAncestorProperties(names){
+
+        let node = this ;
+
+        while(node = node.parentNode){
+
+            node.resetProperties(names) ;
+
+        }
+    }
+
+    getDepth(){
+
+        let node = this,
+            parentNode,
+            depth = 0;
+
+        while(parentNode = node.parentNode){
+
+            node = parentNode ;
+
+            depth ++ ;
+        }
+
+        return depth ;
+    }
+
+    getLeafNodes(){
+
+        let me = this,
+        {
+            expanded,
+            hidden
+        } = me;
+
+        if(hidden){
+
+            return [] ;
+        }
+
+        if(!expanded){
+
+            return [
+                me
+            ] ;
+        
+        }
+
+        let leafNodes = [],
+        {
+            children
+        } = me;
+
+        if(children.length === 0){
+
+            return [
+                me
+            ] ;
+        }
+
+        for(let childNode of children){
+
+            leafNodes.push(...childNode.leafNodes) ;
+        }
+
+        return leafNodes ;
     }
 
     /**

@@ -44,9 +44,6 @@
         "region":{
             "get":".tree.region"
         },
-        "depth":{
-            "get":".tree.depth"
-        },
         "childCountScopeHeight":{
             "get":".tree.height.scope.child"
         },
@@ -64,9 +61,6 @@
         },
         "lastLeafNode":{
             "get":".tree.node.leaf.last"
-        },
-        "leafNodes":{
-            "get":".tree.nodes.leaf"
         }
     },
     "methods":[

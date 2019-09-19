@@ -2,11 +2,6 @@
     "class":true,
     "extend":".tree.base",
     "constructor":false,
-    "properties":{
-        "region":{
-            "get":".tree.region"
-        }
-    },
     "methods":[
         "insert",
         "remove"

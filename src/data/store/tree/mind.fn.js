@@ -3,7 +3,7 @@
  * 
  * 获取脑图实例
  * 
- * @param Store from data.store.tree value
+ * @import Store from data.store.tree value
  * 
  * @param {object} options 脑图配置
  * 
@@ -19,7 +19,8 @@
 
         super(options) ;
 
-        let {
+        let me = this,
+        {
             bottom:marginBottom = 0,
             right:marginRight = 0
         } = margin ;
@@ -43,7 +44,7 @@
             lastDescendantNodes,
             leafNodes
         } = rootNode;
-        
+
         for(let node of firstDescendantNodes){
         
             let {
@@ -126,12 +127,20 @@
 
     columns(){
 
+        let {
+            leafNodes
+        } = this;
 
+        return Math.max(...leafNodes.map(node => node.depth)) ;
     }
 
     rows(){
 
+        let {
+            leafNodes
+        } = this;
 
+        return leafNodes.length ;
     }
  }
 

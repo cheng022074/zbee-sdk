@@ -33,7 +33,10 @@
         }
     }
 
-    resetProperty(me , 'children') ;
+    me.resetProperties([
+        'children',
+        'leafNode'
+    ]) ;
 
     me.fireEvent('insertafter' , nodes , existNode) ;
   }
