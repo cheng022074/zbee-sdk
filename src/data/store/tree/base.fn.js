@@ -20,9 +20,6 @@
 
     constructor({
         fields,
-        margin = {},
-        padding = 0,
-        lineOffsetX = 0, 
         rootConfig,
         synchronize,
         listeners = {},
@@ -61,19 +58,6 @@
         me.rootConfig = rootConfig || {} ;
 
         me.synchronize = synchronize || (() => []) ;
-
-        let {
-            bottom:marginBottom = 0,
-            right:marginRight = 0
-        } = margin ;
-
-        me.marginBottom = marginBottom ;
-
-        me.marginRight = marginRight ;
-
-        me.padding = padding ;
-
-        me.lineOffsetX = lineOffsetX ;
     }
 
     onExpand(){

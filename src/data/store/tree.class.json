@@ -1,7 +1,5 @@
 {
-    "params":[
-        "options"
-    ],
+    "class":true,
     "extend":".tree.base",
     "constructor":false,
     "properties":{
@@ -11,7 +9,6 @@
     },
     "methods":[
         "insert",
-        "remove",
-        "layout"
+        "remove"
     ]
 }
