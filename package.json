@@ -50,7 +50,7 @@
   },
   "private": false,
   "devDependencies": {
-    "zbee": "^0.0.77"
+    "zbee": "0.0.78"
   },
   "scripts": {
     "package": "zb package",
