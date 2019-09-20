@@ -125,20 +125,20 @@
         }
     }
 
-    columns(){
+    get columns(){
 
         let {
             leafNodes
-        } = this;
+        } = this.rootNode;
 
-        return Math.max(...leafNodes.map(node => node.depth)) ;
+        return Math.max(...leafNodes.map(node => node.depth)) + 1 ;
     }
 
-    rows(){
+    get rows(){
 
         let {
             leafNodes
-        } = this;
+        } = this.rootNode;
 
         return leafNodes.length ;
     }

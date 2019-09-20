@@ -21,13 +21,13 @@ let me = this,
 me.set('hidden' , false) ;
 
 me.resetProperties([
-    'leafNode'
+    'leafNodes'
 ]) ;
 
 if(!isPassive){
 
     me.resetAncestorProperties([
-        'leafNode'
+        'leafNodes'
     ]) ;
 }
 

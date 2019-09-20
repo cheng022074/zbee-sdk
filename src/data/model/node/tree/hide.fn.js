@@ -44,13 +44,13 @@ me.set({
 }) ;
 
 me.resetProperties([
-    'leafNode'
+    'leafNodes'
 ]) ;
 
 if(!isPassive){
 
     me.resetAncestorProperties([
-        'leafNode'
+        'leafNodes'
     ]) ;
 }
 

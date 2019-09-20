@@ -50,6 +50,8 @@
 
         while(node = node.parentNode){
 
+            console.log('删除' , node.id , names) ;
+
             node.resetProperties(names) ;
 
         }
