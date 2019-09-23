@@ -5,6 +5,8 @@
  * 
  * @import remove from array.remove.all
  * 
+ * @import add from event.listener.add
+ * 
  * @once
  * 
  */
@@ -16,25 +18,43 @@
 
     constructor(){
 
-        this.isProcessorStarted = false ;
+        let me = this ;
+
+        me.isProcessorStarted = false ;
+
+        me.processModeMap = new Map() ;
+
+        me.processQueue = [] ;
     }
 
-    static start(socket){
+    static connect(socket){
+
+        let me = this,
+        {
+            processModeMap,
+            processQueue
+        } = me ;
 
         processQueue.push(socket) ;
 
-        processMode.set(socket , 'start') ;
+        processModeMap.set(socket , 'connect') ;
 
-        this.startProcessor() ;
+        me.startProcessor() ;
     }
 
-    static end(socket){
+    static disconnect(socket){
+
+        let me = this,
+        {
+            processModeMap,
+            processQueue
+        } = me ;
 
         processQueue.push(socket) ;
 
-        processMode.set(socket , 'end') ;
+        processModeMap.set(socket , 'disconnect') ;
 
-        this.startProcessor() ;
+        me.startProcessor() ;
     }
 
     startProcessor(){
@@ -55,15 +75,23 @@
 
     doProcess(){
 
-        let [
+        let me = this,
+        {
+            processModeMap,
+            processQueue
+        } = me,[
             socket
-        ] = processQueue ;
+        ] = processQueue;
 
         if(socket){
 
-            let mode = processMode.get(socket) ;
+            let mode = processModeMap.get(socket),
+            {
+                isDisconnected,
+                isConnected
+            } = socket;
 
-            if(socket.isStableState){
+            if(isDisconnected || isConnected){
 
                 remove(processQueue) ;
 
@@ -71,28 +99,32 @@
 
                 switch(mode){
 
-                    case 'start':
+                    case 'connect':
     
-                        if(!socket.isConnected){
+                        if(isDisconnected){
     
-                            // 启动
+                            socket.connect() ;
                         
                         }else{
 
-                            // 直接进入下一个处理单元
+                            me.doProcess() ;
+
+                            return ;
                         }
 
                         break ;
     
-                    case 'end':
+                    case 'disconnect':
     
-                        if(socket.isConnected){
+                        if(isConnected){
     
-                            // 停止
+                            socket.disconnect() ;
                                                 
                         }else{
 
-                            // 直接进入下一个处理单元
+                            me.doProcess() ;
+
+                            return ;
                         }
                 }
             
@@ -100,12 +132,22 @@
 
             if(socket.isDisconnecting){
 
-                //监听关闭事件
+                add(socket , {
+                    disconnect:'doProcess',
+                    scope:me
+                }) ;
             
             }else if(socket.isConnecting){
 
-                //监听连接事件
+                add(socket , {
+                    connect:'doProcess',
+                    scope:me
+                }) ;
             }
+        
+        }else{
+
+            me.isProcessorStarted = false ;
         }
     }
  }
