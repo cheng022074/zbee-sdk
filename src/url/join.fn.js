@@ -2,7 +2,7 @@
  * 
  * 将多个链接进行拼接并返回
  * 
- * @import isAbsolute from url.isAbsolute
+ * @import isAbsolute from is.url.absolute
  * 
  * @param {string[]} ...urls 多个 URL 链接
  * 
@@ -12,7 +12,7 @@
  * 
  */
 
-const urlSuffixRe = /\/$/ ;
+const urlSuffixRe = /^\/|\/$/ ;
 
 function main(...urls){
 

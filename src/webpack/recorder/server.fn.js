@@ -15,13 +15,18 @@
  * 
  * @param {function} processFn 处理函数
  * 
+ * @param {function} templateFn 模板函数 
+ * 
  * @param {string} path 数据合并的路径
  * 
  * @return {object} 服务配置
  * 
  */
 
- let doc = read(path) || {};
+ const jsonPath = `${path}.json`,
+       mdPath = `${path}.md` ;
+
+ let doc = read(jsonPath) || {};
 
  return {
     [`/recorder/${name}`]:{
@@ -34,7 +39,9 @@
     
                 doc = merge(doc , result) ;
     
-                write(path , doc) ;
+                write(jsonPath , doc) ;
+
+                write(mdPath , templateFn(doc)) ;
             }
         }
     }

@@ -42,7 +42,8 @@
             "directory.readAllFilePaths",
             "file.read.json",
             "file.write",
-            "file.read.text"
+            "file.read.text",
+            "webpack.*"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
