@@ -26,27 +26,33 @@
     ...options
  } = component;
 
+ async function onMounted(){
+
+    let me = this ;
+
+    await mounted.call(me) ;
+       
+    originMounted.call(me) ;
+ }
+
+ async function onUnmounted(){
+
+    let me = this ;
+
+    await originUnmounted.call(me) ;
+
+    unmounted.call(me) ;
+ }
+
  return {
     mounted(){
 
-        let me = this ;
-
-        mounted.call(me) ;
-
-        me.$connections = connections ;
-       
-        originMounted.call(me) ;
+        onMounted.call(this) ;
     },
 
     destroyed(){
 
-        let me = this ;
-
-        originUnmounted.call(me) ;
-
-        delete me.$connections ;
-
-        unmounted.call(me) ;
+        onUnmounted.call(this) ;
     },
 
     ...options

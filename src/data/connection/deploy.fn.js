@@ -22,8 +22,7 @@
 
  let {
     keys
- } = Object,
- instanceId;
+ } = Object;
 
  async function connect(){
 
@@ -71,9 +70,8 @@
 
     await connect() ;
 
-    let names = keys(subscriberMap);
-
-    instanceId = instanceId || scope.connectionId || generate('connection-') ;
+    let names = keys(subscriberMap),
+        instanceId = scope.connectionId = scope.connectionId || generate('connection-') ;
 
     for(let name of names){
 
@@ -111,7 +109,7 @@
 
         delete subscribers[name] ;
 
-        connections[connectionName].unsubscribe(name , instanceId) ;
+        connections[connectionName].unsubscribe(name , this.connectionId) ;
     },
 
     subscribe(name , options){
@@ -142,7 +140,7 @@
 
         connections[connectionName].subscribe(name , {
             ...subscriber,
-            instanceId,
+            instanceId:scope.connectionId,
             scope
         }) ;
 
@@ -172,7 +170,7 @@
                 subscribers
             } = subscriberMap[name] ;
 
-            connection.unsubscribes(keys(subscribers) , instanceId) ;
+            connection.unsubscribes(keys(subscribers) , scope.connectionId) ;
 
             delete scope[varName] ;
         }
