@@ -5,7 +5,9 @@
  * 
  * @import read from file.read.json
  * 
- * @import write from file.write.json
+ * @import writeJSON from file.write.json
+ * 
+ * @import write from file.write
  * 
  * @import merge from json.merge
  * 
@@ -39,7 +41,7 @@
     
                 doc = merge(doc , result) ;
     
-                write(jsonPath , doc) ;
+                writeJSON(jsonPath , doc) ;
 
                 write(mdPath , templateFn(doc)) ;
             }

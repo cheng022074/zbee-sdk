@@ -13,12 +13,6 @@
  * 
  * @require express
  * 
- * @import is.function
- * 
- * @import isObject from is.object.simple
- * 
- * @import is.defined
- * 
  * @import start from .server.self
  * 
  * @param {object} config 配置

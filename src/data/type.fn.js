@@ -14,6 +14,8 @@
  * 
  * @import is.date
  * 
+ * @import is.string
+ * 
  * @param {mixed} data 数据
  * 
  * @return {string} 数据类型描述 
@@ -28,6 +30,11 @@
  if(isArray(data)){
 
     return 'array' ;
+ }
+
+ if(isString(data)){
+
+    return 'string' ;
  }
 
  if(isNumber(data)){

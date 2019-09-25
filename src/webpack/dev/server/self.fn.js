@@ -5,6 +5,12 @@
  * 
  * @require body-parser
  * 
+ * @import is.function
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.defined
+ * 
  * @param {mixed} app express 对象
  * 
  * @param {object} config 配置
@@ -47,7 +53,7 @@ for(let url of urls){
 
     if(isDefined(method)){
 
-        app[method]((req , res) => {
+        app[method](url , (req , res) => {
 
             if(crossDomain){
 
@@ -60,4 +66,4 @@ for(let url of urls){
     }
 }
 
-app.listen(port , () => console.log('请访问' , `http://localhost:${port}`)) ;
+app.listen(port) ;

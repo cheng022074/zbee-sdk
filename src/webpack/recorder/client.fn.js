@@ -9,9 +9,9 @@
  * 
  * @param {string} name 记录名称
  * 
- * @param {number} [port] 设置请求端口号
- * 
  * @param {mixed} data 记录数据
+ * 
+ * @param {number} [port] 设置请求端口号
  * 
  */
 
@@ -23,7 +23,7 @@
 
     if(port){
 
-      url = join(`${location.host}:${port}` , url) ;
+      url = join(`http://${location.hostname}:${port}` , url) ;
     }
 
     axios.post(url , data) ;

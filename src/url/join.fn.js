@@ -4,7 +4,7 @@
  * 
  * @import isAbsolute from is.url.absolute
  * 
- * @param {string[]} ...urls 多个 URL 链接
+ * @param {string[]} [...urls] 多个 URL 链接
  * 
  * @return {string} 拼接后的拼接
  * 
