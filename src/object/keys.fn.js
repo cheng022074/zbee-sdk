@@ -4,6 +4,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import join from object.key.join
+ * 
  * @param {object} data 对象
  * 
  * @return {array} 键值数组
@@ -14,26 +16,25 @@
 
 function main(data){
 
-    return get_keys(data) ;
+   return get_keys(data) ;
 }
 
-function get_keys(data , rootKey = ''){
+function get_keys(data , rootKey){
 
-    let keys = Object.keys(data),
-        result = [];
+    let result = [] ;
 
-    for(let key of keys){
+    if(isObject(data)){
 
-        let value = data[key] ;
+        let keys = Object.keys(data) ;
 
-        if(isObject(value)){
+        for(let key of keys){
 
-            result.push(...get_keys(value , `${rootKey}${key}.`)) ;
-        
-        }else{
-
-            result.push(`${rootKey}${key}`) ;
+            result.push(...get_keys(data[key] , join(rootKey , key))) ;
         }
+    
+    }else if(rootKey){
+
+        result.push(rootKey) ;
     }
 
     return result ;

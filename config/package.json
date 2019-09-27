@@ -43,7 +43,8 @@
             "file.read.json",
             "file.write",
             "file.read.text",
-            "webpack.*"
+            "webpack.*",
+            "object.flat"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"

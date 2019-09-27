@@ -1,13 +1,9 @@
 
 /**
  * 
- * 如果目标存在来源的字段，则不覆盖
+ * 懒惰深度合并
  * 
- * @import getKeys from object.keys
- * 
- * @import set from object.value.set
- * 
- * @import get from object.value.get
+ * @import isObject from is.object.simple
  * 
  * @param {object} dest 目标数据
  * 
@@ -21,17 +17,24 @@
 
 function assign(dest , source){
 
-    let keys = getKeys(source),
-        destKeys = getKeys(dest);
+    if(isObject(dest) && isObject(source)){
 
-    for(let key of keys){
+        let names = Object.keys(source) ;
 
-        if(!destKeys.includes(key)){
+        for(let name of names){
 
-            set(dest , key , get(source , key)) ;
+            if(!dest.hasOwnProperty(name)){
+
+                dest[name] = source[name] ;
+            
+            }else{
+
+                assign(dest[name] , source[name]) ;
+            }
         }
     }
 
+    return source ;
 }
 
 function main(dest , ...sources){

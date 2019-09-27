@@ -1,13 +1,9 @@
 
 /**
  * 
- * 深度合并
+ * 积极深度合并
  * 
- * @import getKeys from object.keys
- * 
- * @import set from object.value.set
- * 
- * @import get from object.value.get
+ * @import isObject from is.object.simple
  * 
  * @param {object} dest 目标数据
  * 
@@ -21,13 +17,17 @@
 
 function assign(dest , source){
 
-    let keys = getKeys(source) ;
+    if(isObject(dest) && isObject(source)){
 
-    for(let key of keys){
+        let names = Object.keys(source) ;
 
-        set(dest , key , get(source , key)) ;
+        for(let name of names){
+
+            dest[name] = assign(dest[name] , source[name]) ;
+        }
     }
 
+    return source ;
 }
 
 function main(dest , ...sources){

@@ -5,6 +5,8 @@
  * 
  * @import join from url.join
  * 
+ * @import append from url.append
+ * 
  * @require axios
  * 
  * @param {string} name 记录名称
@@ -23,7 +25,9 @@
 
     if(port){
 
-      url = join(`http://${location.hostname}:${port}` , url) ;
+      url = append(join(`http://${location.hostname}:${port}` , url) , {
+        _dc:Date.now()
+      }) ;
     }
 
     axios.post(url , data) ;

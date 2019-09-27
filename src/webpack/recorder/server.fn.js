@@ -7,9 +7,7 @@
  * 
  * @import writeJSON from file.write.json
  * 
- * @import write from file.write
- * 
- * @import merge from json.merge
+ * @import merge from object.assign.if
  * 
  * @import isObject from is.object.simple
  * 
@@ -17,18 +15,24 @@
  * 
  * @param {function} processFn 处理函数
  * 
- * @param {function} templateFn 模板函数 
- * 
  * @param {string} path 数据合并的路径
  * 
  * @return {object} 服务配置
  * 
  */
 
- const jsonPath = `${path}.json`,
-       mdPath = `${path}.md` ;
+ path = `${path}.json` ;
 
- let doc = read(jsonPath) || {};
+ let doc = {};
+
+ read(path , data => {
+
+    if(data){
+
+        doc = data ;
+    }
+
+ }) ;
 
  return {
     [`/recorder/${name}`]:{
@@ -39,11 +43,11 @@
     
             if(isObject(result)){
     
-                doc = merge(doc , result) ;
+                merge(doc , {
+                    [name]:result
+                }) ;
     
-                writeJSON(jsonPath , doc) ;
-
-                write(mdPath , templateFn(doc)) ;
+                writeJSON(path , doc) ;
             }
         }
     }

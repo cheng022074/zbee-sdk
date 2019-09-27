@@ -3,9 +3,9 @@
  * 
  * 将对象扁平化处理
  * 
- * @import getKeys from ..keys
+ * @import join from object.key.join
  * 
- * @import get from .value.get
+ * @import isObject from is.object.simple
  * 
  * @param {object} data 对象
  * 
@@ -13,14 +13,30 @@
  * 
  */
 
- let keys = getKeys(data),
-     values = {};
+function main(data){
 
- for(let key of keys){
-
-    values[key] = get(data , key) ;
+    return flat(data) ;
  }
-
- return values ;
+ 
+ function flat(data , rootKey){
+ 
+     let result = {} ;
+ 
+     if(isObject(data)){
+ 
+         let keys = Object.keys(data) ;
+ 
+         for(let key of keys){
+ 
+             Object.assign(result , flat(data[key] , join(rootKey , key))) ;
+         }
+     
+     }else if(rootKey){
+ 
+         result[rootKey] = data ;
+     }
+ 
+     return result ;
+}
 
  

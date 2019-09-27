@@ -3,6 +3,8 @@
  * 
  * 将多个键值连接起来
  * 
+ * @import is.string
+ * 
  * @param {array} [...keys] 一组键值
  * 
  * @return {string} 连接后的键值 
@@ -17,14 +19,17 @@ function main(...keys){
 
     for(let key of keys){
 
-        key = key.replace(suffixRe , '') ;
+        if(isString(key)){
 
-        if(key){
+            key = key.replace(suffixRe , '') ;
 
-            result.push(key) ;
+            if(key){
+
+                result.push(key) ;
+            }
         }
     }
 
-    return result.join('.') ;
+    return result.join('.').trim() ;
 }
 
