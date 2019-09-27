@@ -27,7 +27,9 @@
 
  const bodyParser = require('body-parser') ;
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+    limit:'50mb'
+}));
 
 
 let urls = Object.keys(services) ;
