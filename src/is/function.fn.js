@@ -10,4 +10,4 @@
  * 
  */
 
-return isType(data , 'function') && data.ZBEE_CLASS !== true;
+return isType(data , 'function') && !data.ZBEE_CLASS;
