@@ -41,7 +41,7 @@ me.name = name ;
 
 me.connection = connection ;
 
-me.bubbleTarget = connection ;
+me.$bubbleTarget = connection ;
 
 me.cache = cache ;
 
