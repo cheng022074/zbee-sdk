@@ -24,7 +24,23 @@
 
         super() ;
 
-        this.$fields = fields ;
+        let me = this ;
+
+        me.$fields = fields ;
+
+        me.suspendEvents() ;
+
+        for(let item of data){
+
+            me.push(me.create(item)) ;
+        }
+
+        me.resumeEvents() ;
+    }
+
+    get $bubbleTarget(){
+
+        return this.$parent ;
     }
 
     create(data){
@@ -33,5 +49,25 @@
             item = createItem(data , me.$fields) ;
 
         item.$parent = me ;
+    }
+
+    push(){
+
+
+    }
+
+    pop(){
+
+
+    }
+
+    unshift(){
+
+        
+    }
+
+    shift(){
+
+
     }
  }

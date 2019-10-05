@@ -12,6 +12,8 @@
  * 
  * @import Observable from mixin.observable
  * 
+ * @import getName from class.name
+ * 
  * @param {object} data 初始化数据
  * 
  * @param {object} fields 字段定义
@@ -34,7 +36,26 @@
 
         let me = this ;
 
+        {
+            let names = keys(data) ;
+
+            for(let name of names){
+
+                let value = data[name] ;
+
+                switch(getName(value)){
+
+                    case 'data.item':
+                    case 'data.group':
+
+                        value.$parent = me ;
+                }
+            }
+        }
+
         me.$data = data ;
+
+
 
         let names = Object.keys(fields) ;
 
@@ -92,7 +113,10 @@
         }
     }
 
-    
+    get $bubbleTarget(){
+
+        return this.$parent ;
+    }
  }
 
  function generateGetFn(getFn , name){
