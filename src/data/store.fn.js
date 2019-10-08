@@ -5,11 +5,12 @@
  * 
  * @import createReader from data.reader.create
  * 
- * @import createData from data.outer.create.array
+ * @class
  * 
  * @param {object} model 数据模型定义
  * 
  * @return {data.Model} 数据存储器对象 
+ * 
  * 
  */
 
@@ -17,22 +18,43 @@ class main{
 
     constructor(model){
 
-        let me = this ;
+       let me = this ;
 
-        me.reader = createReader(model) ;
+       me.reader = createReader(model) ;
 
-        me.data = [] ;
+       me.data = [] ;
 
-        me.outerData = createData(this , model) ;
     }
-
+  
     load(data){
 
         let me = this,
         {
-            reader
+            reader,
+            data:$data
         } = me ;
 
-        me.data = reader.read(data) ;
+        $data.length = 0 ;
+
+        $data.push(...reader.read(data)) ;
+
+        console.log('全量载入数据' , JSON.stringify($data , null , 2)) ;
+
+        // 触发 load 事件
+    }
+
+    append(data){
+
+        let me = this,
+        {
+            reader,
+            $data
+        } = me ;
+
+        $data.push(...reader.read(data)) ;
+
+        console.log('增量载入数据' , $data) ;
+
+        // 触发 add 事件
     }
  }

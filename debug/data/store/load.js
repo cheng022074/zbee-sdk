@@ -3,29 +3,35 @@
  * 
  * 载入数据
  * 
- * @import createStore from data.store.create
+ * @import Store from data.store value
  * 
  */
 
- let store = createStore({
-   fields:[
-      'name'
-   ],
-   idProperty:'name'
- }) ;
+ let store = new Store({
+    properties:{
+       name:'name',
+       sex:{
+          get(){
 
- store.on('load' , store => {
+            return '男' ;
 
-   console.log('载入数据')
+          }
+       },
+       info:{
+          multi:false,
+          model:{
+             properties:{
+                remark:{
+                   get(){
 
-   let records = store.toArray() ;
-
-   for(let record of records){
-
-      console.log('' , record.get('name')) ;
-   }
-
- }) ;
+                     return `${this.__ZBEE_DATA_PARENT__.name}` ;
+                   }
+                }
+             }
+          }
+       }
+    }
+ }) ; 
 
  store.load([{
     name:'陈治文'
