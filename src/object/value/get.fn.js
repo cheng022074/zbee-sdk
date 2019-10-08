@@ -3,13 +3,9 @@
  * 
  * 获得一个对象的键值
  * 
- * @import is.array
+ * @import split from string.split
  * 
- * @import is.object
- * 
- * @import is.defined
- * 
- * @import join from object.key.join
+ * @import isObject from is.object.simple
  * 
  * @param {object} data 对象数据
  * 
@@ -21,76 +17,29 @@
  * 
  */
 
-const firstKeyRe = /^([^\.]+)\./;
+if(key === '.'){
 
-function main(data , key , prefixKey = ''){
+    return data ;
+}
 
-    if(key === '.'){
+if(isObject(data)){
 
-        return data ;
-    }
+    let keys = split(key , /\./),
+        result;
 
-    if(isObject(data)){
+    for(let key of keys){
 
-        let firstKey,
-            lastKey = key.replace(firstKeyRe , function(){
+        result = data[key] ;
 
-                firstKey = arguments[1] ;
-                
-                return '' ;
+        if(isObject(result)){
 
-            }) ;
-
-        if(firstKey){
-
-            firstKey = join(prefixKey , firstKey) ;
-
-            let result ;
-
-            if(data.hasOwnProperty(firstKey)){
-
-                result = data[firstKey] ;
-
-                prefixKey = '' ;
-
-            }else{
-
-                result = data ;
-
-                prefixKey = firstKey ;
-            }
-
-            if(lastKey){
-
-                return main(result , lastKey , prefixKey) ;
-            }
-        
-            return result ;
+            data = result ;
         
         }else{
 
-            return data[join(prefixKey , lastKey)] ;
+            break ;
         }
-
-    }else if(isArray(data)){
-
-        let result = [] ;
-
-        for(let item of data){
-
-            let itemResult = main(item , key) ;
-
-            if(isArray(itemResult)){
-
-                result.push(...itemResult) ;
-            
-            }else if(!isDefined(itemResult)){
-
-                result.push(itemResult) ;
-
-            }
-        }
-
-        return result ;
     }
+
+    return result ;
 }
