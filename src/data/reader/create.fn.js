@@ -18,10 +18,6 @@
  * 
  * @param {object} model 数据模型定义
  * 
- * @param {string} [model.root = '.'] 数据读取根路径
- * 
- * @param {object} [model.properties = {}] 数据字段定义
- * 
  * @return {data.Reader} 数据模型对象 
  * 
  */
@@ -41,76 +37,86 @@
     return emptyFn ;
  }
 
- return {
-    read(data){
+ function defineParentProperty(target , value){
 
-        let items = from(get(data , root)),
-            records = [];
+    defineProperty(target , '__ZBEE_PARENT__' , {
+        value,
+        writable:true
+    }) ;
+ }
+
+ function main({
+     root,
+     properties = {}
+ }) {
+
+    return {
+        read(data){
     
-        defineProperty(records , '__ZBEE_PARENT__' , {
-            writable:true
-        }) ;
-    
-        for(let item of items){
-    
-            let record = {},
-                names = keys(properties);
-    
-            defineProperty(record , '__ZBEE_PARENT__' , {
-                value:records,
-                writable:true
-            }) ;
-    
-            for(let name of names){
-    
-                let property = properties[name] ;
-    
-                if(isString(property)){
-    
-                    record[name] = get(item , property) ;
-                
-                }else if(isObject(property)){
-    
-                    let {
-                        mapping,
-                        model,
-                        multi = true,
-                        set,
-                        get
-                    } = property ;
-    
-                    if(mapping){
-    
-                        record[name] = get(item , mapping) ;
+            let items = from(get(data , root)),
+                records = [];
+        
+            defineParentProperty(records) ;
+        
+            for(let item of items){
+        
+                let record = {},
+                    names = keys(properties);
+        
+                defineParentProperty(record , records) ;
+        
+                for(let name of names){
+        
+                    let property = properties[name] ;
+        
+                    if(isString(property)){
+        
+                        record[name] = get(item , property) ;
                     
-                    }else if(model){
-    
-                        let result = createReader(model).read(item) ;
+                    }else if(isObject(property)){
+        
+                        let {
+                            mapping,
+                            model,
+                            multi = true,
+                            set,
+                            get
+                        } = property ;
+        
+                        if(mapping){
+        
+                            record[name] = get(item , mapping) ;
                         
-                        if(multi === false && result.length){
-    
-                            result = result[0] ;
-    
+                        }else if(model){
+        
+                            let result = createReader(model).read(item) ;
+                            
+                            if(multi === false && result.length){
+        
+                                result = result[0] ;
+        
+                            }
+        
+                            result.__ZBEE_PARENT__ = record ;
+        
+                            record[name] = result;
+        
+                        }else if(set || get){
+        
+                            defineProperty(record , name , {
+                                enumerable:true,
+                                set:generatePropertyFn(set , record , name),
+                                get:generatePropertyFn(get , record , name)
+                            }) ;
                         }
-    
-                        result.__ZBEE_PARENT__ = record ;
-    
-                        record[name] = result;
-    
-                    }else if(set || get){
-    
-                        defineProperty(record , name , {
-                            enumerable:true,
-                            set:generatePropertyFn(set , record , name),
-                            get:generatePropertyFn(get , record , name)
-                        }) ;
                     }
                 }
+        
+                records.push(record) ;
             }
-    
-            records.push(record) ;
+        
+            return records ;
         }
-    
-        return records ;
-    }
- } ;
+     } ;
+     
+ }
