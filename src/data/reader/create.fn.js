@@ -14,6 +14,10 @@
  * 
  * @import is.function
  * 
+ * @import is.defined
+ * 
+ * @import generate from id.generate
+ * 
  * @import createReader from data.reader.create
  * 
  * @param {object} model 数据模型定义
@@ -37,23 +41,59 @@
     return emptyFn ;
  }
 
- function defineParentProperty(target , value){
+ function defineParentProperty(record , value){
 
-    defineProperty(target , '__ZBEE_PARENT__' , {
+    defineProperty(record , '__ZBEE_DATA_PARENT__' , {
         value,
         writable:true
     }) ;
  }
 
+ function defineIdProperty(record , id) {
+     
+    if(isFunction(id)){
+
+        id = id(record) ;
+
+    }else{
+
+        id = generate('data-') ;
+    }
+
+    if(!isString(id)){
+
+        id = generate('data-')
+    }
+
+    defineProperty(record , '__ZBEE_DATA_ID__' , {
+        value:id
+    }) ;
+ }
+
+ function getRootData(data , root) {
+     
+    if(isString(root)){
+
+        return from(get(data , root)) ;
+    
+    }else if(isFunction(root)){
+
+        return from(root(data)) ;
+    }
+
+    return data ;
+ }
+
  function main({
      root,
+     id,
      properties = {}
  }) {
 
     return {
         read(data){
     
-            let items = from(get(data , root)),
+            let items = getRootData(data , root),
                 records = [];
         
             defineParentProperty(records) ;
@@ -64,6 +104,8 @@
                     names = keys(properties);
         
                 defineParentProperty(record , records) ;
+
+                defineIdProperty(record , id) ;
         
                 for(let name of names){
         
@@ -97,7 +139,7 @@
         
                             }
         
-                            result.__ZBEE_PARENT__ = record ;
+                            result.__ZBEE_DATA_PARENT__ = record ;
         
                             record[name] = result;
         
