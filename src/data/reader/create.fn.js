@@ -42,25 +42,22 @@
  }
 
  function defineIdProperty(record , id) {
-     
+    
     if(isFunction(id)){
 
-        id = id(record) ;
+        defineProperty(record , '__ZBEE_DATA_ID__' , {
+            get:id.bind(record)
+        }) ;
 
     }else{
 
         id = generate('data-') ;
+
+        defineProperty(record , '__ZBEE_DATA_ID__' , {
+            value:generate('data-')
+        }) ;
     }
-
-    if(!isString(id)){
-
-        id = generate('data-')
-    }
-
-
-    defineProperty(record , '__ZBEE_DATA_ID__' , {
-        value:id
-    }) ;
+   
  }
 
  function getRootData(data , root) {
