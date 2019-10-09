@@ -8,6 +8,10 @@
  */
 
  let store = new Store({
+    id(){
+
+      return this.name ;
+    },
     properties:{
        name:'name',
        sex:{
@@ -24,7 +28,11 @@
                 remark:{
                    get(){
 
-                     return `${this.__ZBEE_DATA_PARENT__.name}` ;
+                     let {
+                        __ZBEE_DATA_PARENT__:data
+                     } = this ;
+
+                     return `${data.name}是一个${data.sex}人`
                    }
                 }
              }
@@ -39,6 +47,8 @@
    name:'苏大强'
 },{
    name:'宁小小'
+},{
+   name:'陈治文'
 }]) ;
 
 store.load([{

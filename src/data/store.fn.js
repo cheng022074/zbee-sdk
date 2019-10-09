@@ -22,6 +22,8 @@ class main{
 
        me.reader = createReader(model) ;
 
+       me.ids = {} ;
+
        me.data = [] ;
 
     }
@@ -36,7 +38,7 @@ class main{
 
         $data.length = 0 ;
 
-        $data.push(...reader.read(data)) ;
+        add.call(me , ...reader.read(data)) ;
 
         console.log('全量载入数据' , JSON.stringify($data , null , 2)) ;
 
@@ -47,14 +49,50 @@ class main{
 
         let me = this,
         {
-            reader,
-            $data
+            reader
         } = me ;
 
-        $data.push(...reader.read(data)) ;
+        add.call(me , ...reader.read(data)) ;
 
         console.log('增量载入数据' , $data) ;
 
         // 触发 add 事件
+    }
+
+    onReplaceRecord(record , oldRecord){
+
+        return record ;
+    }
+ }
+
+ function add(...records) {
+    
+    let me = this,
+    {
+        ids,
+        data
+    } = me ;
+
+    for(let record of records){
+
+        let {
+            __ZBEE_DATA_ID__:id
+        } = record ;
+
+        if(id){
+
+            if(ids.hasOwnProperty(id)){
+
+                let index = ids[id] ;
+
+                data[index] = me.onReplaceRecord(record , data[index]) ;
+            
+            }else{
+
+                data.push(record) ;
+
+                ids[id] = data.length - 1 ;
+            }
+        }
     }
  }
