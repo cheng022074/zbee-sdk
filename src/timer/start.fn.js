@@ -34,7 +34,9 @@ function onInterval(duration , startTime){
     
     }else{
 
-        end() ;
+        clearInterval(intervalId) ;
+
+        me.fireEvent('timeout') ;
     }
  }
 

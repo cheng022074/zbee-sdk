@@ -52,10 +52,20 @@
 
         return isState.call(this , 2) ;
     }
-
-    get isDisconnectd(){
+    
+    get isDisconnected(){
 
         return isState.call(this , 3) ;
+    }
+
+    connect(){
+
+
+    }
+
+    disconnect(){
+
+
     }
 
     validateMessage({

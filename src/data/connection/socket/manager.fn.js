@@ -1,9 +1,7 @@
 
 /**
  * 
- * socket 管理类
- * 
- * @import remove from array.remove.all
+ * 管理多个 WebSocket 推送器开关
  * 
  * @import add from event.listener.add
  * 
@@ -11,143 +9,103 @@
  * 
  */
 
- const processQueue = [],
-       processMode = new Map();
+ const processQueue = [];
+
+ let isProcessorStarted = false;
 
  class main{
 
-    constructor(){
+    connect(socket){
 
-        let me = this ;
-
-        me.isProcessorStarted = false ;
-
-        me.processModeMap = new Map() ;
-
-        me.processQueue = [] ;
+        todo(socket , 'connect') ;
     }
 
-    static connect(socket){
+    disconnect(socket){
 
-        let me = this,
-        {
-            processModeMap,
-            processQueue
-        } = me ;
-
-        processQueue.push(socket) ;
-
-        processModeMap.set(socket , 'connect') ;
-
-        me.startProcessor() ;
+       todo(socket , 'disconnect') ;
     }
+ }
 
-    static disconnect(socket){
+ function todo(socket , action) {
+    
+    processQueue.push({
+        socket,
+        action
+    }) ;
 
-        let me = this,
-        {
-            processModeMap,
-            processQueue
-        } = me ;
+    start() ;
+ }
 
-        processQueue.push(socket) ;
+ function start() {
 
-        processModeMap.set(socket , 'disconnect') ;
+    if(!isProcessorStarted){
 
-        me.startProcessor() ;
+        isProcessorStarted = true ;
+
+        doProcessing() ;
     }
+ }
 
-    startProcessor(){
+ function doProcessing(){
 
-        let me = this,
-        {
-            isProcessorStarted
-        } = me ;
+    let [
+        process
+    ] = processQueue;
 
-        if(!isProcessorStarted){
+    if(process){
 
-            me.isProcessorStarted = true ;
+        let {
+            socket,
+            action
+        } = process ;
 
-            me.doProcess() ;
-        }
+        let {
+            isDisconnected,
+            isConnected,
+            isDisconnecting,
+            isConnecting
+        } = socket;
 
-    }
+        if(isDisconnected || isConnected){
 
-    doProcess(){
+            processQueue.shift() ;
 
-        let me = this,
-        {
-            processModeMap,
-            processQueue
-        } = me,[
-            socket
-        ] = processQueue;
+            switch(action){
 
-        if(socket){
+                case 'connect':
 
-            let mode = processModeMap.get(socket),
-            {
-                isDisconnected,
-                isConnected
-            } = socket;
+                    if(isDisconnected){
 
-            if(isDisconnected || isConnected){
+                        add(socket , 'connect' , doProcessing) ;
 
-                remove(processQueue) ;
+                        socket.connect() ;
+                    
+                    }
 
-                processMode.delete(socket) ;
+                    break ;
 
-                switch(mode){
+                case 'disconnect':
 
-                    case 'connect':
-    
-                        if(isDisconnected){
-    
-                            socket.connect() ;
-                        
-                        }else{
+                    if(isConnected){
 
-                            me.doProcess() ;
+                        add(socket , 'disconnect' , doProcessing) ;
 
-                            return ;
-                        }
-
-                        break ;
-    
-                    case 'disconnect':
-    
-                        if(isConnected){
-    
-                            socket.disconnect() ;
-                                                
-                        }else{
-
-                            me.doProcess() ;
-
-                            return ;
-                        }
-                }
-            
-            }
-
-            if(socket.isDisconnecting){
-
-                add(socket , {
-                    disconnect:'doProcess',
-                    scope:me
-                }) ;
-            
-            }else if(socket.isConnecting){
-
-                add(socket , {
-                    connect:'doProcess',
-                    scope:me
-                }) ;
+                        socket.disconnect() ;
+                                            
+                    }
             }
         
-        }else{
+        }else if(isDisconnecting){
 
-            me.isProcessorStarted = false ;
+            add(socket , 'disconnect' , doProcessing) ;
+        
+        }else if(isConnecting){
+
+            add(socket , 'connect' , doProcessing) ;
         }
+    
+    }else{
+
+        isProcessorStarted = false ;
     }
  }
