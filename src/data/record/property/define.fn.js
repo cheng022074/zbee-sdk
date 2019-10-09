@@ -52,15 +52,15 @@ const {
                getFn = () =>{
         
                     let {
-                        __ZBEE_DATA_INNER__
+                        __ZBEE_DATA_INNER__:data
                     } = record ;
 
-                    if(__ZBEE_DATA_INNER__.hasOwnProperty(name)){
+                    if(data.hasOwnProperty(name)){
 
-                        return __ZBEE_DATA_INNER__[name] ;
+                        return data[name] ;
                     }
 
-                    return __ZBEE_DATA_INNER__[name] = get.call(record , name) ;
+                    return data[name] = get.call(record , name) ;
                 } ;
             
             }else{
