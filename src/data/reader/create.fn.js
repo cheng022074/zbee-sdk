@@ -33,16 +33,6 @@
     defineProperty
  } = Object ;
 
- function generatePropertyFn(fn , record , name) {
-     
-    if(isFunction(fn)){
-
-        return fn.bind(record , name) ;
-    }
-
-    return emptyFn ;
- }
-
  function defineParentProperty(record , value){
 
     defineProperty(record , '__ZBEE_DATA_PARENT__' , {
@@ -66,6 +56,7 @@
 
         id = generate('data-')
     }
+
 
     defineProperty(record , '__ZBEE_DATA_ID__' , {
         value:id
