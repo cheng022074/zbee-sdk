@@ -20,6 +20,8 @@
  * 
  * @import createReader from data.reader.create
  * 
+ * @import define from data.record.property.define
+ * 
  * @param {object} model 数据模型定义
  * 
  * @return {data.Reader} 数据模型对象 
@@ -81,7 +83,14 @@
         return from(root(data)) ;
     }
 
-    return data ;
+    return from(data) ;
+ }
+
+ function defineInnerProperty(record) {
+     
+    defineProperty(record , '__ZBEE_DATA_INNER__' , {
+        value:{}
+    }) ;
  }
 
  function main({
@@ -106,6 +115,8 @@
                 defineParentProperty(record , records) ;
 
                 defineIdProperty(record , id) ;
+
+                defineInnerProperty(record) ;
         
                 for(let name of names){
         
@@ -113,12 +124,15 @@
         
                     if(isString(property)){
         
-                        record[name] = get(item , property) ;
+                        define(record , name , {
+                            value:get(item , property)
+                        }) ;
                     
                     }else if(isObject(property)){
         
                         let {
                             mapping,
+                            mode,
                             model,
                             multi = true,
                             set,
@@ -128,6 +142,11 @@
                         if(mapping){
         
                             record[name] = get(item , mapping) ;
+
+                            define(record , name , {
+                                mode,
+                                value:get(item , mapping)
+                            }) ;
                         
                         }else if(model){
         
@@ -141,14 +160,16 @@
         
                             result.__ZBEE_DATA_PARENT__ = record ;
         
-                            record[name] = result;
+                            define(record , name , {
+                                mode:'readonly',
+                                value:result
+                            }) ;
         
                         }else if(set || get){
         
-                            defineProperty(record , name , {
-                                enumerable:true,
-                                set:generatePropertyFn(set , record , name),
-                                get:generatePropertyFn(get , record , name)
+                            define(record , name , {
+                                set,
+                                get
                             }) ;
                         }
                     }
