@@ -30,5 +30,3 @@
          }
      }
  }) ;
-
- Manager.disconnect(socket) ;

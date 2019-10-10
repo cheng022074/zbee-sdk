@@ -14,6 +14,8 @@
  * 
  * @import Manager from ..manager value
  * 
+ * @import emptyFn from function.empty value
+ * 
  * @require ws
  * 
  * @class
@@ -28,6 +30,8 @@
     initialize(url , {
         path,
         timeout = 20000,
+        reconnection = true,
+        reconnectionDelay = 1000,
         autoConnect = true
     }){
 
@@ -52,6 +56,11 @@
         if(autoConnect){
 
             Manager.connect(me) ;
+        }
+
+        if(reconnection){
+
+            add(me , 'lostconnect' , () => setTimeout(() => Manager.connect(me) , reconnectionDelay)) ;
         }
     }
 
@@ -123,6 +132,7 @@
             add(me.socket = new WebSocket(socketURL) , {
                 open:'onSocketOpen',
                 close:'onSocketClose',
+                error:emptyFn,
                 message:'onSocketMessage',
                 scope:me
             }) ;

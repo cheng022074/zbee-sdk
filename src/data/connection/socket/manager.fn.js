@@ -5,6 +5,8 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import remove from event.listener.remove
+ * 
  * @once
  * 
  */
@@ -53,7 +55,7 @@
     ] = processQueue;
 
     if(process){
-
+        
         let {
             socket,
             action
@@ -76,10 +78,15 @@
 
                     if(isDisconnected){
 
-                        add(socket , 'connect' , doProcessing) ;
+                        add(socket , 'connect' , doProcessing , {
+                            once:true
+                        }) ;
 
                         socket.connect() ;
                     
+                    }else{
+
+                        doProcessing() ;
                     }
 
                     break ;
@@ -88,21 +95,43 @@
 
                     if(isConnected){
 
-                        add(socket , 'disconnect' , doProcessing) ;
+                        add(socket , 'disconnect' , doProcessing , {
+                            once:true
+                        }) ;
 
                         socket.disconnect() ;
                                             
+                    }else{
+
+                        doProcessing() ;
                     }
             }
         
         }else if(isDisconnecting){
 
-            add(socket , 'disconnect' , doProcessing) ;
+            add(socket , 'disconnect' , doProcessing , {
+                once:true
+            }) ;
         
         }else if(isConnecting){
 
-            add(socket , 'connect' , doProcessing) ;
+            add(socket , 'connect' , doProcessing , {
+                once:true
+            }) ;
         }
+
+        add(socket , 'lostconnect' , () =>{
+
+            remove(socket , {
+                disconnect:doProcessing,
+                connect:doProcessing
+            }) ;
+
+            doProcessing() ;
+
+        } , {
+            once:true
+        }) ;
     
     }else{
 
