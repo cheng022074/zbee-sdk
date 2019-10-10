@@ -80,11 +80,43 @@
 
     connect(){
 
+        let me = this,
+        {
+            isDisconnected
+        } = me ;
+
+        if(isDisconnected){
+
+           me.doConnect() ;
+        }
+    }
+
+    doConnect(){
 
     }
 
     disconnect(){
 
+        let me = this,
+        {
+            socket,
+            isDisconnected,
+            isDisconnecting
+        } = me ;
+
+        if(!isDisconnected || !isDisconnecting){
+
+            me.disconnectingState = true ;
+
+            me.doDisconnect() ;
+
+            add(socket , 'close' , () => delete me.disconnectingState , {
+                once:true
+            }) ;
+        }
+    }
+
+    doDisconnect(){
 
     }
 

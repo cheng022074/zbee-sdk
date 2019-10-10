@@ -49,8 +49,6 @@
                 scope:me
             }
         }) ;
-
-        
     }
 
     onSocketTimeout(){
@@ -77,7 +75,8 @@
         let me = this,
         {
             socket,
-            socketTimeoutTimer
+            socketTimeoutTimer,
+            disconnectingState
         } = me;
 
         socketTimeoutTimer.end() ;
@@ -86,11 +85,9 @@
 
         delete me.socket ;
 
-        if(me.disconnectingState){
+        if(disconnectingState){
 
             me.fireEvent('disconnect') ;
-
-            delete me.disconnectingState ;
         
         }else{
 
@@ -103,44 +100,28 @@
         this.acceptMessage(data) ;
     }
 
-    connect(){
+    doConnect(){
 
         let me = this,
         {
             socketTimeoutTimer,
-            isDisconnected,
             socketURL
         } = me ;
 
         socketTimeoutTimer.start() ;
 
-        if(isDisconnected){
-
-            add(me.socket = new WebSocket(socketURL) , {
-                open:'onSocketOpen',
-                close:'onSocketClose',
-                error:emptyFn,
-                message:'onSocketMessage',
-                scope:me
-            }) ;
-        }
+        add(me.socket = new WebSocket(socketURL) , {
+            open:'onSocketOpen',
+            close:'onSocketClose',
+            error:emptyFn,
+            message:'onSocketMessage',
+            scope:me
+        }) ;
     }
 
-    disconnect(){
+    doDisconnect(){
 
-        let me = this,
-        {
-            socket,
-            isDisconnected,
-            isDisconnecting
-        } = me ;
-
-        if(!isDisconnected || !isDisconnecting){
-
-            me.disconnectingState = true ;
-
-            socket.close() ;
-        }
+        this.socket.close() ;
     }
 
     send(message){
