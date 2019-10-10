@@ -29,10 +29,7 @@
 
     initialize(url , {
         path,
-        timeout = 20000,
-        reconnection = true,
-        reconnectionDelay = 1000,
-        autoConnect = true
+        timeout = 20000
     }){
 
         let me = this ;
@@ -53,17 +50,7 @@
             }
         }) ;
 
-        if(autoConnect){
-
-            Manager.connect(me) ;
-        }
-
-        if(reconnection){
-
-            add(me , 'lostconnect' , () => setTimeout(() => Manager.connect(me) , reconnectionDelay)) ;
-        }
-
-        add(me , 'connect' , () => me.activate()) ;
+        
     }
 
     onSocketTimeout(){

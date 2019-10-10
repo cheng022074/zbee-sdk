@@ -10,6 +10,8 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import Manager from .socket.manager value
+ * 
  * @class
  * 
  */
@@ -31,6 +33,24 @@
         } = socket ;
 
         me.initialize(url , options) ;
+
+        let {
+            reconnection = true,
+            reconnectionDelay = 1000,
+            autoConnect = true
+        } = options ;
+
+        if(autoConnect){
+
+            Manager.connect(me) ;
+        }
+
+        if(reconnection){
+
+            add(me , 'lostconnect' , () => setTimeout(() => Manager.connect(me) , reconnectionDelay)) ;
+        }
+
+        add(me , 'connect' , () => me.activate()) ;
     }
 
     initialize(url , options){
