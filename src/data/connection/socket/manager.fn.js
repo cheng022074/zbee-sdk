@@ -3,6 +3,8 @@
  * 
  * 管理多个 WebSocket 推送器开关
  * 
+ * @import Socket from data.connection.socket
+ * 
  * @import add from event.listener.add
  * 
  * @import remove from event.listener.remove
@@ -30,13 +32,16 @@
  }
 
  function todo(socket , action) {
-    
-    processQueue.push({
-        socket,
-        action
-    }) ;
 
-    start() ;
+    if(socket instanceof Socket()){
+
+        processQueue.push({
+            socket,
+            action
+        }) ;
+    
+        start() ;
+    }
  }
 
  function start() {
