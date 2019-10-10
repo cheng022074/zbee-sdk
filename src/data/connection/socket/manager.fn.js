@@ -13,7 +13,8 @@
 
  const processQueue = [];
 
- let isProcessorStarted = false;
+ let isProcessorStarted = false,
+     previousSocket;
 
  class main{
 
@@ -68,9 +69,22 @@
             isConnecting
         } = socket;
 
+        if(previousSocket){
+
+            remove(socket , {
+                lostconnect:doProcessing,
+                disconnect:doProcessing,
+                connect:doProcessing
+            }) ;
+        }
+
         if(isDisconnected || isConnected){
 
             processQueue.shift() ;
+
+            previousSocket = socket ;
+
+            add(socket , 'lostconnect' , doProcessing) ;
 
             switch(action){
 
@@ -119,21 +133,10 @@
                 once:true
             }) ;
         }
-
-        add(socket , 'lostconnect' , () =>{
-
-            remove(socket , {
-                disconnect:doProcessing,
-                connect:doProcessing
-            }) ;
-
-            doProcessing() ;
-
-        } , {
-            once:true
-        }) ;
     
     }else{
+
+        previousSocket = null ;
 
         isProcessorStarted = false ;
     }
