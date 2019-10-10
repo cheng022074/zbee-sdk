@@ -164,10 +164,10 @@
 
         let me = this,
         {
-            io
+            isConnected
         } = me ;
 
-        if(io.connected){
+        if(isConnected){
 
             io.emit(me[event] , ...params) ;
         }
