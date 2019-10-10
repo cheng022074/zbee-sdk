@@ -47,10 +47,46 @@
 
         if(reconnection){
 
-            add(me , 'lostconnect' , () => setTimeout(() => Manager.connect(me) , reconnectionDelay)) ;
+            add(me , {
+                lostconnect:'onReconnect',
+                connecttimeout:'onReconnect',
+                scope:me
+            }) ;
         }
 
         add(me , 'connect' , () => me.activate()) ;
+
+        me.$disabled = false ;
+
+        me.reconnectionDelay = reconnectionDelay ;
+    }
+
+    onReconnect(){
+
+        let me = this,
+        {
+            disabled,
+            reconnectionDelay
+        } = me;
+
+        if(!disabled){
+
+            setTimeout(() => Manager.connect(me) , reconnectionDelay) ;
+        }
+    }
+
+    set disabled(disabled){
+
+        let me = this;
+
+        me.$disabled = disabled ;
+
+        Manager[disabled ? 'disconnect' : 'connect']() ;
+    }
+
+    get disabled(){
+
+        return this.$disabled ;
     }
 
     initialize(url , options){

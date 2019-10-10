@@ -53,9 +53,7 @@
 
     onSocketTimeout(){
 
-        Manager.disconnect(me) ;
-
-        Manager.connect(me) ;
+        this.fireEvent('connecttimeout') ;
     }
 
     onSocketOpen(){
