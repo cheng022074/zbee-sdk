@@ -8,6 +8,10 @@
  * 
  * @import getWS from socket.io.ws
  * 
+ * @import Manager from ..manager value
+ * 
+ * @import removeAll from event.listener.remove.all
+ * 
  * @require socket.io-client
  * 
  * @class
@@ -20,24 +24,30 @@
 
     initialize(url , options){
 
-        let me = this ;
-        add(me.io = IO(url , {
-            forceNew: true,
-            transports: [
-                'websocket'
-            ],
-            ...options
-        }) , {
-            connect:'onSocketConnect',
-            reconnect:'onSocketConnect',
-            [me.messageEventName]:'onSocketMessage',
-            scope:me
-        }) ;
+       let me = this ;
+
+       me.socketURL = url ;
+
+       me.socketOptions = options ;
     }
 
     get socket(){
 
-        return getWS(this.io) ;
+        let {
+            io
+        } = this ;
+
+        if(io){
+
+            return getWS(this.io) ;
+        }
+    }
+
+    onSocketTimeout(){
+
+        Manager.disconnect(me) ;
+
+        Manager.connect(me) ;
     }
 
     onSocketMessage(...args){
@@ -45,108 +55,95 @@
         this.acceptMessage(...args) ;
     }
 
-    onSocketConnect(){
-
-        let me = this ;
-
-        me.activate() ;
-
-        me.fireEvent('socketopen') ;
-    }
-
-    start(){
-
-        let me = this,
-        {
-            io,
-            isDisconnectd,
-            isConnecting,
-            isDisconnecting,
-            isConnected
-        } = me ;
-
-        return new Promise(resolve =>{
-
-            if(isDisconnectd){
-
-                add(io , 'connect' , () => resolve() , {
-                    once:true
-                }) ;
-
-                io.open() ;
-    
-            }else if(isConnected){
-    
-                resolve() ;
-            
-            }else if(isConnecting){
-
-                add(me , 'socketopen' , () => resolve() , {
-                    once:true
-                }) ;
-            
-            }else if(isDisconnecting){
-
-                add(me , 'socketclose' , () => me.start().then(resolve) , {
-                    once:true
-                }) ;
-            }
-
-        }) ;
-
-        
-    }
-
-    end(){
+    onSocketDisconnect(){
 
         let me = this,
             {
-                io,
-                socket,
-                isDisconnectd,
-                isConnecting,
-                isDisconnecting,
-                isConnected
-            } = me;
+                isDisconnected,
+                socket
+            } = me ;
 
-        return new Promise(resolve => {
+        if(!isDisconnected && socket){
 
-            if(isConnected){
-
-                add(socket , 'close' , () => {
-
-                    me.fireEvent('socketclose') ;
-
-                    resolve() ;
-
-                } , {
-                    once:true
-                }) ;
-
-                me.deactivate() ;
-    
-                io.close() ;
-            
-            }else if(isDisconnectd){
-
-                resolve() ;
-
-            }else if(isConnecting){
-
-                add(me , 'socketopen' , () => me.end().then(resolve) , {
-                    once:true
-                }) ;
-            
-            }else if(isDisconnecting){
-
-                add(me , 'socketclose' , () => resolve() , {
-                    once:true
-                }) ;
-            }
-
-        }) ;
-
+            add(socket , 'close' , 'onSocketDisconnect' , {
+                scope:me,
+                once:true
+            }) ;
         
+        }else{
+
+            let me = this,
+            {
+                disconnectingState,
+                io
+            } = me ;
+
+            removeAll(io) ;
+
+            delete me.io ;
+
+            if(disconnectingState){
+
+                me.fireEvent('disconnect') ;
+            
+            }else{
+
+                me.fireEvent('lostconnect') ;
+            }
+        }
+    }
+
+    onSocketError(){
+
+        let me = this,
+        {
+            isDisconnected,
+            onSocketError
+        } = me;
+
+        if(isDisconnected){
+
+            me.onSocketDisconnect() ;
+        
+        }else{
+
+            setTimeout(onSocketError.bind(me) , 0) ;
+        }
+    }
+
+    onSocketConnect(){
+
+        this.fireEvent('connect') ;
+    }
+
+    doConnect(){
+
+        let me = this,
+        {
+            socketURL,
+            socketOptions
+        } = me;
+
+        add(me.io = IO(socketURL , {
+            forceNew: true,
+            transports: [
+                'websocket'
+            ],
+            reconnection:false,
+            ...socketOptions
+        }) , {
+            connect_error:'onSocketError',
+            connect:'onSocketConnect',
+            disconnect:'onSocketDisconnect',
+            connect_timeout:'onSocketTimeout',
+            [me.messageEventName]:'onSocketMessage',
+            scope:me
+        }) ;
+    }
+
+    doDisconnect(){
+
+        this.io.disconnect() ;
     }
 
     get messageEventName(){
@@ -181,11 +178,21 @@
 
     doSubscriberOpen(...args){
 
-        this.emit('subscribeEventName' , ...args) ;
+        let me = this,
+        {
+            subscribeEventName
+        } = me ;
+
+        this.emit(subscribeEventName , ...args) ;
     }
 
     doSubscriberClose(...args){
 
-        this.emit('unsubscribeEventName' , ...args) ;
+        let me = this,
+        {
+            unsubscribeEventName
+        } = me ;
+
+        me.emit(unsubscribeEventName , ...args) ;
     }
  }
