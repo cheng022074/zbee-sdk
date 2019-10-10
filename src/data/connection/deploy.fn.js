@@ -8,6 +8,8 @@
  * 
  * @import is.array
  * 
+ * @import Manager from data.connection.socket.manager
+ * 
  * @param {array} connectionNames 连接名称集合
  * 
  * @param {string} connectionsVarName 连接实例集合名称
@@ -24,81 +26,68 @@
     keys
  } = Object;
 
- async function connect(){
-
-    if(connectionNames === false){
-
-        return ;
-    }
-
-    let names = Object.keys(connections);
-
-    for(let name of names){
-
-        if(!connectionNames.includes(name)){
-
-            await connections[name].end() ;
-            
-        }
-    }
-
-    for(let name of names){
-
-        if(connectionNames.includes(name)){
-
-            await connections[name].start() ;
-        }
-    }
- }
-
-
  function isMounted(){
 
     return !!this[connectionsVarName] ;
- }
-
- async function mounted(){
-
-    let scope = this ;
-
-    if(isMounted.call(scope)){
-
-        return ;
-    }
-
-    scope[connectionsVarName] = connections ;
-
-    await connect() ;
-
-    let names = keys(subscriberMap),
-        instanceId = scope.connectionId = scope.connectionId || generate('connection-') ;
-
-    for(let name of names){
-
-        let {
-            varName,
-            connection,
-            subscribers
-        } = subscriberMap[name] ;
-        
-
-        if(subscribers){
-
-            scope[varName] = connection.subscribes({
-                ...subscribers,
-                instanceId,
-                scope
-            }) ;
-        }
-    }
-
  }
 
  return {
 
     mounted(){
 
-        return mounted.call(this) ;
+        let scope = this ;
+
+        if(isMounted.call(scope)){
+
+            return ;
+        }
+
+        scope[connectionsVarName] = connections ;
+
+        if(connectionNames){
+
+            let names = Object.keys(connections);
+
+            for(let name of names){
+
+                if(!connectionNames.includes(name)){
+
+                    Manager.disconnect(connections[name]) ;
+                    
+                }
+            }
+
+            for(let name of names){
+
+                if(connectionNames.includes(name)){
+
+                    Manager.connect(connections[name]) ;
+                }
+            }
+        }
+
+        let names = keys(subscriberMap),
+            instanceId = scope.connectionId || generate('connection-') ;
+
+        for(let name of names){
+
+            let {
+                varName,
+                connection,
+                subscribers
+            } = subscriberMap[name] ;
+            
+
+            if(subscribers){
+
+                scope[varName] = connection.subscribes({
+                    ...subscribers,
+                    instanceId,
+                    scope
+                }) ;
+            }
+        }
+
     },
 
     unsubscribe(name , connectionName){
