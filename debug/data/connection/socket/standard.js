@@ -4,6 +4,8 @@
  * 
  * @import Socket from data.connection.socket.standard value
  * 
+ * @import Manager from data.connection.socket.manager value
+ * 
  */
 
  let socket = new Socket({
@@ -16,9 +18,17 @@
             console.log('connect') ;
          },
 
+         disconnect(){
+
+            console.log('disconnect') ;
+
+         },
+
          lostconnect(){
 
             console.log('lostconnect') ;
          }
      }
  }) ;
+
+ Manager.disconnect(socket) ;

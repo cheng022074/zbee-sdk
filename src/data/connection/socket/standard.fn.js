@@ -74,8 +74,6 @@
         me.activate() ;
 
         me.fireEvent('connect') ;
-
-        me.connectLocked = true ;
     }
 
     onSocketClose(){
@@ -92,15 +90,15 @@
 
         delete me.socket ;
 
-        if(me.connectLocked){
+        if(me.disconnectingState){
 
-            me.fireEvent('lostconnect') ;
+            me.fireEvent('disconnect') ;
 
-            delete me.connectLocked ;
+            delete me.disconnectingState ;
         
         }else{
 
-            me.fireEvent('disconnect') ;
+            me.fireEvent('lostconnect') ;
         }
     }
 
@@ -142,7 +140,7 @@
 
         if(!isDisconnected || !isDisconnecting){
 
-            delete me.connectLocked ;
+            me.disconnectingState = true ;
 
             socket.close() ;
         }
