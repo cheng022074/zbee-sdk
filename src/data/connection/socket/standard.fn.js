@@ -62,6 +62,8 @@
 
             add(me , 'lostconnect' , () => setTimeout(() => Manager.connect(me) , reconnectionDelay)) ;
         }
+
+        add(me , 'connect' , () => me.activate()) ;
     }
 
     onSocketTimeout(){
@@ -79,8 +81,6 @@
         } = me;
 
         socketTimeoutTimer.end() ;
-
-        me.activate() ;
 
         me.fireEvent('connect') ;
     }
