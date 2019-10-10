@@ -30,15 +30,15 @@
         let {
             url,
             options = {}
-        } = socket ;
-
-        me.initialize(url , options) ;
-
-        let {
+        } = socket,
+        {
             reconnection = true,
             reconnectionDelay = 1000,
-            autoConnect = true
-        } = options ;
+            autoConnect = true,
+            ...otherOptions
+        } = options;
+
+        me.initialize(url , otherOptions) ;
 
         if(autoConnect){
 
