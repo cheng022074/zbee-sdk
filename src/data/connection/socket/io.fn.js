@@ -164,12 +164,13 @@
 
         let me = this,
         {
-            isConnected
+            isConnected,
+            io
         } = me ;
 
         if(isConnected){
 
-            io.emit(me[event] , ...params) ;
+            io.emit(event , ...params) ;
         }
         
     }
@@ -181,7 +182,7 @@
             subscribeEventName
         } = me ;
 
-        this.emit(subscribeEventName , ...args) ;
+        me.emit(subscribeEventName , ...args) ;
     }
 
     doSubscriberClose(...args){
