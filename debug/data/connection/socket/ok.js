@@ -67,11 +67,11 @@ let socket = new XYSocket({
 }) ;
 
 let subscriber = socket.subscribe('ok.create.todo' , {
-    autoOpen:false
-}).bind(data =>{
+    autoOpen:false,
+    fn(data){
 
-    console.log('todo1' , data) ;
-
+        console.log('todo1' , data) ;
+    }
 }) ;
 
 setTimeout(() =>{
