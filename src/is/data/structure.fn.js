@@ -13,4 +13,4 @@
  * 
  */
 
- return is(data) && isArray(data) ;
+ return (isObject(data) || isArray(data)) && data.hasOwnProperty('__ZBEE_DATA_MODEL__') ;
