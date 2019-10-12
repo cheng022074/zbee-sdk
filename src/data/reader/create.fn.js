@@ -67,7 +67,7 @@
 
             defineInnerProperty(record) ;
 
-            defineModelProperty(records , model) ;
+            defineModelProperty(record , model) ;
 
             for(let name of names){
 
