@@ -56,8 +56,6 @@
 
         add(me , 'connect' , () => me.activate()) ;
 
-        me.$disabled = false ;
-
         me.reconnectionDelay = reconnectionDelay ;
     }
 
@@ -65,28 +63,17 @@
 
         let me = this,
         {
-            disabled,
             reconnectionDelay
         } = me;
 
-        if(!disabled){
+        setTimeout(() => {
 
-            setTimeout(() => Manager.connect(me) , reconnectionDelay) ;
-        }
-    }
+            Manager.disconnect(me) ;
 
-    set disabled(disabled){
+            Manager.connect(me) ;
 
-        let me = this;
-
-        me.$disabled = disabled ;
-
-        Manager[disabled ? 'disconnect' : 'connect']() ;
-    }
-
-    get disabled(){
-
-        return this.$disabled ;
+        } , reconnectionDelay) ;
+        
     }
 
     initialize(url , options){
