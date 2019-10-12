@@ -3,7 +3,7 @@
  * 
  * 数据存储器类
  * 
- * @import createReader from data.reader.create
+ * @import createReader from data.reader.create.external
  * 
  * @class
  * 
