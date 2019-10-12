@@ -47,11 +47,12 @@
 
     if(isString(property)){
         
-        define(record , name , {
-            value:get(raw , property)
-        }) ;
+        property = {
+            mapping:property
+        } ;
+    }
     
-    }else if(isObject(property)){
+    if(isObject(property)){
 
         let {
             mapping,
@@ -59,8 +60,8 @@
             mode,
             model,
             multi = true,
-            set,
-            get
+            set:setFn,
+            get:getFn
         } = property ;
 
         if(mapping){
@@ -74,12 +75,12 @@
 
             define(record , name , {
                 mode,
-                value:get(item , mapping)
+                value:get(raw , mapping)
             }) ;
         
         }else if(model){
 
-            let result = main(model).read(item) ;
+            let result = main(model).read(raw) ;
             
             if(multi === false){
 
@@ -101,11 +102,11 @@
                 value:result
             }) ;
 
-        }else if(set || get){
+        }else if(setFn || getFn){
 
             define(record , name , {
-                set,
-                get
+                set:setFn,
+                get:getFn
             }) ;
         }
     }
