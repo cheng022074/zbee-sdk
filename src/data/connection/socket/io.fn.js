@@ -119,7 +119,9 @@
         let me = this,
         {
             socketURL,
-            socketOptions
+            socketOptions,
+            messageEventName,
+            subscribeResponseEventName
         } = me;
 
         add(me.io = IO(socketURL , {
@@ -134,14 +136,25 @@
             connect:'onSocketConnect',
             disconnect:'onSocketDisconnect',
             connect_timeout:'onSocketTimeout',
-            [me.messageEventName]:'onSocketMessage',
+            [messageEventName]:'onSocketMessage',
+            [subscribeResponseEventName]:'onSocketSubscribeResponse',
             scope:me
         }) ;
+    }
+
+    onSocketSubscribeResponse(){
+
+
     }
 
     doDisconnect(){
 
         this.io.disconnect() ;
+    }
+
+    get subscribeEventName(){
+
+        return 'sub'
     }
 
     get messageEventName(){
@@ -150,9 +163,9 @@
     }
 
 
-    get subscribeEventName(){
+    get subscribeResponseEventName(){
 
-        return 'sub' ;
+        return 'subresp' ;
     }
 
     get unsubscribeEventName(){
