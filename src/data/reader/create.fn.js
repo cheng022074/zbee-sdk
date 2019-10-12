@@ -34,9 +34,11 @@
  * 
  * @param {string} [model.properties = []] 数据属性定义
  * 
- * @param {function} [getRootData = data => data] 获得数据
+ * @param {object} plugins 插件
  * 
- * @param {function} defineRecordProperty 数据字段处理函数
+ * @param {function} [plugins.getRootData = data => data] 获得数据
+ * 
+ * @param {function} plugins.defineRecordProperty 数据字段处理函数
  * 
  * @return {data.Reader} 数据模型对象 
  * 
