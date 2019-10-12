@@ -16,6 +16,7 @@
     "is.number",
     "is.array",
     "is.directory",
+    "is.null",
     "directory.copy",
     "date.get",
     "date.list",
