@@ -28,6 +28,14 @@
  * 
  * @param {object} model 数据模型定义
  * 
+ * @param {string} [model.root = '.'] 数据根路径
+ * 
+ * @param {string} [model.id] 数据编号定义
+ * 
+ * @param {string} [model.properties = []] 数据属性定义
+ * 
+ * @param {function} [getRootData = data => data] 获得数据
+ * 
  * @param {function} defineRecordProperty 数据字段处理函数
  * 
  * @return {data.Reader} 数据模型对象 
@@ -38,20 +46,6 @@
     keys,
     defineProperty
  } = Object ;
-
- function getRootData(data , root) {
-     
-    if(isString(root)){
-
-        return from(get(data , root)) ;
-    
-    }else if(isFunction(root)){
-
-        return from(root(data)) ;
-    }
-
-    return from(data) ;
- }
 
  return {
      read(data){
