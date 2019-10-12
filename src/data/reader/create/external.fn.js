@@ -109,7 +109,10 @@
 
  function main(model) {
     
-    return createReader(model , getRootData , defineRecordProperty) ;
+    return createReader(model , {
+        getRootData,
+        defineRecordProperty
+    }) ;
 
  }
 
