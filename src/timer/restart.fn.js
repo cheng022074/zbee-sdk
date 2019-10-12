@@ -7,10 +7,6 @@
 
  let me = this ;
 
- me.suspendEvents() ;
-
  me.end() ;
-
- me.resumeEvents() ;
 
  me.start() ; 
