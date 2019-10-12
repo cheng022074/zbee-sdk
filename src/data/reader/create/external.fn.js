@@ -15,6 +15,10 @@
  * 
  * @import createEmpty from data.record.empty
  * 
+ * @import from from array.from
+ * 
+ * @import isObject from is.object.simple
+ * 
  * @param {object} model 数据模型定义
  * 
  * @return {data.Reader} 数据模型对象 
