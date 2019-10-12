@@ -5,7 +5,9 @@
  * 
  * @import is.function
  * 
- * @import generate form id.generate
+ * @import generate from id.generate
+ * 
+ * @import from from array.from
  * 
  * @param {mixed} structure 数据结构
  * 
@@ -20,7 +22,7 @@
 if(isFunction(id)){
 
     defineProperty(structure , '__ZBEE_DATA_ID__' , {
-        get:id.bind(record)
+        get:id.bind(structure)
     }) ;
 
 }else{
