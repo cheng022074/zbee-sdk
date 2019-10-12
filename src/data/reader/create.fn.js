@@ -14,15 +14,21 @@
  * 
  * @import is.function
  * 
- * @import is.defined
- * 
  * @import generate from id.generate
  * 
  * @import createReader from data.reader.create
  * 
- * @import define from data.record.property.define
+ * @import defineParentProperty from data.structure.define.parent
+ * 
+ * @import defineIdProperty from data.structure.define.id
+ * 
+ * @import defineInnerProperty from data.structure.define.inner
+ * 
+ * @import defineModelProperty from data.structure.define.model
  * 
  * @param {object} model 数据模型定义
+ * 
+ * @param {function} defineRecordProperty 数据字段处理函数
  * 
  * @return {data.Reader} 数据模型对象 
  * 
@@ -32,33 +38,6 @@
     keys,
     defineProperty
  } = Object ;
-
- function defineParentProperty(record , value){
-
-    defineProperty(record , '__ZBEE_DATA_PARENT__' , {
-        value,
-        writable:true
-    }) ;
- }
-
- function defineIdProperty(record , id) {
-    
-    if(isFunction(id)){
-
-        defineProperty(record , '__ZBEE_DATA_ID__' , {
-            get:id.bind(record)
-        }) ;
-
-    }else{
-
-        id = generate('data-') ;
-
-        defineProperty(record , '__ZBEE_DATA_ID__' , {
-            value:generate('data-')
-        }) ;
-    }
-   
- }
 
  function getRootData(data , root) {
      
@@ -74,100 +53,37 @@
     return from(data) ;
  }
 
- function defineInnerProperty(record) {
-     
-    defineProperty(record , '__ZBEE_DATA_INNER__' , {
-        value:{}
-    }) ;
- }
+ return {
+     read(data){
 
- function main({
-     root,
-     id,
-     properties = {}
- }) {
+        let items = getRootData(data , root),
+            records = [];
 
-    return {
-        read(data){
-    
-            let items = getRootData(data , root),
-                records = [];
-        
-            defineParentProperty(records) ;
-        
-            for(let item of items){
-        
-                let record = {},
-                    names = keys(properties);
-        
-                defineParentProperty(record , records) ;
+        defineParentProperty(records) ;
 
-                defineIdProperty(record , id) ;
+        defineModelProperty(records , model) ;
 
-                defineInnerProperty(record) ;
-        
-                for(let name of names){
-        
-                    let property = properties[name] ;
-        
-                    if(isString(property)){
-        
-                        define(record , name , {
-                            value:get(item , property)
-                        }) ;
-                    
-                    }else if(isObject(property)){
-        
-                        let {
-                            mapping,
-                            mode,
-                            model,
-                            multi = true,
-                            set,
-                            get
-                        } = property ;
-        
-                        if(mapping){
-        
-                            record[name] = get(item , mapping) ;
+        for(let item of items){
 
-                            define(record , name , {
-                                mode,
-                                value:get(item , mapping)
-                            }) ;
-                        
-                        }else if(model){
-        
-                            let result = createReader(model).read(item) ;
-                            
-                            if(multi === false && result.length){
-        
-                                result = result[0] ;
-        
-                            }
-        
-                            result.__ZBEE_DATA_PARENT__ = record ;
-        
-                            define(record , name , {
-                                mode:'readonly',
-                                value:result
-                            }) ;
-        
-                        }else if(set || get){
-        
-                            define(record , name , {
-                                set,
-                                get
-                            }) ;
-                        }
-                    }
-                }
-        
-                records.push(record) ;
+            let record = {},
+                names = keys(properties);
+
+            defineParentProperty(record , records) ;
+
+            defineIdProperty(record , id) ;
+
+            defineInnerProperty(record) ;
+
+            defineModelProperty(records , model) ;
+
+            for(let name of names){
+
+                defineRecordProperty(record , name , properties[name] , item) ;
             }
-        
-            return records ;
+
+            records.push(record) ;
         }
-     } ;
-     
+
+        return records ;
+     }
  }
