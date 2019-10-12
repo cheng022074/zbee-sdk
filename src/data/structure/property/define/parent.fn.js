@@ -9,11 +9,7 @@
  * 
  */
 
- const {
-    defineProperty
- } = Object ;
-
- defineProperty(structure , '__ZBEE_DATA_PARENT__' , {
+ Object.defineProperty(structure , '__ZBEE_DATA_PARENT__' , {
     value:parentStructure,
     writable:true
  }) ;
