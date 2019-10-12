@@ -4,8 +4,6 @@
  * 
  * @import get from object.value.get
  * 
- * @import from from array.from
- * 
  * @import is.string
  * 
  * @import isObject from is.object.simple
@@ -18,21 +16,15 @@
  * 
  * @import createReader from data.reader.create
  * 
- * @import defineParentProperty from data.structure.define.parent
+ * @import defineParentProperty from data.structure.property.define.parent
  * 
- * @import defineIdProperty from data.structure.define.id
+ * @import defineIdProperty from data.structure.property.define.id
  * 
- * @import defineInnerProperty from data.structure.define.inner
+ * @import defineInnerProperty from data.structure.property.define.inner
  * 
- * @import defineModelProperty from data.structure.define.model
+ * @import defineModelProperty from data.structure.property.define.model
  * 
  * @param {object} model 数据模型定义
- * 
- * @param {string} [model.root = '.'] 数据根路径
- * 
- * @param {string} [model.id] 数据编号定义
- * 
- * @param {string} [model.properties = []] 数据属性定义
  * 
  * @param {object} plugins 插件
  * 
@@ -47,7 +39,12 @@
  const {
     keys,
     defineProperty
- } = Object ;
+ } = Object,
+ {
+   root = '.',
+   id,
+   properties = []
+ } = model;
 
  return {
      read(data){
