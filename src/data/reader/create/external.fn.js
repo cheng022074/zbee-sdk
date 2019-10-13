@@ -1,4 +1,3 @@
-
 /**
  * 
  * 读取外部数据
@@ -43,6 +42,18 @@
     return from(data) ;
  }
 
+ function getMappingData(data , mapping) {
+     
+    if(isString(mapping)){
+
+        return get(raw , mapping) ;
+    
+    }else if(isFunction(mapping)){
+
+        return mapping(data) ;
+    }
+ }
+
  function defineRecordProperty(record , name , property , raw){
 
     if(isString(property)){
@@ -66,7 +77,7 @@
 
         if(mapping){
 
-            let value = get(raw , mapping) ;
+            let value = getMappingData(raw , mapping) ;
 
             if(!isDefined(value)){
 
