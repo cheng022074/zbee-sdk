@@ -65,7 +65,7 @@
 
             defineIdProperty(record , id) ;
 
-            defineInnerProperty(record) ;
+            defineInnerProperty(record , item) ;
 
             defineModelProperty(record , model) ;
 
