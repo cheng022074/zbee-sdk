@@ -14,14 +14,47 @@
  * 
  */
 
-function writeRecord(record){
+function writeRecord(record , properties){
 
-    if(!isEmpty(record)){
+    if(isEmpty(record)){
 
-        return {
-            __ZBEE_DATA_INNER__:record.__ZBEE_DATA_INNER__
-        } ;
+        return {} ;
     }
+
+    let result = {},
+        names = keys(properties);
+     
+    for(let name of names){
+
+        let value = record[name] ;
+
+        if(isObject(property)){
+    
+            let {
+                mode,
+                model
+            } = property ;
+    
+            if(mode === 'writeonly'){
+    
+                value = record.__ZBEE_DATA_INNER__[name] ;
+            }
+
+            if(model){
+
+                value = main(model).write(value) ;
+            }
+        }
+
+        if(isDefined(value)){
+
+            result[name] = value ;
+        }
+    }
+
+    return result ;
+
+    
  }
 
  function main(){
