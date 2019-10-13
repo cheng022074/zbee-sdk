@@ -32,7 +32,7 @@
  * 
  * @param {function} plugins.defineRecordProperty 数据字段处理函数
  * 
- * @return {data.Reader} 数据模型对象 
+ * @return {data.Reader} 数据读取对象 
  * 
  */
 
