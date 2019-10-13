@@ -8,11 +8,9 @@
  * 
  * @import is.defined
  * 
- * @param {object} model 数据模型定义
- * 
  * @param {object} plugins 插件
  * 
- * @param {function} plugins.getPropertyValue  获得数据
+ * @param {function} plugins.writeRecord  输出数据
  *
  * @return {data.Writer} 数据写出对象 
  * 
@@ -22,24 +20,6 @@ const {
     keys,
     defineProperty
  } = Object;
-
- function writeRecord(record , properties) {
-
-    let result = {},
-        names = keys(properties);
-     
-    for(let name of names){
-
-        let value = getPropertyValue(record[value] , property[name]) ;
-
-        if(isDefined(value)){
-
-            result[name] = value ;
-        }
-    }
-
-    return result ;
- }
 
  function writeRecordset(recordset , properties) {
      
@@ -53,23 +33,28 @@ const {
     return result ;
  }
 
- function main(model) {
+ function main() {
 
-    let {
-        properties = []
-    } = model ;
-     
     return {
         write(data){
    
            if(isRecord(data)){
 
-              return writeRecord(data , properties) ;
+              return writeRecord(data , get_properties(data)) ;
 
            }else if(isRecordset(data)){
 
-              return writeRecordset(data , properties) ;
+              return writeRecordset(data , get_properties(data)) ;
            }
         }
     }
+ }
+
+ function get_properties(structure){
+
+      let {
+         properties = []
+      } = structure.__ZBEE_DATA_MODEL__ ;
+
+      return properties ;
  }
