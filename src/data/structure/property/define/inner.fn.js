@@ -9,19 +9,6 @@
  * 
  */
 
- const NAME = '__ZBEE_DATA_INNER__' ;
-
- let value ;
-
- if(raw.hasOwnProperty(NAME)){
-
-    value = raw[NAME] ;
- 
- }else{
-
-    value = {} ;
- }
-
-Object.defineProperty(structure , NAME , {
-    value
+Object.defineProperty(structure , '__ZBEE_DATA_INNER__' , {
+    value:{}
 }) ;
