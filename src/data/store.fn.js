@@ -3,11 +3,17 @@
  * 
  * 数据存储器类
  * 
- * @import createRawReader from data.reader.create.external
+ * @import createRawReader from data.reader.create.raw
  * 
- * @import createDataWriter from data.writer.create.application
+ * @import createDataReader from data.reader.create.data
+ * 
+ * @import createDataWriter from data.writer.create.data
+ * 
+ * @import createStorageWriter from data.writer.create.storage
  * 
  * @import Observable from mixin.observable
+ * 
+ * @import clear from object.clear
  * 
  * @class
  * 
@@ -26,6 +32,7 @@ class main extends mixins({
 
     constructor({
         model,
+        data,
         ...options
     }){
 
@@ -35,14 +42,40 @@ class main extends mixins({
 
        me.rawReader = createRawReader(model) ;
 
+       me.dataReader = createDataReader(model) ;
+
        me.dataWriter = createDataWriter() ;
+
+       me.storageWriter = createStorageWriter() ;
 
        me.ids = {} ;
 
-       me.data = [] ;
+       if(data){
 
+            me.data = me.dataReader.read(data) ;
+       }
     }
-  
+
+    get hasData(){
+
+        return !! this.data ;
+    }
+
+    save(){
+
+        let me = this,
+        {
+            hasData,
+            storageWriter,
+            data
+        } = me;
+
+        if(hasData){
+
+            me.fireEvent('save' , storageWriter.write(data)) ;
+        }
+    }
+
     load(data){
 
         let me = this,
