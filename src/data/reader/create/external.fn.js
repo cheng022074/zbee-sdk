@@ -46,7 +46,7 @@
      
     if(isString(mapping)){
 
-        return get(raw , mapping) ;
+        return get(data , mapping) ;
     
     }else if(isFunction(mapping)){
 
