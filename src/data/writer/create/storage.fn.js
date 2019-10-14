@@ -10,9 +10,16 @@
  * 
  * @import isEmpty from is.data.record.empty
  * 
+ * @import is.defined
+ * 
  * @return {data.Writer} 数据写出对象 
  * 
  */
+
+const {
+    keys,
+    defineProperty
+} = Object;
 
 function writeRecord(record , properties){
 
@@ -26,7 +33,8 @@ function writeRecord(record , properties){
      
     for(let name of names){
 
-        let value = record[name] ;
+        let value = record[name],
+            property = properties[name];
 
         if(isObject(property)){
     
