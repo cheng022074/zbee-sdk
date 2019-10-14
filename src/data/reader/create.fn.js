@@ -4,10 +4,6 @@
  * 
  * @import get from object.value.get
  * 
- * @import is.string
- * 
- * @import isObject from is.object.simple
- * 
  * @import emptyFn from function.empty value
  * 
  * @import is.function
