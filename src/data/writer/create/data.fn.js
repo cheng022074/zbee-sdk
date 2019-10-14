@@ -44,7 +44,7 @@
                 model
             } = property ;
     
-            if(private && mode === 'writeonly'){
+            if(private || mode === 'writeonly'){
     
                 continue ;
             }
