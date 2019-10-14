@@ -16,12 +16,7 @@
  * 
  */
 
-const {
-    keys,
-    defineProperty
- } = Object;
-
- function writeRecordset(recordset , properties) {
+ function writeRecordset(writeRecord , recordset , properties) {
      
     let result = [] ;
 
@@ -33,18 +28,20 @@ const {
     return result ;
  }
 
- function main() {
+ function main({
+   writeRecord
+ }) {
 
     return {
         write(data){
-   
+
            if(isRecord(data)){
 
               return writeRecord(data , get_properties(data)) ;
 
            }else if(isRecordset(data)){
 
-              return writeRecordset(data , get_properties(data)) ;
+              return writeRecordset(writeRecord , data , get_properties(data)) ;
            }
         }
     }
