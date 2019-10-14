@@ -14,12 +14,7 @@
  const {
     keys,
     defineProperty
- } = Object,
- {
-   root = '.',
-   id,
-   properties = []
- } = model;
+ } = Object;
 
  function defineRecordProperty(record , name , property , raw){
 
