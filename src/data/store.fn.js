@@ -3,7 +3,11 @@
  * 
  * 数据存储器类
  * 
- * @import createReader from data.reader.create.external
+ * @import createRawReader from data.reader.create.external
+ * 
+ * @import createDataWriter from data.writer.create.application
+ * 
+ * @import Observable from mixin.observable
  * 
  * @class
  * 
@@ -14,13 +18,24 @@
  * 
  */
 
-class main{
+class main extends mixins({
+    mixins:[
+        Observable
+    ]
+}){
 
-    constructor(model){
+    constructor({
+        model,
+        ...options
+    }){
+
+       super(options) ;
 
        let me = this ;
 
-       me.reader = createReader(model) ;
+       me.rawReader = createRawReader(model) ;
+
+       me.dataWriter = createDataWriter() ;
 
        me.ids = {} ;
 
@@ -32,27 +47,21 @@ class main{
 
         let me = this,
         {
-            reader,
-            data:$data
+            rawReader,
+            dataWriter
         } = me ;
 
-        $data.length = 0 ;
-
-        add.call(me , ...reader.read(data)) ;
-
-        console.log('全量载入数据' , JSON.stringify($data , null , 2)) ;
-
-        // 触发 load 事件
+        me.fireEvent('load' , dataWriter.write(me.data = rawReader.read(data))) ;
     }
 
     append(data){
 
         let me = this,
         {
-            reader
+            rawReader
         } = me ;
 
-        add.call(me , ...reader.read(data)) ;
+        add.call(me , ...rawReader.read(data)) ;
 
         console.log('增量载入数据' , $data) ;
 
