@@ -54,7 +54,7 @@
 
  function defineRecordProperty(record , name , property , raw){
 
-    if(isString(property)){
+    if(isString(property) || isFunction(property)){
         
         property = {
             mapping:property

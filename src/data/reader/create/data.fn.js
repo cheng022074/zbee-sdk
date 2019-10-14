@@ -5,6 +5,10 @@
  * 
  * @import createReader from ....create
  * 
+ * @import is.string
+ * 
+ * @import is.function
+ * 
  * @param {object} model 数据模型定义
  * 
  * @return {data.Reader} 数据模型对象 
@@ -18,7 +22,7 @@
 
  function defineRecordProperty(record , name , property , raw){
 
-    if(isString(property)){
+    if(isString(property) || isFunction(property)){
         
         property = {
             mapping:true
