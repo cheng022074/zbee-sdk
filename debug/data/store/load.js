@@ -48,6 +48,12 @@
 
             return isPrivateChat(data) ? data.group.nickname : data.group.room_name;
          },
+         roomType({
+            latestmsg:data
+         }){
+
+            return data.room_type ;
+         },
          content({
             latestmsg:data
          }){
