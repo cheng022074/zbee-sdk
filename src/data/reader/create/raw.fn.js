@@ -18,15 +18,13 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import is.function
+ * 
  * @param {object} model 数据模型定义
  * 
  * @return {data.Reader} 数据模型对象 
  * 
  */
-
- const {
-    defineProperty
- } = Object ;
 
  function getRootData(data , root) {
      
@@ -43,7 +41,7 @@
  }
 
  function getMappingData(data , mapping) {
-     
+
     if(isString(mapping)){
 
         return get(data , mapping) ;
@@ -86,7 +84,7 @@
 
             define(record , name , {
                 mode,
-                value:get(raw , mapping)
+                value
             }) ;
         
         }else if(model){
