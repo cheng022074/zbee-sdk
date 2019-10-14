@@ -9,6 +9,10 @@
  * 
  * @import from from array.from
  * 
+ * @import get from object.value.get
+ * 
+ * @import is.string
+ * 
  * @param {mixed} structure 数据结构
  * 
  * @param {mixed} id 编号策略
@@ -17,11 +21,21 @@
 
  const {
     defineProperty
- } = Object ;
+ } = Object,
+ NAME = '__ZBEE_DATA_ID__';
 
-if(isFunction(id)){
+ if(isString(id)){
 
-    defineProperty(structure , '__ZBEE_DATA_ID__' , {
+    defineProperty(structure , NAME , {
+        get(){
+
+            return get(structure , id) ;　
+        }
+    }) ;
+
+ }else if(isFunction(id)){
+
+    defineProperty(structure , NAME , {
         get:id.bind(structure)
     }) ;
 
@@ -29,7 +43,7 @@ if(isFunction(id)){
 
     id = generate('data-') ;
 
-    defineProperty(structure , '__ZBEE_DATA_ID__' , {
+    defineProperty(structure , NAME , {
         value:generate('data-')
     }) ;
 }
