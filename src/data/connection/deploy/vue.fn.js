@@ -36,11 +36,11 @@
       originMounted.call(me) ;
     },
 
-    destroyed(){
+    async destroyed(){
 
       let me = this ;
 
-      originUnmounted.call(me) ;
+      await originUnmounted.call(me) ;
   
       unmounted.call(me) ;
     },
