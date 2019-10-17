@@ -9,7 +9,7 @@
  * 
  * @import onEnd from ..end scoped
  * 
- * @import un from browser.global.listener.remove
+ * @import un from browser.event.listener.global.remove
  * 
  */
 
