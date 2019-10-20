@@ -29,7 +29,7 @@
 
         let {
             url,
-            options = {}
+            ...options
         } = socket,
         {
             reconnection = true,
