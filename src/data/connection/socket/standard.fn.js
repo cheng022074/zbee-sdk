@@ -93,7 +93,9 @@
         }
     }
 
-    onSocketMessage(data){
+    onSocketMessage({
+        data
+    }){
 
         this.acceptMessage(data) ;
     }
