@@ -33,54 +33,53 @@ let {
     unsubscribe
 } = deploy(connectionNames , connections , component) ;
 
-async function onLoad(options){
+async function onHide(){
 
     let me = this ;
 
-    await mounted.call(me) ;
-           
-    originLoad.call(me , options) ;
-    
+    await originHide.call(me) ;
+
+    unmounted.call(me) ;
 }
 
-async function onShow(){
+async function onUnload(){
 
     let me = this ;
 
-    await mounted.call(me) ;
-           
-    originShow.call(me , options) ;
+    await originUnload.call(me) ;
+
+    unmounted.call(me) ;
 }
 
 return {
     ...options,
     onLoad(options){
 
-        onLoad.call(this , options) ;
+        let me = this ;
+
+        mounted.call(me) ;
+            
+        originLoad.call(me , options) ;
         
    },
 
    onShow(){
 
-        onShow.call(this) ;
+        let me = this ;
+
+        mounted.call(me) ;
+            
+        originShow.call(me , options) ;
    },
 
    onHide(){
 
-        let me = this ;
-
-        originHide.call(me) ;
-
-        unmounted.call(me) ;
+        onHide.call(this) ;
    },
 
    onUnload(){
 
-       let me = this ;
-
-       originUnload.call(me) ;
-
-       unmounted.call(me) ;
+      onUnload.call(this) ;
    },
    subscribe,
    unsubscribe
