@@ -35,6 +35,7 @@
     "browser.event.gesture.react",
     "browser.event.touch.init",
     "browser.event.visibility.init",
+    "miniprogram.storage",
     "os.name",
     "number.format",
     "json.stringify",
