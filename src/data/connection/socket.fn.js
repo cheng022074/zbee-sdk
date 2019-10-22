@@ -131,6 +131,8 @@
 
             me.disconnectingState = true ;
 
+            me.deactivate() ;
+
             me.doDisconnect() ;
 
             add(socket , 'close' , () => delete me.disconnectingState , {
