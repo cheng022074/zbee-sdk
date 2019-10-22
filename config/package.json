@@ -39,7 +39,6 @@
             "browser.event.visibility.init",
             "os.name",
             "number.format",
-            "miniprogram.page",
             "json.stringify",
             "directory.readAllFilePaths",
             "file.read.json",
