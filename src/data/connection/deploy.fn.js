@@ -8,7 +8,7 @@
  * 
  * @import is.array
  * 
- * @import Manager from data.connection.socket.manager
+ * @import Manager from data.connection.socket.manager value
  * 
  * @param {array} connectionNames 连接名称集合
  * 
