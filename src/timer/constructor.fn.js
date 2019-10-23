@@ -17,7 +17,7 @@ let me = this ;
 
 me.interval = interval ;
 
-me.defaultDuration = duration ;
+me.duration = duration ;
 
 if(autoStart){
 

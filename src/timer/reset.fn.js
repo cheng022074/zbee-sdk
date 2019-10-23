@@ -19,4 +19,6 @@
     clearTimeout(intervalId) ;
 
     delete me.intervalId ;
+
+    delete me.onInterval ;
  }

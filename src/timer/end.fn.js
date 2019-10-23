@@ -2,21 +2,11 @@
 /**
  * 
  * 结束计时
+ * 
+ * @import reset from ..reset scoped
  *
  */
 
-let me = this,{
-    intervalId
-} = me ;
-
-if(intervalId){
-
-    clearInterval(intervalId) ;
-
-    clearTimeout(intervalId) ;
-
-    delete me.intervalId ;
-
-    me.fireEvent('timeend') ;
-    
-}
+ reset() ;
+ 
+ this.fireEvent('timeend') ;
