@@ -81,14 +81,14 @@
 
     }
 
-    get isConnected(){
-
-        return isState.call(this , 1) ;
-    }
-
     get isConnecting(){
 
         return isState.call(this , 0) ;
+    }
+
+    get isConnected(){
+
+        return isState.call(this , 1) ;
     }
 
     get isDisconnecting(){
