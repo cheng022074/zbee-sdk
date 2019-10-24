@@ -16,7 +16,7 @@
  const nameRe = /\<|\>/g ;
 
 function main(name , {
-    instanceId,
+    connectionId,
     ...options
 }){
 
@@ -34,7 +34,7 @@ function main(name , {
 
     options = assign({} , convertNameToSubscriberOptions.call(me , name) , options) ;
 
-    name = getName(name , instanceId) ;
+    name = getName(name , connectionId) ;
 
     let subscriber = me.createSubscriber(name , options) ;
 

@@ -7,11 +7,11 @@
  * 
  * @param {string} name 订阅名称
  * 
- * @param {string} [instanceId] 实例编号
+ * @param {string} [connectionId] 实例编号
  * 
  */
 
- name = getName(name , instanceId) ;
+ name = getName(name , connectionId) ;
 
 let me = this,
     {

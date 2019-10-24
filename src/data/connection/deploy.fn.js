@@ -10,6 +10,8 @@
  * 
  * @import Manager from data.connection.socket.manager value
  * 
+ * @param {string} connectionId 连接编号
+ * 
  * @param {array} connectionNames 连接名称集合
  * 
  * @param {string} connectionsVarName 连接实例集合名称
@@ -30,6 +32,8 @@
 
     return !!this[connectionsVarName] ;
  }
+
+ connectionId = generate('connection-') ;
 
  return {
 
@@ -66,8 +70,9 @@
             }
         }
 
-        let names = keys(subscriberMap),
-            instanceId = scope.connectionId || generate('connection-') ;
+        let names = keys(subscriberMap) ;
+
+        scope.$connectionId = connectionId ;
 
         for(let name of names){
 
@@ -82,7 +87,7 @@
 
                 scope[varName] = connection.subscribes({
                     ...subscribers,
-                    instanceId,
+                    connectionId,
                     scope
                 }) ;
             }
@@ -98,7 +103,7 @@
 
         delete subscribers[name] ;
 
-        connections[connectionName].unsubscribe(name , this.connectionId) ;
+        connections[connectionName].unsubscribe(name , connectionId) ;
     },
 
     subscribe(name , options){
@@ -129,7 +134,7 @@
 
         connections[connectionName].subscribe(name , {
             ...subscriber,
-            instanceId:scope.connectionId,
+            connectionId,
             scope
         }) ;
 
@@ -159,7 +164,7 @@
                 subscribers
             } = subscriberMap[name] ;
 
-            connection.unsubscribes(keys(subscribers) , scope.connectionId) ;
+            connection.unsubscribes(keys(subscribers) , connectionId) ;
 
             delete scope[varName] ;
         }

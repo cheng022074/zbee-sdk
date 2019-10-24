@@ -206,14 +206,14 @@
 
     }
 
-    getSubscribers(names , instanceId){
+    getSubscribers(names , connectionId){
 
         let subscribers = [],
             me = this;
 
         for(let name of names){
 
-            let subscriber = me.getSubscriber(name , instanceId) ;
+            let subscriber = me.getSubscriber(name , connectionId) ;
 
             if(subscriber){
 
@@ -224,14 +224,14 @@
         return subscribers ;
     }
 
-    hasSubscriber(name , instanceId){
+    hasSubscriber(name , connectionId){
 
-        return !!this.getSubscriber(name , instanceId) ;
+        return !!this.getSubscriber(name , connectionId) ;
     }
 
-    getSubscriber(name , instanceId){
+    getSubscriber(name , connectionId){
 
-        return this.subscribers.get(getName(name , instanceId)) ;
+        return this.subscribers.get(getName(name , connectionId)) ;
     }
 
     /**

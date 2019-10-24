@@ -5,15 +5,15 @@
  * 
  * @param {string} name 订阅器名称
  * 
- * @param {string} [instanceId] 对象标识
+ * @param {string} [connectionId] 对象标识
  * 
  * @return {string} 订阅器名称
  * 
  */
 
-if(instanceId){
+if(connectionId){
 
-    return `${name}<${instanceId}>` ;
+    return `${name}<${connectionId}>` ;
 }
 
 return name ;

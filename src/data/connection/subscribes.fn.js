@@ -19,7 +19,7 @@
 
 let {
     scope,
-    instanceId,
+    connectionId,
     ...subscribers
 } = config,
 me = this,
@@ -35,7 +35,7 @@ for(let name of names){
 
         subscriber = me.subscribe(name , {
             fn:target,
-            instanceId,
+            connectionId,
             scope
         }) ;
 
@@ -43,7 +43,7 @@ for(let name of names){
 
         subscriber = me.subscribe(name , {
             ...target,
-            instanceId,
+            connectionId,
             scope
         }) ;
     }
