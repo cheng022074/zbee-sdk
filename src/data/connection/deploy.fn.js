@@ -14,8 +14,6 @@
  * 
  * @param {array} connectionNames 连接名称集合
  * 
- * @param {string} connectionsVarName 连接实例集合名称
- * 
  * @param {array} connections 连接实例集合
  * 
  * @param {object} subscriberMap 订阅器定义集合
@@ -28,12 +26,12 @@
     keys
  } = Object;
 
+ connectionId = generate('connection-') ;
+
  function isMounted(){
 
-    return !!this[connectionsVarName] ;
+    return this.hasOwnProperty('$connectionId') ;
  }
-
- connectionId = generate('connection-') ;
 
  return {
 
@@ -45,8 +43,6 @@
 
             return ;
         }
-
-        scope[connectionsVarName] = connections ;
 
         if(connectionNames){
 
@@ -90,6 +86,7 @@
                     connectionId,
                     scope
                 }) ;
+
             }
         }
 
@@ -169,7 +166,7 @@
             delete scope[varName] ;
         }
 
-        delete scope[connectionsVarName] ;
+        delete scope.$connectionId ;
     }
 
  } ;
