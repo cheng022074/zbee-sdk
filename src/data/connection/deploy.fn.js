@@ -60,7 +60,11 @@
 
             for(let name of names){
 
-                Manager.disconnect(connections[name]) ;
+                if(!connectionNames.includes(name)){
+
+                    Manager.disconnect(connections[name]) ;
+
+                }
             }
 
             for(let name of names){

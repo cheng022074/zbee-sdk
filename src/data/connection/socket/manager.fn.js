@@ -50,7 +50,7 @@
 
         isProcessorStarted = true ;
 
-        doProcessing() ;
+        setTimeout(doProcessing , 0) ;
     }
  }
 
@@ -76,7 +76,7 @@
 
         if(previousSocket){
 
-            remove(socket , {
+            remove(previousSocket , {
                 lostconnect:doProcessing,
                 disconnect:doProcessing,
                 connect:doProcessing
@@ -84,8 +84,6 @@
         }
 
         if(isDisconnected || isConnected){
-
-            processQueue.shift() ;
 
             previousSocket = socket ;
 
@@ -105,7 +103,9 @@
                     
                     }else{
 
-                        doProcessing() ;
+                        processQueue.shift() ;
+
+                        setTimeout(doProcessing , 0) ;
                     }
 
                     break ;
@@ -122,7 +122,9 @@
                                             
                     }else{
 
-                        doProcessing() ;
+                        processQueue.shift() ;
+
+                        setTimeout(doProcessing , 0) ;
                     }
             }
         
