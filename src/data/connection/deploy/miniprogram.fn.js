@@ -23,7 +23,6 @@ const {
     onHide:originHide = empty,
     onUnload:originUnload = empty,
     connections:connectionNames = defaultConnectionNames,
-    connectionId,
     ...options
  } = component;
 
@@ -32,7 +31,7 @@ let {
     unmounted,
     subscribe,
     unsubscribe
-} = deploy(connectionId , connectionNames , connections , component) ;
+} = deploy(connectionNames , connections , component) ;
 
 return {
     ...options,

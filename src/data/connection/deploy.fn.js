@@ -8,15 +8,23 @@
  * 
  * @import is.array
  * 
+ * @import is.function
+ * 
+ * @import is.string
+ * 
+ * @import isObject from is.object.simple
+ * 
  * @import Manager from data.connection.socket.manager value
  * 
- * @param {string} connectionId 连接编号
+ * @import empty from function.empty value
  * 
  * @param {array} connectionNames 连接名称集合
  * 
  * @param {array} connections 连接实例集合
  * 
  * @param {object} subscriberMap 订阅器定义集合
+ * 
+ * @param {function} [getConnectionId] 获得连接编号
  * 
  * @return {object}
  * 
@@ -26,7 +34,9 @@
     keys
  } = Object;
 
- connectionId = generate('connection-') ;
+ getConnectionId = getConnectionId || empty ;
+
+ let defaultConnectionId = generate('connection-') ;
 
  function isMounted(){
 
@@ -66,9 +76,8 @@
             }
         }
 
-        let names = keys(subscriberMap) ;
-
-        scope.$connectionId = connectionId ;
+        let names = keys(subscriberMap),
+            connectionId = scope.$connectionId = getConnectionId.call(scope) || defaultConnectionId ;
 
         for(let name of names){
 
@@ -78,68 +87,61 @@
                 subscribers
             } = subscriberMap[name] ;
             
-
             if(subscribers){
 
-                scope[varName] = connection.subscribes({
+                scope[varName] = new Proxy(connection.subscribes({
                     ...subscribers,
                     connectionId,
                     scope
+                }) , {
+
+                    set(subscribers , name , config){
+
+                        if(!subscribers.hasOwnProperty(name)){
+
+                            let subscriber = connection.subscribes({
+                                [name]:config,
+                                connectionId,
+                                scope
+                            })[name] ;
+
+                            if(subscriber){
+
+                                subscribers[name] = subscriber ;
+                            }
+                        }
+
+                        return subscribers ;
+
+                    },
+
+                    get(subscribers , name){
+
+                        return subscribers[name] ;
+                    },
+
+                    deleteProperty(subscribers , name){
+
+                        if(subscribers.hasOwnProperty(name)){
+
+                            connection.unsubscribe(name , connectionId) ;
+
+                            delete subscribers[name] ;
+                        }
+
+                        return subscribers ;
+                    },
+
+                    ownKeys(subscribers){
+
+                        return Object.keys(subscribers) ;
+                    }
+
                 }) ;
 
             }
         }
 
-    },
-
-    unsubscribe(name , connectionName){
-
-        let {
-            subscribers
-        } = subscriberMap[connectionName] ;
-
-        delete subscribers[name] ;
-
-        connections[connectionName].unsubscribe(name , connectionId) ;
-    },
-
-    subscribe(name , options){
-
-        let scope = this,
-            connectionName,
-            subscriber;
-
-        if(isObject(options)){
-
-            let {
-                connection = 'default',
-                ...params
-            } = options ;
-
-            connectionName = connection ;
-
-            subscriber = params ;
-        
-        }else{
-
-            name = 'default' ;
-
-            subscriber = {
-                fn:options
-            } ;
-        }
-
-        connections[connectionName].subscribe(name , {
-            ...subscriber,
-            connectionId,
-            scope
-        }) ;
-
-        let {
-            subscribers
-        } = subscriberMap[connectionName] ;
-
-        subscribers[name] = subscriber ;
     },
 
     unmounted(){
@@ -151,17 +153,19 @@
             return ;
         }
 
-        let names = keys(subscriberMap);
+        let names = keys(subscriberMap),
+            {
+                $connectionId:connectionId
+            } = scope;
 
         for(let name of names){
 
             let {
                 varName,
                 connection,
-                subscribers
             } = subscriberMap[name] ;
 
-            connection.unsubscribes(keys(subscribers) , connectionId) ;
+            connection.unsubscribes(keys(scope[varName]) , connectionId) ;
 
             delete scope[varName] ;
         }

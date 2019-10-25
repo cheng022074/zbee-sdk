@@ -5,8 +5,6 @@
  * 
  * @import deploy from ....deploy
  * 
- * @param {string} connectionId 连接编号
- * 
  * @param {array} connectionNames 订阅对象名称集合
  * 
  * @param {object} connections 订阅对象
@@ -37,4 +35,4 @@
     }
  }
 
- return deploy(connectionId , connectionNames ,  connections , config);
+ return deploy(connectionNames ,  connections , config);
