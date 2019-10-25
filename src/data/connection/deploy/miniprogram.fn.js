@@ -34,24 +34,6 @@ let {
     unsubscribe
 } = deploy(connectionId , connectionNames , connections , component) ;
 
-async function onHide(){
-
-    let me = this ;
-
-    await originHide.call(me) ;
-
-    unmounted.call(me) ;
-}
-
-async function onUnload(){
-
-    let me = this ;
-
-    await originUnload.call(me) ;
-
-    unmounted.call(me) ;
-}
-
 return {
     ...options,
     onLoad(options){
@@ -75,12 +57,20 @@ return {
 
    onHide(){
 
-        onHide.call(this) ;
+        let me = this ;
+
+        originHide.call(me) ;
+
+        unmounted.call(me) ;
    },
 
    onUnload(){
 
-      onUnload.call(this) ;
+        let me = this ;
+
+        originUnload.call(me) ;
+
+        unmounted.call(me) ;
    },
    subscribe,
    unsubscribe
