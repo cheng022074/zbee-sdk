@@ -54,25 +54,22 @@
             return ;
         }
 
-        if(connectionNames){
+        let names = Object.keys(connections);
 
-            let names = Object.keys(connections);
+        for(let name of names){
 
-            for(let name of names){
+            if(!connectionNames.includes(name)){
 
-                if(!connectionNames.includes(name)){
+                Manager.disconnect(connections[name]) ;
 
-                    Manager.disconnect(connections[name]) ;
-
-                }
             }
+        }
 
-            for(let name of names){
+        for(let name of names){
 
-                if(connectionNames.includes(name)){
+            if(connectionNames.includes(name)){
 
-                    Manager.connect(connections[name]) ;
-                }
+                Manager.connect(connections[name]) ;
             }
         }
 
