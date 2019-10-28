@@ -50,8 +50,13 @@
 
         isProcessorStarted = true ;
 
-        setTimeout(doProcessing , 0) ;
+        doSetTimeoutProcessing() ;
     }
+ }
+
+ function doSetTimeoutProcessing(){
+
+    setTimeout(doProcessing , 0) ;
  }
 
  function doProcessing(){
@@ -77,9 +82,9 @@
         if(previousSocket){
 
             remove(previousSocket , {
-                lostconnect:doProcessing,
-                disconnect:doProcessing,
-                connect:doProcessing
+                lostconnect:doSetTimeoutProcessing,
+                disconnect:doSetTimeoutProcessing,
+                connect:doSetTimeoutProcessing
             }) ;
         }
 
@@ -87,7 +92,9 @@
 
             previousSocket = socket ;
 
-            add(socket , 'lostconnect' , doProcessing) ;
+            processQueue.shift() ;
+
+            add(socket , 'lostconnect' , doSetTimeoutProcessing) ;
 
             switch(action){
 
@@ -95,7 +102,7 @@
 
                     if(isDisconnected){
 
-                        add(socket , 'connect' , doProcessing , {
+                        add(socket , 'connect' , doSetTimeoutProcessing , {
                             once:true
                         }) ;
 
@@ -103,9 +110,7 @@
                     
                     }else{
 
-                        processQueue.shift() ;
-
-                        setTimeout(doProcessing , 0) ;
+                        doSetTimeoutProcessing() ;
                     }
 
                     break ;
@@ -114,7 +119,7 @@
 
                     if(isConnected){
 
-                        add(socket , 'disconnect' , doProcessing , {
+                        add(socket , 'disconnect' , doSetTimeoutProcessing , {
                             once:true
                         }) ;
 
@@ -122,21 +127,19 @@
                                             
                     }else{
 
-                        processQueue.shift() ;
-
-                        setTimeout(doProcessing , 0) ;
+                        doSetTimeoutProcessing() ;
                     }
             }
         
         }else if(isDisconnecting){
 
-            add(socket , 'disconnect' , doProcessing , {
+            add(socket , 'disconnect' , doSetTimeoutProcessing , {
                 once:true
             }) ;
         
         }else if(isConnecting){
 
-            add(socket , 'connect' , doProcessing , {
+            add(socket , 'connect' , doSetTimeoutProcessing , {
                 once:true
             }) ;
         }
