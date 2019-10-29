@@ -3,6 +3,8 @@
  * 
  * 基于数据连接的小程序封装
  * 
+ * @import Manager from data.connection.socket.manager value
+ * 
  * @import empty from function.empty value
  * 
  * @import deploy from ..lifecycle
@@ -31,13 +33,40 @@ let {
     unmounted,
     subscribe,
     unsubscribe
-} = deploy(connectionNames , connections , component) ;
+} = deploy(connections , component) ;
+
+function initSockets(){
+
+     if(!this.hasOwnProperty('$connectionId')){
+
+          let names = Object.keys(connections);
+
+          for(let name of names){
+
+               if(!connectionNames.includes(name)){
+
+                    Manager.disconnect(connections[name]) ;
+
+               }
+          }
+
+          for(let name of names){
+
+               if(connectionNames.includes(name)){
+
+                    Manager.connect(connections[name]) ;
+               }
+          }
+     }
+}
 
 return {
     ...options,
     onLoad(options){
 
         let me = this ;
+
+        initSockets.call(me) ;
 
         mounted.call(me) ;
             
@@ -48,6 +77,8 @@ return {
    onShow(){
 
         let me = this ;
+
+        initSockets.call(me) ;
 
         mounted.call(me) ;
             
