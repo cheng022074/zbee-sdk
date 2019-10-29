@@ -14,11 +14,7 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import Manager from data.connection.socket.manager value
- * 
  * @import empty from function.empty value
- * 
- * @param {array} connectionNames 连接名称集合
  * 
  * @param {array} connections 连接实例集合
  * 
@@ -52,27 +48,6 @@
         if(isMounted.call(scope)){
 
             return ;
-        }
-
-        {
-            let names = Object.keys(connections);
-
-            for(let name of names){
-
-                if(!connectionNames.includes(name)){
-
-                    Manager.disconnect(connections[name]) ;
-
-                }
-            }
-
-            for(let name of names){
-
-                if(connectionNames.includes(name)){
-
-                    Manager.connect(connections[name]) ;
-                }
-            }
         }
 
         let names = keys(subscriberMap),
