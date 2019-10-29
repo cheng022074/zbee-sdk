@@ -5,8 +5,6 @@
  * 
  * @import deploy from ....deploy
  * 
- * @param {array} connectionNames 订阅对象名称集合
- * 
  * @param {object} connections 订阅对象
  * 
  * @param {object} component 组件定义对象
@@ -35,4 +33,4 @@
     }
  }
 
- return deploy(connectionNames ,  connections , config);
+ return deploy(connections , config);
