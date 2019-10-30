@@ -61,6 +61,12 @@
 
     onReconnect(){
 
+        this.reconnect() ;
+        
+    }
+
+    reconnect(){
+
         let me = this,
         {
             reconnectionDelay
@@ -73,7 +79,6 @@
             Manager.connect(me) ;
 
         } , reconnectionDelay) ;
-        
     }
 
     initialize(url , options){
@@ -134,10 +139,6 @@
             me.deactivate() ;
 
             me.doDisconnect() ;
-
-            add(socket , 'close' , () => delete me.disconnectingState , {
-                once:true
-            }) ;
         }
     }
 

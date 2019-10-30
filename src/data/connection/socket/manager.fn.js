@@ -20,20 +20,30 @@
 
  class main{
 
+    isSocket(socket){
+
+        return socket instanceof Socket() ;
+    }
+
+    isConnected(socket){
+
+        return this.isSocket(socket) && socket.isConnected ;
+    }
+
     connect(socket){
 
-        todo(socket , 'connect') ;
+        todo.call(this , socket , 'connect') ;
     }
 
     disconnect(socket){
 
-       todo(socket , 'disconnect') ;
+       todo.call(this , socket , 'disconnect') ;
     }
  }
 
  function todo(socket , action) {
 
-    if(socket instanceof Socket()){
+    if(this.isSocket(socket)){
 
         processQueue.push({
             socket,

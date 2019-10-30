@@ -68,6 +68,25 @@
         me.fireEvent('connect') ;
     }
 
+    onSocketError(){
+
+        let me = this,
+        {
+            socket,
+            socketTimeoutTimer
+        } = me;
+
+        socketTimeoutTimer.end() ;
+
+        removeAll(socket) ;
+
+        delete me.socket ;
+
+        delete me.disconnectingState ;
+
+        me.fireEvent('lostconnect') ;
+    }
+
     onSocketClose(){
 
         let me = this,
@@ -82,6 +101,8 @@
         removeAll(socket) ;
 
         delete me.socket ;
+
+        delete me.disconnectingState ;
 
         if(disconnectingState){
 
@@ -113,7 +134,7 @@
         add(me.socket = new WebSocket(socketURL) , {
             open:'onSocketOpen',
             close:'onSocketClose',
-            error:emptyFn,
+            error:'onSocketError',
             message:'onSocketMessage',
             scope:me
         }) ;

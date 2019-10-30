@@ -80,6 +80,8 @@
 
             delete me.io ;
 
+            delete me.disconnectingState ;
+
             if(disconnectingState){
 
                 me.fireEvent('disconnect') ;
