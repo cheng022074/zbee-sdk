@@ -61,12 +61,6 @@
 
     onReconnect(){
 
-        this.reconnect() ;
-        
-    }
-
-    reconnect(){
-
         let me = this,
         {
             reconnectionDelay
@@ -79,6 +73,7 @@
             Manager.connect(me) ;
 
         } , reconnectionDelay) ;
+        
     }
 
     initialize(url , options){
@@ -127,7 +122,6 @@
 
         let me = this,
         {
-            socket,
             isDisconnected,
             isDisconnecting
         } = me ;
