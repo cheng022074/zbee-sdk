@@ -15,7 +15,7 @@
  * 
  * @import getName from browser.event.name.single
  * 
- * @import on from browser.global.listener.add
+ * @import on from browser.event.listener.global.add
  * 
  * @import onStart from ..move.start scoped
  * 

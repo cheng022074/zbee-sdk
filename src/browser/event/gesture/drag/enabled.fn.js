@@ -5,11 +5,11 @@
  * 
  * @import getName from browser.event.name.single
  * 
- * @import onMove from move.drag scoped
+ * @import onMove from .move.drag scoped
  * 
  * @import onEnd from ..end scoped
  * 
- * @import on from browser.global.listener.add
+ * @import on from browser.event.listener.global.add
  * 
  */
 

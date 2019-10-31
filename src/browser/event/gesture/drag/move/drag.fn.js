@@ -9,8 +9,6 @@
  * 
  * @import updateInfo from ....info.update scoped
  * 
- * @import getEvent from browser.event.pointer
- * 
  * @param {Event} e 事件对象
  * 
  */

@@ -14,9 +14,11 @@
  * 
  * @import resetInfo from ....info.reset scoped
  * 
- * @import un from browser.global.listener.remove
+ * @import getDistance from math.point.distance
  * 
- * @config minDistance from gesture.drag...minDistance
+ * @import un from browser.event.listener.global.remove
+ * 
+ * @config minDistance from event.drag...minDistance
  * 
  * @param {Event} e 事件对象
  * 
@@ -39,7 +41,7 @@ point = {
     y
 };
 
-if (Math.round(startPoint , point) * scale() >= minDistance) {
+if (Math.round(getDistance(startPoint , point)) * scale() >= minDistance) {
 
     me.previousPoint = point ;
 
