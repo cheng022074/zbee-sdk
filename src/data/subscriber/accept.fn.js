@@ -3,8 +3,6 @@
  * 
  * 接收数据
  * 
- * @import is.defined
- * 
  * @param {mixed} data 数据
  * 
  * 
@@ -20,11 +18,6 @@ let me = this,
 } = me;
 
 if(closed){
-
-    return;
-}
-
-if(!isDefined(data)){
 
     return;
 }

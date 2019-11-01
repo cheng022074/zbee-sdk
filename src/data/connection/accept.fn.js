@@ -27,7 +27,7 @@ if(isDefined(message)){
 
             let processedData = me.processData(subscriber , message) ;
 
-            if(processedData){
+            if(isDefined(processedData)){
 
                 subscriber.accept(processedData) ;
 
