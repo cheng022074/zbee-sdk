@@ -11,8 +11,6 @@
  * 
  * @import onAxisEnd from .end.axis scoped
  * 
- * @import disabled from ..disabled scoped
- * 
  * @param {Event} e 事件对象
  * 
  */
@@ -45,6 +43,4 @@ onAxisEnd('x', info);
 onAxisEnd('y', info);
 
 dispatch('dragend', info);
-
-disabled() ;
 

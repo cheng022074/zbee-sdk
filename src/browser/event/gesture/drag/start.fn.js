@@ -19,6 +19,8 @@
  * 
  * @import onStart from ..move.start scoped
  * 
+ * @import disabled from ..disabled scoped
+ * 
  * @import .start.name
  * 
  * @param {Event} e 事件对象
@@ -83,3 +85,7 @@ me.startPoint = {
 } ;
 
 on(getName('move') , me.onStart = onStart) ;
+
+on(getName('end') , disabled , {
+    once:true
+}) ;
