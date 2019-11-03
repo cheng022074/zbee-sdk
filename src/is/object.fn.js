@@ -10,4 +10,4 @@
  * 
  */
 
-return Object.prototype.toString.call(data) === '[object Object]' ;
+return data instanceof Object ;
