@@ -29,7 +29,7 @@ prevent(e) ;
 
 stop(e) ;
 
-if(getTouchEvents(e)){
+if(getTouchEvents(e , 'start')){
 
     disabled() ;
 
