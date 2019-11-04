@@ -7,8 +7,6 @@
  * 
  * @import clear from browser.canvas.clear
  * 
- * @import scale from browser.scale value
- * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
  * @param {object} [config = {}] 画线配置
@@ -26,7 +24,7 @@
  arc(context , {
      x,
      y,
-     r:(size * scale) / 2,
+     r:size / 2,
      end:270,
      clip:true
  }) ;
