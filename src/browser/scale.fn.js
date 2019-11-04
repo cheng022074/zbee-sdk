@@ -6,6 +6,8 @@
  * 
  * @return {number} 缩放比率
  * 
+ * @once
+ * 
  */
 
 switch(osName){

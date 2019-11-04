@@ -7,6 +7,12 @@
  * 
  * @import degree2radian from math.degree2radian
  * 
+ * @import doBegin from browser.canvas.begin
+ * 
+ * @import doEnd from browser.canvas.end
+ * 
+ * @import scale from browser.scale value
+ * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
  * @param {object} [config = {}] 画线配置
@@ -23,14 +29,18 @@
  * 
  * @param {number} [config.counterclockwise = false] 如果为 false 则为顺时针，反之为逆时针
  * 
+ * @param {boolean} [config.independent = true] 是否为独立图形
+ * 
+ * @param {boolean} [config.clip = false] 是否为剪切路径
+ * 
  * @param {object} [...config.styles] 画线样式
  * 
  */
 
-context.beginPath();
+doBegin(context , independent) ;
 
 assign(context , styles) ;
 
-context.arc(x , y , r , degree2radian(start) , degree2radian(end) , counterclockwise) ;
+context.arc(x * scale , y * scale , r * scale , degree2radian(start) , degree2radian(end) , counterclockwise) ;
 
-context.stroke();
+doEnd(context , clip) ;
