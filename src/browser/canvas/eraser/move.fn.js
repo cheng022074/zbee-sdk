@@ -3,9 +3,11 @@
  * 
  * 橡皮擦移动
  * 
- * @import arc from canvas.draw.line.arc
+ * @import arc from browser.canvas.draw.line.arc
  * 
- * @import clear from canvas.clear
+ * @import clear from browser.canvas.clear
+ * 
+ * @import scale from browser.scale value
  * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
@@ -24,7 +26,7 @@
  arc(context , {
      x,
      y,
-     r:size / 2,
+     r:(size * scale) / 2,
      end:270,
      clip:true
  }) ;

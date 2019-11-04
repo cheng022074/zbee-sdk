@@ -5,6 +5,8 @@
  * 
  * @import assign from object.assign
  * 
+ * @import scale from browser.scale value
+ * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
  * @param {object} [config = {}] 画线配置
@@ -21,9 +23,16 @@
 
     assign(context , styles) ;
 
-    context.moveTo(...points.slice(0 , 2));
+    let newPoints = [] ;
+
+    for(let point of points){
+
+      newPoints.push(point * scale) ;
+    }
+
+    context.moveTo(...newPoints.slice(0 , 2));
     
-    context.bezierCurveTo(...points.slice(2));
+    context.bezierCurveTo(...newPoints.slice(2));
     
     context.stroke();
  }

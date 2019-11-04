@@ -7,9 +7,11 @@
  * 
  * @import degree2radian from math.degree2radian
  * 
- * @import doBegin from canvas.begin
+ * @import doBegin from browser.canvas.begin
  * 
- * @import doEnd from canvas.end
+ * @import doEnd from browser.canvas.end
+ * 
+ * @import scale from browser.scale value
  * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
@@ -39,6 +41,6 @@ doBegin(context , independent) ;
 
 assign(context , styles) ;
 
-context.arc(x , y , r , degree2radian(start) , degree2radian(end) , counterclockwise) ;
+context.arc(x * scale , y * scale , r * scale , degree2radian(start) , degree2radian(end) , counterclockwise) ;
 
 doEnd(context , clip) ;
