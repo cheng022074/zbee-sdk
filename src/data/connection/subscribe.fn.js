@@ -32,11 +32,9 @@ function main(name , {
         return ;
     }
 
-    options = assign({} , convertNameToSubscriberOptions.call(me , name) , options) ;
-
     name = getName(name , connectionId) ;
 
-    let subscriber = me.createSubscriber(name , options) ;
+    let subscriber = me.createSubscriber(name , assign({} , convertNameToSubscriberOptions.call(me , name) , options)) ;
 
     subscribers.set(name , subscriber) ;
 
