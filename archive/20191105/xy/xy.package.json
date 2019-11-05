@@ -44,7 +44,8 @@
     "file.write",
     "file.read.text",
     "webpack.*",
-    "object.flat"
+    "object.flat",
+    "object.keys"
   ],
   "type": "library",
   "memory": false
