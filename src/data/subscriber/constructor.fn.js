@@ -30,6 +30,8 @@
  * 
  * @param {function} config.fn 订阅函数
  * 
+ * @param {boolean} [config.once = false] 仅订阅一次即取消
+ * 
  * @param {mixed} [config.scope] 订阅函数作用域
  * 
  */
@@ -63,4 +65,11 @@ add(me , {
 if(autoOpen){
 
     me.open(params) ;
+}
+
+if(once === true){
+
+    add(me , 'data' , () => connection.unsubscribe(name) , {
+        once:true
+    }) ;
 }

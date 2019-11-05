@@ -22,9 +22,11 @@ if(closed){
     return;
 }
 
-me.fireEvent('data' , data , params) ;
-
 if(bindFn){
 
-    return bindFn(data , params) ;
+    let result = bindFn(data , params) ;
+    
+    me.fireEvent('data' , data , params) ;
+
+    return  result;
 }
