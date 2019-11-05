@@ -67,6 +67,9 @@ if(autoOpen){
     me.open(params) ;
 }
 
-add(me , 'data' , () => connection.unsubscribe(name) , {
-    once:true
-}) ;
+if(once === true){
+
+    add(me , 'data' , () => connection.unsubscribe(name) , {
+        once:true
+    }) ;
+}
