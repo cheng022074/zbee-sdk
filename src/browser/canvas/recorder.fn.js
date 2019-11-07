@@ -19,6 +19,7 @@
 
     constructor({
         context,
+        user,
         ...options
     }){
 
@@ -30,88 +31,19 @@
 
         me.records = [] ;
 
-        me.paused = false ;
-
-        me.startPlayIndex = 0 ;
+        me.user = user ;
     }
 
-    async play(){
+    record(api , params , isTiming = true){
 
         let me = this,
         {
-            context,
             records,
-            startPlayIndex
-        } = me,
-        len = records.length;
-
-        me.paused = false ;
-
-        if(startPlayIndex !== 0){
-
-            let {
-                api,
-                params
-            } = records[startPlayIndex - 1] ;
-
-            if(api === 'browser.canvas.brush.move'){
-
-                include('browser.canvas.brush.start')(context , params) ;
-            }
-        }
-
-        for(let i = startPlayIndex ; i < len ; i ++){
-
-            if(me.paused === true){
-
-                me.startPlayIndex = i ;
-
-                return ;
-            }
-
-            let {
-                api,
-                params,
-                delay
-            } = records[i] ;
-
-            await new Promise(callback => {
-
-                setTimeout(() =>{
-
-                    include(api)(context , params) ;
-
-                    callback() ;
-
-                } , delay) ;
-
-            }) ;
-        }
-
-        me.startPlayIndex = 0 ;
-    }
-
-    pause(){
-
-        this.paused = true ;
-    }
-
-    reset(){
-
-        let me = this ;
-
-        me.paused = false ;
-
-        arrayClear(me.records) ;
-    }
-
-    record(api , params){
-
-        let me = this,
-        {
-            records
+            context,
+            user
         } = me,
         record = {
+            user,
             api,
             params,
             time:Date.now(),
@@ -120,11 +52,15 @@
 
         let previousRecord = records[records.length - 1] ;
 
-        if(previousRecord){
+        if(isTiming && previousRecord){
 
             record.delay = record.time - previousRecord.time ;
         }
 
         records.push(record) ;
+
+        include(api)(context , params) ;
+
+        me.fireEvent('record' , record) ;
     }
  }
