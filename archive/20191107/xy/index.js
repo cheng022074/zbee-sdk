@@ -115,7 +115,7 @@ exports['src::is.array'] = (() => {
 
     let isType;
 
-    let var_init_locked_1572940250144;
+    let var_init_locked_1573103389979;
 
 
 
@@ -142,11 +142,11 @@ exports['src::is.array'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250144) {
+        if (!var_init_locked_1573103389979) {
 
             isType = include('is.type');
 
-            var_init_locked_1572940250144 = true;
+            var_init_locked_1573103389979 = true;
         }
 
 
@@ -161,7 +161,7 @@ exports['src::is.empty'] = (() => {
 
     let isArray;
 
-    let var_init_locked_1572940250151;
+    let var_init_locked_1573103389983;
 
 
 
@@ -190,11 +190,11 @@ exports['src::is.empty'] = (() => {
     return function(data, allowEmptyString = false) {
 
 
-        if (!var_init_locked_1572940250151) {
+        if (!var_init_locked_1573103389983) {
 
             isArray = include('is.array');
 
-            var_init_locked_1572940250151 = true;
+            var_init_locked_1573103389983 = true;
         }
 
 
@@ -209,7 +209,7 @@ exports['src::is.string'] = (() => {
 
     let isType;
 
-    let var_init_locked_1572940250156;
+    let var_init_locked_1573103389986;
 
 
 
@@ -236,11 +236,11 @@ exports['src::is.string'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250156) {
+        if (!var_init_locked_1573103389986) {
 
             isType = include('is.type');
 
-            var_init_locked_1572940250156 = true;
+            var_init_locked_1573103389986 = true;
         }
 
 
@@ -255,7 +255,7 @@ exports['src::array.from'] = (() => {
 
     let isEmpty, isString;
 
-    let var_init_locked_1572940250160;
+    let var_init_locked_1573103389990;
 
 
 
@@ -297,12 +297,12 @@ exports['src::array.from'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250160) {
+        if (!var_init_locked_1573103389990) {
 
             isEmpty = include('is.empty');
             isString = include('is.string');
 
-            var_init_locked_1572940250160 = true;
+            var_init_locked_1573103389990 = true;
         }
 
 
@@ -317,7 +317,7 @@ exports['src::date.get.properties'] = (() => {
 
     let from;
 
-    let var_init_locked_1572940250168;
+    let var_init_locked_1573103389998;
 
 
 
@@ -377,11 +377,11 @@ exports['src::date.get.properties'] = (() => {
     return function(date, names) {
 
 
-        if (!var_init_locked_1572940250168) {
+        if (!var_init_locked_1573103389998) {
 
             from = include('array.from');
 
-            var_init_locked_1572940250168 = true;
+            var_init_locked_1573103389998 = true;
         }
 
 
@@ -396,7 +396,7 @@ exports['src::array.dates.includes'] = (() => {
 
     let get;
 
-    let var_init_locked_1572940250173;
+    let var_init_locked_1573103390003;
 
 
 
@@ -453,11 +453,11 @@ exports['src::array.dates.includes'] = (() => {
     return function(dates, date, fields = ['year', 'month', 'day']) {
 
 
-        if (!var_init_locked_1572940250173) {
+        if (!var_init_locked_1573103390003) {
 
             get = include('date.get.properties');
 
-            var_init_locked_1572940250173 = true;
+            var_init_locked_1573103390003 = true;
         }
 
 
@@ -509,7 +509,7 @@ exports['src::is.number'] = (() => {
 
     let isType;
 
-    let var_init_locked_1572940250178;
+    let var_init_locked_1573103390009;
 
 
 
@@ -536,11 +536,11 @@ exports['src::is.number'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250178) {
+        if (!var_init_locked_1573103390009) {
 
             isType = include('is.type');
 
-            var_init_locked_1572940250178 = true;
+            var_init_locked_1573103390009 = true;
         }
 
 
@@ -555,7 +555,7 @@ exports['src::is.boolean'] = (() => {
 
     let isType;
 
-    let var_init_locked_1572940250180;
+    let var_init_locked_1573103390012;
 
 
 
@@ -582,11 +582,11 @@ exports['src::is.boolean'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250180) {
+        if (!var_init_locked_1573103390012) {
 
             isType = include('is.type');
 
-            var_init_locked_1572940250180 = true;
+            var_init_locked_1573103390012 = true;
         }
 
 
@@ -639,7 +639,7 @@ exports['src::data.type'] = (() => {
 
     let isObject, isArray, isString, isNumber, isBoolean, isDate;
 
-    let var_init_locked_1572940250186;
+    let var_init_locked_1573103390018;
 
 
 
@@ -709,7 +709,7 @@ exports['src::data.type'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250186) {
+        if (!var_init_locked_1573103390018) {
 
             isObject = include('is.object.simple');
             isArray = include('is.array');
@@ -719,7 +719,7 @@ exports['src::data.type'] = (() => {
             isDate = include('is.date');
             isString = include('is.string');
 
-            var_init_locked_1572940250186 = true;
+            var_init_locked_1573103390018 = true;
         }
 
 
@@ -734,7 +734,7 @@ exports['src::data.equals'] = (() => {
 
     let getType;
 
-    let var_init_locked_1572940250193;
+    let var_init_locked_1573103390025;
 
 
 
@@ -853,11 +853,11 @@ exports['src::data.equals'] = (() => {
     return function(value1, value2) {
 
 
-        if (!var_init_locked_1572940250193) {
+        if (!var_init_locked_1573103390025) {
 
             getType = include('data.type');
 
-            var_init_locked_1572940250193 = true;
+            var_init_locked_1573103390025 = true;
         }
 
 
@@ -872,7 +872,7 @@ exports['src::array.indexOf'] = (() => {
 
     let equals;
 
-    let var_init_locked_1572940250198;
+    let var_init_locked_1573103390030;
 
 
 
@@ -914,11 +914,11 @@ exports['src::array.indexOf'] = (() => {
     return function(data, checkItem) {
 
 
-        if (!var_init_locked_1572940250198) {
+        if (!var_init_locked_1573103390030) {
 
             equals = include('data.equals');
 
-            var_init_locked_1572940250198 = true;
+            var_init_locked_1573103390030 = true;
         }
 
 
@@ -933,7 +933,7 @@ exports['src::array.includes'] = (() => {
 
     let indexOf;
 
-    let var_init_locked_1572940250202;
+    let var_init_locked_1573103390034;
 
 
 
@@ -963,11 +963,11 @@ exports['src::array.includes'] = (() => {
     return function(data, checkItem) {
 
 
-        if (!var_init_locked_1572940250202) {
+        if (!var_init_locked_1573103390034) {
 
             indexOf = include('array.indexOf');
 
-            var_init_locked_1572940250202 = true;
+            var_init_locked_1573103390034 = true;
         }
 
 
@@ -1159,7 +1159,7 @@ exports['src::array.remove.all'] = (() => {
 
     let remove, indexOf;
 
-    let var_init_locked_1572940250216;
+    let var_init_locked_1573103390050;
 
 
 
@@ -1201,12 +1201,12 @@ exports['src::array.remove.all'] = (() => {
     return function(data, item) {
 
 
-        if (!var_init_locked_1572940250216) {
+        if (!var_init_locked_1573103390050) {
 
             remove = include('src::array.remove.index');
             indexOf = include('src::array.indexOf');
 
-            var_init_locked_1572940250216 = true;
+            var_init_locked_1573103390050 = true;
         }
 
 
@@ -1221,7 +1221,7 @@ exports['src::array.remove'] = (() => {
 
     let remove, indexOf;
 
-    let var_init_locked_1572940250219;
+    let var_init_locked_1573103390054;
 
 
 
@@ -1254,12 +1254,12 @@ exports['src::array.remove'] = (() => {
     return function(data, ...items) {
 
 
-        if (!var_init_locked_1572940250219) {
+        if (!var_init_locked_1573103390054) {
 
             remove = include('array.remove.index');
             indexOf = include('array.indexOf');
 
-            var_init_locked_1572940250219 = true;
+            var_init_locked_1573103390054 = true;
         }
 
 
@@ -1311,7 +1311,7 @@ exports['src::data.connection.accept'] = (() => {
 
     let isDefined;
 
-    let var_init_locked_1572940250227;
+    let var_init_locked_1573103390063;
 
 
 
@@ -1366,11 +1366,11 @@ exports['src::data.connection.accept'] = (() => {
     return function(...args) {
 
 
-        if (!var_init_locked_1572940250227) {
+        if (!var_init_locked_1573103390063) {
 
             isDefined = include('is.defined');
 
-            var_init_locked_1572940250227 = true;
+            var_init_locked_1573103390063 = true;
         }
 
 
@@ -1385,7 +1385,7 @@ exports['src::data.connection.activate'] = (() => {
 
     let includes;
 
-    let var_init_locked_1572940250231;
+    let var_init_locked_1573103390067;
 
 
 
@@ -1423,11 +1423,11 @@ exports['src::data.connection.activate'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940250231) {
+        if (!var_init_locked_1573103390067) {
 
             includes = include('array.includes');
 
-            var_init_locked_1572940250231 = true;
+            var_init_locked_1573103390067 = true;
         }
 
 
@@ -1442,7 +1442,7 @@ exports['src::url.append'] = (() => {
 
     let isString;
 
-    let var_init_locked_1572940250237;
+    let var_init_locked_1573103390073;
 
 
 
@@ -1505,11 +1505,11 @@ exports['src::url.append'] = (() => {
     return function(url, data) {
 
 
-        if (!var_init_locked_1572940250237) {
+        if (!var_init_locked_1573103390073) {
 
             isString = include('is.string');
 
-            var_init_locked_1572940250237 = true;
+            var_init_locked_1573103390073 = true;
         }
 
 
@@ -1562,7 +1562,7 @@ exports['src::url.template.apply'] = (() => {
 
     let isInt;
 
-    let var_init_locked_1572940250243;
+    let var_init_locked_1573103390079;
 
 
 
@@ -1602,11 +1602,11 @@ exports['src::url.template.apply'] = (() => {
     return function(url, data) {
 
 
-        if (!var_init_locked_1572940250243) {
+        if (!var_init_locked_1573103390079) {
 
             isInt = include('regexp.int');
 
-            var_init_locked_1572940250243 = true;
+            var_init_locked_1573103390079 = true;
         }
 
 
@@ -1621,7 +1621,7 @@ exports['src::data.connection.ajax.request'] = (() => {
 
     let append, apply, isObject;
 
-    let var_init_locked_1572940250249;
+    let var_init_locked_1573103390086;
 
 
 
@@ -1717,13 +1717,13 @@ exports['src::data.connection.ajax.request'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1572940250249) {
+        if (!var_init_locked_1573103390086) {
 
             append = include('url.append');
             apply = include('url.template.apply');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940250249 = true;
+            var_init_locked_1573103390086 = true;
         }
 
 
@@ -1745,7 +1745,7 @@ exports['src::data.connection.ajax.request.browser'] = (() => {
 
     let request;
 
-    let var_init_locked_1572940250256;
+    let var_init_locked_1573103390092;
 
 
 
@@ -1811,11 +1811,11 @@ exports['src::data.connection.ajax.request.browser'] = (() => {
     return function(url, config) {
 
 
-        if (!var_init_locked_1572940250256) {
+        if (!var_init_locked_1573103390092) {
 
             request = include('src::data.connection.ajax.request');
 
-            var_init_locked_1572940250256 = true;
+            var_init_locked_1573103390092 = true;
         }
 
 
@@ -1830,7 +1830,7 @@ exports['src::data.connection.ajax.request.miniprogram'] = (() => {
 
     let request;
 
-    let var_init_locked_1572940250264;
+    let var_init_locked_1573103390102;
 
 
 
@@ -1901,11 +1901,11 @@ exports['src::data.connection.ajax.request.miniprogram'] = (() => {
     return function(url, config) {
 
 
-        if (!var_init_locked_1572940250264) {
+        if (!var_init_locked_1573103390102) {
 
             request = include('src::data.connection.ajax.request');
 
-            var_init_locked_1572940250264 = true;
+            var_init_locked_1573103390102 = true;
         }
 
 
@@ -1920,7 +1920,7 @@ exports['src::is.function'] = (() => {
 
     let isType;
 
-    let var_init_locked_1572940250268;
+    let var_init_locked_1573103390109;
 
 
 
@@ -1947,11 +1947,11 @@ exports['src::is.function'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250268) {
+        if (!var_init_locked_1573103390109) {
 
             isType = include('is.type');
 
-            var_init_locked_1572940250268 = true;
+            var_init_locked_1573103390109 = true;
         }
 
 
@@ -1970,7 +1970,7 @@ exports['src::class.empty'] = (() => {
 
 
 
-    let var_once_value_1572940250270;
+    let var_once_value_1573103390112;
 
     function main() {
 
@@ -1998,12 +1998,12 @@ exports['src::class.empty'] = (() => {
 
 
 
-        if (var_once_value_1572940250270) {
+        if (var_once_value_1573103390112) {
 
-            return var_once_value_1572940250270;
+            return var_once_value_1573103390112;
 
         }
-        return var_once_value_1572940250270 = main.call(this);
+        return var_once_value_1573103390112 = main.call(this);
 
     };
 
@@ -2158,9 +2158,9 @@ exports['src::map.set'] = (() => {
 
     let find;
 
-    let var_init_locked_1572940250282;
+    let var_init_locked_1573103390125;
 
-    let var_current_scope_1572940250282;
+    let var_current_scope_1573103390125;
 
 
 
@@ -2215,11 +2215,11 @@ exports['src::map.set'] = (() => {
 
 
 
-        if (!var_current_scope_1572940250282 !== this) {
+        if (!var_current_scope_1573103390125 !== this) {
 
             find = include('src::map.find').bind(this);
 
-            var_current_scope_1572940250282 = this;
+            var_current_scope_1573103390125 = this;
         }
 
 
@@ -2232,9 +2232,9 @@ exports['src::map.get'] = (() => {
 
     let find;
 
-    let var_init_locked_1572940250285;
+    let var_init_locked_1573103390128;
 
-    let var_current_scope_1572940250285;
+    let var_current_scope_1573103390128;
 
 
 
@@ -2275,11 +2275,11 @@ exports['src::map.get'] = (() => {
 
 
 
-        if (!var_current_scope_1572940250285 !== this) {
+        if (!var_current_scope_1573103390128 !== this) {
 
             find = include('src::map.find').bind(this);
 
-            var_current_scope_1572940250285 = this;
+            var_current_scope_1573103390128 = this;
         }
 
 
@@ -2292,9 +2292,9 @@ exports['src::map.has'] = (() => {
 
     let find;
 
-    let var_init_locked_1572940250288;
+    let var_init_locked_1573103390131;
 
-    let var_current_scope_1572940250288;
+    let var_current_scope_1573103390131;
 
 
 
@@ -2326,11 +2326,11 @@ exports['src::map.has'] = (() => {
 
 
 
-        if (!var_current_scope_1572940250288 !== this) {
+        if (!var_current_scope_1573103390131 !== this) {
 
             find = include('src::map.find').bind(this);
 
-            var_current_scope_1572940250288 = this;
+            var_current_scope_1573103390131 = this;
         }
 
 
@@ -2343,9 +2343,9 @@ exports['src::map.delete'] = (() => {
 
     let find;
 
-    let var_init_locked_1572940250291;
+    let var_init_locked_1573103390134;
 
-    let var_current_scope_1572940250291;
+    let var_current_scope_1573103390134;
 
 
 
@@ -2389,11 +2389,11 @@ exports['src::map.delete'] = (() => {
 
 
 
-        if (!var_current_scope_1572940250291 !== this) {
+        if (!var_current_scope_1573103390134 !== this) {
 
             find = include('src::map.find').bind(this);
 
-            var_current_scope_1572940250291 = this;
+            var_current_scope_1573103390134 = this;
         }
 
 
@@ -2482,7 +2482,7 @@ exports['src::map.find.fuzzy'] = (() => {
 
     let isDefined;
 
-    let var_init_locked_1572940250306;
+    let var_init_locked_1573103390146;
 
 
 
@@ -2550,11 +2550,11 @@ exports['src::map.find.fuzzy'] = (() => {
     return function(...keys) {
 
 
-        if (!var_init_locked_1572940250306) {
+        if (!var_init_locked_1573103390146) {
 
             isDefined = include('is.defined');
 
-            var_init_locked_1572940250306 = true;
+            var_init_locked_1573103390146 = true;
         }
 
 
@@ -2569,16 +2569,16 @@ exports['src::map'] = (() => {
 
     let extend, constructor, get_size, method_set, method_get, method_has, method_delete, method_forEach, method_clear, method_find, isObject;
 
-    let var_init_locked_1572940250311;
+    let var_init_locked_1573103390150;
 
-    let var_class_1572940250311;
+    let var_class_1573103390150;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250311) {
+        if (!var_init_locked_1573103390150) {
 
             extend = include('class.empty')();
             constructor = include('src::map.constructor');
@@ -2592,12 +2592,12 @@ exports['src::map'] = (() => {
             method_find = include('map.find.fuzzy');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940250311 = true;
+            var_init_locked_1573103390150 = true;
         }
 
 
 
-        if (!var_class_1572940250311) {
+        if (!var_class_1573103390150) {
 
             class main {
 
@@ -2657,7 +2657,7 @@ exports['src::map'] = (() => {
 
             }
 
-            var_class_1572940250311 = class extends main {
+            var_class_1573103390150 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -2667,7 +2667,7 @@ exports['src::map'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250311;
+                    return var_class_1573103390150;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -2679,7 +2679,7 @@ exports['src::map'] = (() => {
         }
 
 
-        return new var_class_1572940250311();
+        return new var_class_1573103390150();
     };
 
 })();
@@ -2688,11 +2688,11 @@ exports['src::event.listeners'] = (() => {
 
     let map;
 
-    let var_init_locked_1572940250319;
+    let var_init_locked_1573103390156;
 
 
 
-    let var_once_value_1572940250319;
+    let var_once_value_1573103390156;
 
     function main() {
 
@@ -2716,23 +2716,23 @@ exports['src::event.listeners'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940250319) {
+        if (!var_init_locked_1573103390156) {
 
             map = include('map')();
 
-            var_init_locked_1572940250319 = true;
+            var_init_locked_1573103390156 = true;
         }
 
 
 
 
 
-        if (var_once_value_1572940250319) {
+        if (var_once_value_1573103390156) {
 
-            return var_once_value_1572940250319;
+            return var_once_value_1573103390156;
 
         }
-        return var_once_value_1572940250319 = main.call(this);
+        return var_once_value_1573103390156 = main.call(this);
 
     };
 
@@ -2784,7 +2784,7 @@ exports['src::event.listener.remove'] = (() => {
 
     let isString, isObject, remove, listeners, native;
 
-    let var_init_locked_1572940250329;
+    let var_init_locked_1573103390165;
 
 
 
@@ -2855,7 +2855,7 @@ exports['src::event.listener.remove'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940250329) {
+        if (!var_init_locked_1573103390165) {
 
             isString = include('is.string');
             isObject = include('is.object.simple');
@@ -2863,7 +2863,7 @@ exports['src::event.listener.remove'] = (() => {
             listeners = include('src::event.listeners')();
             native = include('src::event.listener.native.remove');
 
-            var_init_locked_1572940250329 = true;
+            var_init_locked_1573103390165 = true;
         }
 
 
@@ -2916,7 +2916,7 @@ exports['src::function.get'] = (() => {
 
     let isString, isFunction, empty;
 
-    let var_init_locked_1572940250342;
+    let var_init_locked_1573103390175;
 
 
 
@@ -2971,13 +2971,13 @@ exports['src::function.get'] = (() => {
     return function(fn, scope) {
 
 
-        if (!var_init_locked_1572940250342) {
+        if (!var_init_locked_1573103390175) {
 
             isString = include('is.string');
             isFunction = include('is.function');
             empty = include('function.empty');
 
-            var_init_locked_1572940250342 = true;
+            var_init_locked_1573103390175 = true;
         }
 
 
@@ -3034,7 +3034,7 @@ exports['src::event.listener.add'] = (() => {
 
     let isString, isObject, add, remove, get, listeners, native, isArray;
 
-    let var_init_locked_1572940250354;
+    let var_init_locked_1573103390184;
 
 
 
@@ -3159,7 +3159,7 @@ exports['src::event.listener.add'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940250354) {
+        if (!var_init_locked_1573103390184) {
 
             isString = include('is.string');
             isObject = include('is.object.simple');
@@ -3170,7 +3170,7 @@ exports['src::event.listener.add'] = (() => {
             native = include('src::event.listener.native.add');
             isArray = include('is.array');
 
-            var_init_locked_1572940250354 = true;
+            var_init_locked_1573103390184 = true;
         }
 
 
@@ -3188,7 +3188,7 @@ exports['src::mixin.observable.constructor'] = (() => {
 
     let add, isObject, isArray;
 
-    let var_init_locked_1572940250361;
+    let var_init_locked_1573103390191;
 
 
 
@@ -3234,13 +3234,13 @@ exports['src::mixin.observable.constructor'] = (() => {
     return function(options) {
 
 
-        if (!var_init_locked_1572940250361) {
+        if (!var_init_locked_1573103390191) {
 
             add = include('event.listener.add');
             isObject = include('is.object.simple');
             isArray = include('is.array');
 
-            var_init_locked_1572940250361 = true;
+            var_init_locked_1573103390191 = true;
         }
 
 
@@ -3341,7 +3341,7 @@ exports['src::mixin.observable.event.fire'] = (() => {
 
     let isArray;
 
-    let var_init_locked_1572940250372;
+    let var_init_locked_1573103390203;
 
 
 
@@ -3391,11 +3391,11 @@ exports['src::mixin.observable.event.fire'] = (() => {
     return function(event, ...args) {
 
 
-        if (!var_init_locked_1572940250372) {
+        if (!var_init_locked_1573103390203) {
 
             isArray = include('is.array');
 
-            var_init_locked_1572940250372 = true;
+            var_init_locked_1573103390203 = true;
         }
 
 
@@ -3478,7 +3478,7 @@ exports['src::mixin.observable'] = (() => {
 
     let constructor, method_addListener, method_removeListener, method_fireEvent, method_suspendEvents, method_resumeEvents, isObject;
 
-    let var_init_locked_1572940250379;
+    let var_init_locked_1573103390211;
 
 
 
@@ -3552,7 +3552,7 @@ exports['src::mixin.observable'] = (() => {
     return function(extend) {
 
 
-        if (!var_init_locked_1572940250379) {
+        if (!var_init_locked_1573103390211) {
 
             constructor = include('src::mixin.observable.constructor');
             method_addListener = include('src::mixin.observable.listener.add');
@@ -3562,7 +3562,7 @@ exports['src::mixin.observable'] = (() => {
             method_resumeEvents = include('src::mixin.observable.events.resume');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940250379 = true;
+            var_init_locked_1573103390211 = true;
         }
 
 
@@ -3577,7 +3577,7 @@ exports['src::data.subscriber.constructor'] = (() => {
 
     let get, add, emptyFn;
 
-    let var_init_locked_1572940250389;
+    let var_init_locked_1573103390221;
 
 
 
@@ -3689,13 +3689,13 @@ exports['src::data.subscriber.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1572940250389) {
+        if (!var_init_locked_1573103390221) {
 
             get = include('function.get');
             add = include('event.listener.add');
             emptyFn = include('function.empty')();
 
-            var_init_locked_1572940250389 = true;
+            var_init_locked_1573103390221 = true;
         }
 
 
@@ -3903,7 +3903,7 @@ exports['src::is.object'] = (() => {
 
     let isType;
 
-    let var_init_locked_1572940250405;
+    let var_init_locked_1573103390241;
 
 
 
@@ -3930,11 +3930,11 @@ exports['src::is.object'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250405) {
+        if (!var_init_locked_1573103390241) {
 
             isType = include('is.type');
 
-            var_init_locked_1572940250405 = true;
+            var_init_locked_1573103390241 = true;
         }
 
 
@@ -3949,7 +3949,7 @@ exports['src::object.assign'] = (() => {
 
     let isObject;
 
-    let var_init_locked_1572940250408;
+    let var_init_locked_1573103390244;
 
 
 
@@ -4001,11 +4001,11 @@ exports['src::object.assign'] = (() => {
     return function(dest, ...sources) {
 
 
-        if (!var_init_locked_1572940250408) {
+        if (!var_init_locked_1573103390244) {
 
             isObject = include('is.object');
 
-            var_init_locked_1572940250408 = true;
+            var_init_locked_1573103390244 = true;
         }
 
 
@@ -4020,7 +4020,7 @@ exports['src::data.subscriber.open'] = (() => {
 
     let equals, assign;
 
-    let var_init_locked_1572940250411;
+    let var_init_locked_1573103390247;
 
 
 
@@ -4064,12 +4064,12 @@ exports['src::data.subscriber.open'] = (() => {
     return function(params = {}) {
 
 
-        if (!var_init_locked_1572940250411) {
+        if (!var_init_locked_1573103390247) {
 
             equals = include('data.equals');
             assign = include('object.assign');
 
-            var_init_locked_1572940250411 = true;
+            var_init_locked_1573103390247 = true;
         }
 
 
@@ -4133,7 +4133,7 @@ exports['src::event.listener.remove.all'] = (() => {
 
     let listeners, remove;
 
-    let var_init_locked_1572940250418;
+    let var_init_locked_1573103390254;
 
 
 
@@ -4169,12 +4169,12 @@ exports['src::event.listener.remove.all'] = (() => {
     return function(target) {
 
 
-        if (!var_init_locked_1572940250418) {
+        if (!var_init_locked_1573103390254) {
 
             listeners = include('src::event.listeners')();
             remove = include('src::event.listener.native.remove');
 
-            var_init_locked_1572940250418 = true;
+            var_init_locked_1573103390254 = true;
         }
 
 
@@ -4189,7 +4189,7 @@ exports['src::data.subscriber.destroy'] = (() => {
 
     let removeAll;
 
-    let var_init_locked_1572940250423;
+    let var_init_locked_1573103390259;
 
 
 
@@ -4225,11 +4225,11 @@ exports['src::data.subscriber.destroy'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940250423) {
+        if (!var_init_locked_1573103390259) {
 
             removeAll = include('event.listener.remove.all');
 
-            var_init_locked_1572940250423 = true;
+            var_init_locked_1573103390259 = true;
         }
 
 
@@ -4242,20 +4242,20 @@ exports['src::data.subscriber.destroy'] = (() => {
 
 exports['src::data.subscriber'] = (() => {
 
-    let mixin_1572940249576__1, extend, constructor, get_closed, method_prevOpen, method_accept, method_reopen, method_open, method_close, method_destroy, isObject;
+    let mixin_1573103389369__1, extend, constructor, get_closed, method_prevOpen, method_accept, method_reopen, method_open, method_close, method_destroy, isObject;
 
-    let var_init_locked_1572940250429;
+    let var_init_locked_1573103390266;
 
-    let var_class_1572940250429;
+    let var_class_1573103390266;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250429) {
+        if (!var_init_locked_1573103390266) {
 
-            mixin_1572940249576__1 = include('mixin.observable');
+            mixin_1573103389369__1 = include('mixin.observable');
             extend = include('class.empty')();
             constructor = include('src::data.subscriber.constructor');
             get_closed = include('src::data.subscriber.closed');
@@ -4267,12 +4267,12 @@ exports['src::data.subscriber'] = (() => {
             method_destroy = include('src::data.subscriber.destroy');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940250429 = true;
+            var_init_locked_1573103390266 = true;
         }
 
 
 
-        if (!var_class_1572940250429) {
+        if (!var_class_1573103390266) {
 
             class main extends mixins({
                 extend,
@@ -4330,7 +4330,7 @@ exports['src::data.subscriber'] = (() => {
 
             }
 
-            var_class_1572940250429 = class extends main {
+            var_class_1573103390266 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -4340,7 +4340,7 @@ exports['src::data.subscriber'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250429;
+                    return var_class_1573103390266;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -4352,7 +4352,7 @@ exports['src::data.subscriber'] = (() => {
         }
 
 
-        return var_class_1572940250429;
+        return var_class_1573103390266;
     };
 
 })();
@@ -4361,7 +4361,7 @@ exports['src::is.class'] = (() => {
 
     let isType;
 
-    let var_init_locked_1572940250439;
+    let var_init_locked_1573103390279;
 
 
 
@@ -4389,11 +4389,11 @@ exports['src::is.class'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250439) {
+        if (!var_init_locked_1573103390279) {
 
             isType = include('is.type');
 
-            var_init_locked_1572940250439 = true;
+            var_init_locked_1573103390279 = true;
         }
 
 
@@ -4408,7 +4408,7 @@ exports['src::class.create'] = (() => {
 
     let isString, isFunction, isClass;
 
-    let var_init_locked_1572940250442;
+    let var_init_locked_1573103390283;
 
 
 
@@ -4460,13 +4460,13 @@ exports['src::class.create'] = (() => {
     return function(baseClass, ...args) {
 
 
-        if (!var_init_locked_1572940250442) {
+        if (!var_init_locked_1573103390283) {
 
             isString = include('is.string');
             isFunction = include('is.function');
             isClass = include('is.class');
 
-            var_init_locked_1572940250442 = true;
+            var_init_locked_1573103390283 = true;
         }
 
 
@@ -4526,16 +4526,16 @@ exports['src::data.connection.base'] = (() => {
 
     let isObject, isString, isFunction, isBoolean, isArray, Subscriber, get, create, includes, indexOf, remove, getName, Observable, add;
 
-    let var_init_locked_1572940250473;
+    let var_init_locked_1573103390299;
 
-    let var_class_1572940250473;
+    let var_class_1573103390299;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250473) {
+        if (!var_init_locked_1573103390299) {
 
             isObject = include('is.object.simple');
             isString = include('is.string');
@@ -4552,12 +4552,12 @@ exports['src::data.connection.base'] = (() => {
             Observable = include('mixin.observable');
             add = include('event.listener.add');
 
-            var_init_locked_1572940250473 = true;
+            var_init_locked_1573103390299 = true;
         }
 
 
 
-        if (!var_class_1572940250473) {
+        if (!var_class_1573103390299) {
 
             /**
              * 
@@ -4820,7 +4820,7 @@ exports['src::data.connection.base'] = (() => {
                 }
             }
 
-            var_class_1572940250473 = class extends main {
+            var_class_1573103390299 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -4830,7 +4830,7 @@ exports['src::data.connection.base'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250473;
+                    return var_class_1573103390299;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -4842,7 +4842,7 @@ exports['src::data.connection.base'] = (() => {
         }
 
 
-        return var_class_1572940250473;
+        return var_class_1573103390299;
     };
 
 })();
@@ -4851,7 +4851,7 @@ exports['src::data.connection.subscribe'] = (() => {
 
     let assign, getName;
 
-    let var_init_locked_1572940250489;
+    let var_init_locked_1573103390317;
 
 
 
@@ -4927,12 +4927,12 @@ exports['src::data.connection.subscribe'] = (() => {
     return function(name, options = {}) {
 
 
-        if (!var_init_locked_1572940250489) {
+        if (!var_init_locked_1573103390317) {
 
             assign = include('object.assign');
             getName = include('src::data.connection.subscribe.name');
 
-            var_init_locked_1572940250489 = true;
+            var_init_locked_1573103390317 = true;
         }
 
 
@@ -4947,7 +4947,7 @@ exports['src::data.connection.unsubscribe'] = (() => {
 
     let getName;
 
-    let var_init_locked_1572940250493;
+    let var_init_locked_1573103390320;
 
 
 
@@ -4986,11 +4986,11 @@ exports['src::data.connection.unsubscribe'] = (() => {
     return function(name, connectionId) {
 
 
-        if (!var_init_locked_1572940250493) {
+        if (!var_init_locked_1573103390320) {
 
             getName = include('src::data.connection.subscribe.name');
 
-            var_init_locked_1572940250493 = true;
+            var_init_locked_1573103390320 = true;
         }
 
 
@@ -5005,7 +5005,7 @@ exports['src::data.connection.subscribes'] = (() => {
 
     let isString, isFunction, isObject, get;
 
-    let var_init_locked_1572940250497;
+    let var_init_locked_1573103390326;
 
 
 
@@ -5076,14 +5076,14 @@ exports['src::data.connection.subscribes'] = (() => {
     return function(config) {
 
 
-        if (!var_init_locked_1572940250497) {
+        if (!var_init_locked_1573103390326) {
 
             isString = include('is.string');
             isFunction = include('is.function');
             isObject = include('is.object.simple');
             get = include('function.get');
 
-            var_init_locked_1572940250497 = true;
+            var_init_locked_1573103390326 = true;
         }
 
 
@@ -5141,7 +5141,7 @@ exports['src::data.connection.deactivate'] = (() => {
 
     let includes;
 
-    let var_init_locked_1572940250507;
+    let var_init_locked_1573103390332;
 
 
 
@@ -5179,11 +5179,11 @@ exports['src::data.connection.deactivate'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940250507) {
+        if (!var_init_locked_1573103390332) {
 
             includes = include('array.includes');
 
-            var_init_locked_1572940250507 = true;
+            var_init_locked_1573103390332 = true;
         }
 
 
@@ -5198,16 +5198,16 @@ exports['src::data.connection'] = (() => {
 
     let extend, method_acceptMessage, method_subscribe, method_unsubscribe, method_subscribes, method_unsubscribes, method_activate, method_deactivate, isObject;
 
-    let var_init_locked_1572940250515;
+    let var_init_locked_1573103390336;
 
-    let var_class_1572940250515;
+    let var_class_1573103390336;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250515) {
+        if (!var_init_locked_1573103390336) {
 
             extend = include('src::data.connection.base')();
             method_acceptMessage = include('src::data.connection.accept');
@@ -5219,12 +5219,12 @@ exports['src::data.connection'] = (() => {
             method_deactivate = include('src::data.connection.deactivate');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940250515 = true;
+            var_init_locked_1573103390336 = true;
         }
 
 
 
-        if (!var_class_1572940250515) {
+        if (!var_class_1573103390336) {
 
             class main extends mixins({
                 extend,
@@ -5277,7 +5277,7 @@ exports['src::data.connection'] = (() => {
 
             }
 
-            var_class_1572940250515 = class extends main {
+            var_class_1573103390336 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -5287,7 +5287,7 @@ exports['src::data.connection'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250515;
+                    return var_class_1573103390336;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -5299,7 +5299,7 @@ exports['src::data.connection'] = (() => {
         }
 
 
-        return var_class_1572940250515;
+        return var_class_1573103390336;
     };
 
 })();
@@ -5308,25 +5308,25 @@ exports['src::data.connection.ajax'] = (() => {
 
     let Connection;
 
-    let var_init_locked_1572940250535;
+    let var_init_locked_1573103390353;
 
-    let var_class_1572940250535;
+    let var_class_1573103390353;
 
 
 
     return function(options) {
 
 
-        if (!var_init_locked_1572940250535) {
+        if (!var_init_locked_1573103390353) {
 
             Connection = include('data.connection')();
 
-            var_init_locked_1572940250535 = true;
+            var_init_locked_1573103390353 = true;
         }
 
 
 
-        if (!var_class_1572940250535) {
+        if (!var_class_1573103390353) {
 
 
             /**
@@ -5397,7 +5397,7 @@ exports['src::data.connection.ajax'] = (() => {
             }
 
 
-            var_class_1572940250535 = class extends main {
+            var_class_1573103390353 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -5407,7 +5407,7 @@ exports['src::data.connection.ajax'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250535;
+                    return var_class_1573103390353;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -5419,7 +5419,7 @@ exports['src::data.connection.ajax'] = (() => {
         }
 
 
-        return new var_class_1572940250535(options);
+        return new var_class_1573103390353(options);
     };
 
 })();
@@ -5468,7 +5468,7 @@ exports['src::data.connection.deploy'] = (() => {
 
     let generate, isObject, isArray, isFunction, isString, empty;
 
-    let var_init_locked_1572940250556;
+    let var_init_locked_1573103390373;
 
 
 
@@ -5632,7 +5632,7 @@ exports['src::data.connection.deploy'] = (() => {
     return function(connections, subscriberMap, getConnectionId) {
 
 
-        if (!var_init_locked_1572940250556) {
+        if (!var_init_locked_1573103390373) {
 
             generate = include('id.generate');
             isObject = include('is.object.simple');
@@ -5642,7 +5642,7 @@ exports['src::data.connection.deploy'] = (() => {
             isObject = include('is.object.simple');
             empty = include('function.empty')();
 
-            var_init_locked_1572940250556 = true;
+            var_init_locked_1573103390373 = true;
         }
 
 
@@ -5657,7 +5657,7 @@ exports['src::data.connection.deploy.lifecycle'] = (() => {
 
     let deploy;
 
-    let var_init_locked_1572940250563;
+    let var_init_locked_1573103390377;
 
 
 
@@ -5707,11 +5707,11 @@ exports['src::data.connection.deploy.lifecycle'] = (() => {
     return function(connections, component) {
 
 
-        if (!var_init_locked_1572940250563) {
+        if (!var_init_locked_1573103390377) {
 
             deploy = include('src::data.connection.deploy');
 
-            var_init_locked_1572940250563 = true;
+            var_init_locked_1573103390377 = true;
         }
 
 
@@ -5726,28 +5726,28 @@ exports['src::data.connection.socket'] = (() => {
 
     let Connection, observable, add, Manager;
 
-    let var_init_locked_1572940250571;
+    let var_init_locked_1573103390382;
 
-    let var_class_1572940250571;
+    let var_class_1573103390382;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250571) {
+        if (!var_init_locked_1573103390382) {
 
             Connection = include('data.connection')();
             observable = include('mixin.observable');
             add = include('event.listener.add');
             Manager = include('src::data.connection.socket.manager')();
 
-            var_init_locked_1572940250571 = true;
+            var_init_locked_1573103390382 = true;
         }
 
 
 
-        if (!var_class_1572940250571) {
+        if (!var_class_1573103390382) {
 
 
 
@@ -5924,7 +5924,7 @@ exports['src::data.connection.socket'] = (() => {
                 return socket.readyState === state;
             }
 
-            var_class_1572940250571 = class extends main {
+            var_class_1573103390382 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -5934,7 +5934,7 @@ exports['src::data.connection.socket'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250571;
+                    return var_class_1573103390382;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -5946,7 +5946,7 @@ exports['src::data.connection.socket'] = (() => {
         }
 
 
-        return var_class_1572940250571;
+        return var_class_1573103390382;
     };
 
 })();
@@ -5955,27 +5955,27 @@ exports['src::data.connection.socket.manager'] = (() => {
 
     let Socket, add, remove;
 
-    let var_init_locked_1572940250595;
+    let var_init_locked_1573103390400;
 
-    let var_class_1572940250595;
+    let var_class_1573103390400;
 
-    let var_once_value_1572940250595;
+    let var_once_value_1573103390400;
 
     return function() {
 
 
-        if (!var_init_locked_1572940250595) {
+        if (!var_init_locked_1573103390400) {
 
             Socket = include('data.connection.socket');
             add = include('event.listener.add');
             remove = include('event.listener.remove');
 
-            var_init_locked_1572940250595 = true;
+            var_init_locked_1573103390400 = true;
         }
 
 
 
-        if (!var_class_1572940250595) {
+        if (!var_class_1573103390400) {
 
 
             /**
@@ -6141,7 +6141,7 @@ exports['src::data.connection.socket.manager'] = (() => {
                 }
             }
 
-            var_class_1572940250595 = class extends main {
+            var_class_1573103390400 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -6151,7 +6151,7 @@ exports['src::data.connection.socket.manager'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250595;
+                    return var_class_1573103390400;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -6164,13 +6164,13 @@ exports['src::data.connection.socket.manager'] = (() => {
 
 
 
-        if (var_once_value_1572940250595) {
+        if (var_once_value_1573103390400) {
 
-            return var_once_value_1572940250595;
+            return var_once_value_1573103390400;
 
         }
 
-        return var_once_value_1572940250595 = new var_class_1572940250595();
+        return var_once_value_1573103390400 = new var_class_1573103390400();
 
     };
 
@@ -6180,7 +6180,7 @@ exports['src::data.connection.deploy.miniprogram'] = (() => {
 
     let Manager, empty, deploy;
 
-    let var_init_locked_1572940250616;
+    let var_init_locked_1573103390418;
 
 
 
@@ -6301,13 +6301,13 @@ exports['src::data.connection.deploy.miniprogram'] = (() => {
     return function(connections, component, defaultConnectionNames = []) {
 
 
-        if (!var_init_locked_1572940250616) {
+        if (!var_init_locked_1573103390418) {
 
             Manager = include('data.connection.socket.manager')();
             empty = include('function.empty')();
             deploy = include('src::data.connection.deploy.lifecycle');
 
-            var_init_locked_1572940250616 = true;
+            var_init_locked_1573103390418 = true;
         }
 
 
@@ -6322,7 +6322,7 @@ exports['src::data.connection.deploy.module'] = (() => {
 
     let empty, deploy;
 
-    let var_init_locked_1572940250631;
+    let var_init_locked_1573103390434;
 
 
 
@@ -6360,12 +6360,12 @@ exports['src::data.connection.deploy.module'] = (() => {
     return function(connections, module) {
 
 
-        if (!var_init_locked_1572940250631) {
+        if (!var_init_locked_1573103390434) {
 
             empty = include('function.empty')();
             deploy = include('src::data.connection.deploy.lifecycle');
 
-            var_init_locked_1572940250631 = true;
+            var_init_locked_1573103390434 = true;
         }
 
 
@@ -6380,7 +6380,7 @@ exports['src::data.connection.deploy.vue'] = (() => {
 
     let empty, deploy;
 
-    let var_init_locked_1572940250642;
+    let var_init_locked_1573103390444;
 
 
 
@@ -6449,12 +6449,12 @@ exports['src::data.connection.deploy.vue'] = (() => {
     return function(connections, component) {
 
 
-        if (!var_init_locked_1572940250642) {
+        if (!var_init_locked_1573103390444) {
 
             empty = include('function.empty')();
             deploy = include('src::data.connection.deploy.lifecycle');
 
-            var_init_locked_1572940250642 = true;
+            var_init_locked_1573103390444 = true;
         }
 
 
@@ -6507,16 +6507,16 @@ exports['src::data.connection.flow'] = (() => {
 
     let isObject, isString, isFunction, isArray, isPromise, isDefined, generate, get;
 
-    let var_init_locked_1572940250651;
+    let var_init_locked_1573103390451;
 
-    let var_class_1572940250651;
+    let var_class_1573103390451;
 
 
 
     return function(message, flows, methods, callback, scoped) {
 
 
-        if (!var_init_locked_1572940250651) {
+        if (!var_init_locked_1573103390451) {
 
             isObject = include('is.object.simple');
             isString = include('is.string');
@@ -6527,12 +6527,12 @@ exports['src::data.connection.flow'] = (() => {
             generate = include('id.generate');
             get = include('function.get');
 
-            var_init_locked_1572940250651 = true;
+            var_init_locked_1573103390451 = true;
         }
 
 
 
-        if (!var_class_1572940250651) {
+        if (!var_class_1573103390451) {
 
             /**
              * 
@@ -6749,7 +6749,7 @@ exports['src::data.connection.flow'] = (() => {
                 }
             }
 
-            var_class_1572940250651 = class extends main {
+            var_class_1573103390451 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -6759,7 +6759,7 @@ exports['src::data.connection.flow'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250651;
+                    return var_class_1573103390451;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -6771,7 +6771,7 @@ exports['src::data.connection.flow'] = (() => {
         }
 
 
-        return new var_class_1572940250651(message, flows, methods, callback, scoped);
+        return new var_class_1573103390451(message, flows, methods, callback, scoped);
     };
 
 })();
@@ -6780,7 +6780,7 @@ exports['src::data.Subscriber.constructor'] = (() => {
 
     let get, add, emptyFn;
 
-    let var_init_locked_1572940250655;
+    let var_init_locked_1573103390457;
 
 
 
@@ -6892,13 +6892,13 @@ exports['src::data.Subscriber.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1572940250655) {
+        if (!var_init_locked_1573103390457) {
 
             get = include('function.get');
             add = include('event.listener.add');
             emptyFn = include('function.empty')();
 
-            var_init_locked_1572940250655 = true;
+            var_init_locked_1573103390457 = true;
         }
 
 
@@ -7027,7 +7027,7 @@ exports['src::data.Subscriber.open'] = (() => {
 
     let equals, assign;
 
-    let var_init_locked_1572940250668;
+    let var_init_locked_1573103390469;
 
 
 
@@ -7071,12 +7071,12 @@ exports['src::data.Subscriber.open'] = (() => {
     return function(params = {}) {
 
 
-        if (!var_init_locked_1572940250668) {
+        if (!var_init_locked_1573103390469) {
 
             equals = include('data.equals');
             assign = include('object.assign');
 
-            var_init_locked_1572940250668 = true;
+            var_init_locked_1573103390469 = true;
         }
 
 
@@ -7140,7 +7140,7 @@ exports['src::data.Subscriber.destroy'] = (() => {
 
     let removeAll;
 
-    let var_init_locked_1572940250677;
+    let var_init_locked_1573103390477;
 
 
 
@@ -7176,11 +7176,11 @@ exports['src::data.Subscriber.destroy'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940250677) {
+        if (!var_init_locked_1573103390477) {
 
             removeAll = include('event.listener.remove.all');
 
-            var_init_locked_1572940250677 = true;
+            var_init_locked_1573103390477 = true;
         }
 
 
@@ -7193,20 +7193,20 @@ exports['src::data.Subscriber.destroy'] = (() => {
 
 exports['src::data.Subscriber'] = (() => {
 
-    let mixin_1572940249648__1, extend, constructor, get_closed, method_prevOpen, method_accept, method_reopen, method_open, method_close, method_destroy, isObject;
+    let mixin_1573103389465__1, extend, constructor, get_closed, method_prevOpen, method_accept, method_reopen, method_open, method_close, method_destroy, isObject;
 
-    let var_init_locked_1572940250683;
+    let var_init_locked_1573103390484;
 
-    let var_class_1572940250683;
+    let var_class_1573103390484;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250683) {
+        if (!var_init_locked_1573103390484) {
 
-            mixin_1572940249648__1 = include('mixin.observable');
+            mixin_1573103389465__1 = include('mixin.observable');
             extend = include('class.empty')();
             constructor = include('src::data.Subscriber.constructor');
             get_closed = include('src::data.subscriber.closed');
@@ -7218,12 +7218,12 @@ exports['src::data.Subscriber'] = (() => {
             method_destroy = include('src::data.Subscriber.destroy');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940250683 = true;
+            var_init_locked_1573103390484 = true;
         }
 
 
 
-        if (!var_class_1572940250683) {
+        if (!var_class_1573103390484) {
 
             class main extends mixins({
                 extend,
@@ -7281,7 +7281,7 @@ exports['src::data.Subscriber'] = (() => {
 
             }
 
-            var_class_1572940250683 = class extends main {
+            var_class_1573103390484 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -7291,7 +7291,7 @@ exports['src::data.Subscriber'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250683;
+                    return var_class_1573103390484;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -7303,7 +7303,7 @@ exports['src::data.Subscriber'] = (() => {
         }
 
 
-        return var_class_1572940250683;
+        return var_class_1573103390484;
     };
 
 })();
@@ -7312,26 +7312,26 @@ exports['src::data.connection.message.address'] = (() => {
 
     let Subscriber, isDefined;
 
-    let var_init_locked_1572940250695;
+    let var_init_locked_1573103390498;
 
-    let var_class_1572940250695;
+    let var_class_1573103390498;
 
 
 
     return function(name, options) {
 
 
-        if (!var_init_locked_1572940250695) {
+        if (!var_init_locked_1573103390498) {
 
             Subscriber = include('data.Subscriber')();
             isDefined = include('is.defined');
 
-            var_init_locked_1572940250695 = true;
+            var_init_locked_1573103390498 = true;
         }
 
 
 
-        if (!var_class_1572940250695) {
+        if (!var_class_1573103390498) {
 
 
             /**
@@ -7388,7 +7388,7 @@ exports['src::data.connection.message.address'] = (() => {
 
 
 
-            var_class_1572940250695 = class extends main {
+            var_class_1573103390498 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -7398,7 +7398,7 @@ exports['src::data.connection.message.address'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250695;
+                    return var_class_1573103390498;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -7410,7 +7410,7 @@ exports['src::data.connection.message.address'] = (() => {
         }
 
 
-        return new var_class_1572940250695(name, options);
+        return new var_class_1573103390498(name, options);
     };
 
 })();
@@ -7419,16 +7419,16 @@ exports['src::data.connection.message'] = (() => {
 
     let Connection, isObject, isString, createAddress, isDefined, assign, from;
 
-    let var_init_locked_1572940250711;
+    let var_init_locked_1573103390510;
 
-    let var_class_1572940250711;
+    let var_class_1573103390510;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250711) {
+        if (!var_init_locked_1573103390510) {
 
             Connection = include('data.connection')();
             isObject = include('is.object.simple');
@@ -7438,12 +7438,12 @@ exports['src::data.connection.message'] = (() => {
             assign = include('object.assign');
             from = include('array.from');
 
-            var_init_locked_1572940250711 = true;
+            var_init_locked_1573103390510 = true;
         }
 
 
 
-        if (!var_class_1572940250711) {
+        if (!var_class_1573103390510) {
 
             /**
              * 
@@ -7604,7 +7604,7 @@ exports['src::data.connection.message'] = (() => {
                 }
             }
 
-            var_class_1572940250711 = class extends main {
+            var_class_1573103390510 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -7614,7 +7614,7 @@ exports['src::data.connection.message'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250711;
+                    return var_class_1573103390510;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -7626,7 +7626,7 @@ exports['src::data.connection.message'] = (() => {
         }
 
 
-        return new var_class_1572940250711();
+        return new var_class_1573103390510();
     };
 
 })();
@@ -7680,16 +7680,16 @@ exports['src::data.connection.socket.io'] = (() => {
 
     let Connection, add, getWS, Manager, removeAll;
 
-    let var_init_locked_1572940250732;
+    let var_init_locked_1573103390533;
 
-    let var_class_1572940250732;
+    let var_class_1573103390533;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250732) {
+        if (!var_init_locked_1573103390533) {
 
             Connection = include('data.connection.socket')();
             add = include('event.listener.add');
@@ -7697,12 +7697,12 @@ exports['src::data.connection.socket.io'] = (() => {
             Manager = include('src::data.connection.socket.manager')();
             removeAll = include('event.listener.remove.all');
 
-            var_init_locked_1572940250732 = true;
+            var_init_locked_1573103390533 = true;
         }
 
 
 
-        if (!var_class_1572940250732) {
+        if (!var_class_1573103390533) {
 
             /**
              * 
@@ -7917,7 +7917,7 @@ exports['src::data.connection.socket.io'] = (() => {
                 }
             }
 
-            var_class_1572940250732 = class extends main {
+            var_class_1573103390533 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -7927,7 +7927,7 @@ exports['src::data.connection.socket.io'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250732;
+                    return var_class_1573103390533;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -7939,7 +7939,7 @@ exports['src::data.connection.socket.io'] = (() => {
         }
 
 
-        return var_class_1572940250732;
+        return var_class_1573103390533;
     };
 
 })();
@@ -7987,7 +7987,7 @@ exports['src::url.join'] = (() => {
 
     let isAbsolute;
 
-    let var_init_locked_1572940250749;
+    let var_init_locked_1573103390550;
 
 
 
@@ -8043,11 +8043,11 @@ exports['src::url.join'] = (() => {
     return function(...urls) {
 
 
-        if (!var_init_locked_1572940250749) {
+        if (!var_init_locked_1573103390550) {
 
             isAbsolute = include('is.url.absolute');
 
-            var_init_locked_1572940250749 = true;
+            var_init_locked_1573103390550 = true;
         }
 
 
@@ -8125,7 +8125,7 @@ exports['src::timer.reset'] = (() => {
 
     let isDefined;
 
-    let var_init_locked_1572940250753;
+    let var_init_locked_1573103390555;
 
 
 
@@ -8163,11 +8163,11 @@ exports['src::timer.reset'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940250753) {
+        if (!var_init_locked_1573103390555) {
 
             isDefined = include('is.defined');
 
-            var_init_locked_1572940250753 = true;
+            var_init_locked_1573103390555 = true;
         }
 
 
@@ -8182,9 +8182,9 @@ exports['src::timer.end'] = (() => {
 
     let reset;
 
-    let var_init_locked_1572940250755;
+    let var_init_locked_1573103390557;
 
-    let var_current_scope_1572940250755;
+    let var_current_scope_1573103390557;
 
 
 
@@ -8210,11 +8210,11 @@ exports['src::timer.end'] = (() => {
 
 
 
-        if (!var_current_scope_1572940250755 !== this) {
+        if (!var_current_scope_1573103390557 !== this) {
 
             reset = include('src::timer.reset').bind(this);
 
-            var_current_scope_1572940250755 = this;
+            var_current_scope_1573103390557 = this;
         }
 
 
@@ -8227,9 +8227,9 @@ exports['src::timer.start'] = (() => {
 
     let isNumber, end, reset;
 
-    let var_init_locked_1572940250757;
+    let var_init_locked_1573103390560;
 
-    let var_current_scope_1572940250757;
+    let var_current_scope_1573103390560;
 
 
 
@@ -8292,21 +8292,21 @@ exports['src::timer.start'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940250757) {
+        if (!var_init_locked_1573103390560) {
 
             isNumber = include('is.number');
             reset = include('src::timer.reset');
 
-            var_init_locked_1572940250757 = true;
+            var_init_locked_1573103390560 = true;
         }
 
 
 
-        if (!var_current_scope_1572940250757 !== this) {
+        if (!var_current_scope_1573103390560 !== this) {
 
             end = include('src::timer.end').bind(this);
 
-            var_current_scope_1572940250757 = this;
+            var_current_scope_1573103390560 = this;
         }
 
 
@@ -8317,32 +8317,32 @@ exports['src::timer.start'] = (() => {
 
 exports['src::timer'] = (() => {
 
-    let mixin_1572940249720__1, extend, constructor, method_start, method_end, isObject;
+    let mixin_1573103389554__1, extend, constructor, method_start, method_end, isObject;
 
-    let var_init_locked_1572940250761;
+    let var_init_locked_1573103390563;
 
-    let var_class_1572940250761;
+    let var_class_1573103390563;
 
 
 
     return function(config) {
 
 
-        if (!var_init_locked_1572940250761) {
+        if (!var_init_locked_1573103390563) {
 
-            mixin_1572940249720__1 = include('mixin.observable');
+            mixin_1573103389554__1 = include('mixin.observable');
             extend = include('class.empty')();
             constructor = include('src::timer.constructor');
             method_start = include('src::timer.start');
             method_end = include('src::timer.end');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940250761 = true;
+            var_init_locked_1573103390563 = true;
         }
 
 
 
-        if (!var_class_1572940250761) {
+        if (!var_class_1573103390563) {
 
             class main extends mixins({
                 extend,
@@ -8376,7 +8376,7 @@ exports['src::timer'] = (() => {
 
             }
 
-            var_class_1572940250761 = class extends main {
+            var_class_1573103390563 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -8386,7 +8386,7 @@ exports['src::timer'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250761;
+                    return var_class_1573103390563;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -8398,7 +8398,7 @@ exports['src::timer'] = (() => {
         }
 
 
-        return new var_class_1572940250761(config);
+        return new var_class_1573103390563(config);
     };
 
 })();
@@ -8407,16 +8407,16 @@ exports['src::data.connection.socket.standard'] = (() => {
 
     let Connection, join, createTimer, add, removeAll, Manager, emptyFn;
 
-    let var_init_locked_1572940250772;
+    let var_init_locked_1573103390574;
 
-    let var_class_1572940250772;
+    let var_class_1573103390574;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250772) {
+        if (!var_init_locked_1573103390574) {
 
             Connection = include('data.connection.socket')();
             join = include('url.join');
@@ -8426,12 +8426,12 @@ exports['src::data.connection.socket.standard'] = (() => {
             Manager = include('src::data.connection.socket.manager')();
             emptyFn = include('function.empty')();
 
-            var_init_locked_1572940250772 = true;
+            var_init_locked_1573103390574 = true;
         }
 
 
 
-        if (!var_class_1572940250772) {
+        if (!var_class_1573103390574) {
 
             /**
              * 
@@ -8596,7 +8596,7 @@ exports['src::data.connection.socket.standard'] = (() => {
             }
 
 
-            var_class_1572940250772 = class extends main {
+            var_class_1573103390574 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -8606,7 +8606,7 @@ exports['src::data.connection.socket.standard'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250772;
+                    return var_class_1573103390574;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -8618,7 +8618,7 @@ exports['src::data.connection.socket.standard'] = (() => {
         }
 
 
-        return var_class_1572940250772;
+        return var_class_1573103390574;
     };
 
 })();
@@ -8627,25 +8627,25 @@ exports['src::miniprogram.socket'] = (() => {
 
     let get;
 
-    let var_init_locked_1572940250788;
+    let var_init_locked_1573103390591;
 
-    let var_class_1572940250788;
+    let var_class_1573103390591;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250788) {
+        if (!var_init_locked_1573103390591) {
 
             get = include('function.get');
 
-            var_init_locked_1572940250788 = true;
+            var_init_locked_1573103390591 = true;
         }
 
 
 
-        if (!var_class_1572940250788) {
+        if (!var_class_1573103390591) {
 
 
             /**
@@ -8753,7 +8753,7 @@ exports['src::miniprogram.socket'] = (() => {
 
             }
 
-            var_class_1572940250788 = class extends main {
+            var_class_1573103390591 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -8763,7 +8763,7 @@ exports['src::miniprogram.socket'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250788;
+                    return var_class_1573103390591;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -8775,7 +8775,7 @@ exports['src::miniprogram.socket'] = (() => {
         }
 
 
-        return var_class_1572940250788;
+        return var_class_1573103390591;
     };
 
 })();
@@ -8784,26 +8784,26 @@ exports['src::data.connection.socket.standard.miniprogram'] = (() => {
 
     let Connection, WebSocket;
 
-    let var_init_locked_1572940250791;
+    let var_init_locked_1573103390593;
 
-    let var_class_1572940250791;
+    let var_class_1573103390593;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250791) {
+        if (!var_init_locked_1573103390593) {
 
             Connection = include('data.connection.socket.standard')();
             WebSocket = include('miniprogram.socket')();
 
-            var_init_locked_1572940250791 = true;
+            var_init_locked_1573103390593 = true;
         }
 
 
 
-        if (!var_class_1572940250791) {
+        if (!var_class_1573103390593) {
 
             /**
              * 
@@ -8825,7 +8825,7 @@ exports['src::data.connection.socket.standard.miniprogram'] = (() => {
                 }
             }
 
-            var_class_1572940250791 = class extends main {
+            var_class_1573103390593 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -8835,7 +8835,7 @@ exports['src::data.connection.socket.standard.miniprogram'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250791;
+                    return var_class_1573103390593;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -8847,7 +8847,7 @@ exports['src::data.connection.socket.standard.miniprogram'] = (() => {
         }
 
 
-        return var_class_1572940250791;
+        return var_class_1573103390593;
     };
 
 })();
@@ -8856,25 +8856,25 @@ exports['src::data.connection.socket.standard.normal'] = (() => {
 
     let Connection;
 
-    let var_init_locked_1572940250811;
+    let var_init_locked_1573103390612;
 
-    let var_class_1572940250811;
+    let var_class_1573103390612;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250811) {
+        if (!var_init_locked_1573103390612) {
 
             Connection = include('data.connection.socket.standard')();
 
-            var_init_locked_1572940250811 = true;
+            var_init_locked_1573103390612 = true;
         }
 
 
 
-        if (!var_class_1572940250811) {
+        if (!var_class_1573103390612) {
 
             /**
              * 
@@ -8900,7 +8900,7 @@ exports['src::data.connection.socket.standard.normal'] = (() => {
 
             }
 
-            var_class_1572940250811 = class extends main {
+            var_class_1573103390612 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -8910,7 +8910,7 @@ exports['src::data.connection.socket.standard.normal'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250811;
+                    return var_class_1573103390612;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -8922,7 +8922,7 @@ exports['src::data.connection.socket.standard.normal'] = (() => {
         }
 
 
-        return var_class_1572940250811;
+        return var_class_1573103390612;
     };
 
 })();
@@ -9119,7 +9119,7 @@ exports['src::string.split'] = (() => {
 
     let isEmpty;
 
-    let var_init_locked_1572940250835;
+    let var_init_locked_1573103390631;
 
 
 
@@ -9153,11 +9153,11 @@ exports['src::string.split'] = (() => {
     return function(target, splitRe) {
 
 
-        if (!var_init_locked_1572940250835) {
+        if (!var_init_locked_1573103390631) {
 
             isEmpty = include('is.empty');
 
-            var_init_locked_1572940250835 = true;
+            var_init_locked_1573103390631 = true;
         }
 
 
@@ -9172,7 +9172,7 @@ exports['src::object.value.get'] = (() => {
 
     let split, isObject, isArray;
 
-    let var_init_locked_1572940250839;
+    let var_init_locked_1573103390635;
 
 
 
@@ -9244,13 +9244,13 @@ exports['src::object.value.get'] = (() => {
     return function(data, key = '.') {
 
 
-        if (!var_init_locked_1572940250839) {
+        if (!var_init_locked_1573103390635) {
 
             split = include('string.split');
             isObject = include('is.object');
             isArray = include('is.array');
 
-            var_init_locked_1572940250839 = true;
+            var_init_locked_1573103390635 = true;
         }
 
 
@@ -9306,7 +9306,7 @@ exports['src::data.structure.property.define.id'] = (() => {
 
     let isFunction, generate, from, get, isString;
 
-    let var_init_locked_1572940250849;
+    let var_init_locked_1573103390642;
 
 
 
@@ -9369,7 +9369,7 @@ exports['src::data.structure.property.define.id'] = (() => {
     return function(structure, id) {
 
 
-        if (!var_init_locked_1572940250849) {
+        if (!var_init_locked_1573103390642) {
 
             isFunction = include('is.function');
             generate = include('id.generate');
@@ -9377,7 +9377,7 @@ exports['src::data.structure.property.define.id'] = (() => {
             get = include('object.value.get');
             isString = include('is.string');
 
-            var_init_locked_1572940250849 = true;
+            var_init_locked_1573103390642 = true;
         }
 
 
@@ -9472,7 +9472,7 @@ exports['src::data.reader.create'] = (() => {
 
     let get, emptyFn, isFunction, generate, createReader, defineParentProperty, defineIdProperty, defineInnerProperty, defineModelProperty;
 
-    let var_init_locked_1572940250862;
+    let var_init_locked_1573103390653;
 
 
 
@@ -9569,7 +9569,7 @@ exports['src::data.reader.create'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1572940250862) {
+        if (!var_init_locked_1573103390653) {
 
             get = include('object.value.get');
             emptyFn = include('function.empty')();
@@ -9581,7 +9581,7 @@ exports['src::data.reader.create'] = (() => {
             defineInnerProperty = include('data.structure.property.define.inner');
             defineModelProperty = include('data.structure.property.define.model');
 
-            var_init_locked_1572940250862 = true;
+            var_init_locked_1573103390653 = true;
         }
 
 
@@ -9599,25 +9599,25 @@ exports['src::data.model'] = (() => {
 
     let createReader;
 
-    let var_init_locked_1572940250866;
+    let var_init_locked_1573103390658;
 
-    let var_class_1572940250866;
+    let var_class_1573103390658;
 
 
 
     return function(model) {
 
 
-        if (!var_init_locked_1572940250866) {
+        if (!var_init_locked_1573103390658) {
 
             createReader = include('data.reader.create');
 
-            var_init_locked_1572940250866 = true;
+            var_init_locked_1573103390658 = true;
         }
 
 
 
-        if (!var_class_1572940250866) {
+        if (!var_class_1573103390658) {
 
 
             /**
@@ -9659,7 +9659,7 @@ exports['src::data.model'] = (() => {
                 }
             }
 
-            var_class_1572940250866 = class extends main {
+            var_class_1573103390658 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -9669,7 +9669,7 @@ exports['src::data.model'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250866;
+                    return var_class_1573103390658;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -9681,7 +9681,7 @@ exports['src::data.model'] = (() => {
         }
 
 
-        return new var_class_1572940250866(model);
+        return new var_class_1573103390658(model);
     };
 
 })();
@@ -9690,7 +9690,7 @@ exports['src::is.class.from'] = (() => {
 
     let isClass, isString;
 
-    let var_init_locked_1572940250874;
+    let var_init_locked_1573103390664;
 
 
 
@@ -9727,12 +9727,12 @@ exports['src::is.class.from'] = (() => {
     return function(data, baseClass) {
 
 
-        if (!var_init_locked_1572940250874) {
+        if (!var_init_locked_1573103390664) {
 
             isClass = include('is.class');
             isString = include('is.string');
 
-            var_init_locked_1572940250874 = true;
+            var_init_locked_1573103390664 = true;
         }
 
 
@@ -9747,7 +9747,7 @@ exports['src::is.data.model.class'] = (() => {
 
     let dataModel, isClass;
 
-    let var_init_locked_1572940250877;
+    let var_init_locked_1573103390669;
 
 
 
@@ -9780,12 +9780,12 @@ exports['src::is.data.model.class'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250877) {
+        if (!var_init_locked_1573103390669) {
 
             dataModel = include('data.model');
             isClass = include('is.class.from');
 
-            var_init_locked_1572940250877 = true;
+            var_init_locked_1573103390669 = true;
         }
 
 
@@ -9800,7 +9800,7 @@ exports['src::data.model.get'] = (() => {
 
     let Model, isModelClass, isString, isFunction;
 
-    let var_init_locked_1572940250884;
+    let var_init_locked_1573103390675;
 
 
 
@@ -9843,14 +9843,14 @@ exports['src::data.model.get'] = (() => {
     return function(model) {
 
 
-        if (!var_init_locked_1572940250884) {
+        if (!var_init_locked_1573103390675) {
 
             Model = include('data.model')();
             isModelClass = include('is.data.model.class');
             isString = include('is.string');
             isFunction = include('is.function');
 
-            var_init_locked_1572940250884 = true;
+            var_init_locked_1573103390675 = true;
         }
 
 
@@ -9865,7 +9865,7 @@ exports['src::data.reader.json'] = (() => {
 
     let objectValueGet, isString, isFunction, arrayFrom, isEmpty, getModel;
 
-    let var_init_locked_1572940250890;
+    let var_init_locked_1573103390681;
 
 
 
@@ -9986,7 +9986,7 @@ exports['src::data.reader.json'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940250890) {
+        if (!var_init_locked_1573103390681) {
 
             objectValueGet = include('object.value.get');
             isString = include('is.string');
@@ -9995,7 +9995,7 @@ exports['src::data.reader.json'] = (() => {
             isEmpty = include('is.empty');
             getModel = include('data.model.get');
 
-            var_init_locked_1572940250890 = true;
+            var_init_locked_1573103390681 = true;
         }
 
 
@@ -10014,7 +10014,7 @@ exports['src::data.proxy.constructor'] = (() => {
 
     let createProxy, createReader;
 
-    let var_init_locked_1572940250895;
+    let var_init_locked_1573103390686;
 
 
 
@@ -10059,12 +10059,12 @@ exports['src::data.proxy.constructor'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940250895) {
+        if (!var_init_locked_1573103390686) {
 
             createProxy = include('object.proxy');
             createReader = include('data.reader.json');
 
-            var_init_locked_1572940250895 = true;
+            var_init_locked_1573103390686 = true;
         }
 
 
@@ -10082,7 +10082,7 @@ exports['src::data.proxy.read'] = (() => {
 
     let isPromise;
 
-    let var_init_locked_1572940250900;
+    let var_init_locked_1573103390693;
 
 
 
@@ -10133,11 +10133,11 @@ exports['src::data.proxy.read'] = (() => {
     return function(options) {
 
 
-        if (!var_init_locked_1572940250900) {
+        if (!var_init_locked_1573103390693) {
 
             isPromise = include('is.promise');
 
-            var_init_locked_1572940250900 = true;
+            var_init_locked_1573103390693 = true;
         }
 
 
@@ -10150,31 +10150,31 @@ exports['src::data.proxy.read'] = (() => {
 
 exports['src::data.proxy'] = (() => {
 
-    let mixin_1572940249776__1, extend, constructor, method_read, isObject;
+    let mixin_1573103389609__1, extend, constructor, method_read, isObject;
 
-    let var_init_locked_1572940250902;
+    let var_init_locked_1573103390695;
 
-    let var_class_1572940250902;
+    let var_class_1573103390695;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250902) {
+        if (!var_init_locked_1573103390695) {
 
-            mixin_1572940249776__1 = include('mixin.observable');
+            mixin_1573103389609__1 = include('mixin.observable');
             extend = include('class.empty')();
             constructor = include('src::data.proxy.constructor');
             method_read = include('src::data.proxy.read');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940250902 = true;
+            var_init_locked_1573103390695 = true;
         }
 
 
 
-        if (!var_class_1572940250902) {
+        if (!var_class_1573103390695) {
 
             class main extends mixins({
                 extend,
@@ -10203,7 +10203,7 @@ exports['src::data.proxy'] = (() => {
 
             }
 
-            var_class_1572940250902 = class extends main {
+            var_class_1573103390695 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -10213,7 +10213,7 @@ exports['src::data.proxy'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250902;
+                    return var_class_1573103390695;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -10225,7 +10225,7 @@ exports['src::data.proxy'] = (() => {
         }
 
 
-        return var_class_1572940250902;
+        return var_class_1573103390695;
     };
 
 })();
@@ -10234,25 +10234,25 @@ exports['src::data.proxy.memory'] = (() => {
 
     let Proxy;
 
-    let var_init_locked_1572940250912;
+    let var_init_locked_1573103390707;
 
-    let var_class_1572940250912;
+    let var_class_1573103390707;
 
 
 
     return function(options) {
 
 
-        if (!var_init_locked_1572940250912) {
+        if (!var_init_locked_1573103390707) {
 
             Proxy = include('data.proxy')();
 
-            var_init_locked_1572940250912 = true;
+            var_init_locked_1573103390707 = true;
         }
 
 
 
-        if (!var_class_1572940250912) {
+        if (!var_class_1573103390707) {
 
 
             /**
@@ -10278,7 +10278,7 @@ exports['src::data.proxy.memory'] = (() => {
                 }
             }
 
-            var_class_1572940250912 = class extends main {
+            var_class_1573103390707 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -10288,7 +10288,7 @@ exports['src::data.proxy.memory'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250912;
+                    return var_class_1573103390707;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -10300,7 +10300,7 @@ exports['src::data.proxy.memory'] = (() => {
         }
 
 
-        return new var_class_1572940250912(options);
+        return new var_class_1573103390707(options);
     };
 
 })();
@@ -10345,7 +10345,7 @@ exports['src::is.data.structure'] = (() => {
 
     let isObject, isArray;
 
-    let var_init_locked_1572940250925;
+    let var_init_locked_1573103390723;
 
 
 
@@ -10375,12 +10375,12 @@ exports['src::is.data.structure'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250925) {
+        if (!var_init_locked_1573103390723) {
 
             isObject = include('is.object.simple');
             isArray = include('is.array');
 
-            var_init_locked_1572940250925 = true;
+            var_init_locked_1573103390723 = true;
         }
 
 
@@ -10395,7 +10395,7 @@ exports['src::is.data.record'] = (() => {
 
     let isObject, is;
 
-    let var_init_locked_1572940250928;
+    let var_init_locked_1573103390725;
 
 
 
@@ -10425,12 +10425,12 @@ exports['src::is.data.record'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250928) {
+        if (!var_init_locked_1573103390725) {
 
             isObject = include('is.object.simple');
             is = include('src::is.data.structure');
 
-            var_init_locked_1572940250928 = true;
+            var_init_locked_1573103390725 = true;
         }
 
 
@@ -10445,7 +10445,7 @@ exports['src::data.record.property.define'] = (() => {
 
     let is, isFunction, isDefined, emptyFn;
 
-    let var_init_locked_1572940250931;
+    let var_init_locked_1573103390730;
 
 
 
@@ -10569,14 +10569,14 @@ exports['src::data.record.property.define'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1572940250931) {
+        if (!var_init_locked_1573103390730) {
 
             is = include('is.data.record');
             isFunction = include('is.function');
             isDefined = include('is.defined');
             emptyFn = include('function.empty')();
 
-            var_init_locked_1572940250931 = true;
+            var_init_locked_1573103390730 = true;
         }
 
 
@@ -10597,7 +10597,7 @@ exports['src::data.record.empty'] = (() => {
 
     let define;
 
-    let var_init_locked_1572940250934;
+    let var_init_locked_1573103390735;
 
 
 
@@ -10629,11 +10629,11 @@ exports['src::data.record.empty'] = (() => {
     return function(model) {
 
 
-        if (!var_init_locked_1572940250934) {
+        if (!var_init_locked_1573103390735) {
 
             define = include('data.structure.property.define.model');
 
-            var_init_locked_1572940250934 = true;
+            var_init_locked_1573103390735 = true;
         }
 
 
@@ -10648,7 +10648,7 @@ exports['src::data.reader.create.raw'] = (() => {
 
     let createReader, isString, get, isDefined, define, createEmpty, from, isObject, isFunction;
 
-    let var_init_locked_1572940250938;
+    let var_init_locked_1573103390739;
 
 
 
@@ -10791,7 +10791,7 @@ exports['src::data.reader.create.raw'] = (() => {
     return function(model) {
 
 
-        if (!var_init_locked_1572940250938) {
+        if (!var_init_locked_1573103390739) {
 
             createReader = include('src::data.reader.create');
             isString = include('is.string');
@@ -10803,7 +10803,7 @@ exports['src::data.reader.create.raw'] = (() => {
             isObject = include('is.object.simple');
             isFunction = include('is.function');
 
-            var_init_locked_1572940250938 = true;
+            var_init_locked_1573103390739 = true;
         }
 
 
@@ -10818,7 +10818,7 @@ exports['src::data.reader.create.data'] = (() => {
 
     let createReader, isString, isFunction;
 
-    let var_init_locked_1572940250944;
+    let var_init_locked_1573103390746;
 
 
 
@@ -10915,13 +10915,13 @@ exports['src::data.reader.create.data'] = (() => {
     return function(model) {
 
 
-        if (!var_init_locked_1572940250944) {
+        if (!var_init_locked_1573103390746) {
 
             createReader = include('src::data.reader.create');
             isString = include('is.string');
             isFunction = include('is.function');
 
-            var_init_locked_1572940250944 = true;
+            var_init_locked_1573103390746 = true;
         }
 
 
@@ -10936,7 +10936,7 @@ exports['src::is.data.recordset'] = (() => {
 
     let isArray, is;
 
-    let var_init_locked_1572940250948;
+    let var_init_locked_1573103390751;
 
 
 
@@ -10966,12 +10966,12 @@ exports['src::is.data.recordset'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250948) {
+        if (!var_init_locked_1573103390751) {
 
             isArray = include('is.array');
             is = include('src::is.data.structure');
 
-            var_init_locked_1572940250948 = true;
+            var_init_locked_1573103390751 = true;
         }
 
 
@@ -10986,7 +10986,7 @@ exports['src::data.writer.create'] = (() => {
 
     let isRecord, isRecordset, isDefined;
 
-    let var_init_locked_1572940250953;
+    let var_init_locked_1573103390757;
 
 
 
@@ -11055,13 +11055,13 @@ exports['src::data.writer.create'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1572940250953) {
+        if (!var_init_locked_1573103390757) {
 
             isRecord = include('is.data.record');
             isRecordset = include('is.data.recordset');
             isDefined = include('is.defined');
 
-            var_init_locked_1572940250953 = true;
+            var_init_locked_1573103390757 = true;
         }
 
 
@@ -11078,7 +11078,7 @@ exports['src::is.data.record.empty'] = (() => {
 
     let isRecord;
 
-    let var_init_locked_1572940250956;
+    let var_init_locked_1573103390760;
 
 
 
@@ -11111,11 +11111,11 @@ exports['src::is.data.record.empty'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940250956) {
+        if (!var_init_locked_1573103390760) {
 
             isRecord = include('is.data.record');
 
-            var_init_locked_1572940250956 = true;
+            var_init_locked_1573103390760 = true;
         }
 
 
@@ -11130,7 +11130,7 @@ exports['src::data.writer.create.data'] = (() => {
 
     let createWriter, isString, isObject, isEmpty, isDefined;
 
-    let var_init_locked_1572940250959;
+    let var_init_locked_1573103390764;
 
 
 
@@ -11214,7 +11214,7 @@ exports['src::data.writer.create.data'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940250959) {
+        if (!var_init_locked_1573103390764) {
 
             createWriter = include('src::data.writer.create');
             isString = include('is.string');
@@ -11222,7 +11222,7 @@ exports['src::data.writer.create.data'] = (() => {
             isEmpty = include('is.data.record.empty');
             isDefined = include('is.defined');
 
-            var_init_locked_1572940250959 = true;
+            var_init_locked_1573103390764 = true;
         }
 
 
@@ -11237,7 +11237,7 @@ exports['src::data.writer.create.storage'] = (() => {
 
     let createWriter, isString, isObject, isEmpty, isDefined;
 
-    let var_init_locked_1572940250963;
+    let var_init_locked_1573103390770;
 
 
 
@@ -11320,7 +11320,7 @@ exports['src::data.writer.create.storage'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940250963) {
+        if (!var_init_locked_1573103390770) {
 
             createWriter = include('src::data.writer.create');
             isString = include('is.string');
@@ -11328,7 +11328,7 @@ exports['src::data.writer.create.storage'] = (() => {
             isEmpty = include('is.data.record.empty');
             isDefined = include('is.defined');
 
-            var_init_locked_1572940250963 = true;
+            var_init_locked_1573103390770 = true;
         }
 
 
@@ -11385,16 +11385,16 @@ exports['src::data.store'] = (() => {
 
     let createRawReader, createDataReader, createDataWriter, createStorageWriter, Observable, clear;
 
-    let var_init_locked_1572940250969;
+    let var_init_locked_1573103390777;
 
-    let var_class_1572940250969;
+    let var_class_1573103390777;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940250969) {
+        if (!var_init_locked_1573103390777) {
 
             createRawReader = include('data.reader.create.raw');
             createDataReader = include('data.reader.create.data');
@@ -11403,12 +11403,12 @@ exports['src::data.store'] = (() => {
             Observable = include('mixin.observable');
             clear = include('object.clear');
 
-            var_init_locked_1572940250969 = true;
+            var_init_locked_1573103390777 = true;
         }
 
 
 
-        if (!var_class_1572940250969) {
+        if (!var_class_1573103390777) {
 
 
             /**
@@ -11551,7 +11551,7 @@ exports['src::data.store'] = (() => {
                 }
             }
 
-            var_class_1572940250969 = class extends main {
+            var_class_1573103390777 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -11561,7 +11561,7 @@ exports['src::data.store'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940250969;
+                    return var_class_1573103390777;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -11573,7 +11573,7 @@ exports['src::data.store'] = (() => {
         }
 
 
-        return var_class_1572940250969;
+        return var_class_1573103390777;
     };
 
 })();
@@ -11691,7 +11691,7 @@ exports['src::mixin.region.xy.anchor.set'] = (() => {
 
     let isDefined;
 
-    let var_init_locked_1572940250984;
+    let var_init_locked_1573103390796;
 
 
 
@@ -11810,11 +11810,11 @@ exports['src::mixin.region.xy.anchor.set'] = (() => {
     return function(xy, anchor = 'tl') {
 
 
-        if (!var_init_locked_1572940250984) {
+        if (!var_init_locked_1573103390796) {
 
             isDefined = include('is.defined');
 
-            var_init_locked_1572940250984 = true;
+            var_init_locked_1573103390796 = true;
         }
 
 
@@ -11829,7 +11829,7 @@ exports['src::mixin.region'] = (() => {
 
     let method_getAnchorXY, method_setAnchorXY, isObject;
 
-    let var_init_locked_1572940250986;
+    let var_init_locked_1573103390799;
 
 
 
@@ -11865,13 +11865,13 @@ exports['src::mixin.region'] = (() => {
     return function(extend) {
 
 
-        if (!var_init_locked_1572940250986) {
+        if (!var_init_locked_1573103390799) {
 
             method_getAnchorXY = include('src::mixin.region.xy.anchor.get');
             method_setAnchorXY = include('src::mixin.region.xy.anchor.set');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940250986 = true;
+            var_init_locked_1573103390799 = true;
         }
 
 
@@ -11967,7 +11967,7 @@ exports['src::object.property.prefix'] = (() => {
 
 
 
-    let var_once_value_1572940250992;
+    let var_once_value_1573103390808;
 
     function main() {
 
@@ -11990,12 +11990,12 @@ exports['src::object.property.prefix'] = (() => {
 
 
 
-        if (var_once_value_1572940250992) {
+        if (var_once_value_1573103390808) {
 
-            return var_once_value_1572940250992;
+            return var_once_value_1573103390808;
 
         }
-        return var_once_value_1572940250992 = main.call(this);
+        return var_once_value_1573103390808 = main.call(this);
 
     };
 
@@ -12005,7 +12005,7 @@ exports['src::object.property.define'] = (() => {
 
     let capitalize, getPrefix, isDefined, isFunction;
 
-    let var_init_locked_1572940250996;
+    let var_init_locked_1573103390812;
 
 
 
@@ -12107,14 +12107,14 @@ exports['src::object.property.define'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940250996) {
+        if (!var_init_locked_1573103390812) {
 
             capitalize = include('string.capitalize');
             getPrefix = include('object.property.prefix');
             isDefined = include('is.defined');
             isFunction = include('is.function');
 
-            var_init_locked_1572940250996 = true;
+            var_init_locked_1573103390812 = true;
         }
 
 
@@ -12132,7 +12132,7 @@ exports['src::object.properties.define'] = (() => {
 
     let defineProperty, isArray;
 
-    let var_init_locked_1572940250999;
+    let var_init_locked_1573103390815;
 
 
 
@@ -12176,12 +12176,12 @@ exports['src::object.properties.define'] = (() => {
     return function(target, config) {
 
 
-        if (!var_init_locked_1572940250999) {
+        if (!var_init_locked_1573103390815) {
 
             defineProperty = include('object.property.define');
             isArray = include('is.array');
 
-            var_init_locked_1572940250999 = true;
+            var_init_locked_1573103390815 = true;
         }
 
 
@@ -12196,7 +12196,7 @@ exports['src::object.property.reset'] = (() => {
 
     let getPrefix;
 
-    let var_init_locked_1572940251002;
+    let var_init_locked_1573103390819;
 
 
 
@@ -12223,11 +12223,11 @@ exports['src::object.property.reset'] = (() => {
     return function(target, name) {
 
 
-        if (!var_init_locked_1572940251002) {
+        if (!var_init_locked_1573103390819) {
 
             getPrefix = include('object.property.prefix');
 
-            var_init_locked_1572940251002 = true;
+            var_init_locked_1573103390819 = true;
         }
 
 
@@ -12242,7 +12242,7 @@ exports['src::object.properties.reset'] = (() => {
 
     let resetProperty;
 
-    let var_init_locked_1572940251004;
+    let var_init_locked_1573103390822;
 
 
 
@@ -12272,11 +12272,11 @@ exports['src::object.properties.reset'] = (() => {
     return function(target, names) {
 
 
-        if (!var_init_locked_1572940251004) {
+        if (!var_init_locked_1573103390822) {
 
             resetProperty = include('object.property.reset');
 
-            var_init_locked_1572940251004 = true;
+            var_init_locked_1573103390822 = true;
         }
 
 
@@ -12291,16 +12291,16 @@ exports['src::data.model.node.tree.base'] = (() => {
 
     let Model, insert, remove, region, isEmpty, defineProperties, from, resetProperties;
 
-    let var_init_locked_1572940251008;
+    let var_init_locked_1573103390827;
 
-    let var_class_1572940251008;
+    let var_class_1573103390827;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940251008) {
+        if (!var_init_locked_1573103390827) {
 
             Model = include('data.model')();
             insert = include('array.insert');
@@ -12311,12 +12311,12 @@ exports['src::data.model.node.tree.base'] = (() => {
             from = include('array.from');
             resetProperties = include('object.properties.reset');
 
-            var_init_locked_1572940251008 = true;
+            var_init_locked_1573103390827 = true;
         }
 
 
 
-        if (!var_class_1572940251008) {
+        if (!var_class_1573103390827) {
 
 
             /**
@@ -12468,7 +12468,7 @@ exports['src::data.model.node.tree.base'] = (() => {
                 }
             }
 
-            var_class_1572940251008 = class extends main {
+            var_class_1573103390827 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -12478,7 +12478,7 @@ exports['src::data.model.node.tree.base'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251008;
+                    return var_class_1573103390827;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -12490,7 +12490,7 @@ exports['src::data.model.node.tree.base'] = (() => {
         }
 
 
-        return var_class_1572940251008;
+        return var_class_1573103390827;
     };
 
 })();
@@ -12643,9 +12643,9 @@ exports['src::data.model.node.tree.node.sibling.previous'] = (() => {
 
     let getSiblingNode;
 
-    let var_init_locked_1572940251021;
+    let var_init_locked_1573103390844;
 
-    let var_current_scope_1572940251021;
+    let var_current_scope_1573103390844;
 
 
 
@@ -12671,11 +12671,11 @@ exports['src::data.model.node.tree.node.sibling.previous'] = (() => {
 
 
 
-        if (!var_current_scope_1572940251021 !== this) {
+        if (!var_current_scope_1573103390844 !== this) {
 
             getSiblingNode = include('src::data.model.node.tree.node.sibling').bind(this);
 
-            var_current_scope_1572940251021 = this;
+            var_current_scope_1573103390844 = this;
         }
 
 
@@ -12688,9 +12688,9 @@ exports['src::data.model.node.tree.node.sibling.next'] = (() => {
 
     let getSiblingNode;
 
-    let var_init_locked_1572940251023;
+    let var_init_locked_1573103390846;
 
-    let var_current_scope_1572940251023;
+    let var_current_scope_1573103390846;
 
 
 
@@ -12716,11 +12716,11 @@ exports['src::data.model.node.tree.node.sibling.next'] = (() => {
 
 
 
-        if (!var_current_scope_1572940251023 !== this) {
+        if (!var_current_scope_1573103390846 !== this) {
 
             getSiblingNode = include('src::data.model.node.tree.node.sibling').bind(this);
 
-            var_current_scope_1572940251023 = this;
+            var_current_scope_1573103390846 = this;
         }
 
 
@@ -13009,9 +13009,9 @@ exports['src::math.region'] = (() => {
 
     let region;
 
-    let var_init_locked_1572940251041;
+    let var_init_locked_1573103390869;
 
-    let var_class_1572940251041;
+    let var_class_1573103390869;
 
 
 
@@ -13023,16 +13023,16 @@ exports['src::math.region'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1572940251041) {
+        if (!var_init_locked_1573103390869) {
 
             region = include('mixin.region');
 
-            var_init_locked_1572940251041 = true;
+            var_init_locked_1573103390869 = true;
         }
 
 
 
-        if (!var_class_1572940251041) {
+        if (!var_class_1573103390869) {
 
 
             /**
@@ -13154,7 +13154,7 @@ exports['src::math.region'] = (() => {
 
 
 
-            var_class_1572940251041 = class extends main {
+            var_class_1573103390869 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -13164,7 +13164,7 @@ exports['src::math.region'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251041;
+                    return var_class_1573103390869;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -13176,7 +13176,7 @@ exports['src::math.region'] = (() => {
         }
 
 
-        return new var_class_1572940251041({
+        return new var_class_1573103390869({
             x,
             y,
             width,
@@ -13190,7 +13190,7 @@ exports['src::data.model.node.tree.region'] = (() => {
 
     let createRegion;
 
-    let var_init_locked_1572940251044;
+    let var_init_locked_1573103390873;
 
 
 
@@ -13228,11 +13228,11 @@ exports['src::data.model.node.tree.region'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251044) {
+        if (!var_init_locked_1573103390873) {
 
             createRegion = include('math.region');
 
-            var_init_locked_1572940251044 = true;
+            var_init_locked_1573103390873 = true;
         }
 
 
@@ -14234,9 +14234,9 @@ exports['src::data.model.node.tree.select.up'] = (() => {
 
     let select;
 
-    let var_init_locked_1572940251098;
+    let var_init_locked_1573103390929;
 
-    let var_current_scope_1572940251098;
+    let var_current_scope_1573103390929;
 
 
 
@@ -14259,11 +14259,11 @@ exports['src::data.model.node.tree.select.up'] = (() => {
 
 
 
-        if (!var_current_scope_1572940251098 !== this) {
+        if (!var_current_scope_1573103390929 !== this) {
 
             select = include('src::data.model.node.tree.select.vertical').bind(this);
 
-            var_current_scope_1572940251098 = this;
+            var_current_scope_1573103390929 = this;
         }
 
 
@@ -14276,9 +14276,9 @@ exports['src::data.model.node.tree.select.down'] = (() => {
 
     let select;
 
-    let var_init_locked_1572940251100;
+    let var_init_locked_1573103390932;
 
-    let var_current_scope_1572940251100;
+    let var_current_scope_1573103390932;
 
 
 
@@ -14303,11 +14303,11 @@ exports['src::data.model.node.tree.select.down'] = (() => {
 
 
 
-        if (!var_current_scope_1572940251100 !== this) {
+        if (!var_current_scope_1573103390932 !== this) {
 
             select = include('src::data.model.node.tree.select.vertical').bind(this);
 
-            var_current_scope_1572940251100 = this;
+            var_current_scope_1573103390932 = this;
         }
 
 
@@ -14407,7 +14407,7 @@ exports['src::data.model.node.tree.select.right'] = (() => {
 
     let getDistance;
 
-    let var_init_locked_1572940251108;
+    let var_init_locked_1573103390943;
 
 
 
@@ -14479,11 +14479,11 @@ exports['src::data.model.node.tree.select.right'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251108) {
+        if (!var_init_locked_1573103390943) {
 
             getDistance = include('math.point.distance');
 
-            var_init_locked_1572940251108 = true;
+            var_init_locked_1573103390943 = true;
         }
 
 
@@ -14615,7 +14615,7 @@ exports['src::data.model.node.tree.insert.after'] = (() => {
 
     let resetProperty;
 
-    let var_init_locked_1572940251124;
+    let var_init_locked_1573103390961;
 
 
 
@@ -14671,11 +14671,11 @@ exports['src::data.model.node.tree.insert.after'] = (() => {
     return function(node, existNode) {
 
 
-        if (!var_init_locked_1572940251124) {
+        if (!var_init_locked_1573103390961) {
 
             resetProperty = include('object.property.reset');
 
-            var_init_locked_1572940251124 = true;
+            var_init_locked_1573103390961 = true;
         }
 
 
@@ -14781,20 +14781,20 @@ exports['src::data.model.node.tree.contains'] = (() => {
 
 exports['src::data.model.node.tree'] = (() => {
 
-    let mixin_1572940249822__1, extend, static_get_fieldConfigurations, get_selected, get_previousSiblingNode, get_nextSiblingNode, get_firstChildNode, get_lastChildNode, get_expanded, get_synchronized, get_isRoot, get_isLeaf, get_hidden, get_region, get_childCountScopeHeight, get_scopeHeight, get_descendantNodes, get_firstDescendantNodes, get_lastDescendantNodes, get_lastLeafNode, method_show, method_hide, method_layout, method_expand, method_collapse, method_select, method_deselect, method_synchronize, method_selectUp, method_selectDown, method_selectLeft, method_selectRight, method_getDepthNodes, method_appendChild, method_insertAfter, method_removeChild, method_contains, isObject;
+    let mixin_1573103389659__1, extend, static_get_fieldConfigurations, get_selected, get_previousSiblingNode, get_nextSiblingNode, get_firstChildNode, get_lastChildNode, get_expanded, get_synchronized, get_isRoot, get_isLeaf, get_hidden, get_region, get_childCountScopeHeight, get_scopeHeight, get_descendantNodes, get_firstDescendantNodes, get_lastDescendantNodes, get_lastLeafNode, method_show, method_hide, method_layout, method_expand, method_collapse, method_select, method_deselect, method_synchronize, method_selectUp, method_selectDown, method_selectLeft, method_selectRight, method_getDepthNodes, method_appendChild, method_insertAfter, method_removeChild, method_contains, isObject;
 
-    let var_init_locked_1572940251135;
+    let var_init_locked_1573103390975;
 
-    let var_class_1572940251135;
+    let var_class_1573103390975;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940251135) {
+        if (!var_init_locked_1573103390975) {
 
-            mixin_1572940249822__1 = include('mixin.region');
+            mixin_1573103389659__1 = include('mixin.region');
             extend = include('src::data.model.node.tree.base')();
             static_get_fieldConfigurations = include('src::data.model.node.tree.configurations');
             get_selected = include('src::data.model.node.tree.node.selected');
@@ -14833,12 +14833,12 @@ exports['src::data.model.node.tree'] = (() => {
             method_contains = include('src::data.model.node.tree.contains');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940251135 = true;
+            var_init_locked_1573103390975 = true;
         }
 
 
 
-        if (!var_class_1572940251135) {
+        if (!var_class_1573103390975) {
 
             class main extends mixins({
                 extend,
@@ -15029,7 +15029,7 @@ exports['src::data.model.node.tree'] = (() => {
 
             }
 
-            var_class_1572940251135 = class extends main {
+            var_class_1573103390975 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -15039,7 +15039,7 @@ exports['src::data.model.node.tree'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251135;
+                    return var_class_1573103390975;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -15051,7 +15051,7 @@ exports['src::data.model.node.tree'] = (() => {
         }
 
 
-        return var_class_1572940251135;
+        return var_class_1573103390975;
     };
 
 })();
@@ -15060,26 +15060,26 @@ exports['src::data.model.node.tree.mind'] = (() => {
 
     let Model, isEmpty;
 
-    let var_init_locked_1572940251149;
+    let var_init_locked_1573103390994;
 
-    let var_class_1572940251149;
+    let var_class_1573103390994;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940251149) {
+        if (!var_init_locked_1573103390994) {
 
             Model = include('src::data.model.node.tree')();
             isEmpty = include('is.object.empty');
 
-            var_init_locked_1572940251149 = true;
+            var_init_locked_1573103390994 = true;
         }
 
 
 
-        if (!var_class_1572940251149) {
+        if (!var_class_1573103390994) {
 
 
             /**
@@ -15180,7 +15180,7 @@ exports['src::data.model.node.tree.mind'] = (() => {
                 }
             }
 
-            var_class_1572940251149 = class extends main {
+            var_class_1573103390994 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -15190,7 +15190,7 @@ exports['src::data.model.node.tree.mind'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251149;
+                    return var_class_1573103390994;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -15202,7 +15202,7 @@ exports['src::data.model.node.tree.mind'] = (() => {
         }
 
 
-        return var_class_1572940251149;
+        return var_class_1573103390994;
     };
 
 })();
@@ -15211,28 +15211,28 @@ exports['src::data.store.tree.base'] = (() => {
 
     let Store, Model, define, from;
 
-    let var_init_locked_1572940251163;
+    let var_init_locked_1573103391012;
 
-    let var_class_1572940251163;
+    let var_class_1573103391012;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940251163) {
+        if (!var_init_locked_1573103391012) {
 
             Store = include('data.store')();
             Model = include('data.model.node.tree.mind')();
             define = include('class.define');
             from = include('array.from');
 
-            var_init_locked_1572940251163 = true;
+            var_init_locked_1573103391012 = true;
         }
 
 
 
-        if (!var_class_1572940251163) {
+        if (!var_class_1573103391012) {
 
 
             /**
@@ -15357,7 +15357,7 @@ exports['src::data.store.tree.base'] = (() => {
 
             }
 
-            var_class_1572940251163 = class extends main {
+            var_class_1573103391012 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -15367,7 +15367,7 @@ exports['src::data.store.tree.base'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251163;
+                    return var_class_1573103391012;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -15379,7 +15379,7 @@ exports['src::data.store.tree.base'] = (() => {
         }
 
 
-        return var_class_1572940251163;
+        return var_class_1573103391012;
     };
 
 })();
@@ -15446,7 +15446,7 @@ exports['src::data.store.tree.remove'] = (() => {
 
     let from;
 
-    let var_init_locked_1572940251192;
+    let var_init_locked_1573103391049;
 
 
 
@@ -15492,11 +15492,11 @@ exports['src::data.store.tree.remove'] = (() => {
     return function(nodes) {
 
 
-        if (!var_init_locked_1572940251192) {
+        if (!var_init_locked_1573103391049) {
 
             from = include('array.from');
 
-            var_init_locked_1572940251192 = true;
+            var_init_locked_1573103391049 = true;
         }
 
 
@@ -15511,28 +15511,28 @@ exports['src::data.store.tree'] = (() => {
 
     let extend, method_insert, method_remove, isObject;
 
-    let var_init_locked_1572940251195;
+    let var_init_locked_1573103391054;
 
-    let var_class_1572940251195;
+    let var_class_1573103391054;
 
 
 
     return function() {
 
 
-        if (!var_init_locked_1572940251195) {
+        if (!var_init_locked_1573103391054) {
 
             extend = include('src::data.store.tree.base')();
             method_insert = include('src::data.store.tree.insert');
             method_remove = include('src::data.store.tree.remove');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940251195 = true;
+            var_init_locked_1573103391054 = true;
         }
 
 
 
-        if (!var_class_1572940251195) {
+        if (!var_class_1573103391054) {
 
             class main extends mixins({
                 extend,
@@ -15560,7 +15560,7 @@ exports['src::data.store.tree'] = (() => {
 
             }
 
-            var_class_1572940251195 = class extends main {
+            var_class_1573103391054 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -15570,7 +15570,7 @@ exports['src::data.store.tree'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251195;
+                    return var_class_1573103391054;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -15582,7 +15582,7 @@ exports['src::data.store.tree'] = (() => {
         }
 
 
-        return var_class_1572940251195;
+        return var_class_1573103391054;
     };
 
 })();
@@ -15591,25 +15591,25 @@ exports['src::data.store.tree.mind'] = (() => {
 
     let Store;
 
-    let var_init_locked_1572940251219;
+    let var_init_locked_1573103391085;
 
-    let var_class_1572940251219;
+    let var_class_1573103391085;
 
 
 
     return function(options) {
 
 
-        if (!var_init_locked_1572940251219) {
+        if (!var_init_locked_1573103391085) {
 
             Store = include('data.store.tree')();
 
-            var_init_locked_1572940251219 = true;
+            var_init_locked_1573103391085 = true;
         }
 
 
 
-        if (!var_class_1572940251219) {
+        if (!var_class_1573103391085) {
 
 
             /**
@@ -15812,7 +15812,7 @@ exports['src::data.store.tree.mind'] = (() => {
                 return lines;
             }
 
-            var_class_1572940251219 = class extends main {
+            var_class_1573103391085 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -15822,7 +15822,7 @@ exports['src::data.store.tree.mind'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251219;
+                    return var_class_1573103391085;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -15834,7 +15834,7 @@ exports['src::data.store.tree.mind'] = (() => {
         }
 
 
-        return new var_class_1572940251219(options);
+        return new var_class_1573103391085(options);
     };
 
 })();
@@ -15888,7 +15888,7 @@ exports['src::os.name'] = (() => {
 
 
 
-    let var_once_value_1572940251245;
+    let var_once_value_1573103391115;
 
     function main() {
 
@@ -15941,12 +15941,12 @@ exports['src::os.name'] = (() => {
 
 
 
-        if (var_once_value_1572940251245) {
+        if (var_once_value_1573103391115) {
 
-            return var_once_value_1572940251245;
+            return var_once_value_1573103391115;
 
         }
-        return var_once_value_1572940251245 = main.call(this);
+        return var_once_value_1573103391115 = main.call(this);
 
     };
 
@@ -15956,11 +15956,11 @@ exports['src::browser.scale'] = (() => {
 
     let osName;
 
-    let var_init_locked_1572940251247;
+    let var_init_locked_1573103391118;
 
 
 
-    let var_once_value_1572940251247;
+    let var_once_value_1573103391118;
 
     function main() {
 
@@ -15992,23 +15992,23 @@ exports['src::browser.scale'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251247) {
+        if (!var_init_locked_1573103391118) {
 
             osName = include('os.name');
 
-            var_init_locked_1572940251247 = true;
+            var_init_locked_1573103391118 = true;
         }
 
 
 
 
 
-        if (var_once_value_1572940251247) {
+        if (var_once_value_1573103391118) {
 
-            return var_once_value_1572940251247;
+            return var_once_value_1573103391118;
 
         }
-        return var_once_value_1572940251247 = main.call(this);
+        return var_once_value_1573103391118 = main.call(this);
 
     };
 
@@ -16018,7 +16018,7 @@ exports['src::browser.canvas.brush.move'] = (() => {
 
     let assign, scale;
 
-    let var_init_locked_1572940251249;
+    let var_init_locked_1573103391120;
 
 
 
@@ -16066,12 +16066,12 @@ exports['src::browser.canvas.brush.move'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251249) {
+        if (!var_init_locked_1573103391120) {
 
             assign = include('object.assign');
             scale = include('browser.scale')();
 
-            var_init_locked_1572940251249 = true;
+            var_init_locked_1573103391120 = true;
         }
 
 
@@ -16090,7 +16090,7 @@ exports['src::browser.canvas.brush.start'] = (() => {
 
     let assign, scale;
 
-    let var_init_locked_1572940251252;
+    let var_init_locked_1573103391123;
 
 
 
@@ -16138,12 +16138,12 @@ exports['src::browser.canvas.brush.start'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251252) {
+        if (!var_init_locked_1573103391123) {
 
             assign = include('object.assign');
             scale = include('browser.scale')();
 
-            var_init_locked_1572940251252 = true;
+            var_init_locked_1573103391123 = true;
         }
 
 
@@ -16162,7 +16162,7 @@ exports['src::browser.canvas.clear'] = (() => {
 
     let isNumber;
 
-    let var_init_locked_1572940251255;
+    let var_init_locked_1573103391127;
 
 
 
@@ -16222,11 +16222,11 @@ exports['src::browser.canvas.clear'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251255) {
+        if (!var_init_locked_1573103391127) {
 
             isNumber = include('is.number');
 
-            var_init_locked_1572940251255 = true;
+            var_init_locked_1573103391127 = true;
         }
 
 
@@ -16330,7 +16330,7 @@ exports['src::browser.canvas.draw.line.arc'] = (() => {
 
     let assign, degree2radian, doBegin, doEnd, scale;
 
-    let var_init_locked_1572940251261;
+    let var_init_locked_1573103391134;
 
 
 
@@ -16410,7 +16410,7 @@ exports['src::browser.canvas.draw.line.arc'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251261) {
+        if (!var_init_locked_1573103391134) {
 
             assign = include('object.assign');
             degree2radian = include('math.degree2radian');
@@ -16418,7 +16418,7 @@ exports['src::browser.canvas.draw.line.arc'] = (() => {
             doEnd = include('browser.canvas.end');
             scale = include('browser.scale')();
 
-            var_init_locked_1572940251261 = true;
+            var_init_locked_1573103391134 = true;
         }
 
 
@@ -16443,7 +16443,7 @@ exports['src::browser.canvas.draw.line.bezierCurve'] = (() => {
 
     let assign, scale;
 
-    let var_init_locked_1572940251264;
+    let var_init_locked_1573103391139;
 
 
 
@@ -16501,12 +16501,12 @@ exports['src::browser.canvas.draw.line.bezierCurve'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251264) {
+        if (!var_init_locked_1573103391139) {
 
             assign = include('object.assign');
             scale = include('browser.scale')();
 
-            var_init_locked_1572940251264 = true;
+            var_init_locked_1573103391139 = true;
         }
 
 
@@ -16524,7 +16524,7 @@ exports['src::browser.canvas.draw.line'] = (() => {
 
     let assign, scale;
 
-    let var_init_locked_1572940251268;
+    let var_init_locked_1573103391143;
 
 
 
@@ -16582,12 +16582,12 @@ exports['src::browser.canvas.draw.line'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251268) {
+        if (!var_init_locked_1573103391143) {
 
             assign = include('object.assign');
             scale = include('browser.scale')();
 
-            var_init_locked_1572940251268 = true;
+            var_init_locked_1573103391143 = true;
         }
 
 
@@ -16605,7 +16605,7 @@ exports['src::browser.canvas.eraser.move'] = (() => {
 
     let arc, clear;
 
-    let var_init_locked_1572940251271;
+    let var_init_locked_1573103391146;
 
 
 
@@ -16661,12 +16661,12 @@ exports['src::browser.canvas.eraser.move'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251271) {
+        if (!var_init_locked_1573103391146) {
 
             arc = include('browser.canvas.draw.line.arc');
             clear = include('browser.canvas.clear');
 
-            var_init_locked_1572940251271 = true;
+            var_init_locked_1573103391146 = true;
         }
 
 
@@ -16685,7 +16685,7 @@ exports['src::browser.canvas.init'] = (() => {
 
     let scale;
 
-    let var_init_locked_1572940251275;
+    let var_init_locked_1573103391151;
 
 
 
@@ -16721,11 +16721,11 @@ exports['src::browser.canvas.init'] = (() => {
     return function(canvas) {
 
 
-        if (!var_init_locked_1572940251275) {
+        if (!var_init_locked_1573103391151) {
 
             scale = include('browser.scale')();
 
-            var_init_locked_1572940251275 = true;
+            var_init_locked_1573103391151 = true;
         }
 
 
@@ -16736,30 +16736,261 @@ exports['src::browser.canvas.init'] = (() => {
 
 })();
 
-exports['src::browser.canvas.recorder'] = (() => {
+exports['src::browser.canvas.player'] = (() => {
 
-    let Observable, arrayClear;
+    let isObject, Observable, from;
 
-    let var_init_locked_1572940251277;
+    let var_init_locked_1573103391155;
 
-    let var_class_1572940251277;
+    let var_class_1573103391155;
 
 
 
     return function(context) {
 
 
-        if (!var_init_locked_1572940251277) {
+        if (!var_init_locked_1573103391155) {
 
+            isObject = include('is.object.simple');
             Observable = include('mixin.observable');
-            arrayClear = include('array.clear');
+            from = include('array.from');
 
-            var_init_locked_1572940251277 = true;
+            var_init_locked_1573103391155 = true;
         }
 
 
 
-        if (!var_class_1572940251277) {
+        if (!var_class_1573103391155) {
+
+            /**
+             * 
+             * 画板播放机
+             * 
+             * @import isObject from is.object.simple
+             * 
+             * @import Observable from mixin.observable
+             * 
+             * @import from from array.from
+             * 
+             * @param {canvas.Context} context 画板的上下文对象
+             * 
+             */
+
+
+            class main extends mixins({
+                mixins: [
+                    Observable
+                ]
+            }) {
+
+                constructor({
+                    context,
+                    user,
+                    autoPlay = true,
+                    ...options
+                }) {
+
+                    super(options);
+
+                    let me = this;
+
+                    me.context = context;
+
+                    me.records = [];
+
+                    me.user = user;
+
+                    if (autoPlay) {
+
+                        me.play();
+                    }
+                }
+
+                set paused(isPaused) {
+
+                    let me = this,
+                        {
+                            paused
+                        } = me;
+
+                    if (paused === isPaused) {
+
+                        return;
+                    }
+
+                    if (isPaused) {
+
+                        clearTimeout(me.playerId);
+
+                        delete me.playerId;
+
+                        me.fireEvent('pause');
+
+                    } else {
+
+                        launch.call(me, true);
+
+                        me.fireEvent('play');
+                    }
+                }
+
+                get paused() {
+
+                    return !this.hasOwnProperty('playerId');
+                }
+
+                put(record) {
+
+                    let me = this,
+                        {
+                            records,
+                            user,
+                            isNeutral
+                        } = me;
+
+                    if (record.user === user) {
+
+                        return;
+                    }
+
+                    record = from(record);
+
+                    records.push(...record);
+
+                    me.fireEvent('recordput', record);
+
+                    if (isNeutral) {
+
+                        launch.call(me);
+                    }
+                }
+
+                get isNeutral() {
+
+                    return this.playerId === null;
+                }
+
+                /**
+                 * 
+                 * 播放
+                 * 
+                 */
+                play() {
+
+                    this.paused = false;
+                }
+
+                /**
+                 * 
+                 * 暂停
+                 * 
+                 */
+                pause() {
+
+                    this.paused = true;
+                }
+            }
+
+            function launch(isBegin = false) {
+
+                let me = this,
+                    {
+                        records,
+                        cursor = 0,
+                        context
+                    } = me,
+                    record = records[cursor];
+
+                if (isObject(record)) {
+
+                    let {
+                        api,
+                        params,
+                        delay
+                    } = record;
+
+                    if (isBegin) {
+
+                        if (api === 'browser.canvas.brush.move') {
+
+                            api = 'browser.canvas.brush.start';
+
+                            delay = 0;
+                        }
+
+                    }
+
+                    me.playerId = setTimeout(() => {
+
+                        include(api)(context, params);
+
+                        records[cursor] = null;
+
+                        me.cursor = cursor + 1;
+
+                        launch.call(me);
+
+                        me.fireEvent('recordplayed', api, params, delay);
+
+                    }, delay);
+
+                } else {
+
+                    me.playerId = null;
+                }
+            }
+
+            var_class_1573103391155 = class extends main {
+
+                static get __ZBEE_IS_CLASS__() {
+
+                    return true;
+                }
+
+
+                get __ZBEE_CLASS__() {
+
+                    return var_class_1573103391155;
+                }
+
+                get __ZBEE_CLASS_NAME__() {
+
+                    return 'src::browser.canvas.player';
+                }
+
+            };
+        }
+
+
+        return new var_class_1573103391155(context);
+    };
+
+})();
+
+exports['src::browser.canvas.recorder'] = (() => {
+
+    let Observable, arrayClear;
+
+    let var_init_locked_1573103391164;
+
+    let var_class_1573103391164;
+
+
+
+    return function(context) {
+
+
+        if (!var_init_locked_1573103391164) {
+
+            Observable = include('mixin.observable');
+            arrayClear = include('array.clear');
+
+            var_init_locked_1573103391164 = true;
+        }
+
+
+
+        if (!var_class_1573103391164) {
 
 
             /**
@@ -16782,6 +17013,7 @@ exports['src::browser.canvas.recorder'] = (() => {
 
                 constructor({
                     context,
+                    user,
                     ...options
                 }) {
 
@@ -16793,88 +17025,19 @@ exports['src::browser.canvas.recorder'] = (() => {
 
                     me.records = [];
 
-                    me.paused = false;
-
-                    me.startPlayIndex = 0;
+                    me.user = user;
                 }
 
-                async play() {
+                record(api, params, isTiming = true) {
 
                     let me = this,
                         {
-                            context,
                             records,
-                            startPlayIndex
-                        } = me,
-                        len = records.length;
-
-                    me.paused = false;
-
-                    if (startPlayIndex !== 0) {
-
-                        let {
-                            api,
-                            params
-                        } = records[startPlayIndex - 1];
-
-                        if (api === 'browser.canvas.brush.move') {
-
-                            include('browser.canvas.brush.start')(context, params);
-                        }
-                    }
-
-                    for (let i = startPlayIndex; i < len; i++) {
-
-                        if (me.paused === true) {
-
-                            me.startPlayIndex = i;
-
-                            return;
-                        }
-
-                        let {
-                            api,
-                            params,
-                            delay
-                        } = records[i];
-
-                        await new Promise(callback => {
-
-                            setTimeout(() => {
-
-                                include(api)(context, params);
-
-                                callback();
-
-                            }, delay);
-
-                        });
-                    }
-
-                    me.startPlayIndex = 0;
-                }
-
-                pause() {
-
-                    this.paused = true;
-                }
-
-                reset() {
-
-                    let me = this;
-
-                    me.paused = false;
-
-                    arrayClear(me.records);
-                }
-
-                record(api, params) {
-
-                    let me = this,
-                        {
-                            records
+                            context,
+                            user
                         } = me,
                         record = {
+                            user,
                             api,
                             params,
                             time: Date.now(),
@@ -16883,16 +17046,20 @@ exports['src::browser.canvas.recorder'] = (() => {
 
                     let previousRecord = records[records.length - 1];
 
-                    if (previousRecord) {
+                    if (isTiming && previousRecord) {
 
                         record.delay = record.time - previousRecord.time;
                     }
 
                     records.push(record);
+
+                    include(api)(context, params);
+
+                    me.fireEvent('record', record);
                 }
             }
 
-            var_class_1572940251277 = class extends main {
+            var_class_1573103391164 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -16902,7 +17069,7 @@ exports['src::browser.canvas.recorder'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251277;
+                    return var_class_1573103391164;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -16914,7 +17081,7 @@ exports['src::browser.canvas.recorder'] = (() => {
         }
 
 
-        return new var_class_1572940251277(context);
+        return new var_class_1573103391164(context);
     };
 
 })();
@@ -16967,7 +17134,7 @@ exports['src::is.null'] = (() => {
 
     let isType;
 
-    let var_init_locked_1572940251287;
+    let var_init_locked_1573103391175;
 
 
 
@@ -16994,11 +17161,11 @@ exports['src::is.null'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940251287) {
+        if (!var_init_locked_1573103391175) {
 
             isType = include('is.type');
 
-            var_init_locked_1572940251287 = true;
+            var_init_locked_1573103391175 = true;
         }
 
 
@@ -17057,7 +17224,7 @@ exports['src::directory.paths.file.all'] = (() => {
 
     let isDirectory, isFile;
 
-    let var_init_locked_1572940251292;
+    let var_init_locked_1573103391181;
 
 
 
@@ -17121,12 +17288,12 @@ exports['src::directory.paths.file.all'] = (() => {
     return function(path, testRe) {
 
 
-        if (!var_init_locked_1572940251292) {
+        if (!var_init_locked_1573103391181) {
 
             isDirectory = include('is.directory');
             isFile = include('is.file');
 
-            var_init_locked_1572940251292 = true;
+            var_init_locked_1573103391181 = true;
         }
 
 
@@ -17141,7 +17308,7 @@ exports['src::directory.create'] = (() => {
 
     let isDirectory;
 
-    let var_init_locked_1572940251294;
+    let var_init_locked_1573103391184;
 
 
 
@@ -17187,11 +17354,11 @@ exports['src::directory.create'] = (() => {
     return function(path) {
 
 
-        if (!var_init_locked_1572940251294) {
+        if (!var_init_locked_1573103391184) {
 
             isDirectory = include('is.directory');
 
-            var_init_locked_1572940251294 = true;
+            var_init_locked_1573103391184 = true;
         }
 
 
@@ -17206,7 +17373,7 @@ exports['src::directory.copy'] = (() => {
 
     let isDirectory, getAllFilePaths, createDirectory;
 
-    let var_init_locked_1572940251296;
+    let var_init_locked_1573103391188;
 
 
 
@@ -17259,13 +17426,13 @@ exports['src::directory.copy'] = (() => {
     return function(src, dest) {
 
 
-        if (!var_init_locked_1572940251296) {
+        if (!var_init_locked_1573103391188) {
 
             isDirectory = include('is.directory');
             getAllFilePaths = include('src::directory.paths.file.all');
             createDirectory = include('directory.create');
 
-            var_init_locked_1572940251296 = true;
+            var_init_locked_1573103391188 = true;
         }
 
 
@@ -17280,7 +17447,7 @@ exports['src::date.get'] = (() => {
 
     let isDefined;
 
-    let var_init_locked_1572940251300;
+    let var_init_locked_1573103391195;
 
 
 
@@ -17375,11 +17542,11 @@ exports['src::date.get'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251300) {
+        if (!var_init_locked_1573103391195) {
 
             isDefined = include('is.defined');
 
-            var_init_locked_1572940251300 = true;
+            var_init_locked_1573103391195 = true;
         }
 
 
@@ -17517,7 +17684,7 @@ exports['src::date.parse'] = (() => {
 
     let doFormat;
 
-    let var_init_locked_1572940251311;
+    let var_init_locked_1573103391211;
 
 
 
@@ -17555,11 +17722,11 @@ exports['src::date.parse'] = (() => {
     return function(data, regex, format) {
 
 
-        if (!var_init_locked_1572940251311) {
+        if (!var_init_locked_1573103391211) {
 
             doFormat = include('string.format');
 
-            var_init_locked_1572940251311 = true;
+            var_init_locked_1573103391211 = true;
         }
 
 
@@ -17631,7 +17798,7 @@ exports['src::date.prev'] = (() => {
 
     let get, getProperty, isDate;
 
-    let var_init_locked_1572940251316;
+    let var_init_locked_1573103391218;
 
 
 
@@ -17683,13 +17850,13 @@ exports['src::date.prev'] = (() => {
     return function(date, step = 1) {
 
 
-        if (!var_init_locked_1572940251316) {
+        if (!var_init_locked_1573103391218) {
 
             get = include('date.get');
             getProperty = include('date.get.properties');
             isDate = include('is.date');
 
-            var_init_locked_1572940251316 = true;
+            var_init_locked_1573103391218 = true;
         }
 
 
@@ -17704,7 +17871,7 @@ exports['src::date.next'] = (() => {
 
     let get, getProperty, isDate;
 
-    let var_init_locked_1572940251319;
+    let var_init_locked_1573103391223;
 
 
 
@@ -17756,13 +17923,13 @@ exports['src::date.next'] = (() => {
     return function(date, step = 1) {
 
 
-        if (!var_init_locked_1572940251319) {
+        if (!var_init_locked_1573103391223) {
 
             get = include('date.get');
             getProperty = include('date.get.properties');
             isDate = include('is.date');
 
-            var_init_locked_1572940251319 = true;
+            var_init_locked_1573103391223 = true;
         }
 
 
@@ -17777,7 +17944,7 @@ exports['src::month.date.last'] = (() => {
 
     let get, prev, getLastDate;
 
-    let var_init_locked_1572940251325;
+    let var_init_locked_1573103391228;
 
 
 
@@ -17828,13 +17995,13 @@ exports['src::month.date.last'] = (() => {
     return function(year, month) {
 
 
-        if (!var_init_locked_1572940251325) {
+        if (!var_init_locked_1573103391228) {
 
             get = include('date.get');
             prev = include('date.prev');
             getLastDate = include('src::month.date.last');
 
-            var_init_locked_1572940251325 = true;
+            var_init_locked_1573103391228 = true;
         }
 
 
@@ -17849,7 +18016,7 @@ exports['src::calendar.month'] = (() => {
 
     let get, getDays, prev, next, getLastDate;
 
-    let var_init_locked_1572940251331;
+    let var_init_locked_1573103391235;
 
 
 
@@ -17973,7 +18140,7 @@ exports['src::calendar.month'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251331) {
+        if (!var_init_locked_1573103391235) {
 
             get = include('date.get');
             getDays = include('week.days');
@@ -17981,7 +18148,7 @@ exports['src::calendar.month'] = (() => {
             next = include('date.next');
             getLastDate = include('month.date.last');
 
-            var_init_locked_1572940251331 = true;
+            var_init_locked_1573103391235 = true;
         }
 
 
@@ -18051,9 +18218,9 @@ exports['src::calendar.month.view.select'] = (() => {
 
     let deselect, getLastDate, get;
 
-    let var_init_locked_1572940251338;
+    let var_init_locked_1573103391243;
 
-    let var_current_scope_1572940251338;
+    let var_current_scope_1573103391243;
 
 
 
@@ -18133,21 +18300,21 @@ exports['src::calendar.month.view.select'] = (() => {
     return function(year, month, day) {
 
 
-        if (!var_init_locked_1572940251338) {
+        if (!var_init_locked_1573103391243) {
 
             getLastDate = include('month.date.last');
             get = include('date.get.properties');
 
-            var_init_locked_1572940251338 = true;
+            var_init_locked_1573103391243 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251338 !== this) {
+        if (!var_current_scope_1573103391243 !== this) {
 
             deselect = include('src::calendar.month.view.deselect').bind(this);
 
-            var_current_scope_1572940251338 = this;
+            var_current_scope_1573103391243 = this;
         }
 
 
@@ -18160,9 +18327,9 @@ exports['src::calendar.month.view.selectMonth'] = (() => {
 
     let getDates, deselect, select, getProperty;
 
-    let var_init_locked_1572940251343;
+    let var_init_locked_1573103391249;
 
-    let var_current_scope_1572940251343;
+    let var_current_scope_1573103391249;
 
 
 
@@ -18247,22 +18414,22 @@ exports['src::calendar.month.view.selectMonth'] = (() => {
     return function(year, month) {
 
 
-        if (!var_init_locked_1572940251343) {
+        if (!var_init_locked_1573103391249) {
 
             getDates = include('src::calendar.month');
             getProperty = include('date.get.properties');
 
-            var_init_locked_1572940251343 = true;
+            var_init_locked_1573103391249 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251343 !== this) {
+        if (!var_current_scope_1573103391249 !== this) {
 
             deselect = include('src::calendar.month.view.deselect').bind(this);
             select = include('src::calendar.month.view.select').bind(this);
 
-            var_current_scope_1572940251343 = this;
+            var_current_scope_1573103391249 = this;
         }
 
 
@@ -18275,9 +18442,9 @@ exports['src::calendar.month.view.constructor'] = (() => {
 
     let getProxy, selectMonth, select, getProperty;
 
-    let var_init_locked_1572940251348;
+    let var_init_locked_1573103391255;
 
-    let var_current_scope_1572940251348;
+    let var_current_scope_1573103391255;
 
 
 
@@ -18352,22 +18519,22 @@ exports['src::calendar.month.view.constructor'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251348) {
+        if (!var_init_locked_1573103391255) {
 
             getProxy = include('object.proxy');
             getProperty = include('date.get.properties');
 
-            var_init_locked_1572940251348 = true;
+            var_init_locked_1573103391255 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251348 !== this) {
+        if (!var_current_scope_1573103391255 !== this) {
 
             selectMonth = include('src::calendar.month.view.selectMonth').bind(this);
             select = include('src::calendar.month.view.select').bind(this);
 
-            var_current_scope_1572940251348 = this;
+            var_current_scope_1573103391255 = this;
         }
 
 
@@ -18426,7 +18593,7 @@ exports['src::month.prev'] = (() => {
 
     let get, getProperty, isDate;
 
-    let var_init_locked_1572940251355;
+    let var_init_locked_1573103391263;
 
 
 
@@ -18480,13 +18647,13 @@ exports['src::month.prev'] = (() => {
     return function(date) {
 
 
-        if (!var_init_locked_1572940251355) {
+        if (!var_init_locked_1573103391263) {
 
             get = include('date.get');
             getProperty = include('date.get.properties');
             isDate = include('is.date');
 
-            var_init_locked_1572940251355 = true;
+            var_init_locked_1573103391263 = true;
         }
 
 
@@ -18501,9 +18668,9 @@ exports['src::calendar.month.view.selectPrevMonth'] = (() => {
 
     let prev, getProperty, selectMonth;
 
-    let var_init_locked_1572940251358;
+    let var_init_locked_1573103391267;
 
-    let var_current_scope_1572940251358;
+    let var_current_scope_1573103391267;
 
 
 
@@ -18545,21 +18712,21 @@ exports['src::calendar.month.view.selectPrevMonth'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251358) {
+        if (!var_init_locked_1573103391267) {
 
             prev = include('month.prev');
             getProperty = include('date.get.properties');
 
-            var_init_locked_1572940251358 = true;
+            var_init_locked_1573103391267 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251358 !== this) {
+        if (!var_current_scope_1573103391267 !== this) {
 
             selectMonth = include('src::calendar.month.view.selectMonth').bind(this);
 
-            var_current_scope_1572940251358 = this;
+            var_current_scope_1573103391267 = this;
         }
 
 
@@ -18572,9 +18739,9 @@ exports['src::calendar.month.view.selectLeft'] = (() => {
 
     let isFirst, get, prevMonth, prevDate, getProperty, select;
 
-    let var_init_locked_1572940251363;
+    let var_init_locked_1573103391274;
 
-    let var_current_scope_1572940251363;
+    let var_current_scope_1573103391274;
 
 
 
@@ -18640,24 +18807,24 @@ exports['src::calendar.month.view.selectLeft'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251363) {
+        if (!var_init_locked_1573103391274) {
 
             isFirst = include('is.week.day.first');
             get = include('date.get');
             prevDate = include('date.prev');
             getProperty = include('date.get.properties');
 
-            var_init_locked_1572940251363 = true;
+            var_init_locked_1573103391274 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251363 !== this) {
+        if (!var_current_scope_1573103391274 !== this) {
 
             prevMonth = include('src::calendar.month.view.selectPrevMonth').bind(this);
             select = include('src::calendar.month.view.select').bind(this);
 
-            var_current_scope_1572940251363 = this;
+            var_current_scope_1573103391274 = this;
         }
 
 
@@ -18670,7 +18837,7 @@ exports['src::is.week.day.last'] = (() => {
 
     let getDays;
 
-    let var_init_locked_1572940251368;
+    let var_init_locked_1573103391279;
 
 
 
@@ -18702,11 +18869,11 @@ exports['src::is.week.day.last'] = (() => {
     return function(date, weekStartDay = 1) {
 
 
-        if (!var_init_locked_1572940251368) {
+        if (!var_init_locked_1573103391279) {
 
             getDays = include('week.days');
 
-            var_init_locked_1572940251368 = true;
+            var_init_locked_1573103391279 = true;
         }
 
 
@@ -18721,7 +18888,7 @@ exports['src::month.next'] = (() => {
 
     let get, getProperty, isDate;
 
-    let var_init_locked_1572940251370;
+    let var_init_locked_1573103391282;
 
 
 
@@ -18770,13 +18937,13 @@ exports['src::month.next'] = (() => {
     return function(date) {
 
 
-        if (!var_init_locked_1572940251370) {
+        if (!var_init_locked_1573103391282) {
 
             get = include('date.get');
             getProperty = include('date.get.properties');
             isDate = include('is.date');
 
-            var_init_locked_1572940251370 = true;
+            var_init_locked_1573103391282 = true;
         }
 
 
@@ -18791,9 +18958,9 @@ exports['src::calendar.month.view.selectNextMonth'] = (() => {
 
     let next, getProperty, selectMonth;
 
-    let var_init_locked_1572940251373;
+    let var_init_locked_1573103391286;
 
-    let var_current_scope_1572940251373;
+    let var_current_scope_1573103391286;
 
 
 
@@ -18836,21 +19003,21 @@ exports['src::calendar.month.view.selectNextMonth'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251373) {
+        if (!var_init_locked_1573103391286) {
 
             next = include('month.next');
             getProperty = include('date.get.properties');
 
-            var_init_locked_1572940251373 = true;
+            var_init_locked_1573103391286 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251373 !== this) {
+        if (!var_current_scope_1573103391286 !== this) {
 
             selectMonth = include('src::calendar.month.view.selectMonth').bind(this);
 
-            var_current_scope_1572940251373 = this;
+            var_current_scope_1573103391286 = this;
         }
 
 
@@ -18863,9 +19030,9 @@ exports['src::calendar.month.view.selectRight'] = (() => {
 
     let isLast, get, nextMonth, nextDate, getProperty, select;
 
-    let var_init_locked_1572940251378;
+    let var_init_locked_1573103391292;
 
-    let var_current_scope_1572940251378;
+    let var_current_scope_1573103391292;
 
 
 
@@ -18933,24 +19100,24 @@ exports['src::calendar.month.view.selectRight'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251378) {
+        if (!var_init_locked_1573103391292) {
 
             isLast = include('is.week.day.last');
             get = include('date.get');
             nextDate = include('date.next');
             getProperty = include('date.get.properties');
 
-            var_init_locked_1572940251378 = true;
+            var_init_locked_1573103391292 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251378 !== this) {
+        if (!var_current_scope_1573103391292 !== this) {
 
             nextMonth = include('src::calendar.month.view.selectNextMonth').bind(this);
             select = include('src::calendar.month.view.select').bind(this);
 
-            var_current_scope_1572940251378 = this;
+            var_current_scope_1573103391292 = this;
         }
 
 
@@ -18963,7 +19130,7 @@ exports['src::month.date.first'] = (() => {
 
     let get;
 
-    let var_init_locked_1572940251382;
+    let var_init_locked_1573103391298;
 
 
 
@@ -18997,11 +19164,11 @@ exports['src::month.date.first'] = (() => {
     return function(year, month) {
 
 
-        if (!var_init_locked_1572940251382) {
+        if (!var_init_locked_1573103391298) {
 
             get = include('date.get');
 
-            var_init_locked_1572940251382 = true;
+            var_init_locked_1573103391298 = true;
         }
 
 
@@ -19016,7 +19183,7 @@ exports['src::month.dates.week.first'] = (() => {
 
     let getDays, getFirstDate, next;
 
-    let var_init_locked_1572940251385;
+    let var_init_locked_1573103391301;
 
 
 
@@ -19068,13 +19235,13 @@ exports['src::month.dates.week.first'] = (() => {
     return function(year, month, weekStartDay = 1) {
 
 
-        if (!var_init_locked_1572940251385) {
+        if (!var_init_locked_1573103391301) {
 
             getDays = include('week.days');
             getFirstDate = include('month.date.first');
             next = include('date.next');
 
-            var_init_locked_1572940251385 = true;
+            var_init_locked_1573103391301 = true;
         }
 
 
@@ -19089,7 +19256,7 @@ exports['src::date.prev.week'] = (() => {
 
     let prev;
 
-    let var_init_locked_1572940251388;
+    let var_init_locked_1573103391307;
 
 
 
@@ -19118,11 +19285,11 @@ exports['src::date.prev.week'] = (() => {
     return function(date) {
 
 
-        if (!var_init_locked_1572940251388) {
+        if (!var_init_locked_1573103391307) {
 
             prev = include('date.prev');
 
-            var_init_locked_1572940251388 = true;
+            var_init_locked_1573103391307 = true;
         }
 
 
@@ -19137,9 +19304,9 @@ exports['src::calendar.month.view.selectUp'] = (() => {
 
     let getFirstWeekDates, includes, get, prevMonth, prevDate, getProperty, select;
 
-    let var_init_locked_1572940251392;
+    let var_init_locked_1573103391311;
 
-    let var_current_scope_1572940251392;
+    let var_current_scope_1573103391311;
 
 
 
@@ -19210,7 +19377,7 @@ exports['src::calendar.month.view.selectUp'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251392) {
+        if (!var_init_locked_1573103391311) {
 
             getFirstWeekDates = include('month.dates.week.first');
             includes = include('array.dates.includes');
@@ -19218,17 +19385,17 @@ exports['src::calendar.month.view.selectUp'] = (() => {
             prevDate = include('date.prev.week');
             getProperty = include('date.get.properties');
 
-            var_init_locked_1572940251392 = true;
+            var_init_locked_1573103391311 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251392 !== this) {
+        if (!var_current_scope_1573103391311 !== this) {
 
             prevMonth = include('src::calendar.month.view.selectPrevMonth').bind(this);
             select = include('src::calendar.month.view.select').bind(this);
 
-            var_current_scope_1572940251392 = this;
+            var_current_scope_1573103391311 = this;
         }
 
 
@@ -19241,7 +19408,7 @@ exports['src::month.dates.week.last'] = (() => {
 
     let getDays, getLastDate, prev;
 
-    let var_init_locked_1572940251398;
+    let var_init_locked_1573103391318;
 
 
 
@@ -19289,13 +19456,13 @@ exports['src::month.dates.week.last'] = (() => {
     return function(year, month, weekStartDay = 1) {
 
 
-        if (!var_init_locked_1572940251398) {
+        if (!var_init_locked_1573103391318) {
 
             getDays = include('week.days');
             getLastDate = include('month.date.last');
             prev = include('date.prev');
 
-            var_init_locked_1572940251398 = true;
+            var_init_locked_1573103391318 = true;
         }
 
 
@@ -19310,7 +19477,7 @@ exports['src::date.next.week'] = (() => {
 
     let next;
 
-    let var_init_locked_1572940251403;
+    let var_init_locked_1573103391322;
 
 
 
@@ -19340,11 +19507,11 @@ exports['src::date.next.week'] = (() => {
     return function(date) {
 
 
-        if (!var_init_locked_1572940251403) {
+        if (!var_init_locked_1573103391322) {
 
             next = include('date.next');
 
-            var_init_locked_1572940251403 = true;
+            var_init_locked_1573103391322 = true;
         }
 
 
@@ -19359,9 +19526,9 @@ exports['src::calendar.month.view.selectDown'] = (() => {
 
     let getLastWeekDates, includes, get, nextMonth, nextDate, getProperty, select;
 
-    let var_init_locked_1572940251407;
+    let var_init_locked_1573103391326;
 
-    let var_current_scope_1572940251407;
+    let var_current_scope_1573103391326;
 
 
 
@@ -19434,7 +19601,7 @@ exports['src::calendar.month.view.selectDown'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251407) {
+        if (!var_init_locked_1573103391326) {
 
             getLastWeekDates = include('month.dates.week.last');
             includes = include('array.dates.includes');
@@ -19442,17 +19609,17 @@ exports['src::calendar.month.view.selectDown'] = (() => {
             nextDate = include('date.next.week');
             getProperty = include('date.get.properties');
 
-            var_init_locked_1572940251407 = true;
+            var_init_locked_1573103391326 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251407 !== this) {
+        if (!var_current_scope_1573103391326 !== this) {
 
             nextMonth = include('src::calendar.month.view.selectNextMonth').bind(this);
             select = include('src::calendar.month.view.select').bind(this);
 
-            var_current_scope_1572940251407 = this;
+            var_current_scope_1573103391326 = this;
         }
 
 
@@ -19465,16 +19632,16 @@ exports['src::calendar.month.view'] = (() => {
 
     let extend, constructor, method_select, method_selectLeft, method_selectRight, method_selectUp, method_selectDown, method_selectMonth, method_selectNextMonth, method_selectPrevMonth, method_deselect, isObject;
 
-    let var_init_locked_1572940251413;
+    let var_init_locked_1573103391333;
 
-    let var_class_1572940251413;
+    let var_class_1573103391333;
 
 
 
     return function(target, config) {
 
 
-        if (!var_init_locked_1572940251413) {
+        if (!var_init_locked_1573103391333) {
 
             extend = include('class.empty')();
             constructor = include('src::calendar.month.view.constructor');
@@ -19489,12 +19656,12 @@ exports['src::calendar.month.view'] = (() => {
             method_deselect = include('src::calendar.month.view.deselect');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940251413 = true;
+            var_init_locked_1573103391333 = true;
         }
 
 
 
-        if (!var_class_1572940251413) {
+        if (!var_class_1573103391333) {
 
             class main {
 
@@ -19560,7 +19727,7 @@ exports['src::calendar.month.view'] = (() => {
 
             }
 
-            var_class_1572940251413 = class extends main {
+            var_class_1573103391333 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -19570,7 +19737,7 @@ exports['src::calendar.month.view'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251413;
+                    return var_class_1573103391333;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -19582,7 +19749,7 @@ exports['src::calendar.month.view'] = (() => {
         }
 
 
-        return new var_class_1572940251413(target, config);
+        return new var_class_1573103391333(target, config);
     };
 
 })();
@@ -19591,11 +19758,11 @@ exports['src::browser.event.listeners'] = (() => {
 
     let map;
 
-    let var_init_locked_1572940251420;
+    let var_init_locked_1573103391341;
 
 
 
-    let var_once_value_1572940251420;
+    let var_once_value_1573103391341;
 
     function main() {
 
@@ -19619,23 +19786,23 @@ exports['src::browser.event.listeners'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251420) {
+        if (!var_init_locked_1573103391341) {
 
             map = include('map')();
 
-            var_init_locked_1572940251420 = true;
+            var_init_locked_1573103391341 = true;
         }
 
 
 
 
 
-        if (var_once_value_1572940251420) {
+        if (var_once_value_1573103391341) {
 
-            return var_once_value_1572940251420;
+            return var_once_value_1573103391341;
 
         }
-        return var_once_value_1572940251420 = main.call(this);
+        return var_once_value_1573103391341 = main.call(this);
 
     };
 
@@ -19691,7 +19858,7 @@ exports['src::browser.selector.parent'] = (() => {
 
     let is;
 
-    let var_init_locked_1572940251426;
+    let var_init_locked_1573103391350;
 
 
 
@@ -19729,11 +19896,11 @@ exports['src::browser.selector.parent'] = (() => {
     return function(el, selector) {
 
 
-        if (!var_init_locked_1572940251426) {
+        if (!var_init_locked_1573103391350) {
 
             is = include('src::browser.selector.is');
 
-            var_init_locked_1572940251426 = true;
+            var_init_locked_1573103391350 = true;
         }
 
 
@@ -19748,7 +19915,7 @@ exports['src::browser.event.stop'] = (() => {
 
     let isObject;
 
-    let var_init_locked_1572940251427;
+    let var_init_locked_1573103391352;
 
 
 
@@ -19774,11 +19941,11 @@ exports['src::browser.event.stop'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251427) {
+        if (!var_init_locked_1573103391352) {
 
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940251427 = true;
+            var_init_locked_1573103391352 = true;
         }
 
 
@@ -19829,7 +19996,7 @@ exports['src::browser.event.listener.add'] = (() => {
 
     let listeners, is, stopEvent, preventEvent, add;
 
-    let var_init_locked_1572940251434;
+    let var_init_locked_1573103391359;
 
 
 
@@ -19927,7 +20094,7 @@ exports['src::browser.event.listener.add'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1572940251434) {
+        if (!var_init_locked_1573103391359) {
 
             listeners = include('src::browser.event.listeners')();
             is = include('browser.selector.parent');
@@ -19935,7 +20102,7 @@ exports['src::browser.event.listener.add'] = (() => {
             preventEvent = include('src::browser.event.prevent');
             add = include('event.listener.add');
 
-            var_init_locked_1572940251434 = true;
+            var_init_locked_1573103391359 = true;
         }
 
 
@@ -19955,7 +20122,7 @@ exports['src::browser.event.listener.global.add'] = (() => {
 
     let add;
 
-    let var_init_locked_1572940251441;
+    let var_init_locked_1573103391367;
 
 
 
@@ -19986,11 +20153,11 @@ exports['src::browser.event.listener.global.add'] = (() => {
     return function(event, fn, config) {
 
 
-        if (!var_init_locked_1572940251441) {
+        if (!var_init_locked_1573103391367) {
 
             add = include('src::browser.event.listener.add');
 
-            var_init_locked_1572940251441 = true;
+            var_init_locked_1573103391367 = true;
         }
 
 
@@ -20005,7 +20172,7 @@ exports['src::browser.event.listener.remove'] = (() => {
 
     let listeners, remove;
 
-    let var_init_locked_1572940251447;
+    let var_init_locked_1573103391377;
 
 
 
@@ -20046,12 +20213,12 @@ exports['src::browser.event.listener.remove'] = (() => {
     return function(target, event, fn) {
 
 
-        if (!var_init_locked_1572940251447) {
+        if (!var_init_locked_1573103391377) {
 
             listeners = include('src::browser.event.listeners')();
             remove = include('event.listener.remove');
 
-            var_init_locked_1572940251447 = true;
+            var_init_locked_1573103391377 = true;
         }
 
 
@@ -20066,7 +20233,7 @@ exports['src::browser.event.listener.global.remove'] = (() => {
 
     let remove;
 
-    let var_init_locked_1572940251452;
+    let var_init_locked_1573103391383;
 
 
 
@@ -20095,11 +20262,11 @@ exports['src::browser.event.listener.global.remove'] = (() => {
     return function(event, fn) {
 
 
-        if (!var_init_locked_1572940251452) {
+        if (!var_init_locked_1573103391383) {
 
             remove = include('src::browser.event.listener.remove');
 
-            var_init_locked_1572940251452 = true;
+            var_init_locked_1573103391383 = true;
         }
 
 
@@ -20295,7 +20462,7 @@ exports['src::is.browser.support.pointer'] = (() => {
 
 
 
-    let var_once_value_1572940251465;
+    let var_once_value_1573103391396;
 
     function main() {
 
@@ -20321,12 +20488,12 @@ exports['src::is.browser.support.pointer'] = (() => {
 
 
 
-        if (var_once_value_1572940251465) {
+        if (var_once_value_1573103391396) {
 
-            return var_once_value_1572940251465;
+            return var_once_value_1573103391396;
 
         }
-        return var_once_value_1572940251465 = main.call(this);
+        return var_once_value_1573103391396 = main.call(this);
 
     };
 
@@ -20340,7 +20507,7 @@ exports['src::is.browser.support.touch'] = (() => {
 
 
 
-    let var_once_value_1572940251467;
+    let var_once_value_1573103391398;
 
     function main() {
 
@@ -20366,12 +20533,12 @@ exports['src::is.browser.support.touch'] = (() => {
 
 
 
-        if (var_once_value_1572940251467) {
+        if (var_once_value_1573103391398) {
 
-            return var_once_value_1572940251467;
+            return var_once_value_1573103391398;
 
         }
-        return var_once_value_1572940251467 = main.call(this);
+        return var_once_value_1573103391398 = main.call(this);
 
     };
 
@@ -20381,7 +20548,7 @@ exports['src::browser.event.name.single'] = (() => {
 
     let isSupportPointer, isSupportTouch;
 
-    let var_init_locked_1572940251469;
+    let var_init_locked_1573103391401;
 
 
 
@@ -20437,12 +20604,12 @@ exports['src::browser.event.name.single'] = (() => {
     return function(name) {
 
 
-        if (!var_init_locked_1572940251469) {
+        if (!var_init_locked_1573103391401) {
 
             isSupportPointer = include('is.browser.support.pointer');
             isSupportTouch = include('is.browser.support.touch');
 
-            var_init_locked_1572940251469 = true;
+            var_init_locked_1573103391401 = true;
         }
 
 
@@ -20457,7 +20624,7 @@ exports['src::browser.event.gesture.tap.disabled'] = (() => {
 
     let getName, un;
 
-    let var_init_locked_1572940251471;
+    let var_init_locked_1573103391403;
 
 
 
@@ -20497,12 +20664,12 @@ exports['src::browser.event.gesture.tap.disabled'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251471) {
+        if (!var_init_locked_1573103391403) {
 
             getName = include('browser.event.name.single');
             un = include('browser.event.listener.global.remove');
 
-            var_init_locked_1572940251471 = true;
+            var_init_locked_1573103391403 = true;
         }
 
 
@@ -20517,7 +20684,7 @@ exports['config::event.tap'] = (() => {
 
     let get;
 
-    let var_init_locked_1572940251477;
+    let var_init_locked_1573103391410;
 
 
 
@@ -20538,11 +20705,11 @@ exports['config::event.tap'] = (() => {
     return function(key) {
 
 
-        if (!var_init_locked_1572940251477) {
+        if (!var_init_locked_1573103391410) {
 
             get = include('object.value.get');
 
-            var_init_locked_1572940251477 = true;
+            var_init_locked_1573103391410 = true;
         }
 
 
@@ -20557,9 +20724,9 @@ exports['src::browser.event.gesture.tap.move'] = (() => {
 
     let getEvent, getDistance, getScale, disabled, moveDistance;
 
-    let var_init_locked_1572940251480;
+    let var_init_locked_1573103391414;
 
-    let var_current_scope_1572940251480;
+    let var_current_scope_1573103391414;
 
 
 
@@ -20609,23 +20776,23 @@ exports['src::browser.event.gesture.tap.move'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251480) {
+        if (!var_init_locked_1573103391414) {
 
             getEvent = include('browser.event.single');
             getDistance = include('math.point.distance');
             getScale = include('browser.scale');
             moveDistance = config('event.tap', 'moveDistance');
 
-            var_init_locked_1572940251480 = true;
+            var_init_locked_1573103391414 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251480 !== this) {
+        if (!var_current_scope_1573103391414 !== this) {
 
             disabled = include('src::browser.event.gesture.tap.disabled').bind(this);
 
-            var_current_scope_1572940251480 = this;
+            var_current_scope_1573103391414 = this;
         }
 
 
@@ -20638,9 +20805,9 @@ exports['src::browser.event.gesture.tap.end'] = (() => {
 
     let disabled, stop;
 
-    let var_init_locked_1572940251487;
+    let var_init_locked_1573103391423;
 
-    let var_current_scope_1572940251487;
+    let var_current_scope_1573103391423;
 
 
 
@@ -20670,20 +20837,20 @@ exports['src::browser.event.gesture.tap.end'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251487) {
+        if (!var_init_locked_1573103391423) {
 
             stop = include('browser.event.stop');
 
-            var_init_locked_1572940251487 = true;
+            var_init_locked_1573103391423 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251487 !== this) {
+        if (!var_current_scope_1573103391423 !== this) {
 
             disabled = include('src::browser.event.gesture.tap.disabled').bind(this);
 
-            var_current_scope_1572940251487 = this;
+            var_current_scope_1573103391423 = this;
         }
 
 
@@ -20696,9 +20863,9 @@ exports['src::browser.event.gesture.tap.enabled'] = (() => {
 
     let getName, onMove, onEnd, on;
 
-    let var_init_locked_1572940251493;
+    let var_init_locked_1573103391430;
 
-    let var_current_scope_1572940251493;
+    let var_current_scope_1573103391430;
 
 
 
@@ -20732,22 +20899,22 @@ exports['src::browser.event.gesture.tap.enabled'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251493) {
+        if (!var_init_locked_1573103391430) {
 
             getName = include('browser.event.name.single');
             on = include('browser.event.listener.global.add');
 
-            var_init_locked_1572940251493 = true;
+            var_init_locked_1573103391430 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251493 !== this) {
+        if (!var_current_scope_1573103391430 !== this) {
 
             onMove = include('src::browser.event.gesture.tap.move').bind(this);
             onEnd = include('src::browser.event.gesture.tap.end').bind(this);
 
-            var_current_scope_1572940251493 = this;
+            var_current_scope_1573103391430 = this;
         }
 
 
@@ -20760,7 +20927,7 @@ exports['src::browser.event.gesture.tap.start.name'] = (() => {
 
     let getName;
 
-    let var_init_locked_1572940251501;
+    let var_init_locked_1573103391441;
 
 
 
@@ -20786,11 +20953,11 @@ exports['src::browser.event.gesture.tap.start.name'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251501) {
+        if (!var_init_locked_1573103391441) {
 
             getName = include('browser.event.name.single');
 
-            var_init_locked_1572940251501 = true;
+            var_init_locked_1573103391441 = true;
         }
 
 
@@ -20805,9 +20972,9 @@ exports['src::browser.event.gesture.tap.start'] = (() => {
 
     let getEvent, getTouchEvents, stop, enabled, disabled, srcBrowserEventGestureTapStartName;
 
-    let var_init_locked_1572940251504;
+    let var_init_locked_1573103391444;
 
-    let var_current_scope_1572940251504;
+    let var_current_scope_1573103391444;
 
 
 
@@ -20863,24 +21030,24 @@ exports['src::browser.event.gesture.tap.start'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251504) {
+        if (!var_init_locked_1573103391444) {
 
             getEvent = include('browser.event.single');
             getTouchEvents = include('browser.event.touches');
             stop = include('browser.event.stop');
             srcBrowserEventGestureTapStartName = include('src::browser.event.gesture.tap.start.name');
 
-            var_init_locked_1572940251504 = true;
+            var_init_locked_1573103391444 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251504 !== this) {
+        if (!var_current_scope_1573103391444 !== this) {
 
             enabled = include('src::browser.event.gesture.tap.enabled').bind(this);
             disabled = include('src::browser.event.gesture.tap.disabled').bind(this);
 
-            var_current_scope_1572940251504 = this;
+            var_current_scope_1573103391444 = this;
         }
 
 
@@ -21056,11 +21223,11 @@ exports['src::browser.event.gesture.drag.end.axis'] = (() => {
 
 exports['src::browser.event.gesture.drag.end'] = (() => {
 
-    let prevent, getEvent, updateInfo, onAxisEnd;
+    let prevent, getEvent, updateInfo, onAxisEnd, disabled;
 
-    let var_init_locked_1572940251520;
+    let var_init_locked_1573103391464;
 
-    let var_current_scope_1572940251520;
+    let var_current_scope_1573103391464;
 
 
 
@@ -21078,6 +21245,8 @@ exports['src::browser.event.gesture.drag.end'] = (() => {
          * @import updateInfo from ..info.update scoped
          * 
          * @import onAxisEnd from .end.axis scoped
+         * 
+         * @import disabled from ..disabled scoped
          * 
          * @param {Event} e 事件对象
          * 
@@ -21112,6 +21281,8 @@ exports['src::browser.event.gesture.drag.end'] = (() => {
 
         dispatch('dragend', info);
 
+        disabled();
+
 
 
     }
@@ -21119,22 +21290,23 @@ exports['src::browser.event.gesture.drag.end'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251520) {
+        if (!var_init_locked_1573103391464) {
 
             prevent = include('browser.event.prevent');
             getEvent = include('browser.event.single');
 
-            var_init_locked_1572940251520 = true;
+            var_init_locked_1573103391464 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251520 !== this) {
+        if (!var_current_scope_1573103391464 !== this) {
 
             updateInfo = include('src::browser.event.gesture.drag.info.update').bind(this);
             onAxisEnd = include('src::browser.event.gesture.drag.end.axis').bind(this);
+            disabled = include('src::browser.event.gesture.drag.disabled').bind(this);
 
-            var_current_scope_1572940251520 = this;
+            var_current_scope_1573103391464 = this;
         }
 
 
@@ -21147,9 +21319,9 @@ exports['src::browser.event.gesture.drag.disabled'] = (() => {
 
     let getName, onMove, onEnd, un;
 
-    let var_init_locked_1572940251523;
+    let var_init_locked_1573103391473;
 
-    let var_current_scope_1572940251523;
+    let var_current_scope_1573103391473;
 
 
 
@@ -21200,22 +21372,22 @@ exports['src::browser.event.gesture.drag.disabled'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251523) {
+        if (!var_init_locked_1573103391473) {
 
             getName = include('browser.event.name.single');
             un = include('browser.event.listener.global.remove');
 
-            var_init_locked_1572940251523 = true;
+            var_init_locked_1573103391473 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251523 !== this) {
+        if (!var_current_scope_1573103391473 !== this) {
 
             onMove = include('move.drag').bind(this);
             onEnd = include('src::browser.event.gesture.drag.end').bind(this);
 
-            var_current_scope_1572940251523 = this;
+            var_current_scope_1573103391473 = this;
         }
 
 
@@ -21228,9 +21400,9 @@ exports['src::browser.event.gesture.drag.move.drag'] = (() => {
 
     let prevent, getEvent, updateInfo;
 
-    let var_init_locked_1572940251530;
+    let var_init_locked_1573103391482;
 
-    let var_current_scope_1572940251530;
+    let var_current_scope_1573103391482;
 
 
 
@@ -21290,21 +21462,21 @@ exports['src::browser.event.gesture.drag.move.drag'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251530) {
+        if (!var_init_locked_1573103391482) {
 
             prevent = include('browser.event.prevent');
             getEvent = include('browser.event.single');
 
-            var_init_locked_1572940251530 = true;
+            var_init_locked_1573103391482 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251530 !== this) {
+        if (!var_current_scope_1573103391482 !== this) {
 
             updateInfo = include('src::browser.event.gesture.drag.info.update').bind(this);
 
-            var_current_scope_1572940251530 = this;
+            var_current_scope_1573103391482 = this;
         }
 
 
@@ -21317,9 +21489,9 @@ exports['src::browser.event.gesture.drag.enabled'] = (() => {
 
     let getName, onMove, onEnd, on;
 
-    let var_init_locked_1572940251533;
+    let var_init_locked_1573103391485;
 
-    let var_current_scope_1572940251533;
+    let var_current_scope_1573103391485;
 
 
 
@@ -21352,22 +21524,22 @@ exports['src::browser.event.gesture.drag.enabled'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251533) {
+        if (!var_init_locked_1573103391485) {
 
             getName = include('browser.event.name.single');
             on = include('browser.event.listener.global.add');
 
-            var_init_locked_1572940251533 = true;
+            var_init_locked_1573103391485 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251533 !== this) {
+        if (!var_current_scope_1573103391485 !== this) {
 
             onMove = include('src::browser.event.gesture.drag.move.drag').bind(this);
             onEnd = include('src::browser.event.gesture.drag.end').bind(this);
 
-            var_current_scope_1572940251533 = this;
+            var_current_scope_1573103391485 = this;
         }
 
 
@@ -21442,7 +21614,7 @@ exports['config::event.drag'] = (() => {
 
     let get;
 
-    let var_init_locked_1572940251543;
+    let var_init_locked_1573103391498;
 
 
 
@@ -21462,11 +21634,11 @@ exports['config::event.drag'] = (() => {
     return function(key) {
 
 
-        if (!var_init_locked_1572940251543) {
+        if (!var_init_locked_1573103391498) {
 
             get = include('object.value.get');
 
-            var_init_locked_1572940251543 = true;
+            var_init_locked_1573103391498 = true;
         }
 
 
@@ -21481,9 +21653,9 @@ exports['src::browser.event.gesture.drag.move.start'] = (() => {
 
     let prevent, getEvent, getName, enabled, scale, resetInfo, getDistance, un, minDistance;
 
-    let var_init_locked_1572940251547;
+    let var_init_locked_1573103391502;
 
-    let var_current_scope_1572940251547;
+    let var_current_scope_1573103391502;
 
 
 
@@ -21549,6 +21721,8 @@ exports['src::browser.event.gesture.drag.move.start'] = (() => {
 
             un(getName('move'), me.onStart);
 
+            un(getName('end'), me.onEnd);
+
             enabled();
         }
 
@@ -21557,7 +21731,7 @@ exports['src::browser.event.gesture.drag.move.start'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251547) {
+        if (!var_init_locked_1573103391502) {
 
             prevent = include('browser.event.prevent');
             getEvent = include('browser.event.single');
@@ -21567,17 +21741,17 @@ exports['src::browser.event.gesture.drag.move.start'] = (() => {
             un = include('browser.event.listener.global.remove');
             minDistance = config('event.drag', 'minDistance');
 
-            var_init_locked_1572940251547 = true;
+            var_init_locked_1573103391502 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251547 !== this) {
+        if (!var_current_scope_1573103391502 !== this) {
 
             enabled = include('src::browser.event.gesture.drag.enabled').bind(this);
             resetInfo = include('src::browser.event.gesture.drag.info.reset').bind(this);
 
-            var_current_scope_1572940251547 = this;
+            var_current_scope_1573103391502 = this;
         }
 
 
@@ -21590,7 +21764,7 @@ exports['src::browser.event.gesture.drag.start.name'] = (() => {
 
     let getName;
 
-    let var_init_locked_1572940251556;
+    let var_init_locked_1573103391514;
 
 
 
@@ -21615,11 +21789,11 @@ exports['src::browser.event.gesture.drag.start.name'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251556) {
+        if (!var_init_locked_1573103391514) {
 
             getName = include('browser.event.name.single');
 
-            var_init_locked_1572940251556 = true;
+            var_init_locked_1573103391514 = true;
         }
 
 
@@ -21634,9 +21808,9 @@ exports['src::browser.event.gesture.drag.start'] = (() => {
 
     let prevent, stop, getTouchEvents, getEvent, disabled, getName, on, onStart, srcBrowserEventGestureDragStartName;
 
-    let var_init_locked_1572940251559;
+    let var_init_locked_1573103391517;
 
-    let var_current_scope_1572940251559;
+    let var_current_scope_1573103391517;
 
 
 
@@ -21730,7 +21904,7 @@ exports['src::browser.event.gesture.drag.start'] = (() => {
 
         on(getName('move'), me.onStart = onStart);
 
-        on(getName('end'), disabled, {
+        on(getName('end'), me.onEnd = disabled, {
             once: true
         });
 
@@ -21739,7 +21913,7 @@ exports['src::browser.event.gesture.drag.start'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251559) {
+        if (!var_init_locked_1573103391517) {
 
             prevent = include('browser.event.prevent');
             stop = include('browser.event.stop');
@@ -21749,18 +21923,18 @@ exports['src::browser.event.gesture.drag.start'] = (() => {
             on = include('browser.event.listener.global.add');
             srcBrowserEventGestureDragStartName = include('src::browser.event.gesture.drag.start.name');
 
-            var_init_locked_1572940251559 = true;
+            var_init_locked_1573103391517 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251559 !== this) {
+        if (!var_current_scope_1573103391517 !== this) {
 
             disabled = include('src::browser.event.gesture.drag.disabled').bind(this);
             onStart = include('src::browser.event.gesture.drag.move.start').bind(this);
             disabled = include('src::browser.event.gesture.drag.disabled').bind(this);
 
-            var_current_scope_1572940251559 = this;
+            var_current_scope_1573103391517 = this;
         }
 
 
@@ -21773,9 +21947,9 @@ exports['src::browser.event.gesture.pinch.move.pinch'] = (() => {
 
     let getTouchEvents, stop, getDistance, un, onMove;
 
-    let var_init_locked_1572940251570;
+    let var_init_locked_1573103391533;
 
-    let var_current_scope_1572940251570;
+    let var_current_scope_1573103391533;
 
 
 
@@ -21828,23 +22002,23 @@ exports['src::browser.event.gesture.pinch.move.pinch'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251570) {
+        if (!var_init_locked_1573103391533) {
 
             getTouchEvents = include('browser.event.touches');
             stop = include('browser.event.stop');
             getDistance = include('math.point.distance');
             un = include('browser.event.listener.global.remove');
 
-            var_init_locked_1572940251570 = true;
+            var_init_locked_1573103391533 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251570 !== this) {
+        if (!var_current_scope_1573103391533 !== this) {
 
             onMove = include('src::browser.event.gesture.pinch.move.pinch').bind(this);
 
-            var_current_scope_1572940251570 = this;
+            var_current_scope_1573103391533 = this;
         }
 
 
@@ -21857,9 +22031,9 @@ exports['src::browser.event.gesture.pinch.move.start'] = (() => {
 
     let getTouchEvents, stop, getDistance, un, on, onMove;
 
-    let var_init_locked_1572940251576;
+    let var_init_locked_1573103391541;
 
-    let var_current_scope_1572940251576;
+    let var_current_scope_1573103391541;
 
 
 
@@ -21927,7 +22101,7 @@ exports['src::browser.event.gesture.pinch.move.start'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251576) {
+        if (!var_init_locked_1573103391541) {
 
             getTouchEvents = include('browser.event.touches');
             stop = include('browser.event.stop');
@@ -21935,16 +22109,16 @@ exports['src::browser.event.gesture.pinch.move.start'] = (() => {
             un = include('browser.event.listener.global.remove');
             on = include('browser.event.listener.global.add');
 
-            var_init_locked_1572940251576 = true;
+            var_init_locked_1573103391541 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251576 !== this) {
+        if (!var_current_scope_1573103391541 !== this) {
 
             onMove = include('src::browser.event.gesture.pinch.move.pinch').bind(this);
 
-            var_current_scope_1572940251576 = this;
+            var_current_scope_1573103391541 = this;
         }
 
 
@@ -21957,7 +22131,7 @@ exports['src::browser.event.gesture.pinch.disabled'] = (() => {
 
     let un;
 
-    let var_init_locked_1572940251586;
+    let var_init_locked_1573103391550;
 
 
 
@@ -22000,11 +22174,11 @@ exports['src::browser.event.gesture.pinch.disabled'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251586) {
+        if (!var_init_locked_1573103391550) {
 
             un = include('browser.event.listener.global.remove');
 
-            var_init_locked_1572940251586 = true;
+            var_init_locked_1573103391550 = true;
         }
 
 
@@ -22019,9 +22193,9 @@ exports['src::browser.event.gesture.pinch.end'] = (() => {
 
     let stop, disabled;
 
-    let var_init_locked_1572940251591;
+    let var_init_locked_1573103391556;
 
-    let var_current_scope_1572940251591;
+    let var_current_scope_1573103391556;
 
 
 
@@ -22057,20 +22231,20 @@ exports['src::browser.event.gesture.pinch.end'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251591) {
+        if (!var_init_locked_1573103391556) {
 
             stop = include('browser.event.stop');
 
-            var_init_locked_1572940251591 = true;
+            var_init_locked_1573103391556 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251591 !== this) {
+        if (!var_current_scope_1573103391556 !== this) {
 
             disabled = include('src::browser.event.gesture.pinch.disabled').bind(this);
 
-            var_current_scope_1572940251591 = this;
+            var_current_scope_1573103391556 = this;
         }
 
 
@@ -22083,9 +22257,9 @@ exports['src::browser.event.gesture.pinch.enabled'] = (() => {
 
     let on, onMove, onEnd;
 
-    let var_init_locked_1572940251596;
+    let var_init_locked_1573103391562;
 
-    let var_current_scope_1572940251596;
+    let var_current_scope_1573103391562;
 
 
 
@@ -22114,21 +22288,21 @@ exports['src::browser.event.gesture.pinch.enabled'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251596) {
+        if (!var_init_locked_1573103391562) {
 
             on = include('browser.event.listener.global.add');
 
-            var_init_locked_1572940251596 = true;
+            var_init_locked_1573103391562 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251596 !== this) {
+        if (!var_current_scope_1573103391562 !== this) {
 
             onMove = include('src::browser.event.gesture.pinch.move.start').bind(this);
             onEnd = include('src::browser.event.gesture.pinch.end').bind(this);
 
-            var_current_scope_1572940251596 = this;
+            var_current_scope_1573103391562 = this;
         }
 
 
@@ -22177,9 +22351,9 @@ exports['src::browser.event.gesture.pinch.start'] = (() => {
 
     let getTouchEvents, stop, on, enabled, disabled, srcBrowserEventGesturePinchStartName;
 
-    let var_init_locked_1572940251605;
+    let var_init_locked_1573103391573;
 
-    let var_current_scope_1572940251605;
+    let var_current_scope_1573103391573;
 
 
 
@@ -22228,24 +22402,24 @@ exports['src::browser.event.gesture.pinch.start'] = (() => {
     return function(e) {
 
 
-        if (!var_init_locked_1572940251605) {
+        if (!var_init_locked_1573103391573) {
 
             getTouchEvents = include('browser.event.touches');
             stop = include('browser.event.stop');
             on = include('browser.event.listener.global.add');
             srcBrowserEventGesturePinchStartName = include('src::browser.event.gesture.pinch.start.name');
 
-            var_init_locked_1572940251605 = true;
+            var_init_locked_1573103391573 = true;
         }
 
 
 
-        if (!var_current_scope_1572940251605 !== this) {
+        if (!var_current_scope_1573103391573 !== this) {
 
             enabled = include('src::browser.event.gesture.pinch.enabled').bind(this);
             disabled = include('src::browser.event.gesture.pinch.disabled').bind(this);
 
-            var_current_scope_1572940251605 = this;
+            var_current_scope_1573103391573 = this;
         }
 
 
@@ -22302,26 +22476,26 @@ exports['src::browser.event.gesture.manager.dom'] = (() => {
 
     let createMap, doDispatch;
 
-    let var_init_locked_1572940251619;
+    let var_init_locked_1573103391585;
 
-    let var_class_1572940251619;
+    let var_class_1573103391585;
 
-    let var_once_value_1572940251619;
+    let var_once_value_1573103391585;
 
     return function() {
 
 
-        if (!var_init_locked_1572940251619) {
+        if (!var_init_locked_1573103391585) {
 
             createMap = include('map');
             doDispatch = include('browser.event.dispatch');
 
-            var_init_locked_1572940251619 = true;
+            var_init_locked_1573103391585 = true;
         }
 
 
 
-        if (!var_class_1572940251619) {
+        if (!var_class_1573103391585) {
 
 
             /**
@@ -22399,7 +22573,7 @@ exports['src::browser.event.gesture.manager.dom'] = (() => {
                 }
             }
 
-            var_class_1572940251619 = class extends main {
+            var_class_1573103391585 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -22409,7 +22583,7 @@ exports['src::browser.event.gesture.manager.dom'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251619;
+                    return var_class_1573103391585;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -22422,13 +22596,13 @@ exports['src::browser.event.gesture.manager.dom'] = (() => {
 
 
 
-        if (var_once_value_1572940251619) {
+        if (var_once_value_1573103391585) {
 
-            return var_once_value_1572940251619;
+            return var_once_value_1573103391585;
 
         }
 
-        return var_once_value_1572940251619 = new var_class_1572940251619();
+        return var_once_value_1573103391585 = new var_class_1573103391585();
 
     };
 
@@ -22438,7 +22612,7 @@ exports['src::browser.event.listener.element.add'] = (() => {
 
     let add;
 
-    let var_init_locked_1572940251625;
+    let var_init_locked_1573103391590;
 
 
 
@@ -22470,11 +22644,11 @@ exports['src::browser.event.listener.element.add'] = (() => {
     return function(el, event, fn, config) {
 
 
-        if (!var_init_locked_1572940251625) {
+        if (!var_init_locked_1573103391590) {
 
             add = include('src::browser.event.listener.add');
 
-            var_init_locked_1572940251625 = true;
+            var_init_locked_1573103391590 = true;
         }
 
 
@@ -22489,7 +22663,7 @@ exports['src::browser.event.listener.element.remove'] = (() => {
 
     let remove;
 
-    let var_init_locked_1572940251632;
+    let var_init_locked_1573103391598;
 
 
 
@@ -22520,11 +22694,11 @@ exports['src::browser.event.listener.element.remove'] = (() => {
     return function(el, event, fn) {
 
 
-        if (!var_init_locked_1572940251632) {
+        if (!var_init_locked_1573103391598) {
 
             remove = include('src::browser.event.listener.remove');
 
-            var_init_locked_1572940251632 = true;
+            var_init_locked_1573103391598 = true;
         }
 
 
@@ -22539,7 +22713,7 @@ exports['src::browser.event.gesture.vue'] = (() => {
 
     let generate, EventDom, isObject, isFunction, on, un;
 
-    let var_init_locked_1572940251642;
+    let var_init_locked_1573103391605;
 
 
 
@@ -22643,7 +22817,7 @@ exports['src::browser.event.gesture.vue'] = (() => {
     return function(Vue) {
 
 
-        if (!var_init_locked_1572940251642) {
+        if (!var_init_locked_1573103391605) {
 
             generate = include('id.generate');
             EventDom = include('browser.event.gesture.manager.dom')();
@@ -22652,7 +22826,7 @@ exports['src::browser.event.gesture.vue'] = (() => {
             on = include('browser.event.listener.element.add');
             un = include('browser.event.listener.element.remove');
 
-            var_init_locked_1572940251642 = true;
+            var_init_locked_1573103391605 = true;
         }
 
 
@@ -22667,7 +22841,7 @@ exports['src::browser.event.gesture.manager.jsx'] = (() => {
 
     let capitalize;
 
-    let var_init_locked_1572940251655;
+    let var_init_locked_1573103391615;
 
 
 
@@ -22804,11 +22978,11 @@ exports['src::browser.event.gesture.manager.jsx'] = (() => {
     return function(config) {
 
 
-        if (!var_init_locked_1572940251655) {
+        if (!var_init_locked_1573103391615) {
 
             capitalize = include('string.capitalize');
 
-            var_init_locked_1572940251655 = true;
+            var_init_locked_1573103391615 = true;
         }
 
 
@@ -22823,7 +22997,7 @@ exports['src::browser.event.gesture.react'] = (() => {
 
     let jsx;
 
-    let var_init_locked_1572940251657;
+    let var_init_locked_1573103391618;
 
 
 
@@ -22851,11 +23025,11 @@ exports['src::browser.event.gesture.react'] = (() => {
     return function(config) {
 
 
-        if (!var_init_locked_1572940251657) {
+        if (!var_init_locked_1573103391618) {
 
             jsx = include('browser.event.gesture.manager.jsx');
 
-            var_init_locked_1572940251657 = true;
+            var_init_locked_1573103391618 = true;
         }
 
 
@@ -22920,7 +23094,7 @@ exports['src::browser.event.visibility.init'] = (() => {
 
     let dispatch;
 
-    let var_init_locked_1572940251663;
+    let var_init_locked_1573103391622;
 
 
 
@@ -22944,11 +23118,11 @@ exports['src::browser.event.visibility.init'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1572940251663) {
+        if (!var_init_locked_1573103391622) {
 
             dispatch = include('src::browser.event.dispatch');
 
-            var_init_locked_1572940251663 = true;
+            var_init_locked_1573103391622 = true;
         }
 
 
@@ -22965,16 +23139,16 @@ exports['src::miniprogram.storage'] = (() => {
 
 
 
-    let var_class_1572940251665;
+    let var_class_1573103391624;
 
-    let var_once_value_1572940251665;
+    let var_once_value_1573103391624;
 
     return function(data) {
 
 
 
 
-        if (!var_class_1572940251665) {
+        if (!var_class_1573103391624) {
 
 
             /**
@@ -23012,7 +23186,7 @@ exports['src::miniprogram.storage'] = (() => {
                 }
             }
 
-            var_class_1572940251665 = class extends main {
+            var_class_1573103391624 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -23022,7 +23196,7 @@ exports['src::miniprogram.storage'] = (() => {
 
                 get __ZBEE_CLASS__() {
 
-                    return var_class_1572940251665;
+                    return var_class_1573103391624;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -23035,13 +23209,13 @@ exports['src::miniprogram.storage'] = (() => {
 
 
 
-        if (var_once_value_1572940251665) {
+        if (var_once_value_1573103391624) {
 
-            return var_once_value_1572940251665;
+            return var_once_value_1573103391624;
 
         }
 
-        return var_once_value_1572940251665 = new var_class_1572940251665(data);
+        return var_once_value_1573103391624 = new var_class_1573103391624(data);
 
     };
 
@@ -23137,7 +23311,7 @@ exports['src::file.read'] = (() => {
 
     let isFile;
 
-    let var_init_locked_1572940251671;
+    let var_init_locked_1573103391632;
 
 
 
@@ -23171,11 +23345,11 @@ exports['src::file.read'] = (() => {
     return function(path) {
 
 
-        if (!var_init_locked_1572940251671) {
+        if (!var_init_locked_1573103391632) {
 
             isFile = include('is.file');
 
-            var_init_locked_1572940251671 = true;
+            var_init_locked_1573103391632 = true;
         }
 
 
@@ -23190,7 +23364,7 @@ exports['src::file.read.text'] = (() => {
 
     let read;
 
-    let var_init_locked_1572940251674;
+    let var_init_locked_1573103391635;
 
 
 
@@ -23250,11 +23424,11 @@ exports['src::file.read.text'] = (() => {
     return function(path, watchFn) {
 
 
-        if (!var_init_locked_1572940251674) {
+        if (!var_init_locked_1573103391635) {
 
             read = include('file.read');
 
-            var_init_locked_1572940251674 = true;
+            var_init_locked_1573103391635 = true;
         }
 
 
@@ -23314,7 +23488,7 @@ exports['src::file.read.json'] = (() => {
 
     let read, parse;
 
-    let var_init_locked_1572940251678;
+    let var_init_locked_1573103391640;
 
 
 
@@ -23366,12 +23540,12 @@ exports['src::file.read.json'] = (() => {
     return function(path, watchFn) {
 
 
-        if (!var_init_locked_1572940251678) {
+        if (!var_init_locked_1573103391640) {
 
             read = include('file.read.text');
             parse = include('json.parse');
 
-            var_init_locked_1572940251678 = true;
+            var_init_locked_1573103391640 = true;
         }
 
 
@@ -23386,7 +23560,7 @@ exports['src::file.write'] = (() => {
 
     let create;
 
-    let var_init_locked_1572940251680;
+    let var_init_locked_1573103391643;
 
 
 
@@ -23423,11 +23597,11 @@ exports['src::file.write'] = (() => {
     return function(path, data) {
 
 
-        if (!var_init_locked_1572940251680) {
+        if (!var_init_locked_1573103391643) {
 
             create = include('directory.create');
 
-            var_init_locked_1572940251680 = true;
+            var_init_locked_1573103391643 = true;
         }
 
 
@@ -23442,7 +23616,7 @@ exports['src::webpack.dev.server.self'] = (() => {
 
     let isFunction, isObject, isDefined;
 
-    let var_init_locked_1572940251683;
+    let var_init_locked_1573103391646;
 
 
 
@@ -23535,13 +23709,13 @@ exports['src::webpack.dev.server.self'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1572940251683) {
+        if (!var_init_locked_1573103391646) {
 
             isFunction = include('is.function');
             isObject = include('is.object.simple');
             isDefined = include('is.defined');
 
-            var_init_locked_1572940251683 = true;
+            var_init_locked_1573103391646 = true;
         }
 
 
@@ -23560,7 +23734,7 @@ exports['src::webpack.dev.server'] = (() => {
 
     let start;
 
-    let var_init_locked_1572940251686;
+    let var_init_locked_1573103391649;
 
 
 
@@ -23640,11 +23814,11 @@ exports['src::webpack.dev.server'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1572940251686) {
+        if (!var_init_locked_1573103391649) {
 
             start = include('src::webpack.dev.server.self');
 
-            var_init_locked_1572940251686 = true;
+            var_init_locked_1573103391649 = true;
         }
 
 
@@ -23664,7 +23838,7 @@ exports['src::webpack.recorder.client'] = (() => {
 
     let join, append;
 
-    let var_init_locked_1572940251689;
+    let var_init_locked_1573103391652;
 
 
 
@@ -23712,12 +23886,12 @@ exports['src::webpack.recorder.client'] = (() => {
     return function(name, data, port) {
 
 
-        if (!var_init_locked_1572940251689) {
+        if (!var_init_locked_1573103391652) {
 
             join = include('url.join');
             append = include('url.append');
 
-            var_init_locked_1572940251689 = true;
+            var_init_locked_1573103391652 = true;
         }
 
 
@@ -23732,7 +23906,7 @@ exports['src::webpack.recorder.server.markdown'] = (() => {
 
     let read, write;
 
-    let var_init_locked_1572940251692;
+    let var_init_locked_1573103391655;
 
 
 
@@ -23781,12 +23955,12 @@ exports['src::webpack.recorder.server.markdown'] = (() => {
     return function(name, templateFn) {
 
 
-        if (!var_init_locked_1572940251692) {
+        if (!var_init_locked_1573103391655) {
 
             read = include('file.read.json');
             write = include('file.write');
 
-            var_init_locked_1572940251692 = true;
+            var_init_locked_1573103391655 = true;
         }
 
 
@@ -23801,7 +23975,7 @@ exports['src::file.write.json'] = (() => {
 
     let write;
 
-    let var_init_locked_1572940251695;
+    let var_init_locked_1573103391659;
 
 
 
@@ -23829,11 +24003,11 @@ exports['src::file.write.json'] = (() => {
     return function(path, data) {
 
 
-        if (!var_init_locked_1572940251695) {
+        if (!var_init_locked_1573103391659) {
 
             write = include('file.write');
 
-            var_init_locked_1572940251695 = true;
+            var_init_locked_1573103391659 = true;
         }
 
 
@@ -23848,7 +24022,7 @@ exports['src::object.assign.if'] = (() => {
 
     let isObject;
 
-    let var_init_locked_1572940251697;
+    let var_init_locked_1573103391661;
 
 
 
@@ -23907,11 +24081,11 @@ exports['src::object.assign.if'] = (() => {
     return function(dest, ...sources) {
 
 
-        if (!var_init_locked_1572940251697) {
+        if (!var_init_locked_1573103391661) {
 
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940251697 = true;
+            var_init_locked_1573103391661 = true;
         }
 
 
@@ -23926,7 +24100,7 @@ exports['src::webpack.recorder.server'] = (() => {
 
     let read, writeJSON, merge, isObject;
 
-    let var_init_locked_1572940251700;
+    let var_init_locked_1573103391664;
 
 
 
@@ -23997,14 +24171,14 @@ exports['src::webpack.recorder.server'] = (() => {
     return function(name, processFn, path) {
 
 
-        if (!var_init_locked_1572940251700) {
+        if (!var_init_locked_1573103391664) {
 
             read = include('file.read.json');
             writeJSON = include('file.write.json');
             merge = include('object.assign.if');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940251700 = true;
+            var_init_locked_1573103391664 = true;
         }
 
 
@@ -24019,7 +24193,7 @@ exports['src::webpack.recorder.server.service'] = (() => {
 
     let recorder;
 
-    let var_init_locked_1572940251703;
+    let var_init_locked_1573103391668;
 
 
 
@@ -24053,11 +24227,11 @@ exports['src::webpack.recorder.server.service'] = (() => {
     return function(name, processFn) {
 
 
-        if (!var_init_locked_1572940251703) {
+        if (!var_init_locked_1573103391668) {
 
             recorder = include('webpack.recorder.server');
 
-            var_init_locked_1572940251703 = true;
+            var_init_locked_1573103391668 = true;
         }
 
 
@@ -24072,7 +24246,7 @@ exports['src::object.key.join'] = (() => {
 
     let isString;
 
-    let var_init_locked_1572940251707;
+    let var_init_locked_1573103391672;
 
 
 
@@ -24118,11 +24292,11 @@ exports['src::object.key.join'] = (() => {
     return function(...keys) {
 
 
-        if (!var_init_locked_1572940251707) {
+        if (!var_init_locked_1573103391672) {
 
             isString = include('is.string');
 
-            var_init_locked_1572940251707 = true;
+            var_init_locked_1573103391672 = true;
         }
 
 
@@ -24137,7 +24311,7 @@ exports['src::object.flat'] = (() => {
 
     let join, isObject;
 
-    let var_init_locked_1572940251709;
+    let var_init_locked_1573103391674;
 
 
 
@@ -24189,12 +24363,12 @@ exports['src::object.flat'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940251709) {
+        if (!var_init_locked_1573103391674) {
 
             join = include('object.key.join');
             isObject = include('is.object.simple');
 
-            var_init_locked_1572940251709 = true;
+            var_init_locked_1573103391674 = true;
         }
 
 
@@ -24209,7 +24383,7 @@ exports['src::object.keys'] = (() => {
 
     let isObject, join;
 
-    let var_init_locked_1572940251711;
+    let var_init_locked_1573103391677;
 
 
 
@@ -24261,12 +24435,12 @@ exports['src::object.keys'] = (() => {
     return function(data) {
 
 
-        if (!var_init_locked_1572940251711) {
+        if (!var_init_locked_1573103391677) {
 
             isObject = include('is.object.simple');
             join = include('object.key.join');
 
-            var_init_locked_1572940251711 = true;
+            var_init_locked_1573103391677 = true;
         }
 
 
