@@ -86,6 +86,6 @@ me.startPoint = {
 
 on(getName('move') , me.onStart = onStart) ;
 
-on(getName('end') , disabled , {
+on(getName('end') , me.onEnd = disabled , {
     once:true
 }) ;

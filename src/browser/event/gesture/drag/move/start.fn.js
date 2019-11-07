@@ -57,5 +57,7 @@ if (Math.round(getDistance(startPoint , point)) * scale() >= minDistance) {
 
     un(getName('move') , me.onStart) ;
 
+    un(getName('end') , me.onEnd) ;
+
     enabled() ;
 }
