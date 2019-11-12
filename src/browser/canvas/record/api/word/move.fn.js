@@ -11,10 +11,9 @@
 
 let me = this,
 {
-    data,
     context
 } = me ;
 
-me.reloadData() ;
+me.redrawData() ;
 
 draw(context , config) ;
