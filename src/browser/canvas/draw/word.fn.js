@@ -1,7 +1,7 @@
 
 /**
  * 
- * 画笔移动
+ * 绘制文本
  * 
  * @import assign from object.assign
  * 
@@ -9,18 +9,18 @@
  * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
- * @param {object} [config = {}] 画线配置
+ * @param {object} config = {} 绘制配置
+ * 
+ * @param {string} config.text 绘制文本 
  * 
  * @param {number} config.x 画线横坐标
  * 
  * @param {number} config.y 画线纵坐标
  * 
- * @param {object} [...config.styles] 画线样式
+ * @param {object} [...config.styles] 文本样式
  * 
  */
 
 assign(context , styles) ;
 
-context.lineTo(x * scale , y * scale);
-
-context.stroke();
+context.fillText(text , x * scale , y * scale) ;

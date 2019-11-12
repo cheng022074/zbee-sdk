@@ -7,17 +7,19 @@
  * 
  * @import clear from browser.canvas.clear
  * 
- * @param {canvas.Context} context 画板的上下文对象
+ * @param {object} [config = {}] 擦除配置
  * 
- * @param {object} [config = {}] 画线配置
+ * @param {number} config.x 擦除横坐标
  * 
- * @param {number} config.x 画线横坐标
- * 
- * @param {number} config.y 画线纵坐标
+ * @param {number} config.y 擦除纵坐标
  * 
  * @param {number} config.size 橡皮擦大小
  * 
  */
+
+ let {
+    context
+ } = this ;
 
  context.save() ;
 

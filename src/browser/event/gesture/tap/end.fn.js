@@ -3,6 +3,8 @@
  * 
  * 结束事件监听
  * 
+ * @import getEvent from browser.event.single
+ * 
  * @import disabled from ..disabled scoped
  * 
  * @import stop from browser.event.stop
@@ -11,7 +13,9 @@
  * 
  */
 
- this.dispatch('tap') ;
+ this.dispatch('tap' , {
+     nativeEvent:getEvent(e , 'end')
+ }) ;
 
  disabled() ;
 
