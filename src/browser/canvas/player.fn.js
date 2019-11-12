@@ -8,6 +8,10 @@
  * 
  * @import from from array.from
  * 
+ * @import getData from browser.canvas.data.get
+ * 
+ * @import setData from browser.canvas.data.set
+ * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
  */
@@ -21,8 +25,6 @@ class main extends mixins({
 
     constructor({
         context,
-        user,
-        autoPlay = true,
         ...options
     }){
 
@@ -32,146 +34,161 @@ class main extends mixins({
 
         me.context = context ;
 
-        me.records = [] ;
-
-        me.user = user ;
-
-        if(autoPlay){
-
-            me.play() ;
-        }
+        me.users = {} ;
     }
 
-    set paused(isPaused){
+    saveData(){
 
         let me = this,
         {
-            paused
-        } = me;
+            context
+        } = me ;
 
-        if(paused === isPaused){
+        me.data = getData(context) ;
+    }
 
-            return ;
-        }
+    redrawData(){
 
-        if(isPaused){
+        let {
+            data,
+            context
+        } = this ;
 
-            clearTimeout(me.playerId) ;
+        setData(context , data) ;
+    }
 
-            delete me.playerId ;
+    removeData(){
 
-            me.fireEvent('pause') ;
+        delete this.data ;
+    }
+
+    get hasActiveUser(){
+
+        return this.hasOwnProperty('activeUser') ;
+    }
+
+    reapplyActiveUser(){
+
+        let me = this ;
+
+        me.cancelActiveUser() ;
+
+        me.applyActiveUser() ;
+    }
+
+    applyActiveUser(){
+
+        let me = this,
+            {
+                hasActiveUser
+            } = me ;
+
+        if(!hasActiveUser){
+
+            let {
+                users
+            } = me,
+            names = Object.keys(users);
+
+            for(let name of names){
+
+                let user = users[name],
+                {
+                    cursor,
+                    records
+                } = user,
+                {
+                    length
+                } = records;
+
+                if(length > cursor){
+
+                    me.activeUser = user ;
+
+                    launch.call(me) ;
+
+                    break ;
+                }
+            }
         
-        }else{
-
-            launch.call(me , true) ;
-
-            me.fireEvent('play') ;
         }
     }
 
-    get paused(){
+    cancelActiveUser(){
 
-        return !this.hasOwnProperty('playerId') ;
+        let me = this,
+            {
+                hasActiveUser
+            } = me ;
+
+        if(hasActiveUser){
+
+            delete me.activeUser ;
+        }
     }
 
-    put(record){
+    add({
+        user,
+        ...record
+    }){
 
         let me = this,
         {
-            records,
-            user,
-            isNeutral
+            users
         } = me;
 
-        if(record.user === user){
+        if(!users.hasOwnProperty(user)){
 
-            return ;
+            users[user] = {
+                cursor:0,
+                records:[]
+            } ;
         }
 
-        record = from(record) ;
+        user = users[user] ;
 
-        records.push(...record) ;
+        let {
+            records
+        } = user;
 
-        me.fireEvent('recordput' , record) ;
+        records.push(record) ;
 
-        if(isNeutral){
-
-            launch.call(me) ;
-        }
-    }
-
-    get isNeutral(){
-
-        return this.playerId === null ;
-    }
-
-    /**
-     * 
-     * 播放
-     * 
-     */
-    play(){
-
-        this.paused = false ;
-    }
-
-    /**
-     * 
-     * 暂停
-     * 
-     */
-    pause(){
-
-        this.paused = true ;
+        me.applyActiveUser() ;
     }
  }
 
- function launch(isBegin = false){
+ function launch(){
 
     let me = this,
     {
-        records,
-        cursor = 0,
-        context
-    } = me,
+        activeUser
+    } = me,{
+        cursor,
+        records
+    } = activeUser ;
+
     record = records[cursor];
 
-    if(isObject(record)){
-
+    if(record){
+        
         let {
             api,
             params,
             delay
         } = record ;
 
-        if(isBegin){
+        setTimeout(() => {
 
-            if(api === 'browser.canvas.brush.move'){
-
-                api = 'browser.canvas.brush.start' ;
-
-                delay = 0 ;
-            }
-
-        }
-
-        me.playerId = setTimeout(() => {
-
-            include(api)(context , params) ;
-
-            records[cursor] = null ;
-
-            me.cursor = cursor + 1 ;
+            include(`browser.canvas.record.api.${api}`).call(me , params) ;
 
             launch.call(me) ;
 
-            me.fireEvent('recordplayed' , api , params , delay) ;
-
         } , delay) ;
+
+        activeUser.cursor = cursor + 1;
     
     }else{
 
-        me.playerId = null ;
+        me.reapplyActiveUser() ;
     }
  }
