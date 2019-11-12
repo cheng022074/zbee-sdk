@@ -18,7 +18,6 @@
 }){
 
     constructor({
-        context,
         user,
         ...options
     }){
@@ -27,39 +26,29 @@
 
         let me = this ;
 
-        me.context = context ;
-
-        me.records = [] ;
-
         me.user = user ;
+
+        me.previousTime = Date.now() ;
     }
 
     record(api , params , isTiming = true){
 
         let me = this,
         {
-            records,
-            context,
-            user
+            user,
+            previousTime
         } = me,
         record = {
             user,
             api,
             params,
-            time:Date.now(),
             delay:0
         } ;
 
-        let previousRecord = records[records.length - 1] ;
+        if(isTiming){
 
-        if(isTiming && previousRecord){
-
-            record.delay = record.time - previousRecord.time ;
+            record.delay = Date.now() - previousTime ;
         }
-
-        records.push(record) ;
-
-        include(api)(context , params) ;
 
         me.fireEvent('record' , record) ;
     }
