@@ -12,6 +12,8 @@
  * 
  * @import setData from browser.canvas.data.set
  * 
+ * @import is.number
+ * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
  */
@@ -167,7 +169,7 @@ class main extends mixins({
         records
     } = activeUser ;
 
-    record = records[cursor];
+    let record = records[cursor];
 
     if(record){
         
@@ -177,15 +179,24 @@ class main extends mixins({
             delay
         } = record ;
 
-        setTimeout(() => {
+        activeUser.cursor = cursor + 1;
+
+        if(isNumber(delay)){
+
+            setTimeout(() => {
+
+                include(`browser.canvas.record.api.${api}`).call(me , params) ;
+    
+                launch.call(me) ;
+    
+            } , delay) ;
+        
+        }else{
 
             include(`browser.canvas.record.api.${api}`).call(me , params) ;
-
+    
             launch.call(me) ;
-
-        } , delay) ;
-
-        activeUser.cursor = cursor + 1;
+        }
     
     }else{
 

@@ -31,7 +31,7 @@
         me.previousTime = Date.now() ;
     }
 
-    record(api , params , isTiming = true){
+    record(api , params , async = true){
 
         let me = this,
         {
@@ -41,14 +41,16 @@
         record = {
             user,
             api,
-            params,
-            delay:0
+            params
         } ;
 
-        if(isTiming){
+        if(async){
 
             record.delay = Date.now() - previousTime ;
+        
         }
+
+        me.previousTime = Date.now() ;
 
         me.fireEvent('record' , record) ;
     }
