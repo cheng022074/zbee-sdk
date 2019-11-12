@@ -36,7 +36,6 @@
             "browser.event.gesture.react",
             "browser.event.touch.init",
             "browser.event.visibility.init",
-            "browser.canvas.init",
             "miniprogram.storage",
             "os.name",
             "number.format",
