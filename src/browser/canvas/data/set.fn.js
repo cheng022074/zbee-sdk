@@ -5,7 +5,7 @@
  * 
  * @import clear from browser.canvas.clear
  * 
- * @import insert from browser.canvas.insert
+ * @import insert from browser.canvas.data.insert
  * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
