@@ -56,7 +56,9 @@ class main extends mixins({
             context
         } = this ;
 
-        setData(context , data) ;
+        setData(context , {
+            data
+        }) ;
     }
 
     removeData(){
