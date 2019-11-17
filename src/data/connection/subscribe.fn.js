@@ -32,11 +32,10 @@ function main(name , {
         return ;
     }
 
-    name = getName(name , connectionId) ;
+    let fullName = getName(name , connectionId),
+        subscriber = me.createSubscriber(fullName , assign({} , convertNameToSubscriberOptions.call(me , name) , options)) ;
 
-    let subscriber = me.createSubscriber(name , assign({} , convertNameToSubscriberOptions.call(me , name) , options)) ;
-
-    subscribers.set(name , subscriber) ;
+    subscribers.set(fullName , subscriber) ;
 
     me.onCreateSubscriber(subscriber) ;
 
