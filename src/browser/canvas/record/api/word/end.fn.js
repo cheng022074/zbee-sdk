@@ -6,4 +6,4 @@
  * 
  */
 
- this.removeData() ;
+ this.saveData() ;

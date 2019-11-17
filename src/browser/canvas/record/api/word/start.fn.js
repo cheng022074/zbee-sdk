@@ -5,9 +5,4 @@
  * 
  */
 
-let me = this,
-{
-    context
-} = me ;
-
-me.saveData() ;
+this.saveData() ;

@@ -27,31 +27,44 @@
         let me = this ;
 
         me.user = user ;
-
-        me.previousTime = Date.now() ;
     }
 
-    record(api , params , async = true){
+    begin(api , params){
 
-        let me = this,
-        {
-            user,
-            previousTime
-        } = me,
-        record = {
-            user,
-            api,
-            params
-        } ;
-
-        if(async){
-
-            record.delay = Date.now() - previousTime ;
-        
-        }
-
-        me.previousTime = Date.now() ;
-
-        me.fireEvent('record' , record) ;
+        record.call(this , api , params , 'start' , false) ;
     }
+
+    record(api , params){
+
+        record.call(this , api , params , 'process') ;
+    }
+
+    end(api , params){
+
+        record.call(this , api , params , 'end' , false) ;
+    }
+ }
+
+ function record(api , params , type , isCalcDelay = true){
+
+    let me = this,
+    {
+        user,
+        previousTime
+    } = me,
+    record = {
+        type,
+        user,
+        api,
+        params
+    } ;
+
+    if(isCalcDelay){
+
+        record.delay = Date.now() - previousTime ;
+    }
+
+    me.previousTime = Date.now() ;
+
+    me.fireEvent('record' , record) ;
  }
