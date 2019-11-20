@@ -17,7 +17,7 @@ let me = this,
         subscribers,
         data
     } = me,
-    acceptedSubscribers = [] ;
+    returnSubscribers = new Map() ;
 
 if(isDefined(message)){
 
@@ -29,13 +29,12 @@ if(isDefined(message)){
 
             if(isDefined(processedData)){
 
-                subscriber.accept(processedData) ;
-
-                acceptedSubscribers.push(subscriber) ;
+                returnSubscribers.set(subscriber , subscriber.accept(processedData)) ;
+                
             }
         }
     
     }) ;
 }
 
-return acceptedSubscribers;
+return returnSubscribers;
