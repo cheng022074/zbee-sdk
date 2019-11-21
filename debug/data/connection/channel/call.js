@@ -31,8 +31,13 @@ connection.function('add' , ({
 
 (async () =>{
 
-    console.log('结果' , await connection.call('add' , {
+    console.log('结果1' , await connection.call('add' , {
         value1:1,
+        value2:5
+    })) ;
+
+    console.log('结果2' , await connection.call('add' , {
+        value1:10,
         value2:5
     })) ;
 
