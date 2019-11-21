@@ -42,11 +42,11 @@
 
     then(resolve){
 
-        return apply.call(this , resolve) ;
+        return apply.call(this , 'resolves' ,  resolve) ;
     }
 
     catch(reject){
 
-        return apply.call(this , reject) ;
+        return apply.call(this , 'rejects' , reject) ;
     }
  }
