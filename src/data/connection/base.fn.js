@@ -68,6 +68,7 @@
     constructor({
         subscriber = Subscriber,
         rules = [],
+        matchOnlyOnce = false,
         ...options
     }){
 
@@ -82,6 +83,8 @@
         me.rules = createRules(rules) ;
 
         me.subscribeParamList = [] ;
+
+        me.matchOnlyOnce = matchOnlyOnce ;
 
         add(me , {
             ...me.subscriberListeners,

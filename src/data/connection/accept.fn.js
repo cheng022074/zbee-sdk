@@ -15,7 +15,8 @@ let me = this,
     message = me.processMessage(...args),
     {
         subscribers,
-        data
+        data,
+        matchOnlyOnce
     } = me,
     returnSubscribers = new Map() ;
 
@@ -28,6 +29,11 @@ if(isDefined(message)){
             let processedData = me.processData(subscriber , message) ;
 
             if(isDefined(processedData)){
+
+                if(matchOnlyOnce){
+
+                    break ;
+                }
 
                 returnSubscribers.set(subscriber , subscriber.accept(processedData)) ;
                 
