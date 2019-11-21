@@ -4,31 +4,48 @@
  * 
  * @import is.promise
  * 
- * @import Subscriber from data.Subscriber value
+ * @import Subscriber from data.subscriber value
+ * 
+ * @param {data.Connection} connection 连接对象
+ * 
+ * @param {string} name 消息地址
+ * 
+ * @param {object} options 消息配置
  * 
  */
 
  
 class main extends Subscriber{
 
-    accept({
-        id,
-        data
-    }){
-
+    accept(data){
+        
         let me = this,
             {
                 connection
-            } = me,
-            result = super.accept(data);
+            } = me ;
 
-        if(isPromise(result)){
+        if(data.hasOwnProperty('id') && data.hasOwnProperty('params')){
 
-            result.then(result => connection.resolve(id , result)).catch(error => connection.reject(id , error)) ;
-        
+            let {
+                id,
+                params
+            } = data,
+            result = super.accept(params);
+
+            if(isPromise(result)){
+
+                result.then(result => connection.resolve(id , result)).catch(error => connection.reject(id , error)) ;
+            
+            }else{
+
+                connection.resolve(id , result) ;
+            }
+
         }else{
 
-            connection.resolve(id , result) ;
+            super.accept(data) ;
         }
+        
+            
     }
  }
