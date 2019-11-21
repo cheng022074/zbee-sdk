@@ -21,17 +21,27 @@
  for(let name of names){
 
     let field = name === 'default' ? 'subscribers' : `${name}_subscribers`,
-        subscribers = component[field] ;
+        subscribers = component[field],
+        varName = `$${field}`,
+        connection = connections[name];
 
     if(subscribers){
 
         config[name] ={
-            varName:`$${field}`,
-            connection:connections[name],
+            varName,
+            connection,
             subscribers
         } ;
 
         delete component[field] ;
+
+    }else{
+
+        config[name] = {
+            varName,
+            connection,
+            subscribers:{}
+        } ;
     }
  }
 

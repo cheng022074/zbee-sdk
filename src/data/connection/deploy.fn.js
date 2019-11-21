@@ -61,59 +61,55 @@
                 subscribers
             } = subscriberMap[name] ;
             
-            if(subscribers){
+            scope[varName] = new Proxy(connection.subscribes({
+                ...subscribers,
+                connectionId,
+                scope
+            }) , {
 
-                scope[varName] = new Proxy(connection.subscribes({
-                    ...subscribers,
-                    connectionId,
-                    scope
-                }) , {
+                set(subscribers , name , config){
 
-                    set(subscribers , name , config){
+                    if(!subscribers.hasOwnProperty(name)){
 
-                        if(!subscribers.hasOwnProperty(name)){
+                        let subscriber = connection.subscribes({
+                            [name]:config,
+                            connectionId,
+                            scope
+                        })[name] ;
 
-                            let subscriber = connection.subscribes({
-                                [name]:config,
-                                connectionId,
-                                scope
-                            })[name] ;
+                        if(subscriber){
 
-                            if(subscriber){
-
-                                subscribers[name] = subscriber ;
-                            }
+                            subscribers[name] = subscriber ;
                         }
-
-                        return subscribers ;
-
-                    },
-
-                    get(subscribers , name){
-
-                        return subscribers[name] ;
-                    },
-
-                    deleteProperty(subscribers , name){
-
-                        if(subscribers.hasOwnProperty(name)){
-
-                            connection.unsubscribe(name , connectionId) ;
-
-                            delete subscribers[name] ;
-                        }
-
-                        return subscribers ;
-                    },
-
-                    ownKeys(subscribers){
-
-                        return Object.keys(subscribers) ;
                     }
 
-                }) ;
+                    return subscribers ;
 
-            }
+                },
+
+                get(subscribers , name){
+
+                    return subscribers[name] ;
+                },
+
+                deleteProperty(subscribers , name){
+
+                    if(subscribers.hasOwnProperty(name)){
+
+                        connection.unsubscribe(name , connectionId) ;
+
+                        delete subscribers[name] ;
+                    }
+
+                    return subscribers ;
+                },
+
+                ownKeys(subscribers){
+
+                    return Object.keys(subscribers) ;
+                }
+
+            }) ;
         }
 
     },
