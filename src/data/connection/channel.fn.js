@@ -8,7 +8,7 @@
  * 
  * @import generate from id.generate
  * 
- * @import createPromise from promise.multi
+ * @import MultiPromise from promise.multi value
  * 
  * @import equals from data.equals
  * 
@@ -200,7 +200,7 @@
                 sender
             } = me;
 
-        return createPromise((resolve , reject) =>{
+        return new MultiPromise((resolve , reject) =>{
 
             let id = me.getReplyId(command , params) ;
 

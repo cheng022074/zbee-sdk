@@ -3,7 +3,7 @@
  * 
  * 多次返回的 Promise 封装
  * 
- * @param {function} fn 函数回调
+ * @class
  * 
  * 
  */
