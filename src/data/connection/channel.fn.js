@@ -14,6 +14,8 @@
  * 
  * @import remove from array.remove.index
  * 
+ * @import createPort from data.connection.channel.port
+ * 
  * @class
  * 
  */
@@ -28,6 +30,7 @@
 
         super({
             ...options,
+            subscriber:createPort,
             rules:[{
                 test:'^.+$',
                 use(command){
