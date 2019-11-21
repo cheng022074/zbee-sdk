@@ -9,6 +9,8 @@
  * 
  * @param {object} component 组件定义对象
  * 
+ * @param {function} [getConnectionId] 获得连接编号
+ * 
  * @return {object} 增加订阅功能的组件定义对象
  * 
  */
@@ -33,4 +35,4 @@
     }
  }
 
- return deploy(connections , config);
+ return deploy(connections , config , getConnectionId);
