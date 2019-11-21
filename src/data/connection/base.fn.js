@@ -202,9 +202,7 @@
 
     validSubscriberCloseParams(params){
 
-        let {
-            values
-        } = this.subscribers ;
+        let values = this.subscribers.values() ;
 
         for(let {
             closed,
