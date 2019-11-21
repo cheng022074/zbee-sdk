@@ -278,6 +278,14 @@
         }) ;
     }
 
+    function(command , fn , scope){
+
+        this.subscribe(`call-${command}` , {
+            fn,
+            scope
+        }) ;
+    }
+
  }
 
  
