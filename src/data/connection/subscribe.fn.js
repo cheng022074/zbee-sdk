@@ -12,25 +12,24 @@
  * 
  */
 
-function main(name , {
-    connectionId,
-    ...options
-}){
+function main(name , options){
 
     let me = this,
     {
         subscribers
     } = me,
-    fullName = getName(name , connectionId);
+    {
+        connectionId
+    } = options;
 
     if(me.isSubscribed(name , connectionId)){
 
         return subscribers.get(fullName);
     }
 
-    let subscriber = me.createSubscriber(fullName , assign({} , convertNameToSubscriberOptions.call(me , name) , options)) ;
+    let subscriber = me.createSubscriber(name , assign({} , convertNameToSubscriberOptions.call(me , name) , options)) ;
 
-    subscribers.set(fullName , subscriber) ;
+    subscribers.set(getName(name , connectionId) , subscriber) ;
 
     me.onCreateSubscriber(subscriber) ;
 

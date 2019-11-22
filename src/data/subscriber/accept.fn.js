@@ -3,6 +3,8 @@
  * 
  * 接收数据
  * 
+ * @import is.defined
+ * 
  * @param {mixed} data 数据
  * 
  * 
@@ -13,8 +15,9 @@ let me = this,
     closed,
     bindFn,
     params,
-    connection,
-    name
+    cache,
+    processAcceptData,
+    cacheAcceptData
 } = me;
 
 if(closed){
@@ -22,10 +25,14 @@ if(closed){
     return;
 }
 
-if(bindFn){
+data = processAcceptData(data) ;
+
+if(isDefined(data)){
+
+    me.cache = cacheAcceptData(data , cache) ;
 
     let result = bindFn(data , params) ;
-    
+
     me.fireEvent('data' , data , params) ;
 
     return  result;

@@ -8,6 +8,8 @@
  * 
  * @import emptyFn from function.empty value
  * 
+ * @import from from array.from
+ * 
  * @param {data.connection} connection 当前订阅器所在的连接对象
  * 
  * @param {string} name 订阅名称
@@ -34,6 +36,12 @@
  * 
  * @param {mixed} [config.scope] 订阅函数作用域
  * 
+ * @param {string} [config.connectionId] 连接编号
+ * 
+ * @param {function} [config.processAcceptData] 处理接收数据的方法
+ * 
+ * @param {function} [config.cacheAcceptData] 缓存接收数据方法 
+ * 
  */
 
 
@@ -50,6 +58,13 @@ me.cache = cache ;
 me.processData = processData || (({
     data
 }) => data) ;
+
+me.cacheAcceptData = cacheAcceptData || ((data , cache = []) => [
+    ...cache,
+    ...from(data)
+]) ;
+
+me.processAcceptData = processAcceptData || (data => data) ;
 
 me.extraParams = extraParams ;
 
@@ -69,7 +84,7 @@ if(autoOpen){
 
 if(once === true){
 
-    add(me , 'data' , () => connection.unsubscribe(name) , {
+    add(me , 'data' , () => connection.unsubscribe(name , connectionId) , {
         once:true
     }) ;
 }

@@ -15,6 +15,10 @@
             "name":"subscribeOnce",
             "impl":".connection.subscribe.once"
         },
+        {
+            "name":"findOpenedSubscriberByName",
+            "impl":".connection.find.subscriber.opened.name"
+        },
         "subscribe",
         "unsubscribe",
         "subscribes",
