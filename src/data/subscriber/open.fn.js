@@ -9,6 +9,8 @@
  * 
  * @import assign from object.assign
  * 
+ * @import setData from .accept.data scoped
+ * 
  * @param {object} [params = {}] 订阅参数
  * 
  */
@@ -42,7 +44,9 @@ if(!oldParams || !equals(params , oldParams)){
 
         if(isDefined(cache)){
 
-            me.accept(cache) ;
+            me.cache = cahce ;
+
+            setData(cache) ;
         }
     }
 }
