@@ -22,8 +22,6 @@
  * 
  * @param {mixed} [config.params] 默认打开的订阅参数
  * 
- * @param {boolean} [config.cache = false] 默认不缓存 
- * 
  * @param {boolean} [config.autoOpen = true] 是否自动打开订阅器
  * 
  * @param {object} [config.extraParams = {}] 附加参数
@@ -52,8 +50,6 @@ me.name = name ;
 me.connection = connection ;
 
 me.$bubbleTarget = connection ;
-
-me.cache = cache ;
 
 me.processData = processData || (({
     data

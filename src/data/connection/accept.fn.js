@@ -24,7 +24,7 @@ if(isDefined(message)){
 
     subscribers = subscribers.values() ;
 
-    for(let subscribers of subscribers){
+    for(let subscriber of subscribers){
 
         if(!subscriber.closed && me.validateMessage(subscriber , message)){
 

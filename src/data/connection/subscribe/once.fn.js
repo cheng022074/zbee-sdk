@@ -5,8 +5,6 @@
  * 
  * @import assign from object.assign
  * 
- * @import getName from .subscribe.name
- * 
  * @param {string} name 订阅名称
  * 
  * @param {object} [options = {}] 订阅配置
