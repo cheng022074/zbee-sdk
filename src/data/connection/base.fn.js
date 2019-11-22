@@ -205,12 +205,12 @@
 
     validSubscriberCloseParams(params){
 
-        let values = this.subscribers.values() ;
+        let subscribers = this.subscribers.values() ;
 
         for(let {
             closed,
             params:subscribeParams
-        } of values){
+        } of subscribers){
 
             if(!closed && equals(params , subscribeParams)){
 

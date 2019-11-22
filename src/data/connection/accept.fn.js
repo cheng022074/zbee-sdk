@@ -22,7 +22,9 @@ let me = this,
 
 if(isDefined(message)){
 
-    subscribers.forEach(subscriber => {
+    subscribers = subscribers.values() ;
+
+    for(let subscribers of subscribers){
 
         if(!subscriber.closed && me.validateMessage(subscriber , message)){
 
@@ -39,8 +41,8 @@ if(isDefined(message)){
                 
             }
         }
-    
-    }) ;
+    }
+        
 }
 
 return returnSubscribers;
