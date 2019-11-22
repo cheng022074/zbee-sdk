@@ -1,4 +1,3 @@
-
 /**
  * 
  * 单次订阅
@@ -13,27 +12,23 @@
  * 
  */
 
- const nameRe = /\<|\>/g ;
-
 function main(name , {
     connectionId,
     ...options
 }){
 
-    name = name.replace(nameRe , '') ;
-
     let me = this,
     {
         subscribers
-    } = me;
+    } = me,
+    fullName = getName(name , connectionId);
 
-    if(subscribers.has(name)){
+    if(me.isSubscribed(name , connectionId)){
 
-        return ;
+        return subscribers.get(fullName);
     }
 
-    let fullName = getName(name , connectionId),
-        subscriber = me.createSubscriber(fullName , assign({} , convertNameToSubscriberOptions.call(me , name) , options)) ;
+    let subscriber = me.createSubscriber(fullName , assign({} , convertNameToSubscriberOptions.call(me , name) , options)) ;
 
     subscribers.set(fullName , subscriber) ;
 

@@ -7,6 +7,10 @@
             "name":"acceptMessage",
             "impl":".connection.accept"
         },
+        {
+            "name":"isSubscribed",
+            "impl":".connection.subscribed"
+        },
         "subscribe",
         "unsubscribe",
         "subscribes",
