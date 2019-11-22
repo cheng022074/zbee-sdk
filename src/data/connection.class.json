@@ -11,6 +11,10 @@
             "name":"isSubscribed",
             "impl":".connection.subscribed"
         },
+        {
+            "name":"subscribeOnce",
+            "impl":".connection.subscribe.once"
+        },
         "subscribe",
         "unsubscribe",
         "subscribes",
