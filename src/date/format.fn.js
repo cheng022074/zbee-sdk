@@ -9,16 +9,18 @@
  * 
  * @return {string} 根据格式化字符串输出的日期数据
  * 
- * @require dateformat
+ * @require date-and-time
  *
  * @scoped
  *  
  */
 
-const formatFn = require('dateformat') ;
+const {
+    format
+} = require('date-and-time') ;
 
 function main(date , format){
 
-    return formatFn(date , format) ;
+    return format(date , format) ;
 }
 
