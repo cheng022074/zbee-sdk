@@ -15,8 +15,6 @@
  * 
  * @return {mixed} 对应对象数据的键值的数据 
  * 
- * @scoped
- * 
  */
 
 if(key === '.'){
