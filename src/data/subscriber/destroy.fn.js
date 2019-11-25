@@ -5,8 +5,6 @@
  * 
  * @import removeAll from event.listener.remove.all
  * 
- * @import doSubscribers from .subscribers.relation scoped
- * 
  */
 
 let me = this,
@@ -29,5 +27,3 @@ removeAll(me) ;
 connection.subscribers.delete(me.fullName) ;
 
 delete me.fullName ;
-
-doSubscribers('destroy') ;

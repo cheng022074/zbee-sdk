@@ -11,8 +11,6 @@
  * 
  * @import setData from .accept.data scoped
  * 
- * @import doSubscribers from .subscribers.relation scoped
- * 
  * @param {object} [params = {}] 订阅参数
  * 
  */
@@ -51,6 +49,4 @@ if(!oldParams || !equals(params , oldParams)){
             setData(cache) ;
         }
     }
-
-    doSubscribers('open' , params) ;
 }
