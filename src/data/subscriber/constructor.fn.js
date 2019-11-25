@@ -16,6 +16,8 @@
  * 
  * @param {object} config 订阅器配置
  * 
+ * @param {string} config.fullName 订阅器全称
+ * 
  * @param {function} [config.processData] 处理数据方法
  *  
  * @param {object} [config.listeners = {}] 来自古地外部事件监听
@@ -34,7 +36,7 @@
  * 
  * @param {mixed} [config.scope] 订阅函数作用域
  * 
- * @param {string} [config.connectionId] 连接编号
+ * @param {string} [config.namespace] 命名空间
  * 
  * @param {function} [config.processAcceptData] 处理接收数据的方法
  * 
@@ -46,6 +48,8 @@
 let me = this ;
 
 me.name = name ;
+
+me.fullName = fullNames ;
 
 me.connection = connection ;
 
@@ -80,7 +84,7 @@ if(autoOpen){
 
 if(once === true){
 
-    add(me , 'data' , () => connection.unsubscribe(name , connectionId) , {
+    add(me , 'data' , () => connection.unsubscribe(name , namespace) , {
         once:true
     }) ;
 }

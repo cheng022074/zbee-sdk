@@ -37,11 +37,6 @@ if(namespace){
 
 for(let fullName of fullNames){
 
-    let subscriber = me.doSubscriberMethod(fullName , 'destroy') ;
-
-    if(subscriber){
-
-        subscribers.delete(name) ;
-    }
+    me.doSubscriberMethod(fullName , 'destroy') ;
 }
 

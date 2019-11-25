@@ -36,9 +36,13 @@ function main(name , options){
         }
     }
 
-    let subscriber = me.createSubscriber(name , assign({} , convertNameToSubscriberOptions.call(me , name) , options)) ;
+    let fullName = getName(name , namespace),
+        subscriber = me.createSubscriber(name , assign({} , convertNameToSubscriberOptions.call(me , name) , {
+            ...options,
+            fullName
+        })) ;
 
-    subscribers.set(getName(name , namespace) , subscriber) ;
+    subscribers.set(fullName , subscriber) ;
 
     me.onCreateSubscriber(subscriber) ;
 
