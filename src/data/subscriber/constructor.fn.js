@@ -49,7 +49,7 @@ let me = this ;
 
 me.name = name ;
 
-me.fullName = fullNames ;
+me.fullName = fullName ;
 
 me.connection = connection ;
 
