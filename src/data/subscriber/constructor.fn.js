@@ -18,6 +18,8 @@
  * 
  * @param {string} config.fullName 订阅器全称
  * 
+ * @param {array} [config.relationSubscribers = []] 关联订阅器 
+ * 
  * @param {function} [config.processData] 处理数据方法
  *  
  * @param {object} [config.listeners = {}] 来自古地外部事件监听
@@ -50,6 +52,8 @@ let me = this ;
 me.name = name ;
 
 me.fullName = fullNames ;
+
+me.relationSubscribers = relationSubscribers ;
 
 me.connection = connection ;
 
