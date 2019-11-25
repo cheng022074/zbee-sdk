@@ -15,7 +15,6 @@ let me = this,
     message = me.processMessage(...args),
     {
         subscribers,
-        data,
         matchOnlyOnce
     } = me ;
 
@@ -31,11 +30,16 @@ if(isDefined(message)){
 
             if(isDefined(processedData)){
 
+                subscriber.accept(processedData) ;
+
                 if(matchOnlyOnce){
 
                     break ;
                 }
             }
+
+           
+            
         }
     }
         

@@ -14,6 +14,8 @@
  * 
  * @import empty from function.empty value
  * 
+ * @import is.function
+ * 
  * @class
  * 
  */
@@ -99,13 +101,17 @@
             if(isString(config)){
 
                 config = {
+                    name,
                     mapping:config
                 }
             }
 
             if(isObject(config)){
 
-                result.push(getField.call(me , config)) ;
+                result.push(getField.call(me , {
+                    ...config,
+                    name
+                })) ;
             }
         }
 
@@ -116,6 +122,7 @@
             if(isString(field)){
 
                 field = {
+                    name,
                     mapping:field
                 } ;
             }
@@ -131,6 +138,7 @@
  }
 
  function getField({
+     name,
      type,
      mapping,
      convert,
@@ -160,6 +168,7 @@
     }
 
     return {
+        name,
         convert,
         defaultValue
     } ;

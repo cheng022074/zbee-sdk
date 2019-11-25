@@ -11,16 +11,9 @@
  * 
  */
 
-for(let i = 0 ; i < digit ; i ++){
+ if(digit === 0){
 
-    data *= 10 ;
-}
+    return Math.round(data) ;
+ }
 
-data = Math.round(data) ;
-
-for(let i = 0 ; i < digit ; i ++){
-
-    data /= 10 ;
-}
-
-return data ;
+ return Math.round(data * Math.pow(10 , digit)) / Math.pow(10 , digit);

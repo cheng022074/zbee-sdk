@@ -9,6 +9,8 @@
  * 
  * @import round from math.round
  * 
+ * @import is.number
+ * 
  * @param {mixed} data 数据
  * 
  * @param {object} [config = {}] 配置

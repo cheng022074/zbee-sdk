@@ -5,7 +5,7 @@
  * 
  * @import is.defined
  * 
- * @param {function} binFn 绑定函数
+ * @param {function} bindFn 绑定函数
  * 
  */
 

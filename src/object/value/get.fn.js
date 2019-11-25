@@ -22,20 +22,37 @@ if(key === '.'){
     return data ;
 }
 
-const arrayItemRe = /(\w+)\[(\d+)\]/ ;
+const arrayItemRe1 = /^(\w+)\[(\d+)\]$/,
+      arrayItemRe2 = /^\[(\d+)\]$/;
 
-if(isObject(data)){
+if(isObject(data) || isArray(result)){
 
     let keys = split(key , /\./),
         result;
 
     for(let key of keys){
 
-        let keyMatch = key.match(arrayItemRe) ;
+        if(arrayItemRe1.test(key) || arrayItemRe2.test(key)){
 
-        if(keyMatch){
-
-            result = data[keyMatch[1]][Number(keyMatch[2])] ;
+            {
+                let keyMatch = key.match(arrayItemRe1) ;
+    
+                if(keyMatch){
+    
+                    result = data[keyMatch[1]][Number(keyMatch[2])] ;
+                
+                }
+            }
+    
+            {
+                let keyMatch = key.match(arrayItemRe2) ;
+    
+                if(keyMatch){
+    
+                    result = data[Number(keyMatch[1])] ;
+                
+                }
+            }
         
         }else{
 

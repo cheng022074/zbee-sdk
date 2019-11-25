@@ -26,6 +26,11 @@
 
  if(isString(data)){
 
+    if(/^\d+$/.test(data)){
+
+      return new Date(Number(data)) ;
+    }
+
     return parse(data , format) ;
  }
 

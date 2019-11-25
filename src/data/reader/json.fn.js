@@ -6,6 +6,8 @@
  * 
  * @import get from object.value.get
  * 
+ * @param {object} model 模型配置
+ * 
  */
 
  class main extends Reader{
