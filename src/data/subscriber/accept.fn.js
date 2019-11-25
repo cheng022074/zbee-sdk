@@ -31,5 +31,5 @@ if(isDefined(data)){
 
     me.cache = cacheAcceptData(data , cache) ;
 
-    return setData(data) ;
+    setData(data) ;
 }

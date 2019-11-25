@@ -17,8 +17,7 @@ let me = this,
         subscribers,
         data,
         matchOnlyOnce
-    } = me,
-    returnSubscribers = new Map() ;
+    } = me ;
 
 if(isDefined(message)){
 
@@ -36,13 +35,8 @@ if(isDefined(message)){
 
                     break ;
                 }
-
-                returnSubscribers.set(subscriber , subscriber.accept(processedData)) ;
-                
             }
         }
     }
         
 }
-
-return returnSubscribers;

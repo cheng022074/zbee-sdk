@@ -74,7 +74,7 @@ me.extraParams = extraParams ;
 
 me.defaultParams = defaultParams ;
 
-me.bindFn = get(fn , scope) || emptyFn;
+me.$bindFn = get(fn , scope) || emptyFn;
 
 add(me , {
     ...listeners,

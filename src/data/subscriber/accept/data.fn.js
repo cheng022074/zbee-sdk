@@ -12,11 +12,13 @@
  let me = this,
  {
     bindFn,
+    closed,
     params
  } = me ;
 
-let result = bindFn(data , params) ;
+ if(closed){
 
-me.fireEvent('data' , data , params) ;
+   bindFn(data , params) ;
 
-return  result;
+   me.fireEvent('data' , data , params) ;
+ }
