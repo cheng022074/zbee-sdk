@@ -53,6 +53,8 @@
         me.sender = sender ;
 
         me.commands = {} ;
+
+        me.registerSubscribers = {} ;
     }
 
     doAcceptMessage(receiver){
@@ -67,6 +69,26 @@
         sender.postMessage(message) ;
     }
 
+    unregisterSubscriber(id){
+
+        let {
+            registerSubscribers
+        } = this;
+        
+        registerSubscribers.get(id).destroy() ;
+
+        registerSubscribers.delete(id) ;
+    }
+
+    registerSubscriber(id , subscriber){
+
+        let {
+            registerSubscribers
+        } = this ;
+
+        registerSubscribers.set(id , subscriber) ;
+    }
+
     processMessage(data){
 
         let {
@@ -76,7 +98,7 @@
 
         if(result){
 
-            //this.unsubscribe( result[1]) ;
+            connection.unregisterSubscriber(id) ;
         
         }else{
 
