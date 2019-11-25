@@ -20,6 +20,8 @@
  * 
  */
 
+ const pushOffRe = /^push\-off\-(.+)$/ ;
+
  class main extends Connection{
 
     constructor({
@@ -67,8 +69,19 @@
 
     processMessage(data){
 
-        return data ;
+        let {
+            command
+        } = data,
+        result = command.match(pushOffRe);
 
+        if(result){
+
+            //this.unsubscribe( result[1]) ;
+        
+        }else{
+
+            return data ;
+        }
     }
 
     validateMessage({
@@ -80,72 +93,6 @@
        return params.command === command ;
     }
 
-    getReplyId(command , params){
-
-        let {
-            commands
-        } = this ;
-
-        if(!commands.hasOwnProperty(command)){
-
-            commands[command] = [] ;
-        }
-
-        let existsParamList = commands[command];
-
-        for(let {
-            id,
-            params:existsParams
-        } of existsParamList){
-
-            if(equals(params , existsParams)){
-
-                return id ;
-            }
-        }
-
-        let id = generate('reply-') ;
-
-        existsParamList.push({
-            params,
-            id
-        }) ;
-
-        return id ;
-    }
-
-    removeReplyId(command , params){
-
-        let {
-            commands
-        } = this ;
-
-        if(!commands.hasOwnProperty(command)){
-
-            commands[command] = [] ;
-        }
-
-        let existsParamList = commands[command],
-            index = 0;
-
-        for(let {
-            id,
-            params:existsParams
-        } of existsParamList){
-
-            if(equals(params , existsParams)){
-
-                remove(existsParamList , index) ;
-
-                return true ;
-            }
-
-            index ++ ;
-        }
-
-        return false ;
-    }
-
     call(command , params){
 
         let me = this,
@@ -155,31 +102,29 @@
 
         return new Promise((resolve , reject) =>{
 
-            let id = me.getReplyId(command , params) ;
+            let id = generate('call-') ;
 
-            me.subscribe(id , {
-                once:true,
-                fn(data){
+            me.subscribeOnce(id).then(data =>{
 
-                    let {
-                        type
-                    } = data ;
-
-                    switch(type){
-
-                        case 'resolve':
-
-                            resolve(data.result) ;
-
-                            break ;
-
-                        case 'reject':
-
-                            reject(data.error) ;
-                    }
-
-                    me.removeReplyId(command , params) ;
+                let {
+                    type
+                } = data ;
+    
+                switch(type){
+    
+                    case 'resolve':
+    
+                        resolve(data.result) ;
+    
+                        break ;
+    
+                    case 'reject':
+    
+                        reject(data.error) ;
                 }
+    
+                me.removeReplyId(command , params) ;
+    
             }) ;
     
             me.doSendMessage(sender , {
@@ -189,7 +134,6 @@
                     params
                 }
             }) ;
-
         }) ;
     }
 
@@ -198,52 +142,49 @@
         let me = this,
             {
                 sender
-            } = me;
+            } = me,
+            id = generate('push-');
 
-        return new MultiPromise((resolve , reject) =>{
+        me.doSendMessage(sender , {
+            command:`call-${command}`,
+            data:{
+                id,
+                params
+            }
+        }) ;
 
-            let id = me.getReplyId(command , params) ;
+        return me.subscribe(id , {
+            fn(data){
 
-            me.subscribe(id , {
-                fn(data){
+                let {
+                    type
+                } = data ;
 
-                    let {
-                        type
-                    } = data ;
+                switch(type){
 
-                    switch(type){
+                    case 'resolve':
 
-                        case 'resolve':
+                        resolve(data.result) ;
 
-                            resolve(data.result) ;
+                        break ;
 
-                            break ;
+                    case 'reject':
 
-                        case 'reject':
-
-                            reject(data.error) ;
-                    }
+                        reject(data.error) ;
                 }
-            }) ;
-
-            me.doSendMessage(sender , {
-                command:`call-${command}`,
-                data:{
-                    id,
-                    params
-                }
-            }) ;
-
+            }
         }) ;
     }
 
-    pushOff(command , params){
+    pushOff(id){
 
         let me = this ;
 
-        me.unsubscribe(me.getReplyId(command , params)) ;
+        me.unsubscribe(id) ;
 
-        me.removeReplyId(command , params) ;
+        me.doSendMessage(sender , {
+            command:`push-off-${id}`
+        }) ;
     }
 
     reject(id , error){
@@ -285,6 +226,8 @@
             scope
         }) ;
     }
+
+
 
  }
 

@@ -4,6 +4,8 @@
  * 
  * @import is.promise
  * 
+ * @import is.subscriber
+ * 
  * @import Subscriber from data.subscriber value
  * 
  * @param {data.Connection} connection 连接对象
@@ -36,6 +38,12 @@ class main extends Subscriber{
 
                 result.then(result => connection.resolve(id , result)).catch(error => connection.reject(id , error)) ;
             
+            }else if(isSubscriber(result)){
+
+                connection.registerSubscriber(id , result) ;
+
+                result.bindFn = result => connection.resolve(id , result) ;
+
             }else{
 
                 connection.resolve(id , result) ;
@@ -44,8 +52,6 @@ class main extends Subscriber{
         }else{
 
             super.accept(data) ;
-        }
-        
-            
+        }      
     }
  }
