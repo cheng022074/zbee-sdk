@@ -16,7 +16,7 @@
     params
  } = me ;
 
- if(closed){
+ if(!closed){
 
    bindFn(data , params) ;
 
