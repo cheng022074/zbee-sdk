@@ -46,7 +46,7 @@ if(!oldParams || !equals(params , oldParams)){
 
             me.cache = cahce ;
 
-            setData(cache) ;
+            setData() ;
         }
     }
 }

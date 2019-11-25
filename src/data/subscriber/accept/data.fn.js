@@ -1,7 +1,8 @@
-
 /**
  * 
  * 将推送数据传递给绑定函数
+ * 
+ * @import is.defined
  * 
  * @param {mixed} data 推送过来的数据
  * 
@@ -13,12 +14,20 @@
  {
     bindFn,
     closed,
-    params
+    params,
+    cache
  } = me ;
 
  if(!closed){
 
-   bindFn(data , params) ;
+   if(isDefined(cache)){
+
+      bindFn(cache , params) ;
+   
+   }else{
+
+      bindFn(data , params) ;
+   }
 
    me.fireEvent('data' , data , params) ;
  }

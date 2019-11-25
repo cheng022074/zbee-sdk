@@ -59,10 +59,7 @@ me.processData = processData || (({
     data
 }) => data) ;
 
-me.cacheAcceptData = cacheAcceptData || ((data , cache = []) => [
-    ...cache,
-    ...from(data)
-]) ;
+me.cacheAcceptData = cacheAcceptData ||  emptyFn;
 
 me.processAcceptData = processAcceptData || (data => data) ;
 
