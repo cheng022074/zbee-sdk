@@ -11,7 +11,7 @@
  * 
  */
 
-if(connectionId){
+if(namespace){
 
     return `${name}<${namespace}>` ;
 }
