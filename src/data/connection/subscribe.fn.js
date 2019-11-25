@@ -6,6 +6,8 @@
  * 
  * @import getName from .subscribe.name
  * 
+ * @import generate from .subscribe.namespace.generate
+ * 
  * @param {string} name 订阅名称
  * 
  * @param {object} [options = {}] 订阅配置
@@ -19,17 +21,24 @@ function main(name , options){
         subscribers
     } = me,
     {
-        connectionId
+        namespace
     } = options;
 
-    if(me.isSubscribed(name , connectionId)){
+    if(me.isSubscribed(name , namespace)){
 
-        return subscribers.get(fullName);
+        if(namespace){
+
+            return subscribers.get(fullName);
+        
+        }else{
+
+            namespace = generate(name) ;
+        }
     }
 
     let subscriber = me.createSubscriber(name , assign({} , convertNameToSubscriberOptions.call(me , name) , options)) ;
 
-    subscribers.set(getName(name , connectionId) , subscriber) ;
+    subscribers.set(getName(name , namespace) , subscriber) ;
 
     me.onCreateSubscriber(subscriber) ;
 
