@@ -16,11 +16,11 @@
  */
 
 const {
-    format
+    format:doFormat
 } = require('date-and-time') ;
 
 function main(date , format){
 
-    return format(date , format) ;
+    return doFormat(date , format) ;
 }
 
