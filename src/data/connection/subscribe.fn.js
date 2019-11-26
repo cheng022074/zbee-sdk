@@ -8,6 +8,8 @@
  * 
  * @import generate from .subscribe.namespace.generate
  * 
+ * @import is.defined
+ * 
  * @param {string} name 订阅名称
  * 
  * @param {object} [options = {}] 订阅配置
@@ -18,7 +20,8 @@ function main(name , options){
 
     let me = this,
     {
-        subscribers
+        subscribers,
+        forceSubscribe
     } = me,
     {
         namespace
@@ -26,9 +29,9 @@ function main(name , options){
 
     if(me.isSubscribed(name , namespace)){
 
-        if(namespace){
+        if(isDefined(namespace) && !forceSubscribe){
 
-            return subscribers.get(fullName);
+            return;
         
         }else{
 

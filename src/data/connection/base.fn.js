@@ -69,6 +69,7 @@
         subscriber = Subscriber,
         rules = [],
         matchOnlyOnce = false,
+        forceSubscribe = false,
         ...options
     }){
 
@@ -85,6 +86,8 @@
         me.subscribeParamList = [] ;
 
         me.matchOnlyOnce = matchOnlyOnce ;
+
+        me.forceSubscribe = forceSubscribe ;
 
         add(me , {
             ...me.subscriberListeners,
