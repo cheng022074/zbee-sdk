@@ -6,7 +6,7 @@
  * 
  * @import getName from .subscribe.name
  * 
- * @import generate from .subscribe.namespace.generate
+ * @import generate from .subscribe.namespace.generate scoped
  * 
  * @import is.defined
  * 
