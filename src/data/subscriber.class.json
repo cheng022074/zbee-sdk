@@ -5,10 +5,6 @@
     "properties":{
         "closed":{
             "get":".subscriber.closed"
-        },
-        "bindFn":{
-            "get":".subscriber.function.get",
-            "set":".subscriber.function.set"
         }
     },
     "class":true,

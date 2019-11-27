@@ -28,7 +28,7 @@
         me.callbacks = [] ;
 
         defer(open , {
-            scope
+            scope:me
         }) ;
     }
 
