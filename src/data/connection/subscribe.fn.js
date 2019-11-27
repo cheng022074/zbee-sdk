@@ -8,8 +8,6 @@
  * 
  * @import generate from .subscribe.namespace.generate scoped
  * 
- * @import is.defined
- * 
  * @param {string} name 订阅名称
  * 
  * @param {object} [options = {}] 订阅配置
@@ -29,14 +27,13 @@ function main(name , options){
 
     if(me.isSubscribed(name , namespace)){
 
-        if(isDefined(namespace) && !forceSubscribe){
+        if(!forceSubscribe){
 
-            return;
-        
-        }else{
-
-            namespace = generate(name) ;
+            return ;
         }
+    
+        namespace = generate(name) ;
+        
     }
 
     let fullName = getName(name , namespace),
