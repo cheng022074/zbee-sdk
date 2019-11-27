@@ -20,4 +20,6 @@ me.prevParams = me.params ;
 
 delete me.params ;
 
+delete me.cache ;
+
 me.fireEvent('close' , params) ;

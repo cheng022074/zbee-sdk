@@ -20,15 +20,15 @@
  * 
  * @import includes from array.includes
  * 
- * @import indexOf from array.indexOf
- * 
- * @import remove from array.remove.index
+ * @import remove from array.remove
  * 
  * @import getName from .subscribe.name
  * 
  * @import Observable from mixin.observable
  * 
  * @import add from event.listener.add
+ * 
+ * @import equals from data.equals
  * 
  * @require regex-parser
  * 
@@ -68,6 +68,8 @@
     constructor({
         subscriber = Subscriber,
         rules = [],
+        matchOnlyOnce = false,
+        forceSubscribe = false,
         ...options
     }){
 
@@ -82,6 +84,10 @@
         me.rules = createRules(rules) ;
 
         me.subscribeParamList = [] ;
+
+        me.matchOnlyOnce = matchOnlyOnce ;
+
+        me.forceSubscribe = forceSubscribe ;
 
         add(me , {
             ...me.subscriberListeners,
@@ -154,18 +160,27 @@
 
         if(isArray(params)){
 
-            let  {
-                subscribeParamList
-            } = me ;
+            if(me.validSubscriberOpenParams(params)){
 
-            if(!includes(subscribeParamList , params)){
-                
                 me.doSubscriberOpen(...params) ;
-            }
-    
-            subscribeParamList.push(params) ;
 
+                me.subscribeParamList.push(params) ;
+            }
         }
+    }
+
+    validSubscriberOpenParams(params){
+
+        let {
+            subscribeParamList
+        } = this ;
+
+        if(!includes(subscribeParamList , params)){
+
+            return true ;
+        }
+
+        return false ;
     }
 
     doSubscriberOpen(...args){
@@ -181,24 +196,32 @@
 
         if(isArray(params)){
 
-            let {
-                subscribeParamList
-            } = me,
-            index = indexOf(subscribeParamList , params);
-
-            if(index === -1){
-    
-                return ;
-            }
-    
-            remove(subscribeParamList , index) ;
-
-            if(!includes(subscribeParamList , params)){
+            if(me.validSubscriberCloseParams(params)){
 
                 me.doSubscriberClose(...params) ;
+
+                remove(me.subscribeParamList , params) ;
             }
         }
 
+    }
+
+    validSubscriberCloseParams(params){
+
+        let subscribers = this.subscribers.values() ;
+
+        for(let {
+            closed,
+            params:subscribeParams
+        } of subscribers){
+
+            if(!closed && equals(params , subscribeParams)){
+
+                return false ;
+            }
+        }
+
+        return true ;
     }
 
     doSubscriberClose(...args){
@@ -206,32 +229,9 @@
 
     }
 
-    getSubscribers(names , connectionId){
+    getSubscriber(name , namespace){
 
-        let subscribers = [],
-            me = this;
-
-        for(let name of names){
-
-            let subscriber = me.getSubscriber(name , connectionId) ;
-
-            if(subscriber){
-
-                subscribers.push(subscriber) ;
-            }
-        }
-
-        return subscribers ;
-    }
-
-    hasSubscriber(name , connectionId){
-
-        return !!this.getSubscriber(name , connectionId) ;
-    }
-
-    getSubscriber(name , connectionId){
-
-        return this.subscribers.get(getName(name , connectionId)) ;
+        return this.subscribers.get(getName(name , namespace)) ;
     }
 
     /**

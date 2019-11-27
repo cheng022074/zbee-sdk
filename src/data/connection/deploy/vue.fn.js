@@ -26,15 +26,6 @@
     ...options
  } = component;
 
- async function destroyed(){
-
-    let me = this ;
-
-    await originUnmounted.call(me) ;
-
-    unmounted.call(me) ;
- }
-
  return {
     mounted(){
 
@@ -45,9 +36,11 @@
       originMounted.call(me) ;
     },
 
-    async destroyed(){
+    destroyed(){
 
-      destroyed.call(this) ;
+      originUnmounted.call(me) ;
+
+      unmounted.call(me) ;
       
     },
 

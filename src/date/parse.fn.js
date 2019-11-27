@@ -6,19 +6,21 @@
  * 
  * @param {string} data 字符串
  * 
- * @param {Regex} regex 正则表达式
- * 
- * @param {string} format 日期格式
+ * @param {string} [format = 'YYYY-MM-DD'] 日期格式
  * 
  * @return {Date} 日期对象 
  * 
+ * @require date-and-time
+ * 
  */
 
- let args = data.match(regex) ;
+const {
+   parse
+} = require('date-and-time') ;
 
- if(args){
+function main(data , format){
 
-    return new Date(doFormat(format , ...args)) ;
- }
+   return parse(data , format) ;
+}
 
  

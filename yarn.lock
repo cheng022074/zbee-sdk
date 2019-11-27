@@ -1890,6 +1890,11 @@ data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
+date-and-time@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.npm.taobao.org/date-and-time/download/date-and-time-0.11.0.tgz#1e22b61533af303953d79cc8c5e92e228fc5e4d2"
+  integrity sha1-HiK2FTOvMDlT15zIxekuIo/F5NI=
+
 date-and-time@^0.6.2:
   version "0.6.3"
   resolved "https://registry.npm.taobao.org/date-and-time/download/date-and-time-0.6.3.tgz#2daee52df67c28bd93bce862756ac86b68cf4237"
@@ -1899,11 +1904,6 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.npmjs.org/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
   integrity sha1-6vQ5/U1ISK105cx9vvIAZyueNFs=
-
-dateformat@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.npm.taobao.org/dateformat/download/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
-  integrity sha1-puN0maTZqc+F71hyBE1ikByYia4=
 
 debug@0.7.4:
   version "0.7.4"
@@ -5567,10 +5567,10 @@ ylru@^1.2.0:
   resolved "https://registry.npm.taobao.org/ylru/download/ylru-1.2.1.tgz#f576b63341547989c1de7ba288760923b27fe84f"
   integrity sha1-9Xa2M0FUeYnB3nuiiHYJI7J/6E8=
 
-zbee@0.0.78:
-  version "0.0.78"
-  resolved "https://registry.npmjs.org/zbee/-/zbee-0.0.78.tgz#ce6133b501216e546d6387ac610ccc8cd7bb99c4"
-  integrity sha512-m9Hh/1x5ncdQf6gDhfPrSu3WfqexzWqbaVbSNnd5RWpZ+zN6XNUDDRssJCvDAL7FP16pKtY0pRKVlMPTzyhjsQ==
+zbee@0.0.82:
+  version "0.0.82"
+  resolved "https://registry.npmjs.org/zbee/-/zbee-0.0.82.tgz#b91c9adfd35e04443172515c3f2e195a0b95d415"
+  integrity sha512-MMXo6vSDGtrTx+WGLViU5C1XxNrRi7oTVmFvdedNPdxWV7oHOrUwaZzIq+pONJH3Hq+kRgLfLji0s364cLUljg==
   dependencies:
     "@babel/core" "^7.3.4"
     "@babel/parser" "^7.3.1"

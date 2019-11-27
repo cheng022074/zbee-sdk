@@ -9,4 +9,4 @@
  * 
  */
 
- return data instanceof Promise ;
+ return data instanceof Promise;

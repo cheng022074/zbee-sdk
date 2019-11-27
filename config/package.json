@@ -8,6 +8,7 @@
             "data.store.create",
             "data.store.tree.mind",
             "data.reader.json",
+            "data.convert.*",
             "browser.canvas.*",
             "object.equals",
             "map",
@@ -22,6 +23,7 @@
             "date.get",
             "date.list",
             "date.parse",
+            "date.format",
             "date.get.properties",
             "map.set.multi",
             "id.generate",
@@ -46,7 +48,8 @@
             "file.read.text",
             "webpack.*",
             "object.flat",
-            "object.keys"
+            "object.keys",
+            "log.node"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND",

@@ -4,19 +4,27 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import Observable from mixin.observable
+ * @import is.string
  * 
- * @import from from array.from
+ * @import is.function
+ * 
+ * @import Observable from mixin.observable
  * 
  * @import getData from browser.canvas.data.get
  * 
  * @import setData from browser.canvas.data.set
  * 
- * @import is.number
+ * @import createEngine from .player.engine
+ * 
+ * @import removeAll from array.remove.all
  * 
  * @param {canvas.Context} context 画板的上下文对象
  * 
  */
+
+ const {
+    keys
+ } = Object ;
 
  
 class main extends mixins({
@@ -27,6 +35,7 @@ class main extends mixins({
 
     constructor({
         context,
+        user,
         ...options
     }){
 
@@ -36,7 +45,24 @@ class main extends mixins({
 
         me.context = context ;
 
-        me.users = {} ;
+        me.users = {};
+
+        tryCreateUser.call(me , {
+            [user]({
+                delay,
+                ...params
+            }){
+
+                return params ;
+            }
+        }) ;
+
+        me.engine = createEngine({
+            player:me
+        }) ;
+
+        me.activeUsers = [] ;
+        
     }
 
     saveData(){
@@ -61,73 +87,20 @@ class main extends mixins({
         }) ;
     }
 
-    removeData(){
+    get activeUser(){
 
-        delete this.data ;
-    }
+        let {
+            activeUsers
+        } = this,
+        [
+            user
+        ] = activeUsers;
 
-    get hasActiveUser(){
+        if(user){
 
-        return this.hasOwnProperty('activeUser') ;
-    }
+            removeAll(activeUsers , user) ;
 
-    reapplyActiveUser(){
-
-        let me = this ;
-
-        me.cancelActiveUser() ;
-
-        me.applyActiveUser() ;
-    }
-
-    applyActiveUser(){
-
-        let me = this,
-            {
-                hasActiveUser
-            } = me ;
-
-        if(!hasActiveUser){
-
-            let {
-                users
-            } = me,
-            names = Object.keys(users);
-
-            for(let name of names){
-
-                let user = users[name],
-                {
-                    cursor,
-                    records
-                } = user,
-                {
-                    length
-                } = records;
-
-                if(length > cursor){
-
-                    me.activeUser = user ;
-
-                    launch.call(me) ;
-
-                    break ;
-                }
-            }
-        
-        }
-    }
-
-    cancelActiveUser(){
-
-        let me = this,
-            {
-                hasActiveUser
-            } = me ;
-
-        if(hasActiveUser){
-
-            delete me.activeUser ;
+            return user ;
         }
     }
 
@@ -138,70 +111,70 @@ class main extends mixins({
 
         let me = this,
         {
-            users
+            users,
+            activeUsers
         } = me;
 
-        if(!users.hasOwnProperty(user)){
-
-            users[user] = {
-                cursor:0,
-                records:[]
-            } ;
-        }
+        tryCreateUser.call(me , user) ;
 
         user = users[user] ;
 
         let {
-            records
+            records,
+            convert
         } = user;
 
-        records.push(record) ;
+        records.push(convert(record)) ;
 
-        me.applyActiveUser() ;
+        activeUsers.push(user) ;
+
+        me.fireEvent('add' , user , record) ;
     }
  }
 
- function launch(){
+ function tryCreateUser(user){
 
-    let me = this,
-    {
-        activeUser
-    } = me,{
-        cursor,
-        records
-    } = activeUser ;
+    let {
+        users
+    } = this ;
 
-    let record = records[cursor];
+    if(isString(user)){
 
-    if(record){
-        
-        let {
-            api,
-            params,
-            delay
-        } = record ;
+        user = {
+            [user]:{
+                covnert:record => record
+            }
+        } ;
+    }
 
-        activeUser.cursor = cursor + 1;
+    console.log(user) ;
 
-        if(isNumber(delay)){
+    if(isObject(user)){
 
-            setTimeout(() => {
+        let names = keys(user) ;
 
-                include(`browser.canvas.record.api.${api}`).call(me , params) ;
-    
-                launch.call(me) ;
-    
-            } , delay) ;
-        
-        }else{
+        for(let name of names){
 
-            include(`browser.canvas.record.api.${api}`).call(me , params) ;
-    
-            launch.call(me) ;
+            if(!users.hasOwnProperty(name)){
+
+                let config = user[name] ;
+
+                if(isFunction(config)){
+
+                    config = {
+                        convert:config
+                    } ;
+                }
+
+                if(isObject(config)){
+
+                    users[name] = {
+                        ...config,
+                        cursor:0,
+                        records:[]
+                    } ;
+                }
+            }
         }
-    
-    }else{
-
-        me.reapplyActiveUser() ;
     }
  }

@@ -15,13 +15,14 @@ let me = this,
     message = me.processMessage(...args),
     {
         subscribers,
-        data
-    } = me,
-    acceptedSubscribers = [] ;
+        matchOnlyOnce
+    } = me ;
 
 if(isDefined(message)){
 
-    subscribers.forEach(subscriber => {
+    subscribers = subscribers.values() ;
+
+    for(let subscriber of subscribers){
 
         if(!subscriber.closed && me.validateMessage(subscriber , message)){
 
@@ -31,11 +32,15 @@ if(isDefined(message)){
 
                 subscriber.accept(processedData) ;
 
-                acceptedSubscribers.push(subscriber) ;
-            }
-        }
-    
-    }) ;
-}
+                if(matchOnlyOnce){
 
-return acceptedSubscribers;
+                    break ;
+                }
+            }
+
+           
+            
+        }
+    }
+        
+}
