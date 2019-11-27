@@ -15,14 +15,15 @@
     bindFn,
     closed,
     params,
-    cache
+    cache,
+    getCacheData
  } = me ;
 
  if(!closed){
 
    if(isDefined(cache)){
 
-      bindFn(cache , params) ;
+      bindFn(getCacheData(cache) , params) ;
    
    }else{
 

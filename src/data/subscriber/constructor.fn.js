@@ -40,7 +40,9 @@
  * 
  * @param {function} [config.processAcceptData] 处理接收数据的方法
  * 
- * @param {function} [config.cacheAcceptData] 缓存接收数据方法 
+ * @param {function} [config.cacheAcceptData] 缓存接收数据方法
+ * 
+ * @param {function} [config.getCacheData] 获取缓存数据 
  * 
  */
 
@@ -62,6 +64,8 @@ me.processData = processData || (({
 me.cacheAcceptData = cacheAcceptData ||  emptyFn;
 
 me.processAcceptData = processAcceptData || (data => data) ;
+
+me.getCacheData = getCacheData || (data => data) ;
 
 me.extraParams = extraParams ;
 
