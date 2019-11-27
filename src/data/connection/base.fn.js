@@ -229,32 +229,9 @@
 
     }
 
-    getSubscribers(names , connectionId){
+    getSubscriber(name , namespace){
 
-        let subscribers = [],
-            me = this;
-
-        for(let name of names){
-
-            let subscriber = me.getSubscriber(name , connectionId) ;
-
-            if(subscriber){
-
-                subscribers.push(subscriber) ;
-            }
-        }
-
-        return subscribers ;
-    }
-
-    hasSubscriber(name , connectionId){
-
-        return !!this.getSubscriber(name , connectionId) ;
-    }
-
-    getSubscriber(name , connectionId){
-
-        return this.subscribers.get(getName(name , connectionId)) ;
+        return this.subscribers.get(getName(name , namespace)) ;
     }
 
     /**
