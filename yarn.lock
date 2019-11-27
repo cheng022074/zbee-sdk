@@ -5567,10 +5567,10 @@ ylru@^1.2.0:
   resolved "https://registry.npm.taobao.org/ylru/download/ylru-1.2.1.tgz#f576b63341547989c1de7ba288760923b27fe84f"
   integrity sha1-9Xa2M0FUeYnB3nuiiHYJI7J/6E8=
 
-zbee@0.0.78:
-  version "0.0.78"
-  resolved "https://registry.npmjs.org/zbee/-/zbee-0.0.78.tgz#ce6133b501216e546d6387ac610ccc8cd7bb99c4"
-  integrity sha512-m9Hh/1x5ncdQf6gDhfPrSu3WfqexzWqbaVbSNnd5RWpZ+zN6XNUDDRssJCvDAL7FP16pKtY0pRKVlMPTzyhjsQ==
+zbee@0.0.82:
+  version "0.0.82"
+  resolved "https://registry.npmjs.org/zbee/-/zbee-0.0.82.tgz#b91c9adfd35e04443172515c3f2e195a0b95d415"
+  integrity sha512-MMXo6vSDGtrTx+WGLViU5C1XxNrRi7oTVmFvdedNPdxWV7oHOrUwaZzIq+pONJH3Hq+kRgLfLji0s364cLUljg==
   dependencies:
     "@babel/core" "^7.3.4"
     "@babel/parser" "^7.3.1"
