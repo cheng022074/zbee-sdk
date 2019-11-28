@@ -29,6 +29,10 @@
     if(/^\d+$/.test(data)){
 
       return new Date(Number(data)) ;
+
+    }else if(/^\d{4}\-\d{2}-\d{2}T\d{2}\:\d{2}\:[\d\.]+Z$/.test(data)){
+
+      return new Date(data) ;
     }
 
     return parse(data , format) ;

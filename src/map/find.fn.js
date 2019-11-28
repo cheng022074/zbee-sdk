@@ -3,6 +3,8 @@
  * 
  * 判断指定组合键是否存在
  * 
+ * @import equals from data.equals
+ * 
  * @param {array} keys 组合键
  * 
  * @return {object} 返回查询结果 
@@ -26,7 +28,7 @@ for(let groupKeys  of currentKeys){
 
        for(let i = 0 ; i < length ; i ++){
 
-           if(groupKeys[i] !== keys[i]){
+           if(!equals(groupKeys[i] ,  keys[i])){
 
                isMatch = false ;
 

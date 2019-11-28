@@ -122,14 +122,14 @@
             if(isString(field)){
 
                 field = {
-                    name,
+                    name:field,
                     mapping:field
                 } ;
             }
 
-            if(isObject(config)){
+            if(isObject(field)){
 
-                result.push(getField.call(me , config)) ;
+                result.push(getField.call(me , field)) ;
             }
         }
     }
@@ -149,6 +149,8 @@
     let {
         getData
     } = this ;
+
+    mapping = mapping || name ;
 
     if(isString(mapping)){
 

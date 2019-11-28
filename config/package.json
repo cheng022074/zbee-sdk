@@ -49,7 +49,8 @@
             "webpack.*",
             "object.flat",
             "object.keys",
-            "log.node"
+            "log.node",
+            "class.name"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND",
