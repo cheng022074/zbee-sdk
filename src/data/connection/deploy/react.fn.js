@@ -52,4 +52,4 @@ class Component extends componentClass{
     
 } ;
 
-return props => <Component {...props} connections={connections}/> ;
+return props => <Component {...props}/> ;

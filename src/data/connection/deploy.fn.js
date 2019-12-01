@@ -51,7 +51,7 @@
         }
 
         let names = keys(subscriberMap),
-            connectionId = scope.$connectionId = getConnectionId.call(scope) || defaultConnectionId ;
+            namespace = scope.$connectionId = getConnectionId.call(scope) || defaultConnectionId ;
 
         for(let name of names){
 
@@ -63,7 +63,7 @@
             
             scope[varName] = new Proxy(connection.subscribes({
                 ...subscribers,
-                connectionId,
+                namespace,
                 scope
             }) , {
 
@@ -73,7 +73,7 @@
 
                         let subscriber = connection.subscribes({
                             [name]:config,
-                            connectionId,
+                            namespace,
                             scope
                         })[name] ;
 
@@ -96,7 +96,7 @@
 
                     if(subscribers.hasOwnProperty(name)){
 
-                        connection.unsubscribe(name , connectionId) ;
+                        connection.unsubscribe(name , namespace) ;
 
                         delete subscribers[name] ;
                     }
@@ -125,7 +125,7 @@
 
         let names = keys(subscriberMap),
             {
-                $connectionId:connectionId
+                $connectionId:namespace
             } = scope;
 
         for(let name of names){
@@ -135,7 +135,7 @@
                 connection,
             } = subscriberMap[name] ;
 
-            connection.unsubscribes(keys(scope[varName]) , connectionId) ;
+            connection.unsubscribes(keys(scope[varName]) , namespace) ;
 
             delete scope[varName] ;
         }
