@@ -25,7 +25,7 @@ if(key === '.'){
 const arrayItemRe1 = /^(\w+)\[(\d+)\]$/,
       arrayItemRe2 = /^\[(\d+)\]$/;
 
-if(isObject(data) || isArray(result)){
+if(isObject(data) || isArray(data)){
 
     let keys = split(key , /\./),
         result;

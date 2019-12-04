@@ -68,18 +68,10 @@
 
     for(let {
         name,
-        convert,
-        defaultValue
+        convert
     } of fields){
 
-        let value = convert(row , rows , data) ;
-
-        if(!isDefined(value)){
-
-            value = defaultValue ;
-        }
-
-        record[name] = value ;
+        record[name] = convert(row , rows , data) ;
     }
 
     return record ;
@@ -150,28 +142,33 @@
         getData
     } = this ;
 
-    mapping = mapping || name ;
-
-    if(isString(mapping)){
-
-        if(type){
-
-            convert = data => include(`data.convert.${type}`)(getData(data , mapping) , options)
-        
-        }else{
-
-            convert = data => getData(data , mapping) ;
-        }
-    }
-
-    if(!isFunction(convert)){
-
-        convert = empty ;
-    }
-
     return {
         name,
-        convert,
-        defaultValue
+        convert(data , ...args){
+
+            if(isFunction(convert)){
+
+                data = convert(data , ...args) ;
+            
+            }else{
+
+                if(isString(mapping)){
+
+                    data = getData(data , mapping) ;
+                
+                }else{
+    
+                    data = getData(data , name) ;
+                }
+    
+                if(isString(type)){
+    
+                    data = include(`data.convert.${type}`)(data , options) ;
+                }
+    
+            }
+
+            return isDefined(data) ? data : defaultValue ;
+        }
     } ;
  }
