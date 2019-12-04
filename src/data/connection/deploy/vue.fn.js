@@ -18,7 +18,11 @@
  let {
      mounted,
      unmounted
- } = deploy(connections , component) ;
+ } = deploy(connections , component , function(){
+
+    return this.connectionId ;
+
+ }) ;
 
  const {
     mounted:originMounted = empty,
