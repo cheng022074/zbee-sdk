@@ -42,6 +42,8 @@
 
     destroyed(){
 
+      let me = this ;
+
       originUnmounted.call(me) ;
 
       unmounted.call(me) ;
