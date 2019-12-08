@@ -50,7 +50,8 @@
             "object.flat",
             "object.keys",
             "log.node",
-            "class.name"
+            "class.name",
+            "process.spawn"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND",

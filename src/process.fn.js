@@ -26,8 +26,8 @@
         me.options = options ;
 
         let {
-            autoStart,
-            reStart,
+            autoStart = true,
+            reStart = true,
         } = options ;
 
         if(autoStart){
@@ -48,12 +48,12 @@
 
     onStart(){
 
-        this.fireEvent('open') ;
+        this.fireEvent('start') ;
     }
 
     onEnd(isNormal){
 
-        let me = this;
+        let me = this ;
 
         if(isNormal){
 

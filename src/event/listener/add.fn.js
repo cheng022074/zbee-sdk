@@ -52,7 +52,9 @@
 
                 listenerFn(args) ;
 
-                remove(target , name , listener) ;
+                remove(target , name , fn , {
+                    scope
+                }) ;
             } ;
         
         }else{

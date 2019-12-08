@@ -23,19 +23,21 @@
 
         let me = this,
             {
-                path
+                command
             } = me.options,
-            process = spawn(path),
+            process = spawn(command),
             {
                 stdout
             } = process;
 
         add(stdout , 'data' , 'onStart' , {
-            sope:me,
+            scope:me,
             once:true
         }) ;
 
-        add(process , 'exit' , 'onEnd' , {
+        add(process , {
+            exit:'onEnd',
+            error:'onEnd',
             scope:me
         }) ;
 
@@ -54,11 +56,11 @@
             process
         } = me;
 
-        delete me.process ;
-
         removeAll(process) ;
 
         removeAll(process.stdout) ;
+
+        delete me.process ;
 
         super.onEnd(signal === 'NORMAL') ;
     }
