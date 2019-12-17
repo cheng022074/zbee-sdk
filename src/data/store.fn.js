@@ -20,6 +20,8 @@
  * 
  * @param {object} config 配置
  * 
+ * @class
+ * 
  */
 
 function defaultRecordId({
@@ -39,16 +41,6 @@ function defaultRecordValid(){
     return true ;
 }
 
-function defaultRecordSame(record , store){
-
-    let index = store.indexOf(record) ;
-
-    if(index !== -1){
-
-        return store.getRecordByIndex(index) ;
-    }
-}
-
 class main extends mixins({
     mixins:[
         Observable
@@ -59,7 +51,6 @@ class main extends mixins({
         id = defaultRecordId,
         merge = defaultRecordMerge,
         valid = defaultRecordValid,
-        same = defaultRecordSame,
         reader,
         properties = {},
         ...options
@@ -74,8 +65,6 @@ class main extends mixins({
         me.doRecordId = id ;
 
         me.doRecordValid = valid ;
-
-        me.doRecordSame = same ;
 
         me.data = [] ;
 
@@ -130,23 +119,14 @@ class main extends mixins({
 
         let me = this,
         {
-            ids
+            ids,
+            data
         } = me ;
 
         if(ids.hasOwnProperty(id)){
 
-            return me.getRecordByIndex([ids[id]]) ;
+            return data[ids[id]] ;
         }
-    }
-
-    getRecordByIndex(index){
-
-        let {
-            data
-        } = this ;
-
-        return data[index] ;
-        
     }
 
     indexOf(record){
@@ -169,7 +149,7 @@ class main extends mixins({
         } = me,
         index = me.indexOf(record);
 
-        if(index !== -1){
+        if(index > 0){
 
             return data[index - 1] ;
         }
@@ -181,7 +161,6 @@ class main extends mixins({
         {
             data:records,
             ids,
-            doRecordSame,
             doRecordMerge,
             doRecordValid,
             doRecordId,
@@ -206,11 +185,12 @@ class main extends mixins({
                 Object.defineProperties(record , properties) ;
             }
 
-            let sameRecord = doRecordSame(record , store) ;
+            let id = doRecordId(record , store),
+                oldRecord = store.getRecordById(id) ;
 
-            if(sameRecord){
+            if(oldRecord){
 
-                result.push(records[me.indexOf(sameRecord)] = doRecordMerge(sameRecord , record)) ;
+                result.push(records[me.indexOf(oldRecord)] = doRecordMerge(record , oldRecord)) ;
 
             }else{
 
@@ -218,7 +198,7 @@ class main extends mixins({
 
                 result.push(record) ;
                 
-                ids[doRecordId(record , store)] = records.length - 1 ;
+                ids[id] = records.length - 1 ;
                 
             }
         }
