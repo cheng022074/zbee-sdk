@@ -38,11 +38,12 @@
 
         let me = this,
             rows = getRows.call(me , data),
-            records = [];
+            records = [],
+            count = 0;
 
         for(let row of rows){
 
-            records.push(getRecord.call(me , row , rows , data)) ;
+            records.push(getRecord.call(me , row , rows , count ++ , data)) ;
         }
 
         return records ;
@@ -59,7 +60,7 @@
     return from(getData(data , rootProperty)) ;
  }
 
- function getRecord(row , rows , data){
+ function getRecord(row , rows , index , data){
 
     let {
         fields
@@ -71,7 +72,7 @@
         convert
     } of fields){
 
-        record[name] = convert(row , rows , data) ;
+        record[name] = convert(row , rows , index , data) ;
     }
 
     return record ;

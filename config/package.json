@@ -9,6 +9,8 @@
             "data.store.tree.mind",
             "data.reader.json",
             "data.convert.*",
+            "data.pusher",
+            "data.store",
             "browser.canvas.*",
             "object.equals",
             "map",
@@ -54,8 +56,7 @@
             "process.spawn"
         ],
         "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND",
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\PROJECT\\ZTS\\HQ\\ELECTRON"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
         ]
     },
     "mind-sdk":{

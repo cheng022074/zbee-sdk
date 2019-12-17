@@ -1,28 +1,53 @@
-
 /**
  * 
  * 数据存储器类
  * 
- * @import createRawReader from data.reader.create.raw
- * 
- * @import createDataReader from data.reader.create.data
- * 
- * @import createDataWriter from data.writer.create.data
- * 
- * @import createStorageWriter from data.writer.create.storage
- * 
  * @import Observable from mixin.observable
  * 
- * @import clear from object.clear
+ * @import aclear from array.clear
  * 
- * @class
+ * @import oclear from object.clear
  * 
- * @param {object} model 数据模型定义
+ * @import from from array.from
  * 
- * @return {data.Model} 数据存储器对象 
+ * @import isObject from is.object.simple
  * 
+ * @import is.function
+ * 
+ * @import is.number
+ * 
+ * @import empty from function.empty value
+ * 
+ * @param {object} config 配置
  * 
  */
+
+function defaultRecordId({
+    id
+}){
+
+    return id ;
+}
+
+function defaultRecordMerge(record){
+
+    return record ;
+}
+
+function defaultRecordValid(){
+
+    return true ;
+}
+
+function defaultRecordSame(record , store){
+
+    let index = store.indexOf(record) ;
+
+    if(index !== -1){
+
+        return store.getRecordByIndex(index) ;
+    }
+}
 
 class main extends mixins({
     mixins:[
@@ -31,110 +56,205 @@ class main extends mixins({
 }){
 
     constructor({
-        model,
-        data,
+        id = defaultRecordId,
+        merge = defaultRecordMerge,
+        valid = defaultRecordValid,
+        same = defaultRecordSame,
+        reader,
+        properties = {},
         ...options
-    }){
+    } = {}){
 
-       super(options) ;
+        super(options) ;
 
-       let me = this ;
+        let me = this ;
 
-       me.rawReader = createRawReader(model) ;
+        me.doRecordMerge = merge ;
 
-       me.dataReader = createDataReader(model) ;
+        me.doRecordId = id ;
 
-       me.dataWriter = createDataWriter() ;
+        me.doRecordValid = valid ;
 
-       me.storageWriter = createStorageWriter() ;
+        me.doRecordSame = same ;
 
-       me.ids = {} ;
+        me.data = [] ;
 
-       if(data){
+        me.ids = {} ;
 
-            me.data = me.dataReader.read(data) ;
-       }
+        me.reader = include('data.reader.json')(reader) ;
+
+        let names = Object.keys(properties),
+            orginProperties = {},
+            store = this;
+
+        for(let name of names){
+
+            let property = properties[name] ;
+
+            if(isFunction(property)){
+
+                orginProperties[name] = {
+                    enumerable:true,
+                    get(){
+
+                        return property(this , store) ;
+                    }
+                } ;
+
+            }else if(isObject(property)){
+
+                let {
+                    set = empty,
+                    get = empty
+                } = property ;
+
+                orginProperties[name] = {
+                    enumerable:true,
+                    get(){
+
+                        return get(this , store) ;
+                    },
+
+                    set(value){
+
+                        set(value , this , store) ;
+                    }
+                } ;
+            }
+        }
+
+        me.properties = orginProperties ;
     }
 
-    get hasData(){
-
-        return !! this.data ;
-    }
-
-    save(){
+    getRecordById(id){
 
         let me = this,
         {
-            hasData,
-            storageWriter,
-            data
-        } = me;
+            ids
+        } = me ;
 
-        if(hasData){
+        if(ids.hasOwnProperty(id)){
 
-            me.fireEvent('save' , storageWriter.write(data)) ;
+            return me.getRecordByIndex([ids[id]]) ;
         }
     }
 
-    load(data){
+    getRecordByIndex(index){
+
+        let {
+            data
+        } = this ;
+
+        return data[index] ;
+        
+    }
+
+    indexOf(record){
 
         let me = this,
         {
-            rawReader,
-            dataWriter
-        } = me ;
+            doRecordId,
+            ids
+        } = me,
+        index = ids[doRecordId(record , me)];
 
-        me.fireEvent('load' , dataWriter.write(me.data = rawReader.read(data))) ;
+        return isNumber(index) ? index : -1 ;
+    }
+
+    getPreviousRecord(record){
+
+        let me = this,
+        {
+            data
+        } = me,
+        index = me.indexOf(record);
+
+        if(index !== -1){
+
+            return data[index - 1] ;
+        }
     }
 
     append(data){
 
         let me = this,
         {
-            rawReader
+            data:records,
+            ids,
+            doRecordSame,
+            doRecordMerge,
+            doRecordValid,
+            doRecordId,
+            reader,
+            properties
         } = me ;
 
-        add.call(me , ...rawReader.read(data)) ;
+        data = reader.read(data) ;
 
-        console.log('增量载入数据' , $data) ;
+        let result = [],
+            store = this;
 
-        // 触发 add 事件
-    }
+        for(let record of data){
 
-    onReplaceRecord(record , oldRecord){
+            if(!doRecordValid(record , store)){
 
-        return record ;
-    }
- }
+                continue ;
+            }
 
- function add(...records) {
-    
-    let me = this,
-    {
-        ids,
-        data
-    } = me ;
+            if(properties){
 
-    for(let record of records){
+                Object.defineProperties(record , properties) ;
+            }
 
-        let {
-            __ZBEE_DATA_ID__:id
-        } = record ;
+            let sameRecord = doRecordSame(record , store) ;
 
-        if(id){
+            if(sameRecord){
 
-            if(ids.hasOwnProperty(id)){
+                result.push(records[me.indexOf(sameRecord)] = doRecordMerge(sameRecord , record)) ;
 
-                let index = ids[id] ;
-
-                data[index] = me.onReplaceRecord(record , data[index]) ;
-            
             }else{
 
-                data.push(record) ;
+                records.push(record) ;
 
-                ids[id] = data.length - 1 ;
+                result.push(record) ;
+                
+                ids[doRecordId(record , store)] = records.length - 1 ;
+                
             }
         }
+
+        me.fireEvent('append' , result , records) ;
+
+        return result ;
     }
- }
+
+    load(data){
+
+        let me = this ;
+
+        me.clear() ;
+
+        me.suspendEvents() ;
+
+        me.append(data) ;
+
+        me.resumeEvents() ;
+
+        me.fireEvent('load' , me.data) ;
+    }
+
+    clear(){
+
+        let me = this,
+        {
+            data,
+            ids
+        } = me ;
+
+        aclear(data) ;
+
+        oclear(ids) ;
+
+        me.fireEvent('clear') ;
+    }
+}
