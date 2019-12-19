@@ -6,6 +6,9 @@
         "alias":"on",
         "impl":".observable.listener.add"
     },{
+        "name":"hasListener",
+        "impl":".observable.listener.has"
+    },{
         "name":"removeListener",
         "alias":"un",
         "impl":".observable.listener.remove"

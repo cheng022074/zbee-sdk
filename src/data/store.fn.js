@@ -18,6 +18,10 @@
  * 
  * @import empty from function.empty value
  * 
+ * @import add from event.listener.add
+ * 
+ * @import remove from event.listener.remove
+ * 
  * @param {object} config 配置
  * 
  * @class
@@ -115,6 +119,56 @@ class main extends mixins({
         me.properties = orginProperties ;
     }
 
+    get isEmpty(){
+
+        return this.data.length === 0 ;
+    }
+
+    pipe(store){
+
+        let me = this ;
+
+        me.pipeStore = store ;
+
+        let onPipeStoreLoad = (...args) => store.load(args[1]),
+            onPipeStoreAppend = (...args) => store.append(args[1]) ;
+
+        add(me , {
+            load:onPipeStoreLoad,
+            append:onPipeStoreAppend,
+            update:onPipeStoreAppend
+        });
+
+        me.onPipeStoreLoad = onPipeStoreLoad ;
+
+        me.onPipeStoreAppend = onPipeStoreAppend ; 
+    }
+
+    unpipe(){
+
+        let me = this,
+        {
+            pipeStore,
+            onPipeStoreLoad,
+            onPipeStoreAppend
+        } = me ;
+
+        if(pipeStore){
+
+            remove(me , {
+                load:onPipeStoreLoad,
+                append:onPipeStoreAppend,
+                update:onPipeStoreAppend
+            }) ;
+
+            delete me.pipeStore ;
+
+            delete me.onPipeStoreLoad ;
+
+            delete me.onPipeStoreAppend ;
+        }
+    }
+
     getRecordById(id){
 
         let me = this,
@@ -155,7 +209,7 @@ class main extends mixins({
         }
     }
 
-    append(data){
+    append(data , isFireEvent = true){
 
         let me = this,
         {
@@ -170,12 +224,12 @@ class main extends mixins({
 
         data = reader.read(data) ;
 
-        let result = [],
-            store = this;
+        let updates = [],
+            appends = [];
 
         for(let record of data){
 
-            if(!doRecordValid(record , store)){
+            if(!doRecordValid(record , me)){
 
                 continue ;
             }
@@ -185,27 +239,43 @@ class main extends mixins({
                 Object.defineProperties(record , properties) ;
             }
 
-            let id = doRecordId(record , store),
-                oldRecord = store.getRecordById(id) ;
+            let id = doRecordId(record , me),
+                oldRecord = me.getRecordById(id) ;
 
             if(oldRecord){
 
-                result.push(records[me.indexOf(oldRecord)] = doRecordMerge(record , oldRecord)) ;
+                updates.push(records[me.indexOf(oldRecord)] = doRecordMerge(record , oldRecord , me)) ;
 
             }else{
 
                 records.push(record) ;
 
-                result.push(record) ;
+                appends.push(record) ;
                 
                 ids[id] = records.length - 1 ;
                 
             }
         }
 
-        me.fireEvent('append' , result , records) ;
+        if(appends.length && isFireEvent){
 
-        return result ;
+            me.fireEvent('append' , appends) ;
+
+        }
+
+        if(updates.length && isFireEvent){
+
+            me.fireEvent('update' , updates) ;
+        }
+        
+        return {
+            updates,
+            appends,
+            all:[
+                ...updates,
+                ...appends
+            ]
+        } ;
     }
 
     load(data){
@@ -214,13 +284,27 @@ class main extends mixins({
 
         me.clear() ;
 
-        me.suspendEvents() ;
-
-        me.append(data) ;
-
-        me.resumeEvents() ;
+        me.append(data , false) ;
 
         me.fireEvent('load' , me.data) ;
+    }
+
+    refresh(){
+
+        let me = this,
+        {
+            ids,
+            doRecordId,
+            data
+        } = me ;
+
+        let count = 0 ;
+
+        for(let record of data){
+
+            ids[doRecordId(record , me)] = count ++;
+        }
+
     }
 
     clear(){
