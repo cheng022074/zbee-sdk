@@ -130,18 +130,41 @@ class main extends mixins({
 
         me.pipeStore = store ;
 
-        let onPipeStoreLoad = (...args) => store.load(args[1]),
-            onPipeStoreAppend = (...args) => store.append(args[1]) ;
+        let onPipeStoreLoad = () => {
+
+            let {
+                pipeData
+            } = this ;
+
+            if(pipeData.length){
+
+                store.load(pipeData) ;
+            }
+
+        },
+            onPipeStoreChange = () => {
+
+                let {
+                    pipeData
+                } = this ;
+    
+                if(pipeData.length){
+    
+                    store.append(pipeData) ;
+                }
+    
+            };
 
         add(me , {
             load:onPipeStoreLoad,
-            append:onPipeStoreAppend,
-            update:onPipeStoreAppend
+            change:onPipeStoreChange
         });
 
         me.onPipeStoreLoad = onPipeStoreLoad ;
 
-        me.onPipeStoreAppend = onPipeStoreAppend ; 
+        me.onPipeStoreChange = onPipeStoreChange ; 
+
+        return store ;
     }
 
     unpipe(){
@@ -150,22 +173,21 @@ class main extends mixins({
         {
             pipeStore,
             onPipeStoreLoad,
-            onPipeStoreAppend
+            onPipeStoreChange
         } = me ;
 
         if(pipeStore){
 
             remove(me , {
                 load:onPipeStoreLoad,
-                append:onPipeStoreAppend,
-                update:onPipeStoreAppend
+                change:onPipeStoreChange
             }) ;
 
             delete me.pipeStore ;
 
             delete me.onPipeStoreLoad ;
 
-            delete me.onPipeStoreAppend ;
+            delete me.onPipeStoreChange ;
         }
     }
 
@@ -209,6 +231,19 @@ class main extends mixins({
         }
     }
 
+    get last(){
+
+        let {
+            data,
+            isEmpty
+        } = this ;
+
+        if(!isEmpty){
+
+            return data[data.length - 1] ;
+        }
+    }
+
     append(data , isFireEvent = true){
 
         let me = this,
@@ -225,7 +260,8 @@ class main extends mixins({
         data = reader.read(data) ;
 
         let updates = [],
-            appends = [];
+            appends = [],
+            all = [];
 
         for(let record of data){
 
@@ -244,13 +280,19 @@ class main extends mixins({
 
             if(oldRecord){
 
-                updates.push(records[me.indexOf(oldRecord)] = doRecordMerge(record , oldRecord , me)) ;
+                record = records[me.indexOf(oldRecord)] = doRecordMerge(record , oldRecord , me) ;
+
+                updates.push(record) ;
+
+                all.push(record) ;
 
             }else{
 
                 records.push(record) ;
 
                 appends.push(record) ;
+
+                all.push(record) ;
                 
                 ids[id] = records.length - 1 ;
                 
@@ -267,14 +309,16 @@ class main extends mixins({
 
             me.fireEvent('update' , updates) ;
         }
+
+        if(all.length && isFireEvent){
+
+            me.fireEvent('change' , all) ;
+        }
         
         return {
             updates,
             appends,
-            all:[
-                ...updates,
-                ...appends
-            ]
+            all
         } ;
     }
 
@@ -320,5 +364,10 @@ class main extends mixins({
         oclear(ids) ;
 
         me.fireEvent('clear') ;
+    }
+
+    get pipeData(){
+
+        return this.data ;
     }
 }
