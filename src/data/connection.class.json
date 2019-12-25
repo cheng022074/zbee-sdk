@@ -16,6 +16,10 @@
             "impl":".connection.subscribe.once"
         },
         {
+            "name":"subscribePush",
+            "impl":".connection.subscribe.push"
+        },
+        {
             "name":"findOpenedSubscriberByName",
             "impl":".connection.find.subscriber.opened.name"
         },

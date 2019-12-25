@@ -27,7 +27,11 @@ class Component extends componentClass{
         let {
             mounted,
             unmounted
-        } = deploy(connections , me , '') ;
+        } = deploy(connections , me , function(){
+
+            return this.props.connectionId ;
+
+        }) ;
 
         const {
             componentDidMount:originMounted = empty,
@@ -52,4 +56,4 @@ class Component extends componentClass{
     
 } ;
 
-return props => <Component {...props} connections={connections}/> ;
+return props => <Component {...props}/> ;

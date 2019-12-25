@@ -38,11 +38,12 @@
 
         let me = this,
             rows = getRows.call(me , data),
-            records = [];
+            records = [],
+            count = 0;
 
         for(let row of rows){
 
-            records.push(getRecord.call(me , row , rows , data)) ;
+            records.push(getRecord.call(me , row , rows , count ++ , data)) ;
         }
 
         return records ;
@@ -59,7 +60,7 @@
     return from(getData(data , rootProperty)) ;
  }
 
- function getRecord(row , rows , data){
+ function getRecord(row , rows , index , data){
 
     let {
         fields
@@ -68,18 +69,10 @@
 
     for(let {
         name,
-        convert,
-        defaultValue
+        convert
     } of fields){
 
-        let value = convert(row , rows , data) ;
-
-        if(!isDefined(value)){
-
-            value = defaultValue ;
-        }
-
-        record[name] = value ;
+        record[name] = convert(row , rows , index , data) ;
     }
 
     return record ;
@@ -122,14 +115,14 @@
             if(isString(field)){
 
                 field = {
-                    name,
+                    name:field,
                     mapping:field
                 } ;
             }
 
-            if(isObject(config)){
+            if(isObject(field)){
 
-                result.push(getField.call(me , config)) ;
+                result.push(getField.call(me , field)) ;
             }
         }
     }
@@ -150,26 +143,33 @@
         getData
     } = this ;
 
-    if(isString(mapping)){
-
-        if(type){
-
-            convert = data => include(`data.convert.${type}`)(getData(data , mapping) , options)
-        
-        }else{
-
-            convert = data => getData(data , mapping) ;
-        }
-    }
-
-    if(!isFunction(convert)){
-
-        convert = empty ;
-    }
-
     return {
         name,
-        convert,
-        defaultValue
+        convert(data , ...args){
+
+            if(isFunction(convert)){
+
+                data = convert(data , ...args) ;
+            
+            }else{
+
+                if(isString(mapping)){
+
+                    data = getData(data , mapping) ;
+                
+                }else{
+    
+                    data = getData(data , name) ;
+                }
+    
+                if(isString(type)){
+    
+                    data = include(`data.convert.${type}`)(data , options) ;
+                }
+    
+            }
+
+            return isDefined(data) ? data : defaultValue ;
+        }
     } ;
  }

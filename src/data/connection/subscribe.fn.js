@@ -27,11 +27,6 @@ function main(name , options){
 
     if(me.isSubscribed(name , namespace)){
 
-        if(!forceSubscribe){
-
-            return ;
-        }
-    
         namespace = generate(name) ;
         
     }

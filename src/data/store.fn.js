@@ -1,28 +1,49 @@
-
 /**
  * 
  * 数据存储器类
  * 
- * @import createRawReader from data.reader.create.raw
- * 
- * @import createDataReader from data.reader.create.data
- * 
- * @import createDataWriter from data.writer.create.data
- * 
- * @import createStorageWriter from data.writer.create.storage
- * 
  * @import Observable from mixin.observable
  * 
- * @import clear from object.clear
+ * @import aclear from array.clear
+ * 
+ * @import oclear from object.clear
+ * 
+ * @import from from array.from
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.function
+ * 
+ * @import is.number
+ * 
+ * @import empty from function.empty value
+ * 
+ * @import add from event.listener.add
+ * 
+ * @import remove from event.listener.remove
+ * 
+ * @param {object} config 配置
  * 
  * @class
  * 
- * @param {object} model 数据模型定义
- * 
- * @return {data.Model} 数据存储器对象 
- * 
- * 
  */
+
+function defaultRecordId({
+    id
+}){
+
+    return id ;
+}
+
+function defaultRecordMerge(record){
+
+    return record ;
+}
+
+function defaultRecordValid(){
+
+    return true ;
+}
 
 class main extends mixins({
     mixins:[
@@ -31,110 +52,322 @@ class main extends mixins({
 }){
 
     constructor({
-        model,
-        data,
+        id = defaultRecordId,
+        merge = defaultRecordMerge,
+        valid = defaultRecordValid,
+        reader,
+        properties = {},
         ...options
-    }){
+    } = {}){
 
-       super(options) ;
+        super(options) ;
 
-       let me = this ;
+        let me = this ;
 
-       me.rawReader = createRawReader(model) ;
+        me.doRecordMerge = merge ;
 
-       me.dataReader = createDataReader(model) ;
+        me.doRecordId = id ;
 
-       me.dataWriter = createDataWriter() ;
+        me.doRecordValid = valid ;
 
-       me.storageWriter = createStorageWriter() ;
+        me.data = [] ;
 
-       me.ids = {} ;
+        me.ids = {} ;
 
-       if(data){
+        me.reader = include('data.reader.json')(reader) ;
 
-            me.data = me.dataReader.read(data) ;
-       }
+        let names = Object.keys(properties),
+            orginProperties = {},
+            store = this;
+
+        for(let name of names){
+
+            let property = properties[name] ;
+
+            if(isFunction(property)){
+
+                orginProperties[name] = {
+                    enumerable:true,
+                    get(){
+
+                        return property(this , store) ;
+                    }
+                } ;
+
+            }else if(isObject(property)){
+
+                let {
+                    set = empty,
+                    get = empty
+                } = property ;
+
+                orginProperties[name] = {
+                    enumerable:true,
+                    get(){
+
+                        return get(this , store) ;
+                    },
+
+                    set(value){
+
+                        set(value , this , store) ;
+                    }
+                } ;
+            }
+        }
+
+        me.properties = orginProperties ;
     }
 
-    get hasData(){
+    get isEmpty(){
 
-        return !! this.data ;
+        return this.data.length === 0 ;
     }
 
-    save(){
+    pipe(store){
+
+        let me = this ;
+
+        me.pipeStore = store ;
+
+        let onPipeStoreLoad = () => {
+
+            let {
+                pipeData
+            } = this ;
+
+            if(pipeData.length){
+
+                store.load(pipeData) ;
+            }
+
+        },
+            onPipeStoreChange = () => {
+
+                let {
+                    pipeData
+                } = this ;
+    
+                if(pipeData.length){
+    
+                    store.append(pipeData) ;
+                }
+    
+            };
+
+        add(me , {
+            load:onPipeStoreLoad,
+            change:onPipeStoreChange
+        });
+
+        me.onPipeStoreLoad = onPipeStoreLoad ;
+
+        me.onPipeStoreChange = onPipeStoreChange ; 
+
+        return store ;
+    }
+
+    unpipe(){
 
         let me = this,
         {
-            hasData,
-            storageWriter,
-            data
-        } = me;
+            pipeStore,
+            onPipeStoreLoad,
+            onPipeStoreChange
+        } = me ;
 
-        if(hasData){
+        if(pipeStore){
 
-            me.fireEvent('save' , storageWriter.write(data)) ;
+            remove(me , {
+                load:onPipeStoreLoad,
+                change:onPipeStoreChange
+            }) ;
+
+            delete me.pipeStore ;
+
+            delete me.onPipeStoreLoad ;
+
+            delete me.onPipeStoreChange ;
         }
+    }
+
+    getRecordById(id){
+
+        let me = this,
+        {
+            ids,
+            data
+        } = me ;
+
+        if(ids.hasOwnProperty(id)){
+
+            return data[ids[id]] ;
+        }
+    }
+
+    indexOf(record){
+
+        let me = this,
+        {
+            doRecordId,
+            ids
+        } = me,
+        index = ids[doRecordId(record , me)];
+
+        return isNumber(index) ? index : -1 ;
+    }
+
+    getPreviousRecord(record){
+
+        let me = this,
+        {
+            data
+        } = me,
+        index = me.indexOf(record);
+
+        if(index > 0){
+
+            return data[index - 1] ;
+        }
+    }
+
+    get last(){
+
+        let {
+            data,
+            isEmpty
+        } = this ;
+
+        if(!isEmpty){
+
+            return data[data.length - 1] ;
+        }
+    }
+
+    append(data , isFireEvent = true){
+
+        let me = this,
+        {
+            data:records,
+            ids,
+            doRecordMerge,
+            doRecordValid,
+            doRecordId,
+            reader,
+            properties
+        } = me ;
+
+        data = reader.read(data) ;
+
+        let updates = [],
+            appends = [],
+            all = [];
+
+        for(let record of data){
+
+            if(!doRecordValid(record , me)){
+
+                continue ;
+            }
+
+            if(properties){
+
+                Object.defineProperties(record , properties) ;
+            }
+
+            let id = doRecordId(record , me),
+                oldRecord = me.getRecordById(id) ;
+
+            if(oldRecord){
+
+                record = records[me.indexOf(oldRecord)] = doRecordMerge(record , oldRecord , me) ;
+
+                updates.push(record) ;
+
+                all.push(record) ;
+
+            }else{
+
+                records.push(record) ;
+
+                appends.push(record) ;
+
+                all.push(record) ;
+                
+                ids[id] = records.length - 1 ;
+                
+            }
+        }
+
+        if(appends.length && isFireEvent){
+
+            me.fireEvent('append' , appends) ;
+
+        }
+
+        if(updates.length && isFireEvent){
+
+            me.fireEvent('update' , updates) ;
+        }
+
+        if(all.length && isFireEvent){
+
+            me.fireEvent('change' , all) ;
+        }
+        
+        return {
+            updates,
+            appends,
+            all
+        } ;
     }
 
     load(data){
 
+        let me = this ;
+
+        me.clear() ;
+
+        me.append(data , false) ;
+
+        me.fireEvent('load' , me.data) ;
+    }
+
+    refresh(){
+
         let me = this,
         {
-            rawReader,
-            dataWriter
+            ids,
+            doRecordId,
+            data
         } = me ;
 
-        me.fireEvent('load' , dataWriter.write(me.data = rawReader.read(data))) ;
-    }
+        let count = 0 ;
 
-    append(data){
+        for(let record of data){
 
-        let me = this,
-        {
-            rawReader
-        } = me ;
-
-        add.call(me , ...rawReader.read(data)) ;
-
-        console.log('增量载入数据' , $data) ;
-
-        // 触发 add 事件
-    }
-
-    onReplaceRecord(record , oldRecord){
-
-        return record ;
-    }
- }
-
- function add(...records) {
-    
-    let me = this,
-    {
-        ids,
-        data
-    } = me ;
-
-    for(let record of records){
-
-        let {
-            __ZBEE_DATA_ID__:id
-        } = record ;
-
-        if(id){
-
-            if(ids.hasOwnProperty(id)){
-
-                let index = ids[id] ;
-
-                data[index] = me.onReplaceRecord(record , data[index]) ;
-            
-            }else{
-
-                data.push(record) ;
-
-                ids[id] = data.length - 1 ;
-            }
+            ids[doRecordId(record , me)] = count ++;
         }
+
     }
- }
+
+    clear(){
+
+        let me = this,
+        {
+            data,
+            ids
+        } = me ;
+
+        aclear(data) ;
+
+        oclear(ids) ;
+
+        me.fireEvent('clear') ;
+    }
+
+    get pipeData(){
+
+        return this.data ;
+    }
+}

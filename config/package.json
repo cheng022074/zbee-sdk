@@ -9,6 +9,8 @@
             "data.store.tree.mind",
             "data.reader.json",
             "data.convert.*",
+            "data.pusher",
+            "data.store",
             "browser.canvas.*",
             "object.equals",
             "map",
@@ -38,10 +40,12 @@
             "browser.event.gesture.react",
             "browser.event.touch.init",
             "browser.event.visibility.init",
+            "browser.environment",
             "miniprogram.storage",
             "os.name",
             "number.format",
             "json.stringify",
+            "json.clone",
             "directory.readAllFilePaths",
             "file.read.json",
             "file.write",
@@ -49,11 +53,12 @@
             "webpack.*",
             "object.flat",
             "object.keys",
-            "log.node"
+            "log.node",
+            "class.name",
+            "process.spawn"
         ],
         "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND",
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\PROJECT\\ZTS\\HQ\\ELECTRON"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
         ]
     },
     "mind-sdk":{

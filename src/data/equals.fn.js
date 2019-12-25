@@ -24,6 +24,11 @@
 
     if(type1 === type2){
 
+        if(value1 === value2){
+
+            return true ;
+        }
+
         switch(type1){
 
             case 'object':
@@ -37,10 +42,6 @@
             case 'date':
 
                 return date_equals(value1 , value2) ;
-
-            default:
-
-                return base_equals(value1 , value2) ;
         }
     }
 
@@ -101,9 +102,4 @@
  function date_equals(value1 , value2){
 
     return value1.getTime() === value2.getTime() ;
- }
-
- function base_equals(value1 , value2){
-
-    return value1 === value2 ;
  }
