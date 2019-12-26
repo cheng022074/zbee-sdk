@@ -9,6 +9,10 @@
  * 
  * @import round from math.round
  * 
+ * @import truncation from math.truncation
+ * 
+ * @import getDigit from math.digit
+ * 
  * @import is.number
  * 
  * @param {mixed} data 数据
@@ -19,7 +23,9 @@
  * 
  * @param {string} [config.keepMode = 'round'] 保留小数法
  * 
- * @return {number} 转换后的数值 
+ * @param {boolean} [config.keepDigitRightZero = false] 是否保留小数点左边的
+ * 
+ * @return {number|string} 转换后的数值 
  * 
  */
 
@@ -40,6 +46,24 @@
         case 'round':
 
             data = round(data , digit) ;
+
+        case 'truncation':
+
+            data = truncation(data , digit) ;
+    }
+
+    if(keepDigitRightZero){
+
+      let realDigit = getDigit(data) ;
+
+      data = String(data) ;
+
+      if(realDigit < digit){
+
+         return data.padEnd(data.length + (digit - realDigit) , '0') ;
+      }
+
+      return data ;
     }
 
     return data ;
