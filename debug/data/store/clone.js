@@ -37,4 +37,18 @@
 
  store.load(data) ;
 
- console.log(store.clone()) ;
+ cloneStore = store.clone() ;
+
+ store.clear() ;
+
+ {
+
+    let {
+        data
+    } = cloneStore ;
+   
+    for(let item of data){
+       
+       console.log(item) ;
+    }
+ }
