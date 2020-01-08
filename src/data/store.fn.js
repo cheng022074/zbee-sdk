@@ -34,6 +34,8 @@
  * 
  * @import toNumber from data.convert.number
  * 
+ * @import createReader from data.reader.json
+ * 
  * @param {object} config 配置
  * 
  * @class
@@ -104,7 +106,7 @@ class main extends mixins({
         merge = defaultRecordMerge,
         valid = defaultRecordValid,
         reader,
-        sorts,
+        sorts = [],
         properties = {},
         ...options
     } = {}){
@@ -123,7 +125,7 @@ class main extends mixins({
 
         me.ids = {} ;
 
-        me.reader = include('data.reader.json')(reader) ;
+        me.reader = createReader(reader) ;
 
         let names = Object.keys(properties),
             orginProperties = {},
@@ -382,7 +384,7 @@ class main extends mixins({
         {
             length:len
         } = data,
-        fixedRecordPosition = 0,
+        fixedRecordPosition = len,
         fixedRecordPositionIndex = 0;
 
         for(let i = len - 1 ; i >= 0 ; i --){
@@ -430,8 +432,6 @@ class main extends mixins({
         } = me,
         id = doRecordId(record , me),
         index = me.getAppendRecordIndex(record);
-
-        data.push(record) ;
 
         insert(data , index , record) ;
 
