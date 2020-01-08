@@ -22,6 +22,7 @@
             "is.directory",
             "is.null",
             "directory.copy",
+            "directory.create",
             "date.get",
             "date.list",
             "date.parse",

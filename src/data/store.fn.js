@@ -22,17 +22,21 @@
  * 
  * @import remove from event.listener.remove
  * 
+ * @import generate from id.generate
+ * 
+ * @import is.empty
+ * 
+ * @import insert from array.insert
+ * 
  * @param {object} config 配置
  * 
  * @class
  * 
  */
 
-function defaultRecordId({
-    id
-}){
+function defaultRecordId(){
 
-    return id ;
+    return generate('record-') ;
 }
 
 function defaultRecordMerge(record){
@@ -136,7 +140,7 @@ class main extends mixins({
                 pipeData
             } = this ;
 
-            if(pipeData.length){
+            if(!isEmpty(pipeData)){
 
                 store.load(pipeData) ;
             }
@@ -288,13 +292,11 @@ class main extends mixins({
 
             }else{
 
-                records.push(record) ;
+                me.doAppend(record) ;
 
                 appends.push(record) ;
 
                 all.push(record) ;
-                
-                ids[id] = records.length - 1 ;
                 
             }
         }
@@ -313,6 +315,8 @@ class main extends mixins({
         if(all.length && isFireEvent){
 
             me.fireEvent('change' , all) ;
+
+            me.fireEvent('pipedata' , all) ;
         }
         
         return {
@@ -320,6 +324,54 @@ class main extends mixins({
             appends,
             all
         } ;
+    }
+
+    getAppendRecordIndex(record){
+
+        let me = this,
+        {
+            data,
+            record,
+            fixedRecordPositions
+        } = me,
+        {
+            length:len
+        } = data;
+
+        for(let i = len - 1 ; i >= 0 ; i --){
+
+            let record = data[i];
+
+            for(let fixedRecordPosition of fixedRecordPositions){
+
+                if(!fixedRecordPosition(data[i] , record , me)){
+
+                    notFind = true ;
+
+                    break ;
+                }
+            }
+        }
+
+        return 0 ;
+    }
+
+    doAppend(record){
+
+        let me = this,
+        {
+            data,
+            ids,
+            doRecordId
+        } = me,
+        id = doRecordId(record , me),
+        index = me.getAppendRecordIndex(record);
+
+        data.push(record) ;
+
+        insert(data , index , record) ;
+
+        ids[id] = index;
     }
 
     load(data){
@@ -330,7 +382,13 @@ class main extends mixins({
 
         me.append(data , false) ;
 
-        me.fireEvent('load' , me.data) ;
+        let {
+            data:realData
+        } = me ;
+
+        me.fireEvent('load' , realData) ;
+
+        me.fireEvent('pipedata' , realData) ;
     }
 
     refresh(){
