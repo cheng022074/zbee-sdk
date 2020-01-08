@@ -26,7 +26,7 @@
  * 
  * @import is.empty
  * 
- * @import is.string
+ * @import isObject from is.object.simple
  * 
  * @import is.function
  * 
@@ -61,10 +61,27 @@ function createFixedRecordPositions(sorts){
 
     for(let sort of sorts){
 
-        if(isString(sort)){
+        if(isObject(sort)){
 
-            sort = (record , appendRecord) => toNumber(record[sort]) <= toNumber(appendRecord[sort]) ;
+            let {
+                field,
+                direction = 'asc'
+            } = sort;
 
+            switch(direction){
+
+                case 'asc':
+
+                    sort = (record , appendRecord) => toNumber(record[field]) <= toNumber(appendRecord[field]) ;
+
+                    break ;
+
+                case 'desc':
+
+                    sort = (record , appendRecord) => toNumber(record[field]) >= toNumber(appendRecord[field]) ;
+            }
+
+            
         }
         
         if(isFunction(sort)){
