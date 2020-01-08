@@ -26,7 +26,13 @@
  * 
  * @import is.empty
  * 
+ * @import is.string
+ * 
+ * @import is.function
+ * 
  * @import insert from array.insert
+ * 
+ * @import toNumber from data.convert.number
  * 
  * @param {object} config 配置
  * 
@@ -49,6 +55,27 @@ function defaultRecordValid(){
     return true ;
 }
 
+function createFixedRecordPositions(sorts){
+
+    let results = [] ;
+
+    for(let sort of sorts){
+
+        if(isString(sort)){
+
+            sort = (record , appendRecord) => toNumber(record[sort]) <= toNumber(appendRecord[sort]) ;
+
+        }
+        
+        if(isFunction(sort)){
+
+            results.push(sort) ;
+        }
+    }
+
+    return results ;
+}
+
 class main extends mixins({
     mixins:[
         Observable
@@ -60,6 +87,7 @@ class main extends mixins({
         merge = defaultRecordMerge,
         valid = defaultRecordValid,
         reader,
+        sorts,
         properties = {},
         ...options
     } = {}){
@@ -121,6 +149,8 @@ class main extends mixins({
         }
 
         me.properties = orginProperties ;
+
+        me.fixedRecordPositions = createFixedRecordPositions(sorts) ;
     }
 
     get isEmpty(){
@@ -253,7 +283,6 @@ class main extends mixins({
         let me = this,
         {
             data:records,
-            ids,
             doRecordMerge,
             doRecordValid,
             doRecordId,
@@ -331,29 +360,47 @@ class main extends mixins({
         let me = this,
         {
             data,
-            record,
             fixedRecordPositions
         } = me,
         {
             length:len
-        } = data;
+        } = data,
+        fixedRecordPosition = 0,
+        fixedRecordPositionIndex = 0;
 
         for(let i = len - 1 ; i >= 0 ; i --){
 
-            let record = data[i];
+            let item = data[i],
+                j = 0 ;
 
-            for(let fixedRecordPosition of fixedRecordPositions){
+            for(let doFixedRecordPosition of fixedRecordPositions){
 
-                if(!fixedRecordPosition(data[i] , record , me)){
-
-                    notFind = true ;
+                if(j > fixedRecordPositionIndex){
 
                     break ;
                 }
+
+                if(!doFixedRecordPosition(item , record , me)){
+
+                    break ;
+                }
+
+                j ++ ;
+            }
+
+            if(j > fixedRecordPositionIndex){
+
+                fixedRecordPosition = i + 1 ;
+
+                fixedRecordPositionIndex ++ ;
+            
+            }else if(fixedRecordPositionIndex !== 0){
+
+                break ;
             }
         }
 
-        return 0 ;
+        return fixedRecordPosition ;
     }
 
     doAppend(record){
