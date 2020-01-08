@@ -8,6 +8,10 @@
  * 
  * @import oclear from object.clear
  * 
+ * @import aClone from array.clone
+ * 
+ * @import oClone from object.clone
+ * 
  * @import from from array.from
  * 
  * @import isObject from is.object.simple
@@ -112,13 +116,19 @@ class main extends mixins({
         id = defaultRecordId,
         merge = defaultRecordMerge,
         valid = defaultRecordValid,
-        reader,
+        reader = {},
         sorts = [],
         properties = {},
+        isEmpty = false,
         ...options
     } = {}){
 
         super(options) ;
+
+        if(isEmpty === true){
+
+            return ;
+        }
 
         let me = this ;
 
@@ -177,6 +187,41 @@ class main extends mixins({
         me.properties = orginProperties ;
 
         me.fixedRecordPositions = createFixedRecordPositions(sorts) ;
+    }
+
+    clone(){
+
+        let target = new main({
+            isEmpty:true
+        }),
+        {
+            doRecordMerge,
+            doRecordId,
+            doRecordValid,
+            data,
+            ids,
+            reader,
+            properties,
+            fixedRecordPositions
+        } = this;
+
+        target.doRecordMerge = doRecordMerge ;
+
+        target.doRecordId = doRecordId ;
+
+        target.doRecordValid = doRecordValid ;
+
+        target.data = aClone(data) ;
+
+        target.ids = oClone(ids) ;
+
+        target.reader = reader ;
+
+        target.properties = properties ;
+
+        target.fixedRecordPositions = fixedRecordPositions ;
+
+        return target ;
     }
 
     get isEmpty(){
