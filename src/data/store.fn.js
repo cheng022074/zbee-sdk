@@ -30,6 +30,8 @@
  * 
  * @import is.function
  * 
+ * @import is.string
+ * 
  * @import insert from array.insert
  * 
  * @import toNumber from data.convert.number
@@ -63,6 +65,13 @@ function createFixedRecordPositions(sorts){
 
     for(let sort of sorts){
 
+        if(isString(sort)){
+
+            sort = {
+                field:sort
+            } ;
+        }
+
         if(isObject(sort)){
 
             let {
@@ -81,9 +90,7 @@ function createFixedRecordPositions(sorts){
                 case 'desc':
 
                     sort = (record , appendRecord) => toNumber(record[field]) >= toNumber(appendRecord[field]) ;
-            }
-
-            
+            }            
         }
         
         if(isFunction(sort)){
@@ -384,7 +391,7 @@ class main extends mixins({
         {
             length:len
         } = data,
-        fixedRecordPosition = len,
+        fixedRecordPosition = 0,
         fixedRecordPositionIndex = 0;
 
         for(let i = len - 1 ; i >= 0 ; i --){

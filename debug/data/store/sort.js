@@ -10,6 +10,9 @@
  */
 
  let store = new Store({
+     sorts:[
+        'id'
+     ],
      reader:{
         fields:[
             'id',
