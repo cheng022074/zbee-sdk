@@ -2,7 +2,7 @@
  * 
  * 读取外部数据
  * 
- * @import createReader from ....create
+ * @import createReader from ..create
  * 
  * @import is.string
  * 

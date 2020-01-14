@@ -8,11 +8,11 @@
  * 
  * @import getName from browser.event.name.single
  * 
- * @import enabled from ....enabled scoped
+ * @import enabled from ..enabled scoped
  * 
  * @import scale from browser.scale
  * 
- * @import resetInfo from ....info.reset scoped
+ * @import resetInfo from ..info.reset scoped
  * 
  * @import getDistance from math.point.distance
  * 

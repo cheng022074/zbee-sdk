@@ -3,7 +3,7 @@
  * 
  * 脑图节点
  * 
- * @import Model from ....tree value
+ * @import Model from ..tree value
  * 
  * @import isEmpty from is.object.empty
  * 

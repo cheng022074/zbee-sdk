@@ -3,9 +3,9 @@
  * 
  * 在数组中去除所有指定项目
  * 
- * @import remove from ..index
+ * @import remove from .index
  * 
- * @import indexOf from ....indexOf
+ * @import indexOf from ..indexOf
  * 
  * @param {array} data 数组
  * 

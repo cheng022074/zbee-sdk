@@ -3,7 +3,7 @@
  * 
  * 对象版部署封装
  * 
- * @import deploy from ....deploy
+ * @import deploy from ..deploy
  * 
  * @param {object} connections 订阅对象
  * 

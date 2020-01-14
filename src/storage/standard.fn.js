@@ -3,7 +3,7 @@
  * 
  * 标准键值存储器
  * 
- * @import Storage from ....storage value
+ * @import Storage from ..storage value
  * 
  * @singleton
  * 

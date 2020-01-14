@@ -6,13 +6,13 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import add from ..add
+ * @import add from .add
  * 
- * @import remove from ..remove
+ * @import remove from .remove
  * 
  * @import get from function.get
  * 
- * @import listeners from ....listeners value
+ * @import listeners from ..listeners value
  * 
  * @import native from .native.add
  * 

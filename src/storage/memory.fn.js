@@ -3,7 +3,7 @@
  * 
  * 内存键值存储器
  * 
- * @import Storage from ....storage value
+ * @import Storage from ..storage value
  * 
  * @import clear from object.clear
  * 

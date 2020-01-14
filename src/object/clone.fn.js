@@ -3,7 +3,7 @@
  * 
  * 拷贝对象
  * 
- * @import assign from ..assign
+ * @import assign from .assign
  * 
  * @param {object} target 目标数据
  * 

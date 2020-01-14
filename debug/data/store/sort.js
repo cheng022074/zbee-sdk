@@ -24,9 +24,10 @@
 }] ;
 
  let ascStore = new Store({
-     sorts:[
-        'id'
-     ],
+     sorts:[{
+        field:'id',
+        direction:'desc'
+     }],
      reader:{
         fields:[
             'id',
@@ -49,31 +50,3 @@
        console.log(item) ;
     }
  }
-
- let descStore = new Store({
-    sorts:[{
-        field:'id',
-        direction:'desc'
-    }],
-    reader:{
-       fields:[
-           'id',
-           'name'
-       ]
-    }
-}) ;
-
-descStore.load(data) ;
-
-console.log('逆序') ;
-
-{
-    let {
-        data
-    } = descStore ;
-    
-    for(let item of data){
-    
-       console.log(item) ;
-    }
-}

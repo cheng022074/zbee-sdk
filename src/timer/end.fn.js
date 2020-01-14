@@ -3,7 +3,7 @@
  * 
  * 结束计时
  * 
- * @import reset from ..reset scoped
+ * @import reset from .reset scoped
  *
  */
 

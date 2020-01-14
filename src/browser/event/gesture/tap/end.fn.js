@@ -5,7 +5,7 @@
  * 
  * @import getEvent from browser.event.single
  * 
- * @import disabled from ..disabled scoped
+ * @import disabled from .disabled scoped
  * 
  * @import stop from browser.event.stop
  * 

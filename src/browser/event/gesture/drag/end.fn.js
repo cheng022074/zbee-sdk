@@ -7,11 +7,11 @@
  * 
  * @import getEvent from browser.event.single
  * 
- * @import updateInfo from ..info.update scoped
+ * @import updateInfo from .info.update scoped
  * 
  * @import onAxisEnd from .end.axis scoped
  * 
- * @import disabled from ..disabled scoped
+ * @import disabled from .disabled scoped
  * 
  * @param {Event} e 事件对象
  * 

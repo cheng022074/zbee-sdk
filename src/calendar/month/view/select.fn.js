@@ -3,7 +3,7 @@
  * 
  * 选定
  * 
- * @import deselect from ..deselect scoped
+ * @import deselect from .deselect scoped
  * 
  * @import getLastDate from month.date.last
  * 

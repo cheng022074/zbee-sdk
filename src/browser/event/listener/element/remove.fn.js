@@ -3,7 +3,7 @@
  * 
  * 去除监听元素事件
  * 
- * @import remove from ....remove
+ * @import remove from ..remove
  * 
  * @param {HTMLElement} el 元素
  * 

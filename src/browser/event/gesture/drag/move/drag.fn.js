@@ -7,7 +7,7 @@
  * 
  * @import getEvent from browser.event.single
  * 
- * @import updateInfo from ....info.update scoped
+ * @import updateInfo from ..info.update scoped
  * 
  * @param {Event} e 事件对象
  * 

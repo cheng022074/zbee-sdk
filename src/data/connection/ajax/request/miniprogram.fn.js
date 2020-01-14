@@ -3,7 +3,7 @@
  * 
  * 基于小程序的 AJAX 请求实现
  * 
- * @import request from ....request
+ * @import request from ..request
  * 
  * @param {string} url 请求路径
  * 

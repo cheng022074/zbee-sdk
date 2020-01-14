@@ -7,7 +7,7 @@
  * 
  * @import prev from date.prev
  * 
- * @import getLastDate from ..last
+ * @import getLastDate from .last
  * 
  * @param {number} year 年份
  * 

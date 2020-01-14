@@ -6,9 +6,9 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import remove from ..remove
+ * @import remove from .remove
  * 
- * @import listeners from ....listeners value
+ * @import listeners from ..listeners value
  * 
  * @import native from .native.remove
  * 

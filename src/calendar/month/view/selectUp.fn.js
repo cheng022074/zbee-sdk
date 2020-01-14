@@ -9,13 +9,13 @@
  * 
  * @import get from date.get
  * 
- * @import prevMonth from ..selectPrevMonth scoped
+ * @import prevMonth from .selectPrevMonth scoped
  * 
  * @import prevDate from date.prev.week
  * 
  * @import getProperty from date.get.properties
  * 
- * @import select from ..select scoped
+ * @import select from .select scoped
  * 
  */
 

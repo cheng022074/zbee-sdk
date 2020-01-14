@@ -48,9 +48,23 @@
  * 
  */
 
-function defaultRecordId(){
+function defaultRecordId(record , me){
 
-    return generate('record-') ;
+    let {
+        idField
+    } = me ;
+
+    if(!record.hasOwnProperty(idField)){
+
+        Object.defineProperty(record , idField , {
+            enumerable: false,
+            configurable: false,
+            writable: false,
+            value:generate('record-')
+        }) ;
+    }
+
+    return record[idField] ;
 }
 
 function defaultRecordMerge(record){
@@ -113,6 +127,7 @@ class main extends mixins({
 }){
 
     constructor({
+        idField = '_id',
         id = defaultRecordId,
         merge = defaultRecordMerge,
         valid = defaultRecordValid,
@@ -131,6 +146,8 @@ class main extends mixins({
         }
 
         let me = this ;
+
+        me.idField = idField ;
 
         me.doRecordMerge = merge ;
 
@@ -253,7 +270,7 @@ class main extends mixins({
                     pipeData
                 } = this ;
     
-                if(pipeData.length){
+                if(!isEmpty(pipeData)){
     
                     store.append(pipeData) ;
                 }
@@ -459,19 +476,25 @@ class main extends mixins({
                 j ++ ;
             }
 
+            
             if(j > fixedRecordPositionIndex){
 
-                fixedRecordPosition = i + 1 ;
-
                 fixedRecordPositionIndex ++ ;
+
+                fixedRecordPosition = i + 1 ;
             
             }else if(fixedRecordPositionIndex !== 0){
 
                 break ;
             }
         }
+        
+        if(fixedRecordPositions.length){
 
-        return fixedRecordPosition ;
+            return fixedRecordPosition ;
+        }
+
+        return len ;
     }
 
     doAppend(record){

@@ -5,9 +5,9 @@
  * 
  * @import getName from browser.event.name.single
  * 
- * @import onMove from ..move scoped
+ * @import onMove from .move scoped
  * 
- * @import onEnd from ..end scoped
+ * @import onEnd from .end scoped
  * 
  * @import on from browser.event.listener.global.add
  * 

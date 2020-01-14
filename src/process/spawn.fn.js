@@ -3,7 +3,7 @@
  * 
  * 基于 spawn 进程实现
  * 
- * @import Process from ....process value
+ * @import Process from ..process value
  * 
  * @import add from event.listener.add
  * 
