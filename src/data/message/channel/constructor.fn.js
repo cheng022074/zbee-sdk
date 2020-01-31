@@ -3,6 +3,11 @@
  * 
  * 初始化消息通道
  * 
+ * @import createProxy from object.proxy
+ * 
  */
 
- // 代码实现
+ let me = this,
+    proxy = createProxy(me) ;
+
+proxy.call('initReceiver' , me.onReceive.bind(me)) ;
