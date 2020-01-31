@@ -9,4 +9,11 @@
  * 
  */
 
- // 代码实现
+ let {
+     proxy
+ } = this ;
+
+ proxy.call('onSend' , {
+     to:address,
+     data
+ }) ;
