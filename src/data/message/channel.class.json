@@ -1,0 +1,11 @@
+{
+    "constructor":true,
+    "class":true,
+    "methods":[
+        "send",
+        "onReceive",
+        "resigner",
+        "unregister",
+        "destroy"
+    ]
+}
