@@ -7,6 +7,12 @@
  * 
  * @param {mixed} data 发送的数据
  * 
+ * @param {object} [config = {}] 发送配置
+ * 
+ * @param {string} [config.fromAddress] 发送消息地址
+ * 
+ * @param {boolean} [config.reSend = true] 是否重发消息
+ * 
  */
 
  let {
@@ -15,5 +21,7 @@
 
  proxy.call('onSend' , {
      to:address,
-     data
+     data,
+     reSend,
+     from:fromAddress
  }) ;
