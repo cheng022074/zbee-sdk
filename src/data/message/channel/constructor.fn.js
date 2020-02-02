@@ -7,7 +7,11 @@
  * 
  * @param {boolean} [config.reSendDelay = 0] 重发消息延迟
  * 
+ * @param {data.message.Channel} [config.concatenateChannels] 转发消息通道
+ * 
  * @import createProxy from object.proxy
+ * 
+ * @import createArrayProxy from array.proxy
  * 
  */
 
@@ -21,3 +25,5 @@ me.proxy = proxy ;
 me.addresses = {} ;
 
 me.reSendDelay = reSendDelay ;
+
+me.concatenateChannels = createArrayProxy(concatenateChannels) ;

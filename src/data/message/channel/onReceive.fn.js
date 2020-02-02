@@ -28,19 +28,10 @@
 
  if(isBoolean(received)){
 
-    if(received === true){
+    if((received && isDefined(replyData)) || !received){
 
-        if(isDefined(replyData)){
+        address = from ;
 
-            address = from ;
-        }
-    
-    }else if(reSend === true){
-
-        setTimeout(() => me.send(to , data , {
-            reSend,
-            fromAddress:from
-        }) , reSendDelay) ;
     }
  
  }else{
@@ -48,7 +39,39 @@
     address = to ;
  }
 
- if(isDefined(address) && addresses.hasOwnProperty(address)){
+ if(isDefined(address)){
 
-    addresses[to](message) ;
+    let {
+        concatenateChannels
+    } = me ;
+
+    if(addresses.hasOwnProperty(address)){
+
+        if(received === false){
+
+            if(reSend){
+
+                setTimeout(() => me.send(to , data , {
+                    reSend,
+                    fromAddress:address
+                }) , reSendDelay) ; 
+            }   
+            
+        }else{
+
+            addresses[address](message) ;
+        }
+    
+    }else if(isBoolean(received)){
+    
+        concatenateChannels.call('onReceive' , message) ;
+    
+    }else{
+    
+        concatenateChannels.call('send' , to , data , {
+            reSend,
+            fromAddress:from
+        }) ;
+    }
+
  }
