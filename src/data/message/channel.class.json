@@ -3,6 +3,8 @@
     "class":true,
     "methods":[
         "send",
+        "connect",
+        "disconnect",
         "onReceive",
         "resigner",
         "unregister",
