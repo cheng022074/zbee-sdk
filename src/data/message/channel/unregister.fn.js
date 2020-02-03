@@ -7,4 +7,8 @@
  * 
  */
 
- // 代码实现
+ let {
+    addresses
+ } = this ;
+
+ delete addresses[address] ;
