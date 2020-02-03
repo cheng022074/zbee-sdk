@@ -75,12 +75,15 @@
         if(addresses.hasOwnProperty(from)){
 
             let {
-                reconnection
+                reconnection,
+                processive
             } = message ;
 
             if(reconnection){
 
-                setTimeout(() => me.send(message) , reSendDelay) ; 
+                let method = processive ? 'connect' : 'send' ;
+
+                setTimeout(() => me[method](message) , reSendDelay) ; 
             }
         
         }else if(concatenateChannels.length){
