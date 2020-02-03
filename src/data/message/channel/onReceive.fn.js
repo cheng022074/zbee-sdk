@@ -7,6 +7,16 @@
  * 
  * @import is.defined
  * 
+ * @import isSendMessage from is.message.send
+ * 
+ * @import isReplyMessage from is.message.reply
+ * 
+ * @import isReplySuccessMessage from is.message.reply.ok
+ * 
+ * @import isReplyFailureMessage from is.message.reply.failure
+ * 
+ * @import is.promise
+ * 
  * @param {data.Message} message 消息对象
  * 
  */
@@ -15,28 +25,49 @@
  {
      addresses,
      reSendDelay
- } = me,
- {
-    from,
-    to,
-    data,
-    replyData,
-    reSend,
-    received
- } = message,
- address;
+ } = me;
 
- if(isBoolean(received)){
+ if(isSendMessage(message)){ // 当前消息为发送信息
 
-    if((received && isDefined(replyData)) || !received){
+    if(addresses.hasOwnProperty(to)){
 
-        address = from ;
+        let result = addresses[to].receive(message) ;
 
+        if(isPromise(result)){
+
+            result.then(result => me.reply(message , result)) ;
+
+        }else if(isDefined(result)){
+
+            me.reply(message , result) ;
+        }
+    
+    }else{
+
+        // 使用关联消息通道再发送
     }
  
- }else{
+ }else if(isReplyMessage(message)){ // 当前消息为回复信息
 
-    address = to ;
+    if(isReplySuccessMessage(message)){
+
+        if(addresses.hasOwnProperty(from)){
+
+            let result = addresses[from].reply(message),
+                {
+                    id
+                } = message;
+    
+            if(isDefined(result)){
+    
+                me.fireEvent('message' , id , result) ;
+            }
+        
+        }else{
+
+            
+        }
+    }
  }
 
  if(isDefined(address)){
