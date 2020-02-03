@@ -75,10 +75,10 @@
         if(addresses.hasOwnProperty(from)){
 
             let {
-                reSend
+                reconnection
             } = message ;
 
-            if(reSend){
+            if(reconnection){
 
                 setTimeout(() => me.send(message) , reSendDelay) ; 
             }
