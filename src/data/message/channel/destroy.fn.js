@@ -3,6 +3,17 @@
  * 
  * 销毁消息通道
  * 
+ * @import clear1 from object.clear
+ * 
+ * @import clear2 from array.clear
+ * 
  */
 
- // 代码实现
+ let {
+    addresses,
+    concatenateChannels
+ } = this ;
+
+ clear1(addresses) ;
+
+ clear2(concatenateChannels) ;
