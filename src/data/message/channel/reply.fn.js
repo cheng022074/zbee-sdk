@@ -1,12 +1,10 @@
 
 /**
  * 
- * 函数实现说明
+ * 回复消息
  * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
+ * @param {data.Message} message 消息
  * 
  */
 
- // 代码实现
+ this.Proxy.call('onReply' , message) ;
