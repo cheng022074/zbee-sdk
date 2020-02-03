@@ -1,12 +1,24 @@
 
 /**
  * 
- * 函数实现说明
+ * 与其它消息通道完成互联
  * 
- * @param {mixed} data 参数说明
+ * @import from from array.from
  * 
- * @return {mixed} 返回说明 
+ * @param {mixed} channels 其它的对接的消息通道对象
  * 
  */
 
- // 代码实现
+ channels = from(channels) ;
+
+ let me = this,
+ {
+    concatenateChannels
+ } = me ;
+
+ for(let channel of channels){
+
+    channel.concat(me) ;
+
+    concatenateChannels.push(channel) ;
+ }
