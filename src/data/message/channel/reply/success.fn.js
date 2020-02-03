@@ -1,12 +1,18 @@
 
 /**
  * 
- * 函数实现说明
+ * 回复消息发送成功
  * 
- * @param {mixed} data 参数说明
+ * @import reply from ..reply
  * 
- * @return {mixed} 返回说明 
+ * @param {data.Message} message 消息
+ * 
+ * @param {mixed} result 回复结果
  * 
  */
 
- // 代码实现
+ reply({
+     ...message,
+     received:true,
+     result
+ }) ;
