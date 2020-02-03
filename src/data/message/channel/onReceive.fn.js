@@ -38,7 +38,7 @@
 
             result.then(result => me.reply(message , result)) ;
 
-        }else if(isDefined(result)){
+        }else{
 
             me.replySuccess(message , result) ;
         }
