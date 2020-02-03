@@ -3,25 +3,28 @@
  * 
  * 发送消息
  * 
- * @param {string} address 接收消息地址
+ * @import copy from object.copy
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import create from data.message.create
+ * 
+ * @param {mixed} address 接收消息地址
  * 
  * @param {mixed} data 发送的数据
  * 
  * @param {object} [config = {}] 发送配置
  * 
- * @param {string} [config.fromAddress] 发送消息地址
- * 
- * @param {boolean} [config.reSend = true] 是否重发消息
- * 
  */
 
  let {
      proxy
- } = this ;
+ } = this,
+ {
+     message,
+     promise
+ } = create(address , data , config);
 
- proxy.call('onSend' , {
-     to:address,
-     data,
-     reSend,
-     from:fromAddress
- }) ;
+ proxy.call('onSend' , message) ;
+
+ return promise ;
