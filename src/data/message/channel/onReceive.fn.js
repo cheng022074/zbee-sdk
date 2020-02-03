@@ -63,10 +63,7 @@
                     id
                 } = message;
     
-            if(isDefined(result)){
-    
-                me.fireEvent('message' , id , result) ;
-            }
+            me.fireEvent('message' , id , result) ;
         
         }else if(concatenateChannels.length){
 

@@ -6,6 +6,13 @@
         "onReceive",
         "resigner",
         "unregister",
-        "destroy"
+        "destroy",{
+            "name":"replySuccess",
+            "impl":".channel.reply.success"
+        },{
+            "name":"replyFailure",
+            "impl":".channel.reply.failure"
+        },
+        "concat"
     ]
 }

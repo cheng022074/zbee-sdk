@@ -26,4 +26,6 @@ me.addresses = {} ;
 
 me.reSendDelay = reSendDelay ;
 
-me.concatenateChannels = createArrayProxy(concatenateChannels) ;
+me.concatenateChannels = createArrayProxy() ;
+
+me.concat(concatenateChannels) ;
