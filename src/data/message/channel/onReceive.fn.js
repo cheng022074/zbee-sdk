@@ -24,10 +24,11 @@
  let me = this,
  {
      addresses,
-     reSendDelay
+     reSendDelay,
+     concatenateChannels
  } = me;
 
- if(isSendMessage(message)){ // 当前消息为发送信息
+ if(isSendMessage(message)){
 
     if(addresses.hasOwnProperty(to)){
 
@@ -39,15 +40,19 @@
 
         }else if(isDefined(result)){
 
-            me.reply(message , result) ;
+            me.replySuccess(message , result) ;
         }
+    
+    }else if(concatenateChannels.length){
+
+        concatenateChannels.call('send' , message) ;
     
     }else{
 
-        // 使用关联消息通道再发送
+        me.replyFailure(message) ;
     }
  
- }else if(isReplyMessage(message)){ // 当前消息为回复信息
+ }else if(isReplyMessage(message)){
 
     if(isReplySuccessMessage(message)){
 
@@ -63,46 +68,27 @@
                 me.fireEvent('message' , id , result) ;
             }
         
-        }else{
+        }else if(concatenateChannels.length){
 
-            
+            concatenateChannels.call('onReceive' , message) ;
         }
-    }
- }
 
- if(isDefined(address)){
+    }else if(isReplyFailureMessage(message)){
 
-    let {
-        concatenateChannels
-    } = me ;
+        if(addresses.hasOwnProperty(from)){
 
-    if(addresses.hasOwnProperty(address)){
-
-        if(received === false){
+            let {
+                reSend
+            } = message ;
 
             if(reSend){
 
-                setTimeout(() => me.send(to , data , {
-                    reSend,
-                    fromAddress:address
-                }) , reSendDelay) ; 
-            }   
-            
-        }else{
+                setTimeout(() => me.send(message) , reSendDelay) ; 
+            }
+        
+        }else if(concatenateChannels.length){
 
-            addresses[address](message) ;
+            concatenateChannels.call('onReceive' , message) ;
         }
-    
-    }else if(isBoolean(received)){
-    
-        concatenateChannels.call('onReceive' , message) ;
-    
-    }else{
-    
-        concatenateChannels.call('send' , to , data , {
-            reSend,
-            fromAddress:from
-        }) ;
     }
-
  }
