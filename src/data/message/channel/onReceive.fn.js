@@ -9,6 +9,8 @@
  * 
  * @import isSendMessage from is.message.send
  * 
+ * @import isSendProcessiveMessage from is.message.send.processive
+ * 
  * @import isReplyMessage from is.message.reply
  * 
  * @import isReplySuccessMessage from is.message.reply.ok
@@ -16,6 +18,8 @@
  * @import isReplyFailureMessage from is.message.reply.failure
  * 
  * @import is.promise
+ * 
+ * @import isProcessivePromise from is.promise.processive
  * 
  * @param {data.Message} message 消息对象
  * 
@@ -25,22 +29,44 @@
  {
      addresses,
      reSendDelay,
-     concatenateChannels
+     concatenateChannels,
+     processivePromises
  } = me;
 
  if(isSendMessage(message)){
 
+    let {
+        id
+    } = message ;
+
     if(addresses.hasOwnProperty(to)){
 
-        let result = addresses[to].receive(message) ;
+        if(isSendProcessiveMessage(message) && message.cancel === true){
 
-        if(isPromise(result)){
+            if(processivePromises.has(id)){
 
-            result.then(result => me.replySuccess(message , result)) ;
+                processivePromises.get(id).cancel() ;
+
+                processivePromises.delete(id) ;
+            }
 
         }else{
 
-            me.replySuccess(message , result) ;
+            let result = addresses[to].receive(message) ;
+
+            if(isPromise(result)){
+
+                result.then(result => me.replySuccess(message , result)) ;
+
+                if(isProcessivePromise(result)){
+
+                    processivePromises.set(message.id , result) ;
+                }
+
+            }else{
+
+                me.replySuccess(message , result) ;
+            }
         }
     
     }else if(concatenateChannels.length){
