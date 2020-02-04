@@ -43,6 +43,6 @@ for({
             ...sendMessage
         }) ;
 
-        return ;
+        break ;
     }
 }
