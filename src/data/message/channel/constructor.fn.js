@@ -30,4 +30,6 @@ me.concatenateChannels = createArrayProxy() ;
 
 me.concat(concatenateChannels) ;
 
-me.processivePromises = new Map() ;
+me.processivePromises = {} ;
+
+me.sendMessages = {} ;

@@ -14,12 +14,18 @@
  */
 
  let {
-     proxy
+     proxy,
+     sendMessages
  } = this,
  {
      message,
      promise
- } = create(address , params , config);
+ } = create(address , params , config),
+ {
+     id
+ } = message;
+
+ sendMessages[id] = message ;
 
  proxy.call('onSend' , message) ;
 

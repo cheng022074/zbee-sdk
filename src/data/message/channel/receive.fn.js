@@ -9,7 +9,9 @@
  * 
  * @import isSendMessage from is.message.send
  * 
- * @import isSendProcessiveMessage from is.message.send.processive
+ * @import isProcessiveMessage from is.message.processive
+ * 
+ * @import isCancelProcessiveMessage from is.message.processive.cancel
  * 
  * @import isReplyMessage from is.message.reply
  * 
@@ -42,7 +44,7 @@
 
     if(addresses.hasOwnProperty(to)){
 
-        if(isSendProcessiveMessage(message) && message.cancel === true){
+        if(isProcessiveMessage(message) && message.cancel === true){
 
             if(processivePromises.hasOwnProperty(id)){
 
@@ -50,6 +52,8 @@
 
                 delete processivePromises[id] ;
             }
+
+            me.replySuccess(message) ;
 
         }else{
 
@@ -89,9 +93,13 @@
     
             me.fireEvent('message' , id , result) ;
 
-            if(!isSendProcessiveMessage(message)){
+            if(isSendMessage(message) || isCancelProcessiveMessage(message)){
 
                 delete sendMessages[id] ;
+            
+            }else{
+
+                sendMessages[id] = message ;
             }
         
         }else if(concatenateChannels.length){

@@ -5,7 +5,10 @@
         "send",
         "connect",
         "disconnect",
-        "onReceive",
+        {
+            "name":"onReceive",
+            "impl":".channel.reply.receive"
+        },
         "resigner",
         "unregister",
         "destroy",{
