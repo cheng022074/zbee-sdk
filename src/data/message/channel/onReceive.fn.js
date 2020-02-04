@@ -36,7 +36,7 @@
 
         if(isPromise(result)){
 
-            result.then(result => me.reply(message , result)) ;
+            result.then(result => me.replySuccess(message , result)) ;
 
         }else{
 
