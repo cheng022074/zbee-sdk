@@ -29,3 +29,5 @@ me.reSendDelay = reSendDelay ;
 me.concatenateChannels = createArrayProxy() ;
 
 me.concat(concatenateChannels) ;
+
+me.processivePromises = new Map() ;
