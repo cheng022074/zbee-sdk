@@ -7,7 +7,7 @@
         "disconnect",
         {
             "name":"onReceive",
-            "impl":".channel.reply.receive"
+            "impl":".channel.receive"
         },
         "resigner",
         "unregister",
