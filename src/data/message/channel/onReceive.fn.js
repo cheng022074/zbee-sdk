@@ -21,6 +21,8 @@
  * 
  * @import isProcessivePromise from is.promise.processive
  * 
+ * @import remove from array.remove
+ * 
  * @param {data.Message} message 消息对象
  * 
  */
@@ -30,7 +32,8 @@
      addresses,
      reSendDelay,
      concatenateChannels,
-     processivePromises
+     processivePromises,
+     sendMessageIds,
  } = me;
 
  if(isSendMessage(message)){
@@ -82,14 +85,16 @@
 
     if(isReplySuccessMessage(message)){
 
-        if(addresses.hasOwnProperty(from)){
+        if(sendMessageIds.includes(id)){
 
-            let result = addresses[from].reply(message),
-                {
-                    id
-                } = message;
+            let result = addresses[from].reply(message);
     
             me.fireEvent('message' , id , result) ;
+
+            if(!isSendProcessiveMessage(message)){
+
+                remove(sendMessageIds , id) ; 
+            }
         
         }else if(concatenateChannels.length){
 
