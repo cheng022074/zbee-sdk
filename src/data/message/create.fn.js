@@ -1,11 +1,11 @@
 
 /**
  * 
- * 函数实现说明
+ * 创建一个消息
  * 
  * @param {mixed} address 接收消息地址
  * 
- * @param {mixed} data 发送的数据
+ * @param {mixed} params 发送的数据
  * 
  * @param {object} [config = {}] 发送配置
  * 
@@ -17,4 +17,14 @@
  * 
  */
 
- // 代码实现
+ let {
+    rootAddress
+ } = this ;
+
+ return {
+     from:fromAddress || rootAddress,
+     to:address,
+     params,
+     reconnection,
+     processive
+ } ;
