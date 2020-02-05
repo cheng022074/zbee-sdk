@@ -15,6 +15,8 @@
  * 
  * @param {mixed} scope 绑定函数的作用域
  * 
+ * @return {data.message.Address} 消息地址
+ * 
  */
 
  let {
@@ -65,3 +67,5 @@
 
     addresses[address] = resignerConfig ;
  }
+
+ return addresses[address] ;
