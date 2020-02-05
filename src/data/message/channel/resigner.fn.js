@@ -19,9 +19,10 @@
  * 
  */
 
- let {
+ let me = this,
+ {
      addresses
- } = this ;
+ } = me ;
 
  if(!addresses.hasOwnProperty(address)){
 
@@ -65,7 +66,16 @@
         } ;
     }
 
-    addresses[address] = resignerConfig ;
+    addresses[address] = {
+        ...resignerConfig,
+        send(address , params , config = {}){
+
+            return me.send(address , params , {
+                ...config,
+                fromAddress:address
+            }) ;
+        }
+    } ;
  }
 
  return addresses[address] ;
