@@ -100,7 +100,7 @@
                 sendMessages[id] = message ;
             }
 
-            me.fireEvent('message' , message , result) ;
+            me.fireEvent('message' , result , message) ;
         
         }else if(concatenateChannels.length){
 
