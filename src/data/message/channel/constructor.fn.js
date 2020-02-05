@@ -18,7 +18,7 @@
  let me = this,
     proxy = createProxy(me) ;
 
-proxy.call('initReceiver' , me.onReceive.bind(me)) ;
+proxy.call('initReceiver' , me.receive.bind(me)) ;
 
 me.proxy = proxy ;
 

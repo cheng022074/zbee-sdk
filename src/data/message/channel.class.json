@@ -8,10 +8,7 @@
         "send",
         "connect",
         "disconnect",
-        {
-            "name":"onReceive",
-            "impl":".channel.receive"
-        },
+        "receive",
         "resigner",
         "unregister",
         "destroy",{
