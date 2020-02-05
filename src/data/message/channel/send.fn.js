@@ -13,20 +13,30 @@
  * 
  */
 
- let {
+ let me = this,
+ {
      proxy,
+     addresses,
      sendMessages
- } = this,
+ } = me,
  {
      message,
      promise
  } = create(address , params , config),
  {
-     id
+     id,
+     to
  } = message;
 
  sendMessages[id] = message ;
 
- proxy.call('onSend' , message) ;
+ if(addresses.hasOwnProperty(to)){
+
+    me.receive(message) ;
+ 
+ }else{
+
+    proxy.call('onSend' , message) ;
+ }
 
  return promise ;
