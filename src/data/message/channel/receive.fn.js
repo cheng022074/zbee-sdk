@@ -90,8 +90,6 @@
         if(sendMessages.hasOwnProperty(id)){
 
             let result = addresses[from].reply(message);
-    
-            me.fireEvent('message' , id , result) ;
 
             if(isSendMessage(message) || isCancelProcessiveMessage(message)){
 
@@ -101,6 +99,8 @@
 
                 sendMessages[id] = message ;
             }
+
+            me.fireEvent('message' , message , result) ;
         
         }else if(concatenateChannels.length){
 
@@ -109,7 +109,7 @@
 
     }else if(isReplyFailureMessage(message)){
 
-        if(addresses.hasOwnProperty(from)){
+        if(sendMessages.hasOwnProperty(id)){
 
             let {
                 reconnection,
@@ -121,6 +121,12 @@
                 let method = processive ? 'connect' : 'send' ;
 
                 setTimeout(() => me[method](message) , reSendDelay) ; 
+            
+            }else{
+
+                delete sendMessages[id] ;
+
+                me.fireEvent('messageerror' , message) ;
             }
         
         }else if(concatenateChannels.length){
