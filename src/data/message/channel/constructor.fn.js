@@ -13,6 +13,8 @@
  * 
  * @import createArrayProxy from array.proxy
  * 
+ * @import generate from id.generate
+ * 
  */
 
  let me = this,
@@ -23,6 +25,12 @@ proxy.call('initReceiver' , me.receive.bind(me)) ;
 me.proxy = proxy ;
 
 me.addresses = {} ;
+
+let rootAddress = generate('address-') ;
+
+me.register(rootAddress) ;
+
+me.rootAddress = rootAddress ;
 
 me.reSendDelay = reSendDelay ;
 
