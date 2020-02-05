@@ -1,7 +1,14 @@
-
 /**
  * 
  * 创建一个消息
+ * 
+ * @import generate from id.generate
+ * 
+ * @import createPromise from promise.create
+ * 
+ * @import add from event.listener.add
+ * 
+ * @import remove from event.listener.remove
  * 
  * @param {mixed} address 接收消息地址
  * 
@@ -13,18 +20,66 @@
  * 
  * @param {string} [config.fromAddress] 发送消息地址
  * 
- * @param {boolean} [config.processive = true] 是否持续性连接
+ * @param {boolean} [config.processive = false] 是否持续性连接
  * 
  */
 
- let {
+ let me = this,
+ {
     rootAddress
- } = this ;
+ } = me,
+ id = generate('message-');
 
  return {
-     from:fromAddress || rootAddress,
-     to:address,
-     params,
-     reconnection,
-     processive
+     promise:createPromise((resolve , reject) =>{
+
+        if(processive){
+
+            let listeners = {
+                message(channel , data){
+
+                    resolve(data) ;
+                },
+                messageerror:{
+                    fn(channel , message){
+
+                        reject(message) ;
+                    },
+                    once:true
+                }
+            } ;
+
+            add(me , listeners) ;
+
+            return listeners ;
+        
+        }else{
+
+            let onMessageError = (channel , message) => reject(message) ;
+
+            add(me , {
+                message:{
+                    fn(channel , data){
+
+                        resolve(data) ;
+
+                        remove(channel , 'messageerror' , onMessageError) ;
+                    }
+                },
+                messageerror:{
+                    fn:onMessageError,
+                    once:true
+                }
+            }) ;
+        }
+
+     } , processive ? listeners => remove(me , listeners) : false),
+     message:{
+        id,
+        from:fromAddress || rootAddress,
+        to:address,
+        params,
+        reconnection,
+        processive
+    }
  } ;
