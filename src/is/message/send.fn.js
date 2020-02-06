@@ -1,12 +1,12 @@
 
 /**
  * 
- * 函数实现说明
+ * 判断是否是发送消息
  * 
- * @param {mixed} data 参数说明
+ * @param {object} message 消息 
  * 
- * @return {mixed} 返回说明 
+ * @return {boolean}  如果是发送消息，则返回 true , 否则返回 false
  * 
  */
 
- // 代码实现
+ return !message.hasOwnProperty('received') ;
