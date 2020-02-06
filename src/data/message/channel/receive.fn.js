@@ -39,7 +39,8 @@
  if(isSendMessage(message)){
 
     let {
-        id
+        id,
+        to
     } = message ;
 
     if(addresses.hasOwnProperty(to)){
