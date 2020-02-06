@@ -7,7 +7,7 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import Channel from data.mesasge.channel value
+ * @import Channel from data.message.channel value
  * 
  * @import isReplySuccessMessage from is.message.reply.ok
  * 

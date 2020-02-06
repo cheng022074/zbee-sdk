@@ -3,7 +3,7 @@
  * 
  * 消息通道子进程版
  * 
- * @import Channel from data.mesasge.channel value
+ * @import Channel from data.message.channel value
  *
  * @param {object} config 配置 
  * 
