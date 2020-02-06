@@ -22,7 +22,7 @@
  {
      message,
      promise
- } = create(address , params , config),
+ } = create(me , address , params , config),
  {
      id,
      to

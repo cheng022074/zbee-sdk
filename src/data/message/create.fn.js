@@ -10,6 +10,8 @@
  * 
  * @import remove from event.listener.remove
  * 
+ * @param {data.message.Channel} channel 消息通道对象
+ * 
  * @param {mixed} address 接收消息地址
  * 
  * @param {mixed} params 发送的数据
@@ -27,7 +29,7 @@
  let me = this,
  {
     rootAddress
- } = me,
+ } = channel,
  id = generate('message-');
 
  return {
@@ -49,7 +51,7 @@
                 }
             } ;
 
-            add(me , listeners) ;
+            add(channel , listeners) ;
 
             return listeners ;
         
@@ -57,7 +59,7 @@
 
             let onMessageError = (channel , message) => reject(message) ;
 
-            add(me , {
+            add(channel , {
                 message:{
                     fn(channel , data){
 
@@ -73,7 +75,7 @@
             }) ;
         }
 
-     } , processive ? listeners => remove(me , listeners) : false),
+     } , processive ? listeners => remove(channel , listeners) : false),
      message:{
         id,
         from:fromAddress || rootAddress,
