@@ -34,8 +34,6 @@ me.register(me.rootAddress = generate(`${rootAddress || 'address'}-`)) ;
 
 me.register(addresses) ;
 
-console.log(me.addresses) ;
-
 me.reSendDelay = reSendDelay ;
 
 me.concatenateChannels = createArrayProxy() ;
