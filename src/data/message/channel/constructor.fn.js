@@ -9,6 +9,8 @@
  * 
  * @param {data.message.Channel} [config.concatenateChannels] 转发消息通道
  * 
+ * @param {object} [config.addresses] 地址配置
+ * 
  * @import createProxy from object.proxy
  * 
  * @import createArrayProxy from array.proxy
@@ -29,6 +31,8 @@ me.addresses = {} ;
 let rootAddress = generate('address-') ;
 
 me.register(rootAddress) ;
+
+me.register(addresses) ;
 
 me.rootAddress = rootAddress ;
 

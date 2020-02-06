@@ -9,6 +9,10 @@
  * 
  * @import get from function.get
  * 
+ * @import is.string
+ * 
+ * @import isObject from is.object.simple
+ * 
  * @param {string|object} address 地址
  * 
  * @param {mixed} fn 地址所绑定的函数
@@ -19,63 +23,88 @@
  * 
  */
 
- let me = this,
- {
-     addresses
- } = me ;
+ function main(address , fn , scope){
 
- if(!addresses.hasOwnProperty(address)){
+    let me = this ;
 
-    let resignerConfig ;
+    if(isString(address)){
 
-    if(isObject(fn)){
-
-        let config = fn ;
-
-        {
-            let {
-                receive,
-                reply,
-                scope
-            } = config ;
-
-            resignerConfig = {
-                receive:get(receive , scope),
-                reply:get(reply , scope)
-            } ;
-        }
-
-    }else if(isFunction(fn)){
-
-        resignerConfig = {
-            receive:get(fn , scope),
-            reply:get(fn , scope)
-        } ;
+        return register.call(me , address , fn , scope) ;
     
-    }else{
+    }else if(isObject(address)){
 
-        resignerConfig = {
-            receive(){
-            },
-            reply({
-                result
-            }){
+        let names = Object.keys(address),
+            result = {};
 
-                return result ;
-            }
-        } ;
-    }
+        for(let name of names){
 
-    addresses[address] = {
-        ...resignerConfig,
-        send(address , params , config = {}){
-
-            return me.send(address , params , {
-                ...config,
-                fromAddress:address
-            }) ;
+            result[name] = register.call(me , name ,address[name]) ;
         }
-    } ;
+
+        return result ;
+    }
  }
 
- return addresses[address] ;
+ function register(address , fn , scope){
+
+    let me = this,
+    {
+        addresses
+    } = me ;
+
+    if(!addresses.hasOwnProperty(address)){
+
+        let resignerConfig ;
+    
+        if(isObject(fn)){
+    
+            let config = fn ;
+    
+            {
+                let {
+                    receive,
+                    reply,
+                    scope
+                } = config ;
+    
+                resignerConfig = {
+                    receive:get(receive , scope),
+                    reply:get(reply , scope)
+                } ;
+            }
+    
+        }else if(isFunction(fn)){
+    
+            resignerConfig = {
+                receive:get(fn , scope),
+                reply:get(fn , scope)
+            } ;
+        
+        }else{
+    
+            resignerConfig = {
+                receive(){
+                },
+                reply({
+                    result
+                }){
+    
+                    return result ;
+                }
+            } ;
+        }
+    
+        addresses[address] = {
+            ...resignerConfig,
+            send(address , params , config = {}){
+    
+                return me.send(address , params , {
+                    ...config,
+                    fromAddress:address
+                }) ;
+            }
+        } ;
+     }
+
+     return addresses[address] ;
+}
