@@ -9,4 +9,4 @@
  * 
  */
 
-return !message.hasOwnProperty('received') ;
+return message.hasOwnProperty('received') ;
