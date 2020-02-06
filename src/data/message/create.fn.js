@@ -18,7 +18,7 @@
  * 
  * @param {object} [config = {}] 发送配置
  * 
- * @param {boolean} [config.reconnection = true] 在发送失败后是否重发 
+ * @param {boolean} [config.reconnection = false] 在发送失败后是否重发 
  * 
  * @param {string} [config.fromAddress] 发送消息地址
  * 
