@@ -20,7 +20,7 @@
  let me = this,
     proxy = createProxy(me) ;
 
-proxy.call('initReceiver' , me.receive.bind(me)) ;
+proxy.call('doReceive' , me.receive.bind(me)) ;
 
 me.proxy = proxy ;
 
