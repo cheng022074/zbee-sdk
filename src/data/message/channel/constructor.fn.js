@@ -3,7 +3,7 @@
  * 
  * 初始化消息通道
  * 
- * @param {object} config 消息通道配置
+ * @param {object} [config = {}] 消息通道配置
  * 
  * @param {boolean} [config.reSendDelay = 0] 重发消息延迟
  * 
