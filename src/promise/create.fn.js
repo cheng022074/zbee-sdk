@@ -1,12 +1,23 @@
 
 /**
  * 
- * 函数实现说明
+ * 创建 Promise 对象
  * 
- * @param {mixed} data 参数说明
+ * @import is.function
  * 
- * @return {mixed} 返回说明 
+ * @import createPromise from promise.create.processive
+ * 
+ * @param {function} onInit 实始化 Promise 引用
+ * 
+ * @param {function} [onCancel] 取消 Promise 时调用
+ * 
+ * @return {Promise} 创建后的 Promise
  * 
  */
 
- // 代码实现
+ if(isFunction(onCancel)){
+
+    return createPromise(onInit , onCancel) ;
+ }
+
+ return new Promise(onInit) ;
