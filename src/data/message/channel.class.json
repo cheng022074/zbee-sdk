@@ -9,7 +9,7 @@
         "connect",
         "disconnect",
         "receive",
-        "resigner",
+        "register",
         "unregister",
         "destroy",{
             "name":"replySuccess",
