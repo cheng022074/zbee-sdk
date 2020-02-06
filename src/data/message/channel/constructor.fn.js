@@ -9,6 +9,8 @@
  * 
  * @param {data.message.Channel} [config.concatenateChannels] 转发消息通道
  * 
+ * @param {string} [config.rootAddress] 根地址
+ * 
  * @param {object} [config.addresses] 地址配置
  * 
  * @import createProxy from object.proxy
@@ -28,13 +30,11 @@ me.proxy = proxy ;
 
 me.addresses = {} ;
 
-let rootAddress = generate('address-') ;
-
-me.register(rootAddress) ;
+me.register(me.rootAddress = generate(`${rootAddress || 'address'}-`)) ;
 
 me.register(addresses) ;
 
-me.rootAddress = rootAddress ;
+console.log(me.addresses) ;
 
 me.reSendDelay = reSendDelay ;
 
