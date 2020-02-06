@@ -7,4 +7,4 @@
  * 
  */
 
- this.Proxy.call('onReply' , message) ;
+ this.proxy.call('doSend' , message) ;

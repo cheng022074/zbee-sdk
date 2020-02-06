@@ -41,6 +41,6 @@ for(sendMessage of messages){
 
 sendMessages[id] = message ;
 
-proxy.call('onSend' , message) ;
+proxy.call('doSend' , message) ;
 
 return promise ;

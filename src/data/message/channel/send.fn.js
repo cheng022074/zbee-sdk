@@ -36,7 +36,7 @@
  
  }else{
 
-    proxy.call('onSend' , message) ;
+    proxy.call('doSend' , message) ;
  }
 
  return promise ;
