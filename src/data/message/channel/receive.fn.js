@@ -34,14 +34,12 @@
      concatenateChannels,
      processivePromises,
      sendMessages,
- } = me;
+ } = me,{
+    id,
+    to
+} = message ;
 
  if(isSendMessage(message)){
-
-    let {
-        id,
-        to
-    } = message ;
 
     if(addresses.hasOwnProperty(to)){
 
