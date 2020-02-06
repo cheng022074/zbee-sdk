@@ -36,6 +36,7 @@
      sendMessages,
  } = me,{
     id,
+    from,
     to
 } = message ;
 
