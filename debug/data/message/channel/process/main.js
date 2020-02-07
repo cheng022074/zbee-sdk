@@ -7,8 +7,23 @@
  * 
  */
 
- let channel = createChannel({
-     childProcesses:fork('data.message.channel.process.child')
- }) ;
+ (async () =>{
 
- channel.send('single' , '陈治文').then((result) => console.log('返回信息' , result)) ;
+    let channel = createChannel({
+        childProcesses:fork('data.message.channel.process.child')
+    }) ;
+   
+    await channel.send('single' , '陈治文').then((result) => console.log('返回信息' , result)) ;
+   
+    try{
+   
+       await channel.send('single_error' , '陈治文') ;
+   
+    }catch(err){
+   
+        console.log('错误' , err) ;
+    }
+
+ })() ;
+
+ 

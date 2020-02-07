@@ -57,16 +57,29 @@
         
         }else{
 
-            let onMessageError = (channel , message) => reject(message) ;
+            let onMessageError = (channel , message) => {
+
+                if(message.id === id){
+
+                    reject(message) ;
+
+                    remove(channel , 'message' , onMessage) ;
+                }
+            },
+            onMessage = (channel , data , message) =>{
+
+                if(message.id === id){
+
+                    resolve(data) ;
+
+                    remove(channel , 'messageerror' , onMessageError) ;
+                }
+            };
 
             add(channel , {
                 message:{
-                    fn(channel , data){
-
-                        resolve(data) ;
-
-                        remove(channel , 'messageerror' , onMessageError) ;
-                    }
+                    fn:onMessage,
+                    once:true
                 },
                 messageerror:{
                     fn:onMessageError,
