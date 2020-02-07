@@ -9,9 +9,11 @@
 
 let channel = createChannel({
     addresses:{
-        print(message){
+        single(name){
 
-            console.log('子进程' , message) ;
+            console.log('收到信息' , name) ;
+
+            return `${name} 是一名前端工程师` ;
         }
     }
 }) ;

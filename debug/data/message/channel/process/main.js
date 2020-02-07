@@ -11,8 +11,4 @@
      childProcesses:fork('data.message.channel.process.child')
  }) ;
 
- channel.send('print' , '陈治文').then(() =>{
-
-    console.log('发送成功') ;
-
- }) ;
+ channel.send('single' , '陈治文').then((result) => console.log('返回信息' , result)) ;
