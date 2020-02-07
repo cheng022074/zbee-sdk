@@ -85,9 +85,7 @@
             resignerConfig = {
                 receive(){
                 },
-                reply({
-                    result
-                }){
+                reply(result){
     
                     return result ;
                 }

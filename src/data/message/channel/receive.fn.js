@@ -57,7 +57,7 @@
 
         }else{
 
-            let result = addresses[to].receive(message) ;
+            let result = addresses[to].receive(message.params , message) ;
 
             if(isPromise(result)){
 
@@ -89,7 +89,7 @@
 
         if(sendMessages.hasOwnProperty(id)){
 
-            let result = addresses[from].reply(message);
+            let result = addresses[from].reply(message.result , message);
 
             if(isSendMessage(message) || isCancelProcessiveMessage(message)){
 
