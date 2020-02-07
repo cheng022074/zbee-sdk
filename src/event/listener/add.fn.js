@@ -50,7 +50,7 @@
 
             listener = function(...args){
 
-                listenerFn(args) ;
+                listenerFn(...args) ;
 
                 remove(target , name , fn , {
                     scope
