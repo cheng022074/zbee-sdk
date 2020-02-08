@@ -65,7 +65,15 @@
 
                 if(isProcessivePromise(result)){
 
-                    processivePromises.set(id , result) ;
+                    if(isProcessiveMessage(message)){
+
+                        processivePromises.set(id , result) ;
+                    
+                    }else{
+
+                        result.then(() => result.cancel()) ;
+                    }
+                  
                 }
 
             }else{
