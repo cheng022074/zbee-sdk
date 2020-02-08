@@ -17,26 +17,27 @@
  {
      proxy,
      addresses,
-     sendMessages
+     messages
  } = me,
+ message = create(me , address , params , config),
  {
-     message,
-     promise
- } = create(me , address , params , config),
+    promise,
+    body
+ } = message,
  {
      id,
      to
- } = message;
+ } = body;
 
- sendMessages[id] = message ;
+ messages[id] = message ;
 
  if(addresses.hasOwnProperty(to)){
 
-    me.receive(message) ;
+    me.receive(body) ;
  
  }else{
 
-    proxy.call('doSend' , message) ;
+    proxy.call('doSend' , body) ;
  }
 
  return promise ;

@@ -42,4 +42,4 @@ me.concat(concatenateChannels) ;
 
 me.processivePromises = {} ;
 
-me.sendMessages = {} ;
+me.messages = {} ;
