@@ -7,16 +7,13 @@
  * 
  * @param {function} onCancel 取消 Promise 时调用
  * 
+ * @class
+ * 
  * @return {promise.Processive} 持续性 Promise 
  * 
  */
 
- function main(onInit , onCancel){
-
-    return new ProcessivePromise(onInit , onCancel) ;
- }
-
- class ProcessivePromise{
+ class main{
 
     constructor(onInit , onCancel){
 

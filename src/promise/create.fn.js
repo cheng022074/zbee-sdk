@@ -5,7 +5,7 @@
  * 
  * @import is.function
  * 
- * @import createPromise from promise.create.processive
+ * @import ProcessivePromise from promise.create.processive value
  * 
  * @param {function} onInit 实始化 Promise 引用
  * 
@@ -17,7 +17,7 @@
 
  if(isFunction(onCancel)){
 
-    return createPromise(onInit , onCancel) ;
+    return new ProcessivePromise(onInit , onCancel) ;
  }
 
  return new Promise(onInit) ;
