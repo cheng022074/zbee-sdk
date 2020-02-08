@@ -7,7 +7,7 @@
  * 
  * @import onMove from .move.drag scoped
  * 
- * @import onEnd from ..end scoped
+ * @import onEnd from .end scoped
  * 
  * @import on from browser.event.listener.global.add
  * 

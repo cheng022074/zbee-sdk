@@ -3,13 +3,13 @@
  * 
  * 监听事件
  * 
- * @import listeners from ....listeners value
+ * @import listeners from ..listeners value
  * 
  * @import is from browser.selector.parent
  * 
- * @import stopEvent from ....stop
+ * @import stopEvent from ..stop
  * 
- * @import preventEvent from ....prevent
+ * @import preventEvent from ..prevent
  * 
  * @import add from event.listener.add
  * 

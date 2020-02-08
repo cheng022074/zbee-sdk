@@ -3,7 +3,7 @@
  * 
  * 监听全局事件
  * 
- * @import add from ....add
+ * @import add from ..add
  * 
  * @param {string} event 目标监听事件
  * 

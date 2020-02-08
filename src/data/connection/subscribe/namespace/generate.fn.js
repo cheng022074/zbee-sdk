@@ -5,7 +5,7 @@
  * 
  * @import generate from id.generate
  * 
- * @import getName from ....name
+ * @import getName from ..name
  * 
  * @param {string} name 订阅名称
  * 

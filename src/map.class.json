@@ -10,7 +10,10 @@
         "get",
         "has",
         "delete",
-        "forEach",
+        {
+            "name":"forEach",
+            "impl":"map.for"
+        },
         "clear",{
             "name":"find",
             "impl":"map.find.fuzzy"

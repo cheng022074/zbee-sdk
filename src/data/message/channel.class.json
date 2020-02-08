@@ -1,0 +1,23 @@
+{
+    "constructor":true,
+    "mixins":[
+        "mixin.observable"
+    ],
+    "class":true,
+    "methods":[
+        "send",
+        "connect",
+        "disconnect",
+        "receive",
+        "register",
+        "unregister",
+        "destroy",{
+            "name":"replySuccess",
+            "impl":".channel.reply.success"
+        },{
+            "name":"replyFailure",
+            "impl":".channel.reply.failure"
+        },
+        "concat"
+    ]
+}

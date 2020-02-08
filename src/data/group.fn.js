@@ -5,7 +5,7 @@
  * 
  * @import Observable from mixin.observable
  * 
- * @import createItem from ..item
+ * @import createItem from .item
  * 
  * @param {object} data 初始化数据
  * 

@@ -3,9 +3,9 @@
  * 
  * 去除所有事件监听
  * 
- * @import listeners from ......listeners value
+ * @import listeners from ....listeners value
  * 
- * @import remove from ....native.remove
+ * @import remove from ..native.remove
  * 
  * @param {mixed} target 事件主体
  * 

@@ -12,7 +12,7 @@
  * 
  * @import removeAll from event.listener.remove.all
  * 
- * @import Manager from ..manager value
+ * @import Manager from .manager value
  * 
  * @import emptyFn from function.empty value
  * 

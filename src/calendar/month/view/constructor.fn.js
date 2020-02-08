@@ -5,9 +5,9 @@
  * 
  * @import getProxy from object.proxy
  * 
- * @import selectMonth from ..selectMonth scoped
+ * @import selectMonth from .selectMonth scoped
  * 
- * @import select from ..select scoped
+ * @import select from .select scoped
  * 
  * @import getProperty from date.get.properties
  * 

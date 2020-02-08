@@ -7,7 +7,7 @@
  * 
  * @import empty from function.empty value
  * 
- * @import deploy from ..lifecycle
+ * @import deploy from .lifecycle
  * 
  * @param {object} connections 订阅对象
  * 

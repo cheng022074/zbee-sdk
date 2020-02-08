@@ -3,7 +3,7 @@
  * 
  * 初始化页面隐藏/关闭事件
  * 
- * @import dispatch from ....dispatch
+ * @import dispatch from ..dispatch
  * 
  */
 

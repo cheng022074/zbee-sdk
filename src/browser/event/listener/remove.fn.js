@@ -3,7 +3,7 @@
  * 
  * 去除监听事件
  * 
- * @import listeners from ....listeners value
+ * @import listeners from ..listeners value
  * 
  * @import remove from event.listener.remove
  * 

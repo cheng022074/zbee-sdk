@@ -2,7 +2,7 @@
  * 
  * 写出存储数据
  * 
- * @import createWriter from ....create
+ * @import createWriter from ..create
  * 
  * @import is.string
  * 

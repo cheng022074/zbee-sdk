@@ -5,7 +5,7 @@
  * 
  * @import is.array
  * 
- * @import is from ..structure
+ * @import is from .structure
  * 
  * @param {mixed} data 检验数据
  * 

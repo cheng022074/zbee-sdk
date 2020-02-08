@@ -3,7 +3,7 @@
  * 
  * 监听元素事件
  * 
- * @import add from ....add
+ * @import add from ..add
  * 
  * @param {HTMLElement} el 元素
  * 

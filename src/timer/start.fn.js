@@ -5,9 +5,9 @@
  * 
  * @import is.number
  * 
- * @import end from ..end scoped
+ * @import end from .end scoped
  * 
- * @import reset from ..reset
+ * @import reset from .reset
  * 
  */
 

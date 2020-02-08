@@ -8,7 +8,7 @@
  * 
  * @import getWS from socket.io.ws
  * 
- * @import Manager from ..manager value
+ * @import Manager from .manager value
  * 
  * @import removeAll from event.listener.remove.all
  * 
