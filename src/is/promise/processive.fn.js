@@ -1,12 +1,15 @@
 
 /**
  * 
- * 函数实现说明
+ * 判定是否为持续 Promise 对象
  * 
- * @param {mixed} data 参数说明
+ * @import ProcessivePromise from promise.create.processive value
  * 
- * @return {mixed} 返回说明 
+ * @param {mixed} data 数据
+ * 
+ * @return {boolean}  如果为持续 Promise 对象，则返回 true , 否则返回 false 
  * 
  */
 
- // 代码实现
+ return data instanceof processivePromise ;
+ 
