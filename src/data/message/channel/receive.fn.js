@@ -44,7 +44,7 @@
 
     if(addresses.hasOwnProperty(to)){
 
-        if(isProcessiveMessage(message) && message.cancel === true){
+        if(isCancelProcessiveMessage(message)){
 
             if(processivePromises.hasOwnProperty(id)){
 
