@@ -103,9 +103,6 @@
 
                 delete sendMessages[id] ;
             
-            }else{
-
-                sendMessages[id] = message ;
             }
 
             me.fireEvent('message' , result , message) ;
