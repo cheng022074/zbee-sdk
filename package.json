@@ -65,6 +65,6 @@
     "debug": "zb debug",
     "plan": "zb plan",
     "compile": "zb compile",
-    "zb": "node ../Compiler/bin/zb.js"
+    "zb": "node ../Complier/bin/zb.js"
   }
 }
