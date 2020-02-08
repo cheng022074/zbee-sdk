@@ -1,12 +1,14 @@
 
 /**
  * 
- * 函数实现说明
+ * 判断是否是取消持续发送消息
  * 
- * @param {mixed} data 参数说明
+ * @import is from ..processive
  * 
- * @return {mixed} 返回说明 
+ * @param {object} message 消息 
+ * 
+ * @return {boolean}  如果是发送消息，则返回 true , 否则返回 false
  * 
  */
 
- // 代码实现
+return is(message) && message.cancel === true ;
