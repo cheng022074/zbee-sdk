@@ -5,6 +5,8 @@
  * 
  * @import get from data.message.get
  * 
+ * @import send from .send.body scoped
+ * 
  * @param {mixed} address 接收消息地址
  * 
  * @param {mixed} params 发送的参数
@@ -13,27 +15,12 @@
  * 
  */
 
- let me = this,
- {
-     proxy,
-     addresses
- } = me,
- message = get(me , address , params , config),
+ let message = get(this , address , params , config),
  {
     promise,
     body
- } = message,
- {
-     to
- } = body;
+ } = message ;
 
- if(addresses.hasOwnProperty(to)){
-
-    me.receive(body) ;
- 
- }else{
-
-    proxy.call('doSend' , body) ;
- }
+ send(body) ;
 
  return promise ;
