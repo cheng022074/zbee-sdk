@@ -3,9 +3,7 @@
  * 
  * 连接
  * 
- * @import create from data.message.create
- * 
- * @import equals from data.equals
+ * @import send from .send scoped
  * 
  * @param {mixed} address 接收消息地址
  * 
@@ -15,32 +13,7 @@
  * 
  */
 
-let {
-    proxy,
-    sendMessages
-} = this,
-{
-    message,
-    promise
-} = create(address , params , {
+return send(address , params , {
     ...config,
     processive:true
-}),
-{
-    id
-} = message,
-messages = Object.values(sendMessages);
-
-for(sendMessage of messages){
-
-    if(equals(message , sendMessage)){
-
-        return ;
-    } 
-}
-
-sendMessages[id] = message ;
-
-proxy.call('doSend' , message) ;
-
-return promise ;
+}) ;
