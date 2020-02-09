@@ -3,9 +3,13 @@
  * 
  * 连接
  * 
- * @import create from data.message.create
+ * @import get from data.message.get
  * 
- * @import equals from data.equals
+ * @import isProcessiveMessage from is.message.processive
+ * 
+ * @import send from .send.body scoped
+ * 
+ * @import add from event.listener.add
  * 
  * @param {mixed} address 接收消息地址
  * 
@@ -15,34 +19,26 @@
  * 
  */
 
-let {
-    proxy,
-    sendMessages
-} = this,
-{
-    message
-} = create(address , params , {
-    ...config,
-    processive:true,
-    received:true,
-    id:false,
-    promise:false
-}),
-messages = Object.values(sendMessages);
+let me = this,
+    message = get(me , address , params , {
+        ...config,
+        processive:true,
+        autoCreate:false
+    }) ;
 
-for({
-    id,
-    ...sendMessage
-} of messages){
+if(message){
 
-    if(equals(message , sendMessage)){
+    let {
+        body
+    } = message;
 
-        proxy.call('onSend' , {
-            id,
-            cancel:true,
-            ...sendMessage
-        }) ;
+    body.cancel = true ;
 
-        break ;
-    }
+    send(body) ;
+
+    return new Promise(resolve => add(me , 'messageend' , resolve , {
+        once:true
+    })) ;
 }
+
+return Promise.resolve() ;
