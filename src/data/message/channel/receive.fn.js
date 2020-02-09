@@ -105,6 +105,18 @@
             
             }
 
+            if(isProcessiveMessage(message)){
+
+                if(!message.hasOwnProperty('count')){
+
+                    message.count = 0 ;
+
+                    me.fireEvent('messagestart' , message) ;
+                }
+
+                message.count ++ ;
+            }
+
             if(isCancelProcessiveMessage(message)){
 
                 me.fireEvent('messageend' , message) ;
