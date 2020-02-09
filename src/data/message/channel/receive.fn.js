@@ -105,8 +105,15 @@
             
             }
 
-            me.fireEvent('message' , result , message) ;
-        
+            if(isCancelProcessiveMessage(message)){
+
+                me.fireEvent('messageend' , message) ;
+            
+            }else{
+
+                me.fireEvent('message' , result , message) ;
+            }
+
         }else if(concatenateChannels.length){
 
             concatenateChannels.call('onReceive' , message) ;
