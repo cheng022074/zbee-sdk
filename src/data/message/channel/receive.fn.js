@@ -33,7 +33,7 @@
      reSendDelay,
      concatenateChannels,
      processivePromises,
-     sendMessages,
+     messages,
  } = me,{
     id,
     from,
@@ -95,13 +95,13 @@
 
     if(isReplySuccessMessage(message)){
 
-        if(sendMessages.hasOwnProperty(id)){
+        if(messages.hasOwnProperty(id)){
 
             let result = addresses[from].reply(message.result , message);
 
             if(isSendMessage(message) || isCancelProcessiveMessage(message)){
 
-                delete sendMessages[id] ;
+                delete messages[id] ;
             
             }
 
@@ -133,7 +133,7 @@
 
     }else if(isReplyFailureMessage(message)){
 
-        if(sendMessages.hasOwnProperty(id)){
+        if(messages.hasOwnProperty(id)){
 
             let {
                 reconnection,
@@ -148,7 +148,7 @@
             
             }else{
 
-                delete sendMessages[id] ;
+                delete messages[id] ;
 
                 me.fireEvent('messageerror' , message) ;
             }
