@@ -40,10 +40,18 @@ for(let message of messages){
     let {
         from,
         to,
-        params:messageParams
+        params:messageParams,
+        processive:messageProcessive,
+        cancel
     } = message.body ;
 
-    if(from === fromAddress && to === address && equals(params , messageParams)){
+    if(
+        from === fromAddress &&
+        to === address &&
+        equals(params , messageParams) &&
+        messageProcessive === processive &&
+        cancel !== true
+    ){
 
         return message ;
     }
