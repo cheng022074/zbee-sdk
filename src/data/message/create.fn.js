@@ -10,8 +10,6 @@
  * 
  * @import remove from event.listener.remove
  * 
- * @import get from data.message.get
- * 
  * @param {data.message.Channel} channel 消息通道对象
  * 
  * @param {mixed} address 接收消息地址
@@ -24,24 +22,17 @@
  * 
  * @param {string} [config.fromAddress] 发送消息地址
  * 
+ * @param {boolean} [config.processive = false] 是否为持续消息
+ * 
  */
 
  let me = this,
  {
-    rootAddress
+    messages
  } = channel,
- from = fromAddress || rootAddress,
- to = address,
- message = get(from , to , params);
+ id = generate('message-');
 
- if(message){
-
-    return message ;
- }
-
- let id = generate('message-');
-
- return {
+ return messages[id] = {
      promise:createPromise((resolve , reject) =>{
 
         if(processive){
@@ -100,8 +91,8 @@
      } , processive ? listeners => remove(channel , listeners) : false),
      body:{
         id,
-        from,
-        to,
+        from:fromAddress,
+        to:address,
         params,
         reconnection,
         processive

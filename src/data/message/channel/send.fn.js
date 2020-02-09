@@ -3,7 +3,7 @@
  * 
  * 发送消息
  * 
- * @import create from data.message.create
+ * @import get from data.message.get
  * 
  * @param {mixed} address 接收消息地址
  * 
@@ -16,20 +16,16 @@
  let me = this,
  {
      proxy,
-     addresses,
-     messages
+     addresses
  } = me,
- message = create(me , address , params , config),
+ message = get(me , address , params , config),
  {
     promise,
     body
  } = message,
  {
-     id,
      to
  } = body;
-
- messages[id] = message ;
 
  if(addresses.hasOwnProperty(to)){
 
