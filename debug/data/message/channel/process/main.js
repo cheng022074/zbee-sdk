@@ -13,7 +13,7 @@
         childProcesses:fork('data.message.channel.process.child')
     }) ;
    
-    await channel.send('single' , '陈治文').then((result) => console.log('返回信息' , result)) ;
+    await channel.send('single' , '陈治文').then(result => console.log('返回信息' , result)) ;
    
     try{
    
@@ -23,6 +23,8 @@
    
         console.log('错误' , err) ;
     }
+
+    channel.connect('multi').then(result => console.log('推送消息' , result)) ;
 
  })() ;
 

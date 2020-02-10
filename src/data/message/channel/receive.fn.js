@@ -67,7 +67,7 @@
 
                     if(isProcessiveMessage(message)){
 
-                        processivePromises.set(id , result) ;
+                        processivePromises[id] =  result ;
                     
                     }else{
 

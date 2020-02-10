@@ -11,5 +11,5 @@
  * 
  */
 
- return data instanceof processivePromise ;
+ return data instanceof ProcessivePromise ;
  

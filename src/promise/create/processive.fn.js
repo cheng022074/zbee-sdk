@@ -28,9 +28,9 @@
             reject
         } = me ;
 
-        me.onCancelResult = onInit(resolve.bind(me) , reject.bind(me)) ;
+       me.onCancelResult = onInit(resolve.bind(me) , reject.bind(me)) ;
 
-        me.onCancel = onCancel ;
+       me.onCancel = onCancel ;
     }
 
     cancel(){
