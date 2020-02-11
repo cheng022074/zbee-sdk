@@ -9,8 +9,6 @@
  * 
  * @import Channel from data.message.channel value
  *
- * @import isReplySuccessProcessiveMessage from is.message.reply.success.processive
- * 
  * @import isReplyFailureMessage from is.message.reply.failure
  * 
  * @import isCancelProcessiveMessage from is.message.processive.cancel
@@ -71,7 +69,7 @@
 
             childProcess.on('message' , message =>{
 
-                if(isReplySuccessProcessiveMessage(message)){
+                if(!isReplyFailureMessage(message)){
 
                     receive(message) ;
                 }
@@ -115,18 +113,11 @@
             if(isReplyFailureMessage(message)){
 
                 failureMessage = replyMessage ;
-
-                continue ;
             
+            }else{
+
+                return ;
             }
-            
-            if(!isReplySuccessProcessiveMessage(replyMessage)){
-
-                me.receive(replyMessage) ;
-            
-            }
-
-            return ;
         }
 
         me.receive(failureMessage) ;

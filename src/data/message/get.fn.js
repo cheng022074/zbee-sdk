@@ -7,6 +7,10 @@
  * 
  * @import equals from data.equals
  * 
+ * @import isObject from is.object.simple
+ * 
+ * @import copy from object.copy
+ * 
  * @param {data.message.Channel} channel 消息通道对象
  * 
  * @param {mixed} address 接收消息地址
@@ -24,6 +28,22 @@
  * @param {boolean} [config.autoCreate = true] 当前 autoCreate 设置为 true 时，如果消息不存在时则创建
  * 
  */
+
+if(isObject(address)){
+
+    let data = address ;
+
+    address = data.to ;
+
+    params = data.params ;
+
+    copy(config , data , [
+        processive,
+        reconnection
+    ]) ;
+
+    config.fromAddress = data.from ;
+}
 
 let me = this,
 {
