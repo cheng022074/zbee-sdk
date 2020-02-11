@@ -29,22 +29,6 @@
  * 
  */
 
-if(isObject(address)){
-
-    let data = address ;
-
-    address = data.to ;
-
-    params = data.params ;
-
-    copy(config , data , [
-        processive,
-        reconnection
-    ]) ;
-
-    config.fromAddress = data.from ;
-}
-
 let me = this,
 {
    rootAddress,

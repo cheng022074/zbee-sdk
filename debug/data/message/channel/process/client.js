@@ -19,4 +19,15 @@ setTimeout(async() =>{
 
     console.log('返回数据' , result) ;
 
+    try{
+   
+        await channel.send('single_error' , '陈治文') ;
+    
+    }catch(err){
+
+        console.log('错误' , err) ;
+    }
+
+    console.log('结束') ;
+
 } , 1000) ;

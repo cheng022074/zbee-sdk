@@ -87,7 +87,7 @@
     
     }else if(concatenateChannels.length){
 
-        concatenateChannels.call('send' , message) ;
+        concatenateChannels.call('doSend' , message) ;
     
     }else{
 
@@ -129,7 +129,7 @@
 
         }else if(concatenateChannels.length){
 
-            concatenateChannels.call('receive' , message) ;
+            concatenateChannels.call('doSend' , message) ;
         }
 
     }else if(isReplyFailureMessage(message)){
@@ -156,7 +156,7 @@
         
         }else if(concatenateChannels.length){
 
-            concatenateChannels.call('receive' , message) ;
+           concatenateChannels.call('doSend' , message) ;
         }
     }
  }
