@@ -38,14 +38,23 @@
         if(processive){
 
             let listeners = {
-                message(channel , data){
+                message(channel , data , message){
 
-                    resolve(data) ;
+                    if(message.id === id){
+
+                        resolve(data) ;
+                    }
+
+                    
                 },
                 messageerror:{
                     fn(channel , message){
 
-                        reject(message) ;
+                        if(message.id === id){
+
+                            reject(message) ;
+                        }
+                        
                     },
                     once:true
                 }

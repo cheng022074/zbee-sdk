@@ -17,13 +17,13 @@ let channel = createChannel({
 
             return `${name} 是一名前端工程师` ;
         },
-        multi(){
+        multi(name){
 
             let count = 0 ;
 
             return create(resolve =>{
 
-                setInterval(() =>  resolve(`推送${count ++}`) , 1000) ;
+                setInterval(() =>  resolve(`${name} - 推送${count ++}`) , 1000) ;
 
             } , () =>{}) ;
         }
