@@ -8,12 +8,12 @@
  * @import isObject from is.object.simple
  * 
  * @import Channel from data.message.channel value
+ *
+ * @import isReplySuccessProcessiveMessage from is.message.reply.success.processive
  * 
- * @import isReplySuccessMessage from is.message.reply.ok
+ * @import isReplyFailureMessage from is.message.reply.failure
  * 
- * @import isProcessiveMessage from is.message.processive
- * 
- *  @import isCancelProcessiveMessage from is.message.processive.cancel
+ * @import isCancelProcessiveMessage from is.message.processive.cancel
  * 
  * @param {object} config 配置 
  * 
@@ -71,7 +71,7 @@
 
             childProcess.on('message' , message =>{
 
-                if(isReplySuccessMessage(message) && isProcessiveMessage(message) && !isCancelProcessiveMessage(message)){
+                if(isReplySuccessProcessiveMessage(message)){
 
                     receive(message) ;
                 }
@@ -112,18 +112,16 @@
 
             }) ;
 
-            if(isReplySuccessMessage(replyMessage)){
-
-                if(!isProcessiveMessage(message)){
-
-                    me.receive(replyMessage) ;
-                }
-
-                return ;
-            
-            }else{
+            if(isReplyFailureMessage(message)){
 
                 failureMessage = replyMessage ;
+            
+            }else if(!isReplySuccessProcessiveMessage(replyMessage)){
+
+                me.receive(replyMessage) ;
+                
+                return ;
+            
             }
         }
 
