@@ -11,6 +11,10 @@
  * 
  * @import isReplySuccessMessage from is.message.reply.ok
  * 
+ * @import isProcessiveMessage from is.message.processive
+ * 
+ *  @import isCancelProcessiveMessage from is.message.processive.cancel
+ * 
  * @param {object} config 配置 
  * 
  */
@@ -26,34 +30,54 @@
         ...options
     }){
 
-        super(options) ;
+        super({
+            ...options,
+            initFn(){
 
-        childProcesses = from(childProcesses);
-
-        let {
-            length
-        } = childProcesses ;
-
-        for(let i = 0 ; i < length ; i ++){
-
-            let childProcess = childProcesses[i] ;
-
-            if(isObject(childProcess)){
+                childProcesses = from(childProcesses);
 
                 let {
-                    path,
-                    args,
-                    ...options
-                } = childProcess ;
+                    length
+                } = childProcesses ;
 
-                childProcesses[i] = fork(path , args , options) ;
+                for(let i = 0 ; i < length ; i ++){
+
+                    let childProcess = childProcesses[i] ;
+
+                    if(isObject(childProcess)){
+
+                        let {
+                            path,
+                            args,
+                            ...options
+                        } = childProcess ;
+
+                        childProcesses[i] = fork(path , args , options) ;
+                    }
+                }
+
+                this.childProcesses = childProcesses ;
             }
-        }
-
-        this.childProcesses = childProcesses ;
+        }) ;
     }
 
-    doReceive(){
+    doReceive(receive){
+
+        let {
+            childProcesses
+        } = this ;
+
+        for(let childProcess of childProcesses){
+
+            childProcess.on('message' , message =>{
+
+                if(isReplySuccessMessage(message) && isProcessiveMessage(message) && !isCancelProcessiveMessage(message)){
+
+                    receive(message) ;
+                }
+
+            }) ;
+        }
     }
 
     async doSend(message){
@@ -90,7 +114,10 @@
 
             if(isReplySuccessMessage(replyMessage)){
 
-                me.receive(replyMessage) ;
+                if(!isProcessiveMessage(message)){
+
+                    me.receive(replyMessage) ;
+                }
 
                 return ;
             

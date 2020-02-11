@@ -13,18 +13,22 @@
  * 
  * @param {object} [config.addresses] 地址配置
  * 
+ * @param {function} [config.initFn] 初始化函数
+ * 
  * @import createProxy from object.proxy
  * 
  * @import createArrayProxy from array.proxy
  * 
  * @import generate from id.generate
  * 
+ * @import empty from function.empty value
+ * 
  */
 
  let me = this,
     proxy = createProxy(me) ;
 
-proxy.call('doReceive' , me.receive.bind(me)) ;
+initFn = initFn || empty ;
 
 me.proxy = proxy ;
 
@@ -43,3 +47,7 @@ me.concat(concatenateChannels) ;
 me.processivePromises = {} ;
 
 me.messages = {} ;
+
+initFn.call(me) ;
+
+proxy.call('doReceive' , me.receive.bind(me)) ;

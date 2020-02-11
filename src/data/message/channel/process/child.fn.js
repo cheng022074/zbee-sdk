@@ -11,11 +11,6 @@
 
  class main extends Channel{
 
-    constructor(options){
-
-        super(options) ;
-    }
-
     doReceive(receive){
 
         process.on('message' , receive) ;

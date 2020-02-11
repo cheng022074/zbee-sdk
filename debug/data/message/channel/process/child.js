@@ -19,9 +19,11 @@ let channel = createChannel({
         },
         multi(){
 
+            let count = 0 ;
+
             return create(resolve =>{
 
-                setInterval(() =>  resolve('推送') , 1000) ;
+                setInterval(() =>  resolve(`推送${count ++}`) , 1000) ;
 
             } , () =>{}) ;
         }
