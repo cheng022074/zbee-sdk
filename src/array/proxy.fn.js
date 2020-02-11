@@ -27,6 +27,21 @@
         this.push(...from(target)) ;
     }
 
+    includes(target){
+
+        let proxies = this ;
+
+        for(let proxy of proxies){
+
+            if(proxy.target === target){
+
+                return true ;
+            }
+        }
+
+        return false ;
+    }
+
     push(...items){
 
         let proxies = [] ;

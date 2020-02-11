@@ -1,7 +1,7 @@
 
 /**
  * 
- * 调试消息通道子进程
+ * SDK
  * 
  * @import create from promise.create
  * 

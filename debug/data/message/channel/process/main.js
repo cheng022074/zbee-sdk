@@ -7,7 +7,7 @@
  * 
  */
 
- (async () =>{
+ /*(async () =>{
 
     let channel = createChannel({
         childProcesses:fork('data.message.channel.process.child')
@@ -28,6 +28,13 @@
 
     channel.connect('multi' , 'World').then(result => console.log('推送消息' , result)) ;
 
- })() ;
+ })() ;*/
 
+
+createChannel({
+    concatenateChannels:createChannel({
+        childProcesses:fork('data.message.channel.process.client')
+    }),
+    childProcesses:fork('data.message.channel.process.sdk')
+}) ;
  

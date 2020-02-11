@@ -18,7 +18,11 @@
 
  for(let channel of channels){
 
-    channel.concat(me) ;
+    if(!concatenateChannels.includes(channel)){
 
-    concatenateChannels.push(channel) ;
+      concatenateChannels.push(channel) ;
+
+      channel.concat(me) ;
+
+    }
  }
