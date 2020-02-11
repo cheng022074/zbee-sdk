@@ -33,8 +33,8 @@
 
 createChannel({
     concatenateChannels:createChannel({
-        childProcesses:fork('data.message.channel.process.client')
+        childProcess:fork('data.message.channel.process.client')
     }),
-    childProcesses:fork('data.message.channel.process.sdk')
+    childProcess:fork('data.message.channel.process.sdk')
 }) ;
  

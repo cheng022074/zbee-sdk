@@ -28,6 +28,10 @@ setTimeout(async() =>{
         console.log('错误' , err) ;
     }
 
+    channel.connect('multi' , 'Hello').then(result => console.log('推送消息' , result)) ;
+
+    channel.connect('multi' , 'World').then(result => console.log('推送消息' , result)) ;
+
     console.log('结束') ;
 
 } , 1000) ;

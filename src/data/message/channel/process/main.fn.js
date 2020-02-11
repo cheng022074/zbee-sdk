@@ -24,7 +24,7 @@
  class main extends Channel{
 
     constructor({
-        childProcesses,
+        childProcess,
         ...options
     }){
 
@@ -32,29 +32,18 @@
             ...options,
             initFn(){
 
-                childProcesses = from(childProcesses);
+                if(isObject(childProcess)){
 
-                let {
-                    length
-                } = childProcesses ;
+                    let {
+                        path,
+                        args,
+                        ...options
+                    } = childProcess ;
 
-                for(let i = 0 ; i < length ; i ++){
-
-                    let childProcess = childProcesses[i] ;
-
-                    if(isObject(childProcess)){
-
-                        let {
-                            path,
-                            args,
-                            ...options
-                        } = childProcess ;
-
-                        childProcesses[i] = fork(path , args , options) ;
-                    }
+                    childProcess = fork(path , args , options) ;
                 }
 
-                this.childProcesses = childProcesses ;
+                this.childProcess = childProcess ;
             }
         }) ;
     }
@@ -62,64 +51,18 @@
     doReceive(receive){
 
         let {
-            childProcesses
+            childProcess
         } = this ;
 
-        for(let childProcess of childProcesses){
-
-            childProcess.on('message' , message =>{
-
-                if(!isReplyFailureMessage(message)){
-
-                    receive(message) ;
-                }
-
-            }) ;
-        }
+        childProcess.on('message' , message => receive(message)) ;
     }
 
-    async doSend(message){
+    doSend(message){
 
-        let me = this,
-        {
-            childProcesses
-        } = me,
-        failureMessage;
+        let {
+            childProcess
+        } = this;
 
-        for(let childProcess of childProcesses){
-
-            childProcess.send(message) ;
-
-            let replyMessage = await new Promise(callback =>{
-
-                let {
-                    id
-                } = message,
-                onMesage = (replyMessage) =>{
-    
-                    if(replyMessage.id === id){
-
-                        childProcess.off('message' , onMesage) ;
-    
-                        callback(replyMessage) ;
-                        
-                    }
-                };
-    
-                childProcess.on('message' , onMesage) ;
-
-            }) ;
-
-            if(isReplyFailureMessage(message)){
-
-                failureMessage = replyMessage ;
-            
-            }else{
-
-                return ;
-            }
-        }
-
-        me.receive(failureMessage) ;
+        childProcess.send(message) ;
     }
  }
