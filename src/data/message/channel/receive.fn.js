@@ -9,13 +9,19 @@
  * 
  * @import isSendMessage from is.message.send
  * 
- * @import isProcessiveMessage from is.message.processive
+ * @import isSendProcessiveMessage from is.message.send.processive
  * 
- * @import isCancelProcessiveMessage from is.message.processive.cancel
+ * @import isSendCancelProcessiveMessage from is.message.send.processive.cancel
  * 
  * @import isReplyMessage from is.message.reply
  * 
- * @import isReplySuccessMessage from is.message.reply.ok
+ * @import isReplySuccessMessage from is.message.reply.success
+ * 
+ * @import isReplySuccessSendMessage from is.message.reply.success.send
+ * 
+ * @import isReplySuccessCancelProcessiveMessage from is.message.reply.success.processive.cancel
+ * 
+ * @import isReplySuccessProcessiveMessage from is.message.reply.success.processive
  * 
  * @import isReplyFailureMessage from is.message.reply.failure
  * 
@@ -44,7 +50,7 @@
 
     if(addresses.hasOwnProperty(to)){
 
-        if(isCancelProcessiveMessage(message)){
+        if(isSendCancelProcessiveMessage(message)){
 
             if(processivePromises.hasOwnProperty(id)){
 
@@ -65,7 +71,7 @@
 
                 if(isProcessivePromise(result)){
 
-                    if(isProcessiveMessage(message)){
+                    if(isSendProcessiveMessage(message)){
 
                         processivePromises[id] =  result ;
                     
@@ -73,7 +79,6 @@
 
                         result.then(() => result.cancel()) ;
                     }
-                  
                 }
 
             }else{
@@ -99,13 +104,11 @@
 
             let result = addresses[from].reply(message.result , message);
 
-            if(isSendMessage(message) || isCancelProcessiveMessage(message)){
+            if(!isReplySuccessProcessiveMessage(message)){
 
                 delete messages[id] ;
             
-            }
-
-            if(isProcessiveMessage(message)){
+            }else{
 
                 if(!message.hasOwnProperty('count')){
 
@@ -117,7 +120,7 @@
                 message.count ++ ;
             }
 
-            if(isCancelProcessiveMessage(message)){
+            if(isReplySuccessCancelProcessiveMessage(message)){
 
                 me.fireEvent('messageend' , message) ;
             
@@ -128,7 +131,7 @@
 
         }else if(concatenateChannels.length){
 
-            concatenateChannels.call('onReceive' , message) ;
+            concatenateChannels.call('receive' , message) ;
         }
 
     }else if(isReplyFailureMessage(message)){
@@ -155,7 +158,7 @@
         
         }else if(concatenateChannels.length){
 
-            concatenateChannels.call('onReceive' , message) ;
+            concatenateChannels.call('receive' , message) ;
         }
     }
  }
