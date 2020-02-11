@@ -17,8 +17,6 @@
  * 
  * @import isReplySuccessMessage from is.message.reply.success
  * 
- * @import isReplySuccessSendMessage from is.message.reply.success.send
- * 
  * @import isReplySuccessCancelProcessiveMessage from is.message.reply.success.processive.cancel
  * 
  * @import isReplySuccessProcessiveMessage from is.message.reply.success.processive

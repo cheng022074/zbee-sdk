@@ -115,14 +115,18 @@
             if(isReplyFailureMessage(message)){
 
                 failureMessage = replyMessage ;
-            
-            }else if(!isReplySuccessProcessiveMessage(replyMessage)){
 
-                me.receive(replyMessage) ;
-                
-                return ;
+                continue ;
             
             }
+            
+            if(!isReplySuccessProcessiveMessage(replyMessage)){
+
+                me.receive(replyMessage) ;
+            
+            }
+
+            return ;
         }
 
         me.receive(failureMessage) ;
