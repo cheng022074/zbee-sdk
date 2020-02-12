@@ -56,14 +56,18 @@
 
     call(...args){
 
-        doExecute(this , 'call' , ...args) ;
+        return doExecute(this , 'call' , ...args) ;
     }
  }
 
  function doExecute(proxies , method , ...args){
 
+    let result = [] ;
+
     for(let proxy of proxies){
 
-        proxy[method](...args) ;
+        result.push(proxy[method](...args)) ;
     }
+
+    return result ;
  }
