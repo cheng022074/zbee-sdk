@@ -19,13 +19,16 @@ let channel = createChannel({
         },
         multi(name){
 
-            let count = 0 ;
+            let count = 0,
+                id;
 
-            return create(resolve =>{
+            return create(resolve => id = setInterval(() =>  resolve(`${name} - 推送${count ++}`) , 1000) , () => {
 
-                setInterval(() =>  resolve(`${name} - 推送${count ++}`) , 1000) ;
+                console.log('收到取消请求' , id) ;
 
-            } , () =>{}) ;
+                clearInterval(id) ;
+
+            }) ;
         }
     }
 }) ;

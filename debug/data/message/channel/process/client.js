@@ -28,9 +28,12 @@ setTimeout(async() =>{
         console.log('错误' , err) ;
     }
 
-    channel.connect('multi' , 'Hello').then(result => console.log('推送消息' , result)) ;
+    let hello = channel.connect('multi' , 'Hello').then(result => console.log('推送消息' , result)),
+        world = channel.connect('multi' , 'World').then(result => console.log('推送消息' , result)) ;
 
-    channel.connect('multi' , 'World').then(result => console.log('推送消息' , result)) ;
+    setTimeout(async () => await hello.cancel() , 5000) ;
+
+    setTimeout(async () => await world.cancel() , 10000) ;
 
     console.log('结束') ;
 
