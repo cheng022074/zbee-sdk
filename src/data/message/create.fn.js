@@ -87,7 +87,11 @@
             }) ;
         }
 
-     } , processive ? listeners => remove(channel , listeners) : false),
+     } , processive ? listeners => channel.disconnect(address , params , {
+        reconnection,
+        fromAddress,
+        processive
+     }) : false),
      body:{
         id,
         from:fromAddress,

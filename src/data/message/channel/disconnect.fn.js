@@ -9,6 +9,8 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import remove from event.listener.remove
+ * 
  * @param {mixed} address 接收消息地址
  * 
  * @param {mixed} params 发送的数据
@@ -27,14 +29,22 @@ let me = this,
 if(message){
 
     let {
+        id,
         body
     } = message;
+
+    remove(me , [
+        `messagestart-${id}`,
+        `message-${id}`,
+        `messageend-${id}`,
+        `messageerror-${id}`,
+    ]) ;
 
     body.cancel = true ;
 
     send(body) ;
 
-    return new Promise(resolve => add(me , 'messageend' , resolve , {
+    return new Promise(resolve => add(me , `messageend-${id}` , resolve , {
         once:true
     })) ;
 }

@@ -6,6 +6,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import is.array
+ * 
  * @import remove from .remove
  * 
  * @import listeners from ..listeners value
@@ -14,7 +16,7 @@
  * 
  * @param {mixed} target 事件主体
  * 
- * @param {string} name 事件名称
+ * @param {string|object} name 事件名称
  * 
  * @param {mixed} fn 事件回调
  * 
@@ -28,13 +30,27 @@
 
  if(isString(name)){
 
-    let listener = listeners.get(target , name , fn , scope) ;
+    if(fn){
 
-    if(listener){
+        let listener = listeners.get(target , name , fn , scope) ;
 
-        native(target , name , listener) ;
+        if(listener){
 
-        listeners.delete(target , name , fn , scope) ;
+            native(target , name , listener) ;
+
+            listeners.delete(target , name , fn , scope) ;
+        }
+    
+    }else{
+
+        let result = listeners.find(target , name) ;
+
+        for(let {
+            key
+        } of result){
+
+            remove(target , name , key[2] , key[3]) ;
+        }
     }
  
  }else if(isObject(name)){
@@ -50,4 +66,12 @@
         remove(target , name , listeners[name]) ;
     }
 
+ }else if(isArray(name)){
+
+    let names = name ;
+
+    for(let name of names){
+
+        remove(target , name) ;
+    }
  }
