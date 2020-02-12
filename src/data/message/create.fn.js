@@ -87,7 +87,7 @@
             }) ;
         }
 
-     } , processive ? listeners => channel.disconnect(address , params , {
+     } , processive ? async (listeners) => await channel.disconnect(address , params , {
         reconnection,
         fromAddress,
         processive

@@ -29,7 +29,6 @@ let me = this,
 if(message){
 
     let {
-        id,
         body
     } = message;
 
@@ -43,6 +42,10 @@ if(message){
     body.cancel = true ;
 
     send(body) ;
+
+    let {
+        id
+    } = body ;
 
     return new Promise(resolve => add(me , `messageend-${id}` , resolve , {
         once:true

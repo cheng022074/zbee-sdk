@@ -33,14 +33,14 @@
        me.onCancel = onCancel ;
     }
 
-    cancel(){
+    async cancel(){
 
         let {
             onCancelResult,
             onCancel
         } = this ;
 
-        onCancel(onCancelResult) ;
+        await onCancel(onCancelResult) ;
     }
 
     resolve(data){
