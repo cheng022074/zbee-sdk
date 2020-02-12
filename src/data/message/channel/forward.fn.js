@@ -24,4 +24,8 @@
     forward(message , me) ;
 
     proxy.call('doSend' , message) ;
+
+    return true ;
  }
+
+ return false ;

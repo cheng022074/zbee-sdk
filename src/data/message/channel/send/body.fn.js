@@ -10,7 +10,8 @@
 let me = this,
 {
     proxy,
-    addresses
+    addresses,
+    rootAddress
 } = me,{
     to
 } = body;
@@ -21,5 +22,10 @@ if(addresses.hasOwnProperty(to)){
 
 }else{
 
-   proxy.call('doSend' , body) ;
+   proxy.call('doSend' , {
+       ...body,
+       channels:[
+           rootAddress
+        ]
+   }) ;
 }
