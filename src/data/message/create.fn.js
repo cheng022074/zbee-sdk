@@ -28,9 +28,10 @@
 
  let me = this,
  {
-    messages
+    messages,
+    rootAddress
  } = channel,
- id = generate('message-');
+ id = generate(`${rootAddress}-message-`);
 
  return messages[id] = {
      promise:createPromise((resolve , reject) =>{
