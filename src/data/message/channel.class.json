@@ -5,6 +5,7 @@
     ],
     "class":true,
     "methods":[
+        "fire",
         "forward",
         "send",
         "connect",

@@ -108,7 +108,7 @@
 
                     message.count = 0 ;
 
-                    me.fireEvent('messagestart' , message) ;
+                    me.fire('messagestart' , message) ;
                 }
 
                 message.count ++ ;
@@ -116,11 +116,11 @@
 
             if(isReplySuccessCancelProcessiveMessage(message)){
 
-                me.fireEvent('messageend' , message) ;
+                me.fire('messageend' , message) ;
             
             }else{
 
-                me.fireEvent('message' , result , message) ;
+                me.fire('message' , message , result) ;
             }
 
         }else{
@@ -147,7 +147,7 @@
 
                 delete messages[id] ;
 
-                me.fireEvent('messageerror' , message) ;
+                me.fire('messageerror' , message) ;
             }
         
         }else{

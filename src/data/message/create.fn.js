@@ -39,22 +39,15 @@
         if(processive){
 
             let listeners = {
-                message(channel , data , message){
+                [`message-${id}`](channel , data){
 
-                    if(message.id === id){
+                    resolve(data) ;
 
-                        resolve(data) ;
-                    }
-
-                    
                 },
-                messageerror:{
+                [`messageerror-${id}`]:{
                     fn(channel , message){
 
-                        if(message.id === id){
-
-                            reject(message) ;
-                        }
+                        reject(message) ;
                         
                     },
                     once:true
@@ -69,29 +62,25 @@
 
             let onMessageError = (channel , message) => {
 
-                if(message.id === id){
+                reject(message) ;
 
-                    reject(message) ;
-
-                    remove(channel , 'message' , onMessage) ;
-                }
+                remove(channel , `message-${id}` , onMessage) ;
+            
             },
-            onMessage = (channel , data , message) =>{
+            onMessage = (channel , data) =>{
 
-                if(message.id === id){
+                resolve(data) ;
 
-                    resolve(data) ;
-
-                    remove(channel , 'messageerror' , onMessageError) ;
-                }
+                remove(channel , `messageerror-${id}` , onMessageError) ;
+                
             };
 
             add(channel , {
-                message:{
+                [`message-${id}`]:{
                     fn:onMessage,
                     once:true
                 },
-                messageerror:{
+                [`messageerror-${id}`]:{
                     fn:onMessageError,
                     once:true
                 }
