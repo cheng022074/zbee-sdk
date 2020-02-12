@@ -5,8 +5,6 @@
  * 
  * @import get from data.message.get
  * 
- * @import isProcessiveMessage from is.message.processive
- * 
  * @import send from .send.body scoped
  * 
  * @import add from event.listener.add
