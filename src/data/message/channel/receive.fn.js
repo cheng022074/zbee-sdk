@@ -85,11 +85,7 @@
             }
         }
     
-    }else if(concatenateChannels.length){
-
-        concatenateChannels.call('doSend' , message) ;
-    
-    }else{
+    }else if(!concatenateChannels.call('forward' , message).includes(true)){
 
         me.replyFailure(message) ;
     }
@@ -127,9 +123,9 @@
                 me.fireEvent('message' , result , message) ;
             }
 
-        }else if(concatenateChannels.length){
+        }else{
 
-            concatenateChannels.call('doSend' , message) ;
+            concatenateChannels.call('forward' , message) ;
         }
 
     }else if(isReplyFailureMessage(message)){
@@ -154,9 +150,9 @@
                 me.fireEvent('messageerror' , message) ;
             }
         
-        }else if(concatenateChannels.length){
+        }else{
 
-           concatenateChannels.call('doSend' , message) ;
+            concatenateChannels.call('forward' , message) ;
         }
     }
  }
