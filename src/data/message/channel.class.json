@@ -5,6 +5,7 @@
     ],
     "class":true,
     "methods":[
+        "forward",
         "send",
         "connect",
         "disconnect",
