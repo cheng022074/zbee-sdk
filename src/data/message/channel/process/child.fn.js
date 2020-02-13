@@ -16,7 +16,7 @@
         process.on('message' , receive) ;
     }
 
-    async doSend(message){
+    doSend(message){
 
         process.send(message) ;
     }
