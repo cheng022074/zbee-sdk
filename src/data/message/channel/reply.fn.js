@@ -7,4 +7,14 @@
  * 
  */
 
- this.proxy.call('doSend' , message) ;
+ let me = this,
+    {
+        rootAddress
+    } = me;
+
+ me.proxy.call('doSend' , {
+     ...message,
+     channels:[
+        rootAddress
+     ]
+ }) ;

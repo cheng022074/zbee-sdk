@@ -38,11 +38,14 @@
      concatenateChannels,
      processivePromises,
      messages,
+     rootAddress
  } = me,{
     id,
     from,
     to
 } = message ;
+
+message.channels.push(rootAddress) ;
 
  if(isSendMessage(message)){
 

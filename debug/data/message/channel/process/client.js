@@ -21,6 +21,8 @@ setTimeout(async() =>{
 
     console.log('返回数据' , result) ;
 
+    return ;
+
     try{
    
         await channel.send('single_error' , '陈治文') ;

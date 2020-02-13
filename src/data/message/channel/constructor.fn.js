@@ -34,7 +34,7 @@ me.proxy = proxy ;
 
 me.addresses = {} ;
 
-me.register(me.rootAddress = generate(`${rootAddress || 'address'}-`)) ;
+me.register(me.rootAddress = rootAddress || generate('address-')) ;
 
 me.register(addresses) ;
 
