@@ -35,6 +35,10 @@ if(message){
 
     if(body.cancel !== true){
 
+        let {
+            id
+        } = body ;
+
         remove(me , [
             `messagestart-${id}`,
             `message-${id}`,
@@ -45,10 +49,6 @@ if(message){
         body.cancel = true ;
     
         send(body) ;
-    
-        let {
-            id
-        } = body ;
     
         return new Promise(resolve => add(me , `messageend-${id}` , resolve , {
             once:true
