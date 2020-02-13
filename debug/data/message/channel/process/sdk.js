@@ -10,6 +10,7 @@
  */
 
 let channel = createChannel({
+    rootAddress:'sdk',
     addresses:{
         single(name){
 

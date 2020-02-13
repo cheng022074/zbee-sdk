@@ -9,7 +9,9 @@
  * 
  */
 
-let channel = createChannel() ;
+let channel = createChannel({
+    rootAddress:'client'
+}) ;
 
 setTimeout(async() =>{
 

@@ -8,7 +8,9 @@
  */
 
 createChannel({
+    rootAddress:'main1',
     concatenateChannels:createChannel({
+        rootAddress:'main2',
         childProcess:fork('data.message.channel.process.client')
     }),
     childProcess:fork('data.message.channel.process.sdk')
