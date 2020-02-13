@@ -3,6 +3,14 @@
  * 
  * 创建持续性 Promise
  * 
+ * @import is.function
+ * 
+ * @import remove from array.remove
+ * 
+ * @import includes from array.includes
+ * 
+ * @import is.empty
+ * 
  * @param {function} onInit 实始化 Promise 引用
  * 
  * @param {function} onCancel 取消 Promise 时调用
@@ -31,23 +39,44 @@
        me.onCancelResult = onInit(resolve.bind(me) , reject.bind(me)) ;
 
        me.onCancel = onCancel ;
+
+       me.caches = [] ;
     }
 
-    async cancel(){
+    async cancel(callback){
 
         let {
             onCancelResult,
-            onCancel
+            onCancel,
+            resolveCallbacks
         } = this ;
 
-        await onCancel(onCancelResult) ;
+        if(isFunction(callback)){
+
+            if(includes(resolveCallbacks , callback)){
+
+                remove(resolveCallbacks , callback) ;
+            }
+
+            if(isEmpty(resolveCallbacks)){
+
+                await onCancel(onCancelResult) ;
+            }
+        
+        }else{
+
+            await onCancel(onCancelResult) ;
+        }
     }
 
     resolve(data){
 
         let {
-            resolveCallbacks
+            resolveCallbacks,
+            caches
         } = this;
+
+        caches.push(data) ;
 
         for(let resolveCallback of resolveCallbacks){
 
@@ -71,8 +100,17 @@
 
         let me = this,
         {
-            resolveCallbacks
+            resolveCallbacks,
+            caches
         } = me;
+
+        if(caches.length){
+
+            for(let cache of caches){
+
+                callback(cache) ;
+            }
+        }
 
         resolveCallbacks.push(callback) ;
 

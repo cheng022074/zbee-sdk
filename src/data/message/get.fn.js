@@ -11,6 +11,10 @@
  * 
  * @import copy from object.copy
  * 
+ * @import isPromise from is.promise.processive
+ * 
+ * @import createPromise from promise.create
+ * 
  * @param {data.message.Channel} channel 消息通道对象
  * 
  * @param {mixed} address 接收消息地址
@@ -26,6 +30,8 @@
  * @param {boolean} [config.processive = false] 是否为持续消息
  * 
  * @param {boolean} [config.autoCreate = true] 当前 autoCreate 设置为 true 时，如果消息不存在时则创建
+ * 
+ * @param {boolean} [config.wrapProcessivePromise = true] 在已有持续推送机外，是否包裹一层持续推送机
  * 
  */
 
@@ -49,8 +55,7 @@ for(let message of messages){
         from,
         to,
         params:messageParams,
-        processive:messageProcessive,
-        cancel
+        processive:messageProcessive
     } = body ;
 
     if(
@@ -60,11 +65,27 @@ for(let message of messages){
         messageProcessive === processive
     ){
 
-        return {
+        let result = {
             created:false,
-            body,
-            promise
+            body
         } ;
+
+        if(isPromise(promise) && wrapProcessivePromise){
+
+            result.promise = createPromise((resolve , reject) => {
+
+                promise.then(resolve).catch(reject) ;
+
+                return resolve ;
+
+            } , resolve => promise.cancel(resolve)) ;
+        
+        }else{
+
+            result.promise = promise ;
+        }
+
+        return result ;
     }
 }
 

@@ -23,7 +23,8 @@ let me = this,
     message = get(me , address , params , {
         ...config,
         processive:true,
-        autoCreate:false
+        autoCreate:false,
+        wrapProcessivePromise:false
     }) ;
 
 if(message){
