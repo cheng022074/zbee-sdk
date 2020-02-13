@@ -18,9 +18,14 @@
  let message = get(this , address , params , config),
  {
     promise,
-    body
+    body,
+    created
  } = message ;
 
- send(body) ;
+ if(created){
+
+   send(body) ;
+ 
+ }
 
  return promise ;

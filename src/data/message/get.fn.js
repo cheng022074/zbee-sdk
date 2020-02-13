@@ -42,30 +42,40 @@ messages = Object.values(messages) ;
 for(let message of messages){
 
     let {
+        body,
+        promise
+    } = message,
+    {
         from,
         to,
         params:messageParams,
         processive:messageProcessive,
         cancel
-    } = message.body ;
+    } = body ;
 
     if(
         from === fromAddress &&
         to === address &&
         equals(params , messageParams) &&
-        messageProcessive === processive &&
-        cancel !== true
+        messageProcessive === processive
     ){
 
-        return message ;
+        return {
+            created:false,
+            body,
+            promise
+        } ;
     }
 }
 
 if(autoCreate){
 
-    return create(channel , address , params , {
-        reconnection,
-        fromAddress,
-        processive
-    }) ;
+    return {
+        ...create(channel , address , params , {
+            reconnection,
+            fromAddress,
+            processive
+        }),
+        created:true
+    } ;
 }

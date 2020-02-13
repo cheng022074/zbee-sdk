@@ -32,24 +32,27 @@ if(message){
         body
     } = message;
 
-    remove(me , [
-        `messagestart-${id}`,
-        `message-${id}`,
-        `messageend-${id}`,
-        `messageerror-${id}`,
-    ]) ;
+    if(body.cancel !== true){
 
-    body.cancel = true ;
-
-    send(body) ;
-
-    let {
-        id
-    } = body ;
-
-    return new Promise(resolve => add(me , `messageend-${id}` , resolve , {
-        once:true
-    })) ;
+        remove(me , [
+            `messagestart-${id}`,
+            `message-${id}`,
+            `messageend-${id}`,
+            `messageerror-${id}`,
+        ]) ;
+    
+        body.cancel = true ;
+    
+        send(body) ;
+    
+        let {
+            id
+        } = body ;
+    
+        return new Promise(resolve => add(me , `messageend-${id}` , resolve , {
+            once:true
+        })) ;
+    }
 }
 
 return Promise.resolve() ;
