@@ -1,9 +1,0 @@
-{
-  "classes": [
-    "data.reader.json",
-    "data.convert.*",
-    "data.pusher"
-  ],
-  "type": "node",
-  "memory": false
-}
