@@ -7,8 +7,6 @@
  * 
  * @param {boolean} [config.reSendDelay = 0] 重发消息延迟
  * 
- * @param {data.message.Channel} [config.concatenateChannels] 转发消息通道
- * 
  * @param {string} [config.rootAddress] 根地址
  * 
  * @param {object} [config.addresses] 地址配置
@@ -41,8 +39,6 @@ me.register(addresses) ;
 me.reSendDelay = reSendDelay ;
 
 me.concatenateChannels = createArrayProxy() ;
-
-me.concat(concatenateChannels) ;
 
 me.processivePromises = {} ;
 
