@@ -9,10 +9,6 @@
  * 
  * @import Channel from data.message.channel value
  *
- * @import isReplyFailureMessage from is.message.reply.failure
- * 
- * @import isCancelProcessiveMessage from is.message.processive.cancel
- * 
  * @param {object} config 配置 
  * 
  */
@@ -39,7 +35,10 @@
             webContents
         } = this ;
 
-        webContents.on('ipc-message' , (id , message) => receive(message)) ;
+        webContents.on('ipc-message' , (id , [
+            ,
+            message
+        ]) => receive(message)) ;
     }
 
     doSend(message){

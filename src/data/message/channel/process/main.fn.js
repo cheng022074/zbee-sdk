@@ -9,10 +9,6 @@
  * 
  * @import Channel from data.message.channel value
  *
- * @import isReplyFailureMessage from is.message.reply.failure
- * 
- * @import isCancelProcessiveMessage from is.message.processive.cancel
- * 
  * @param {object} config 配置 
  * 
  */
