@@ -107,9 +107,7 @@ message.channels.push(rootAddress) ;
             
             }else{
 
-                if(!message.hasOwnProperty('count')){
-
-                    message.count = 0 ;
+                if(message.count === 0){
 
                     me.fire('messagestart' , message) ;
                 }
