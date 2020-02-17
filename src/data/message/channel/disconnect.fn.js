@@ -11,6 +11,10 @@
  * 
  * @import remove from event.listener.remove
  * 
+ * @import disconnect from data.message.processive.disconnect
+ * 
+ * @import is from data.message.processive.disconnect.is
+ * 
  * @param {mixed} address 接收消息地址
  * 
  * @param {mixed} params 发送的数据
@@ -31,28 +35,32 @@ if(message){
 
     let {
         body
-    } = message;
+    } = message,
+    {
+        id
+    } = body;
 
-    if(body.cancel !== true){
+    disconnect(id) ;
 
-        let {
-            id
-        } = body ;
-
-        remove(me , [
-            `messagestart-${id}`,
-            `message-${id}`,
-            `messageend-${id}`,
-            `messageerror-${id}`,
-        ]) ;
+    if(is(id)){
     
-        body.cancel = true ;
+        if(body.cancel !== true){
     
-        send(body) ;
-    
-        return new Promise(resolve => add(me , `messageend-${id}` , resolve , {
-            once:true
-        })) ;
+            remove(me , [
+                `messagestart-${id}`,
+                `message-${id}`,
+                `messageend-${id}`,
+                `messageerror-${id}`,
+            ]) ;
+        
+            body.cancel = true ;
+        
+            send(body) ;
+        
+            return new Promise(resolve => add(me , `messageend-${id}` , resolve , {
+                once:true
+            })) ;
+        }
     }
 }
 
