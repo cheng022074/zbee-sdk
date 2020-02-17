@@ -33,6 +33,10 @@
  id = generate('message-');
 
  return messages[id] = {
+     ...(processive ? {
+        connectCount:0,
+        count:0
+     } : {}),
      promise:createPromise((resolve , reject) =>{
 
         if(processive){
