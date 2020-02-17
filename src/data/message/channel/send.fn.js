@@ -15,7 +15,10 @@
  * 
  */
 
- let message = get(this , address , params , config),
+ let {
+   returnMessage = false
+ } = config,
+ message = get(this , address , params , config),
  {
     promise,
     body,
@@ -26,6 +29,11 @@
 
    send(body) ;
  
+ }
+
+ if(returnMessage === true){
+
+    return message ;
  }
 
  return promise ;
