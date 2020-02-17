@@ -11,9 +11,9 @@
  * 
  * @import remove from event.listener.remove
  * 
- * @import disconnect from data.message.processive.disconnect
+ * @import disconnect from data.message.processive.disconnect scoped
  * 
- * @import is from data.message.processive.disconnect.is
+ * @import is from data.message.processive.disconnect.is scoped
  * 
  * @param {mixed} address 接收消息地址
  * 
