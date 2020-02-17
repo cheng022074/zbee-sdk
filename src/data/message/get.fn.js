@@ -31,8 +31,6 @@
  * 
  * @param {boolean} [config.autoCreate = true] 当前 autoCreate 设置为 true 时，如果消息不存在时则创建
  * 
- * @param {boolean} [config.wrapProcessivePromise = true] 在已有持续推送机外，是否包裹一层持续推送机
- * 
  */
 
 let me = this,
@@ -65,27 +63,11 @@ for(let message of messages){
         messageProcessive === processive
     ){
 
-        let result = {
+        return {
             created:false,
+            promise,
             body
         } ;
-
-        if(isPromise(promise) && wrapProcessivePromise){
-
-            result.promise = createPromise((resolve , reject) => {
-
-                promise.then(resolve).catch(reject) ;
-
-                return resolve ;
-
-            } , resolve => promise.cancel(resolve)) ;
-        
-        }else{
-
-            result.promise = promise ;
-        }
-
-        return result ;
     }
 }
 
