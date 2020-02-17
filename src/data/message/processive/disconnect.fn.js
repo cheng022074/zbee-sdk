@@ -13,7 +13,8 @@ let {
 
  if(messages.hasOwnProperty(id)){
 
-    let {
+    let message = messages[id],
+    {
         connectCount
     } = message ;
 

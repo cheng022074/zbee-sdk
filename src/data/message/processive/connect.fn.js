@@ -13,5 +13,5 @@
 
  if(messages.hasOwnProperty(id)){
 
-    message.connectCount ++ ;
+    messages[id].connectCount ++ ;
  }
