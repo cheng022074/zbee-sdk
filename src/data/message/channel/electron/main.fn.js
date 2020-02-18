@@ -8,6 +8,8 @@
  * @import isObject from is.object.simple
  * 
  * @import Channel from data.message.channel value
+ * 
+ * @import isObject from is.object.simple
  *
  * @param {object} config 配置 
  * 
@@ -38,7 +40,14 @@
         webContents.on('ipc-message' , (id , [
             ,
             message
-        ]) => receive(message)) ;
+        ]) => {
+
+            if(isObject(message)){
+
+                receive(message) ;
+            }
+
+        }) ;
     }
 
     doSend(message){
