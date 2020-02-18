@@ -9,7 +9,10 @@
         "forward",
         "send",
         "connect",
-        "disconnect",
+        "disconnect",{
+            "name":"disconnectAll",
+            "impl":".channel.disconnect.all"
+        },
         "receive",
         "register",
         "unregister",

@@ -15,6 +15,10 @@
  * 
  * @import is from data.message.processive.disconnect.is scoped
  * 
+ * @import is.string
+ * 
+ * @import isObject from is.object.simple
+ * 
  * @param {mixed} address 接收消息地址
  * 
  * @param {mixed} params 发送的数据
@@ -24,12 +28,20 @@
  */
 
 let me = this,
+    message ;
+
+if(isString(address)){
+
     message = get(me , address , params , {
         ...config,
         processive:true,
-        autoCreate:false,
-        wrapProcessivePromise:false
+        autoCreate:false
     }) ;
+
+}else if(isObject(address)){
+
+    message = address ;
+}
 
 if(message){
 
