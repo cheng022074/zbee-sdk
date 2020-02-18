@@ -13,4 +13,11 @@ let {
     messages
  } = this ;
 
- return messages.hasOwnProperty(id) && messages[id].connectCount === 0 ;
+ if(messages.hasOwnProperty(id)){
+
+    let message = messages[id] ;
+
+    return message.connectCount === 0 && message.body.cancel !== true ;
+ }
+
+ return false ;
