@@ -55,24 +55,22 @@ if(message){
     disconnect(id) ;
 
     if(is(id)){
+
+        remove(me , [
+            `messagestart-${id}`,
+            `message-${id}`,
+            `messageend-${id}`,
+            `messageerror-${id}`,
+        ]) ;
     
-        if(body.cancel !== true){
+        body.cancel = true ;
     
-            remove(me , [
-                `messagestart-${id}`,
-                `message-${id}`,
-                `messageend-${id}`,
-                `messageerror-${id}`,
-            ]) ;
+        send(body) ;
+    
+        return new Promise(resolve => add(me , `messageend-${id}` , resolve , {
+            once:true
+        })) ;
         
-            body.cancel = true ;
-        
-            send(body) ;
-        
-            return new Promise(resolve => add(me , `messageend-${id}` , resolve , {
-                once:true
-            })) ;
-        }
     }
 }
 
