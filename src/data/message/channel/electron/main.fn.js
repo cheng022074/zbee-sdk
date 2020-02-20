@@ -56,6 +56,9 @@
             webContents
         } = this;
 
-        webContents.send('ipc-message' , message) ;
+        if(!webContents.isDestroyed()){
+
+            webContents.send('ipc-message' , message) ;
+        }
     }
  }
