@@ -53,8 +53,14 @@ for(let message of messages){
         from,
         to,
         params:messageParams,
-        processive:messageProcessive
+        processive:messageProcessive,
+        cancel
     } = body ;
+
+    if(cancel === true){
+
+        continue ;
+    }
 
     if(
         from === fromAddress &&
