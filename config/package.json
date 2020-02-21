@@ -6,6 +6,7 @@
             "data.*",
             "browser.canvas.*",
             "is.*",
+            "directory.*",
             "browser.*",
             "object.*",
             "class.*",
