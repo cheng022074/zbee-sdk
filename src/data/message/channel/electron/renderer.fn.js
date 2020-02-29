@@ -17,7 +17,7 @@ class main extends Channel{
 
     doReceive(receive){
 
-        ipcRenderer.on('ipc-message' , (target , message) => receive(message)) ;
+        ipcRenderer.on('ipc-message' , (event , message) => receive(message)) ;
     }
 
     doSend(message){
