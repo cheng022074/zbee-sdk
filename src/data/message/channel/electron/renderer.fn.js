@@ -15,6 +15,16 @@
 
 class main extends Channel{
 
+    constructor({
+        isWebview = false,
+        ...options
+    }){
+
+        super(options) ;
+
+        this.isWebview = isWebview ;
+    }
+
     doReceive(receive){
 
         ipcRenderer.on('ipc-message' , (event , message) => receive(message)) ;
@@ -22,6 +32,10 @@ class main extends Channel{
 
     doSend(message){
 
-        ipcRenderer.send('ipc-message' , message) ;
+        let {
+            isWebview
+        } = this ;
+
+        ipcRenderer[isWebview ? 'sendToHost' : 'send']('ipc-message' , message) ;
     }
  }
