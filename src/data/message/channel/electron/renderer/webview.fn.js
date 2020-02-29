@@ -42,18 +42,17 @@ class main extends Channel{
             webview
         } = this ;
 
-        webview.on('ipc-message' , (event , id , message) => {
+        webview.on('ipc-message' , ({
+            channel,
+            args
+        }) => {
 
-            if(isArray(id)){
+            let message = args[0] ;
 
-                message = id[1] ;
-            }
-
-            if(is(message)){
+            if(channel === 'ipc-message' && is(message)){
 
                 receive(message) ;
             }
-
         }) ;
 
         webview.on('destroyed' , () => me.isDestroyed = true) ;
