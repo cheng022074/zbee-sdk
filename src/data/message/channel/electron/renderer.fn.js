@@ -22,6 +22,6 @@ class main extends Channel{
 
     doSend(message){
 
-        ipcRenderer.send(message.id , message) ;
+        ipcRenderer.send('ipc-message' , message) ;
     }
  }
