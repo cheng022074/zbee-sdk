@@ -3,7 +3,7 @@
  * 
  * 判断是否是回复消息
  * 
- * @import is from ..is
+ * @import is from ..message
  * 
  * @param {object} message 消息 
  * 
