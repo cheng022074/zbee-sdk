@@ -7,9 +7,11 @@
  * 
  * @import is.array
  * 
- * @import is from is.message.reply
+ * @import is from is.message
  * 
  * @import Channel from data.message.channel value
+ * 
+ * @import add from event.listener.add
  *
  * @param {object} config 配置 
  * 
@@ -23,17 +25,15 @@ class main extends Channel{
         ...options
     }){
 
-        let me = this ;
-
         super({
             ...options,
             initFn(){
 
-                me.webview = webview ;
+                this.webview = webview ;
             }
         }) ;
 
-        me.isDestroyed = false ;
+        this.isDestroyed = false ;
     }
 
     doReceive(receive){
@@ -42,7 +42,7 @@ class main extends Channel{
             webview
         } = this ;
 
-        webview.on('ipc-message' , ({
+        add(webview , 'ipc-message' , ({
             channel,
             args
         }) => {
@@ -55,7 +55,7 @@ class main extends Channel{
             }
         }) ;
 
-        webview.on('destroyed' , () => me.isDestroyed = true) ;
+        add(webview , 'destroyed' , () => me.isDestroyed = true) ;
     }
 
     doSend(message){

@@ -7,7 +7,7 @@
  * 
  * @import is.array
  * 
- * @import is from is.message.reply
+ * @import is from is.message
  * 
  * @import Channel from data.message.channel value
  *
