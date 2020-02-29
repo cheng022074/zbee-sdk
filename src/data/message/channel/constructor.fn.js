@@ -9,6 +9,8 @@
  * 
  * @param {string} [config.rootAddress] 根地址
  * 
+ * @param {mixed} [config.rootAddressConfig] 根地址配置
+ * 
  * @param {object} [config.addresses] 地址配置
  * 
  * @param {function} [config.initFn] 初始化函数
@@ -32,7 +34,7 @@ me.proxy = proxy ;
 
 me.addresses = {} ;
 
-me.register(me.rootAddress = rootAddress || generate('address-')) ;
+me.register(me.rootAddress = rootAddress , rootAddressConfig) ;
 
 me.register(addresses) ;
 
