@@ -5,11 +5,11 @@
  * 
  * @import from from array.from
  * 
- * @import isObject from is.object.simple
+ * @import is.array
+ * 
+ * @import is from is.message.reply
  * 
  * @import Channel from data.message.channel value
- * 
- * @import isObject from is.object.simple
  *
  * @param {object} config 配置 
  * 
@@ -37,12 +37,14 @@
             webContents
         } = this ;
 
-        webContents.on('ipc-message' , (id , [
-            ,
-            message
-        ]) => {
+        webContents.on('ipc-message' , (event , id , message) => {
 
-            if(isObject(message)){
+            if(isArray(id)){
+
+                message = id[1] ;
+            }
+
+            if(is(message)){
 
                 receive(message) ;
             }
