@@ -13,6 +13,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import emptyFn from function.empty value
+ * 
  * @param {string|object} address 地址
  * 
  * @param {mixed} fn 地址所绑定的函数
@@ -62,8 +64,8 @@
     
             {
                 let {
-                    receive,
-                    reply,
+                    receive = emptyFn,
+                    reply = result => result,
                     scope
                 } = config ;
     
@@ -77,7 +79,7 @@
     
             resignerConfig = {
                 receive:get(fn , scope),
-                reply:get(fn , scope)
+                reply:get(fn , scope) 
             } ;
         
         }else{
