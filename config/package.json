@@ -1,6 +1,5 @@
 {
     "xy":{
-        "type":"library",
         "classes":[
             "array.*",
             "data.*",
