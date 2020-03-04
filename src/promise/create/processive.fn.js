@@ -39,8 +39,6 @@
        me.onCancelResult = onInit(resolve.bind(me) , reject.bind(me)) ;
 
        me.onCancel = onCancel ;
-
-       me.caches = [] ;
     }
 
     async cancel(callback){
@@ -72,11 +70,8 @@
     resolve(data){
 
         let {
-            resolveCallbacks,
-            caches
+            resolveCallbacks
         } = this;
-
-        caches.push(data) ;
 
         for(let resolveCallback of resolveCallbacks){
 
@@ -100,17 +95,8 @@
 
         let me = this,
         {
-            resolveCallbacks,
-            caches
+            resolveCallbacks
         } = me;
-
-        if(caches.length){
-
-            for(let cache of caches){
-
-                callback(cache) ;
-            }
-        }
 
         resolveCallbacks.push(callback) ;
 
