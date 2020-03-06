@@ -83,8 +83,6 @@
 
                 data = result ;
             }
-
-            resolveCallback(data) ;
         }
     }
 
