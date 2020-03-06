@@ -11,6 +11,8 @@
  * 
  * @import is.empty
  * 
+ * @import is.defined
+ * 
  * @param {function} onInit 实始化 Promise 引用
  * 
  * @param {function} onCancel 取消 Promise 时调用
@@ -75,7 +77,14 @@
 
         for(let resolveCallback of resolveCallbacks){
 
-            data = resolveCallback(data) ;
+            let result = resolveCallback(data) ;
+
+            if(isDefined(result)){
+
+                data = result ;
+            }
+
+            resolveCallback(data) ;
         }
     }
 
