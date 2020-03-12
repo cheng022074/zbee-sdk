@@ -30,7 +30,7 @@
  {
     messages
  } = channel,
- id = generate('message-');
+ id = generate('message-' , true);
 
  return messages[id] = {
      ...(processive ? {
