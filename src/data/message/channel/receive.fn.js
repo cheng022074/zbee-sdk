@@ -90,7 +90,7 @@ message.channels.push(rootAddress) ;
     
     }else if(!concatenateChannels.call('forward' , message).includes(true)){
 
-        me.replyFailure(message) ;
+        //me.replyFailure(message) ;
     }
  
  }else if(isReplyMessage(message)){
