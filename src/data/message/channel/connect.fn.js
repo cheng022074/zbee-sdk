@@ -22,8 +22,18 @@ let {
     ...config,
     processive:true,
     returnMessage:true
-}) ;
+}),
+{
+    id
+} = body;
 
-connect(body.id) ;
+connect(id) ;
 
-return promise ;
+let {
+    messages
+} = this ;
+
+if(messages[id].connectCount === 1){
+
+    return promise ;
+}
