@@ -7,9 +7,11 @@
  * 
  * @import remove from event.listener.remove
  * 
+ * @import isObject from is.object.simple
+ * 
  * @param {mixed} target
  * 
- * @param {string} event 目标监听事件
+ * @param {mixed} event 目标监听事件
  * 
  * @param {mixed} fn 目标监听回调
  * 
@@ -17,11 +19,42 @@
  * 
  */
 
-let listener = listeners.get(target , event , fn);
+ function main(target , event , fn){
 
-if(listener){
+    if(isObject(event)){
 
-    remove(target , event , listener) ;
+        let names = Object.keys(event) ;
 
-    listeners.delete(target , event , fn) ;
-}
+        for(let name of names){
+
+            if(name !== 'scope'){
+
+                let fn,
+                    listener = event[name];
+
+                if(isObject(listener)){
+
+                    fn = listener.fn ;
+                
+                }else{
+
+                    fn = listener ;
+                }
+
+                remove(target , name , fn) ;
+            }
+        }
+    }
+ }
+
+ function remove(target , event , fn){
+
+    let listener = listeners.get(target , event , fn);
+
+    if(listener){
+
+        remove(target , event , listener) ;
+
+        listeners.delete(target , event , fn) ;
+    }
+ }
