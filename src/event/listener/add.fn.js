@@ -28,6 +28,8 @@
  * 
  * @param {boolean} [options.once = false] 只监听一次
  * 
+ * @param {object} [options.options] 浏览器事件监听所需要参数
+ * 
  * @param {mixed} [options.scope] 事件作用域
  * 
  */
@@ -62,9 +64,12 @@
             listener = listenerFn ;
         }
 
-        native(target , name , listener) ;
+        native(target , name , listener , options) ;
 
-        listeners.set(target , name , fn , scope , listener) ;
+        listeners.set(target , name , fn , scope , {
+            fn:listener,
+            options
+        }) ;
     }
 
  }else if(isObject(name)){

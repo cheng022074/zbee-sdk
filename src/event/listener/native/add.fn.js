@@ -9,8 +9,15 @@
  * 
  * @param {function} fn 事件监听函数
  * 
+ * @param {object} [options] 事件参数
+ * 
  */
 
- const add = target.addEventListener || target.on ;
+ if('addEventListener' in target){
 
- add.call(target , name , fn) ;
+    target.addEventListener(name , fn , options) ;
+ 
+ }else{
+
+    target.on(name , fn) ;
+ }

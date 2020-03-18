@@ -36,7 +36,12 @@
 
         if(listener){
 
-            native(target , name , listener) ;
+            let {
+                fn,
+                options
+            } = listener ;
+
+            native(target , name , fn , options) ;
 
             listeners.delete(target , name , fn , scope) ;
         }
