@@ -12,6 +12,8 @@
  * 
  * @import Manager from .socket.manager value
  * 
+ * @import getName from environment.name
+ * 
  * @class
  * 
  */
@@ -57,6 +59,31 @@
         add(me , 'connect' , () => me.activate()) ;
 
         me.reconnectionDelay = reconnectionDelay ;
+
+        /*if(getName() === 'browser'){
+
+            let isDoReconnect = false;
+
+            add(window , {
+                offline(){
+
+                    if(me.isConnected){
+
+                        isDoReconnect = true ;
+                    }
+                },
+                online(){
+
+                    if(me.isConnected && isDoReconnect){
+
+                        me.onReconnect() ;
+                    }
+
+                    isDoReconnect = false ;
+                },
+                scope:me
+            }) ;
+        }*/
     }
 
     onReconnect(){

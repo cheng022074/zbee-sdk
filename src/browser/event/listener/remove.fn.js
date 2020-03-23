@@ -5,7 +5,7 @@
  * 
  * @import listeners from ..listeners value
  * 
- * @import remove from event.listener.remove
+ * @import doRemove from event.listener.remove
  * 
  * @import isObject from is.object.simple
  * 
@@ -53,7 +53,7 @@
 
     if(listener){
 
-        remove(target , event , listener) ;
+        doRemove(target , event , listener) ;
 
         listeners.delete(target , event , fn) ;
     }

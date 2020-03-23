@@ -11,7 +11,7 @@
  * 
  * @import preventEvent from ..prevent
  * 
- * @import add from event.listener.add
+ * @import doAdd from event.listener.add
  * 
  * @import isObject from is.object.simple
  * 
@@ -109,6 +109,6 @@
     
     listeners.set(target , event , fn , listener) ;
     
-    add(target , event , listener , config) ;
+    doAdd(target , event , listener , config) ;
  }
 
