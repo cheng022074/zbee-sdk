@@ -37,11 +37,11 @@
         if(listener){
 
             let {
-                fn,
+                fn:listenersFn,
                 options
             } = listener ;
 
-            native(target , name , fn , options) ;
+            native(target , name , listenersFn , options) ;
 
             listeners.delete(target , name , fn , scope) ;
         }

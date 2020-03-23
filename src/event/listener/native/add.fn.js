@@ -13,7 +13,7 @@
  * 
  */
 
- if('addEventListener' in target){
+ if(target.addEventListener){
 
     target.addEventListener(name , fn , options) ;
  

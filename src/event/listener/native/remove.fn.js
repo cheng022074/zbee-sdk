@@ -13,7 +13,7 @@
  * 
  */
 
- if('removeEventListener' in target){
+ if(target.removeEventListener){
 
     target.removeEventListener(name , fn , options) ;
  
