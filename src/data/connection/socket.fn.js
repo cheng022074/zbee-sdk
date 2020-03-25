@@ -60,7 +60,7 @@
 
         me.reconnectionDelay = reconnectionDelay ;
 
-        /*if(getName() === 'browser'){
+        if(getName() === 'browser'){
 
             let isDoReconnect = false;
 
@@ -83,7 +83,7 @@
                 },
                 scope:me
             }) ;
-        }*/
+        }
     }
 
     onReconnect(){
