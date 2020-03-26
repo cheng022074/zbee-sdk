@@ -59,6 +59,9 @@
             childProcess
         } = this;
 
-        childProcess.send(message) ;
+        if(childProcess.connected){
+
+            childProcess.send(message) ;
+        }
     }
  }

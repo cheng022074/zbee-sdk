@@ -18,6 +18,9 @@
 
     doSend(message){
 
-        process.send(message) ;
+        if(process.connected){
+
+            process.send(message) ;
+        }
     }
  }
