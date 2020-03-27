@@ -38,9 +38,10 @@ class main extends Channel{
 
     doReceive(receive){
 
-        let {
+        let me = this,
+        {
             webview
-        } = this ;
+        } = me ;
 
         add(webview , 'ipc-message' , ({
             channel,
