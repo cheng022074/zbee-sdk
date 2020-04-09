@@ -3,6 +3,10 @@
  * 
  * 初始化数据缓存
  * 
+ * @import createProxy from object.proxy
+ * 
+ * @import data from .data scoped
+ * 
  * @param {object} [options = {}] 配置
  * 
  * @param {boolean} [options.proxy = true] 是否启用 Proxy 模式，默认启用
@@ -13,4 +17,16 @@
  * 
  */
 
- // 代码实现
+ let me = this ;
+
+ me.isUseProxy = false;
+
+ me.schema = schema ;
+
+ me.name = name ;
+
+ let proxy = createProxy(me) ;
+
+ me.data = data(proxy.call('initCache'));
+
+ me.proxy = proxy ;
