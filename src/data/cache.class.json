@@ -3,9 +3,6 @@
         "mixin.observable"
     ],
     "constructor":true,
-    "properties":{
-        "data":"get"
-    },
     "methods":[
         "set",
         "get",
