@@ -2,6 +2,7 @@
     "mixins":[
         "mixin.observable"
     ],
+    "class":true,
     "constructor":true,
     "methods":[
         "set",
