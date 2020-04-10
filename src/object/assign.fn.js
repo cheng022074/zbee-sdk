@@ -3,7 +3,7 @@
  * 
  * 积极深度合并
  * 
- * @import isObject from is.object
+ * @import isObject from is.object.simple
  * 
  * @param {object} dest 目标数据
  * 
