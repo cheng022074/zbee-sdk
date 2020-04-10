@@ -16,4 +16,10 @@
     clearTimeout(saveTimeoutId) ;
  }
 
- me.saveTimeoutId = setTimeout(() => proxy.call('saveCache') , 0) ;
+ me.saveTimeoutId = setTimeout(() => {
+
+   proxy.call('saveCache') ;
+
+   me.fireEvent('save' , me.data) ;
+
+ } , 0) ;

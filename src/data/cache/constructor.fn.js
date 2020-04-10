@@ -19,14 +19,16 @@
 
  let me = this ;
 
- me.isUseProxy = false;
+ me.isUseProxy = proxy;
 
  me.schema = schema ;
 
  me.name = name ;
 
- let proxy = createProxy(me) ;
+ {
+    let proxy = createProxy(me) ;
 
- me.data = data(proxy.call('initCache'));
-
- me.proxy = proxy ;
+    me.data = data(proxy.call('initCache'));
+   
+    me.proxy = proxy ;
+ }

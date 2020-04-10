@@ -65,6 +65,15 @@ function rewrite(data , method){
 
         me.__ZBEE_SET_LOCKED__ = true ;
 
+        let {
+            length:len
+        } = values ;
+
+        for(let i = 0 ; i < len ; i ++){
+
+            values[i] = create(value , true) ;
+        }
+
         Array.prototype[method].apply(me , values) ;
 
         me.__ZBEE_SET_LOCKED__ = false ;
