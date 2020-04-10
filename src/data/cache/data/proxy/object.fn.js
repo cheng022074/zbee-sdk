@@ -5,7 +5,7 @@
  * 
  * @import create from .create scoped
  * 
- * @import save from .save scoped
+ * @import save from ....save scoped
  * 
  * @param {object} data 代理的对象
  * 
