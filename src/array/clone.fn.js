@@ -5,7 +5,7 @@
  * 
  * @import is.array
  * 
- * @import isObject from is.objec.simple
+ * @import isObject from is.object.simple
  * 
  * @import is.date
  * 
