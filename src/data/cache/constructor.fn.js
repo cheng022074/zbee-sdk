@@ -5,7 +5,9 @@
  * 
  * @import createProxy from object.proxy
  * 
- * @import data from .data scoped
+ * @import processData from .data scoped
+ * 
+ * @import is.defined
  * 
  * @param {object} [options = {}] 配置
  * 
@@ -14,6 +16,10 @@
  * @param {string} options.schema 数据缓存结构名称
  * 
  * @param {string} options.name 数据缓存名称
+ * 
+ * @param {boolean} [options.recordset = true] 初始化数据
+ * 
+ * @param {mixed} [options.init] 初始化数据方式
  * 
  */
 
@@ -25,10 +31,18 @@
 
  me.name = name ;
 
- {
-    let proxy = createProxy(me) ;
+ let data = (me.proxy = createProxy(me)).call('getCache') ;
 
-    me.data = data(proxy.call('initCache'));
-   
-    me.proxy = proxy ;
+ if(!isDefined(data)){
+
+      data = recordset ? [] : {} ;
  }
+
+ me.data = processData(data);
+
+ if(isDefined(init)){
+
+   me.init(init) ;
+   
+ }
+

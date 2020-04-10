@@ -10,6 +10,9 @@
         "push",
         "pop",
         "unshift",
-        "shift"
+        "shift",
+        "init",
+        "destroy",
+        "clear"
     ]
 }
