@@ -1,12 +1,19 @@
 
 /**
  * 
- * 函数实现说明
- * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
+ * 数据保存
  * 
  */
 
- // 代码实现
+ let me = this,
+ {
+    saveTimeoutId,
+    proxy
+ } = me;
+
+ if(saveTimeoutId){
+
+    clearTimeout(saveTimeoutId) ;
+ }
+
+ me.saveTimeoutId = setTimeout(() => proxy.call('saveCache') , 0) ;
