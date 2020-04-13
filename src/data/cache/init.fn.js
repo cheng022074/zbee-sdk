@@ -13,25 +13,70 @@
  * 
  * @param {mixed} operation 初始化缓存行为
  * 
+ * @param {boolean} [isForceRefreshLocal = false] 是否强行刷新本地缓存
+ * 
  */
 
- if(isPromise(operation)){
+ function main(operation){
 
-    operation.then(init) ;
+   let me = this,
+   {
+      readyState,
+      proxy
+   } = me ;
+
+   if(readyState === 0){
+
+      me.readyState = 1 ;
+
+      me.fireEvent('loading') ;
+
+      if(proxy.call('hasCache')){
+
+         doInstall.call(me , proxy.call('getCache')) ;
+
+      }else{
+
+         doInit.call(me , operation) ;
+      }
+   }
+
+ }
+
+ function doInit(operation){
+
+   if(isPromise(operation)){
+
+      operation.then(doInit) ;
+   
+   }else if(isFunction(operation)){
+
+      doInit(operation()) ;
+   
+   }else{
+
+      let me = this,
+      {
+         proxy
+      } = me ;
  
- }else if(isFunction(operation)){
-
-    init(operation) ;
+     doInstall.call(me , proxy.call('initCache' , operation)) ;
  
- }else{
+   }
+ }
 
-    let me = this,
-    {
-        proxy
-    } = me ;
+ function doInstall(data){
 
-    proxy.call('initCache' , operation) ;
+   if(isPromise(data)){
 
-    me.data = processData(operation) ;
+      data.then(doInstall) ;
+   
+   }else{
 
+      me.data = processData(data) ;
+
+      me.readyState = 2 ;
+
+      me.fireEvent('load') ;
+   }
  }
