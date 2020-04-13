@@ -40,7 +40,5 @@
     init = () => recordset ? [] : {} ;
  }
 
- me.readyState = 3 ;
-
  install(init) ;
 
