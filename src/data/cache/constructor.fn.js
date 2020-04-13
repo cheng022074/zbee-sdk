@@ -9,7 +9,7 @@
  * 
  * @import is.defined
  * 
- * @param {object} [options = {}] 配置
+ * @param {object} options = {} 配置
  * 
  * @param {boolean} [options.proxy = true] 是否启用 Proxy 模式，默认启用
  * 
