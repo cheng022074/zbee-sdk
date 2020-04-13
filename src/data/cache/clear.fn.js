@@ -17,25 +17,42 @@
       readyState
    } = me ;
   
-   switch(readyState){
-  
-     case -1:
-     case 1:
+   return new Promise(resolve => {
 
-        me.readyState = 2 ;
+      switch(readyState){
 
-        me.fireEvent('unloading') ;
+         case 3:
 
-        doClear.call(me , proxy.call('clearCache')) ;
-  
-        break ;
-  
-     case 0:
-  
-        add(me , 'load' , () => clear() , {
-           once:true
-        }) ;
-   }
+            resolve() ;
+
+            break ;
+
+         case 2:
+
+            add(me , 'unload' , () => resolve() , {
+               once:true
+            }) ;
+
+            break ;
+
+         case 1:
+
+            me.readyState = 2 ;
+    
+            me.fireEvent('unloading') ;
+    
+            doClear.call(me , proxy.call('clearCache')) ;
+      
+            break ;
+      
+         case 0:
+      
+            add(me , 'load' , () => clear() , {
+               once:true
+            }) ;
+      }
+
+   }) ;
  }
 
  function doClear(result){
