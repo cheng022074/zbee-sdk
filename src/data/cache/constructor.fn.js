@@ -9,7 +9,7 @@
  * 
  * @import is.defined
  * 
- * @import doInit from .init scoped
+ * @import install from .install scoped
  * 
  * @param {object} options = {} 配置
  * 
@@ -42,5 +42,5 @@
 
  me.readyState = 3 ;
 
- doInit(init) ;
+ install(init) ;
 
