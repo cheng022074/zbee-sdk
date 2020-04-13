@@ -48,7 +48,7 @@
    
    }else{
 
-      me.readyState = -1 ;
+      me.readyState = 3 ;
 
       delete me.data ;
 
