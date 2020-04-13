@@ -5,6 +5,8 @@
  * 
  * uninstall from .uninstall scoped
  * 
+ * @param {boolean} [isClearCache = true] 是否同时清理缓存
+ * 
  */
 
- uninstall() ;
+ uninstall(isClearCache) ;

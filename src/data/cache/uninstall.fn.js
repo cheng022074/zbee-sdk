@@ -7,6 +7,8 @@
  * 
  * @import clear from .clear scoped
  * 
+ * @param {boolean} isClearCache 是否同时清理缓存
+ * 
  */
 
  function main(){
@@ -40,8 +42,15 @@
             me.readyState = 2 ;
     
             me.fireEvent('uninstalling') ;
-    
-            doClear.call(me , proxy.call('clearCache')) ;
+
+            if(isClearCache){
+
+               doClear.call(me , proxy.call('clearCache')) ;
+            
+            }else{
+
+               doClear.call(me) ;
+            }
       
             break ;
       
