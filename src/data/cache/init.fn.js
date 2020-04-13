@@ -25,9 +25,9 @@
       proxy
    } = me ;
 
-   if(readyState === 0){
+   if(readyState === -1){
 
-      me.readyState = 1 ;
+      me.readyState = 0 ;
 
       me.fireEvent('loading') ;
 
@@ -75,7 +75,7 @@
 
       me.data = processData(data) ;
 
-      me.readyState = 2 ;
+      me.readyState = 1 ;
 
       me.fireEvent('load') ;
    }
