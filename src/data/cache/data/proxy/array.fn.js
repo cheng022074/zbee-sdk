@@ -28,6 +28,10 @@ function main(data){
         data[i] = create(data[i]) ;
     }
 
+    Object.defineProperty(data , '__ZBEE_SET_LOCKED__' , {
+        value:false
+    }) ;
+
     rewrite(data , 'push') ;
 
     rewrite(data , 'pop') ;
@@ -35,6 +39,7 @@ function main(data){
     rewrite(data , 'unshift') ;
 
     rewrite(data , 'shift') ;
+
 
     return new Proxy(data , {
     
@@ -59,26 +64,29 @@ function main(data){
 
 function rewrite(data , method){
 
-    data[method] = function (...values){
+    Object.defineProperty(data , method , {
 
-        let me = this ;
+        value:function (...values){
 
-        me.__ZBEE_SET_LOCKED__ = true ;
-
-        let {
-            length:len
-        } = values ;
-
-        for(let i = 0 ; i < len ; i ++){
-
-            values[i] = create(value , true) ;
+            let me = this ;
+    
+            me.__ZBEE_SET_LOCKED__ = true ;
+    
+            let {
+                length:len
+            } = values ;
+    
+            for(let i = 0 ; i < len ; i ++){
+    
+                values[i] = create(values[i] , true) ;
+            }
+    
+            Array.prototype[method].apply(me , values) ;
+    
+            me.__ZBEE_SET_LOCKED__ = false ;
+    
+            save() ;
+    
         }
-
-        Array.prototype[method].apply(me , values) ;
-
-        me.__ZBEE_SET_LOCKED__ = false ;
-
-        save() ;
-
-    } ;
+    }) ;
 }
