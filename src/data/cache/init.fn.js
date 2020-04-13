@@ -11,6 +11,8 @@
  * 
  * @import processData from .data scoped
  * 
+ * @import add from event.listener.add
+ * 
  * @param {mixed} operation 初始化缓存行为
  * 
  * @param {boolean} [isForceRefreshLocal = false] 是否强行刷新本地缓存
@@ -25,22 +27,38 @@
       proxy
    } = me ;
 
-   if(readyState === -1){
+   return new Promise(resolve => {
 
-      me.readyState = 0 ;
+      switch(readyState){
 
-      me.fireEvent('loading') ;
+         case -1:
+         case 3:
+            
+            add(me , 'load' , () => resolve() , {
+               once:true
+            }) ;
+   
+            me.readyState = 0 ;
+      
+            me.fireEvent('loading') ;
+      
+            if(proxy.call('hasCache')){
+      
+               doInstall.call(me , proxy.call('getCache')) ;
+      
+            }else{
+      
+               doInit.call(me , operation) ;
+            }
 
-      if(proxy.call('hasCache')){
+            break ;
 
-         doInstall.call(me , proxy.call('getCache')) ;
+         default:
 
-      }else{
-
-         doInit.call(me , operation) ;
+            resolve() ;
       }
-   }
 
+   }) ;
  }
 
  function doInit(operation){
