@@ -13,17 +13,14 @@
  * 
  * @import add from event.listener.add
  * 
- * @param {mixed} operation 初始化缓存行为
- * 
- * @param {boolean} [isForceRefreshLocal = false] 是否强行刷新本地缓存
- * 
  */
 
- function main(operation){
+ function main(){
 
    let me = this,
    {
       readyState,
+      initOperation,
       proxy
    } = me ;
 
@@ -31,7 +28,6 @@
 
       switch(readyState){
 
-         case -1:
          case 3:
             
             add(me , 'load' , () => resolve() , {
@@ -48,14 +44,32 @@
       
             }else{
       
-               doInit.call(me , operation) ;
+               doInit.call(me , initOperation) ;
             }
 
             break ;
 
-         default:
+         case 2:
+
+            add(me , 'unload' , () => init(initOperation) , {
+               once:true
+            }) ;
+
+            break ;
+
+         case 1:
 
             resolve() ;
+
+            break ;
+
+         case 0:
+
+            add(me , 'load' , () => resolve() , {
+               once:true
+            }) ;
+
+            break ;
       }
 
    }) ;
