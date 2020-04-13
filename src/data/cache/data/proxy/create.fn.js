@@ -30,7 +30,7 @@
 
     return createArray(data) ;
 
- }else if(createArray(data)){
+ }else if(isObject(data)){
 
     return createObject(data) ;
  }
