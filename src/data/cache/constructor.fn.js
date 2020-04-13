@@ -11,6 +11,8 @@
  * 
  * @import install from .install scoped
  * 
+ * @import equals from data.equals
+ * 
  * @param {object} options = {} 配置
  * 
  * @param {boolean} [options.proxy = true] 是否启用 Proxy 模式，默认启用
@@ -40,5 +42,16 @@
     init = () => recordset ? [] : {} ;
  }
 
- install(init) ;
+ let proxy = createProxy(me),
+     schemaInfo = await proxy.call('getSchemaInfo');
+
+ if(!equals(schema , await proxy.call('getCacheSchemaInfo'))){
+
+   await proxy.call('clearCache') ;
+
+   await proxy.call('initCacheSchema' , schemaInfo) ;
+
+}
+
+ await install(init) ;
 

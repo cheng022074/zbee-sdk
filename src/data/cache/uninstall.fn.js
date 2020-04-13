@@ -7,6 +7,8 @@
  * 
  * @import clear from .clear scoped
  * 
+ * @import is.defined
+ * 
  * @param {boolean} isClearCache 是否同时清理缓存
  * 
  */
@@ -21,44 +23,53 @@
   
    return new Promise(resolve => {
 
-      switch(readyState){
+      if(!isDefined(readyState)){
 
-         case 3:
-
-            resolve() ;
-
-            break ;
-
-         case 2:
-
-            add(me , 'uninstall' , () => resolve() , {
-               once:true
-            }) ;
-
-            break ;
-
-         case 1:
-
-            me.readyState = 2 ;
-    
-            me.fireEvent('uninstalling') ;
-
-            if(isClearCache){
-
-               doClear.call(me , proxy.call('clearCache')) ;
-            
-            }else{
-
-               doClear.call(me) ;
-            }
+         add(me , 'install' , () => clear() , {
+            once:true
+         }) ;
       
-            break ;
-      
-         case 0:
-      
-            add(me , 'install' , () => clear() , {
-               once:true
-            }) ;
+      }else{
+
+         switch(readyState){
+
+            case 3:
+   
+               resolve() ;
+   
+               break ;
+   
+            case 2:
+   
+               add(me , 'uninstall' , () => resolve() , {
+                  once:true
+               }) ;
+   
+               break ;
+   
+            case 1:
+   
+               me.readyState = 2 ;
+       
+               me.fireEvent('uninstalling') ;
+   
+               if(isClearCache){
+   
+                  doClear.call(me , proxy.call('clearCache')) ;
+               
+               }else{
+   
+                  doClear.call(me) ;
+               }
+         
+               break ;
+         
+            case 0:
+         
+               add(me , 'install' , () => clear() , {
+                  once:true
+               }) ;
+         }
       }
 
    }) ;
