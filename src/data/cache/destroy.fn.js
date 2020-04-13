@@ -3,8 +3,8 @@
  * 
  * 销毁缓存对象
  * 
+ * uninstall from .uninstall scoped
+ * 
  */
 
- let me = this ;
-
- delete me.data ;
+ uninstall() ;

@@ -29,7 +29,7 @@
 
          case 2:
 
-            add(me , 'unload' , () => resolve() , {
+            add(me , 'uninstall' , () => resolve() , {
                once:true
             }) ;
 
@@ -39,7 +39,7 @@
 
             me.readyState = 2 ;
     
-            me.fireEvent('unloading') ;
+            me.fireEvent('uninstalling') ;
     
             doClear.call(me , proxy.call('clearCache')) ;
       
@@ -47,7 +47,7 @@
       
          case 0:
       
-            add(me , 'load' , () => clear() , {
+            add(me , 'install' , () => clear() , {
                once:true
             }) ;
       }
@@ -69,7 +69,7 @@
 
       delete me.data ;
 
-      me.fireEvent('unload') ;
+      me.fireEvent('uninstall') ;
    }
 
  }
