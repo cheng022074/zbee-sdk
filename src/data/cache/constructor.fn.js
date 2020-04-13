@@ -13,6 +13,8 @@
  * 
  * @import equals from data.equals
  * 
+ * @import is.defined
+ * 
  * @param {object} options = {} 配置
  * 
  * @param {boolean} [options.proxy = true] 是否启用 Proxy 模式，默认启用
@@ -27,25 +29,25 @@
  * 
  */
 
- let me = this ;
+let me = this ;
 
- me.isUseProxy = proxy;
+me.isUseProxy = proxy;
 
- me.schema = schema ;
+me.schema = schema ;
 
- me.name = name ;
+me.name = name ;
 
- me.isRecordset = recordset ;
+me.isRecordset = recordset ;
 
- if(!isDefined(init)){
+if(!isDefined(init)){
 
-    init = () => recordset ? [] : {} ;
- }
+   init = () => recordset ? [] : {} ;
+}
 
- let proxy = createProxy(me),
-     schemaInfo = await proxy.call('getSchemaInfo');
+let proxy = createProxy(me),
+   schemaInfo = await proxy.call('getSchemaInfo');
 
- if(!equals(schema , await proxy.call('getCacheSchemaInfo'))){
+if(!equals(schema , await proxy.call('getCacheSchemaInfo'))){
 
    await proxy.call('clearCache') ;
 
