@@ -17,6 +17,11 @@
 
     get cacheKey(){
 
+        let {
+            schema,
+            name
+        } = this ;
+
         return `${schema}-${name}` ;
     }
 
@@ -24,6 +29,16 @@
 
         let {
             cacheKey
+        } = this ;
+
+        cache[cacheKey] = clone(data);
+    }
+
+    saveCache(){
+
+        let {
+            cacheKey,
+            data
         } = this ;
 
         cache[cacheKey] = clone(data);
