@@ -55,5 +55,5 @@ if(!equals(schema , await proxy.call('getCacheSchemaInfo'))){
 
 }
 
- await install(init) ;
+await install(init) ;
 
