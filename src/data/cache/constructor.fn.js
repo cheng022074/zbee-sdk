@@ -33,12 +33,12 @@
 
  me.isRecordset = recordset ;
 
- me.readyState = 0 ;
-
  if(!isDefined(init)){
 
     init = () => recordset ? [] : {} ;
  }
+
+ me.readyState = -1 ;
 
  me.init(init) ;
 
