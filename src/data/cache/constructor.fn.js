@@ -31,18 +31,14 @@
 
  me.name = name ;
 
- let data = (me.proxy = createProxy(me)).call('getCache') ;
+ me.isRecordset = recordset ;
 
- if(!isDefined(data)){
+ me.readyState = 0 ;
 
-      data = recordset ? [] : {} ;
+ if(!isDefined(init)){
+
+    init = () => recordset ? [] : {} ;
  }
 
- me.data = processData(data);
-
- if(isDefined(init)){
-
-   me.init(init) ;
-   
- }
+ me.init(init) ;
 
