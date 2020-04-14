@@ -5,6 +5,8 @@
  * 
  * @import getTouchEvents from browser.event.touches
  * 
+ * @import getEvent from browser.event.single
+ * 
  * @import stop from browser.event.stop
  * 
  * @import enabled from .enabled scoped
@@ -12,6 +14,8 @@
  * @import disabled from .disabled scoped
  * 
  * @import .start.name
+ * 
+ * @config minDuration from event.longpress...minDuration
  *
  * @param {Event} e 事件对象
  * 
@@ -28,5 +32,15 @@ if(getTouchEvents(e , 'start')){
 }
 
 let me = this ;
+
+me.timer = setTimeout(() => {
+
+    me.dispatch('longpress' , {
+        nativeEvent:getEvent(e , 'start')
+    }) ;
+
+    disabled() ;
+
+ } , minDuration);
 
 enabled() ;
