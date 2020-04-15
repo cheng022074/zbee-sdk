@@ -76,7 +76,9 @@
 
                 listeners.push(listener) ;
 
-                el.addEventListener(event , listener) ;
+                el.addEventListener(event , listener , {
+                    passive:false
+                }) ;
 
                 isAddMainListener = true ;
             
@@ -90,7 +92,9 @@
 
                 listeners.push(listener) ;
 
-                el.addEventListener(name , listener) ;
+                el.addEventListener(name , listener , {
+                    passive:false
+                }) ;
             }
         }
 

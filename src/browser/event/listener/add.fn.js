@@ -109,6 +109,9 @@
     
     listeners.set(target , event , fn , listener) ;
     
-    doAdd(target , event , listener , config) ;
+    doAdd(target , event , listener , {
+        passive:false,
+        ...config
+    }) ;
  }
 
