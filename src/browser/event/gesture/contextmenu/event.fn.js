@@ -6,13 +6,19 @@
  * @import bind from function.bind
  * 
  * @import longpress from ..longpress
+ * 
+ * @import contextmenu from .contextmenu
  *
  * @return {array} 事件配置  
  * 
  */
 
  return [
-    'contextmenu',
+    'mouseup',
+    {
+        event:'contextmenu',
+        listener:contextmenu
+    },
     {
         event:'touchstart',
         listener:bind(longpress , this , [
