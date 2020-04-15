@@ -7,6 +7,12 @@
  * 
  * @import doDispatch from browser.event.dispatch
  * 
+ * @import is.string
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.array
+ * 
  * @once
  * 
  */
@@ -18,9 +24,18 @@
     doDispatch(this , `gesture:${event}`  , params) ;
  }
 
- function getName(name){
+ function getEvents(name){
 
-    return include(`browser.event.gesture.${name}.event`)() ;
+    let events = include(`browser.event.gesture.${name}.event`)() ;
+
+    if(isString(events)){
+
+        return [
+            events
+        ] ;
+    }
+
+    return events ;
  }
 
  class main {
@@ -46,14 +61,40 @@
             return ;
         }
 
-
-        let listener = include(`browser.event.gesture.${name}`).bind({
+        let scope = {
             dispatch:dispatch.bind(el)
-        });
+        },
+        events = getEvents(name),
+        isAddMainListener = false,
+        listeners = [];
 
-        el.addEventListener(getName(name) , listener) ;
+        for(let event of events){
 
-        events.set(el , name , listener) ;
+            if(isString(event) && !isAddMainListener){
+
+                let listener = include(`browser.event.gesture.${name}`).bind(scope) ;
+
+                listeners.push(listener) ;
+
+                el.addEventListener(event , listener) ;
+
+                isAddMainListener = true ;
+            
+            }else if(isObject(event)){
+
+                let {
+                    event:name,
+                    listener:fn
+                } = event,
+                listener = fn.bind(scope);
+
+                listeners.push(listener) ;
+
+                el.addEventListener(name , listener) ;
+            }
+        }
+
+        events.set(el , name , listeners) ;
     }
 
     uninstall(el , name){
@@ -61,11 +102,33 @@
         let {
             events
         } = this,
-        listener = events.get(el , name);
+        listeners = events.get(el , name);
 
-        if(listener){
+        if(isArray(listeners)){
 
-            el.removeEventListener(getName(name) , listener) ;
+            let events = getEvents(name),
+                {
+                    length:len
+                } = events;
+
+            for(let i = 0 ; i < len ; i ++){
+
+                let event = events[i],
+                    listener = listeners[i];
+
+                if(isString(event)){
+
+                    el.removeEventListener(event , listener) ;
+                
+                }else if(isObject(event)){
+
+                    let {
+                        event:name
+                    } = event ;
+
+                    el.removeEventListener(name , listener) ;
+                }
+            }
 
             events.delete(el , name) ;
         }
