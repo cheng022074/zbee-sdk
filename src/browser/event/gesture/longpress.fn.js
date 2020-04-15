@@ -19,6 +19,8 @@
  *
  * @param {Event} e 事件对象
  * 
+ * @param {string} [event = 'longpress'] 抛出的事件名称
+ * 
  */
 
 stop(e) ;
@@ -35,7 +37,7 @@ let me = this ;
 
 me.timer = setTimeout(() => {
 
-    me.dispatch('longpress' , {
+    me.dispatch(event , {
         nativeEvent:getEvent(e , 'start')
     }) ;
 
