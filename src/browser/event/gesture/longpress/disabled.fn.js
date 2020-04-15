@@ -10,6 +10,7 @@
 let me = this,
 {
    onEnd,
+   onMove,
    timer
 } = me;
 
@@ -17,6 +18,8 @@ if(timer){
 
     clearTimeout(timer) ;
 }
+
+un('touchmove' , onMove) ;
 
 un('touchend' ,  onEnd) ;
 

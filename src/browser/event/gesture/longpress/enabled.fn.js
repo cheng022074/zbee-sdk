@@ -6,6 +6,12 @@
  * 
  * @import onEnd from .end scoped
  * 
+ * @import onMove from .move scoped
+ * 
  */
 
- on('touchend' , this.onEnd = onEnd) ;
+ let me = this ;
+ 
+ on('touchmove' , me.onMove = onMove) ;
+
+ on('touchend' , me.onEnd = onEnd) ;
