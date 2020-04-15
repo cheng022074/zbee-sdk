@@ -9,6 +9,8 @@
  * 
  * @import stop from browser.event.stop
  * 
+ * @import prevent from browser.event.prevent
+ * 
  * @import enabled from .longpress.enabled scoped
  * 
  * @import disabled from .longpress.disabled scoped
@@ -25,6 +27,8 @@
 
 stop(e) ;
 
+prevent(e) ;
+
 if(getTouchEvents(e , 'start')){
 
    disabled() ;
@@ -40,6 +44,8 @@ me.timer = setTimeout(() => {
     me.dispatch(event , {
         nativeEvent:getEvent(e , 'start')
     }) ;
+
+    console.log('dispatch') ;
 
     disabled() ;
 
