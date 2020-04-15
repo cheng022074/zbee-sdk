@@ -9,9 +9,9 @@
  * 
  * @import on from browser.event.listener.global.add
  * 
- * @import enabled from .enabled scoped
+ * @import enabled from .pinch.enabled scoped
  * 
- * @import disabled from .disabled scoped
+ * @import disabled from .pinch.disabled scoped
  * 
  * @import .pinch.event
  *

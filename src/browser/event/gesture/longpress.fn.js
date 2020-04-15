@@ -25,9 +25,9 @@
  * 
  */
 
-stop(e) ;
+//stop(e) ;
 
-prevent(e) ;
+//prevent(e) ;
 
 if(getTouchEvents(e , 'start')){
 

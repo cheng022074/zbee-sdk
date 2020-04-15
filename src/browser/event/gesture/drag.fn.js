@@ -11,15 +11,15 @@
  * 
  * @import getEvent from browser.event.single
  * 
- * @import disabled from .disabled scoped
+ * @import disabled from .drag.disabled scoped
  * 
  * @import getName from browser.event.name.single
  * 
  * @import on from browser.event.listener.global.add
  * 
- * @import onStart from .move.start scoped
+ * @import onStart from .drag.move.start scoped
  * 
- * @import disabled from .disabled scoped
+ * @import disabled from .drag.disabled scoped
  * 
  * @import .drag.name
  * 

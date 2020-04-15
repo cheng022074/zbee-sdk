@@ -11,7 +11,7 @@
  * 
  */
 
-stop(e) ;
+//stop(e) ;
 
 let {
     button

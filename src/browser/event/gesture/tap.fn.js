@@ -21,7 +21,7 @@
  * 
  */
 
-stop(e) ;
+//stop(e) ;
 
 if(getTouchEvents(e , 'start')){
 
