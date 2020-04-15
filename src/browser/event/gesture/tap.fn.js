@@ -13,6 +13,8 @@
  * 
  * @import disabled from .tap.disabled scoped
  * 
+ * @config maxDuration from event.tap...maxDuration
+ * 
  * @import .tap.event
  *
  * @param {Event} e 事件对象
@@ -41,3 +43,5 @@ me.startPoint = {
 } ;
 
 enabled() ;
+
+me.timer = setTimeout(() => disabled() , maxDuration) ;

@@ -23,6 +23,8 @@ un('touchmove' , onMove) ;
 
 un('touchend' ,  onEnd) ;
 
+delete me.onMove ;
+
 delete me.onEnd ;
 
 delete me.timer ;

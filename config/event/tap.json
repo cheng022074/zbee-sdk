@@ -1,4 +1,5 @@
 {
     "timeout":100,
+    "maxDuration": 300,
     "moveDistance":8
 }

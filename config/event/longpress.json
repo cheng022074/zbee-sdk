@@ -1,3 +1,4 @@
 {
-    "minDuration":1000
+    "minDuration":600,
+    "moveDistance":8
 }
