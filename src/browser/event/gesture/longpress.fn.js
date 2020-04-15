@@ -9,9 +9,9 @@
  * 
  * @import stop from browser.event.stop
  * 
- * @import enabled from .enabled scoped
+ * @import enabled from .longpress.enabled scoped
  * 
- * @import disabled from .disabled scoped
+ * @import disabled from .longpress.disabled scoped
  * 
  * @import .longpress.event
  * 
