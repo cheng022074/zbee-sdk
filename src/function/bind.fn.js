@@ -15,7 +15,7 @@
  * 
  * @param {mixed[]} [args] 函数参数
  * 
- * @param {mixed} [appendArgs] 附加参数位置
+ * @param {mixed} [appendArgs = true] 附加参数位置
  * 
  * @return {function} 绑定作用域的函数
  * 
