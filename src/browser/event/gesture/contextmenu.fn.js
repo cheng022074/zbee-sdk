@@ -17,6 +17,6 @@ prevent(e) ;
 
 stop(e) ;
 
-me.dispatch('contextmenu' , {
+this.dispatch('contextmenu' , {
     nativeEvent:e
 }) ;
