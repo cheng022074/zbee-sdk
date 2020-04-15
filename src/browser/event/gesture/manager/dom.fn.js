@@ -20,7 +20,7 @@
 
  function getName(name){
 
-    return include(`browser.event.gesture.${name}.start.name`)() ;
+    return include(`browser.event.gesture.${name}.event`)() ;
  }
 
  class main {
@@ -47,7 +47,7 @@
         }
 
 
-        let listener = include(`browser.event.gesture.${name}.start`).bind({
+        let listener = include(`browser.event.gesture.${name}`).bind({
             dispatch:dispatch.bind(el)
         });
 

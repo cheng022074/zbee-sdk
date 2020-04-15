@@ -13,7 +13,7 @@
  * 
  * @import disabled from .disabled scoped
  * 
- * @import .start.name
+ * @import .longpress.event
  * 
  * @config minDuration from event.longpress...minDuration
  *
