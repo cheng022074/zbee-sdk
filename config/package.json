@@ -45,5 +45,16 @@
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
         ]
+    },
+    "webpack-vue":{
+        "type":"webpack",
+        "classes":[
+            "browser.event.gesture.contextmenu",
+            "browser.event.gesture.vue",
+            "browser.event.touch.init"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\TEST\\WEBPACK\\src\\lib.js"
+        ]
     }
 }

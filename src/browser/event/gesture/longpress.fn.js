@@ -37,15 +37,23 @@ if(getTouchEvents(e , 'start')){
 
 }
 
-let me = this ;
+let me = this,
+nativeEvent = getEvent(e , 'start'),
+{
+    pageX:x,
+    pageY:y
+} = nativeEvent;
+
+ me.startPoint = {
+    x,
+    y
+ } ;
 
 me.timer = setTimeout(() => {
 
     me.dispatch(event , {
-        nativeEvent:getEvent(e , 'start')
+        nativeEvent
     }) ;
-
-    console.log('dispatch') ;
 
     disabled() ;
 
