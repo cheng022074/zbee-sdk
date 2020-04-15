@@ -13,6 +13,21 @@
  * 
  */
 
+ let {
+    pointerType,
+    button
+ } = e ;
+
+ if(pointerType === 'mouse'){
+
+    if(button !== 0){
+
+        disabled() ;
+
+        return ;
+    }
+ }
+
  this.dispatch('tap' , {
      nativeEvent:getEvent(e , 'end')
  }) ;

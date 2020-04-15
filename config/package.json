@@ -50,6 +50,7 @@
         "type":"webpack",
         "classes":[
             "browser.event.gesture.contextmenu",
+            "browser.event.gesture.tap",
             "browser.event.gesture.vue",
             "browser.event.touch.init"
         ],
