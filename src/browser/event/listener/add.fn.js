@@ -23,8 +23,6 @@
  * 
  * @param {object} [config = {}] 配置
  * 
- * @return {mixed} 返回说明 
- * 
  */
 
  function main(target , event , fn , config){

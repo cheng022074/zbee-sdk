@@ -3,6 +3,8 @@
  * 
  * 实始化事件应用环境
  * 
+ * @import add from browser.event.listener.add
+ * 
  * @param {HTMLElement} target 事件应用环境元素
  * 
  */
@@ -21,7 +23,7 @@ function preventDefault(e){
 
 function main(target){
 
-    target.addEventListener('touchstart' , preventDefault) ;
+    add(target , 'touchstart' , preventDefault) ;
 
-    target.addEventListener('touchmove' , preventDefault) ;
+    add(target , 'touchmove' , preventDefault) ;
 }
