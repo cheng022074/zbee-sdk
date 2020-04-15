@@ -13,7 +13,7 @@
  * 
  * @import disabled from .disabled scoped
  * 
- * @import .start.name
+ * @import .tap.event
  *
  * @param {Event} e 事件对象
  * 
