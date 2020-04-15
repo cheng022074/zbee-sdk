@@ -26,7 +26,7 @@
 
     try{
 
-        include(`browser.event.gesture.${event}.start.name`) ;
+        include(`browser.event.gesture.${event}.event`) ;
 
         return true ;
 
@@ -39,7 +39,7 @@
 
  function getGestureImplStartEventName(event){
 
-    switch(include(`browser.event.gesture.${event}.start.name`)()){
+    switch(include(`browser.event.gesture.${event}.event`)()){
 
         case 'pointerdown':
 
@@ -58,7 +58,7 @@
 
  function getGestureImplStartEventListener(event , listeners){
 
-    return include(`browser.event.gesture.${event}.start`).bind({
+    return include(`browser.event.gesture.${event}`).bind({
         dispatch(event , params){
 
             if(listeners.hasOwnProperty(event)){
