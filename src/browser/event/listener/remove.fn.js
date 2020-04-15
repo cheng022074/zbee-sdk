@@ -44,6 +44,10 @@
                 remove(target , name , fn) ;
             }
         }
+    
+    }else{
+
+        remove(target , event , fn) ;
     }
  }
 
