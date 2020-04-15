@@ -21,7 +21,7 @@
  * 
  * @import disabled from .disabled scoped
  * 
- * @import .start.name
+ * @import .drag.name
  * 
  * @param {Event} e 事件对象
  * 
