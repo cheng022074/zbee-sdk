@@ -64,11 +64,11 @@
         let scope = {
             dispatch:dispatch.bind(el)
         },
-        events = getEvents(name),
+        gestureEvents = getEvents(name),
         isAddMainListener = false,
         listeners = [];
 
-        for(let event of events){
+        for(let event of gestureEvents){
 
             if(isString(event) && !isAddMainListener){
 
