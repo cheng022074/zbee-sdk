@@ -44,15 +44,17 @@ if(!isDefined(init)){
    init = () => recordset ? [] : {} ;
 }
 
-let proxy = createProxy(me),
-   schemaInfo = await proxy.call('getSchemaInfo');
+{
+   let proxy = createProxy(me),
+      schemaInfo = await proxy.call('getSchemaInfo');
 
-if(!equals(schema , await proxy.call('getCacheSchemaInfo'))){
+   if(!equals(schema , await proxy.call('getCacheSchemaInfo'))){
 
-   await proxy.call('clearCache') ;
+      await proxy.call('clearCache') ;
 
-   await proxy.call('initCacheSchema' , schemaInfo) ;
+      await proxy.call('initCacheSchema' , schemaInfo) ;
 
+   }
 }
 
 await install(init) ;
