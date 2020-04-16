@@ -17,7 +17,7 @@
  * 
  * @import disabled from .drag.disabled scoped
  * 
- * @import .drag.name
+ * @import .drag.event
  * 
  * @param {Event} e 事件对象
  * 
