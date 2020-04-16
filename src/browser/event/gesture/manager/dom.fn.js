@@ -110,14 +110,14 @@
 
         if(isArray(listeners)){
 
-            let events = getEvents(name),
+            let gestureEvents = getEvents(name),
                 {
                     length:len
-                } = events;
+                } = gestureEvents;
 
             for(let i = 0 ; i < len ; i ++){
 
-                let event = events[i],
+                let event = gestureEvents[i],
                     listener = listeners[i];
 
                 if(isString(event)){
