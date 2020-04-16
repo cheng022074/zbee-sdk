@@ -7,10 +7,6 @@
  * 
  * @import getEvent from browser.event.single
  * 
- * @import stop from browser.event.stop
- * 
- * @import prevent from browser.event.prevent
- * 
  * @import enabled from .longpress.enabled scoped
  * 
  * @import disabled from .longpress.disabled scoped
@@ -24,10 +20,6 @@
  * @param {string} [event = 'longpress'] 抛出的事件名称
  * 
  */
-
-//stop(e) ;
-
-//prevent(e) ;
 
 if(getTouchEvents(e , 'start')){
 

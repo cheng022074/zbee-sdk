@@ -3,10 +3,6 @@
  * 
  * 启动事件监听
  * 
- * @import prevent from browser.event.prevent
- * 
- * @import stop from browser.event.stop
- * 
  * @import getTouchEvents from browser.event.touches
  * 
  * @import getEvent from browser.event.single
@@ -26,10 +22,6 @@
  * @param {Event} e 事件对象
  * 
  */
-
-prevent(e) ;
-
-stop(e) ;
 
 if(getTouchEvents(e , 'start')){
 

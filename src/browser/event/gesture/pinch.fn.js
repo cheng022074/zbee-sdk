@@ -5,8 +5,6 @@
  * 
  * @import getTouchEvents from browser.event.touches
  * 
- * @import stop from browser.event.stop
- * 
  * @import on from browser.event.listener.global.add
  * 
  * @import enabled from .pinch.enabled scoped
@@ -18,8 +16,6 @@
  * @param {Event} e 事件对象
  * 
  */
-
-stop(e) ;
 
 let me = this ;
 

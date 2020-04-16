@@ -7,8 +7,6 @@
  * 
  * @import getTouchEvents from browser.event.touches
  * 
- * @import stop from browser.event.stop
- * 
  * @import enabled from .tap.enabled scoped
  * 
  * @import disabled from .tap.disabled scoped
@@ -20,8 +18,6 @@
  * @param {Event} e 事件对象
  * 
  */
-
-//stop(e) ;
 
 if(getTouchEvents(e , 'start')){
 
