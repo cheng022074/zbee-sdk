@@ -28,9 +28,11 @@ if(typeof window === 'object' && toString.call(window) === '[object Window]' && 
 
     try{
 
-        require('electron') ;
+        let [
+            path
+        ] = process.argv ;
 
-        return 'electron' ;
+        return /electron\.exe$/.test(path) ;
 
     }catch(err){
 
