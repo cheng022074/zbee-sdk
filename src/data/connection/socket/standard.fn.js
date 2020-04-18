@@ -6,30 +6,30 @@
  * 
  * @import join from url.join
  * 
- * @import get from function.get
- * 
  * @import createTimer from timer
  * 
  * @import add from event.listener.add
  * 
  * @import removeAll from event.listener.remove.all
  * 
- * @import capitalize from string.capitalize
+ * @import Manager from .manager value
+ * 
+ * @import emptyFn from function.empty value
+ * 
+ * @require ws
  * 
  * @class
  * 
  * 
  */
 
+ const WebSocket = require('ws');
+
  class main extends Connection{
 
     initialize(url , {
         path,
-        reconnection = true,
-        reconnectionAttempts = Infinity,
-        reconnectionDelay = 1000,
-        timeout = 20000,
-        autoConnect = true
+        timeout = 20000
     }){
 
         let me = this ;
@@ -41,243 +41,108 @@
 
         me.socketURL = url ;
 
-        me.socketReconnection = reconnection ;
-
-        me.socketReconnectionCount = reconnectionAttempts ;
-
-        me.socketReconnectionDelay = reconnectionDelay ;
-
         me.socketTimeoutTimer = createTimer({
             duration:timeout,
             autoStart:false,
             listeners:{
-                timeend:'onSocketTimeout',
+                timeout:'onSocketTimeout',
                 scope:me
             }
         }) ;
-
-        if(autoConnect){
-
-            me.start() ;
-        }
     }
 
     onSocketTimeout(){
 
-        let me = this ;
-
-        if(me.socketReconnection){
-
-            me.beginTryStartMode() ;
-        }
+        this.fireEvent('connecttimeout') ;
     }
 
     onSocketOpen(){
 
-        let me = this ;
+        let me = this,
+        {
+            socketTimeoutTimer
+        } = me;
 
-        me.socketTimeoutTimer.end() ;
+        socketTimeoutTimer.end() ;
 
-        me.endTryStart() ;
+        me.fireEvent('connect') ;
+    }
 
-        me.activate() ;
+    onSocketError(){
 
-        me.fireEvent('socketopen') ;
+        let me = this,
+        {
+            socket,
+            socketTimeoutTimer
+        } = me;
+
+        socketTimeoutTimer.end() ;
+
+        removeAll(socket) ;
+
+        delete me.socket ;
+
+        delete me.disconnectingState ;
+
+        me.fireEvent('lostconnect') ;
     }
 
     onSocketClose(){
 
         let me = this,
         {
-            socketReconnection,
             socket,
-            $doClose
+            socketTimeoutTimer,
+            disconnectingState
         } = me;
+
+        socketTimeoutTimer.end() ;
 
         removeAll(socket) ;
 
-        delete me.$doClose ;
-
         delete me.socket ;
 
-        if(socketReconnection && !$doClose){
+        delete me.disconnectingState ;
 
-            me.beginTryStart() ;
+        if(disconnectingState){
+
+            me.fireEvent('disconnect') ;
         
         }else{
 
-            me.fireEvent('socketclose') ;
+            me.fireEvent('lostconnect') ;
         }
     }
 
-    onSocketMessage(data){
+    onSocketMessage({
+        data
+    }){
 
         this.acceptMessage(data) ;
     }
 
-    beginTryStart(){
-
-        let me = this ;
-
-        if(!me.$isTryStart){
-
-            me.$tryStartCount = 0 ;
-
-            me.$isTryStart = true ;
-
-            me.end() ;
-        
-        }else{
-
-            me.tryStart() ;
-        }
-    }
-
-    tryStart(){
+    doConnect(){
 
         let me = this,
         {
-            $tryStartCount,
-            socketReconnectionCount,
-            socketReconnectionDelay
-        } = me;
-
-        if($tryStartCount <= socketReconnectionCount){
-
-            me.$tryStartCount ++ ;
-
-            setTimeout(get('doStart' , me) , socketReconnectionDelay) ;
-        
-        }else{
-
-            me.endTryStart() ;
-        }
-    }
-
-    endTryStart(){
-
-        let me = this ;
-
-        delete me.$tryStartCount ;
-
-        delete me.$isTryStart ;
-        
-    }
-
-    doStart(){
-
-        let me = this,
-        {
-            WebSocket,
-            socketURL,
-            isDisconnectd,
-            isConnecting,
-            isDisconnecting,
-            isConnected
-        } = me;
-
-        return new Promise(resolve =>{
-
-            if(isDisconnectd){
-
-                add(me.socket = new WebSocket(socketURL) , {
-                    open:'onSocketOpen',
-                    close:'onSocketClose',
-                    message:'onSocketMessage',
-                    scope:me
-                }) ;
-    
-                add(me , 'socketopen' , () => resolve() , {
-                    once:true
-                }) ;
-    
-            }else if(isConnected){
-    
-                resolve() ;
-            
-            }else if(isConnecting){
-
-                add(me , 'socketopen' , () => resolve() , {
-                    once:true
-                }) ;
-            
-            }else if(isDisconnecting){
-
-                add(me , 'socketclose' , () => me.start().then(resolve) , {
-                    once:true
-                }) ;
-            }
-
-        }) ;
-    }
-
-    doEnd(){
-
-        let me = this,
-            {
-                socket,
-                isDisconnectd,
-                isConnecting,
-                isDisconnecting,
-                isConnected
-            } = me;
-
-        return new Promise(resolve =>{
-
-            if(isConnected){
-
-                add(me , 'socketclose' , () => resolve() , {
-                    once:true
-                }) ;
-
-                me.deactivate() ;
-    
-                me.$doClose = true ;
-    
-                socket.close() ;
-            
-            }else if(isDisconnectd){
-
-                resolve() ;
-
-            }else if(isConnecting){
-
-                add(me , 'socketopen' , () => me.end().then(resolve) , {
-                    once:true
-                }) ;
-            
-            }else if(isDisconnecting){
-
-                add(me , 'socketclose' , () => resolve() , {
-                    once:true
-                }) ;
-            }
-    
-        }) ;
-    }
-
-    start(){
-
-        let me = this,
-        {
-            socketTimeoutTimer
+            socketTimeoutTimer,
+            socketURL
         } = me ;
 
         socketTimeoutTimer.start() ;
 
-        return doMethod.call(me , 'start') ;
+        add(me.socket = new WebSocket(socketURL) , {
+            open:'onSocketOpen',
+            close:'onSocketClose',
+            error:'onSocketError',
+            message:'onSocketMessage',
+            scope:me
+        }) ;
     }
 
-    end(){
+    doDisconnect(){
 
-        let me = this,
-        {
-            socketTimeoutTimer
-        } = me ;
-
-        socketTimeoutTimer.end(false) ;
-
-        return doMethod.call(me , 'end') ;
+        this.socket.close() ;
     }
 
     send(message){
@@ -294,13 +159,3 @@
         }
     }
  }
-
- async function doMethod(name){
-
-    let me = this;
-
-    me.endTryStart() ;
-
-    await me[`do${capitalize(name)}`]() ;
- }
-

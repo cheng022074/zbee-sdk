@@ -7,13 +7,13 @@
  * 
  * @import get from date.get
  * 
- * @import nextMonth from ..selectNextMonth scoped
+ * @import nextMonth from .selectNextMonth scoped
  * 
  * @import nextDate from date.next
  * 
  * @import getProperty from date.get.properties
  * 
- * @import select from ..select scoped
+ * @import select from .select scoped
  * 
  */
 

@@ -3,72 +3,113 @@
  * 
  * 监听事件
  * 
- * @import listeners from ....listeners value
+ * @import listeners from ..listeners value
  * 
  * @import is from browser.selector.parent
  * 
- * @import stopEvent from ....stop
+ * @import stopEvent from ..stop
  * 
- * @import preventEvent from ....prevent
+ * @import preventEvent from ..prevent
  * 
- * @import add from event.listener.add
+ * @import doAdd from event.listener.add
+ * 
+ * @import isObject from is.object.simple
  * 
  * @param {mixed} target 目标
  * 
- * @param {string} event 目标监听事件
+ * @param {mixed} event 目标监听事件
  * 
- * @param {mixed} fn 目标监听回调
+ * @param {mixed} [fn] 目标监听回调
  * 
  * @param {object} [config = {}] 配置
  * 
- * @param {string} [config.selector] 选择器
- * 
- * @param {boolean} [config.stop = false] 停止冒泡
- * 
- * @param {boolean} [config.prevent = false] 禁用默认浏览器行为
- * 
- * @param {boolean} [config.once = false] 是否只监听一次
- * 
- * @return {mixed} 返回说明 
- * 
  */
 
-if(listeners.has(target , event , fn)){
+ function main(target , event , fn , config){
 
-    return ;
-}
-
-let listener = e =>{
+    if(isObject(event)){
 
         let {
-            target
-        } = e ;
+            scope,
+            ...listeners
+        } = event ;
 
-        if(stop){
+        let names = Object.keys(listeners) ;
+
+        for(let name of names){
+
+            if(isObject(listener)){
+
+                let {
+                    fn,
+                    ...options
+                } = listener ;
+    
+                options.scope = options.scope || scope ;
+    
+                add(target , name , fn , options) ;
             
-            stopEvent(e) ;
+            }else{
+    
+                add(target , name , listeners[name] , {
+                    scope
+                }) ;
+            }
         }
+        
+    }else{
 
-        if(prevent){
+        add(target , event , fn , config) ;
+    }
 
-            preventEvent(e) ;
-        }
+ }
 
-        if(selector){
+ function add(target , event , fn , {
+     selector,
+     stop = false,
+     prevent = false,
+     ...config
+ }){
 
-            if(is(target , selector)){
+    if(listeners.has(target , event , fn)){
 
+        return ;
+    }
+    
+    let listener = e =>{
+    
+            let {
+                target
+            } = e ;
+    
+            if(stop){
+                
+                stopEvent(e) ;
+            }
+    
+            if(prevent){
+    
+                preventEvent(e) ;
+            }
+    
+            if(selector){
+    
+                if(is(target , selector)){
+    
+                    fn(e) ;
+                }
+                
+            }else{
+    
                 fn(e) ;
             }
-            
-        }else{
+        };
+    
+    listeners.set(target , event , fn , listener) ;
+    
+    doAdd(target , event , listener , {
+        passive:false,
+        ...config
+    }) ;
+ }
 
-            fn(e) ;
-        }
-    };
-
-listeners.set(target , event , fn , listener) ;
-
-add(target , event , listener , {
-    once
-}) ;

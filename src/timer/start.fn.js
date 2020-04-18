@@ -5,9 +5,9 @@
  * 
  * @import is.number
  * 
- * @import end from ..end scoped
+ * @import end from .end scoped
  * 
- * @param {number} [duration] 计时时长
+ * @import reset from .reset
  * 
  */
 
@@ -16,7 +16,6 @@ function onInterval(duration , startTime){
     let me = this,
     {
         interval,
-        intervalId,
         onInterval
     } = me,
     remainDuration = duration - (Date.now() - startTime) ;
@@ -27,26 +26,28 @@ function onInterval(duration , startTime){
 
         if(remainDuration < interval){
 
-            clearInterval(intervalId) ;
+            reset.call(me) ;
 
-            setTimeout(onInterval , remainDuration) ;
+            me.intervalId = setTimeout(onInterval , remainDuration) ;
         }
     
     }else{
 
-        end() ;
+        reset.call(me) ;
+
+        me.fireEvent('timeout') ;
     }
  }
 
-function main(duration){
+function main(){
 
     let me = this,
     {
         interval,
-        defaultDuration
+        duration
     } = me;
 
-    duration = isNumber(duration) ? duration : defaultDuration ;
+    end() ;
 
     me.fireEvent('timestart') ;
 

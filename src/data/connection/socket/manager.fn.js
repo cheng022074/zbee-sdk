@@ -1,153 +1,163 @@
 
 /**
  * 
- * socket 管理类
+ * 管理多个 WebSocket 推送器开关
  * 
- * @import remove from array.remove.all
+ * @import Socket from data.connection.socket
  * 
  * @import add from event.listener.add
+ * 
+ * @import remove from event.listener.remove
  * 
  * @once
  * 
  */
 
- const processQueue = [],
-       processMode = new Map();
+ const processQueue = [];
+
+ let isProcessorStarted = false,
+     previousSocket;
 
  class main{
 
-    constructor(){
+    isSocket(socket){
 
-        let me = this ;
-
-        me.isProcessorStarted = false ;
-
-        me.processModeMap = new Map() ;
-
-        me.processQueue = [] ;
+        return socket instanceof Socket() ;
     }
 
-    static connect(socket){
+    isConnected(socket){
 
-        let me = this,
-        {
-            processModeMap,
-            processQueue
-        } = me ;
-
-        processQueue.push(socket) ;
-
-        processModeMap.set(socket , 'connect') ;
-
-        me.startProcessor() ;
+        return this.isSocket(socket) && socket.isConnected ;
     }
 
-    static disconnect(socket){
+    connect(socket){
 
-        let me = this,
-        {
-            processModeMap,
-            processQueue
-        } = me ;
-
-        processQueue.push(socket) ;
-
-        processModeMap.set(socket , 'disconnect') ;
-
-        me.startProcessor() ;
+        todo.call(this , socket , 'connect') ;
     }
 
-    startProcessor(){
+    disconnect(socket){
 
-        let me = this,
-        {
-            isProcessorStarted
-        } = me ;
+       todo.call(this , socket , 'disconnect') ;
+    }
+ }
 
-        if(!isProcessorStarted){
+ function todo(socket , action) {
 
-            me.isProcessorStarted = true ;
+    if(this.isSocket(socket)){
 
-            me.doProcess() ;
+        processQueue.push({
+            socket,
+            action
+        }) ;
+    
+        start() ;
+    }
+ }
+
+ function start() {
+
+    if(!isProcessorStarted){
+
+        isProcessorStarted = true ;
+
+        doSetTimeoutProcessing() ;
+    }
+ }
+
+ function doSetTimeoutProcessing(){
+
+    setTimeout(doProcessing , 0) ;
+ }
+
+ function doProcessing(){
+
+    let [
+        process
+    ] = processQueue;
+
+    if(process){
+        
+        let {
+            socket,
+            action
+        } = process ;
+
+        let {
+            isDisconnected,
+            isConnected,
+            isDisconnecting,
+            isConnecting
+        } = socket;
+
+        if(previousSocket){
+
+            remove(previousSocket , {
+                lostconnect:doSetTimeoutProcessing,
+                disconnect:doSetTimeoutProcessing,
+                connect:doSetTimeoutProcessing
+            }) ;
         }
 
-    }
+        if(isDisconnected || isConnected){
 
-    doProcess(){
+            previousSocket = socket ;
 
-        let me = this,
-        {
-            processModeMap,
-            processQueue
-        } = me,[
-            socket
-        ] = processQueue;
+            processQueue.shift() ;
 
-        if(socket){
+            add(socket , 'lostconnect' , doSetTimeoutProcessing) ;
 
-            let mode = processModeMap.get(socket),
-            {
-                isDisconnected,
-                isConnected
-            } = socket;
+            switch(action){
 
-            if(isDisconnected || isConnected){
+                case 'connect':
 
-                remove(processQueue) ;
+                    if(isDisconnected){
 
-                processMode.delete(socket) ;
+                        add(socket , 'connect' , doSetTimeoutProcessing , {
+                            once:true
+                        }) ;
 
-                switch(mode){
+                        socket.connect() ;
+                    
+                    }else{
 
-                    case 'connect':
-    
-                        if(isDisconnected){
-    
-                            socket.connect() ;
-                        
-                        }else{
+                        doSetTimeoutProcessing() ;
+                    }
 
-                            me.doProcess() ;
+                    break ;
 
-                            return ;
-                        }
+                case 'disconnect':
 
-                        break ;
-    
-                    case 'disconnect':
-    
-                        if(isConnected){
-    
-                            socket.disconnect() ;
-                                                
-                        }else{
+                    if(isConnected){
 
-                            me.doProcess() ;
+                        add(socket , 'disconnect' , doSetTimeoutProcessing , {
+                            once:true
+                        }) ;
 
-                            return ;
-                        }
-                }
-            
-            }
+                        socket.disconnect() ;
+                                            
+                    }else{
 
-            if(socket.isDisconnecting){
-
-                add(socket , {
-                    disconnect:'doProcess',
-                    scope:me
-                }) ;
-            
-            }else if(socket.isConnecting){
-
-                add(socket , {
-                    connect:'doProcess',
-                    scope:me
-                }) ;
+                        doSetTimeoutProcessing() ;
+                    }
             }
         
-        }else{
+        }else if(isDisconnecting){
 
-            me.isProcessorStarted = false ;
+            add(socket , 'disconnect' , doSetTimeoutProcessing , {
+                once:true
+            }) ;
+        
+        }else if(isConnecting){
+
+            add(socket , 'connect' , doSetTimeoutProcessing , {
+                once:true
+            }) ;
         }
+    
+    }else{
+
+        previousSocket = null ;
+
+        isProcessorStarted = false ;
     }
  }

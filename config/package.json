@@ -1,58 +1,38 @@
 {
     "xy":{
-        "type":"library",
         "classes":[
             "array.*",
-            "data.connection.*",
-            "data.proxy.memory",
-            "data.store.create",
-            "data.store.tree.mind",
-            "data.reader.json",
-            "canvas.draw.line.bezierCurve",
-            "canvas.draw.line.arc",
-            "object.equals",
+            "data.*",
+            "browser.canvas.*",
+            "is.*",
+            "directory.*",
+            "browser.*",
+            "object.*",
+            "class.*",
+            "date.*",
+            "json.*",
             "map",
             "function.get",
-            "is.object.simple",
-            "is.object.empty",
-            "is.number",
-            "is.array",
-            "is.directory",
-            "directory.copy",
-            "date.get",
-            "date.list",
-            "date.parse",
-            "date.get.properties",
+            "directory.*",
+            "file.*",
             "map.set.multi",
             "id.generate",
             "math.region",
             "calendar.month.view",
-            "browser.event.listener.global.*",
-            "browser.event.key",
-            "browser.event.gesture.tap.start",
-            "browser.event.gesture.drag.start",
-            "browser.event.gesture.pinch.start",
-            "browser.event.gesture.vue",
-            "browser.event.gesture.react",
-            "browser.event.touch.init",
+            "miniprogram.storage",
             "os.name",
             "number.format",
-            "miniprogram.page",
-            "json.stringify",
-            "directory.readAllFilePaths",
-            "file.read.json",
-            "file.write",
-            "file.read.text",
-            "webpack.*",
-            "object.flat"
+            "log.node",
+            "process.spawn"
         ],
         "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\SDK\\FRONTEND",
+            "C:\\Users\\DEV\\Documents\\Code\\COMPANY\\SDK"
         ]
     },
     "mind-sdk":{
         "type":"webpack",
-        "compile":false,
+        "webpack":true,
         "classes":[
             "data.store.create",
             "data.store.tree",
@@ -64,6 +44,19 @@
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
+        ]
+    },
+    "webpack-vue":{
+        "type":"webpack",
+        "classes":[
+            "browser.event.gesture.contextmenu",
+            "browser.event.gesture.tap",
+            "browser.event.gesture.drag",
+            "browser.event.gesture.vue",
+            "browser.event.touch.init"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\TEST\\WEBPACK\\src\\lib.js"
         ]
     }
 }

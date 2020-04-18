@@ -3,7 +3,7 @@
  * 
  * 对象数组
  * 
- * @import createSet from ..set
+ * @import createSet from .set
  * 
  * @import remove from array.remove.index
  * 

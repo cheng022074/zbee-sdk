@@ -7,7 +7,10 @@
  * 
  */
 
-let me = this ;
+let me = this,
+{
+    connection
+} = me;
 
 me.close() ;
 
@@ -20,3 +23,7 @@ delete me.defaultParams ;
 me.fireEvent('destroy') ;
 
 removeAll(me) ;
+
+connection.subscribers.delete(me.fullName) ;
+
+delete me.fullName ;

@@ -26,14 +26,14 @@
  function doFireBubbleEvent(event , target , ...args){
 
     let me = this,{
-        bubbleTarget,
+        $bubbleTarget,
         emitter
     } = me ;
 
     emitter.emit(event , target ,  ...args) ;
 
-    if(bubbleTarget){
+    if($bubbleTarget){
 
-        doFireBubbleEvent.call(bubbleTarget , event , target , ...args) ;
+        doFireBubbleEvent.call($bubbleTarget , event , target , ...args) ;
     }
  }

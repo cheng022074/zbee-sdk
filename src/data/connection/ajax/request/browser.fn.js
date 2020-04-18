@@ -3,7 +3,7 @@
  * 
  * 基于浏览器的 AJAX 请求实现
  * 
- * @import request from ....request
+ * @import request from ..request
  * 
  * @require axios
  * 

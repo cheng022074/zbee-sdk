@@ -5,7 +5,7 @@
  * 
  * @import empty from function.empty value
  * 
- * @import deploy from ..lifecycle
+ * @import deploy from .lifecycle
  * 
  * @param {object} connections 订阅对象
  * 
@@ -18,7 +18,11 @@
  let {
      mounted,
      unmounted
- } = deploy(false , connections , component) ;
+ } = deploy(connections , component , function(){
+
+    return this.connectionId ;
+
+ }) ;
 
  const {
     mounted:originMounted = empty,
@@ -26,33 +30,24 @@
     ...options
  } = component;
 
- async function onMounted(){
-
-    let me = this ;
-
-    await mounted.call(me) ;
-       
-    originMounted.call(me) ;
- }
-
- async function onUnmounted(){
-
-    let me = this ;
-
-    await originUnmounted.call(me) ;
-
-    unmounted.call(me) ;
- }
-
  return {
     mounted(){
 
-        onMounted.call(this) ;
+      let me = this ;
+
+      mounted.call(me) ;
+         
+      originMounted.call(me) ;
     },
 
     destroyed(){
 
-        onUnmounted.call(this) ;
+      let me = this ;
+
+      originUnmounted.call(me) ;
+
+      unmounted.call(me) ;
+      
     },
 
     ...options

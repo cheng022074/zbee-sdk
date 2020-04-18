@@ -11,4 +11,4 @@
  * 
  */
 
-return isType(data , 'function') && data.ZBEE_CLASS ;
+return isType(data , 'function') && data.__ZBEE_IS_CLASS__ ;

@@ -3,9 +3,11 @@
  * 
  * 基于数据连接的小程序封装
  * 
+ * @import Manager from data.connection.socket.manager value
+ * 
  * @import empty from function.empty value
  * 
- * @import deploy from ..lifecycle
+ * @import deploy from .lifecycle
  * 
  * @param {object} connections 订阅对象
  * 
@@ -31,38 +33,56 @@ let {
     unmounted,
     subscribe,
     unsubscribe
-} = deploy(connectionNames , connections , component) ;
+} = deploy(connections , component) ;
 
-async function onLoad(options){
+function initSockets(){
 
-    let me = this ;
+     if(!this.hasOwnProperty('$connectionId')){
 
-    await mounted.call(me) ;
-           
-    originLoad.call(me , options) ;
-    
-}
+          let names = Object.keys(connections);
 
-async function onShow(){
+          for(let name of names){
 
-    let me = this ;
+               if(!connectionNames.includes(name)){
 
-    await mounted.call(me) ;
-           
-    originShow.call(me , options) ;
+                    Manager.disconnect(connections[name]) ;
+
+               }
+          }
+
+          for(let name of names){
+
+               if(connectionNames.includes(name)){
+
+                    Manager.connect(connections[name]) ;
+               }
+          }
+     }
 }
 
 return {
     ...options,
     onLoad(options){
 
-        onLoad.call(this , options) ;
+        let me = this ;
+
+        initSockets.call(me) ;
+
+        mounted.call(me) ;
+            
+        originLoad.call(me , options) ;
         
    },
 
    onShow(){
 
-        onShow.call(this) ;
+        let me = this ;
+
+        initSockets.call(me) ;
+
+        mounted.call(me) ;
+            
+        originShow.call(me , options) ;
    },
 
    onHide(){
@@ -76,11 +96,11 @@ return {
 
    onUnload(){
 
-       let me = this ;
+        let me = this ;
 
-       originUnload.call(me) ;
+        originUnload.call(me) ;
 
-       unmounted.call(me) ;
+        unmounted.call(me) ;
    },
    subscribe,
    unsubscribe

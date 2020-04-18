@@ -3,15 +3,13 @@
  * 
  * 对象版部署封装
  * 
- * @import deploy from ....deploy
- * 
- * @param {array} connectionNames 订阅对象名称集合
+ * @import deploy from ..deploy
  * 
  * @param {object} connections 订阅对象
  * 
  * @param {object} component 组件定义对象
  * 
- * @param {string} [prefix = '$'] 订阅器变量前缀
+ * @param {function} [getConnectionId] 获得连接编号
  * 
  * @return {object} 增加订阅功能的组件定义对象
  * 
@@ -23,18 +21,28 @@
  for(let name of names){
 
     let field = name === 'default' ? 'subscribers' : `${name}_subscribers`,
-        subscribers = component[field] ;
+        subscribers = component[field],
+        varName = `$${field}`,
+        connection = connections[name];
 
     if(subscribers){
 
         config[name] ={
-            varName:`${prefix}${field}`,
-            connection:connections[name],
+            varName,
+            connection,
             subscribers
         } ;
 
         delete component[field] ;
+
+    }else{
+
+        config[name] = {
+            varName,
+            connection,
+            subscribers:{}
+        } ;
     }
  }
 
- return deploy(connectionNames , `${prefix}connections` ,  connections , config);
+ return deploy(connections , config , getConnectionId);

@@ -3,11 +3,11 @@
  * 
  * 选定月份
  * 
- * @import getDates from ......month
+ * @import getDates from ....month
  * 
- * @import deselect from ..deselect scoped
+ * @import deselect from .deselect scoped
  * 
- * @import select from ..select scoped
+ * @import select from .select scoped
  * 
  * @import getProperty from date.get.properties
  * 

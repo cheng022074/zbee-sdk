@@ -10,6 +10,10 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import Manager from .socket.manager value
+ * 
+ * @import getName from environment.name
+ * 
  * @class
  * 
  */
@@ -27,10 +31,76 @@
 
         let {
             url,
-            options = {}
-        } = socket ;
+            ...options
+        } = socket,
+        {
+            reconnection = true,
+            reconnectionDelay = 1000,
+            autoConnect = true,
+            ...otherOptions
+        } = options;
 
-        me.initialize(url , options) ;
+        me.initialize(url , otherOptions) ;
+
+        if(autoConnect){
+
+            Manager.connect(me) ;
+        }
+
+        if(reconnection){
+
+            add(me , {
+                lostconnect:'onReconnect',
+                connecttimeout:'onReconnect',
+                scope:me
+            }) ;
+        }
+
+        add(me , 'connect' , () => me.activate()) ;
+
+        me.reconnectionDelay = reconnectionDelay ;
+
+        if(getName() === 'browser'){
+
+            let isDoReconnect = false;
+
+            add(window , {
+                offline(){
+
+                    if(me.isConnected){
+
+                        isDoReconnect = true ;
+                    }
+                },
+                online(){
+
+                    if(me.isConnected && isDoReconnect){
+
+                        me.onReconnect() ;
+                    }
+
+                    isDoReconnect = false ;
+                },
+                scope:me
+            }) ;
+        }
+    }
+
+    onReconnect(){
+
+        let me = this,
+        {
+            reconnectionDelay
+        } = me;
+
+        setTimeout(() => {
+
+            Manager.disconnect(me) ;
+
+            Manager.connect(me) ;
+
+        } , reconnectionDelay) ;
+        
     }
 
     initialize(url , options){
@@ -38,24 +108,63 @@
 
     }
 
-    get isConnected(){
-
-        return isState.call(this , 1) ;
-    }
-
     get isConnecting(){
 
         return isState.call(this , 0) ;
+    }
+
+    get isConnected(){
+
+        return isState.call(this , 1) ;
     }
 
     get isDisconnecting(){
 
         return isState.call(this , 2) ;
     }
-
-    get isDisconnectd(){
+    
+    get isDisconnected(){
 
         return isState.call(this , 3) ;
+    }
+
+    connect(){
+
+        let me = this,
+        {
+            isDisconnected
+        } = me ;
+
+        if(isDisconnected){
+
+           me.doConnect() ;
+        }
+    }
+
+    doConnect(){
+
+    }
+
+    disconnect(){
+
+        let me = this,
+        {
+            isDisconnected,
+            isDisconnecting
+        } = me ;
+
+        if(!isDisconnected || !isDisconnecting){
+
+            me.disconnectingState = true ;
+
+            me.deactivate() ;
+
+            me.doDisconnect() ;
+        }
+    }
+
+    doDisconnect(){
+
     }
 
     validateMessage({

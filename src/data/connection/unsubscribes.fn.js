@@ -5,7 +5,7 @@
  * 
  * @param {string[]} names 批量订阅配置
  * 
- * @param {string} [instanceId] 实例编号
+ * @param {string} [namespace] 命名空间
  * 
  */
 
@@ -13,5 +13,5 @@ let me = this;
 
 for(let name of names){
 
-    me.unsubscribe(name , instanceId) ;
+    me.unsubscribe(name , namespace) ;
 }

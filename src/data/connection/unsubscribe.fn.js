@@ -7,19 +7,36 @@
  * 
  * @param {string} name 订阅名称
  * 
- * @param {string} [instanceId] 实例编号
+ * @param {string} [namespace] 命名空间
  * 
  */
-
- name = getName(name , instanceId) ;
 
 let me = this,
     {
         subscribers
     } = me,
-    subscriber = me.doSubscriberMethod(name , 'destroy') ;
+    fullNames = [];
 
-if(subscriber){
+if(namespace){
 
-    subscribers.delete(name) ;
+    fullNames.push(getName(name , namespace)) ;
+
+}else{
+
+    let  subscriberNames = subscribers.keys(),
+         namespaceRe = /\<[^\<\>]+\>$/;
+
+    for(let subscriberName of subscriberNames){
+
+        if(subscriberName.replace(namespaceRe , '') === name){
+
+            fullNames.push(subscriberName) ;
+        }
+    }
 }
+
+for(let fullName of fullNames){
+
+    me.doSubscriberMethod(fullName , 'destroy') ;
+}
+

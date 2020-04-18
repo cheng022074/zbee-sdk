@@ -5,6 +5,8 @@
  * 
  * @import is.defined
  * 
+ * @import setData from .accept.data scoped
+ * 
  * @param {mixed} data 数据
  * 
  * 
@@ -13,10 +15,9 @@
 let me = this,
 {
     closed,
-    bindFn,
-    params,
-    connection,
-    name
+    cache,
+    processAcceptData,
+    cacheAcceptData
 } = me;
 
 if(closed){
@@ -24,14 +25,11 @@ if(closed){
     return;
 }
 
-if(!isDefined(data)){
+data = processAcceptData(data) ;
 
-    return;
-}
+if(isDefined(data)){
 
-me.fireEvent('data' , data , params) ;
+    me.cache = cacheAcceptData(data , cache) ;
 
-if(bindFn){
-
-    return bindFn(data , params) ;
+    setData(data) ;
 }

@@ -10,15 +10,9 @@
 let me = this,
 {
     subscribeParamList
-} = me,
-subscribedParamList = [];
+} = me;
 
 for(let params of subscribeParamList){
 
-    if(!includes(subscribedParamList , params)){
-
-        subscribedParamList.push(params) ;
-            
-        me.doSubscriberOpen(...params) ;
-    }
+    me.doSubscriberOpen(...params) ;
 }

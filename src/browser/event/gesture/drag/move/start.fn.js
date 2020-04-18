@@ -8,15 +8,17 @@
  * 
  * @import getName from browser.event.name.single
  * 
- * @import enabled from ....enabled scoped
+ * @import enabled from ..enabled scoped
  * 
  * @import scale from browser.scale
  * 
- * @import resetInfo from ....info.reset scoped
+ * @import resetInfo from ..info.reset scoped
  * 
- * @import un from browser.global.listener.remove
+ * @import getDistance from math.point.distance
  * 
- * @config minDistance from gesture.drag...minDistance
+ * @import un from browser.event.listener.global.remove
+ * 
+ * @config minDistance from event.drag...minDistance
  * 
  * @param {Event} e 事件对象
  * 
@@ -39,7 +41,7 @@ point = {
     y
 };
 
-if (Math.round(startPoint , point) * scale() >= minDistance) {
+if (Math.round(getDistance(startPoint , point)) * scale() >= minDistance) {
 
     me.previousPoint = point ;
 
@@ -54,6 +56,8 @@ if (Math.round(startPoint , point) * scale() >= minDistance) {
     dispatch('dragstart', info);
 
     un(getName('move') , me.onStart) ;
+
+    un(getName('end') , me.onEnd) ;
 
     enabled() ;
 }

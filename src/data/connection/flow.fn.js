@@ -108,7 +108,7 @@
 
             message.subscribes({
                 ...methods,
-                instanceId:me.flowId = generate('flow-')
+                connectionId:me.flowId = generate('flow-')
             }) ;
 
             me.send(name , value) ;

@@ -1,4 +1,3 @@
-
 /**
  * 
  * 单次订阅
@@ -7,38 +6,38 @@
  * 
  * @import getName from .subscribe.name
  * 
+ * @import generate from .subscribe.namespace.generate scoped
+ * 
  * @param {string} name 订阅名称
  * 
  * @param {object} [options = {}] 订阅配置
  * 
  */
 
- const nameRe = /\<|\>/g ;
-
-function main(name , {
-    instanceId,
-    ...options
-}){
-
-    name = name.replace(nameRe , '') ;
+function main(name , options){
 
     let me = this,
     {
-        subscribers
-    } = me;
+        subscribers,
+        forceSubscribe
+    } = me,
+    {
+        namespace
+    } = options;
 
-    if(subscribers.has(name)){
+    if(me.isSubscribed(name , namespace)){
 
-        return ;
+        namespace = generate(name) ;
+        
     }
 
-    options = assign({} , convertNameToSubscriberOptions.call(me , name) , options) ;
+    let fullName = getName(name , namespace),
+        subscriber = me.createSubscriber(name , assign({} , convertNameToSubscriberOptions.call(me , name) , {
+            ...options,
+            fullName
+        })) ;
 
-    name = getName(name , instanceId) ;
-
-    let subscriber = me.createSubscriber(name , options) ;
-
-    subscribers.set(name , subscriber) ;
+    subscribers.set(fullName , subscriber) ;
 
     me.onCreateSubscriber(subscriber) ;
 

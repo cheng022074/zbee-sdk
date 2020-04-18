@@ -3,7 +3,7 @@
  * 
  * 实现一个对象 Set
  * 
- * @import flat from ..flat
+ * @import flat from .flat
  * 
  * @import remove from array.remove.index
  * 

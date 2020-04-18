@@ -1,0 +1,10 @@
+{
+    "mixins":[
+        "mixin.observable"
+    ],
+    "class":true,
+    "constructor":true,
+    "methods":[
+        "destroy"
+    ]
+}

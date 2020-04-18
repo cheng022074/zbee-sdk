@@ -8,13 +8,19 @@
  * 
  * @import is.array
  * 
- * @param {array} connectionNames 连接名称集合
+ * @import is.function
  * 
- * @param {string} connectionsVarName 连接实例集合名称
+ * @import is.string
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import empty from function.empty value
  * 
  * @param {array} connections 连接实例集合
  * 
  * @param {object} subscriberMap 订阅器定义集合
+ * 
+ * @param {function} [getConnectionId] 获得连接编号
  * 
  * @return {object}
  * 
@@ -24,131 +30,88 @@
     keys
  } = Object;
 
- async function connect(){
+ getConnectionId = getConnectionId || empty ;
 
-    if(connectionNames === false){
-
-        return ;
-    }
-
-    let names = Object.keys(connections);
-
-    for(let name of names){
-
-        if(!connectionNames.includes(name)){
-
-            await connections[name].end() ;
-            
-        }
-    }
-
-    for(let name of names){
-
-        if(connectionNames.includes(name)){
-
-            await connections[name].start() ;
-        }
-    }
- }
-
+ let defaultConnectionId = generate('connection-') ;
 
  function isMounted(){
 
-    return !!this[connectionsVarName] ;
- }
-
- async function mounted(){
-
-    let scope = this ;
-
-    if(isMounted.call(scope)){
-
-        return ;
-    }
-
-    scope[connectionsVarName] = connections ;
-
-    await connect() ;
-
-    let names = keys(subscriberMap),
-        instanceId = scope.connectionId = scope.connectionId || generate('connection-') ;
-
-    for(let name of names){
-
-        let {
-            varName,
-            connection,
-            subscribers
-        } = subscriberMap[name] ;
-        
-
-        if(subscribers){
-
-            scope[varName] = connection.subscribes({
-                ...subscribers,
-                instanceId,
-                scope
-            }) ;
-        }
-    }
-
+    return this.hasOwnProperty('$connectionId') ;
  }
 
  return {
 
     mounted(){
 
-        return mounted.call(this) ;
-    },
+        let scope = this ;
 
-    unsubscribe(name , connectionName){
+        if(isMounted.call(scope)){
 
-        let {
-            subscribers
-        } = subscriberMap[connectionName] ;
-
-        delete subscribers[name] ;
-
-        connections[connectionName].unsubscribe(name , this.connectionId) ;
-    },
-
-    subscribe(name , options){
-
-        let scope = this,
-            connectionName,
-            subscriber;
-
-        if(isObject(options)){
-
-            let {
-                connection = 'default',
-                ...params
-            } = options ;
-
-            connectionName = connection ;
-
-            subscriber = params ;
-        
-        }else{
-
-            name = 'default' ;
-
-            subscriber = {
-                fn:options
-            } ;
+            return ;
         }
 
-        connections[connectionName].subscribe(name , {
-            ...subscriber,
-            instanceId:scope.connectionId,
-            scope
-        }) ;
+        let names = keys(subscriberMap),
+            namespace = scope.$connectionId = getConnectionId.call(scope) || defaultConnectionId ;
 
-        let {
-            subscribers
-        } = subscriberMap[connectionName] ;
+        for(let name of names){
 
-        subscribers[name] = subscriber ;
+            let {
+                varName,
+                connection,
+                subscribers
+            } = subscriberMap[name] ;
+            
+            scope[varName] = new Proxy(connection.subscribes({
+                ...subscribers,
+                namespace,
+                scope
+            }) , {
+
+                set(subscribers , name , config){
+
+                    if(!subscribers.hasOwnProperty(name)){
+
+                        let subscriber = connection.subscribes({
+                            [name]:config,
+                            namespace,
+                            scope
+                        })[name] ;
+
+                        if(subscriber){
+
+                            subscribers[name] = subscriber ;
+                        }
+                    }
+
+                    return subscribers ;
+
+                },
+
+                get(subscribers , name){
+
+                    return subscribers[name] ;
+                },
+
+                deleteProperty(subscribers , name){
+
+                    if(subscribers.hasOwnProperty(name)){
+
+                        connection.unsubscribe(name , namespace) ;
+
+                        delete subscribers[name] ;
+                    }
+
+                    return subscribers ;
+                },
+
+                ownKeys(subscribers){
+
+                    return Object.keys(subscribers) ;
+                }
+
+            }) ;
+        }
+
     },
 
     unmounted(){
@@ -160,22 +123,24 @@
             return ;
         }
 
-        let names = keys(subscriberMap);
+        let names = keys(subscriberMap),
+            {
+                $connectionId:namespace
+            } = scope;
 
         for(let name of names){
 
             let {
                 varName,
                 connection,
-                subscribers
             } = subscriberMap[name] ;
 
-            connection.unsubscribes(keys(subscribers) , scope.connectionId) ;
+            connection.unsubscribes(keys(scope[varName]) , namespace) ;
 
             delete scope[varName] ;
         }
 
-        delete scope[connectionsVarName] ;
+        delete scope.$connectionId ;
     }
 
  } ;

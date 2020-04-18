@@ -3,13 +3,11 @@
  * 
  * 获得一个对象的键值
  * 
- * @import is.array
+ * @import split from string.split
  * 
  * @import is.object
  * 
- * @import is.defined
- * 
- * @import join from object.key.join
+ * @import is.array
  * 
  * @param {object} data 对象数据
  * 
@@ -17,80 +15,59 @@
  * 
  * @return {mixed} 对应对象数据的键值的数据 
  * 
- * @scoped
- * 
  */
 
-const firstKeyRe = /^([^\.]+)\./;
+if(key === '.'){
 
-function main(data , key , prefixKey = ''){
+    return data ;
+}
 
-    if(key === '.'){
+const arrayItemRe1 = /^(\w+)\[(\d+)\]$/,
+      arrayItemRe2 = /^\[(\d+)\]$/;
 
-        return data ;
-    }
+if(isObject(data) || isArray(data)){
 
-    if(isObject(data)){
+    let keys = split(key , /\./),
+        result;
 
-        let firstKey,
-            lastKey = key.replace(firstKeyRe , function(){
+    for(let key of keys){
 
-                firstKey = arguments[1] ;
+        if(arrayItemRe1.test(key) || arrayItemRe2.test(key)){
+
+            {
+                let keyMatch = key.match(arrayItemRe1) ;
+    
+                if(keyMatch){
+    
+                    result = data[keyMatch[1]][Number(keyMatch[2])] ;
                 
-                return '' ;
-
-            }) ;
-
-        if(firstKey){
-
-            firstKey = join(prefixKey , firstKey) ;
-
-            let result ;
-
-            if(data.hasOwnProperty(firstKey)){
-
-                result = data[firstKey] ;
-
-                prefixKey = '' ;
-
-            }else{
-
-                result = data ;
-
-                prefixKey = firstKey ;
+                }
             }
-
-            if(lastKey){
-
-                return main(result , lastKey , prefixKey) ;
+    
+            {
+                let keyMatch = key.match(arrayItemRe2) ;
+    
+                if(keyMatch){
+    
+                    result = data[Number(keyMatch[1])] ;
+                
+                }
             }
-        
-            return result ;
         
         }else{
 
-            return data[join(prefixKey , lastKey)] ;
+            result = data[key] ;
         }
 
-    }else if(isArray(data)){
+        if(isObject(result) || isArray(result)){
 
-        let result = [] ;
+            data = result ;
+        
+        }else{
 
-        for(let item of data){
-
-            let itemResult = main(item , key) ;
-
-            if(isArray(itemResult)){
-
-                result.push(...itemResult) ;
-            
-            }else if(!isDefined(itemResult)){
-
-                result.push(itemResult) ;
-
-            }
+            break ;
         }
-
-        return result ;
     }
+
+    return result ;
 }

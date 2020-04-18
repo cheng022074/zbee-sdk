@@ -11,11 +11,34 @@
 
 const {
     toString
-} = Object.prototype ;
+} = Object.prototype,
+BROWSER_NAMES = {
+    micromessenger: 'weixin-browser',
+    ue4:'ue4-browser',
+    unity: 'unity-browser',
+    electron:'electron-browser',
+    browser:'browser'
+};
 
 if(typeof window === 'object' && toString.call(window) === '[object Window]' && typeof document === 'object' && toString.call(document) === '[object HTMLDocument]'){
+    
+    return BROWSER_NAMES[(navigator.userAgent.toLowerCase().match(/micromessenger|ue4|unity|electron/) || ['browser'])[0]];
 
-    return 'browser' ;
+}else if(typeof process === 'object' && typeof global === 'object' && typeof require === 'function'){
+
+    try{
+
+        let [
+            path
+        ] = process.argv ;
+
+        return /electron\.exe$/.test(path) ;
+
+    }catch(err){
+
+    }
+
+    return 'node' ;
 }
 
-return 'node' ;
+return 'other' ;

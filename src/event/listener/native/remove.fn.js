@@ -9,8 +9,18 @@
  * 
  * @param {function} fn 事件监听函数
  * 
+ * @param {object} [options] 事件监听函数配置
+ * 
  */
 
-const remove = target.removeEventListener || target.un || target.off;
+ if(target.removeEventListener){
 
-remove.call(target , name , fn) ;
+    target.removeEventListener(name , fn , options) ;
+ 
+ }else{
+
+    const remove = target.off || target.un;
+
+    remove.call(target , name , fn) ;
+ }
+

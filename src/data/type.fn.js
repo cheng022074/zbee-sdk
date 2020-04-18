@@ -16,6 +16,8 @@
  * 
  * @import is.string
  * 
+ * @import is.function
+ * 
  * @param {mixed} data 数据
  * 
  * @return {string} 数据类型描述 
@@ -51,6 +53,11 @@
 
   return 'date' ;
   
+ }
+
+ if(isFunction(data)){
+
+   return 'function' ;
  }
 
  return 'other' ;

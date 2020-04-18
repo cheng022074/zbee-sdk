@@ -9,7 +9,7 @@
  * 
  * @import getScale from browser.scale
  * 
- * @import disabled from ..disabled scoped
+ * @import disabled from .disabled scoped
  * 
  * @config moveDistance from event.tap...moveDistance
  * 
