@@ -1,6 +1,6 @@
 {
   "name": "zbee-sdk",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cheng022074/zbee-sdk.git"
@@ -53,14 +53,13 @@
   },
   "private": false,
   "devDependencies": {
-    "zbee": "0.0.84"
+    "zbee": "1.0.0"
   },
   "scripts": {
     "package": "zb package",
     "generate": "zb generate",
     "debug": "zb debug",
     "plan": "zb plan",
-    "compile": "zb compile",
-    "zb": "node ../Complier/bin/zb.js"
+    "compile": "zb compile"
   }
 }
