@@ -1,6 +1,6 @@
 {
   "name": "zbee-sdk",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cheng022074/zbee-sdk.git"
@@ -53,7 +53,7 @@
   },
   "private": false,
   "devDependencies": {
-    "zbee": "1.0.0"
+    "zbee": "1.0.1"
   },
   "scripts": {
     "package": "zb package",
