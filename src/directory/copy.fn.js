@@ -9,11 +9,15 @@
  * 
  * @import createDirectory from directory.create
  * 
+ * @import emptyFn from function.empty value
+ * 
  * @param {string} src 拷贝的源文件夹目录
  * 
  * @param {string} dest 目标文件夹目录
  * 
  * @param {boolean} [isCopySrcFolder = true] 是否不拷贝源文件夹目录
+ * 
+ * @param {fuction} [fn] 回调函数 
  * 
  */
 
@@ -24,6 +28,8 @@
     dirname
  } = require('path'),
  destPaths = [];
+
+ fn = fn || emptyFn ;
 
  if(isDirectory(src)){
 
@@ -36,6 +42,8 @@
         createDirectory(dirname(destPath)) ;
 
         copyFileSync(path , destPath) ;
+
+        fn(path , destPath) ;
 
         destPaths.push(destPath) ;
     }
