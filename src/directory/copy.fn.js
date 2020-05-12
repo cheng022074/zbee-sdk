@@ -13,6 +13,8 @@
  * 
  * @param {string} dest 目标文件夹目录
  * 
+ * @param {boolean} [isCopySrcFolder = true] 是否不拷贝源文件夹目录
+ * 
  */
 
  const {
@@ -20,16 +22,16 @@
  } = require('fs'),
  {
     dirname
- } = require('path');
+ } = require('path'),
+ destPaths = [];
 
  if(isDirectory(src)){
 
-    let paths = getAllFilePaths(src),
-        destPaths = [];
+    let paths = getAllFilePaths(src);
 
     for(let path of paths){
 
-        let destPath = path.replace(dirname(src) , dest) ;
+        let destPath = path.replace(isCopySrcFolder ? dirname(src) : src , dest) ;
 
         createDirectory(dirname(destPath)) ;
 
@@ -38,3 +40,5 @@
         destPaths.push(destPath) ;
     }
  }
+
+ return destPaths ;
