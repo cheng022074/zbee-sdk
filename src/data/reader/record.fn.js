@@ -31,58 +31,13 @@ function main(raw , raws , index , data){
     for(let {
         name,
         convert,
-        mode = 'readonly'
+        mode
     } of fields){
 
-        let dataRecordPropertyName = getDataRecordPropertyName(name) ;
-    
-        switch(mode){
-    
-            case 'readonly':
-    
-                Object.defineProperty(record , name , {
-                    value:convert(raw , raws , index , data),
-                    enumerable:true
-                }) ;
-    
-                break ;
-    
-            case 'writeonly':
-    
-                Object.defineProperties(record , {
-                    [name]:{
-                        set(value){
-    
-                            this[dataRecordPropertyName] = value ;
-                        }
-                    },
-                    [dataRecordPropertyName]:{
-                        value:convert(raw , raws , index , data)
-                    }
-                }) ;
-    
-                break ;
-    
-            case 'readwrite':
-    
-                Object.defineProperties(record , {
-                    [name]:{
-                        set(value){
-    
-                            this[dataRecordPropertyName] = value ;
-                        },
-    
-                        get(){
-    
-                            return this[dataRecordPropertyName] ;
-                        }
-                    },
-                    [dataRecordPropertyName]:{
-                        value:convert(raw , raws , index , data)
-                    }
-                }) ;
-    
-        }
+        define(record , name , {
+            mode,
+            value:convert(raw , raws , index , data)
+        }) ;
     }
     
     return record ;
