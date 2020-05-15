@@ -101,7 +101,7 @@
                    data = getData(data , mapping) ;
                
                }else{
-   
+
                    data = getData(data , name) ;
                }
    

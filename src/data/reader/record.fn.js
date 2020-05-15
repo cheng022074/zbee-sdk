@@ -21,29 +21,22 @@
  * 
  */
 
-function main(raw , raws , index , data){
 
-    let {
-        fields
-    } = this,
-    record = {};
-    
-    for(let {
-        name,
-        convert,
-        mode
-    } of fields){
+let {
+    fields
+} = this,
+record = {};
 
-        define(record , name , {
-            mode,
-            value:convert(raw , raws , index , data)
-        }) ;
-    }
-    
-    return record ;
+for(let {
+    name,
+    convert,
+    mode
+} of fields){
+
+    define(record , name , {
+        mode,
+        value:convert(raw , raws , index , data)
+    }) ;
 }
 
-function getDataRecordPropertyName(name){
-
-    return generate(`__ZBEE_DATA_RECORD_PROPERTY_${name}__`) ;
-}
+return record ;

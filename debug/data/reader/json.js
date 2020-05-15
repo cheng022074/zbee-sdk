@@ -5,31 +5,42 @@
  * 
  * @import createReader from data.reader.json
  * 
+ * @import read from file.read.json
  * 
  */
 
  let reader = createReader({
-     multi:true,
-     fields:[
-         'name',
-         'sex',{
-             name:'age',
-             convert({
-                 birthDate
-             }){
+     root(records){
 
-                return (new Date()).getFullYear() - new Date(birthDate).getFullYear() + 1 ;
-             }
-         },
-         {
-             name:'job',
-             defaultValue:'程序员'
+        let result = [] ;
+
+        for(let record of records){
+ 
+            if(record.f_pid === ''){
+
+                result.push(record) ;
+            }
+        }
+
+        return result ;
+     },
+     fields:{
+         'id':'f_id',
+         'text':'f_title',
+         'children':{
+             
          }
-     ]
+     }
  }) ;
 
- console.log(reader.read({
-     name:'陈治文',
-     sex:'男',
-     birthDate:'1981-10-28'
- })) ;
+ console.time('Time') ;
+
+ const {
+    join
+ } = require('path') ;
+
+ let records = reader.read(read(join(process.env['ZBEE-APP-PATH'] , 'data/json/demo.json'))) ;
+
+ console.log(records) ;
+
+ console.timeEnd('Time') ;
