@@ -28,7 +28,7 @@
      ]
  }) ;
 
- console.log(reader({
+ console.log(reader.read({
      name:'陈治文',
      sex:'男',
      birthDate:'1981-10-28'
