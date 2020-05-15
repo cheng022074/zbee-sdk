@@ -22,10 +22,11 @@ record = {};
 
 for(let {
     name,
-    convert
+    convert,
+
 } of fields){
 
-    record[name] = convert(row , rows , index , data) ;
+    record[name] = convert(raw , raws , index , data) ;
 }
 
 return record ;
