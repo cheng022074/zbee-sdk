@@ -18,13 +18,11 @@
  * 
  */
 
-let innerPropertyName = generate(`__ZBEE_OBJECT_PROPERTY_${name}__`) ;
-
 switch(mode){
     
     case 'readonly':
 
-        Object.defineProperty(record , name , {
+        Object.defineProperty(target , name , {
             value,
             enumerable:true
         }) ;
@@ -33,20 +31,20 @@ switch(mode){
 
     case 'writeonly':
 
-        Object.defineProperty(record , name , {
+        Object.defineProperty(target , name , {
             set(value){
 
                 this[innerName(name)] = value ;
             }
         }) ;
 
-        innerDefine(record , name , value) ;
+        innerDefine(target , name , value) ;
 
         break ;
 
     case 'readwrite':
 
-        Object.defineProperty(record , name , {
+        Object.defineProperty(target , name , {
             [name]:{
                 set(value){
 
@@ -60,6 +58,6 @@ switch(mode){
             }
         }) ;
 
-        innerDefine(record , name , value) ;
+        innerDefine(target , name , value) ;
 
 }
