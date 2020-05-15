@@ -2,13 +2,9 @@
  * 
  * 定义一个缓存属性
  * 
- * @import capitalize from string.capitalize
+ * @import innerDefine from .inner.define
  * 
- * @import getPrefix from object.property.prefix
- * 
- * @import is.defined
- * 
- * @import is.function
+ * @import innerName from .inner.name
  * 
  * @param {object} target 目标对象
  * 
@@ -16,67 +12,54 @@
  * 
  * @param {object} [options = {}] 属性配置
  * 
- * @param {string} [options.value = false] 属性是否是值类型
+ * @param {boolean} [options.mode = 'readonly'] 读写模式
  * 
- * @param {string} [options.writeOnce = false] 属性只能被写一次
+ * @param {string} [options.value] 属性初始始化值
  * 
  */
 
- let prefix = getPrefix(),
-     optionValue = value;
+let innerPropertyName = generate(`__ZBEE_OBJECT_PROPERTY_${name}__`) ;
 
-
- Object.defineProperty(target , name , {
-    configurable:true,
-    enumerable:true,
-    set(value){
-
-        let me = this,
-        innerName = `${prefix}${name}` ;
-
-        if(writeOnce){
-
-            let oldValue = me[innerName] ;
-
-            if(isDefined(oldValue)){
-
-                return ;
-            }
-        }
-
-        if(optionValue){
-
-            me[innerName] = value ;
-        
-        }else{
-
-            let methodName = `set${capitalize(name)}`;
+switch(mode){
     
-            if(methodName in me){
-    
-                me[propertyName] = me[methodName](value) ;
+    case 'readonly':
+
+        Object.defineProperty(record , name , {
+            value,
+            enumerable:true
+        }) ;
+
+        break ;
+
+    case 'writeonly':
+
+        Object.defineProperty(record , name , {
+            set(value){
+
+                this[innerName(name)] = value ;
             }
-        }
-    },
-    get(){
-    
-        let me = this,
-            innerName = `${prefix}${name}`,
-            method = me[`get${capitalize(name)}`];
+        }) ;
 
-        if(optionValue){
+        innerDefine(record , name , value) ;
 
-            return me[innerName] ;
-        }
+        break ;
 
-        if(!me.hasOwnProperty(innerName) && method){
+    case 'readwrite':
 
-            if(isFunction(method) && method.length === 0){
+        Object.defineProperty(record , name , {
+            [name]:{
+                set(value){
 
-                return me[innerName] = method.call(me) ;
+                    this[innerName(name)] = value ;
+                },
+
+                get(){
+
+                    return this[innerName(name)] ;
+                }
             }
-        }
+        }) ;
 
-        return me[innerName] ;
-    }
- }) ;
+        innerDefine(record , name , value) ;
+
+}

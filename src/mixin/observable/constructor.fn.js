@@ -9,6 +9,8 @@
  * 
  * @import is.array
  * 
+ * @import defineInnerProperty from object.property.inner
+ * 
  * @param {object} options 配置
  * 
  */
@@ -31,5 +33,7 @@ function main({
         add(me , listeners) ;
 
     }
+
+    
 }
 

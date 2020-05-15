@@ -17,12 +17,7 @@
 
  let count = 1 ; 
 
- function main(prefix = 'zb-' , isUUID){
-
-    if(isUUID){
-
-        return `${prefix}${require('uuid').v4()}` ;
-    }
+ function main(prefix = 'zb-'){
 
     return `${prefix}${count ++}` ;
 
