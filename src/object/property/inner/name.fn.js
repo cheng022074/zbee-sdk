@@ -3,7 +3,7 @@
  * 
  * 返回属性内部名称
  * 
- * @import generate from id.generate
+ * @import id from id.zbee value
  * 
  * @param {string} name 属性名称
  * 
@@ -11,4 +11,4 @@
  * 
  */
 
- return generate(`__ZBEE_OBJECT_PROPERTY_${name}__`) ;
+ return `__${id}_OBJECT_INNER_PROPERTY_${name}__` ;
