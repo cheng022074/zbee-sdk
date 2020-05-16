@@ -8,6 +8,8 @@
  * 
  * @import getRaws from .reader.raws
  * 
+ * @import create from .array.create
+ * 
  * @class
  * 
  */
@@ -30,7 +32,7 @@
 
         let me = this,
             raws = getRaws.call(me , data),
-            records = [],
+            records = create(me),
             count = 0;
 
         for(let raw of raws){
