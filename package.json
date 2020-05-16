@@ -60,6 +60,7 @@
     "generate": "zb generate",
     "debug": "zb debug",
     "plan": "zb plan",
-    "compile": "zb compile"
+    "compile": "zb compile",
+    "zbee":"node ../ZBEE-COMPLIER/bin/zb.js"
   }
 }
