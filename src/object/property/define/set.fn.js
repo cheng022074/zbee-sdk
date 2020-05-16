@@ -7,6 +7,8 @@
  * 
  * @import is.function
  * 
+ * @import equals from data.equals
+ * 
  * @param {string} name 属性名称
  * 
  * @param {boolean} isEnablePropertyChangeEvent 是否启动改变属性事件
@@ -16,6 +18,8 @@
  */
 
  if(isEnablePropertyChangeEvent){
+
+    isEquals = isEquals || equals ;
 
     return value => {
 
