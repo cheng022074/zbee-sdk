@@ -8,7 +8,7 @@
  * 
  * @import getRaws from .reader.raws
  * 
- * @import create from .array.create
+ * @import create from .recordset.create
  * 
  * @class
  * 
@@ -32,7 +32,7 @@
 
         let me = this,
             raws = getRaws.call(me , data),
-            records = create(me),
+            records = [],
             count = 0;
 
         for(let raw of raws){
@@ -40,6 +40,6 @@
             records.push(getRecord.call(me , raw , raws , count ++ , data)) ;
         }
 
-        return records ;
+        return create(me , records) ;
     }
  }
