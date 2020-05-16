@@ -5,8 +5,6 @@
  * 
  * @import createReader from data.reader.json
  * 
- * @import read from file.read.json
- * 
  */
 
  let reader = createReader({
@@ -16,7 +14,7 @@
 
         for(let record of records){
  
-            if(record.f_pid === ''){
+            if(record.f_pid === '0'){
 
                 result.push(record) ;
             }
@@ -26,10 +24,7 @@
      },
      fields:{
          'id':'f_id',
-         'text':'f_title',
-         'children':{
-             
-         }
+         'text':'f_title'
      }
  }) ;
 
@@ -39,7 +34,7 @@
     join
  } = require('path') ;
 
- let records = reader.read(read(join(process.env['ZBEE-APP-PATH'] , 'data/json/demo.json'))) ;
+ let records = reader.read(require(join(process.env['ZBEE-APP-PATH'] , 'data/json/demo.js'))) ;
 
  console.log(records) ;
 
