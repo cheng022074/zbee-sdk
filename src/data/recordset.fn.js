@@ -48,7 +48,7 @@ class main extends Array{
 
     push(...raws){  
 
-        super.push(...get(this , 'reader').read(raws)) ;
+        super.push(...createRecords.call(this , raws)) ;
     }
 
     unshift(...raws){
@@ -60,4 +60,29 @@ class main extends Array{
 
         super.splice(index , howMany , ...get(this , 'reader').reader(raws)) ;
     }
+ }
+
+ function createRecords(raws){
+
+    let records = [],
+        readRaws = [];
+
+    for(let raw of raws){
+
+        if(is(raw)){
+
+            get(raw , 'observable').independent() ;
+
+            records.push(raw) ;
+        
+        }else{
+
+            processRaws.push(raw) ;
+        }
+    }
+
+    return [
+        ...records,
+        ...get(this , 'reader').read(readRaws)
+    ] ;
  }

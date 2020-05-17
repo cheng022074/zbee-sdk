@@ -28,10 +28,10 @@
         me.fields = getFields.call(me , fields) ;
     }
 
-    read(data){
+    read(data , ignoreRoot = false){
 
         let me = this,
-            raws = getRaws.call(me , data),
+            raws = ignoreRoot ? data || getRaws.call(me , data),
             records = [],
             count = 0;
 
