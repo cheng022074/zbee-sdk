@@ -5,7 +5,7 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import is from .structure
+ * @import is from .item
  * 
  * @param {mixed} data 检验数据
  * 
@@ -13,4 +13,4 @@
  * 
  */
 
- return is(data) && isObject(data) ;
+ return is(data) && isObject(data);
