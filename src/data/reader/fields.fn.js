@@ -79,7 +79,7 @@
     mapping,
     convert,
     defaultValue,
-    mode,
+    mode = 'readonly',
     ...options
 }) {
 

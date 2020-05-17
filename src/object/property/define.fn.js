@@ -14,7 +14,7 @@
  * 
  * @param {object} [options = {}] 属性配置
  * 
- * @param {boolean} [options.mode = 'readonly'] 读写模式
+ * @param {boolean} options.mode 读写模式
  * 
  * @param {string} [options.value] 属性初始始化值
  * 
