@@ -21,7 +21,7 @@
  
  isEquals = isEquals || equals ;
 
- return value => {
+ return function(value){
 
     let me = this,
         oldValue = get(me , name) ;
