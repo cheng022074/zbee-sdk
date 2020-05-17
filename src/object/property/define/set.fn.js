@@ -3,40 +3,38 @@
  * 
  * 设置属性
  * 
- * @import innerName from ..inner.name
- * 
  * @import is.function
  * 
  * @import equals from data.equals
  * 
+ * @import get from ..inner.get
+ * 
+ * @import set from ..inner.set
+ * 
  * @param {string} name 属性名称
  * 
- * @param {boolean} isEnablePropertyChangeEvent 是否启动改变属性事件
+ * @param {function} onSet 设置属性值
  * 
  * @param {function} [isEquals] 属性值判断是否相等，只在启动改变属性事件有效
  * 
  */
+ 
+ isEquals = isEquals || equals ;
 
- if(isEnablePropertyChangeEvent){
+ return value => {
 
-    isEquals = isEquals || equals ;
+    let me = this,
+        oldValue = get(me , name) ;
 
-    return value => {
+    if(isFunction(onSet)){
 
-        let me = this,
-            target = innerName('EVENT_TARGET');
+        value = onSet.call(me , value) ;
+    }
 
-        if(target && isFunction(target.fireEvent)){
+    if(!isEquals.call(me , value , oldValue)){
 
-            let oldValue = me[innerName(name)] ;
+        set(me , name , value) ;
 
-            if(!isEquals(value , oldValue)){
-
-                target.fireEvent('propertychange' , name , value , oldValue) ;
-            }
-
-        }
-    } ;
- }
-
- return value => this[innerName(name)] = value ;
+        me.fireEvent('propertychange' , name , value , oldValue) ;
+    }
+} ;
