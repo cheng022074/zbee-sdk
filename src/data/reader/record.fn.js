@@ -9,7 +9,7 @@
  * 
  * @import createObservable from ..observable
  * 
- * @import define from object.property.inner.define
+ * @import innerDefine from object.property.inner.define
  * 
  * @param {mixed} raw 行级原始数据
  * 
@@ -29,7 +29,7 @@ let {
 } = this,
 record = {};
 
-define(record , 'observable' , createObservable()) ;
+innerDefine(record , 'observable' , createObservable()) ;
 
 for(let {
     name,
