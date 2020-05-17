@@ -31,12 +31,16 @@ for(let {
     name,
     convert,
     mode,
-    equals
+    equals,
+    set,
+    get
 } of fields){
 
     define(record , name , {
         mode,
         equals,
+        set,
+        get,
         value:convert(raw , raws , index , data)
     }) ;
 }

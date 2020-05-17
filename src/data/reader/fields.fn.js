@@ -80,6 +80,8 @@
     convert,
     local = false,
     equals,
+    set,
+    get,
     defaultValue,
     mode = 'readonly',
     ...options
@@ -92,7 +94,9 @@
     let field = {
         name,
         mode,
-        equals
+        equals,
+        set,
+        get
     }  ;
 
     if(!local){
