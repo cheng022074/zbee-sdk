@@ -6,7 +6,11 @@
  * 
  * @import innerName from .inner.name
  * 
- * @import set from .define.set
+ * @import is.function
+ * 
+ * @import doSet from .define.set
+ * 
+ * @import doGet from .define.get
  * 
  * @param {object} target 目标对象
  * 
@@ -20,7 +24,9 @@
  * 
  * @param {boolean} [options.equals] 判断属性值是否相等
  * 
- * @param {boolean} [options.isEnablePropertyChangeEvent = true] 是否抛出属性改变事件，如果属性改变的话
+ * @param {function} [options.set] 设置值
+ * 
+ * @param {function} [options.get] 获取值
  * 
  */
 
@@ -38,7 +44,7 @@ switch(mode){
     case 'writeonly':
 
         Object.defineProperty(target , name , {
-            set:set(name , isEnablePropertyChangeEvent , equals)
+            set:doSet(name , set , equals)
         }) ;
 
         innerDefine(target , name , value) ;
@@ -47,16 +53,24 @@ switch(mode){
 
     case 'readwrite':
 
-        Object.defineProperty(target , name , {
-            [name]:{
-                set:set(name , isFirePropertyChangeEvent , equals),
+        if(isFunction(set) || isFunction(get)){
 
-                get(){
+            Object.defineProperty(target , name , {
+                [name]:{
+                    set:doSet(name , set , equals),
+                    get:doGet(name , get)
+                },
+                enumerable:true
+            }) ;
 
-                    return this[innerName(name)] ;
-                }
-            }
-        }) ;
+        }else{
+
+            Object.defineProperty(target , name , {
+                value,
+                enumerable:true,
+                writable:true
+            }) ;
+        }
 
         innerDefine(target , name , value) ;
 
