@@ -11,6 +11,10 @@
  * 
  * @import innerDefine from object.property.inner.define
  * 
+ * @import innerGet from object.property.inner.get
+ * 
+ * @import is from is.data.item
+ * 
  * @param {mixed} raw 行级原始数据
  * 
  * @param {array} raws 一组行级原始数据
@@ -40,13 +44,20 @@ for(let {
     get
 } of fields){
 
+    let value = convert(raw , raws , index , data) ;
+
     define(record , name , {
         mode,
         equals,
         set,
         get,
-        value:convert(raw , raws , index , data)
+        value
     }) ;
+
+    if(is(value)){
+
+        innerGet(value , 'observable').belongTo(record) ;   
+    }
 }
 
 return record ;
