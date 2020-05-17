@@ -11,4 +11,4 @@
  * 
  */
 
- delete this[innerName(name)] ;
+ delete target[innerName(name)] ;

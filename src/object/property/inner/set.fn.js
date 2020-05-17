@@ -13,6 +13,6 @@
  * 
  */
 
-return this[innerName(name)] = value;
+return target[innerName(name)] = value;
 
  
