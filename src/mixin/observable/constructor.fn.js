@@ -20,11 +20,7 @@ const EventEmitter = require('events') ;
 function main({
     listeners
 }){
-
-    let {
-        listeners
-    } = options ;
-
+    
     let me = this,
         emitter = new EventEmitter() ;
 
