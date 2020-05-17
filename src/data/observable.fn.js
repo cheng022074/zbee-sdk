@@ -15,9 +15,7 @@
  * 
  * @import remove from object.property.inner.remove
  * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
+ * @return {data.Observable} 数据观察者对象 
  * 
  */
 
