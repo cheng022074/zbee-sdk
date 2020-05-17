@@ -78,43 +78,54 @@
     type,
     mapping,
     convert,
+    local = false,
     defaultValue,
     mode = 'readonly',
     ...options
 }) {
 
-   let {
+   const {
        getData
-   } = this ;
+   } = this;
 
-   return {
-       name,
-       mode,
-       convert(data , ...args){
+    let field = {
+        name,
+        mode
+    }  ;
 
-           if(isFunction(convert)){
+    if(!local){
 
-               data = convert(data , ...args) ;
-           
-           }else{
+       field.convert = (data , ...args) =>{
 
-               if(isString(mapping)){
+            if(isFunction(convert)){
 
-                   data = getData(data , mapping) ;
-               
-               }else{
+                data = convert(data , ...args) ;
+            
+            }else{
 
-                   data = getData(data , name) ;
-               }
-   
-               if(isString(type)){
-   
-                   data = include(`data.convert.${type}`)(data , options) ;
-               }
-   
-           }
+                if(isString(mapping)){
 
-           return isDefined(data) ? data : defaultValue ;
-       }
-   } ;
+                    data = getData(data , mapping) ;
+                
+                }else{
+
+                    data = getData(data , name) ;
+                }
+
+                if(isString(type)){
+
+                    data = include(`data.convert.${type}`)(data , options) ;
+                }
+
+            }
+
+            return isDefined(data) ? data : defaultValue ;
+        } ;
+    
+    }else{
+
+        field.convert = () => defaultValue ;
+    }
+
+    return field ;
 }
