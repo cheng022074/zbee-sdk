@@ -79,6 +79,7 @@
     mapping,
     convert,
     defaultValue,
+    mode,
     ...options
 }) {
 
@@ -88,6 +89,7 @@
 
    return {
        name,
+       mode,
        convert(data , ...args){
 
            if(isFunction(convert)){
