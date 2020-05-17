@@ -31,7 +31,7 @@
     read(data , ignoreRoot = false){
 
         let me = this,
-            raws = ignoreRoot ? data || getRaws.call(me , data),
+            raws = ignoreRoot ? data : getRaws.call(me , data),
             records = [],
             count = 0;
 
