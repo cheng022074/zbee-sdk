@@ -34,6 +34,21 @@
                     ...model
                 }).read(data) ;
             }
+        },
+        'leaf':{
+            local:true,
+            get(){
+
+                let {
+                    children
+                } = this ;
+
+                return ! children.length ;
+            }
+        },
+        'hidden':{
+            local:true,
+            defaultValue:true
         }
     }
  },
@@ -55,14 +70,15 @@
      ...model
  }) ;
 
- console.time('Time') ;
-
  const {
     join
- } = require('path') ;
+ } = require('path'),
+ data = require(join(process.env['ZBEE-APP-PATH'] , 'data/json/demo.js'));
 
- let records = reader.read(require(join(process.env['ZBEE-APP-PATH'] , 'data/json/demo.js'))) ;
+ console.time('耗时') ;
+
+ let records = reader.read(data) ;
 
  console.log(JSON.stringify(records , null , 2)) ;
 
- console.timeEnd('Time') ;
+ console.timeEnd('耗时') ;
