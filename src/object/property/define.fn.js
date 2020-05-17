@@ -34,10 +34,22 @@ switch(mode){
     
     case 'readonly':
 
-        Object.defineProperty(target , name , {
-            value,
-            enumerable:true
-        }) ;
+        if(isFunction(get)){
+
+            Object.defineProperty(target , name , {
+                get:doGet(name , get),
+                enumerable:true
+            }) ;
+
+            innerDefine(target , name , value) ;
+
+        }else{
+
+            Object.defineProperty(target , name , {
+                value,
+                enumerable:true
+            }) ;
+        }
 
         break ;
 

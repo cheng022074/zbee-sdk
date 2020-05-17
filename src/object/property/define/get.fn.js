@@ -13,7 +13,7 @@
  * 
  */
  
-return () => {
+return function(){
 
    let me = this,
        value = get(me , name) ;
