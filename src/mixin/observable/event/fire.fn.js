@@ -4,6 +4,8 @@
  * 触发事件
  * 
  * @import is.array
+ * 
+ * @import get from object.property.inner.get
  *
  * @param {string} event 事件名称
  *
@@ -15,7 +17,7 @@
 
     let me = this ;
 
-    if(me.$suspendEvents === true){
+    if(get(me , 'suspendEvents') === true){
 
         return ;
     }
@@ -25,15 +27,14 @@
 
  function doFireBubbleEvent(event , target , ...args){
 
-    let me = this,{
-        $bubbleTarget,
-        emitter
-    } = me ;
+    let me = this;
 
-    emitter.emit(event , target ,  ...args) ;
+    get(me , 'emitter').emit(event , target ,  ...args) ;
 
-    if($bubbleTarget){
+    let bubbleTarget = get(me , 'bubbleTarget') ;
 
-        doFireBubbleEvent.call($bubbleTarget , event , target , ...args) ;
+    if(bubbleTarget){
+
+        doFireBubbleEvent.call(bubbleTarget , event , target , ...args) ;
     }
  }

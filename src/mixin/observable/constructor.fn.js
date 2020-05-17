@@ -9,7 +9,7 @@
  * 
  * @import is.array
  * 
- * @import defineInnerProperty from object.property.inner
+ * @import define from object.property.inner.define
  * 
  * @param {object} options 配置
  * 
@@ -21,12 +21,19 @@ function main({
     listeners
 }){
 
+    let {
+        listeners
+    } = options ;
+
     let me = this,
-        emitter = me.emitter = new EventEmitter() ;
+        emitter = new EventEmitter() ;
 
-    emitter.setMaxListeners(Number.MAX_VALUE) ;
+    emitter.setMaxListeners(Infinity) ;
 
-    me.$suspendEvents = false ;
+    define(me , {
+        emitter,
+        suspendEvents:false
+    }) ;
 
     if(isObject(listeners) || isArray(listeners)){
 
