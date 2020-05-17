@@ -30,11 +30,13 @@ record = {};
 for(let {
     name,
     convert,
-    mode
+    mode,
+    equals
 } of fields){
 
     define(record , name , {
         mode,
+        equals,
         value:convert(raw , raws , index , data)
     }) ;
 }

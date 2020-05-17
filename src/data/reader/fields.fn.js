@@ -79,6 +79,7 @@
     mapping,
     convert,
     local = false,
+    equals,
     defaultValue,
     mode = 'readonly',
     ...options
@@ -90,7 +91,8 @@
 
     let field = {
         name,
-        mode
+        mode,
+        equals
     }  ;
 
     if(!local){
