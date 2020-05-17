@@ -7,7 +7,9 @@
  * 
  * @import define from object.property.define
  * 
- * @import defines from object.properties.define
+ * @import createObservable from ..observable
+ * 
+ * @import define from object.property.inner.define
  * 
  * @param {mixed} raw 行级原始数据
  * 
@@ -26,6 +28,8 @@ let {
     fields
 } = this,
 record = {};
+
+define(record , 'observable' , createObservable()) ;
 
 for(let {
     name,

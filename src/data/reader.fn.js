@@ -8,7 +8,7 @@
  * 
  * @import getRaws from .reader.raws
  * 
- * @import create from .recordset.create
+ * @import createRecordset from .recordset
  * 
  * @class
  * 
@@ -40,6 +40,6 @@
             records.push(getRecord.call(me , raw , raws , count ++ , data)) ;
         }
 
-        return create(me , records) ;
+        return createRecordset(me , records) ;
     }
  }
