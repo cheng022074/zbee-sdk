@@ -11,6 +11,8 @@
  * 
  * @import set from ..inner.set
  * 
+ * @import has from ..inner.has
+ * 
  * @param {string} name 属性名称
  * 
  * @param {function} onSet 设置属性值
@@ -35,6 +37,9 @@
 
         set(me , name , value) ;
 
-        me.fireEvent('propertychange' , name , value , oldValue) ;
+        if(has(me , 'observable')){
+
+            get(me , 'observable').fireEvent('propertychange' , me , name , value , oldValue) ;
+        }
     }
 } ;
