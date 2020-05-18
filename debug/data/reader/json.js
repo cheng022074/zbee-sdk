@@ -7,68 +7,43 @@
  * 
  */
 
- let model = {
-    fields:{
-        'id':'f_id',
-        'text':'f_title',
-        'children':{
-            convert({
-                f_id
-            } , raws , index , data){
+ let reader = createReader({
+    'id':'f_id',
+    'text':'f_title',
+    'children':{
+       reader(data , {
+           f_id
+       }){
 
-                return createReader({
-                    root(records){
+            let result = [] ;
 
-                        let result = [] ;
+            for(let item of data){
 
-                        for(let record of records){
-                 
-                            if(record.f_pid === f_id){
-                
-                                result.push(record) ;
-                            }
-                        }
-                
-                        return result ;
-                    },
-                    ...model
-                }).read(data) ;
+                if(item.f_pid === f_id){
+
+                    result.push(item) ;
+                }
             }
-        },
-        'leaf':{
-            local:true,
-            get(){
 
-                let {
-                    children
-                } = this ;
+            return result ;
+       }
+    },
+    'leaf':{
+        local:true,
+        get(){
 
-                return ! children.length ;
-            }
-        },
-        'hidden':{
-            local:true,
-            defaultValue:true
+            let {
+                children
+            } = this ;
+
+            return ! children.length ;
         }
+    },
+    'hidden':{
+        local:true,
+        defaultValue:true
     }
- },
- reader = createReader({
-     root(records){
-
-        let result = [] ;
-
-        for(let record of records){
- 
-            if(record.f_pid === '0'){
-
-                result.push(record) ;
-            }
-        }
-
-        return result ;
-     },
-     ...model
- }) ;
+}) ;
 
  const {
     join
@@ -77,7 +52,21 @@
 
  console.time('耗时') ;
 
- let records = reader.read(data) ;
+ let records = reader.read(data , records => {
+
+    let result = [] ;
+
+    for(let record of records){
+
+        if(record.f_pid === '0'){
+
+            result.push(record) ;
+        }
+    }
+
+    return result ;
+
+ }) ;
 
  console.log(JSON.stringify(records , null , 2)) ;
 

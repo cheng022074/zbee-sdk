@@ -15,6 +15,12 @@
  * 
  * @import is.function
  * 
+ * @import is.defined
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import createReader from data.reader
+ * 
  * @param {mixed} fields 字段配置
  * 
  * @return {mixed} 封装后的字段配置 
@@ -83,13 +89,15 @@
     set,
     get,
     defaultValue,
+    reader,
     mode = 'readonly',
     ...options
 }) {
 
-   const {
+   const me = this,
+   {
        getData
-   } = this;
+   } = me;
 
     let field = {
         name,
@@ -101,31 +109,63 @@
 
     if(!local){
 
-       field.convert = (data , ...args) =>{
+       field.convert = (raw , raws , index , data) =>{
 
-            if(isFunction(convert)){
+            if(isDefined(reader)){
 
-                data = convert(data , ...args) ;
+                if(isFunction(reader)){
+
+                    return me.read(data , data => reader(data , raw , raws , index)) ;
+                
+                }else if(isString(reader)){
+
+                    return me.read(data , reader) ;
+                
+                }else if(isObject(reader)){
+
+                    let {
+                        fields,
+                        root
+                    } = reader,
+                    rootProperty;
+
+                    if(isFunction(root)){
+
+                        rootProperty = data => root(data , raw , raws , index) ;
+                    
+                    }else{
+
+                        rootProperty = root ;
+                    }
+
+                    return createReader(fields).read(data , rootProperty) ;
+                }
+
+                return [] ;
+
+            }else if(isFunction(convert)){
+
+                raw = convert(raw , raws , index , data) ;
             
             }else{
 
                 if(isString(mapping)){
 
-                    data = getData(data , mapping) ;
+                    raw = getData(raw , mapping) ;
                 
                 }else{
 
-                    data = getData(data , name) ;
+                    raw = getData(raw , name) ;
                 }
 
                 if(isString(type)){
 
-                    data = include(`data.convert.${type}`)(data , options) ;
+                    raw = include(`data.convert.${type}`)(raw , options) ;
                 }
 
             }
 
-            return isDefined(data) ? data : defaultValue ;
+            return isDefined(raw) ? raw : defaultValue ;
         } ;
     
     }else{

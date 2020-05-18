@@ -9,23 +9,24 @@
  * 
  * @param {mixed} data 原始数据
  * 
+ * @param {string} root 根遍历路径
+ * 
  * @return {array} 一组原始数据 
  * 
  */
 
 let {
-    rootProperty,
     getData
 } = this,
 raws;
 
-if(isFunction(rootProperty)){
+if(isFunction(root)){
 
-    raws = rootProperty(data) ;
+    raws = root(data) ;
 
 }else{
 
-    raws = getData(data , rootProperty) ;
+    raws = getData(data , root) ;
 }
 
 return from(raws) ;

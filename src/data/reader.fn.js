@@ -16,22 +16,17 @@
 
  class main {
 
-    constructor({
-        root = '.',
-        fields = []
-    }){
+    constructor(fields = []){
 
         let me = this ;
-
-        me.rootProperty = root ;
 
         me.fields = getFields.call(me , fields) ;
     }
 
-    read(data , ignoreRoot = false){
+    read(data , root = '.'){
 
         let me = this,
-            raws = ignoreRoot ? data : getRaws.call(me , data),
+            raws = getRaws.call(me , data , root),
             records = [],
             count = 0;
 
