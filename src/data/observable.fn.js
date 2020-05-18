@@ -11,8 +11,6 @@
  * 
  * @import set from object.property.inner.set
  * 
- * @import remove from object.property.inner.remove
- * 
  * @import has from object.property.inner.has
  * 
  * @import isRecord from is.data.record
@@ -75,35 +73,7 @@
 
             return ;
         }
-
-        console.log(isIndependent , get(this , 'bubbleTarget')) ;
-
-        let {
-            item:currentItem,
-            index,
-            belongToObservable
-        } = me,
-        {
-            item:belongToItem
-        } = belongToObservable;
-
-        if(isRecord(belongToItem)){
-
-            belongToItem[index] = null;
-            
-            if(item[index] === null){
-
-                remove(me , 'bubbleTarget') ;
-            }
-        
-        }else{
-
-            belongToItem.splice(index , 1) ;
-
-            if(belongToItem[index] !== currentItem){
-
-                remove(me , 'bubbleTarget') ;
-            }
-        }
+   
+        set(me , 'bubbleTarget' , null) ;
     }
  }
