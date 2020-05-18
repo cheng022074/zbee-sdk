@@ -39,7 +39,7 @@ class main extends Array{
 
             if(is(record)){
 
-                get(record , 'observable').belongTo(me) ;
+                get(record , 'observable').belongTo(me , me.length) ;
 
                 push.call(me , record) ;
             }
@@ -53,12 +53,12 @@ class main extends Array{
 
     unshift(...raws){
 
-        super.unshift(...get(this , 'reader').read(raws)) ;
+        super.unshift(...createRecords.call(this , raws)) ;
     }
 
     splice(index , howMany , ...raws){
 
-        super.splice(index , howMany , ...get(this , 'reader').reader(raws)) ;
+        super.splice(index , howMany , ...createRecords.call(this , raws)) ;
     }
  }
 

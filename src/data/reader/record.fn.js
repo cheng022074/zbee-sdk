@@ -56,7 +56,7 @@ for(let {
 
     if(is(value)){
 
-        innerGet(value , 'observable').belongTo(record) ;   
+        innerGet(value , 'observable').belongTo(record , name) ;   
     }
 }
 
