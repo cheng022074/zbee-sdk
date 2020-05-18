@@ -33,7 +33,7 @@ let {
 } = this,
 record = {};
 
-innerDefine(record , 'observable' , createObservable()) ;
+innerDefine(record , 'observable' , createObservable(record)) ;
 
 for(let {
     name,

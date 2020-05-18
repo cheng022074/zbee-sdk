@@ -33,7 +33,7 @@ class main extends Array{
 
         define(me , 'reader' , reader) ;
 
-        define(me , 'observable' , createObservable()) ;
+        define(me , 'observable' , createObservable(me)) ;
 
         for(let record of records){
 
