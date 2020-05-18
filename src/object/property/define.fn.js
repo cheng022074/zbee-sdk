@@ -12,9 +12,13 @@
  * 
  * @import doGet from .define.get
  * 
+ * @import isObject from is.object.simple
+ * 
+ * @import define from .define
+ * 
  * @param {object} target 目标对象
  * 
- * @param {string} name 属性名称
+ * @param {string|object} name 属性名称
  * 
  * @param {object} [options = {}] 属性配置
  * 
@@ -30,60 +34,74 @@
  * 
  */
 
-switch(mode){
+ if(isObject(name)){
+
+    let properties = name ;
+
+    let names = Object.keys(properties) ;
+
+    for(let name of names){
+
+        define(target , name , properties[name]) ;
+    }
+
+ }else{
+
+    switch(mode){
     
-    case 'readonly':
-
-        if(isFunction(get)){
-
+        case 'readonly':
+    
+            if(isFunction(get)){
+    
+                Object.defineProperty(target , name , {
+                    get:doGet(name , get),
+                    enumerable:true
+                }) ;
+    
+                innerDefine(target , name , value) ;
+    
+            }else{
+    
+                Object.defineProperty(target , name , {
+                    value,
+                    enumerable:true
+                }) ;
+            }
+    
+            break ;
+    
+        case 'writeonly':
+    
             Object.defineProperty(target , name , {
-                get:doGet(name , get),
-                enumerable:true
+                set:doSet(name , set , equals)
             }) ;
-
+    
             innerDefine(target , name , value) ;
-
-        }else{
-
-            Object.defineProperty(target , name , {
-                value,
-                enumerable:true
-            }) ;
-        }
-
-        break ;
-
-    case 'writeonly':
-
-        Object.defineProperty(target , name , {
-            set:doSet(name , set , equals)
-        }) ;
-
-        innerDefine(target , name , value) ;
-
-        break ;
-
-    case 'readwrite':
-
-        if(isFunction(set) || isFunction(get)){
-
-            Object.defineProperty(target , name , {
-                [name]:{
-                    set:doSet(name , set , equals),
-                    get:doGet(name , get)
-                },
-                enumerable:true
-            }) ;
-
-        }else{
-
-            Object.defineProperty(target , name , {
-                value,
-                enumerable:true,
-                writable:true
-            }) ;
-        }
-
-        innerDefine(target , name , value) ;
-
-}
+    
+            break ;
+    
+        case 'readwrite':
+    
+            if(isFunction(set) || isFunction(get)){
+    
+                Object.defineProperty(target , name , {
+                    [name]:{
+                        set:doSet(name , set , equals),
+                        get:doGet(name , get)
+                    },
+                    enumerable:true
+                }) ;
+    
+            }else{
+    
+                Object.defineProperty(target , name , {
+                    value,
+                    enumerable:true,
+                    writable:true
+                }) ;
+            }
+    
+            innerDefine(target , name , value) ;
+    
+    }
+ }
