@@ -58,7 +58,7 @@
 
     for(let record of records){
 
-        if(record.f_pid === '0'){
+        if(record.f_pid === ''){
 
             result.push(record) ;
         }
