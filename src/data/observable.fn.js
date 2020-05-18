@@ -11,9 +11,13 @@
  * 
  * @import set from object.property.inner.set
  * 
+ * @import remove from object.property.inner.remove
+ * 
  * @import has from object.property.inner.has
  * 
- * @import remove from object.property.inner.remove
+ * @import isRecord from is.data.record
+ * 
+ * @import isRecordset from is.data.recordset
  * 
  * @return {data.Observable} 数据观察者对象 
  * 
@@ -25,28 +29,81 @@
      ]
  }){
 
-    constructor(){
+    constructor(item){
 
         super() ;
 
-        define(this , 'bubbleTarget') ;
+        let me = this ;
+
+        me.item = item ;
+
+        define(me , 'bubbleTarget') ;
     }
 
-    belongTo(dataItem){
+    get  belongToObservable(){
 
-        if(has(dataItem , 'observable')){
+        return  get(this , 'bubbleTarget') ;
+    }
+
+    belongTo(dataItem , index){
+
+        let me = this ;
+
+        me.independent() ;
+        
+        if(me.isIndependent && has(dataItem , 'observable')){
 
             set(this , 'bubbleTarget' , get(dataItem , 'observable')) ;
+
+            me.index = index ;
         }
     }
 
-    isIndependent(){
+    get isIndependent(){
 
-        has(this , 'bubbleTarget') ;
+        return !get(this , 'bubbleTarget') ;
     }
 
     independent(){
 
-        remove(this , 'bubbleTarget') ;
+        let me = this,
+        {
+            isIndependent
+        } = me ;
+
+        if(isIndependent){
+
+            return ;
+        }
+
+        console.log(isIndependent , get(this , 'bubbleTarget')) ;
+
+        let {
+            item:currentItem,
+            index,
+            belongToObservable
+        } = me,
+        {
+            item:belongToItem
+        } = belongToObservable;
+
+        if(isRecord(belongToItem)){
+
+            belongToItem[index] = null;
+            
+            if(item[index] === null){
+
+                remove(me , 'bubbleTarget') ;
+            }
+        
+        }else{
+
+            belongToItem.splice(index , 1) ;
+
+            if(belongToItem[index] !== currentItem){
+
+                remove(me , 'bubbleTarget') ;
+            }
+        }
     }
  }
