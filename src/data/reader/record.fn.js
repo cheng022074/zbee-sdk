@@ -33,7 +33,7 @@ let {
 } = this,
 record = {};
 
-innerDefine(record , 'observable' , createObservable(record)) ;
+innerDefine(record , 'observable' , createObservable()) ;
 
 for(let {
     name,
@@ -56,7 +56,7 @@ for(let {
 
     if(is(value)){
 
-        innerGet(value , 'observable').belongTo(record , name) ;   
+        innerGet(value , 'observable').belongTo(record) ;   
     }
 }
 

@@ -33,13 +33,13 @@ class main extends Array{
 
         define(me , 'reader' , reader) ;
 
-        define(me , 'observable' , createObservable(me)) ;
+        define(me , 'observable' , createObservable()) ;
 
         for(let record of records){
 
             if(is(record)){
 
-                get(record , 'observable').belongTo(me , me.length) ;
+                get(record , 'observable').belongTo(me) ;
 
                 push.call(me , record) ;
             }
@@ -48,41 +48,101 @@ class main extends Array{
 
     push(...raws){  
 
-        super.push(...createRecords.call(this , raws)) ;
+        return super.push(...createRecords.call(this , raws)) ;
     }
 
     unshift(...raws){
 
-        super.unshift(...createRecords.call(this , raws)) ;
+        return super.unshift(...createRecords.call(this , raws)) ;
     }
 
     splice(index , howMany , ...raws){
 
-        super.splice(index , howMany , ...createRecords.call(this , raws)) ;
+        let me = this,
+        {
+            length
+        } = me;
+
+        for(let i = 0 ; i < howMany ; i ++){
+
+            let itemIndex = index + i ;
+
+            if(itemIndex < length){
+
+                me[itemIndex].independent() ;
+            }
+        }
+
+        return super.splice(index , howMany , ...createRecords.call(me , raws)) ;
+    }
+
+    pop(){
+
+        let me = this,
+        {
+            length
+        } = me;
+
+        if(length){
+
+            me[length - 1].independent() ;
+        }
+
+        return super.pop() ;
+    }
+
+    shift(){
+
+        let me = this,
+        {
+            length
+        } = me;
+
+        if(length){
+
+            me[0].independent() ;
+        }
+
+        return super.shift() ;
     }
  }
 
  function createRecords(raws){
 
     let records = [],
-        readRaws = [];
+        readRaws = [],
+        me = this;
 
     for(let raw of raws){
 
         if(is(raw)){
 
-            get(raw , 'observable').independent() ;
+            let observable = get(raw , 'observable');
 
-            records.push(raw) ;
-        
+            if(observable.isIndependent){
+
+                observable.belongTo(me) ;
+
+                records.push(raw) ;
+            }
+
         }else{
 
             processRaws.push(raw) ;
         }
     }
 
-    return [
-        ...records,
-        ...get(this , 'reader').read(readRaws)
-    ] ;
+    let recordset = get(me , 'reader').read(readRaws) ;
+
+    for(let record of recordset){
+
+        recordset.splice(recordset.indexOf(record) , 1) ;
+
+        get(recordset , 'observable').belongTo(me) ;
+
+        records.push(record) ;
+
+    }
+
+    return records ;
  }

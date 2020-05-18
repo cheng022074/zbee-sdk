@@ -11,7 +11,7 @@
  * 
  * @import set from object.property.inner.set
  * 
- * @import has from object.property.inner.has
+ * @import isItem from is.data.item
  * 
  * @import isRecord from is.data.record
  * 
@@ -27,15 +27,11 @@
      ]
  }){
 
-    constructor(item){
+    constructor(){
 
         super() ;
 
-        let me = this ;
-
-        me.item = item ;
-
-        define(me , 'bubbleTarget') ;
+        define(this , 'bubbleTarget') ;
     }
 
     get  belongToObservable(){
@@ -43,17 +39,13 @@
         return  get(this , 'bubbleTarget') ;
     }
 
-    belongTo(dataItem , index){
+    belongTo(dataItem){
 
         let me = this ;
 
-        me.independent() ;
-        
-        if(me.isIndependent && has(dataItem , 'observable')){
+        if(me.isIndependent && isItem(dataItem)){
 
-            set(this , 'bubbleTarget' , get(dataItem , 'observable')) ;
-
-            me.index = index ;
+            set(me , 'bubbleTarget' , get(dataItem , 'observable')) ;
         }
     }
 
