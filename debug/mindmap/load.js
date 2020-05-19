@@ -28,21 +28,6 @@
     
                 return result ;
            }
-        },
-        'leaf':{
-            local:true,
-            get(){
-    
-                let {
-                    children
-                } = this ;
-    
-                return ! children.length ;
-            }
-        },
-        'hidden':{
-            local:true,
-            defaultValue:true
         }
     },
     readerAsRoot(records){

@@ -34,16 +34,6 @@
     
                 return result ;
            }
-        },
-        'expanded':{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
-        },
-        'hidden':{
-            mode:'readwrite',
-            local:true,
-            defaultValue:true
         }
     },
     readerAsRoot(records){

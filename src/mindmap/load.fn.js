@@ -24,5 +24,9 @@
 
     initDisplayNodes() ;
 
-    me.fireEvent('load' , clone(me.visibilityNodes)) ;
+    let {
+      visibilityNodes
+    } = me ;
+
+    me.fireEvent('load' , clone(visibilityNodes.values())) ;
  }

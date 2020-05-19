@@ -5,8 +5,6 @@
  * 
  * @import createReader from data.reader.json
  * 
- * @import remove from array.remove
- * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -21,13 +19,35 @@
 
  let me = this ;
 
- me.reader = createReader(reader) ;
+ me.reader = createReader({
+   ...reader,
+   expanded:{
+      mode:'readwrite',
+      local:true,
+      defaultValue:false
+   },
+   hidden:{
+      mode:'readwrite',
+      local:true,
+      defaultValue:true
+   },
+   width:{
+      mode:'readwrite',
+      local:true,
+      defaultValue:-1
+   },
+   height:{
+      mode:'readwrite',
+      local:true,
+      defaultValue:-1
+   },
+ }) ;
 
  me.readerAsRoot = readerAsRoot ;
 
  me.initDisplayLevel = initDisplayLevel ;
 
- let visibilityNodes = me.visibilityNodes = [] ;
+ let visibilityNodes = me.visibilityNodes = new Map() ;
 
  me.onRootNodePropertyChange = (ob , node , name , value) => {
 
@@ -35,11 +55,11 @@
 
       if(value === false){
 
-         visibilityNodes.push(node) ;
+         visibilityNodes.set(node.id , node) ;
       
       }else{
    
-         remove(visibilityNodes , node) ;
+         visibilityNodes.delete(node.id) ;
       }
    }
 

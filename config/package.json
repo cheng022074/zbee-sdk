@@ -57,5 +57,14 @@
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\TEST\\WEBPACK\\src\\lib.js"
         ]
+    },
+    "test-ok":{
+        "type":"webpack",
+        "classes":[
+           "mindmap"
+        ],
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js"
+        ]
     }
 }
