@@ -18,11 +18,13 @@
 
  function initDisplayNode(node , level , maxLevel){
 
-    node.hidden = true ;
+    node.hidden = false ;
 
     level ++ ;
 
     if(level <= maxLevel){
+        
+        node.expanded = true ;
 
         let {
             children
