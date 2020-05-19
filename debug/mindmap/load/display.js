@@ -29,16 +29,10 @@
                 return result ;
            }
         },
-        'leaf':{
+        'expanded':{
+            mode:'readwrite',
             local:true,
-            get(){
-    
-                let {
-                    children
-                } = this ;
-    
-                return ! children.length ;
-            }
+            defaultValue:false
         },
         'hidden':{
             mode:'readwrite',
@@ -74,4 +68,4 @@
 
  rootNode.hidden = false ;
 
- console.log(rootNode.hidden) ;
+ console.log(mind.visibilityNodes.length) ;
