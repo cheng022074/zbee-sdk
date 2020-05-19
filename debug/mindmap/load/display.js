@@ -8,6 +8,12 @@
  */
 
  let mind = createMindMap({
+    listeners:{
+        load(mind , nodes){
+
+            console.log('load' , nodes) ;
+        }
+    },
     reader:{
         'id':'f_id',
         'text':'f_title',
@@ -61,11 +67,3 @@
  } = require('path');
 
  mind.load(require(join(process.env['ZBEE-APP-PATH'] , 'data/json/demo.js'))) ;
-
- let {
-     rootNode
- } = mind ;
-
- rootNode.hidden = false ;
-
- console.log(mind.visibilityNodes.length) ;

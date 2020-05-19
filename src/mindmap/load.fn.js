@@ -5,6 +5,8 @@
  * 
  * @import initDisplayNodes from .load.display scoped
  * 
+ * @import clone from array.clone
+ * 
  * @param {mixed} data 数据
  * 
  */
@@ -21,4 +23,6 @@
     me.rootNode = result[0] ;
 
     initDisplayNodes() ;
+
+    me.fireEvent('load' , clone(me.visibilityNodes)) ;
  }

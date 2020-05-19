@@ -5,6 +5,10 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import is.array
+ * 
+ * @import clone from array.clone
+ * 
  * @param {object} dest 目标数据
  * 
  * @param {object} [...sources] 来源数据
@@ -25,6 +29,10 @@ function assign(dest , source){
 
             dest[name] = assign(dest[name] , source[name]) ;
         }
+
+    }else if(isArray(source)){
+
+        source = clone(source) ;
     }
 
     return source ;
