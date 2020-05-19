@@ -32,7 +32,7 @@
 
     if(isFunction(onSet)){
 
-        value = onSet.call(me , value) ;
+        value = onSet.call(me , value , oldValue) ;
     }
 
     if(!isEquals.call(me , value , oldValue)){

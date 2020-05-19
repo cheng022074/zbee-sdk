@@ -5,6 +5,8 @@
  * 
  * @import createReader from data.reader.json
  * 
+ * @import remove from array.remove
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -17,7 +19,9 @@
  * 
  */
 
- let me = this ;
+ let me = this,
+     visibilityNodeLevels = me.visibilityNodeLevels = new Map(),
+     visibilityNodes = me.visibilityNodes = new Map() ;
 
  me.reader = createReader({
    ...reader,
@@ -29,6 +33,24 @@
    hidden:{
       mode:'readwrite',
       local:true,
+      set(hidden){
+
+         let me = this,
+         {
+            id
+         } = this ;
+
+         if(hidden === false){
+
+            visibilityNodes.set(id , me) ;
+         
+         }else{
+      
+            visibilityNodes.delete(id) ;
+         }
+
+         return hidden ;
+      },
       defaultValue:true
    },
    width:{
@@ -54,6 +76,36 @@
    level:{
       mode:'readwrite',
       local:true,
+      set(level , oldLevel){
+         
+         let {
+            id
+         } = this ;
+
+         if(oldLevel !== 0){
+
+            let ids = visibilityNodeLevels.get(oldLevel) ;
+
+            remove(ids , id) ;
+
+            if(ids.length === 0){
+
+               visibilityNodeLevels.delete(ids) ;
+            }
+         }
+
+         if(level !== 0){
+
+            if(!visibilityNodeLevels.has(level)){
+
+               visibilityNodeLevels.set(level , []) ;
+            }
+   
+            visibilityNodeLevels.get(level).push(id) ;
+         }
+
+         return level ;
+      },
       defaultValue:0
    }
  }) ;
@@ -62,22 +114,5 @@
 
  me.initDisplayLevel = initDisplayLevel ;
 
- let visibilityNodes = me.visibilityNodes = new Map() ;
-
- me.visibilityNodesByLevel = new Map() ;
-
  me.onRootNodePropertyChange = (ob , node , name , value) => {
-
-   if(name === 'hidden'){
-
-      if(value === false){
-
-         visibilityNodes.set(node.id , node) ;
-      
-      }else{
-   
-         visibilityNodes.delete(node.id) ;
-      }
-   }
-
  } ;
