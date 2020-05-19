@@ -81,25 +81,12 @@
             break ;
     
         case 'readwrite':
-    
-            if(isFunction(set) || isFunction(get)){
-    
-                Object.defineProperty(target , name , {
-                    [name]:{
-                        set:doSet(name , set , equals),
-                        get:doGet(name , get)
-                    },
-                    enumerable:true
-                }) ;
-    
-            }else{
-    
-                Object.defineProperty(target , name , {
-                    value,
-                    enumerable:true,
-                    writable:true
-                }) ;
-            }
+
+            Object.defineProperty(target , name , {
+                set:doSet(name , set , equals),
+                get:doGet(name , get),
+                enumerable:true
+            }) ;
     
             innerDefine(target , name , value) ;
     

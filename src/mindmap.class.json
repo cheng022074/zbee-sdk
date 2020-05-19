@@ -7,7 +7,10 @@
     ],
     "constructor":true,
     "properties":{
-        "rootNode":true
+        "rootNode":{
+            "get":".mindmap.root.get",
+            "set":".mindmap.root.set"
+        }
     },
     "methods":[
         "load"

@@ -3,6 +3,8 @@
  * 
  * 初始化脑图数据
  * 
+ * @import initDisplayNodes from .load.display scoped
+ * 
  * @param {mixed} data 数据
  * 
  */
@@ -17,4 +19,6 @@
  if(result.length === 1){
 
     me.rootNode = result[0] ;
+
+    initDisplayNodes() ;
  }
