@@ -22,6 +22,9 @@
         },{
             "name":"setNodeXY",
             "impl":".mindmap.node.xy"
+        },{
+            "name":"reset",
+            "impl":".mindmap.reset"
         }
     ]
 }

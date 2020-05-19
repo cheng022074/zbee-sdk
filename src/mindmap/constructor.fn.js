@@ -50,6 +50,11 @@
       mode:'readwrite',
       local:true,
       defaultValue:0
+   },
+   level:{
+      mode:'readwrite',
+      local:true,
+      defaultValue:0
    }
  }) ;
 
@@ -58,6 +63,8 @@
  me.initDisplayLevel = initDisplayLevel ;
 
  let visibilityNodes = me.visibilityNodes = new Map() ;
+
+ me.visibilityNodesByLevel = new Map() ;
 
  me.onRootNodePropertyChange = (ob , node , name , value) => {
 
