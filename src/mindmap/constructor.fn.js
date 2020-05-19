@@ -34,13 +34,23 @@
    width:{
       mode:'readwrite',
       local:true,
-      defaultValue:-1
+      defaultValue:0
    },
    height:{
       mode:'readwrite',
       local:true,
-      defaultValue:-1
+      defaultValue:0
    },
+   x:{
+      mode:'readwrite',
+      local:true,
+      defaultValue:0
+   },
+   y:{
+      mode:'readwrite',
+      local:true,
+      defaultValue:0
+   }
  }) ;
 
  me.readerAsRoot = readerAsRoot ;
