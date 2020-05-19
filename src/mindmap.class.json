@@ -1,0 +1,15 @@
+{
+    "params":[
+        "config"
+    ],
+    "mixins":[
+        "mixin.observable"
+    ],
+    "constructor":true,
+    "properties":{
+        "rootNode":true
+    },
+    "methods":[
+        "load"
+    ]
+}

@@ -68,6 +68,6 @@
 
  }) ;
 
- console.log(JSON.stringify(records , null , 2)) ;
+ console.log(records) ;
 
  console.timeEnd('耗时') ;
