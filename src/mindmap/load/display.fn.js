@@ -10,13 +10,13 @@
     let me = this,
     {
         rootNode,
-        initDisplayLevel
+        initVisibilityLevel
     } = me ;
 
-    initDisplayNode.call(me , rootNode , 1 , initDisplayLevel) ;
+    initVisibilityNode.call(me , rootNode , 1 , initVisibilityLevel) ;
  }
 
- function initDisplayNode(node , level , maxLevel){
+ function initVisibilityNode(node , level , maxLevel){
 
     node.hidden = false ;
 
@@ -34,7 +34,7 @@
 
         for(let childNode of children){
 
-            initDisplayNode(childNode , level , maxLevel) ;
+            initVisibilityNode(childNode , level , maxLevel) ;
         }
     }
     
