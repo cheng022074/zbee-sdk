@@ -8,8 +8,8 @@
     "constructor":true,
     "properties":{
         "rootNode":{
-            "get":".mindmap.root.get",
-            "set":".mindmap.root.set"
+            "get":".mindmap.node.root.get",
+            "set":".mindmap.node.root.set"
         }
     },
     "methods":[
