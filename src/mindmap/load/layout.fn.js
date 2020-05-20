@@ -19,6 +19,8 @@
  * 
  * @import nodes from ..nodes
  * 
+ * @import getSize from ..size scoped
+ * 
  * @return {mixed} 返回说明 
  * 
  */
@@ -28,8 +30,15 @@ function main(){
     let me = this,
     {
         rootNode,
-        visibilityNodes
+        visibilityNodes,
+        padding,
+        region,
+        width,
+        height
     } = me,
+    {
+        height:rootNodeHeight
+    } = rootNode,
     maxTopRightXY = {
         x:0,
         y:0
@@ -41,16 +50,33 @@ function main(){
 
     layout.call(me , rootNode , maxTopRightXY , maxBottomRightXY) ;
 
-    console.log(maxBottomRightXY) ;
+    let right = region.right = maxTopRightXY.x,
+        bottom = region.bottom = maxBottomRightXY.y - maxTopRightXY.y;
 
-    moveY(rootNode , -maxTopRightXY.y) ;
+    if(height > bottom){
+
+        bottom = region.bottom = height ;
+    
+    }else{
+
+        region.bottom += padding * 2 ;
+    }
+
+    if(width > right){
+
+        region.right = width ;
+
+    }else{
+
+        region.right += padding * 2 ;
+    }
 
     move(rootNode , {
-        x:15,
-        y:15
+        x:padding,
+        y:bottom / 2 - rootNodeHeight / 2 + padding
     }) ;
 
-    me.fireEvent('draw' , nodes(visibilityNodes.values())) ;
+    me.fireEvent('draw' , nodes(visibilityNodes.values()) , getSize()) ;
 }
 
 function layout(node , maxTopRightXY , maxBottomRightXY){

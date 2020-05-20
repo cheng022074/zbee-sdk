@@ -25,6 +25,10 @@
  * 
  * @param {number} [config.padding = 5] 脑图四周填充距离
  * 
+ * @param {number} [config.width = 0] 脑图宽度
+ * 
+ * @param {number} [config.height = 0] 脑图高度
+ * 
  * @param {object} [...config.options] 其它脑图配置
  * 
  */
@@ -39,6 +43,10 @@
  me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
 
  me.padding = padding ;
+
+ me.width = width - 1 ;
+
+ me.height = height - 1 ;
 
  me.region = {
    left:0,
