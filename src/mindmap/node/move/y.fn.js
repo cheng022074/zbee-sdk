@@ -3,7 +3,7 @@
  * 
  * 连同子孙节点纵坐标移动
  * 
- * @import move from ..y
+ * @import move from ..move.y
  * 
  * @param {data.Record} node 脑图节点
  * 
@@ -11,7 +11,11 @@
  * 
  */
 
- if(!node.hidden){
+ let {
+    hidden
+ } = node ;
+
+ if(!hidden){
 
     node.y -= distance ;
 
