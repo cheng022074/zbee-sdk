@@ -117,8 +117,6 @@
 
          if(level !== 0){
 
-            console.log(level) ;
-
             if(!visibilityNodeLevels.has(level)){
 
                visibilityNodeLevels.set(level , []) ;
