@@ -11,7 +11,9 @@
  * 
  * @import getScopeRegion from ..node.region.scope scoped
  * 
- * @import moveY from ..node.move.y scoped
+ * @import moveY from ..node.move.y
+ * 
+ * @import move from ..node.move
  * 
  * @import nodes from ..nodes
  * 
@@ -34,6 +36,11 @@ function main(){
     layout.call(me , rootNode , mindmapTopRightXY) ;
 
     moveY(rootNode , -mindmapTopRightXY.y) ;
+
+    move(rootNode , {
+        x:15,
+        y:15
+    }) ;
 
     me.fireEvent('draw' , nodes(visibilityNodes.values())) ;
 }
@@ -81,6 +88,8 @@ function layout(node , mindmapTopRightXY){
 
             childCountHeight += height ;
         }
+
+        childCountHeight += nodeVerticalSeparationDistance * (children.length - 1) ;
 
         let {
             y:centerY

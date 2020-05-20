@@ -1,7 +1,7 @@
 
 /**
  * 
- * 连同子孙节点纵坐标移动
+ * 连同子孙节点横坐标移动
  * 
  * @import move from ..move
  * 
@@ -11,4 +11,4 @@
  * 
  */
 
-move(node , 'y' , distance) ;
+ move(node , 'x' , distance) ;
