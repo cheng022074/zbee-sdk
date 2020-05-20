@@ -3,6 +3,8 @@
  * 
  * 获得当前节点作用区域
  * 
+ * @import isSized from ..sized
+ * 
  * @import getTopXY from ..xy.top
  * 
  * @import getBottomXY from ..xy.bottom
@@ -15,15 +17,15 @@
  * 
  */
 
- let {
+let {
+    x,
+    y,
     hidden
- } = node ;
+} = node ;
 
- if(!hidden){
+ if(isSized(node) && !hidden){
 
     let {
-        x,
-        y,
         width,
         height,
         expanded
@@ -72,5 +74,12 @@
         width,
         height
     } ;
-
+    
  }
+
+ return {
+    x,
+    y,
+    width:0,
+    height:0
+} ;
