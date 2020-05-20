@@ -9,6 +9,8 @@
  * 
  * @import getTopRightXY from ..node.xy.topright scoped
  * 
+ * @import getBottomRightXY from ..node.xy.bottomright scoped
+ * 
  * @import getScopeRegion from ..node.region.scope scoped
  * 
  * @import moveY from ..node.move.y
@@ -28,14 +30,20 @@ function main(){
         rootNode,
         visibilityNodes
     } = me,
-    mindmapTopRightXY = {
+    maxTopRightXY = {
+        x:0,
+        y:0
+    },
+    maxBottomRightXY = {
         x:0,
         y:0
     };
 
-    layout.call(me , rootNode , mindmapTopRightXY) ;
+    layout.call(me , rootNode , maxTopRightXY , maxBottomRightXY) ;
 
-    moveY(rootNode , -mindmapTopRightXY.y) ;
+    console.log(maxBottomRightXY) ;
+
+    moveY(rootNode , -maxTopRightXY.y) ;
 
     move(rootNode , {
         x:15,
@@ -45,25 +53,43 @@ function main(){
     me.fireEvent('draw' , nodes(visibilityNodes.values())) ;
 }
 
-function layout(node , mindmapTopRightXY){
+function layout(node , maxTopRightXY , maxBottomRightXY){
 
     let {
-        x:mindmapTopRightX,
-        y:mindmapTopRightY
-    } = mindmapTopRightXY,
+        x:maxTopRightX,
+        y:maxTopRightY
+    } = maxTopRightXY,
+    {
+        x:maxBottomRightX,
+        y:maxBottomRightY
+    } = maxBottomRightXY,
     {
         x:topRightX,
         y:topRightY
-    } = getTopRightXY(node);
+    } = getTopRightXY(node),
+    {
+        x:bottomRightX,
+        y:bottomRightY
+    } = getBottomRightXY(node);
 
-    if(mindmapTopRightX < topRightX){
+    if(maxTopRightX < topRightX){
 
-        mindmapTopRightXY.x = topRightX ;
+        maxTopRightXY.x = topRightX ;
     }
 
-    if(mindmapTopRightY > topRightY){
+    if(maxTopRightY > topRightY){
 
-        mindmapTopRightXY.y = topRightY ;
+        maxTopRightXY.y = topRightY ;
+    }
+
+    if(maxBottomRightX < bottomRightX){
+
+        maxBottomRightXY.x = bottomRightX ;
+    }
+
+    if(maxBottomRightY < bottomRightY){
+
+        maxBottomRightXY.y = bottomRightY ;
     }
 
     let {
@@ -111,7 +137,7 @@ function layout(node , mindmapTopRightXY){
 
             childNode.y = childY ;
 
-            layout.call(me , childNode , mindmapTopRightXY) ;
+            layout.call(me , childNode , maxTopRightXY , maxBottomRightXY) ;
 
             let {
                 y:scopeRegionY,

@@ -10,9 +10,6 @@
         "rootNode":{
             "get":".mindmap.node.root.get",
             "set":".mindmap.node.root.set"
-        },
-        "maxVisibilityLevel":{
-            "get":".mindmap.level.visibility"
         }
     },
     "methods":[

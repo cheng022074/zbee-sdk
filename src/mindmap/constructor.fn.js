@@ -23,6 +23,8 @@
  * 
  * @param {number} [config.nodeHorizontalSeparationDistance = 25] 节点水平间隔距离
  * 
+ * @param {number} [config.padding = 5] 脑图四周填充距离
+ * 
  * @param {object} [...config.options] 其它脑图配置
  * 
  */
@@ -35,6 +37,15 @@
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
 
  me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
+
+ me.padding = padding ;
+
+ me.region = {
+   left:0,
+   top:0,
+   right:0,
+   bottom:0
+ } ;
 
  let mindmap = me ;
 
