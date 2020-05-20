@@ -3,9 +3,13 @@
  * 
  * 初始化脑图数据
  * 
- * @import initDisplayNodes from .load.display scoped
+ * @import initVisibilityNodes from .load.visibility scoped
+ * 
+ * @import initLayoutNodes from .load.layout scoped
  * 
  * @import clone from array.clone
+ * 
+ * @import add from event.listener.add
  * 
  * @param {mixed} data 数据
  * 
@@ -22,11 +26,15 @@
 
     me.rootNode = result[0] ;
 
-    initDisplayNodes() ;
+    initVisibilityNodes() ;
 
     let {
       visibilityNodes
     } = me ;
 
     me.fireEvent('load' , clone(visibilityNodes.values())) ;
+
+    add(me , 'nodesized' , initLayoutNodes , {
+       once:true
+    }) ;
  }

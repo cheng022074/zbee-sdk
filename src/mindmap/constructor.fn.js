@@ -15,13 +15,22 @@
  * 
  * @param {boolean} [config.initVisibilityLevel = 2] 初始显示脑图节点层数
  * 
+ * @param {number} [config.nodeVerticalSeparationDistance = 5] 节点垂直间隔距离
+ * 
+ * @param {number} [config.nodeHorizontalSeparationDistance = 5] 节点水平间隔距离
+ * 
  * @param {object} [...config.options] 其它脑图配置
  * 
  */
 
  let me = this,
      visibilityNodeLevels = me.visibilityNodeLevels = new Map(),
-     visibilityNodes = me.visibilityNodes = new Map() ;
+     visibilityNodes = me.visibilityNodes = new Map(),
+     waitInitSizeNodes = me.waitInitSizeNodes = new Map();
+
+ me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
+
+ me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
 
  me.reader = createReader({
    ...reader,
@@ -38,15 +47,27 @@
          let me = this,
          {
             id
-         } = this ;
+         } = me ;
 
          if(hidden === false){
 
             visibilityNodes.set(id , me) ;
+
+            let {
+               width,
+               height
+            } = me ; 
+
+            if(!(width && height)){
+
+               waitInitSizeNodes.set(id , me) ;
+            }
          
          }else{
       
             visibilityNodes.delete(id) ;
+
+            me.level = 0 ;
          }
 
          return hidden ;
@@ -56,12 +77,12 @@
    width:{
       mode:'readwrite',
       local:true,
-      defaultValue:0
+      defaultValue:false
    },
    height:{
       mode:'readwrite',
       local:true,
-      defaultValue:0
+      defaultValue:false
    },
    x:{
       mode:'readwrite',
@@ -96,12 +117,25 @@
 
          if(level !== 0){
 
+            console.log(level) ;
+
             if(!visibilityNodeLevels.has(level)){
 
                visibilityNodeLevels.set(level , []) ;
             }
    
             visibilityNodeLevels.get(level).push(id) ;
+         
+         }else{
+
+            let ids = visibilityNodeLevels.get(level) ;
+
+            remove(ids , id) ;
+
+            if(ids.length === 0){
+
+               visibilityNodeLevels.delete(ids) ;
+            }
          }
 
          return level ;

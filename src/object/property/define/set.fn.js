@@ -30,12 +30,12 @@
     let me = this,
         oldValue = get(me , name) ;
 
-    if(isFunction(onSet)){
-
-        value = onSet.call(me , value , oldValue) ;
-    }
-
     if(!isEquals.call(me , value , oldValue)){
+
+        if(isFunction(onSet)){
+
+            value = onSet.call(me , value , oldValue) ;
+        }
 
         if(is(oldValue)){
 

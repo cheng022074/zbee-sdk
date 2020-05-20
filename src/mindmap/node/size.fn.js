@@ -11,9 +11,11 @@
  * 
  */
 
- let {
-    visibilityNodes
- } = this ;
+ let me = this,
+ {
+    visibilityNodes,
+    waitInitSizeNodes
+ } = me ;
 
  if(visibilityNodes.has(id)){
 
@@ -22,5 +24,12 @@
     node.width = width;
 
     node.height = height;
+
+    waitInitSizeNodes.delete(id) ;
+
+    if(waitInitSizeNodes.size === 0){
+
+         me.fireEvent('nodesized') ;
+    }
  }
  
