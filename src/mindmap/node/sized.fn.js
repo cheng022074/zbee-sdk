@@ -16,4 +16,4 @@
     id
  } = node;
 
- return waitInitSizeNodes.has(id) ;
+ return !waitInitSizeNodes.has(id) ;

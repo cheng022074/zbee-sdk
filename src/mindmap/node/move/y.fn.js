@@ -17,7 +17,7 @@
 
  if(!hidden){
 
-    node.y -= distance ;
+    node.y += distance ;
 
     let {
         expanded

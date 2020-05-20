@@ -9,7 +9,7 @@
  * 
  * @import defer from function.defer
  * 
- * @import clone from array.clone
+ * @import nodes from .nodes
  * 
  * @param {object} config 脑图配置
  * 
@@ -19,9 +19,9 @@
  * 
  * @param {boolean} [config.initVisibilityLevel = 2] 初始显示脑图节点层数
  * 
- * @param {number} [config.nodeVerticalSeparationDistance = 5] 节点垂直间隔距离
+ * @param {number} [config.nodeVerticalSeparationDistance = 15] 节点垂直间隔距离
  * 
- * @param {number} [config.nodeHorizontalSeparationDistance = 5] 节点水平间隔距离
+ * @param {number} [config.nodeHorizontalSeparationDistance = 25] 节点水平间隔距离
  * 
  * @param {object} [...config.options] 其它脑图配置
  * 
@@ -83,7 +83,7 @@
                      waitInitSizeNodes
                   } = mindmap ;
 
-                  mindmap.fireEvent('nodecreated' , clone(waitInitSizeNodes.values())) ;
+                  mindmap.fireEvent('nodecreated' , nodes(waitInitSizeNodes.values())) ;
 
                }) ;
             }

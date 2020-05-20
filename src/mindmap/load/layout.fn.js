@@ -7,11 +7,13 @@
  * 
  * @import getRightXY from ..node.xy.right scoped
  * 
+ * @import getTopRightXY from ..node.xy.topright scoped
+ * 
  * @import getScopeRegion from ..node.region.scope scoped
  * 
  * @import moveY from ..node.move.y scoped
  * 
- * @import clone from array.clone
+ * @import nodes from ..nodes
  * 
  * @return {mixed} 返回说明 
  * 
@@ -23,14 +25,39 @@ function main(){
     {
         rootNode,
         visibilityNodes
-    } = me ;
+    } = me,
+    mindmapTopRightXY = {
+        x:0,
+        y:0
+    };
 
-    layout.call(me , rootNode) ;
+    layout.call(me , rootNode , mindmapTopRightXY) ;
 
-    me.fireEvent('draw' , clone(visibilityNodes.values())) ;
+    moveY(rootNode , -mindmapTopRightXY.y) ;
+
+    me.fireEvent('draw' , nodes(visibilityNodes.values())) ;
 }
 
-function layout(node){
+function layout(node , mindmapTopRightXY){
+
+    let {
+        x:mindmapTopRightX,
+        y:mindmapTopRightY
+    } = mindmapTopRightXY,
+    {
+        x:topRightX,
+        y:topRightY
+    } = getTopRightXY(node);
+
+    if(mindmapTopRightX < topRightX){
+
+        mindmapTopRightXY.x = topRightX ;
+    }
+
+    if(mindmapTopRightY > topRightY){
+
+        mindmapTopRightXY.y = topRightY ;
+    }
 
     let {
         expanded
@@ -62,7 +89,7 @@ function layout(node){
             x:rightX
         } = getRightXY(node),
         childX = rightX + nodeHorizontalSeparationDistance,
-        childY = centerY + childCountHeight / 2,
+        childY = centerY - childCountHeight / 2,
         previousChildNodes = [];
 
         for(let childNode of children){
@@ -75,7 +102,7 @@ function layout(node){
 
             childNode.y = childY ;
 
-            layout.call(me , childNode) ;
+            layout.call(me , childNode , mindmapTopRightXY) ;
 
             let {
                 y:scopeRegionY,
