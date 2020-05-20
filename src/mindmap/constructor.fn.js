@@ -11,6 +11,10 @@
  * 
  * @import nodes from .nodes
  * 
+ * @import isRootNode from .node.is.root
+ * 
+ * @import getParentNode from .node.parent scoped
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -77,6 +81,15 @@
          if(hidden === false){
 
             visibilityNodes.set(id , me) ;
+
+            if(isRootNode(me)){
+
+               me.level = 1 ;
+            
+            }else{
+
+               me.level = getParentNode(me).level + 1 ;
+            }
 
             let {
                width,

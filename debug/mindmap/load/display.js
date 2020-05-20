@@ -15,9 +15,15 @@
         }
     },
     reader:{
-        'id':'f_id',
-        'text':'f_title',
-        'children':{
+        id:'f_id',
+        text:'f_title',
+        parentNodeId({
+            f_pid
+        }){
+
+            return f_pid === '' ? null : f_pid ;
+        },
+        children:{
            reader(data , {
                f_id
            }){

@@ -46,6 +46,13 @@
                     name,
                     mapping:config
                 }
+            
+            }else if(isFunction(config)){
+
+                config = {
+                    name,
+                    convert:config
+                } ;
             }
 
             if(isObject(config)){

@@ -3,6 +3,8 @@
  * 
  * 设置节点大小
  * 
+ * @import get from .get scoped
+ * 
  * @param {string} id 编号
  * 
  * @param {number} width 宽度
@@ -13,13 +15,11 @@
 
  let me = this,
  {
-    visibilityNodes,
     waitInitSizeNodes
- } = me ;
+ } = me,
+ node = get(id);
 
- if(visibilityNodes.has(id)){
-
-    let node = visibilityNodes.get(id) ;
+ if(node){
 
     node.width = width;
 

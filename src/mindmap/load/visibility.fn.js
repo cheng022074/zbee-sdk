@@ -20,8 +20,6 @@
 
     node.hidden = false ;
 
-    node.level = level ;
-
     level ++ ;
 
     if(level <= maxLevel){
