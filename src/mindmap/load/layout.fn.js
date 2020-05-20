@@ -3,13 +3,15 @@
  * 
  * 初始化布局
  * 
- * @import getCenterXY from ..node.xy.center
+ * @import getCenterXY from ..node.xy.center scoped
  * 
- * @import getRightXY from ..node.xy.right
+ * @import getRightXY from ..node.xy.right scoped
  * 
- * @import getScopeRegion from ..node.region.scope
+ * @import getScopeRegion from ..node.region.scope scoped
  * 
- * @import moveY from ..node.move.y
+ * @import moveY from ..node.move.y scoped
+ * 
+ * @import clone from array.clone
  * 
  * @return {mixed} 返回说明 
  * 
@@ -19,10 +21,13 @@ function main(){
 
     let me = this,
     {
-        rootNode
+        rootNode,
+        visibilityNodes
     } = me ;
 
     layout.call(me , rootNode) ;
+
+    me.fireEvent('draw' , clone(visibilityNodes.values())) ;
 }
 
 function layout(node){

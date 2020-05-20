@@ -3,7 +3,7 @@
  * 
  * 获得节点的中间坐标
  * 
- * @import isSized from ..sized
+ * @import isSized from ..sized scoped
  * 
  * @param {data.Record} node 节点
  * 
@@ -12,14 +12,14 @@
  */
 
 let {
+    x,
+    y,
     hidden
  } = node ;
 
  if(isSized(node)){
 
     let {
-        x,
-        y,
         width,
         height
     } = node; 
@@ -29,3 +29,8 @@ let {
         y:y + height / 2
     } ;
  }
+
+ return {
+     x,
+     y
+ } ;

@@ -3,7 +3,7 @@
  * 
  * 获得当前节点作用区域
  * 
- * @import isSized from ..sized
+ * @import isSized from ..sized scoped
  * 
  * @import getTopXY from ..xy.top
  * 
