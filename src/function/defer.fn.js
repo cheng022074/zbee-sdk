@@ -15,4 +15,4 @@
  * 
  */
 
- setTimeout(() => get(fn , scope)() , defer) ;
+ return setTimeout(() => get(fn , scope)() , defer) ;

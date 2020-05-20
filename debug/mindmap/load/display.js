@@ -9,9 +9,9 @@
 
  let mind = createMindMap({
     listeners:{
-        load(mind , nodes){
+        nodecreated(mind , nodes){
 
-            console.log('load' , nodes) ;
+            console.log('nodecreated' , nodes) ;
         }
     },
     reader:{

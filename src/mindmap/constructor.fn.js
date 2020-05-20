@@ -7,6 +7,10 @@
  * 
  * @import remove from array.remove
  * 
+ * @import defer from function.defer
+ * 
+ * @import clone from array.clone
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -31,6 +35,8 @@
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
 
  me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
+
+ let mindmap = me ;
 
  me.reader = createReader({
    ...reader,
@@ -61,6 +67,25 @@
             if(!(width && height)){
 
                waitInitSizeNodes.set(id , me) ;
+
+               let {
+                  nodeCreatedTimerId
+               } = mindmap ;
+
+               if(nodeCreatedTimerId){
+
+                  clearTimeout(nodeCreatedTimerId) ;
+               }
+
+               mindmap.nodeCreatedTimerId = defer(() => {
+
+                  let {
+                     waitInitSizeNodes
+                  } = mindmap ;
+
+                  mindmap.fireEvent('nodecreated' , clone(waitInitSizeNodes.values())) ;
+
+               }) ;
             }
          
          }else{

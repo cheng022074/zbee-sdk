@@ -7,8 +7,6 @@
  * 
  * @import initLayoutNodes from .load.layout scoped
  * 
- * @import clone from array.clone
- * 
  * @import add from event.listener.add
  * 
  * @param {mixed} data 数据
@@ -27,12 +25,6 @@
     me.rootNode = result[0] ;
 
     initVisibilityNodes() ;
-
-    let {
-      visibilityNodes
-    } = me ;
-
-    me.fireEvent('load' , clone(visibilityNodes.values())) ;
 
     add(me , 'nodesized' , initLayoutNodes , {
        once:true
