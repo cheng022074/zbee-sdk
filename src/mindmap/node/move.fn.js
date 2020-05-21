@@ -7,7 +7,9 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @param {data.Record} node 脑图节点
+ * @import is.array
+ * 
+ * @param {data.Record|array} node 脑图节点
  * 
  * @param {string|object} property 坐标名称
  * 
@@ -15,41 +17,53 @@
  * 
  */
 
- let {
-    hidden
- } = node ;
+ if(isArray(node)){
 
- if(!hidden){
+    let nodes = node ;
 
-    if(isObject(property)){
+    for(let node of nodes){
 
-        let {
-            x,
-            y
-        } = property ;
-
-        node.x += x ;
-
-        node.y += y ;
-
-    }else{
-
-        node[property] += distance ;
+        move(node , property , distance) ;
     }
 
+ }else{
+
     let {
-        expanded
+        hidden
     } = node ;
 
-    if(expanded){
+    if(!hidden){
+
+        if(isObject(property)){
+
+            let {
+                x,
+                y
+            } = property ;
+
+            node.x += x ;
+
+            node.y += y ;
+
+        }else{
+
+            node[property] += distance ;
+        }
 
         let {
-            children
+            expanded
         } = node ;
 
-        for(let childNode of children){
+        if(expanded){
 
-            move(childNode , property , distance) ;
+            let {
+                children
+            } = node ;
+
+            for(let childNode of children){
+
+                move(childNode , property , distance) ;
+            }
         }
     }
  }

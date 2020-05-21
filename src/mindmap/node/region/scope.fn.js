@@ -5,11 +5,11 @@
  * 
  * @import isSized from ..sized scoped
  * 
- * @import getTopXY from ..xy.top
+ * @import getTopXY from ..xy.top scoped
  * 
- * @import getBottomXY from ..xy.bottom
+ * @import getBottomXY from ..xy.bottom scoped
  * 
- * @import getRightXY from ..xy.right
+ * @import getRightXY from ..xy.right scoped
  * 
  * @param {data.Record} node 节点
  * 
