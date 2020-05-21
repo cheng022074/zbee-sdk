@@ -16,15 +16,7 @@
         "load",{
             "name":"setNodeSize",
             "impl":".mindmap.node.size"
-        },{
-            "name":"setRootNodeXY",
-            "impl":".mindmap.node.xy.root"
-        },{
-            "name":"setNodeXY",
-            "impl":".mindmap.node.xy"
-        },{
-            "name":"reset",
-            "impl":".mindmap.reset"
-        }
+        },
+        "resize"
     ]
 }
