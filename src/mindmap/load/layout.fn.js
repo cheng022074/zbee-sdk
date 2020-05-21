@@ -116,9 +116,23 @@ function layout(node){
             
             }else{
 
-                console.log('moveY' , scopeRegionY - childY) ;
+                let {
+                    length
+                } = previousChildNodes ;
 
-                moveY(previousChildNodes , scopeRegionY - childY) ;
+                if(length){
+
+                    let {
+                        y:previousScopeRegionY,
+                        height:previousScopeRegionHeight
+                    } = getScopeRegion(previousChildNodes[length - 1]) ;
+
+                    moveY(previousChildNodes , scopeRegionY - (previousScopeRegionY + previousScopeRegionHeight) - nodeVerticalSeparationDistance) ;
+                
+                }else{
+
+                    moveY(previousChildNodes , scopeRegionY - childY) ;
+                }
 
                 childY = scopeRegionY + scopeRegionHeight + nodeVerticalSeparationDistance ;
             }
