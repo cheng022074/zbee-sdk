@@ -20,12 +20,11 @@ let {
  if(isSized(node)){
 
     let {
-        width,
         height
     } = node; 
 
     return {
-        x:x + width,
+        x:x,
         y:y + height / 2
     } ;
  }
