@@ -15,7 +15,7 @@
 
  let me = this,
  {
-    waitInitSizeNodes
+    unsizedNodes
  } = me,
  node = get(id);
 
@@ -25,9 +25,9 @@
 
     node.height = height;
 
-    waitInitSizeNodes.delete(id) ;
+    unsizedNodes.delete(id) ;
 
-    if(waitInitSizeNodes.size === 0){
+    if(unsizedNodes.size === 0){
 
          me.fireEvent('nodesized') ;
     }

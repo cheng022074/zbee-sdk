@@ -10,10 +10,10 @@
  */
 
  let {
-    waitInitSizeNodes
+    unsizedNodes
  } = this,
  {
     id
  } = node;
 
- return !waitInitSizeNodes.has(id) ;
+ return !unsizedNodes.has(id) ;

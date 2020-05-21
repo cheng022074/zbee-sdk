@@ -40,7 +40,8 @@
  let me = this,
      visibilityNodeLevels = me.visibilityNodeLevels = new Map(),
      visibilityNodes = me.visibilityNodes = new Map(),
-     waitInitSizeNodes = me.waitInitSizeNodes = new Map();
+     unsizedNodes = me.unsizedNodes = new Map(),
+     leafNodes = me.leafNodes = new Map();
 
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
 
@@ -88,8 +89,17 @@
             
             }else{
 
-               me.level = getParentNode(me).level + 1 ;
+               let {
+                  id:parentNodeId,
+                  level
+               } = getParentNode(me) ;
+
+               me.level = level + 1 ;
+
+               leafNodes.delete(parentNodeId) ;
             }
+
+            leafNodes.set(id , me) ;
 
             let {
                width,
@@ -98,7 +108,7 @@
 
             if(!(width && height)){
 
-               waitInitSizeNodes.set(id , me) ;
+               unsizedNodes.set(id , me) ;
 
                let {
                   nodeCreatedTimerId
@@ -112,10 +122,10 @@
                mindmap.nodeCreatedTimerId = defer(() => {
 
                   let {
-                     waitInitSizeNodes
+                     unsizedNodes
                   } = mindmap ;
 
-                  mindmap.fireEvent('nodecreated' , nodes(waitInitSizeNodes.values())) ;
+                  mindmap.fireEvent('nodecreated' , nodes(unsizedNodes.values())) ;
 
                }) ;
             }
@@ -125,6 +135,15 @@
             visibilityNodes.delete(id) ;
 
             me.level = 0 ;
+
+            leafNodes.delete(id) ;
+
+            if(!isRootNode(me)){
+
+               let parentNode = getParentNode(me) ;
+
+               leafNodes.set(parentNode.id , parentNode) ;
+            }            
          }
 
          return hidden ;
