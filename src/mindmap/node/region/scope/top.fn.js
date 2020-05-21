@@ -5,7 +5,7 @@
  * 
  * @import getNode from ....leaf.first
  * 
- * @import getTopXY from ..xy.top scoped
+ * @import getTopXY from ....xy.top scoped
  * 
  * @param {data.Record} node 节点
  * 

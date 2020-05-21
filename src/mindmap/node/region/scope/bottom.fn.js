@@ -5,7 +5,7 @@
  * 
  * @import getNode from ....leaf.last
  * 
- * @import getBottom from ..xy.bottom scoped
+ * @import getBottom from ....xy.bottom scoped
  * 
  * @param {data.Record} node 节点
  * 

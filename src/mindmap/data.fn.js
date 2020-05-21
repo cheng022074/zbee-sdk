@@ -131,16 +131,6 @@
                   nodeY
                 ]
               }) ;
-
-              console.log('isLeaf' , {
-                draw:'line',
-                points:[
-                  nodeX,
-                  nodeY,
-                  nodeX + nodeHorizontalSeparationDistance / 2,
-                  nodeY
-                ]
-              }) ;
   
             }
 

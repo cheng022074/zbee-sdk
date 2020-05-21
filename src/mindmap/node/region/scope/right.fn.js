@@ -5,7 +5,7 @@
  * 
  * @import nodes from ......nodes.leaf
  * 
- *  @import getRightXY from ..xy.right scoped
+ *  @import getRightXY from ....xy.right scoped
  * 
  * @param {data.Record} node 节点
  * 

@@ -11,6 +11,8 @@
  * 
  * @import getRight from .scope.right scoped
  * 
+ * @import getBottomXY from ..xy.bottom scoped
+ * 
  * @param {data.Record} node 节点
  * 
  * @return {object}  节点作用区域信息
@@ -25,8 +27,8 @@ let {
 
  if(isSized(node) && !hidden){ 
 
-    let top = getTop(node),
-        bottom = getBottom(node),
+    let top = Math.min(getTop(node) , y),
+        bottom = Math.max(getBottom(node) , getBottomXY(node).y),
         right = getRight(node) ;
 
     return {

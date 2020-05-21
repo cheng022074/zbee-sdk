@@ -116,6 +116,8 @@ function layout(node){
             
             }else{
 
+                console.log('moveY' , scopeRegionY - childY) ;
+
                 moveY(previousChildNodes , scopeRegionY - childY) ;
 
                 childY = scopeRegionY + scopeRegionHeight + nodeVerticalSeparationDistance ;
