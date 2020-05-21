@@ -95,6 +95,7 @@
    }else{
 
       width += padding;
+
    }
 
    return me.region = {

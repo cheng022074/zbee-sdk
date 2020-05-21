@@ -14,13 +14,22 @@
  */
 let me = this,
 {
-    visibilityNodes
+    visibilityNodes,
+    width:mindmapWidth,
+    height:mindmapHeight
 } = me;
 
-me.width = width - 1;
+width -= 1 ;
 
-me.height = height - 1;
+height -= 1 ;
 
-me.isRegionChange = true ;
+if(mindmapWidth !== width || mindmapHeight !== height){
 
-me.fireEvent('draw' , nodes(visibilityNodes.values()) , getRegion()) ;
+    me.width = width;
+
+    me.height = height;
+
+    me.isRegionChange = true ;
+
+    me.fireEvent('draw' , nodes(visibilityNodes.values()) , getRegion()) ;
+}

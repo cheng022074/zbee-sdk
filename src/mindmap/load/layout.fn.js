@@ -54,8 +54,6 @@ function main(){
         moveY(rootNode , -top) ;
     }
 
-    
-
     me.fireEvent('draw' , nodes(visibilityNodes.values()) , getRegion()) ;
 }
 
