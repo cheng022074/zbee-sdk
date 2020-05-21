@@ -13,7 +13,9 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
- * @import isRootNode from .node.is.root
+ * @import isRootNode from .node.is.root scoped
+ * 
+ * @import isLeafNode from .node.is.leaf scoped
  * 
  * @param {array} mindNodes 节点集合
  * 
@@ -45,7 +47,8 @@
 
  for(let mindNode of mindNodes){
 
-    let node = assign({} , mindNode) ;
+    let node = assign({} , mindNode),
+        isLeaf = isLeafNode(mindNode);
 
     if(generateLines){
 
@@ -53,7 +56,7 @@
 
       node.y += heightPadding ;
 
-      let parentNode = getParentNode(mindNode) ;
+      let parentNode = getParentNode(mindNode);
 
       if(parentNode){
 
@@ -109,6 +112,38 @@
               ]
             }) ;
 
+            if(!isLeaf){
+
+              let {
+                x:nodeX,
+                y:nodeY
+              } = getRightXY(mindNode);
+
+              nodeX += padding,
+              nodeY += heightPadding ;
+
+              lines.push({
+                draw:'line',
+                points:[
+                  nodeX,
+                  nodeY,
+                  nodeX + nodeHorizontalSeparationDistance / 2,
+                  nodeY
+                ]
+              }) ;
+
+              console.log('isLeaf' , {
+                draw:'line',
+                points:[
+                  nodeX,
+                  nodeY,
+                  nodeX + nodeHorizontalSeparationDistance / 2,
+                  nodeY
+                ]
+              }) ;
+  
+            }
+
             lines.push({
               draw:'line.bezierCurve',
               points:[
@@ -130,6 +165,10 @@
     delete node.children ;
 
     delete node.parentNodeId ;
+
+    node.root = isRootNode(mindNode) ;
+
+    node.leaf = isLeaf ;
 
     nodes.push(node) ;
  }
