@@ -215,6 +215,6 @@
 
  me.initVisibilityLevel = initVisibilityLevel ;
 
- me.isSizeChange = false ;
+ me.isRegionChange = false ;
 
- me.onRootNodePropertyChange = () => me.isSizeChange = true;
+ me.onRootNodePropertyChange = () => me.isRegionChange = true;

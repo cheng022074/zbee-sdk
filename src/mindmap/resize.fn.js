@@ -5,7 +5,7 @@
  * 
  * @import nodes from .nodes scoped
  * 
- * @import getSize from .size scoped
+ * @import getRegion from .region scoped
  * 
  * @param {number} width 宽度
  * 
@@ -21,4 +21,6 @@ me.width = width - 1;
 
 me.height = height - 1;
 
-me.fireEvent('draw' , nodes(visibilityNodes.values()) , getSize()) ;
+me.isRegionChange = true ;
+
+me.fireEvent('draw' , nodes(visibilityNodes.values()) , getRegion()) ;

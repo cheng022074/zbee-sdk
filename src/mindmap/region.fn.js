@@ -19,7 +19,7 @@
    padding,
    width:mindmapWidth,
    height:mindmapHeight,
-   isSizeChange
+   isRegionChange
  } = me,
  left = 0,
  top,
@@ -27,7 +27,9 @@
  bottom,
  isInit = true;
 
- if(isSizeChange){
+ if(isRegionChange){
+
+   me.isRegionChange = false ;
 
    leafNodes = leafNodes.values() ;
 
@@ -74,8 +76,8 @@
 
    padding *= 2 ;
 
-   let  width = right - left,
-         height = bottom - top ;
+   let width = right - left,
+       height = bottom - top ;
 
    if(mindmapHeight > height){
 
@@ -95,7 +97,7 @@
       width += padding;
    }
 
-   return me.size = {
+   return me.region = {
       left,
       right,
       top,
@@ -105,6 +107,6 @@
    } ;
  }
 
- return me.size ;
+ return me.region ;
 
  

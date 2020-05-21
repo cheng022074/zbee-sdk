@@ -19,9 +19,7 @@
  * 
  * @import nodes from ..nodes scoped
  * 
- * @import getSize from ..size scoped
- * 
- * @import resize from ..resize scoped
+ * @import getRegion from ..region scoped
  * 
  * @return {mixed} 返回说明 
  * 
@@ -41,7 +39,7 @@ function main(){
     let {
         top,
         height
-    } = getSize() ;
+    } = getRegion() ;
 
     if(mindmapHeight === height){
 
@@ -58,7 +56,7 @@ function main(){
 
     
 
-    me.fireEvent('draw' , nodes(visibilityNodes.values()) , getSize()) ;
+    me.fireEvent('draw' , nodes(visibilityNodes.values()) , getRegion()) ;
 }
 
 function layout(node){
