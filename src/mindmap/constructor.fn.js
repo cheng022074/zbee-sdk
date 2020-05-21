@@ -9,7 +9,7 @@
  * 
  * @import defer from function.defer
  * 
- * @import nodes from .nodes
+ * @import nodes from .nodes scoped
  * 
  * @import isRootNode from .node.is.root
  * 
@@ -52,13 +52,6 @@
  me.width = width - 1 ;
 
  me.height = height - 1 ;
-
- me.region = {
-   left:0,
-   top:0,
-   right:0,
-   bottom:0
- } ;
 
  let mindmap = me ;
 
@@ -222,5 +215,6 @@
 
  me.initVisibilityLevel = initVisibilityLevel ;
 
- me.onRootNodePropertyChange = (ob , node , name , value) => {
- } ;
+ me.isSizeChange = false ;
+
+ me.onRootNodePropertyChange = () => me.isSizeChange = true;

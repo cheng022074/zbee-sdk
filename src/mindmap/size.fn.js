@@ -3,44 +3,108 @@
  * 
  * 获取当前脑图区域
  * 
+ * @import getRightXY from .node.xy.right scoped
+ * 
+ * @import getTopXY from .node.xy.top scoped
+ * 
+ * @import getBottomXY from .node.xy.bottom scoped
+ * 
  * @return {object} 区域数据 
  * 
  */
 
- let{
-   padding,
-   region,
-   width:mindmapWidth,
-   height:mindmapHeight
- } = this,
+ let me = this,
  {
-    right,
-    bottom
- } = region,
- width,
- height;
+   leafNodes,
+   padding,
+   width:mindmapWidth,
+   height:mindmapHeight,
+   isSizeChange
+ } = me,
+ left = 0,
+ top,
+ right,
+ bottom,
+ isInit = true;
 
- padding *= 2 ;
+ if(isSizeChange){
 
-if(mindmapHeight > bottom){
+   leafNodes = leafNodes.values() ;
 
-   height = mindmapHeight ;
+   for(let leafNode of leafNodes){
 
-}else{
+      let {
+         x:rightX
+      } = getRightXY(leafNode),
+      {
+         y:topY
+      } = getTopXY(leafNode),
+      {
+         y:bottomY
+      } = getBottomXY(leafNode);
 
-   height = bottom + padding ;
-}
+      if(isInit){
 
-if(mindmapWidth > right){
+         top = topY ;
 
-   width = mindmapWidth;
+         right = rightX ;
 
-}else{
+         bottom = bottomY ;
 
-   width = right + padding;
-}
+         isInit = false ;
 
- return {
-    width,
-    height
- } ;
+         continue ;
+      }
+
+      if(right < rightX){
+
+         right = rightX ;
+      }
+
+      if(bottom < bottomY){
+
+         bottom = bottomY ;
+      }
+
+      if(top > topY){
+
+         top = topY ;
+      }
+   }
+
+   padding *= 2 ;
+
+   let  width = right - left,
+         height = bottom - top ;
+
+   if(mindmapHeight > height){
+
+      height = mindmapHeight ;
+
+   }else{
+
+      height += padding ;
+   }
+
+   if(mindmapWidth > width){
+
+      width = mindmapWidth;
+
+   }else{
+
+      width += padding;
+   }
+
+   return me.size = {
+      left,
+      right,
+      top,
+      bottom,
+      width,
+      height
+   } ;
+ }
+
+ return me.size ;
+
+ 

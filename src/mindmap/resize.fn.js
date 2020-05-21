@@ -3,7 +3,7 @@
  * 
  * 重新计算大小
  * 
- * @import nodes from .nodes
+ * @import nodes from .nodes scoped
  * 
  * @import getSize from .size scoped
  * 

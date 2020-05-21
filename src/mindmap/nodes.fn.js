@@ -10,6 +10,8 @@
  */
 
  const {
+   padding
+ } = this,{
     assign
  } = Object ;
 
@@ -19,7 +21,11 @@
 
     let record = assign({} , node) ;
 
+    record.x += padding ;
+
     delete record.children ;
+
+    delete record.parentNodeId ;
 
     records.push(record) ;
  }
