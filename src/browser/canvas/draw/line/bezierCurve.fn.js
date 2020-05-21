@@ -3,8 +3,6 @@
  * 
  * 绘制贝赛尔曲线
  * 
- * @import assign from object.assign
- * 
  * @import scale from browser.scale value
  * 
  * @param {canvas.Context} context 画板的上下文对象
@@ -21,7 +19,7 @@
 
     context.beginPath();
 
-    assign(context , styles) ;
+    Object.assign(context , styles) ;
 
     let newPoints = [] ;
 

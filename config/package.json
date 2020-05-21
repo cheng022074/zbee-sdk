@@ -62,7 +62,8 @@
         "type":"webpack",
         "classes":[
            "mindmap",
-           "browser.canvas.init"
+           "browser.canvas.init",
+           "browser.canvas.draw.line.bezierCurve"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js"

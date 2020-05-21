@@ -118,7 +118,7 @@
                      unsizedNodes
                   } = mindmap ;
 
-                  mindmap.fireEvent('nodecreated' , data(unsizedNodes.values())) ;
+                  mindmap.fireEvent('nodecreated' , data(unsizedNodes.values()).nodes) ;
 
                }) ;
             }

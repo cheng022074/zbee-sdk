@@ -5,7 +5,7 @@
  * 
  * @import getRegion from .region scoped
  * 
- * @import getCenterXY from .node.xy.right scoped
+ * @import getCenterXY from .node.xy.center scoped
  * 
  * @import getLeftXY from .node.xy.left scoped
  * 
@@ -48,7 +48,7 @@
 
       node.y += heightPadding ;
 
-      let parentNode = getParentNode(node) ;
+      let parentNode = getParentNode(mindNode) ;
 
       if(parentNode){
 
@@ -59,7 +59,7 @@
           {
             x:nodeX,
             y:nodeY
-          } = getLeftXY(node);
+          } = getLeftXY(mindNode);
 
           parentNodeX += padding,
           parentNodeY += heightPadding ;
