@@ -67,7 +67,8 @@
            "browser.canvas.draw.line"
         ],
         "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js",
+            "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-TEST-OK\\src\\lib.js"
         ]
     }
 }
