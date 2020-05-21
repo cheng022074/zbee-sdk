@@ -7,9 +7,13 @@
  * 
  * @import getCenterXY from .node.xy.center scoped
  * 
+ * @import getRightXY from .node.xy.right scoped
+ * 
  * @import getLeftXY from .node.xy.left scoped
  * 
  * @import getParentNode from .node.parent scoped
+ * 
+ * @import isRootNode from .node.is.root
  * 
  * @param {array} mindNodes 节点集合
  * 
@@ -21,7 +25,8 @@
 
  const {
    padding,
-   height
+   height,
+   nodeHorizontalSeparationDistance
  } = this,{
    height:regionHeight
  } = getRegion(),
@@ -53,30 +58,72 @@
       if(parentNode){
 
           let {
-            x:parentNodeX,
-            y:parentNodeY
-          } = getCenterXY(parentNode),
-          {
             x:nodeX,
             y:nodeY
           } = getLeftXY(mindNode);
 
-          parentNodeX += padding,
-          parentNodeY += heightPadding ;
-
           nodeX += padding,
           nodeY += heightPadding ;
 
-          lines.push([
-            parentNodeX,
-            parentNodeY,
-            parentNodeX,
-            nodeY,
-            parentNodeX + (nodeX - parentNodeX) / 2,
-            nodeY,
-            nodeX,
-            nodeY
-          ]) ;
+          if(isRootNode(parentNode)){
+
+            let {
+              x:parentNodeX,
+              y:parentNodeY
+            } = getCenterXY(parentNode);
+
+            parentNodeX += padding,
+            parentNodeY += heightPadding ;
+
+            lines.push({
+              draw:'line.bezierCurve',
+              points:[
+                parentNodeX,
+                parentNodeY,
+                parentNodeX,
+                nodeY,
+                parentNodeX + (nodeX - parentNodeX) / 2,
+                nodeY,
+                nodeX,
+                nodeY
+              ]
+            }) ;
+          
+          }else{
+
+            let {
+              x:parentNodeX,
+              y:parentNodeY
+            } = getRightXY(parentNode);
+
+            parentNodeX += padding,
+            parentNodeY += heightPadding ;
+
+            lines.push({
+              draw:'line',
+              points:[
+                parentNodeX,
+                parentNodeY,
+                parentNodeX + nodeHorizontalSeparationDistance / 2,
+                parentNodeY
+              ]
+            }) ;
+
+            lines.push({
+              draw:'line.bezierCurve',
+              points:[
+                parentNodeX + nodeHorizontalSeparationDistance / 2,
+                parentNodeY,
+                parentNodeX + nodeHorizontalSeparationDistance / 2,
+                nodeY,
+                parentNodeX + nodeHorizontalSeparationDistance * .75,
+                nodeY,
+                nodeX,
+                nodeY
+              ]
+            }) ;
+
+          }
       }
     }
 

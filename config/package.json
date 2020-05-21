@@ -63,7 +63,8 @@
         "classes":[
            "mindmap",
            "browser.canvas.init",
-           "browser.canvas.draw.line.bezierCurve"
+           "browser.canvas.draw.line.bezierCurve",
+           "browser.canvas.draw.line"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js"
