@@ -3,9 +3,7 @@
  * 
  * 重新计算大小
  * 
- * @import nodes from .nodes scoped
- * 
- * @import getRegion from .region scoped
+ * @import fireDrawEvent from .fire.draw scoped
  * 
  * @param {number} width 宽度
  * 
@@ -14,7 +12,6 @@
  */
 let me = this,
 {
-    visibilityNodes,
     width:mindmapWidth,
     height:mindmapHeight
 } = me;
@@ -31,5 +28,5 @@ if(mindmapWidth !== width || mindmapHeight !== height){
 
     me.isRegionChange = true ;
 
-    me.fireEvent('draw' , nodes(visibilityNodes.values()) , getRegion()) ;
+    fireDrawEvent() ;
 }

@@ -9,7 +9,7 @@
  * 
  * @import defer from function.defer
  * 
- * @import nodes from .nodes scoped
+ * @import data from .data scoped
  * 
  * @import isRootNode from .node.is.root
  * 
@@ -118,7 +118,7 @@
                      unsizedNodes
                   } = mindmap ;
 
-                  mindmap.fireEvent('nodecreated' , nodes(unsizedNodes.values())) ;
+                  mindmap.fireEvent('nodecreated' , data(unsizedNodes.values())) ;
 
                }) ;
             }

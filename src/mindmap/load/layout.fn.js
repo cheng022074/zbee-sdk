@@ -17,9 +17,9 @@
  * 
  * @import moveToY from ..node.move.to.y
  * 
- * @import nodes from ..nodes scoped
- * 
  * @import getRegion from ..region scoped
+ * 
+ * @import fireDrawEvent from ..fire.draw scoped
  * 
  * @return {mixed} 返回说明 
  * 
@@ -30,7 +30,6 @@ function main(){
     let me = this,
     {
         rootNode,
-        visibilityNodes,
         height:mindmapHeight
     } = me;
 
@@ -54,7 +53,7 @@ function main(){
         moveY(rootNode , -top) ;
     }
 
-    me.fireEvent('draw' , nodes(visibilityNodes.values()) , getRegion()) ;
+    fireDrawEvent() ;
 }
 
 function layout(node){
