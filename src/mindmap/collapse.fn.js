@@ -9,6 +9,8 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
+ * @import getLeafNodes from .nodes.leaf scoped
+ * 
  * @param {string} id 节点编号
  * 
  */
@@ -29,42 +31,34 @@ function main(id){
 
         if(expanded && !isLeaf(node)){
 
-            node.expanded = false ;
+            let leafNodes,
+                length;
 
-            let {
-                leafNodes
-            } = node ;
+            let count = 0 ;
 
-            for(let leafNode of leafNodes){
+            while(leafNodes = getLeafNodes(node),length = leafNodes.length){
 
-                hidden(leafNode , node) ;
+                console.log('leafNodes' , leafNodes) ;
+
+                if(length === 1 && leafNodes[0] === node){
+
+                    break ;
+                }
+
+                if(count === 5){
+
+                    break ;
+                }
+
+                for(let leafNode of leafNodes){
+
+                    leafNode.hidden = true ;
+                }
             }
+
+            node.expanded = false ;
 
             layout() ;
         }
     }
-}
-
-function hidden(node , rootNode){
-
-    node.hidden = true;
-
-    let parentNode ;
-
-    while(parentNode = getParentNode(node),parentNode && parentNode !== rootNode){
-
-        let {
-            children
-        } = parentNode ;
-
-        for(let childNode of children){
-
-            childNode.hidden = true ;
-        }
-
-        parentNode.hidden = true;
-
-        node = parentNode ;
-    }
-    
 }

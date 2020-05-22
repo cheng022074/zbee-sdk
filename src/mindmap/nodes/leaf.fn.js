@@ -12,19 +12,9 @@
  */
 
 let {
-    leafNodes
-} = node ;
-
-if(leafNodes){
-
-    return leafNodes ;
-}
-
-let {
     hidden
-} = node ;
-
-leafNodes = node.leafNodes = [] ;
+} = node,
+leafNodes = [] ;
 
 if(!hidden){
 
@@ -33,11 +23,17 @@ if(!hidden){
         children
     } = node ;
 
+
     if(expanded && children.length){
 
         for(let childNode of children){
 
             leafNodes.push(...getNodes(childNode)) ;
+        }
+
+        if(!leafNodes.length){
+
+            leafNodes.push(node) ;
         }
     
     }else{
