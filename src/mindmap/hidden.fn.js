@@ -30,6 +30,8 @@ function main(node , hidden){
         leafNodes,
         unsizedNodes
     } = me;
+
+    resetAncestorLeafNodes(node) ;
     
     if(hidden === false){
     

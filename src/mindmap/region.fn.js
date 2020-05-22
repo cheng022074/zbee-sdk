@@ -13,8 +13,9 @@
  * 
  */
 
- let me = this,
- {
+ let me = this ;
+
+ let {
    leafNodes,
    padding,
    width:mindmapWidth,
