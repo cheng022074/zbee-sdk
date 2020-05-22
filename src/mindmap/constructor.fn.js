@@ -123,16 +123,6 @@
    
             visibilityNodeLevels.get(level).push(id) ;
          
-         }else{
-
-            let ids = visibilityNodeLevels.get(level) ;
-
-            remove(ids , id) ;
-
-            if(ids.length === 0){
-
-               visibilityNodeLevels.delete(ids) ;
-            }
          }
 
          return level ;

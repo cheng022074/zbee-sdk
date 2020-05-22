@@ -112,28 +112,6 @@
               ]
             }) ;
 
-            if(!isLeaf){
-
-              let {
-                x:nodeX,
-                y:nodeY
-              } = getRightXY(mindNode);
-
-              nodeX += padding,
-              nodeY += heightPadding ;
-
-              lines.push({
-                draw:'line',
-                points:[
-                  nodeX,
-                  nodeY,
-                  nodeX + nodeHorizontalSeparationDistance / 2,
-                  nodeY
-                ]
-              }) ;
-  
-            }
-
             lines.push({
               draw:'line.bezierCurve',
               points:[
@@ -144,6 +122,28 @@
                 parentNodeX + nodeHorizontalSeparationDistance * .75,
                 nodeY,
                 nodeX,
+                nodeY
+              ]
+            }) ;
+
+          }
+
+          if(!isLeaf){
+
+            let {
+              x:nodeX,
+              y:nodeY
+            } = getRightXY(mindNode);
+
+            nodeX += padding,
+            nodeY += heightPadding ;
+
+            lines.push({
+              draw:'line',
+              points:[
+                nodeX,
+                nodeY,
+                nodeX + nodeHorizontalSeparationDistance / 2,
                 nodeY
               ]
             }) ;
