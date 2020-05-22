@@ -51,7 +51,16 @@ function hidden(node , rootNode){
 
     let parentNode ;
 
-    while(parentNode = getParentNode(node),parentNode !== rootNode){
+    while(parentNode = getParentNode(node),parentNode && parentNode !== rootNode){
+
+        let {
+            children
+        } = parentNode ;
+
+        for(let childNode of children){
+
+            childNode.hidden = true ;
+        }
 
         parentNode.hidden = true;
 

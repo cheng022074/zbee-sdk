@@ -13,21 +13,60 @@
  * 
  */
 
- let me = this,
- {
-    visibilityNodes
- } = me ;
+ function main(id){
 
- if(visibilityNodes.has(id)){
-
-    let node = visibilityNodes.get(id),
+    let me = this,
     {
+        visibilityNodes
+    } = me ;
+
+    if(visibilityNodes.has(id)){
+
+        let node = visibilityNodes.get(id),
+        {
+            expanded
+        } = node;
+
+        if(!expanded && !isLeaf(node)){
+
+            node.expanded = true ;
+
+            let {
+                children
+            } = node ;
+
+            for(let childNode of children){
+
+                visibility(childNode) ;
+            }
+
+            let {
+                unsizedNodes
+            } = me ;
+
+            if(unsizedNodes.size){
+
+                add(me , 'nodesized' , layout , {
+                    once:true
+                }) ;
+            
+            }else{
+
+                layout() ;
+            }
+        }
+    }
+ }
+
+ function visibility(node){
+
+    node.hidden = false ;
+
+    let {
         expanded
-    } = node;
+    } = node ;
 
-    if(!expanded && !isLeaf(node)){
-
-        node.expanded = true ;
+    if(expanded && !isLeaf(node)){
 
         let {
             children
@@ -35,22 +74,7 @@
 
         for(let childNode of children){
 
-            childNode.hidden = false ;
-        }
-
-        let {
-            unsizedNodes
-        } = me ;
-
-        if(unsizedNodes.size){
-
-            add(me , 'nodesized' , layout , {
-                once:true
-            }) ;
-        
-        }else{
-
-            layout() ;
+            visibility(childNode) ;
         }
     }
  }
