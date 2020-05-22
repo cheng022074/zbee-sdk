@@ -18,8 +18,7 @@
    leafNodes,
    padding,
    width:mindmapWidth,
-   height:mindmapHeight,
-   isRegionChange
+   height:mindmapHeight
  } = me,
  left = 0,
  top,
@@ -27,87 +26,80 @@
  bottom,
  isInit = true;
 
- if(isRegionChange){
+leafNodes = leafNodes.values() ;
 
-   me.isRegionChange = false ;
+for(let leafNode of leafNodes){
 
-   leafNodes = leafNodes.values() ;
+   let {
+      x:rightX
+   } = getRightXY(leafNode),
+   {
+      y:topY
+   } = getTopXY(leafNode),
+   {
+      y:bottomY
+   } = getBottomXY(leafNode);
 
-   for(let leafNode of leafNodes){
+   if(isInit){
 
-      let {
-         x:rightX
-      } = getRightXY(leafNode),
-      {
-         y:topY
-      } = getTopXY(leafNode),
-      {
-         y:bottomY
-      } = getBottomXY(leafNode);
+      top = topY ;
 
-      if(isInit){
+      right = rightX ;
 
-         top = topY ;
+      bottom = bottomY ;
 
-         right = rightX ;
+      isInit = false ;
 
-         bottom = bottomY ;
-
-         isInit = false ;
-
-         continue ;
-      }
-
-      if(right < rightX){
-
-         right = rightX ;
-      }
-
-      if(bottom < bottomY){
-
-         bottom = bottomY ;
-      }
-
-      if(top > topY){
-
-         top = topY ;
-      }
+      continue ;
    }
 
-   padding *= 2 ;
+   if(right < rightX){
 
-   let width = right - left,
-       height = bottom - top ;
-
-   if(mindmapHeight > height){
-
-      height = mindmapHeight ;
-
-   }else{
-
-      height += padding ;
+      right = rightX ;
    }
 
-   if(mindmapWidth > width){
+   if(bottom < bottomY){
 
-      width = mindmapWidth;
-
-   }else{
-
-      width += padding;
-
+      bottom = bottomY ;
    }
 
-   return me.region = {
-      left,
-      right,
-      top,
-      bottom,
-      width,
-      height
-   } ;
- }
+   if(top > topY){
 
- return me.region ;
+      top = topY ;
+   }
+}
+
+padding *= 2 ;
+
+let width = right - left,
+      height = bottom - top ;
+
+if(mindmapHeight > height){
+
+   height = mindmapHeight ;
+
+}else{
+
+   height += padding ;
+}
+
+if(mindmapWidth > width){
+
+   width = mindmapWidth;
+
+}else{
+
+   width += padding;
+
+}
+
+return {
+   left,
+   right,
+   top,
+   bottom,
+   width,
+   height
+} ;
 
  

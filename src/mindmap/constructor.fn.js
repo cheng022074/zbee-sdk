@@ -144,7 +144,3 @@
  me.readerAsRoot = readerAsRoot ;
 
  me.initVisibilityLevel = initVisibilityLevel ;
-
- me.isRegionChange = false ;
-
- me.onRootNodePropertyChange = () => me.isRegionChange = true;

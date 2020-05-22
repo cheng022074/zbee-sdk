@@ -26,7 +26,5 @@ if(mindmapWidth !== width || mindmapHeight !== height){
 
     me.height = height;
 
-    me.isRegionChange = true ;
-
     fireDrawEvent() ;
 }

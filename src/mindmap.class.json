@@ -6,12 +6,6 @@
         "mixin.observable"
     ],
     "constructor":true,
-    "properties":{
-        "rootNode":{
-            "get":".mindmap.node.root.get",
-            "set":".mindmap.node.root.set"
-        }
-    },
     "methods":[
         "load",{
             "name":"setNodeSize",
