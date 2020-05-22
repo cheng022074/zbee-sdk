@@ -17,6 +17,8 @@
  * 
  * @import setHidden from .hidden scoped
  * 
+ * @import setLevel from .level scoped
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -98,36 +100,14 @@
       local:true,
       set(level , oldLevel){
          
-         let {
-            id
-         } = this ;
-
-         if(oldLevel !== 0){
-
-            let ids = visibilityNodeLevels.get(oldLevel) ;
-
-            remove(ids , id) ;
-
-            if(ids.length === 0){
-
-               visibilityNodeLevels.delete(ids) ;
-            }
-         }
-
-         if(level !== 0){
-
-            if(!visibilityNodeLevels.has(level)){
-
-               visibilityNodeLevels.set(level , []) ;
-            }
-   
-            visibilityNodeLevels.get(level).push(id) ;
-         
-         }
-
-         return level ;
+         return setLevel(this , level , oldLevel) ;
       },
       defaultValue:0
+   },
+   selected:{
+      mode:'readwrite',
+      local:true,
+      defaultValue:false
    }
  }) ;
 
