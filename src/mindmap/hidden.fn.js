@@ -107,6 +107,8 @@ function resetAncestorLeafNodes(node){
 
     let parentNode ;
 
+    delete node.leafNodes ;
+
     while(parentNode = getParentNode(node)){
 
         delete parentNode.leafNodes ;

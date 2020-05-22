@@ -34,18 +34,9 @@ function main(id){
             let leafNodes,
                 length;
 
-            let count = 0 ;
-
             while(leafNodes = getLeafNodes(node),length = leafNodes.length){
 
-                console.log('leafNodes' , leafNodes) ;
-
                 if(length === 1 && leafNodes[0] === node){
-
-                    break ;
-                }
-
-                if(count === 5){
 
                     break ;
                 }

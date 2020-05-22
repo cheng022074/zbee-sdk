@@ -11,10 +11,20 @@
  * 
  */
 
+ let {
+    leafNodes
+ } = node ;
+
+ if(leafNodes){
+
+    return leafNodes ;
+ }
+
 let {
     hidden
-} = node,
-leafNodes = [] ;
+} = node;
+
+leafNodes = node.leafNodes = [] ;
 
 if(!hidden){
 
