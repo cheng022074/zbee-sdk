@@ -23,7 +23,17 @@ function preventDefault(e){
 
 function main(target){
 
-    add(target , 'touchstart' , preventDefault) ;
+    add(target , {
+        touchstart:preventDefault,
+        touchmove:preventDefault,
+        mousedown:preventDefault,
+        mousemove:preventDefault,
+        contextmenu(e){
 
-    add(target , 'touchmove' , preventDefault) ;
+            e.stopPropagation() ;
+            
+            e.preventDefault() ;
+
+        }
+    }) ;
 }

@@ -64,7 +64,10 @@
            "mindmap",
            "browser.canvas.init",
            "browser.canvas.draw.line.bezierCurve",
-           "browser.canvas.draw.line"
+           "browser.canvas.draw.line",
+           "event.listener.add",
+           "event.listener.remove",
+           "browser.event.init"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js",

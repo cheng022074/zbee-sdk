@@ -38,6 +38,8 @@
 
         for(let name of names){
 
+            let listener = listeners[name] ;
+
             if(isObject(listener)){
 
                 let {
