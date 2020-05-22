@@ -5,7 +5,7 @@
  * 
  * @import initVisibilityNodes from .load.visibility scoped
  * 
- * @import initLayoutNodes from .load.layout scoped
+ * @import layout from .layout scoped
  * 
  * @import add from event.listener.add
  * 
@@ -26,7 +26,7 @@
 
     initVisibilityNodes() ;
 
-    add(me , 'nodesized' , initLayoutNodes , {
+    add(me , 'nodesized' , layout , {
        once:true
     }) ;
  }

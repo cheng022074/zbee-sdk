@@ -3,23 +3,23 @@
  * 
  * 初始化布局
  * 
- * @import getCenterXY from ..node.xy.center scoped
+ * @import getCenterXY from .node.xy.center scoped
  * 
- * @import getRightXY from ..node.xy.right scoped
+ * @import getRightXY from .node.xy.right scoped
  * 
- * @import getTopRightXY from ..node.xy.topright scoped
+ * @import getTopRightXY from .node.xy.topright scoped
  * 
- * @import getBottomRightXY from ..node.xy.bottomright scoped
+ * @import getBottomRightXY from .node.xy.bottomright scoped
  * 
- * @import getScopeRegion from ..node.region.scope scoped
+ * @import getScopeRegion from .node.region.scope scoped
  * 
- * @import moveY from ..node.move.y
+ * @import moveY from .node.move.y
  * 
- * @import moveToY from ..node.move.to.y
+ * @import moveToY from .node.move.to.y
  * 
- * @import getRegion from ..region scoped
+ * @import getRegion from .region scoped
  * 
- * @import fireDrawEvent from ..fire.draw scoped
+ * @import fireDrawEvent from .fire.draw scoped
  * 
  * @return {mixed} 返回说明 
  * 
