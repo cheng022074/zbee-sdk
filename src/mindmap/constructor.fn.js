@@ -69,7 +69,7 @@
       local:true,
       set(hidden){
 
-         setHidden(this , hidden) ;
+         return setHidden(this , hidden) ;
       },
       defaultValue:true
    },
