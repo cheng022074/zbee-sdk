@@ -15,6 +15,8 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
+ * @import setHidden from .hidden scoped
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -67,79 +69,7 @@
       local:true,
       set(hidden){
 
-         let me = this,
-         {
-            id
-         } = me ;
-
-         if(hidden === false){
-
-            visibilityNodes.set(id , me) ;
-
-            if(isRootNode(me)){
-
-               me.level = 1 ;
-            
-            }else{
-
-               let {
-                  id:parentNodeId,
-                  level
-               } = getParentNode(me) ;
-
-               me.level = level + 1 ;
-
-               leafNodes.delete(parentNodeId) ;
-            }
-
-            leafNodes.set(id , me) ;
-
-            let {
-               width,
-               height
-            } = me ; 
-
-            if(!(width && height)){
-
-               unsizedNodes.set(id , me) ;
-
-               let {
-                  nodeCreatedTimerId
-               } = mindmap ;
-
-               if(nodeCreatedTimerId){
-
-                  clearTimeout(nodeCreatedTimerId) ;
-               }
-
-               mindmap.nodeCreatedTimerId = defer(() => {
-
-                  let {
-                     unsizedNodes
-                  } = mindmap ;
-
-                  mindmap.fireEvent('nodecreated' , data(unsizedNodes.values()).nodes) ;
-
-               }) ;
-            }
-         
-         }else{
-      
-            visibilityNodes.delete(id) ;
-
-            me.level = 0 ;
-
-            leafNodes.delete(id) ;
-
-            if(!isRootNode(me)){
-
-               let parentNode = getParentNode(me) ;
-
-               leafNodes.set(parentNode.id , parentNode) ;
-            }            
-         }
-
-         return hidden ;
+         setHidden(this , hidden) ;
       },
       defaultValue:true
    },
