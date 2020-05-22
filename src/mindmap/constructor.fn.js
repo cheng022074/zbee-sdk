@@ -5,19 +5,11 @@
  * 
  * @import createReader from data.reader.json
  * 
- * @import remove from array.remove
- * 
- * @import defer from function.defer
- * 
- * @import data from .data scoped
- * 
- * @import isRootNode from .node.is.root
- * 
- * @import getParentNode from .node.parent scoped
- * 
  * @import setHidden from .hidden scoped
  * 
  * @import setLevel from .level scoped
+ * 
+ * @import setSelected from .selected scoped
  * 
  * @param {object} config 脑图配置
  * 
@@ -41,11 +33,15 @@
  * 
  */
 
- let me = this,
-     visibilityNodeLevels = me.visibilityNodeLevels = new Map(),
-     visibilityNodes = me.visibilityNodes = new Map(),
-     unsizedNodes = me.unsizedNodes = new Map(),
-     leafNodes = me.leafNodes = new Map();
+ let me = this ;
+
+ me.visibilityNodeLevels = new Map();
+
+ me.visibilityNodes = new Map() ;
+ 
+ me.unsizedNodes = new Map();
+ 
+ me.leafNodes = new Map();
 
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
 
@@ -109,21 +105,7 @@
       local:true,
       set(selected){
 
-         if(selected){
-
-            let {
-               selectedNode
-            } = mindmap;
-
-            if(selectedNode){
-
-               selectedNode.selected = false ;
-            }
-
-            me.selectedNode = this ;
-         }
-
-         return selected ;
+        return setSelected(this , selected) ;
 
       },
       defaultValue:false
