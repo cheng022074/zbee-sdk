@@ -107,6 +107,25 @@
    selected:{
       mode:'readwrite',
       local:true,
+      set(selected){
+
+         if(selected){
+
+            let {
+               selectedNode
+            } = mindmap;
+
+            if(selectedNode){
+
+               selectedNode.selected = false ;
+            }
+
+            me.selectedNode = this ;
+         }
+
+         return selected ;
+
+      },
       defaultValue:false
    }
  }) ;

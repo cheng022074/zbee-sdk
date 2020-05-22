@@ -89,6 +89,8 @@ function main(node , hidden){
         visibilityNodes.delete(id) ;
         
         node.level = 0 ;
+
+        node.selected = false ;
     
         leafNodes.delete(id) ;
     

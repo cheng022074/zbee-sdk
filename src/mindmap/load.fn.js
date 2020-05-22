@@ -22,7 +22,9 @@
 
  if(result.length === 1){
 
-    me.rootNode = result[0] ;
+    let rootNode = me.rootNode = result[0] ;
+
+    rootNode.selected = true ;
 
     initVisibilityNodes() ;
 
