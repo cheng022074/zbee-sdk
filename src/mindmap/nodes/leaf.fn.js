@@ -12,9 +12,19 @@
  */
 
 let {
+    leafNodes
+} = node ;
+
+if(leafNodes){
+
+    return leafNodes ;
+}
+
+let {
     hidden
-} = node,
-result = [];
+} = node ;
+
+leafNodes = node.leafNodes = [] ;
 
 if(!hidden){
 
@@ -27,13 +37,13 @@ if(!hidden){
 
         for(let childNode of children){
 
-            result.push(...getNodes(childNode)) ;
+            leafNodes.push(...getNodes(childNode)) ;
         }
     
     }else{
 
-        result.push(node) ;
+        leafNodes.push(node) ;
     }
 }
 
-return result ;
+return leafNodes ;

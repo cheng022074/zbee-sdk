@@ -116,23 +116,7 @@ function layout(node){
             
             }else{
 
-                let {
-                    length
-                } = previousChildNodes ;
-
-                if(length){
-
-                    let {
-                        y:previousScopeRegionY,
-                        height:previousScopeRegionHeight
-                    } = getScopeRegion(previousChildNodes[length - 1]) ;
-
-                    moveY(previousChildNodes , scopeRegionY - (previousScopeRegionY + previousScopeRegionHeight) - nodeVerticalSeparationDistance) ;
-                
-                }else{
-
-                    moveY(previousChildNodes , scopeRegionY - childY) ;
-                }
+                moveY(previousChildNodes , scopeRegionY - childY) ;
 
                 childY = scopeRegionY + scopeRegionHeight + nodeVerticalSeparationDistance ;
             }

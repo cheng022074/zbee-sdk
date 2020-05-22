@@ -3,7 +3,7 @@
  * 
  * 获取第一个叶子节点
  * 
- * @import getNode from .first
+ * @import getLeafNodes from ....nodes.leaf
  * 
  * @param {data.Record} node 脑图节点
  * 
@@ -11,24 +11,9 @@
  * 
  */
 
-let {
-    hidden
-} = node,
-result = [];
+let nodes = getLeafNodes(node) ;
 
-if(!hidden){
+if(nodes.length){
 
-    let {
-        expanded,
-        children
-    } = node ;
-
-    if(expanded && children.length){
-
-        return getNode(children[0]) ;
-    
-    }else{
-
-        return node ;
-    }
+    return nodes[0] ;
 }
