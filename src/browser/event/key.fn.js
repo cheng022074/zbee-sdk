@@ -3,6 +3,8 @@
  * 
  * 得到对应代码的值键值 
  * 
+ * @import is.defined
+ * 
  * @param {Event} event 键事件对象
  * 
  * @return {mixed} 键值 
@@ -10,10 +12,10 @@
  */
 
  const KEY_CODES = {
-    39:'DIRECTION::RIGHT',
-    37:'DIRECTION::LEFT',
-    38:'DIRECTION::UP',
-    40:'DIRECTION::DOWN',
+    39:'RIGHT',
+    37:'LEFT',
+    38:'UP',
+    40:'DOWN',
     13:'ENTER',
     46:'DELETE',
     9:'TAB',
@@ -27,9 +29,12 @@
     keyCode
  }){
 
-    return {
-       shift:shiftKey,
-       key:KEY_CODES[keyCode],
-       code:keyCode
-    } ;
+   if(isDefined(shiftKey) && isDefined(keyCode)){
+
+      return {
+         shift:shiftKey,
+         key:KEY_CODES[keyCode],
+         code:keyCode
+      } ;
+   }
  }

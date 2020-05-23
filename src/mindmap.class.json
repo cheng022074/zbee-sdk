@@ -14,6 +14,21 @@
         "resize",
         "expand",
         "collapse",
-        "select"
+        "select",{
+            "name":"left",
+            "impl":".mindmap.select.move.left"
+        },
+        {
+            "name":"right",
+            "impl":".mindmap.select.move.right"
+        },
+        {
+            "name":"up",
+            "impl":".mindmap.select.move.up"
+        },
+        {
+            "name":"down",
+            "impl":".mindmap.select.move.down"
+        }
     ]
 }

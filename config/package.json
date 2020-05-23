@@ -65,9 +65,10 @@
            "browser.canvas.init",
            "browser.canvas.draw.line.bezierCurve",
            "browser.canvas.draw.line",
-           "event.listener.add",
-           "event.listener.remove",
-           "browser.event.init"
+           "browser.event.listener.global.add",
+           "browser.event.listener.global.remove",
+           "browser.event.init",
+           "browser.event.init.cancel"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js",

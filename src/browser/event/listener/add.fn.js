@@ -15,6 +15,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import get from function.get
+ * 
  * @param {mixed} target 目标
  * 
  * @param {mixed} event 目标监听事件
@@ -52,7 +54,7 @@
                 add(target , name , fn , options) ;
             
             }else{
-    
+
                 add(target , name , listeners[name] , {
                     scope
                 }) ;
@@ -70,6 +72,7 @@
      selector,
      stop = false,
      prevent = false,
+     scope,
      ...config
  }){
 
@@ -77,8 +80,9 @@
 
         return ;
     }
-    
-    let listener = e =>{
+
+    let useFn = get(fn , scope),
+        listener = e =>{
     
             let {
                 target
@@ -98,12 +102,12 @@
     
                 if(is(target , selector)){
     
-                    fn(e) ;
+                    useFn(e) ;
                 }
                 
             }else{
     
-                fn(e) ;
+                useFn(e) ;
             }
         };
     
