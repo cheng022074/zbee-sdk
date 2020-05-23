@@ -68,7 +68,10 @@
            "browser.event.listener.global.add",
            "browser.event.listener.global.remove",
            "browser.event.init",
-           "browser.event.init.cancel"
+           "browser.event.init.cancel",
+           "math.region",
+           "math.region.right",
+           "math.region.bottom"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js",
