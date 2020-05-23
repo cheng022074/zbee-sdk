@@ -6,6 +6,11 @@
         "mixin.observable"
     ],
     "constructor":true,
+    "properties":{
+        "selectedNodeRegion":{
+            "get":".mindmap.region.selected"
+        }
+    },
     "methods":[
         "load",{
             "name":"setNodeSize",

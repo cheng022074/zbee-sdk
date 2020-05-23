@@ -13,6 +13,10 @@
  * 
  */
 
+ const {
+    abs
+ } = Math ;
+
  class main{
 
     constructor(top , right , bottom , left){
@@ -41,22 +45,98 @@
 
    contains(region){
 
-      let me = this;
+      let {
+         x,
+         y,
+         right,
+         bottom
+      } = this,
+      {
+         x:regionX,
+         y:regionY,
+         right:regionRight,
+         bottom:regionBottom
+      } = region;
 
-      return (region.x >= me.x &&
-             (region.right || region.x) <= me.right &&
-             region.y >= me.y &&
-             (region.bottom || region.y) <= me.bottom);
+      return (regionX >= x &&
+             (regionRight || regionX) <= right &&
+             regionY >= y &&
+             (regionBottom || regionY) <= bottom);
    }
 
-   getOffsetsTo(offsetsTo){
+   getOutOfBoundOffset({
+      x,
+      y,
+      right,
+      bottom
+   }){
 
-      let me = this ;
+      let me = this;
+
+      x = me.getOutOfBoundOffsetX(x) ;
+
+      right = me.getOutOfBoundOffsetX(right) ;
+
+      if(abs(x) < abs(right)){
+
+         x = right ;
+      }
+
+      y = me.getOutOfBoundOffsetY(y) ;
+
+      bottom = me.getOutOfBoundOffsetY(bottom) ;
+
+      if(abs(y) < abs(bottom)){
+
+         y = bottom ;
+      }
 
       return {
-          x: me.x - offsetsTo.x,
-          y: me.y - offsetsTo.y
-      };
+         x,
+         y
+      } ;
+  }
+
+   getOutOfBoundOffsetX(x){
+
+      let me = this,
+      {
+         left,
+         right
+      } = me;
+
+      if (x <= left) {
+
+         return left - x;
+      
+      }else if (x >= right) {
+      
+         return right - x;
+      
+      }
+
+      return 0;
+  }
+
+  getOutOfBoundOffsetY(y){
+
+      let me = this,
+      {
+      top,
+      bottom
+      } = me ;
+
+      if (y <= top) {
+
+         return top - y;
+      
+      }else if (y >= bottom) {
+      
+         return bottom - y;
+      
+      }
+
+      return 0;
    }
 }
 
