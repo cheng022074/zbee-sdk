@@ -82,8 +82,6 @@
                 node
             } ;
         }) ;
-
-        console.log('resort' , me.sortedYNodes , sortedYNodeIndexes) ;
     }
 
     getNearestNode(node , direction){
@@ -99,8 +97,6 @@
 
             return ;
         }
-
-        console.log(getRelationNodes) ;
 
         switch(direction){
 
@@ -134,8 +130,6 @@
         let {
             length
         } = nodes ;
-
-        console.log('getNearestYNode' , nodes) ;
 
         if(length){
 

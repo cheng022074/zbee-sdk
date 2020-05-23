@@ -30,7 +30,7 @@ function main(node){
     
     if(!hidden){
     
-        relationNodes.push(node , ...getDescendantNodes(node) , getAncestorNodes(node)) ;
+        relationNodes.push(node , ...getDescendantNodes(node) , ...getAncestorNodes(node)) ;
     
 
     }
@@ -65,7 +65,7 @@ function getDescendantNodes(node){
 
         for(let childNode of children){
     
-            relationNodes.push(...getDescendantNodes(childNode)) ;
+            result.push(childNode , ...getDescendantNodes(childNode)) ;
         }
 
     }

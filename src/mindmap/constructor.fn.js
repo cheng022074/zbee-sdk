@@ -11,7 +11,7 @@
  * 
  * @import setSelected from .selected scoped
  * 
- * @import createVisibilityNodes from .nodes.visibility
+ * @import createVisibilityNodes from .nodes.visibility scoped
  * 
  * @param {object} config 脑图配置
  * 
