@@ -1,12 +1,20 @@
 
 /**
  * 
- * 函数实现说明
+ * 向上移动选择节点
  * 
- * @param {mixed} data 参数说明
+ * @import previous from ....node.sibling.previous scoped
  * 
- * @return {mixed} 返回说明 
+ * @import select from ....select scoped
  * 
  */
 
- // 代码实现
+let {
+    selectedNode
+ } = this,
+ node = previous(selectedNode) ;
+
+ if(node){
+
+    select(node.id) ;
+ }
