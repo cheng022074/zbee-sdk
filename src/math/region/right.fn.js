@@ -3,12 +3,23 @@
  * 
  * 计算右边值
  * 
- * @param {number} left 右边值
+ * @import is.defined
  * 
- * @param {number} width 宽度
+ * @param {object} config 配置
  * 
  * @return {number} 右边数值 
  * 
  */
 
- return left + width ;
+let {
+    x,
+    width,
+    right
+ } = config ;
+
+ if(isDefined(right)){
+
+    return right ;
+ }
+
+return x + width ;

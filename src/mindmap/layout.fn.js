@@ -21,6 +21,8 @@
  * 
  * @import fireDrawEvent from .fire.draw scoped
  * 
+ * @import defer from function.defer
+ * 
  * @return {mixed} 返回说明 
  * 
  */
@@ -30,7 +32,8 @@ function main(){
     let me = this,
     {
         rootNode,
-        height:mindmapHeight
+        height:mindmapHeight,
+        visibilityNodes
     } = me;
 
     layout.call(me , rootNode) ;
@@ -52,6 +55,8 @@ function main(){
 
         moveY(rootNode , -top) ;
     }
+
+    defer(() => visibilityNodes.resort()) ;
 
     fireDrawEvent() ;
 }

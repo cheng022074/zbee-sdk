@@ -3,12 +3,23 @@
  * 
  * 计算下边值
  * 
- * @param {number} top 上边值
+ * @import is.defined
  * 
- * @param {number} height 高度
+ * @param {object} config 配置
  * 
  * @return {number} 下边数值 
  * 
  */
 
-return top + height ;
+ let {
+    y,
+    height,
+    bottom
+ } = config ;
+
+ if(isDefined(bottom)){
+
+    return bottom ;
+ }
+
+return y + height ;

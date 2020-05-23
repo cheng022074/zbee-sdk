@@ -11,6 +11,8 @@
  * 
  * @import setSelected from .selected scoped
  * 
+ * @import createVisibilityNodes from .nodes.visibility
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -37,7 +39,7 @@
 
  me.visibilityNodeLevels = new Map();
 
- me.visibilityNodes = new Map() ;
+ me.visibilityNodes = createVisibilityNodes() ;
  
  me.unsizedNodes = new Map();
  

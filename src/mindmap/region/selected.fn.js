@@ -14,11 +14,12 @@
  */
 
  let {
+    selectedNode
+ } = this,
+ {
      x,
-     y,
-     width,
-     height
- } = this.selectedNode ;
+     y
+ } = selectedNode;
 
- return createRegion(y , right(x , width) , bottom(y , height) , x) ;
+ return createRegion(y , right(selectedNode) , bottom(selectedNode) , x) ;
 

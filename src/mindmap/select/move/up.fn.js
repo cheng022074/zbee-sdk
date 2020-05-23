@@ -9,12 +9,26 @@
  * 
  */
 
-let {
+let me = this,
+{
     selectedNode
- } = this,
+ } = me,
  node = previous(selectedNode) ;
 
  if(node){
 
     select(node.id) ;
- }
+ 
+}else{
+
+   let {
+      visibilityNodes
+   } = me ;
+
+   let node = visibilityNodes.getNearestNode(selectedNode , 'up') ;
+
+   if(node){
+
+      select(node.id) ;
+   }
+}

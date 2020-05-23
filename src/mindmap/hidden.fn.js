@@ -111,9 +111,13 @@ function resetAncestorLeafNodes(node){
 
     delete node.leafNodes ;
 
+    delete node.relationNodes ;
+
     while(parentNode = getParentNode(node)){
 
         delete parentNode.leafNodes ;
+
+        delete parentNode.relationNodes ;
 
         node = parentNode ;
     }
