@@ -29,6 +29,8 @@
 
     if(unsizedNodes.size === 0){
 
+         
+
          me.fireEvent('nodesized') ;
     }
  }

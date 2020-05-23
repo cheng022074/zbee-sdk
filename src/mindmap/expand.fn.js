@@ -5,15 +5,13 @@
  * 
  * @import isLeaf from .node.is.leaf scoped
  * 
- * @import layout from .layout scoped
- * 
- * @import add from event.listener.add
+ * @import tryLayout from .layout.try scoped  
  * 
  * @param {string} id 节点编号
  * 
  */
 
- function main(id){
+ async function main(id){
 
     let me = this,
     {
@@ -40,20 +38,7 @@
                 visibility(childNode) ;
             }
 
-            let {
-                unsizedNodes
-            } = me ;
-
-            if(unsizedNodes.size){
-
-                add(me , 'nodesized' , layout , {
-                    once:true
-                }) ;
-            
-            }else{
-
-                layout() ;
-            }
+            await tryLayout() ;
         }
     }
  }

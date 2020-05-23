@@ -5,9 +5,7 @@
  * 
  * @import initVisibilityNodes from .load.visibility scoped
  * 
- * @import layout from .layout scoped
- * 
- * @import add from event.listener.add
+ * @import tryLayout from .layout.try scoped
  * 
  * @param {mixed} data 数据
  * 
@@ -28,7 +26,5 @@
 
     initVisibilityNodes() ;
 
-    add(me , 'nodesized' , layout , {
-       once:true
-    }) ;
+    await tryLayout() ;
  }
