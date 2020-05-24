@@ -9,17 +9,30 @@
  * 
  * @import createRegion from math.region
  * 
+ * @import getRegion from ..region scoped
+ * 
  * @return {math.Region} 区域 
  * 
  */
 
  let {
-    selectedNode
+    selectedNode,
+    height,
+    padding
  } = this,
  {
      x,
-     y
+     y,
+     width:nodeWidth,
+     height:nodeHeight
  } = selectedNode;
 
- return createRegion(y , right(selectedNode) , bottom(selectedNode) , x) ;
+let selectedRegion = {
+    x:x + padding,
+    y:y + padding,
+    width:nodeWidth,
+    height:nodeHeight
+}
+
+ return createRegion(selectedRegion.y , right(selectedRegion) , bottom(selectedRegion) , selectedRegion.x) ;
 
