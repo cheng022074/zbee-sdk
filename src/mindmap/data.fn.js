@@ -45,6 +45,8 @@
    heightPadding = padding ;
  }
 
+ let selectedNode ;
+
  for(let mindNode of mindNodes){
 
     let node = assign({} , mindNode),
@@ -156,14 +158,24 @@
 
     delete node.parentNodeId ;
 
+    delete node.leafNodes ;
+
+    delete node.relationNodes ;
+
     node.root = isRootNode(mindNode) ;
 
     node.leaf = isLeaf ;
 
     nodes.push(node) ;
+
+    if(node.selected){
+
+      selectedNode = assign({} , node) ;
+    }
  }
 
  return {
+   selectedNode,
    nodes,
    lines
  } ;

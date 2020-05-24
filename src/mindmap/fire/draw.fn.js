@@ -19,7 +19,8 @@
  } = me,
  {
      nodes,
+     selectedNode,
      lines
  } = data(visibilityNodes.values() , true);
 
- me.fireEvent('draw' , nodes , lines, region()) ;
+ me.fireEvent('draw' , nodes , lines , selectedNode , region()) ;
