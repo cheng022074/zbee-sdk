@@ -51,9 +51,9 @@
 
  me.padding = padding ;
 
- me.width = width - 1 ;
+ me.width = width ;
 
- me.height = height - 1 ;
+ me.height = height ;
 
  let mindmap = me ;
 

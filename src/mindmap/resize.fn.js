@@ -16,10 +16,6 @@ let me = this,
     height:mindmapHeight
 } = me;
 
-width -= 1 ;
-
-height -= 1 ;
-
 if(mindmapWidth !== width || mindmapHeight !== height){
 
     me.width = width;
@@ -27,4 +23,8 @@ if(mindmapWidth !== width || mindmapHeight !== height){
     me.height = height;
 
     fireDrawEvent() ;
+
+    return true ;
 }
+
+return false ;
