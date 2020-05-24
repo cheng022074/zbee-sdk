@@ -88,7 +88,9 @@
 
         let {
             sortedYNodes,
-            sortedYNodeIndexes
+            sortedYNodeIndexes,
+            sortedXNodes,
+            sortedXNodeIndexes
         } = this,
         xy,
         nodes;
@@ -99,6 +101,19 @@
         }
 
         switch(direction){
+
+            case 'right':
+
+                {
+                    let index = sortedXNodeIndexes.get(node),
+                        info = sortedXNodes[index];
+                        
+                    xy = info.xy ;
+
+                    nodes = getNearestNodes(sortedXNodes.slice(index + 1) , info.value , getRelationNodes(node)) ;
+
+                    break ;
+                }
 
             case 'up':
 

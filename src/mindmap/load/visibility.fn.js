@@ -23,17 +23,22 @@
     level ++ ;
 
     if(level <= maxLevel){
-        
-        node.expanded = true ;
 
         let {
             children
         } = node ;
 
-        for(let childNode of children){
+        if(children.length){
 
-            initVisibilityNode(childNode , level , maxLevel) ;
+            node.expanded = true ;
+
+            for(let childNode of children){
+
+                initVisibilityNode(childNode , level , maxLevel) ;
+            }
         }
+        
+        
     }
     
  }

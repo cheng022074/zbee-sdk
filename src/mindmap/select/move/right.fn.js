@@ -13,7 +13,8 @@
  * 
  */
 
-let {
+let me = this,
+{
     selectedNode
  } = this,
  {
@@ -34,4 +35,17 @@ let {
  }else if(!isLeaf(selectedNode)){
 
     expand(selectedNode.id).then(() => right()) ;
+ 
+ }else{
+
+    let {
+        visibilityNodes
+     } = me ;
+  
+     let node = visibilityNodes.getNearestNode(selectedNode , 'right') ;
+  
+     if(node){
+  
+        select(node.id) ;
+     }
  }

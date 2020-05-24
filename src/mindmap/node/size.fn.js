@@ -5,6 +5,8 @@
  * 
  * @import get from .get scoped
  * 
+ * @import tryLayout from ..layout.try scoped
+ * 
  * @param {string} id 编号
  * 
  * @param {number} width 宽度
@@ -25,13 +27,19 @@
 
     node.height = height;
 
+    let {
+      size
+    } = unsizedNodes ;
+
     unsizedNodes.delete(id) ;
 
-    if(unsizedNodes.size === 0){
+    if(size && unsizedNodes.size === 0){
 
-         
+      me.fireEvent('nodesized') ;
+    
+    }else if(size === 0){
 
-         me.fireEvent('nodesized') ;
+      tryLayout() ;
     }
  }
  
