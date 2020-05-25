@@ -11,6 +11,10 @@
  * 
  * @import is from is.data.record
  * 
+ * @import is.array
+ * 
+ * @import is.class
+ * 
  * @param {data.Reader} reader 数据读取器
  * 
  * @param {array} records 数据记录数组
@@ -25,24 +29,36 @@ const {
 
 class main extends Array{
 
-    constructor(reader , records){
+    constructor(...args){
 
-        super() ;
+        let [
+            reader,
+            records
+        ] = args ;
 
-        let me = this ;
+        if(reader.__ZBEE_CLASS__ === true && isArray(records)){
 
-        define(me , 'reader' , reader) ;
+            super() ;
+            
+            let me = this ;
 
-        define(me , 'observable' , createObservable()) ;
+            define(me , 'reader' , reader) ;
 
-        for(let record of records){
+            define(me , 'observable' , createObservable()) ;
 
-            if(is(record)){
+            for(let record of records){
 
-                get(record , 'observable').belongTo(me) ;
+                if(is(record)){
 
-                push.call(me , record) ;
+                    get(record , 'observable').belongTo(me) ;
+
+                    push.call(me , record) ;
+                }
             }
+        
+        }else{
+
+            super(...args) ;
         }
     }
 
@@ -69,7 +85,7 @@ class main extends Array{
 
             if(itemIndex < length){
 
-                me[itemIndex].independent() ;
+                get(me[itemIndex] , 'observable').independent() ;
             }
         }
 
@@ -85,7 +101,7 @@ class main extends Array{
 
         if(length){
 
-            me[length - 1].independent() ;
+            get(me[length - 1] , 'observable').independent() ;
         }
 
         return super.pop() ;
@@ -100,7 +116,7 @@ class main extends Array{
 
         if(length){
 
-            me[0].independent() ;
+            get(me[0] , 'observable').independent() ;
         }
 
         return super.shift() ;
@@ -128,7 +144,7 @@ class main extends Array{
 
         }else{
 
-            processRaws.push(raw) ;
+            readRaws.push(raw) ;
         }
     }
 

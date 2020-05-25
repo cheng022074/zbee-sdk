@@ -37,6 +37,9 @@
         },{
             "name":"findNode",
             "impl":".mindmap.node.find"
+        },{
+            "name":"endFindNode",
+            "impl":".mindmap.node.find.end"
         }
     ]
 }

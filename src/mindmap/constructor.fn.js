@@ -111,6 +111,11 @@
 
       },
       defaultValue:false
+   },
+   placeholder:{
+      mode:'readwrite',
+      local:true,
+      defaultValue:false
    }
  }) ;
 

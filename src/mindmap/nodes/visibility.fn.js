@@ -104,6 +104,11 @@
             rightXY:nodeXY,
             node
         } of nodes){
+            
+            if(node.placeholder === true){
+
+                continue ;
+            }
 
             let distance =  getDistance(xy , nodeXY) ;
 
