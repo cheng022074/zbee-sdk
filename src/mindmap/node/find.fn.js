@@ -42,9 +42,9 @@
 
       let node = children[children.length - 1] ;
 
-      node.width = 100 ;
+      node.width = 114 ;
 
-      node.height = 100 ;
+      node.height = 66.8 ;
 
       node.placeholder = true ;
 
