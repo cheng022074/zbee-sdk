@@ -3,8 +3,6 @@
  * 
  * 输出脑图节点
  * 
- * @import getRegion from .region scoped
- * 
  * @import getCenterXY from .node.xy.center scoped
  * 
  * @import getRightXY from .node.xy.right scoped
@@ -17,6 +15,8 @@
  * 
  * @import isLeafNode from .node.is.leaf scoped
  * 
+ * @import getData from .node.data scoped
+ * 
  * @param {array} mindNodes 节点集合
  * 
  * @param {boolean} [generateLines = false] 生成连线信息 
@@ -26,49 +26,30 @@
  */
 
  const {
-   padding,
-   height,
    nodeHorizontalSeparationDistance
- } = this,{
-   height:regionHeight
- } = getRegion(),
- {
-    assign
- } = Object ;
+ } = this;
 
  let nodes = [],
      lines = [],
-     heightPadding = 0;
-
- if(height !== regionHeight){
-
-   heightPadding = padding ;
- }
-
- let selectedNode ;
+     selectedNode ;
 
  for(let mindNode of mindNodes){
 
-    let node = assign({} , mindNode),
+    let node = getData(mindNode),
         isLeaf = isLeafNode(mindNode);
 
     if(generateLines){
 
-      node.x += padding ;
-
-      node.y += heightPadding ;
-
-      let parentNode = getParentNode(mindNode);
+      let parentNode =getParentNode(mindNode);
 
       if(parentNode){
+
+          parentNode = getData(parentNode) ;
 
           let {
             x:nodeX,
             y:nodeY
-          } = getLeftXY(mindNode);
-
-          nodeX += padding,
-          nodeY += heightPadding ;
+          } = getLeftXY(node);
 
           if(isRootNode(parentNode)){
 
@@ -76,9 +57,6 @@
               x:parentNodeX,
               y:parentNodeY
             } = getCenterXY(parentNode);
-
-            parentNodeX += padding,
-            parentNodeY += heightPadding ;
 
             lines.push({
               draw:'line.bezierCurve',
@@ -100,9 +78,6 @@
               x:parentNodeX,
               y:parentNodeY
             } = getRightXY(parentNode);
-
-            parentNodeX += padding,
-            parentNodeY += heightPadding ;
 
             lines.push({
               draw:'line',
@@ -135,10 +110,7 @@
             let {
               x:nodeX,
               y:nodeY
-            } = getRightXY(mindNode);
-
-            nodeX += padding,
-            nodeY += heightPadding ;
+            } = getRightXY(node);
 
             lines.push({
               draw:'line',
@@ -154,23 +126,11 @@
       }
     }
 
-    delete node.children ;
-
-    delete node.parentNodeId ;
-
-    delete node.leafNodes ;
-
-    delete node.relationNodes ;
-
-    node.root = isRootNode(mindNode) ;
-
-    node.leaf = isLeaf ;
-
     nodes.push(node) ;
 
     if(node.selected){
 
-      selectedNode = assign({} , node) ;
+      selectedNode = Object.assign({} , node) ;
     }
  }
 

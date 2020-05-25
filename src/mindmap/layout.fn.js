@@ -36,6 +36,8 @@ function main(){
         visibilityNodes
     } = me;
 
+    delete me.region ;
+
     layout.call(me , rootNode) ;
 
     let {

@@ -5,6 +5,8 @@
  * 
  * @import getCenterXY from math.region.xy.center
  * 
+ * @import getRightXY from math.region.xy.right
+ * 
  * @import getDistance from math.point.distance
  * 
  * @import getRelationNodes from .relation scoped
@@ -30,10 +32,11 @@
     resort(){
 
         let me = this,
-        nodes = Array.from(me.values()).map(node => {
+        nodes = me.nodes = Array.from(me.values()).map(node => {
 
             return {
                 xy:getCenterXY(node),
+                rightXY:getRightXY(node),
                 node
             } ;
 
@@ -82,6 +85,49 @@
                 node
             } ;
         }) ;
+    }
+
+    getNearestParentNode(xy){
+
+        let {
+            nodes
+        } = this,
+        minDistance = Infinity,
+        minNode,
+        minDistance2 = Infinity,
+        minNode2,
+        {
+            x
+        } = xy;
+
+        for(let {
+            rightXY:nodeXY,
+            node
+        } of nodes){
+
+            let distance =  getDistance(xy , nodeXY) ;
+
+            if(x > nodeXY.x){
+
+                if(minDistance > distance){
+
+                    minDistance = distance ;
+
+                    minNode = node ;
+                }
+            
+            }
+            
+            if(minDistance2 > distance){
+
+                minDistance2 = distance ;
+
+                minNode2 = node ;
+                
+            }
+        }
+
+        return minNode || minNode2;
     }
 
     getNearestNode(node , direction){

@@ -34,6 +34,9 @@
         {
             "name":"down",
             "impl":".mindmap.select.move.down"
+        },{
+            "name":"findNode",
+            "impl":".mindmap.node.find"
         }
     ]
 }

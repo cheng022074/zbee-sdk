@@ -13,7 +13,15 @@
  * 
  */
 
- let me = this ;
+ let me = this,
+ {
+   region
+ } = me;
+
+ if(region){
+
+   return region ;
+ }
 
  let {
    leafNodes,
@@ -94,7 +102,7 @@ if(mindmapWidth > width){
 
 }
 
-return {
+return me.region = {
    left,
    right,
    top,
