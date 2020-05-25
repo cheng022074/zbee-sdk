@@ -138,7 +138,7 @@ class main extends Array{
 
         recordset.splice(recordset.indexOf(record) , 1) ;
 
-        get(recordset , 'observable').belongTo(me) ;
+        get(record , 'observable').belongTo(me) ;
 
         records.push(record) ;
 
