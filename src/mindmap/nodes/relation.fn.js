@@ -3,9 +3,9 @@
  * 
  * 获得指定节点的所有关联
  * 
- * @import getParentNode from ..node.parent scoped
- * 
  * @import getDescendantNodes from .relation.descendant
+ * 
+ * @import getAncestorNodes from .relation.ancestor scoped
  * 
  * @param {data.Record} node 节点
  * 
@@ -13,44 +13,27 @@
  * 
  */
 
-function main(node){
 
-    let {
-        relationNodes
-    } = node ;
-    
-    if(relationNodes){
-    
-        return relationNodes ;
-    }
-    
-    let {
-        hidden
-    } = node;
-    
-    relationNodes = node.relationNodes = [] ;
-    
-    if(!hidden){
-    
-        relationNodes.push(node , ...getDescendantNodes(node) , ...getAncestorNodes(node)) ;
-    
+let {
+    relationNodes
+} = node ;
 
-    }
-    
+if(relationNodes){
+
     return relationNodes ;
 }
 
-function getAncestorNodes(node){
+let {
+    hidden
+} = node;
 
-    let parentNode,
-        result = [];
+relationNodes = node.relationNodes = [] ;
 
-    while(parentNode = getParentNode(node)){
+if(!hidden){
 
-        result.push(parentNode) ;
+    relationNodes.push(node , ...getDescendantNodes(node) , ...getAncestorNodes(node)) ;
 
-        node = parentNode ;
-    }
 
-    return result ;
 }
+
+return relationNodes ;
