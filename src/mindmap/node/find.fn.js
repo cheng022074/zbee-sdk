@@ -18,7 +18,9 @@
  let me = this,
  {
     visibilityNodes,
-    previousFindedNode
+    previousFindedNode,
+    placeholderNodeWidth,
+    placeholderNodeHeight
  } = me,
  findedNode = visibilityNodes.getNearestParentNode(xy);
 
@@ -42,9 +44,9 @@
 
       let node = children[children.length - 1] ;
 
-      node.width = 114 ;
+      node.width = placeholderNodeWidth ;
 
-      node.height = 66.8 ;
+      node.height = placeholderNodeHeight ;
 
       node.placeholder = true ;
 
