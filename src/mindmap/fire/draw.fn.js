@@ -7,6 +7,8 @@
  * 
  * @import data from ..data scoped
  * 
+ * @import defer from function.defer
+ * 
  * @param {mixed} data 参数说明
  * 
  * @return {mixed} 返回说明 
@@ -15,17 +17,30 @@
 
  let me = this,
  {
-    visibilityNodes
- } = me,
- {
-     nodes,
-     selectedNode,
-     lines
- } = data(visibilityNodes.values() , true);
+   fireDrawEventTimerId
+ } = me;
 
- me.fireEvent('draw' , {
-    nodes,
-    lines,
-    selectedNode,
-    canvas:region()
+ if(fireDrawEventTimerId){
+
+   clearTimeout(fireDrawEventTimerId) ;
+ }
+
+ me.fireDrawEventTimerId = defer(() => {
+
+   let {
+      visibilityNodes
+   } = me,
+   {
+       nodes,
+       selectedNode,
+       lines
+   } = data(visibilityNodes.values() , true);
+  
+   me.fireEvent('draw' , {
+      nodes,
+      lines,
+      selectedNode,
+      canvas:region()
+   }) ;
+
  }) ;
