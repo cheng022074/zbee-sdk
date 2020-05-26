@@ -111,7 +111,8 @@
         mode,
         equals,
         set,
-        get
+        get,
+        defaultValue
     }  ;
 
     if(!local){

@@ -19,12 +19,32 @@
  {
     visibilityNodes,
     previousFindedNode,
-    placeholderNodeWidth,
-    placeholderNodeHeight
+    placeholderNode
  } = me,
  findedNode = visibilityNodes.getNearestParentNode(xy);
 
- if(!previousFindedNode || previousFindedNode.id !== findedNode.id){
+ if(previousFindedNode !== findedNode){
+    
+   if(previousFindedNode){
+
+      let {
+         children,
+         expanded
+      } = previousFindedNode ;
+   
+      if(expanded){
+   
+         if(children.includes(placeholderNode)){
+   
+            placeholderNode.hidden = true ;
+   
+            placeholderNode.parentNodeId = null ;
+   
+            children.splice(children.indexOf(placeholderNode) , 1) ;
+         }
+         
+      }
+   }
 
    let {
       children,
@@ -34,41 +54,12 @@
 
    if(expanded){
 
-      let id = Date.now();
+      children.push(placeholderNode) ;
 
-      children.push({
-         f_id:id,
-         f_title:'预加载节点',
-         f_pid:parentNodeId
-      }) ;
+      placeholderNode.parentNodeId = parentNodeId ;
 
-      let node = children[children.length - 1] ;
+      placeholderNode.hidden = false ;
 
-      node.width = placeholderNodeWidth ;
-
-      node.height = placeholderNodeHeight ;
-
-      node.placeholder = true ;
-
-      node.hidden = false ;
-   
-   }
-
-   if(previousFindedNode){
-
-      let {
-         children,
-         expanded
-      } = previousFindedNode ;
-
-      if(expanded){
-
-         let node = children[children.length - 1] ;
-
-         node.hidden = true ;
-   
-         children.splice(children.indexOf(node) , 1) ;
-      }
    }
 
    me.previousFindedNode = findedNode ;

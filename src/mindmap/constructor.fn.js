@@ -13,6 +13,8 @@
  * 
  * @import createVisibilityNodes from .nodes.visibility scoped
  * 
+ * @import generate from id.generate
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -53,80 +55,89 @@
 
  me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
 
- me.placeholderNodeWidth = placeholderNodeWidth ;
-
- me.placeholderNodeHeight = placeholderNodeHeight ;
-
  me.padding = padding ;
 
  me.width = width ;
 
  me.height = height ;
 
- let mindmap = me ;
+ let mindmap = me;
+ 
+ reader = me.reader = createReader({
+         ...reader,
+         expanded:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
+         },
+         hidden:{
+            mode:'readwrite',
+            local:true,
+            set(hidden){
 
- me.reader = createReader({
-   ...reader,
-   expanded:{
-      mode:'readwrite',
-      local:true,
-      defaultValue:false
-   },
-   hidden:{
-      mode:'readwrite',
-      local:true,
-      set(hidden){
+               return setHidden(this , hidden) ;
+            },
+            defaultValue:true
+         },
+         width:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
+         },
+         height:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
+         },
+         x:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:0
+         },
+         y:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:0
+         },
+         level:{
+            mode:'readwrite',
+            local:true,
+            set(level , oldLevel){
+               
+               return setLevel(this , level , oldLevel) ;
+            },
+            defaultValue:0
+         },
+         selected:{
+            mode:'readwrite',
+            local:true,
+            set(selected){
 
-         return setHidden(this , hidden) ;
-      },
-      defaultValue:true
-   },
-   width:{
-      mode:'readwrite',
-      local:true,
-      defaultValue:false
-   },
-   height:{
-      mode:'readwrite',
-      local:true,
-      defaultValue:false
-   },
-   x:{
-      mode:'readwrite',
-      local:true,
-      defaultValue:0
-   },
-   y:{
-      mode:'readwrite',
-      local:true,
-      defaultValue:0
-   },
-   level:{
-      mode:'readwrite',
-      local:true,
-      set(level , oldLevel){
-         
-         return setLevel(this , level , oldLevel) ;
-      },
-      defaultValue:0
-   },
-   selected:{
-      mode:'readwrite',
-      local:true,
-      set(selected){
+            return setSelected(this , selected) ;
 
-        return setSelected(this , selected) ;
-
-      },
-      defaultValue:false
-   },
-   placeholder:{
-      mode:'readwrite',
-      local:true,
-      defaultValue:false
-   }
- }) ;
+            },
+            defaultValue:false
+         },
+         placeholder:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
+         }
+      }) ;
 
  me.readerAsRoot = readerAsRoot ;
 
  me.initVisibilityLevel = initVisibilityLevel ;
+
+ let placeholderNode = reader.create({
+   id:generate('placeholder-'),
+   width:placeholderNodeWidth,
+   height:placeholderNodeHeight,
+   placeholder:true,
+   children:[]
+ }) ;
+
+ me.placeholderNode = placeholderNode ;
+
+ console.log('placeholderNode' , placeholderNode) ;
+

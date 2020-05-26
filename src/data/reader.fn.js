@@ -25,6 +25,11 @@
         me.fields = getFields.call(me , fields) ;
     }
 
+    create(data){
+
+        return getRecord.call(this , data) ;
+    }
+
     read(data , root = '.'){
 
         let config = {

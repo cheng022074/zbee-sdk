@@ -96,9 +96,26 @@ function main(node , hidden){
     
         if(!isRootNode(node)){
         
-            let parentNode = getParentNode(node) ;
-        
-            leafNodes.set(parentNode.id , parentNode) ;
+            let parentNode = getParentNode(node),
+            {
+                children
+            } = parentNode,
+            childrenHidden = true;
+
+            for(let childNode of children){
+
+                if(!childNode.hidden){
+
+                    childrenHidden = false ;
+
+                    break ;
+                }
+            }
+
+            if(childrenHidden){
+
+                leafNodes.set(parentNode.id , parentNode) ;
+            }
         }            
     }
     

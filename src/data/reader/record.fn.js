@@ -15,6 +15,8 @@
  * 
  * @import is from is.data.item
  * 
+ * @import is.defined
+ * 
  * @param {mixed} raw 行级原始数据
  * 
  * @param {array} raws 一组行级原始数据
@@ -31,7 +33,8 @@
 let {
     fields
 } = this,
-record = {};
+record = {},
+isConvert = isDefined(raw) && isDefined(raws) && isDefined(index) && isDefined(data) ;
 
 innerDefine(record , 'observable' , createObservable()) ;
 
@@ -41,22 +44,38 @@ for(let {
     mode,
     equals,
     set,
-    get
+    get,
+    defaultValue
 } of fields){
 
-    let value = convert(raw , raws , index , data) ;
+    if(isConvert){
 
-    define(record , name , {
-        mode,
-        equals,
-        set,
-        get,
-        value
-    }) ;
+        let value = convert(raw , raws , index , data) ;
 
-    if(is(value)){
+        define(record , name , {
+            mode,
+            equals,
+            set,
+            get,
+            value
+        }) ;
 
-        innerGet(value , 'observable').belongTo(record) ;   
+        if(is(value)){
+
+            innerGet(value , 'observable').belongTo(record) ;   
+        }
+    
+    }else{
+
+        let value = raw[name] ;
+
+        define(record , name , {
+            mode,
+            equals,
+            set,
+            get,
+            value:isDefined(value) ? value : defaultValue
+        }) ;
     }
 }
 
