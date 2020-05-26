@@ -148,11 +148,11 @@ class main extends Array{
         }
     }
 
-    let recordset = get(me , 'reader').read(readRaws) ;
+    let recordset = get(me , 'reader').read(readRaws , {
+        isRecordset:false
+    }) ;
 
     for(let record of recordset){
-
-        recordset.splice(recordset.indexOf(record) , 1) ;
 
         get(record , 'observable').belongTo(me) ;
 

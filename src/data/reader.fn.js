@@ -10,6 +10,8 @@
  * 
  * @import createRecordset from .recordset
  * 
+ * @import isObject from is.object.simple
+ * 
  * @class
  * 
  */
@@ -25,7 +27,26 @@
 
     read(data , root = '.'){
 
-        let me = this,
+        let config = {
+            root:'.',
+            isRecordset:true
+        } ;
+
+        if(isObject(root)){
+
+            Object.assign(config , root) ;
+        
+        }else{
+
+            config.root = root ;
+        }
+
+        root = config.root ;
+
+        let {
+            isRecordset
+        } = config,
+        me = this,
             raws = getRaws.call(me , data , root),
             records = [],
             count = 0;
@@ -35,6 +56,11 @@
             records.push(getRecord.call(me , raw , raws , count ++ , data)) ;
         }
 
-        return createRecordset(me , records) ;
+        if(isRecordset){
+
+            return createRecordset(me , records) ;
+        }
+
+        return records ;
     }
  }
