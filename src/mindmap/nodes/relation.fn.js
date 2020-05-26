@@ -5,6 +5,8 @@
  * 
  * @import getParentNode from ..node.parent scoped
  * 
+ * @import getDescendantNodes from .relation.descendant
+ * 
  * @param {data.Record} node 节点
  * 
  * @return {array} 关联节点集合 
@@ -48,26 +50,6 @@ function getAncestorNodes(node){
         result.push(parentNode) ;
 
         node = parentNode ;
-    }
-
-    return result ;
-}
-
-function getDescendantNodes(node){
-
-    let {
-        expanded,
-        children
-    } = node,
-    result = [];
-
-    if(expanded){
-
-        for(let childNode of children){
-    
-            result.push(childNode , ...getDescendantNodes(childNode)) ;
-        }
-
     }
 
     return result ;
