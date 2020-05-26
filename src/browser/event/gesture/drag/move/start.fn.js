@@ -53,7 +53,16 @@ if (Math.round(getDistance(startPoint , point)) * scale() >= minDistance) {
 
     info.time = Date.now();
 
-    dispatch('dragstart', info);
+    let {
+        dragStartNativeEvent
+    } = me ;
+
+    dispatch('dragstart', {
+        nativeEvent:dragStartNativeEvent,
+        info
+    });
+
+    delete me.dragStartNativeEvent ;
 
     un(getName('move') , me.onStart) ;
 
