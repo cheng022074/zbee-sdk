@@ -122,6 +122,11 @@
             mode:'readwrite',
             local:true,
             defaultValue:false
+         },
+         restructuring:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
          }
       }) ;
 
@@ -138,6 +143,4 @@
  }) ;
 
  me.placeholderNode = placeholderNode ;
-
- console.log('placeholderNode' , placeholderNode) ;
 

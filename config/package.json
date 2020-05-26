@@ -71,7 +71,11 @@
            "browser.event.init.cancel",
            "math.region",
            "math.region.right",
-           "math.region.bottom"
+           "math.region.bottom",
+           "browser.event.gesture.tap",
+           "browser.event.gesture.longpress",
+           "browser.event.gesture.drag",
+           "browser.event.gesture.vue"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js",
