@@ -14,10 +14,14 @@
  * @config maxDuration from event.tap...maxDuration
  * 
  * @import .tap.event
+ * 
+ * @import stop from ..stop
  *
  * @param {Event} e 事件对象
  * 
  */
+
+stop(e) ;
 
 if(getTouchEvents(e , 'start')){
 

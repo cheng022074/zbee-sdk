@@ -12,5 +12,6 @@
  */
 
 el.dispatchEvent(new CustomEvent(name , {
-   detail
+   detail,
+   bubbles:true
 })) ;
