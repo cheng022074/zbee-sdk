@@ -12,10 +12,11 @@
  */
 
  let {
-    visibilityNodes
+    visibilityNodes,
+    selectedNode
  } = this ;
 
- if(visibilityNodes.has(id)){
+ if(selectedNode.id !== id && visibilityNodes.has(id)){
 
     visibilityNodes.get(id).selected = true ;
 
