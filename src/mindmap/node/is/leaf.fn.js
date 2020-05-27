@@ -10,10 +10,10 @@
  */
 
  let {
-   visibilityNodes
- } = this ;
+   hidden
+ } = node ;
 
- if(visibilityNodes.has(node.id)){
+ if(!hidden){
 
    let {
       children
