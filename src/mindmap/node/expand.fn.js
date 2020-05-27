@@ -29,7 +29,7 @@ if(visibilityNodes.has(id)){
         expanded
     } = node;
 
-    if(!expanded && !isLeaf(node)){
+    if(!expanded){
 
         node.expanded = true ;
 
