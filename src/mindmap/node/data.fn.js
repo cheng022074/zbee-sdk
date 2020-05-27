@@ -48,9 +48,9 @@
 
     delete data.relationNodes ;
 
-    node.root = isRootNode(node) ;
+    data.root = isRootNode(node) ;
 
-    node.leaf = isLeafNode(node) ;
+    data.leaf = isLeafNode(node) ;
 
     return data ;
  }
