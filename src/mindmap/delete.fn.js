@@ -11,6 +11,8 @@
  * 
  * @import getLeafNodes from .nodes.leaf scoped
  * 
+ * @import layout from .layout scoped
+ * 
  */
 
  
@@ -29,7 +31,7 @@ let {
         let leafNodes,
             length;
 
-        while(leafNodes = getLeafNodes(node),length = leafNodes.length,length !== 1){
+        while(leafNodes = getLeafNodes(selectedNode),leafNodes.length !== 1){
 
             for(let leafNode of leafNodes){
 
@@ -39,10 +41,35 @@ let {
     }
 
     selectedNode.hidden = true ;
+    
 
-    let {
+    let parentNode = getParentNode(selectedNode),
+    {
         children
-    } = getParentNode(selectedNode) ;
+    } = parentNode,
+    {
+        length
+    } = children,
+    index = children.indexOf(selectedNode);
 
-    children.splice(children.indexOf(selectedNode) , 1) ;
+    if(length - 1){
+
+        if(index + 1 <= length - 1){
+
+            children[index + 1].selected = true ;
+        }
+
+        if(index - 1 >= 0){
+
+            children[index - 1].selected = true ;
+        }
+    
+    }else{
+
+        parentNode.selected = true ;
+    }
+
+    children.splice(children.indexOf(selectedNode) , 1) ;   
+
+    layout() ;
  }
