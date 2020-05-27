@@ -3,7 +3,9 @@
  * 
  * 在选定节点下添加一个子节点
  * 
- * @import expand from .expand scoped
+ * @import generate from id.generate
+ * 
+ * @import expand from .node.expand scoped
  * 
  * @import tryLayout from .layout.try scoped
  * 
@@ -11,30 +13,38 @@
  * 
  */
 
- let {
+ let me = this,
+ {
     selectedNode,
     reader
- } = this,
+ } = me,
  {
-    expand,
-    children
+    expanded,
+    children,
+    id
  } = selectedNode,
  childNode = reader.create({
    ...node,
    id:generate('node-'),
-   children:[]
+   children:[],
+   parentNodeId:id,
+   selected:true
  }) ;
 
  children.push(childNode) ;
 
- if(expand){
+ selectedNode.selected = false ;
+
+ me.selectedNode = childNode ;
+
+ if(expanded){
 
    childNode.hidden = false ;
 
-   tryLayout() ;
-
  }else{
 
-   expand() ;
+   expand(selectedNode) ;
    
  }
+
+ tryLayout() ;
