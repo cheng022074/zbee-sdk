@@ -15,7 +15,7 @@
 
  let {
     hidden
- } = node ;
+ } = parentNode ;
 
  if(hidden){
 
