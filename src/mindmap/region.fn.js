@@ -9,6 +9,8 @@
  * 
  * @import getBottomXY from .node.xy.bottom scoped
  * 
+ * @import getRegion from .node.region.scope scoped
+ * 
  * @return {object} 区域数据 
  * 
  */
@@ -24,59 +26,28 @@
  }
 
  let {
+   rootNode,
    leafNodes,
    padding,
    width:mindmapWidth,
    height:mindmapHeight
  } = me,
  left = 0,
- top,
  right,
  bottom,
- isInit = true;
+ {
+   x,
+   y:top,
+   width:rootNodeRegionWidth,
+   height:rootNodeRegionHeight
+ } = getRegion(rootNode) ;
 
-leafNodes = leafNodes.values() ;
+ right = x + rootNodeRegionWidth ;
 
-for(let leafNode of leafNodes){
+ bottom = top + rootNodeRegionHeight ;
 
-   let {
-      x:rightX
-   } = getRightXY(leafNode),
-   {
-      y:topY
-   } = getTopXY(leafNode),
-   {
-      y:bottomY
-   } = getBottomXY(leafNode);
-
-   if(isInit){
-
-      top = topY ;
-
-      right = rightX ;
-
-      bottom = bottomY ;
-
-      isInit = false ;
-
-      continue ;
-   }
-
-   if(right < rightX){
-
-      right = rightX ;
-   }
-
-   if(bottom < bottomY){
-
-      bottom = bottomY ;
-   }
-
-   if(top > topY){
-
-      top = topY ;
-   }
-}
+ 
+ console.log('region' , top , bottom) ;
 
 padding *= 2 ;
 
