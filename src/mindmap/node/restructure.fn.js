@@ -5,13 +5,21 @@
  * 
  * @import fireDrawEvent from ..fire.draw scoped
  * 
+ * @import expand from .expand scoped
+ * 
+ * @import tryLayout from ..layout.try scoped
+ * 
  * @param {object} xy 坐标
  * 
  */
 
-let me = this ;
+let me = this,
+{
+    restructureIndicateLocked,
+    restructuring
+} = me;
 
-if(!me.restructuring){
+if(!restructuring || restructureIndicateLocked){
 
     return ;
 }
@@ -40,5 +48,18 @@ if(!indicated){
 
     me.restructureIndicatedNode = parentNode ;
 
-    fireDrawEvent() ;
+    if(!parentNode.expanded){
+
+        me.restructureIndicateLocked = true ;
+
+        expand(parentNode) ;
+
+        await tryLayout() ;
+
+        me.restructureIndicateLocked = false ;
+    
+    }else{
+
+        fireDrawEvent() ;
+    }
 }
