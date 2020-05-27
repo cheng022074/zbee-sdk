@@ -11,6 +11,15 @@
  * 
  */
 
+ let {
+    hidden
+ } = node ;
+
+ if(!hidden){
+
+    return ;
+ }
+
 node.hidden = false ;
 
 let {

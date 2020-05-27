@@ -7,49 +7,29 @@
  * 
  * @import layout from .layout scoped
  * 
- * @import getParentNode from .node.parent scoped
- * 
- * @import getLeafNodes from .nodes.leaf scoped
- * 
- * @param {string} id 节点编号
+ * @import hide from .node.hide scoped
  * 
  */
 
-function main(id){
+let {
+    selectedNode
+} = this,
+{
+    expanded
+} = selectedNode;
 
-    let me = this,
-    {
-    visibilityNodes
-    } = me ;
+if(expanded && !isLeaf(selectedNode)){
 
-    if(visibilityNodes.has(id)){
+    let {
+        children
+    } = selectedNode ;
 
-        let node = visibilityNodes.get(id),
-        {
-            expanded
-        } = node;
+    for(let childNode of children){
 
-        if(expanded && !isLeaf(node)){
-
-            let leafNodes,
-                length;
-
-            while(leafNodes = getLeafNodes(node),length = leafNodes.length){
-
-                if(length === 1 && leafNodes[0] === node){
-
-                    break ;
-                }
-
-                for(let leafNode of leafNodes){
-
-                    leafNode.hidden = true ;
-                }
-            }
-
-            node.expanded = false ;
-
-            layout() ;
-        }
+        hide(childNode) ;
     }
+
+    selectedNode.expanded = false ;
+
+    layout() ;
 }

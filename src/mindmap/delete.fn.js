@@ -7,9 +7,7 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
- * @import isLeaf from .node.is.leaf scoped
- * 
- * @import getLeafNodes from .nodes.leaf scoped
+ * @import hide from .node.hide scoped
  * 
  * @import layout from .layout scoped
  * 
@@ -22,31 +20,7 @@ let {
 
  if(!isRootNode(selectedNode)){
 
-    let {
-            expanded
-        } = selectedNode;
-
-    if(expanded && !isLeaf(selectedNode)){
-
-        let leafNodes,
-            length;
-
-        while(leafNodes = getLeafNodes(selectedNode),length = leafNodes.length){
-
-            if(length === 1 && leafNodes[0] === selectedNode){
-
-                break ;
-            }
-
-            for(let leafNode of leafNodes){
-
-                leafNode.hidden = true ;
-            }
-        }
-    }
-
-    selectedNode.hidden = true ;
-    
+    hide(selectedNode) ;
 
     let parentNode = getParentNode(selectedNode),
     {
