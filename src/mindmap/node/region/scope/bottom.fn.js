@@ -15,8 +15,10 @@
  * 
  */
 
- let y = - Infinity,
-     nodes = getNodes(node);
+let {
+    y
+} =  getBottom(getNode(node)),
+nodes = getNodes(node);
 
 for(let node of nodes){
 
@@ -29,12 +31,5 @@ for(let node of nodes){
         y = nodeY ;
     }
 }
-
-if(y === - Infinity){
-
-    y = getBottom(getNode(node)).y ;
-}
-
-console.log(node.id , y , getBottom(getNode(node)).y) ;
 
 return y ;
