@@ -39,9 +39,12 @@ Vue.directive('gesture' , {
         oldValue:oldFn
     }) {
 
-      removeEventListener(el , name , oldFn) ;
+        if(fn !== oldFn){
+
+            removeEventListener(el , name , oldFn) ;
   
-      addEventListener(el , name , fn) ;
+            addEventListener(el , name , fn) ;
+        }
     },
   
     unbind(el, {
