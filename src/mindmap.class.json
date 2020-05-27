@@ -19,7 +19,8 @@
         "resize",
         "expand",
         "collapse",
-        "select",{
+        "select",
+        "delete",{
             "name":"left",
             "impl":".mindmap.select.move.left"
         },
