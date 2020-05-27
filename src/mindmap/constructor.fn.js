@@ -127,6 +127,11 @@
             mode:'readwrite',
             local:true,
             defaultValue:false
+         },
+         indicated:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
          }
       }) ;
 

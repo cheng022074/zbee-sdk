@@ -105,7 +105,7 @@
             node
         } of nodes){
             
-            if(node.placeholder === true){
+            if(node.placeholder === true || node.restructuring === true){
 
                 continue ;
             }

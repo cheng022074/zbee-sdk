@@ -11,8 +11,15 @@
 
 let me = this,
 {
-   selectedNode
+   selectedNode,
+   restructureIndicatedNode
 } = me;
+
+restructureIndicatedNode.indicated = false ;
+
+delete me.restructureIndicatedNode ;
+
+delete me.restructuring ;
 
 selectedNode.restructuring = false ;
 

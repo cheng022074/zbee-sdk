@@ -21,11 +21,12 @@
      nodes,
      selectedNode,
      lines
- } = data(visibilityNodes.values() , true);
+ } = data(visibilityNodes.values() , true),
+ params = {
+   nodes,
+   lines,
+   selectedNode,
+   canvas:region()
+};
 
- me.fireEvent('draw' , {
-    nodes,
-    lines,
-    selectedNode,
-    canvas:region()
- }) ;
+ me.fireEvent('draw' , params) ;

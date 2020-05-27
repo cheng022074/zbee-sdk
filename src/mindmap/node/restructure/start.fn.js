@@ -15,6 +15,8 @@
     selectedNode
  } = me;
 
+ me.restructuring = true ;
+
  selectedNode.restructuring = true ;
 
  let nodes = getDescendantNodes(selectedNode) ;

@@ -3,10 +3,42 @@
  * 
  * 函数实现说明
  * 
- * @param {mixed} data 参数说明
+ * @import fireDrawEvent from ..fire.draw scoped
  * 
- * @return {mixed} 返回说明 
+ * @param {object} xy 坐标
  * 
  */
 
- // 代码实现
+let me = this ;
+
+if(!me.restructuring){
+
+    return ;
+}
+
+let {
+   visibilityNodes,
+   selectedNode
+} = me,
+parentNode = visibilityNodes.getNearestParentNode(xy),
+{
+    indicated
+} = parentNode;
+
+if(!indicated){
+
+    let {
+        restructureIndicatedNode
+    } = me ;
+
+    if(restructureIndicatedNode){
+
+        restructureIndicatedNode.indicated = false ;
+    }
+
+    parentNode.indicated = true ;
+
+    me.restructureIndicatedNode = parentNode ;
+
+    fireDrawEvent() ;
+}
