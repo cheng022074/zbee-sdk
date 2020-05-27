@@ -1,12 +1,15 @@
 
 /**
  * 
- * 函数实现说明
+ * 插入成为最后个子节点
  * 
- * @param {mixed} data 参数说明
+ * @import append from ..append scoped
  * 
- * @return {mixed} 返回说明 
+ * @param {data.Record} parentNode 父节点
+ * 
+ * @param {mixed} node 插入节点配置
  * 
  */
 
- // 代码实现
+append(parentNode , node) ;
+ 
