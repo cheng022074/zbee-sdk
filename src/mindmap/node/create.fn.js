@@ -3,6 +3,8 @@
  * 
  * 创建新节点
  * 
+ * @import generate from id.generate
+ * 
  * @param {mixed} node 节点信息
  * 
  * @param {data.Record} parentNode 父节点
@@ -15,13 +17,17 @@
     reader
  } = this ;
 
- return reader.create({
+ node = reader.create({
     ...node,
     id:generate('node-'),
     children:[],
     parentNodeId:parentNode.id,
     selected:true
 }) ;
+
+node.hidden = false ;
+
+return node ;
 
 
 

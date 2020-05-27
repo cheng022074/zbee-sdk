@@ -3,15 +3,15 @@
  * 
  * 插入节点
  * 
- * @import isRootNode from ..is.root scoped
+ * @import isRootNode from .is.root scoped
  * 
- * @import getParentNode from ..parent scoped
+ * @import getParentNode from .parent scoped
  * 
  * @param {data.Record} insertNode 需要插入的节点
  * 
  * @param {data.Record} beforeNode 参照节点
  * 
- * @param {number} offset 插入偏移位置
+ * @param {number} [offset = 0] 插入偏移位置
  * 
  * @return {data.Record} 插入后的节点
  * 

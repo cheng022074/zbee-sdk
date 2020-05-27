@@ -20,7 +20,8 @@
  let me = this,
  {
     selectedNode
- } = me,
+ } = me ;
+ 
  node = insert(create(node , getParentNode(selectedNode)) , selectedNode) ;
 
  selectedNode.selected = false ;
