@@ -3,7 +3,7 @@
  * 
  * 获得区域的顶部距离
  * 
- * @import getNode from ....leaf.first
+ * @import getNodes from ......nodes.child.last
  * 
  * @import getTopXY from ....xy.top scoped
  * 
@@ -13,8 +13,19 @@
  * 
  */
 
-let {
-    y
-} = getTopXY(getNode(node)) ;
+let y = Infinity,
+    nodes = getNodes(node);
+
+for(let node of nodes){
+
+    let {
+        y:nodeY
+    } = getTopXY(node) ;
+
+    if(y > nodeY){
+
+        y = nodeY ;
+    }
+}
 
 return y ;
