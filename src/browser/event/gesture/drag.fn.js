@@ -76,6 +76,8 @@ me.startPoint = {
     y
 } ;
 
+me.dragStartNativeEvent = e ;
+
 on(getName('move') , me.onStart = onStart) ;
 
 on(getName('end') , me.onEnd = disabled , {

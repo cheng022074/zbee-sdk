@@ -104,7 +104,7 @@ function main(node , hidden){
 
             for(let childNode of children){
 
-                if(!childNode.hidden){
+                if(childNode !== node && !childNode.hidden){
 
                     childrenHidden = false ;
 

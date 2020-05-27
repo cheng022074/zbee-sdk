@@ -7,6 +7,8 @@
  * 
  * @param {string} id 节点编号
  * 
+ * @param {boolean} [isFireDrawEvent = true] 是否派发重绘事件 
+ * 
  */
 
  let {
@@ -17,5 +19,8 @@
 
     visibilityNodes.get(id).selected = true ;
 
-    fireDrawEvent() ;
+    if(isFireDrawEvent){
+
+      fireDrawEvent() ;
+    }    
  }

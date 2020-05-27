@@ -75,7 +75,8 @@
            "browser.event.gesture.tap",
            "browser.event.gesture.longpress",
            "browser.event.gesture.drag",
-           "browser.event.gesture.vue"
+           "browser.event.gesture.vue",
+           "browser.selector.parent"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\src\\lib.js",
