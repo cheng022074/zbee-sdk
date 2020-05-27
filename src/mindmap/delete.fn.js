@@ -31,7 +31,12 @@ let {
         let leafNodes,
             length;
 
-        while(leafNodes = getLeafNodes(selectedNode),leafNodes.length !== 1){
+        while(leafNodes = getLeafNodes(selectedNode),length = leafNodes.length){
+
+            if(length === 1 && leafNodes[0] === selectedNode){
+
+                break ;
+            }
 
             for(let leafNode of leafNodes){
 
