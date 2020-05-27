@@ -9,6 +9,8 @@
  * 
  * @param {data.Record} node 节点
  * 
+ * @return {boolean} 如果正确展开则返回 true , 否则返回 false
+ * 
  */
 
 
@@ -39,5 +41,9 @@ if(visibilityNodes.has(id)){
 
             show(childNode) ;
         }
+
+        return true ;
     }
 }
+
+return false ;

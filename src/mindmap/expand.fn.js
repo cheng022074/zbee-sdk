@@ -3,7 +3,7 @@
  * 
  * 展开节点
  * 
- * @import isLeaf from .node.is.leaf scoped
+ * @import expand from .node.expand scoped
  * 
  * @import tryLayout from .layout.try scoped  
  * 
@@ -11,55 +11,14 @@
  * 
  */
 
- async function main(id){
+let me = this,
+{
+    selectedNode
+} = this ;
 
-    let me = this,
-    {
-        visibilityNodes
-    } = me ;
+if(expand(selectedNode)){
 
-    if(visibilityNodes.has(id)){
+    await tryLayout() ;
+}
 
-        let node = visibilityNodes.get(id),
-        {
-            expanded
-        } = node;
-
-        if(!expanded && !isLeaf(node)){
-
-            node.expanded = true ;
-
-            let {
-                children
-            } = node ;
-
-            for(let childNode of children){
-
-                visibility(childNode) ;
-            }
-
-            await tryLayout() ;
-        }
-    }
- }
-
- function visibility(node){
-
-    node.hidden = false ;
-
-    let {
-        expanded
-    } = node ;
-
-    if(expanded && !isLeaf(node)){
-
-        let {
-            children
-        } = node ;
-
-        for(let childNode of children){
-
-            visibility(childNode) ;
-        }
-    }
- }
+   
