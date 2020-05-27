@@ -3,13 +3,15 @@
  * 
  * 插入节点
  * 
+ * @import create from .create scoped
+ * 
  * @import isRootNode from .is.root scoped
  * 
  * @import getParentNode from .parent scoped
  * 
- * @param {data.Record} insertNode 需要插入的节点
+ * @param {mixed} insertNode 需要插入的节点
  * 
- * @param {data.Record} beforeNode 参照节点
+ * @param {data.Record} baseNode 参照节点
  * 
  * @param {number} [offset = 0] 插入偏移位置
  * 
@@ -19,17 +21,20 @@
 
 let {
     hidden
-} = beforeNode ;
+} = baseNode ;
 
-if(!hidden && !isRootNode(beforeNode)){
+if(!hidden && !isRootNode(baseNode)){
 
-    let {
+    let parentNode = getParentNode(baseNode),
+    {
         children
-    } = getParentNode(beforeNode),
+    } = parentNode,
     {
         length
     } = children,
-    index = children.indexOf(beforeNode) + offset;
+    index = children.indexOf(baseNode) + offset;
+
+    insertNode = create(insertNode , parentNode) ;
 
     if(index > length - 1){
 

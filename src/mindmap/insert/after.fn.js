@@ -5,10 +5,6 @@
  * 
  * @import insert from ..node.insert.after scoped
  * 
- * @import create from ..node.create scoped
- * 
- * @import getParentNode from ..node.parent scoped
- * 
  * @import tryLayout from ..layout.try scoped
  * 
  * @param {mixed} node 插入的节点配置
@@ -22,7 +18,7 @@ let me = this,
    selectedNode
 } = me ;
 
-node = insert(create(node , getParentNode(selectedNode)) , selectedNode) ;
+node = insert(node , selectedNode) ;
 
 selectedNode.selected = false ;
 

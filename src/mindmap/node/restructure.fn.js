@@ -3,13 +3,23 @@
  * 
  * 函数实现说明
  * 
- * @import fireDrawEvent from ..fire.draw scoped
- * 
  * @import expand from .expand scoped
  * 
  * @import tryLayout from ..layout.try scoped
  * 
+ * @import layout from ..layout scoped
+ * 
  * @import getRegion from .region.scope scoped
+ * 
+ * @import getParentNode from .parent scoped
+ * 
+ * @import insertAfter from .insert.after scoped
+ * 
+ * @import insertBefore from .insert.before scoped
+ * 
+ * @import insertFirst from .insert.first scoped
+ * 
+ * @import insertLast from .insert.last scoped
  * 
  * @param {object} xy 坐标
  * 
@@ -20,7 +30,8 @@ async function main(xy){
     let me = this,
     {
         restructureIndicateLocked,
-        restructuring
+        restructuring,
+        placeholderNode
     } = me;
 
     if(!restructuring || restructureIndicateLocked){
@@ -98,6 +109,11 @@ async function main(xy){
 
         for(let childNode of children){
 
+            if(childNode === placeholderNode){
+
+                continue ;
+            }
+
             let {
                 y:top,
                 height
@@ -122,6 +138,11 @@ async function main(xy){
     }else{
 
         restructurePosition.type = 'insertLast' ;
+    }
+
+    if(!restructurePosition.type){
+
+        return ;
     }
 
     let {
@@ -154,9 +175,56 @@ async function main(xy){
 
 function reInsert(restructurePosition){
 
-    this.restructurePosition = restructurePosition ;
+    let me = this,
+    {
+        placeholderNode,
+        restructureIndicatedNode
+    } = me,
+    {
+        type,
+        node
+    } = restructurePosition;
 
-    console.log('restructurePosition' , restructurePosition) ;
+    me.restructurePosition = restructurePosition ;
 
-    fireDrawEvent() ;
+    let {
+        parentNodeId
+    } = placeholderNode ;
+
+    if(parentNodeId){
+
+        let {
+            children
+        } = getParentNode(placeholderNode) ;
+
+        placeholderNode.hidden = true ;
+   
+        placeholderNode.parentNodeId = null ;
+
+        children.splice(children.indexOf(placeholderNode) , 1) ;
+    }
+
+    switch(type){
+
+        case 'insertFirst':
+
+            insertFirst(restructureIndicatedNode , placeholderNode) ;
+
+            placeholderNode.hidden = false ;
+
+            break ;
+
+        case 'insertLast':
+
+
+            break ;
+
+        case 'insertBefore':
+
+        case 'insertAafter':
+    }
+
+   
+
+    layout() ;
 }

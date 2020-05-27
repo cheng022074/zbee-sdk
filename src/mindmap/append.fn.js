@@ -3,7 +3,7 @@
  * 
  * 在选定节点下添加一个子节点
  * 
- * @import generate from id.generate
+ * @import append from .node.append scoped
  * 
  * @import expand from .node.expand scoped
  * 
@@ -15,31 +15,23 @@
 
  let me = this,
  {
-    selectedNode,
-    reader
+    selectedNode
  } = me,
  {
-    expanded,
-    children,
-    id
- } = selectedNode,
- childNode = reader.create({
-   ...node,
-   id:generate('node-'),
-   children:[],
-   parentNodeId:id,
-   selected:true
- }) ;
+    expanded
+ } = selectedNode;
 
- children.push(childNode) ;
+ node = append(selectedNode , node) ;
 
  selectedNode.selected = false ;
 
- me.selectedNode = childNode ;
+ node.selected = true ;
+
+ me.selectedNode = node ;
 
  if(expanded){
 
-   childNode.hidden = false ;
+  node.hidden = false ;
 
  }else{
 

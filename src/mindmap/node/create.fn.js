@@ -21,6 +21,8 @@
 
  if(is(node)){
 
+   node.parentNodeId = parentNode.id ;
+
    return node ;
  }
 
