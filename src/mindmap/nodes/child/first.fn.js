@@ -15,10 +15,10 @@
     firstChildNodes
  } = node ;
 
- if(firstChildNodes){
+/* if(firstChildNodes){
 
     return firstChildNodes ;
- }
+ }*/
 
 let {
     hidden
@@ -36,10 +36,15 @@ if(!hidden){
 
     if(expanded && children.length){
 
-        let firstChildNode = children[0] ;
+        let firstChildNode = children[0],
+        {
+            hidden
+        } = firstChildNode;
 
-        firstChildNodes.push(firstChildNode , ...getNodes(firstChildNode)) ;
-    
+        if(!hidden){
+
+            firstChildNodes.push(firstChildNode , ...getNodes(firstChildNode)) ;
+        }
     }
 }
 

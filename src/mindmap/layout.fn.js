@@ -125,7 +125,7 @@ function layout(node){
 
                 moveY(previousChildNodes , scopeRegionY - childY) ;
 
-                childY = scopeRegionY + scopeRegionHeight + nodeVerticalSeparationDistance ;
+                childY = scopeRegionY + scopeRegionHeight + nodeVerticalSeparationDistance;
             }
 
             previousChildNodes.push(childNode) ;
