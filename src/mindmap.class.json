@@ -20,7 +20,8 @@
         "expand",
         "collapse",
         "select",
-        "delete",{
+        "delete",
+        "append",{
             "name":"left",
             "impl":".mindmap.select.move.left"
         },
