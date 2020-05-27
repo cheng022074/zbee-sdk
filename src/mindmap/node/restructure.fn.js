@@ -9,6 +9,8 @@
  * 
  * @import tryLayout from ..layout.try scoped
  * 
+ * @import getRegion from .region.scope scoped
+ * 
  * @param {object} xy 坐标
  * 
  */
@@ -39,6 +41,8 @@ if(!indicated){
         restructureIndicatedNode
     } = me ;
 
+    delete me.restructurePosition ;
+
     if(restructureIndicatedNode){
 
         restructureIndicatedNode.indicated = false ;
@@ -57,9 +61,96 @@ if(!indicated){
         await tryLayout() ;
 
         me.restructureIndicateLocked = false ;
+
+        return ;
     
-    }else{
+    }
+}
+
+let {
+    restructureIndicatedNode
+} = me,{
+    children
+} = restructureIndicatedNode,
+{
+    y
+} = xy;
+
+let {
+    y:top,
+    height
+} = getRegion(restructureIndicatedNode),
+bottom = top + height,
+restructurePosition = {
+
+};
+
+if(y <= top){
+
+    restructurePosition.type = 'insertFirst' ;
+
+} else if(y >= bottom){
+
+    restructurePosition.type = 'insertLast' ;
+
+}else if(children.length){
+
+    for(let childNode of children){
+
+        let {
+            y:top,
+            height
+        } = getRegion(childNode),
+        bottom = top + height;
+    
+        if(y >= top && y <= bottom){
+
+            if(y <= top + height / 2){
+
+                restructurePosition.type = 'insertBefore' ;
+            
+            }else{
+
+                restructurePosition.type = 'insertAfter' ;
+            }
+    
+            break ;
+        }
+    }
+
+}else{
+
+    restructurePosition.type = 'insertLast' ;
+}
+
+let {
+    restructurePosition:oldRestructurePosition
+} = me ;
+
+if(!oldRestructurePosition){
+
+    me.restructurePosition = restructurePosition ;
+
+    console.log('restructurePosition' , restructurePosition) ;
+
+    fireDrawEvent() ;
+
+}else{
+
+    let {
+        type:oldType,
+        node:oldNode
+    } = oldRestructurePosition,
+    {
+        type,
+        node
+    } = restructurePosition;
+
+    if(oldType !== type || oldNode !== node){
+
+        console.log('restructurePosition' , restructurePosition) ;
 
         fireDrawEvent() ;
     }
+
 }
