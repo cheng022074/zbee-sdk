@@ -26,6 +26,9 @@
             "name":"insertBefore",
             "impl":".mindmap.insert.before"
         },{
+            "name":"insertAfter",
+            "impl":".mindmap.insert.after"
+        },{
             "name":"left",
             "impl":".mindmap.select.move.left"
         },
