@@ -130,6 +130,8 @@ async function main(xy){
 
                     restructurePosition.type = 'insertAfter' ;
                 }
+
+                restructurePosition.node = childNode ;
         
                 break ;
             }
@@ -210,21 +212,26 @@ function reInsert(restructurePosition){
 
             insertFirst(restructureIndicatedNode , placeholderNode) ;
 
-            placeholderNode.hidden = false ;
-
             break ;
 
         case 'insertLast':
-
+            
+            insertLast(restructureIndicatedNode , placeholderNode) ;
 
             break ;
 
         case 'insertBefore':
 
-        case 'insertAafter':
+            insertBefore(placeholderNode , node) ;
+
+            break ;
+
+        case 'insertAfter':
+
+            insertAfter(placeholderNode , node) ;
     }
 
-   
+    placeholderNode.hidden = false ;
 
     layout() ;
 }
