@@ -10,7 +10,17 @@
  */
 
  let {
-    children
- } = node ;
+   visibilityNodes
+ } = this ;
 
- return !children.length ;
+ if(visibilityNodes.has(node.id)){
+
+   let {
+      children
+   } = node ;
+  
+   return !children.length ;
+ }
+
+ return false ;
+

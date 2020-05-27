@@ -7,7 +7,7 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
- * @import isLeaf from .node.is.leaf
+ * @import isLeaf from .node.is.leaf scoped
  * 
  * @import getLeafNodes from .nodes.leaf scoped
  * 
