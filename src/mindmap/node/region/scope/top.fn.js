@@ -3,7 +3,7 @@
  * 
  * 获得区域的顶部距离
  * 
- * @import getNodes from ......nodes.child.last
+ * @import getNodes from ......nodes.child.first
  * 
  * @import getTopXY from ....xy.top scoped
  * 
