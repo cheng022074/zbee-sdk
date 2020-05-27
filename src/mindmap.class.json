@@ -21,7 +21,11 @@
         "collapse",
         "select",
         "delete",
-        "append",{
+        "append",
+        {
+            "name":"insertBefore",
+            "impl":".mindmap.insert.before"
+        },{
             "name":"left",
             "impl":".mindmap.select.move.left"
         },
