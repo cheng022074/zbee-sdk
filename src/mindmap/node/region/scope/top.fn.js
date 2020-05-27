@@ -7,6 +7,8 @@
  * 
  * @import getTopXY from ....xy.top scoped
  * 
+ * @import getNode from ....leaf.first
+ * 
  * @param {data.Record} node 节点
  * 
  * @return {number} 距离
@@ -26,6 +28,11 @@ for(let node of nodes){
 
         y = nodeY ;
     }
+}
+
+if(y === Infinity){
+
+    y = getTopXY(getNode(node)).y ;
 }
 
 return y ;
