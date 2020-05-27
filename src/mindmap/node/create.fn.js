@@ -5,6 +5,8 @@
  * 
  * @import generate from id.generate
  * 
+ * @import is from is.data.record
+ * 
  * @param {mixed} node 节点信息
  * 
  * @param {data.Record} parentNode 父节点
@@ -16,6 +18,11 @@
  let {
     reader
  } = this ;
+
+ if(is(node)){
+
+   return node ;
+ }
 
  node = reader.create({
     ...node,
