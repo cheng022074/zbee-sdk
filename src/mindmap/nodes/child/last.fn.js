@@ -3,7 +3,7 @@
  * 
  * 获得指定节点的所有尾子节点
  * 
- * @import getNode from .first
+ * @import getNodes from .first
  * 
  * @param {data.Record} node 节点
  * 
@@ -15,10 +15,10 @@
     lastChildNodes
  } = node ;
 
- if(lastChildNodes){
+ /*if(lastChildNodes){
 
     return lastChildNodes ;
- }
+ }*/
 
 let {
     hidden
@@ -41,7 +41,7 @@ if(!hidden){
 
         let lastChildNode = children[length - 1] ;
 
-        lastChildNodes.push(lastChildNode , getNode(lastChildNode)) ;
+        lastChildNodes.push(lastChildNode , ...getNodes(lastChildNode)) ;
     
     }
 }

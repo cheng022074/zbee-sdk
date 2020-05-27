@@ -3,7 +3,7 @@
  * 
  * 获得指定节点的所有首子节点
  * 
- * @import getNode from .first
+ * @import getNodes from .first
  * 
  * @param {data.Record} node 节点
  * 
@@ -38,7 +38,7 @@ if(!hidden){
 
         let firstChildNode = children[0] ;
 
-        firstChildNodes.push(firstChildNode , getNode(firstChildNode)) ;
+        firstChildNodes.push(firstChildNode , ...getNodes(firstChildNode)) ;
     
     }
 }
