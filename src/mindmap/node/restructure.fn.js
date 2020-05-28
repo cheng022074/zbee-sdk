@@ -231,8 +231,6 @@ function reInsert(restructurePosition){
             insertAfter(placeholderNode , node) ;
     }
 
-    console.log(type  , restructureIndicatedNode , node) ;
-
     placeholderNode.hidden = false ;
 
     layout() ;

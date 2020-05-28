@@ -46,9 +46,6 @@
 
  bottom = top + rootNodeRegionHeight ;
 
- 
- console.log('region' , top , bottom) ;
-
 padding *= 2 ;
 
 let width = right - left,

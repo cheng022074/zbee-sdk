@@ -28,19 +28,10 @@ for(let childNode of nodes){
         y:nodeY
     } = getBottom(childNode) ;
 
-    if(node.id === '12123'){
-
-        console.log(childNode.id , nodeY)
-    }
-
     if(y < nodeY){
 
         y = nodeY ;
     }
 }
-
-if(node.id === '12123')
-
-console.log(startY , y) ;
 
 return y ;
