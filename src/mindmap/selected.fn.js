@@ -10,12 +10,12 @@
  * 
  */
 
- if(selected){
+let me = this,
+{
+   selectedNode
+} = me;
 
-    let me = this,
-    {
-       selectedNode
-    } = me;
+ if(selected){
 
     if(selectedNode){
 
@@ -23,6 +23,11 @@
     }
 
     me.selectedNode = node ;
+ 
+ }else if(me === selectedNode){
+
+   delete me.selectedNode ;
+   
  }
 
  return selected ;
