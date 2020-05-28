@@ -36,7 +36,8 @@
  for(let mindNode of mindNodes){
 
     let node = getData(mindNode),
-        isLeaf = isLeafNode(mindNode);
+        isLeaf = isLeafNode(mindNode),
+        indicated = mindNode.placeholder;
 
     if(generateLines){
 
@@ -60,6 +61,7 @@
 
             lines.push({
               draw:'line.bezierCurve',
+              indicated,
               points:[
                 parentNodeX,
                 parentNodeY,
@@ -81,6 +83,7 @@
 
             lines.push({
               draw:'line',
+              indicated,
               points:[
                 parentNodeX,
                 parentNodeY,
@@ -91,6 +94,7 @@
 
             lines.push({
               draw:'line.bezierCurve',
+              indicated,
               points:[
                 parentNodeX + nodeHorizontalSeparationDistance / 2,
                 parentNodeY,
@@ -114,6 +118,7 @@
 
             lines.push({
               draw:'line',
+              indicated,
               points:[
                 nodeX,
                 nodeY,

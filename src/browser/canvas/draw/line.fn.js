@@ -3,8 +3,6 @@
  * 
  * 绘制直线
  * 
- * @import assign from object.assign
- * 
  * @import scale from browser.scale value
  * 
  * @import doBegin from browser.canvas.begin
@@ -29,7 +27,7 @@
 
     doBegin(context , independent) ;
 
-    assign(context , styles) ;
+    Object.assign(context , styles) ;
 
     let newPoints = [] ;
 
