@@ -15,11 +15,13 @@
 
  if(!isRootNode(node)){
 
-    hide(node) ;
-
     let {
         children
     } = getParentNode(node);
+
+    hide(node) ;
+
+    node.parentNodeId = null ;
 
     children.splice(children.indexOf(node) , 1) ;   
  }
