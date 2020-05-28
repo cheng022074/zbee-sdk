@@ -7,7 +7,7 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
- * @import hide from .node.hide scoped
+ * @import remove from .node.delete scoped
  * 
  * @import layout from .layout scoped
  * 
@@ -19,8 +19,6 @@ let {
  } = this ;
 
  if(!isRootNode(selectedNode)){
-
-    hide(selectedNode) ;
 
     let parentNode = getParentNode(selectedNode),
     {
@@ -48,7 +46,7 @@ let {
         parentNode.selected = true ;
     }
 
-    children.splice(children.indexOf(selectedNode) , 1) ;   
+    remove(selectedNode) ;
 
     layout() ;
  }
