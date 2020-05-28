@@ -9,6 +9,8 @@
  * 
  * @import reset from .hidden.reset scoped
  * 
+ * @import level from .hidden.level scoped
+ * 
  * @param {data.Record} node 脑图节点
  * 
  * @param {boolean} hidden 决定节点是否隐藏，隐藏为 true , 显示为 false
@@ -29,22 +31,17 @@ me = this,
 
 reset(node) ;
 
+level(node , hidden) ;
+
 if(hidden === false){
 
     visibilityNodes.set(id , node) ;
 
-    if(isRootNode(node)){
-
-        me.level = 1 ;
-
-    }else{
+    if(!isRootNode(node)){
 
         let {
-            id:parentNodeId,
-            level
+            id:parentNodeId
         } = getParentNode(node) ;
-
-        node.level = level + 1 ;
 
         leafNodes.delete(parentNodeId) ;
     }
@@ -66,8 +63,6 @@ if(hidden === false){
 }else{
 
     visibilityNodes.delete(id) ;
-    
-    node.level = 0 ;
 
     node.selected = false ;
 
