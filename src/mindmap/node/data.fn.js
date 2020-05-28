@@ -42,11 +42,19 @@
 
     delete data.children ;
 
+    delete data.hidden ;
+
+    delete data.level ;
+
     delete data.parentNodeId ;
 
     delete data.leafNodes ;
 
     delete data.relationNodes ;
+
+    delete data.firstChildNodes ;
+
+    delete data.lastChildNodes ;
 
     data.root = isRootNode(node) ;
 
