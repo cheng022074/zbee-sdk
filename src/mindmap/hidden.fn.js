@@ -140,6 +140,10 @@ function resetAncestorLeafNodes(node){
 
         delete parentNode.relationNodes ;
 
+        delete node.firstChildNodes ;
+
+        delete node.lastChildNodes ;
+
         node = parentNode ;
     }
 }

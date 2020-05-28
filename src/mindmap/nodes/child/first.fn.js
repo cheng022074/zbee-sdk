@@ -15,10 +15,10 @@
     firstChildNodes
  } = node ;
 
-/* if(firstChildNodes){
+ if(firstChildNodes){
 
     return firstChildNodes ;
- }*/
+ }
 
 let {
     hidden

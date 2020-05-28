@@ -15,10 +15,10 @@
     lastChildNodes
  } = node ;
 
- /*if(lastChildNodes){
+ if(lastChildNodes){
 
     return lastChildNodes ;
- }*/
+ }
 
 let {
     hidden
