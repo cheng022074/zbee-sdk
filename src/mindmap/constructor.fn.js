@@ -15,6 +15,10 @@
  * 
  * @import generate from id.generate
  * 
+ * @import buffer from function.buffer
+ * 
+ * @import data from .data scoped
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -148,4 +152,17 @@
  }) ;
 
  me.placeholderNode = placeholderNode ;
+
+ me.fireNodeCreatedEvent = buffer(() => {
+    
+   let {
+       unsizedNodes
+   } = me ;
+
+   me.fireEvent('nodecreated' , data(unsizedNodes.values()).nodes) ;
+
+}) ;
+
+
+
 

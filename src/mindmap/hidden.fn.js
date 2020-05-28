@@ -7,10 +7,6 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
- * @import data from .data scoped
- * 
- * @import defer from function.defer
- * 
  * @param {data.Record} node 脑图节点
  * 
  * @param {boolean} hidden 决定节点是否隐藏，隐藏为 true , 显示为 false
@@ -64,24 +60,7 @@ function main(node , hidden){
     
         unsizedNodes.set(id , node) ;
     
-        let {
-            nodeCreatedTimerId
-        } = me ;
-    
-        if(nodeCreatedTimerId){
-    
-            clearTimeout(nodeCreatedTimerId) ;
-        }
-    
-        me.nodeCreatedTimerId = defer(() => {
-    
-            let {
-                unsizedNodes
-            } = me ;
-    
-            me.fireEvent('nodecreated' , data(unsizedNodes.values()).nodes) ;
-    
-        }) ;
+        me.fireNodeCreatedEvent() ;
     }
     
     }else{
