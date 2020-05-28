@@ -5,9 +5,15 @@
  * 
  * @import getDescendantNodes from ....nodes.relation.descendant
  * 
- * @import fireDrawEvent from ....fire.draw scoped
+ * @import layout from ....layout scoped
  * 
  * @import getParentNode from ..parent scoped
+ * 
+ * @import remove from ..delete scoped
+ * 
+ * @import insertBefore from ..insert.before scoped
+ * 
+ * @import show from ..show scoped
  * 
  */
 
@@ -20,26 +26,26 @@ let me = this,
 
 restructureIndicatedNode.indicated = false ;
 
-delete me.restructureIndicatedNode ;
-
-delete me.restructuring ;
-
 let {
    parentNodeId
 } = placeholderNode ;
 
 if(parentNodeId){
 
-   let {
-       children
-   } = getParentNode(placeholderNode) ;
+   remove(selectedNode) ;
 
-   placeholderNode.hidden = true ;
+   insertBefore(selectedNode , placeholderNode) ;
 
-   placeholderNode.parentNodeId = null ;
+   show(selectedNode) ;
 
-   children.splice(children.indexOf(placeholderNode) , 1) ;
+   remove(placeholderNode) ;
+
+   selectedNode.selected = true ;
 }
+
+delete me.restructureIndicatedNode ;
+
+delete me.restructuring ;
 
 selectedNode.restructuring = false ;
 
@@ -50,4 +56,4 @@ for(let node of nodes){
    node.restructuring = false ;
  }
 
-fireDrawEvent() ;
+ layout() ;
