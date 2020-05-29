@@ -9,6 +9,8 @@
  * 
  * @import getParentNode from .parent scoped
  * 
+ * @import show from .show scoped
+ * 
  * @param {mixed} insertNode 需要插入的节点
  * 
  * @param {data.Record} baseNode 参照节点
@@ -46,6 +48,8 @@ if(!hidden && !isRootNode(baseNode)){
     }
 
     children.splice(index , 0 , insertNode) ;
+
+    show(insertNode) ;
 
     return insertNode ;
 }

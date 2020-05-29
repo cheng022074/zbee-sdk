@@ -7,6 +7,8 @@
  * 
  * @import create from .create scoped
  * 
+ * @import show from .show scoped
+ * 
  * @import is from .is.visibility
  * 
  * @param {data.Record} parentNode 节点
@@ -27,6 +29,8 @@
  node = create(node , parentNode) ;
  
  children.push(node) ;
+
+ show(node) ;
 
  return node ;
 
