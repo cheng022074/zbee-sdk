@@ -15,6 +15,8 @@
  * 
  * @import show from ..show scoped
  * 
+ * @import is from ..is.node.visibility
+ * 
  */
 
 let me = this,
@@ -26,13 +28,7 @@ let me = this,
 
 restructureIndicatedNode.indicated = false ;
 
-let {
-   parentNodeId
-} = placeholderNode ;
-
-if(parentNodeId){
-
-   remove(selectedNode) ;
+if(is(placeholderNode)){
 
    insertBefore(selectedNode , placeholderNode) ;
 
@@ -54,6 +50,6 @@ let nodes = getDescendantNodes(selectedNode) ;
 for(let node of nodes){
 
    node.restructuring = false ;
- }
+}
 
  layout() ;

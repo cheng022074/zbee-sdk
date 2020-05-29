@@ -5,6 +5,8 @@
  * 
  * @import isRootNode from .is.root scoped
  * 
+ * @import is from .is.node.visibility scoped
+ * 
  * @import getParentNode from .parent scoped
  * 
  * @import hide from .hide scoped
@@ -13,7 +15,7 @@
  * 
  */
 
- if(!isRootNode(node)){
+ if(is(node) && !isRootNode(node)){
 
     let {
         children
