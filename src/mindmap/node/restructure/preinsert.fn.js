@@ -9,10 +9,6 @@
  * 
  * @import getParentNode from ..parent scoped
  * 
- * @import insertFirst from ..insert.first scoped
- * 
- * @import insertLast from ..insert.last scoped
- * 
  * @import insertBefore from ..insert.before scoped
  * 
  * @import insertAfter from ..insert.after scoped
@@ -38,18 +34,21 @@ if(is(node)){
     } = xy,
     region = from(node),
     outY = getOutOfBoundOffsetY(region , y),
-    parentNode = getParentNode(node),
     {
         placeholderNode
     } = this;
 
+    console.log(node.id , outY) ;
+
     if(outY > 0){
 
-        insertFirst(parentNode , placeholderNode) ;
+        console.log('insertBefore' , placeholderNode , node) ;
+
+        insertBefore(placeholderNode , node) ;
     
     }else if(outY < 0){
 
-        insertLast(parentNode , placeholderNode) ;
+        insertAfter(placeholderNode , node) ;
     
     }else{
 
@@ -60,15 +59,13 @@ if(is(node)){
             right
         } = region,
         {
+            y:nodeY,
             height
         } = node;
 
-        if(contains({
-            top,
-            bottom:bottom - height / 2,
-            left,
-            right
-        } , xy)){
+        console.log(node.id , y , nodeY + height / 2) ;
+
+        if(y <= nodeY + height / 2){
 
             insertBefore(placeholderNode , node) ;
 

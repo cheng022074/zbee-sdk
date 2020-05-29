@@ -33,10 +33,11 @@ if(!hidden && !isRootNode(baseNode)){
     } = parentNode,
     {
         length
-    } = children,
-    index = children.indexOf(baseNode) + offset;
+    } = children;
 
     insertNode = create(insertNode , parentNode) ;
+
+    let index = children.indexOf(baseNode) + offset ;
 
     if(index > length - 1){
 

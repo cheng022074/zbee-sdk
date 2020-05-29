@@ -15,11 +15,9 @@
  * 
  * @import from from math.region.from
  * 
- * @import getRegion from .region.scope scoped
- * 
  * @import get from .get scoped
  * 
- * @import is from .is.visibility
+ * @import is from .is.normal
  * 
  * @param {object} xy 坐标
  * 
@@ -79,10 +77,12 @@ if(!restructuring || restructureIndicateLocked){
                 continue ;
             }
 
-            if(getOutOfBoundOffsetY(from(getRegion(childNode)) , y) === 0){
+            let offsetY = getOutOfBoundOffsetY(from(childNode) , y) ;
+
+            if(offsetY >= 0){
 
                 preinsert(childNode , xy) ;
-
+                
                 break ;
             }
         }   
