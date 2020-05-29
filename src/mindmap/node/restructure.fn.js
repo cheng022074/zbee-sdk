@@ -19,6 +19,8 @@
  * 
  * @import get from .get scoped
  * 
+ * @import is from .is.visibility
+ * 
  * @param {object} xy 坐标
  * 
  * @param {string} [id] 节点编号
@@ -45,27 +47,39 @@ if(!restructuring || restructureIndicateLocked){
 
     let parentNode = visibilityNodes.getNearestParentNode(xy) ;
 
-    parentNode.indicated = true ;
+    if(parentNode){
 
-    if(!parentNode.expanded){
+        parentNode.indicated = true ;
 
-        me.restructureIndicateLocked = true ;
+        if(!parentNode.expanded){
 
-        expand(parentNode) ;
+            me.restructureIndicateLocked = true ;
 
-        await tryLayout() ;
+            expand(parentNode) ;
 
-        me.restructureIndicateLocked = false ;
-    
-    }else{
+            await tryLayout() ;
+
+            me.restructureIndicateLocked = false ;
+
+            return ;
+        
+        }
 
         let {
             children
-        } = parentNode ;
-    
+        } = parentNode,
+        {
+            y
+        } = xy;
+
         for(let childNode of children){
-    
-            if(getOutOfBoundOffsetY(from(getRegion(childNode)) , xy) === 0){
+
+            if(!is(childNode)){
+
+                continue ;
+            }
+
+            if(getOutOfBoundOffsetY(from(getRegion(childNode)) , y) === 0){
 
                 preinsert(childNode , xy) ;
 

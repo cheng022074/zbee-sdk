@@ -29,18 +29,19 @@
  * 
  * @param {object} xy 坐标信息
  * 
- * @param {number} xy.y 纵坐标
- * 
  */
 
 if(is(node)){
 
-    let region = from(node),
-        outY = getOutOfBoundOffsetY(region , y),
-        parentNode = getParentNode(node),
-        {
-            placeholderNode
-        } = this;
+    let {
+        y
+    } = xy,
+    region = from(node),
+    outY = getOutOfBoundOffsetY(region , y),
+    parentNode = getParentNode(node),
+    {
+        placeholderNode
+    } = this;
 
     if(outY > 0){
 

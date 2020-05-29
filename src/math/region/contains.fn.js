@@ -26,4 +26,4 @@ let {
     bottom:positionBottom,
  } = from(position);
  
- return positionOLeft >= left && positionRight <= right && regionY >= y && positionBottom <= bottom;
+ return positionOLeft >= left && positionRight <= right && positionTop >= top && positionBottom <= bottom;

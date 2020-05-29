@@ -11,13 +11,13 @@
  * 
  * @import getRelationNodes from .relation scoped
  * 
- * @import getRegion from ....node.region.scope scoped
+ * @import getRegion from ..node.region.scope scoped
  * 
  * @import from from math.region.from
  * 
  * @import getOutOfBoundOffsetY from math.region.bound.out.y
  * 
- * @import is from ..node.is.visibility
+ * @import is from ..node.is.normal
  * 
  * @import is.defined
  * 
@@ -101,7 +101,9 @@
             nodes
         } = this;
 
-        for(let node of nodes){
+        for(let {
+            node
+        } of nodes){
 
             if(!is(node)){
 
@@ -211,7 +213,17 @@
 
  function getNearestParentNode(node , xy){
 
-    if(getOutOfBoundOffsetY(from(getRegion(node)) , xy) === 0){
+    let {
+        x,
+        y
+    } = xy;
+
+    if(!(x >= from(node).right)){
+
+        return ;
+    }
+
+    if(getOutOfBoundOffsetY(from(getRegion(node)) , y) === 0){
 
         let {
             children,

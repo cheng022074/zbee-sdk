@@ -5,12 +5,13 @@
  * 
  * @param {object} region 区域
  * 
+ * @param {number} y 纵坐标
+ * 
  * @return {number} 纵坐标偏移量 
  * 
  */
 
-let me = this,
-{
+let {
     top,
     bottom
 } = region ;
