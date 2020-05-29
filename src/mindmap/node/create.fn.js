@@ -7,7 +7,7 @@
  * 
  * @import is from is.data.record
  * 
- * @import isVisibilityNode from .is.node.visibility
+ * @import isVisibilityNode from .is.visibility
  * 
  * @import remove from .delete scoped
  * 

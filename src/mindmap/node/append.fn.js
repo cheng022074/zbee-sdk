@@ -7,7 +7,7 @@
  * 
  * @import create from .create scoped
  * 
- * @import is from .is.node.visibility
+ * @import is from .is.visibility
  * 
  * @param {data.Record} parentNode 节点
  * 

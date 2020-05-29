@@ -15,7 +15,7 @@
  * 
  * @import show from ..show scoped
  * 
- * @import is from ..is.node.visibility
+ * @import is from ..is.visibility
  * 
  */
 

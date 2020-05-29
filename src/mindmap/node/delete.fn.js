@@ -5,7 +5,7 @@
  * 
  * @import isRootNode from .is.root scoped
  * 
- * @import is from .is.node.visibility scoped
+ * @import is from .is.visibility
  * 
  * @import getParentNode from .parent scoped
  * 
