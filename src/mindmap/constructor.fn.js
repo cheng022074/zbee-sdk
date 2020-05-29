@@ -11,6 +11,8 @@
  * 
  * @import setSelected from .selected scoped
  * 
+ * @import setIndicated from .indicated scoped
+ * 
  * @import createVisibilityNodes from .nodes.visibility scoped
  * 
  * @import generate from id.generate
@@ -117,7 +119,7 @@
             local:true,
             set(selected){
 
-            return setSelected(this , selected) ;
+               return setSelected(this , selected) ;
 
             },
             defaultValue:false
@@ -135,7 +137,11 @@
          indicated:{
             mode:'readwrite',
             local:true,
-            defaultValue:false
+            defaultValue:false,
+            set(indicated){
+
+               return setIndicated(this , indicated) ;
+            }
          }
       }) ;
 

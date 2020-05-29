@@ -9,4 +9,4 @@
  * 
  */
 
- return node.hidden === false ;
+ return node.hidden === false && node.placeholder !== true && node.restructuring !== true;

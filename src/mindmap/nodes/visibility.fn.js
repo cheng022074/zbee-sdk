@@ -11,6 +11,14 @@
  * 
  * @import getRelationNodes from .relation scoped
  * 
+ * @import getRegion from ....node.region.scope scoped
+ * 
+ * @import from from math.region.from
+ * 
+ * @import getOutOfBoundOffsetY from math.region.bound.out.y
+ * 
+ * @import is from ..node.is.visibility
+ * 
  * @import is.defined
  * 
  */
@@ -91,48 +99,22 @@
 
         let {
             nodes
-        } = this,
-        minDistance = Infinity,
-        minNode,
-        minDistance2 = Infinity,
-        minNode2,
-        {
-            x
-        } = xy;
+        } = this;
 
-        for(let {
-            rightXY:nodeXY,
-            node
-        } of nodes){
-            
-            if(node.placeholder === true || node.restructuring === true){
+        for(let node of nodes){
+
+            if(!is(node)){
 
                 continue ;
             }
 
-            let distance =  getDistance(xy , nodeXY) ;
+            let parentNode = getNearestParentNode(node , xy) ;
 
-            if(x > nodeXY.x){
+            if(parentNode){
 
-                if(minDistance > distance){
-
-                    minDistance = distance ;
-
-                    minNode = node ;
-                }
-            
-            }
-            
-            if(minDistance2 > distance){
-
-                minDistance2 = distance ;
-
-                minNode2 = node ;
-                
+                return parentNode ;
             }
         }
-
-        return minNode || minNode2;
     }
 
     getNearestNode(node , direction){
@@ -224,6 +206,37 @@
 
             return nearestNode ;
         }
+    }
+ }
+
+ function getNearestParentNode(node , xy){
+
+    if(getOutOfBoundOffsetY(from(getRegion(node)) , xy) === 0){
+
+        let {
+            children,
+            expanded
+        } = node ;
+
+        if(expanded){
+
+            for(let childNode of children){
+
+                if(!is(childNode)){
+
+                    continue ;
+                }    
+    
+                let parentNode = getNearestParentNode(childNode , xy) ;
+        
+                if(parentNode){
+                    
+                    return parentNode ;
+                }
+            }
+        }
+    
+        return node ;
     }
  }
 

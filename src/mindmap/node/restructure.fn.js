@@ -9,214 +9,68 @@
  * 
  * @import layout from ..layout scoped
  * 
+ * @import preinsert from .restructure.preinsert scoped
+ * 
+ * @import getOutOfBoundOffsetY from math.region.bound.out.y
+ * 
+ * @import from from math.region.from
+ * 
  * @import getRegion from .region.scope scoped
  * 
- * @import getParentNode from .parent scoped
- * 
- * @import insertAfter from .insert.after scoped
- * 
- * @import insertBefore from .insert.before scoped
- * 
- * @import insertFirst from .insert.first scoped
- * 
- * @import insertLast from .insert.last scoped
- * 
- * @import preinsert from .restructure.preinsert scoped
+ * @import get from .get scoped
  * 
  * @param {object} xy 坐标
  * 
+ * @param {string} [id] 节点编号
+ * 
  */
 
-async function main(xy){
+let me = this,
+{
+    restructureIndicateLocked,
+    restructuring,
+    visibilityNodes
+} = me;
 
-    let me = this,
-    {
-        restructureIndicateLocked,
-        restructuring,
-        placeholderNode
-    } = me;
+if(!restructuring || restructureIndicateLocked){
 
-    if(!restructuring || restructureIndicateLocked){
+    return ;
+}
 
-        return ;
-    }
+ if(id){
 
-    let {
-        visibilityNodes
-    } = me,
-    parentNode = visibilityNodes.getNearestParentNode(xy),
-    {
-        indicated
-    } = parentNode;
+    preinsert(get(id) , xy) ;
+ 
+ }else{
 
-    if(!indicated){
+    let parentNode = visibilityNodes.getNearestParentNode(xy) ;
+
+    parentNode.indicated = true ;
+
+    if(!parentNode.expanded){
+
+        me.restructureIndicateLocked = true ;
+
+        expand(parentNode) ;
+
+        await tryLayout() ;
+
+        me.restructureIndicateLocked = false ;
+    
+    }else{
 
         let {
-            restructureIndicatedNode
-        } = me ;
-
-        delete me.restructurePosition ;
-
-        if(restructureIndicatedNode){
-
-            restructureIndicatedNode.indicated = false ;
-        }
-
-        parentNode.indicated = true ;
-
-        me.restructureIndicatedNode = parentNode ;
-
-        if(!parentNode.expanded){
-
-            me.restructureIndicateLocked = true ;
-
-            expand(parentNode) ;
-
-            await tryLayout() ;
-
-            me.restructureIndicateLocked = false ;
-
-            return ;
-        
-        }
-    }
-
-    let {
-        restructureIndicatedNode
-    } = me,{
-        children
-    } = restructureIndicatedNode,
-    {
-        y
-    } = xy;
-
-    let {
-        y:top,
-        height
-    } = getRegion(restructureIndicatedNode),
-    bottom = top + height,
-    restructurePosition = {
-
-    };
-
-    if(y <= top){
-
-        restructurePosition.type = 'insertFirst' ;
-
-    } else if(y >= bottom){
-
-        restructurePosition.type = 'insertLast' ;
-
-    }else if(children.length){
-
+            children
+        } = parentNode ;
+    
         for(let childNode of children){
+    
+            if(getOutOfBoundOffsetY(from(getRegion(childNode)) , xy) === 0){
 
-            if(childNode === placeholderNode){
+                preinsert(childNode , xy) ;
 
-                continue ;
-            }
-
-            let {
-                y:top,
-                height
-            } = getRegion(childNode),
-            bottom = top + height;
-        
-            if(y >= top && y <= bottom){
-
-                if(y <= top + height / 2){
-
-                    restructurePosition.type = 'insertBefore' ;
-                
-                }else{
-
-                    restructurePosition.type = 'insertAfter' ;
-                }
-
-                restructurePosition.node = childNode ;
-        
                 break ;
             }
-        }
-
-    }else{
-
-        restructurePosition.type = 'insertLast' ;
+        }   
     }
-
-    if(!restructurePosition.type){
-
-        return ;
-    }
-
-    let {
-        restructurePosition:oldRestructurePosition
-    } = me ;
-
-    if(!oldRestructurePosition){
-
-        reInsert.call(me , restructurePosition) ;
-
-    }else{
-
-        let {
-            type:oldType,
-            node:oldNode
-        } = oldRestructurePosition,
-        {
-            type,
-            node
-        } = restructurePosition;
-
-        if(oldType !== type || oldNode !== node){
-
-            reInsert.call(me , restructurePosition) ;
-        }
-
-    }
-
-}
-
-function reInsert(restructurePosition){
-
-    let me = this,
-    {
-        placeholderNode,
-        restructureIndicatedNode
-    } = me,
-    {
-        type,
-        node
-    } = restructurePosition;
-
-    me.restructurePosition = restructurePosition ;
-
-    switch(type){
-
-        case 'insertFirst':
-
-            insertFirst(restructureIndicatedNode , placeholderNode) ;
-
-            break ;
-
-        case 'insertLast':
-            
-            insertLast(restructureIndicatedNode , placeholderNode) ;
-
-            break ;
-
-        case 'insertBefore':
-
-            insertBefore(placeholderNode , node) ;
-
-            break ;
-
-        case 'insertAfter':
-
-            insertAfter(placeholderNode , node) ;
-    }
-
-    placeholderNode.hidden = false ;
-
-    layout() ;
-}
+ }

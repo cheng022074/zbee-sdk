@@ -23,6 +23,8 @@
  * 
  * @import from from math.region.from
  * 
+ * @import layout from ....layout scoped
+ * 
  * @param {data.Record} node 节点
  * 
  * @param {object} xy 坐标信息
@@ -74,4 +76,6 @@ if(is(node)){
             insertAfter(placeholderNode , node) ;
         }
     }
+
+    layout() ;
 }
