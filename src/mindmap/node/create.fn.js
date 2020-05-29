@@ -7,6 +7,10 @@
  * 
  * @import is from is.data.record
  * 
+ * @import isVisibilityNode from .is.node.visibility
+ * 
+ * @import remove from .delete scoped
+ * 
  * @param {mixed} node 节点信息
  * 
  * @param {data.Record} parentNode 父节点
@@ -20,6 +24,11 @@
  } = this ;
 
  if(is(node)){
+
+   if(isVisibilityNode(node)){
+
+      remove(node) ;
+   }
 
    node.parentNodeId = parentNode.id ;
 

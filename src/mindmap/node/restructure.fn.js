@@ -21,6 +21,8 @@
  * 
  * @import insertLast from .insert.last scoped
  * 
+ * @import preinsert from .restructure.preinsert scoped
+ * 
  * @param {object} xy 坐标
  * 
  */
@@ -188,23 +190,6 @@ function reInsert(restructurePosition){
     } = restructurePosition;
 
     me.restructurePosition = restructurePosition ;
-
-    let {
-        parentNodeId
-    } = placeholderNode ;
-
-    if(parentNodeId){
-
-        let {
-            children
-        } = getParentNode(placeholderNode) ;
-
-        placeholderNode.hidden = true ;
-   
-        placeholderNode.parentNodeId = null ;
-
-        children.splice(children.indexOf(placeholderNode) , 1) ;
-    }
 
     switch(type){
 

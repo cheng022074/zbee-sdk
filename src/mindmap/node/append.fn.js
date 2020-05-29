@@ -7,27 +7,26 @@
  * 
  * @import create from .create scoped
  * 
+ * @import is from .is.node.visibility
+ * 
  * @param {data.Record} parentNode 节点
  * 
  * @param {mixed} node 节点配置
  * 
  */
 
- let {
-    hidden
- } = parentNode ;
-
- if(hidden){
+ if(!is(parentNode)){
 
     return ;
  }
 
  let {
     children
- } = parentNode,
- childNode = create(node , parentNode) ;
- 
- children.push(childNode) ;
+ } = parentNode ;
 
- return childNode ;
+ node = create(node , parentNode) ;
+ 
+ children.push(node) ;
+
+ return node ;
 
