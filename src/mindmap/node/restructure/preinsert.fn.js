@@ -19,8 +19,6 @@
  * 
  * @import from from math.region.from
  * 
- * @import layout from ....layout scoped
- * 
  * @param {data.Record} node 节点
  * 
  * @param {object} xy 坐标信息
@@ -38,11 +36,7 @@ if(is(node)){
         placeholderNode
     } = this;
 
-    console.log(node.id , outY) ;
-
     if(outY > 0){
-
-        console.log('insertBefore' , placeholderNode , node) ;
 
         insertBefore(placeholderNode , node) ;
     
@@ -63,8 +57,6 @@ if(is(node)){
             height
         } = node;
 
-        console.log(node.id , y , nodeY + height / 2) ;
-
         if(y <= nodeY + height / 2){
 
             insertBefore(placeholderNode , node) ;
@@ -74,6 +66,4 @@ if(is(node)){
             insertAfter(placeholderNode , node) ;
         }
     }
-
-    layout() ;
 }

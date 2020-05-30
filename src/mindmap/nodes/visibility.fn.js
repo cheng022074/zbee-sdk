@@ -216,14 +216,19 @@
     let {
         x,
         y
-    } = xy;
+    } = xy,
+    {
+        right
+    } = from(node);
 
-    if(!(x >= from(node).right)){
+    if(!(x >= right)){
 
         return ;
     }
 
-    if(getOutOfBoundOffsetY(from(getRegion(node)) , y) === 0){
+    let offsetY = getOutOfBoundOffsetY(from(getRegion(node)) , y) ;
+
+    if(offsetY === 0){
 
         let {
             children,

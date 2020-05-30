@@ -11,6 +11,8 @@
  * 
  * @import preinsert from .restructure.preinsert scoped
  * 
+ * @import append from .append scoped
+ * 
  * @import getOutOfBoundOffsetY from math.region.bound.out.y
  * 
  * @import from from math.region.from
@@ -29,7 +31,8 @@ let me = this,
 {
     restructureIndicateLocked,
     restructuring,
-    visibilityNodes
+    visibilityNodes,
+    placeholderNode
 } = me;
 
 if(!restructuring || restructureIndicateLocked){
@@ -82,9 +85,15 @@ if(!restructuring || restructureIndicateLocked){
             if(offsetY >= 0){
 
                 preinsert(childNode , xy) ;
+
+                layout() ;
                 
-                break ;
+                return ;
             }
-        }   
+        }
+
+        append(parentNode , placeholderNode) ;
+
+        layout() ;
     }
  }
