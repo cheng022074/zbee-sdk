@@ -15,12 +15,12 @@
  * 
  * @import un from browser.event.listener.element.remove
  * 
- * @param {mixed} Vue VUE 实例
+ * @param {mixed} [Vue] VUE 实例
  * 
  * 
  */
 
-Vue.directive('gesture' , {
+ const directive = Object.freeze({
 
     bind(el, {
         arg:name,
@@ -58,6 +58,18 @@ Vue.directive('gesture' , {
       
     }
 }) ;
+
+function main(Vue){
+
+    if(Vue){
+
+        Vue.directive('gesture' , directive) ;
+        
+    }else{
+
+        return directive ;
+    }
+}
 
 function addEventListener(el , name , fn){
 
