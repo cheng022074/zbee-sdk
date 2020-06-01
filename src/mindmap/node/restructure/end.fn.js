@@ -26,6 +26,11 @@ let me = this,
    placeholderNode
 } = me;
 
+if(!restructureIndicatedNode){
+
+   return ;
+}
+
 restructureIndicatedNode.indicated = false ;
 
 if(is(placeholderNode)){

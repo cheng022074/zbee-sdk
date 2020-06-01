@@ -5,6 +5,8 @@
  * 
  * @import getDescendantNodes from ....nodes.relation.descendant
  * 
+ * @import isRootNode from ....node.is.root scoped
+ * 
  * @import fireDrawEvent from ....fire.draw scoped
  * 
  * 
@@ -14,6 +16,11 @@
  {
     selectedNode
  } = me;
+
+ if(isRootNode(selectedNode)){
+
+    return ;
+ }
 
  me.restructuring = true ;
 
