@@ -20,7 +20,7 @@
  * 
  */
 
- const directive = Object.freeze({
+ const gesture = Object.freeze({
 
     bind(el, {
         arg:name,
@@ -63,11 +63,13 @@ function main(Vue){
 
     if(Vue){
 
-        Vue.directive('gesture' , directive) ;
+        Vue.directive('gesture' , gesture) ;
         
     }else{
 
-        return directive ;
+        return {
+            gesture
+        } ;
     }
 }
 
