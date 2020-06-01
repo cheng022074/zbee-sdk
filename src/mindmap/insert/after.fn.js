@@ -20,8 +20,11 @@ let me = this,
 
 node = insert(node , selectedNode) ;
 
-selectedNode.selected = false ;
+if(node){
 
-me.selectedNode = node ;
+   selectedNode.selected = false ;
 
-tryLayout() ;
+   me.selectedNode = node ;
+
+   tryLayout() ;
+}
