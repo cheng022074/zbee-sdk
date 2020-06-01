@@ -57,30 +57,5 @@
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\TEST\\WEBPACK\\src\\lib.js"
         ]
-    },
-    "test-ok":{
-        "type":"webpack",
-        "webpack":true,
-        "classes":[
-           "mindmap",
-           "browser.canvas.init",
-           "browser.canvas.draw.line.bezierCurve",
-           "browser.canvas.draw.line",
-           "browser.event.listener.global.add",
-           "browser.event.listener.global.remove",
-           "browser.event.init",
-           "browser.event.init.cancel",
-           "math.region",
-           "math.region.right",
-           "math.region.bottom",
-           "browser.event.gesture.tap",
-           "browser.event.gesture.longpress",
-           "browser.event.gesture.drag",
-           "browser.event.gesture.vue",
-           "browser.selector.parent"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-TEST-OK\\xy_modules\\mindmap"
-        ]
     }
 }
