@@ -1,5 +1,5 @@
 {
     "moveDistance":8,
-    "maxDuration": 300,
+    "maxDuration": 100,
     "tapDistance": 24
 }
