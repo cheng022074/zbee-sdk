@@ -23,6 +23,10 @@
         "delete",
         "append",
         {
+            "name":"setNodeText",
+            "impl":".mindmap.node.text"
+        },
+        {
             "name":"insertBefore",
             "impl":".mindmap.insert.before"
         },{
