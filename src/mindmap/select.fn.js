@@ -11,14 +11,17 @@
  * 
  */
 
- let {
+ let me = this,
+ {
     visibilityNodes,
     selectedNode
- } = this ;
+ } = me ;
 
  if(selectedNode.id !== id && visibilityNodes.has(id)){
 
     visibilityNodes.get(id).selected = true ;
+        
+    me.fireEvent('select' , id) ;
 
     if(isFireDrawEvent){
 
