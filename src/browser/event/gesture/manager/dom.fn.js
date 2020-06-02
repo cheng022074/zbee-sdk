@@ -13,11 +13,11 @@
  * 
  * @import is.array
  * 
+ * @config eventConfig from event
+ * 
  * @once
  * 
  */
-
- const nameRe = /(?:start|end)$/ ;
 
  function dispatch(event , params){
 
@@ -38,6 +38,11 @@
     return events ;
  }
 
+ function getName(name){
+
+    return eventConfig[name] ;
+ }
+
  class main {
 
     constructor(){
@@ -54,7 +59,7 @@
             events
         } = this ;
 
-        name = name.replace(nameRe , '') ;
+        name = getName(name);
 
         if(events.has(el , name)){
 
@@ -102,6 +107,8 @@
     }
 
     uninstall(el , name){
+
+        name = getName(name);
 
         let {
             events

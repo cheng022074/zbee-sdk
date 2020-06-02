@@ -1,1 +1,8 @@
-{}
+{
+    "tap":"tap",
+    "dragstart":"drag",
+    "drag":"drag",
+    "dragend":"drag",
+    "singletap":"tap.double",
+    "doubletap":"tap.double"
+}
