@@ -5,6 +5,8 @@
  * 
  * @import getEvent from browser.event.single
  * 
+ * @import getDistance from math.point.distance
+ * 
  * @import getScale from browser.scale
  * 
  * @import disabled from .disabled scoped
@@ -38,18 +40,22 @@ let {
  {
     startTime,
     lastTapTime,
-    lastTarget
+    lastTarget,
+    startPoint,
+    dispatch,
+    timer
  } = me,
- nativeEvent = getEvent(e , 'end');
+ nativeEvent = getEvent(e , 'end'),
+ time = Date.now();
+
+ if(timer){
+
+    clearTimeout(timer) ;
+ }
 
  if(lastTapTime){
 
-    let {
-        startPoint,
-        dispatch
-    } = me ;
-
-    if(Date.now() - lastTapTime <= maxDuration){
+    if(time - lastTapTime <= maxDuration){
 
         let {
             pageX,
@@ -59,7 +65,7 @@ let {
         if(Math.round(getDistance({
             x:pageX,
             y:pageY
-        } , startPoint)) * getScale() >= tapDistance){
+        } , startPoint)) * getScale() <= tapDistance){
 
             if(nativeEvent.target === lastTarget){
 
@@ -70,16 +76,11 @@ let {
         
         }
 
-    }else{
-
-        dispatch('singletap' , {
-            nativeEvent
-        }) ;
     }
 
     disabled() ;
 
- }else if(Date.now() - startTime > maxDuration){
+ }else if(time - startTime > maxDuration){
  
     dispatch('singletap' , {
         nativeEvent
@@ -92,6 +93,16 @@ let {
     me.lastTapTime = Date.now() ;
 
     me.lastTarget = nativeEvent.target ;
+
+    me.timer = setTimeout(() => {
+
+        dispatch('singletap' , {
+            nativeEvent
+        }) ;
+    
+        disabled() ;
+
+    } , maxDuration - (time - startTime)) ;
  }
 
  

@@ -19,6 +19,7 @@ let me = this,
 if(timer){
 
   clearTimeout(timer) ;
+
 }
 
 un(getName('move') ,  onMove) ;
@@ -30,6 +31,10 @@ delete me.timer ;
 delete me.onMove ;
 
 delete me.onEnd ;
+
+delete me.startPoint ;
+
+delete me.startTime ;
 
 delete me.lastTarget ;
 
