@@ -23,6 +23,8 @@ let me = this,
     }
 
     me.selectedNode = node ;
+    
+    me.fireEvent('select' , node.id) ;
  
  }else if(me === selectedNode){
 
