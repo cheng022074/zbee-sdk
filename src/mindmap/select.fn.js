@@ -21,7 +21,7 @@
 
     visibilityNodes.get(id).selected = true ;
         
-    me.fireEvent('select' , id) ;
+    me.fireEvent('nodeselect' , id) ;
 
     if(isFireDrawEvent){
 
