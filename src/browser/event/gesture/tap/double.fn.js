@@ -27,10 +27,12 @@ if(getTouchEvents(e , 'start')){
  
 let me = this,
 {
-   startTime
+   timer
 } = me;
 
-if(startTime){
+if(timer){
+
+   clearTimeout(timer) ;
 
    return ;
 }

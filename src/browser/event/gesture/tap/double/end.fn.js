@@ -42,16 +42,10 @@ let {
     lastTapTime,
     lastTarget,
     startPoint,
-    dispatch,
-    timer
+    dispatch
  } = me,
  nativeEvent = getEvent(e , 'end'),
  time = Date.now();
-
- if(timer){
-
-    clearTimeout(timer) ;
- }
 
  if(lastTapTime){
 
