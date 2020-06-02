@@ -20,7 +20,8 @@
  */
 
  let {
-    reader
+    reader,
+    nodes
  } = this ;
 
  if(is(node)){
@@ -35,15 +36,14 @@
    return node ;
  }
 
- node = reader.create({
+node = reader.create({
     ...node,
     id:generate('node-'),
     children:[],
-    parentNodeId:parentNode.id,
-    selected:true
+    parentNodeId:parentNode.id
 }) ;
 
-node.hidden = false ;
+nodes.get(node.id , node) ;
 
 return node ;
 

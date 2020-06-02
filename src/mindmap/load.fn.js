@@ -5,6 +5,8 @@
  * 
  * @import initVisibilityNodes from .load.visibility scoped
  * 
+ * @import initNodes from .load.nodes scoped
+ * 
  * @import tryLayout from .layout.try scoped
  * 
  * @param {mixed} data 数据
@@ -25,6 +27,8 @@
     rootNode.selected = true ;
 
     initVisibilityNodes() ;
+
+    initNodes() ;
 
     await tryLayout() ;
  }

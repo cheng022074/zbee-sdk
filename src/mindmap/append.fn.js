@@ -9,6 +9,8 @@
  * 
  * @import tryLayout from .layout.try scoped
  * 
+ * @import select from .select scoped
+ * 
  * @param {object} [node = {}] 子节点配置信息
  * 
  */
@@ -23,20 +25,10 @@
 
  node = append(selectedNode , node) ;
 
- selectedNode.selected = false ;
-
- node.selected = true ;
-
- me.selectedNode = node ;
-
- if(expanded){
-
-  node.hidden = false ;
-
- }else{
+ if(!expanded){
 
    expand(selectedNode) ;
    
  }
 
- tryLayout() ;
+ tryLayout().then(() => select(node.id)) ;

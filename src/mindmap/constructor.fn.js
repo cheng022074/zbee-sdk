@@ -49,6 +49,8 @@
 
  let me = this ;
 
+ me.nodes = new Map() ;
+
  me.visibilityNodeLevels = new Map();
 
  me.visibilityNodes = createVisibilityNodes() ;

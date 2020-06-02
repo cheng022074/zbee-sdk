@@ -9,6 +9,8 @@
  * 
  * @import getParentNode from .parent scoped
  * 
+ * @import getDescendantNodes from ..nodes.relation.descendant scoped
+ * 
  * @import hide from .hide scoped
  * 
  * @param {data.Record} node 节点
@@ -23,7 +25,22 @@
 
     hide(node) ;
 
+    let {
+        nodes
+    } = this,
+    descendantNodes = getDescendantNodes(node , false);
+
+    for(let {
+        id
+    } of descendantNodes){
+
+        nodes.delete(id) ;
+    }
+
+    nodes.delete(node.id) ;
+
     node.parentNodeId = null ;
 
-    children.splice(children.indexOf(node) , 1) ;   
+    children.splice(children.indexOf(node) , 1) ;
+    
  }

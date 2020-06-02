@@ -23,14 +23,19 @@
  }
 
  let {
-    children
+    children,
+    hidden,
+    expanded
  } = parentNode ;
 
  node = create(node , parentNode) ;
  
  children.push(node) ;
 
- show(node) ;
+ if(!hidden && expanded){
+
+   show(node) ;
+ }
 
  return node ;
 

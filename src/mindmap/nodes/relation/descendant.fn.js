@@ -7,6 +7,8 @@
  * 
  * @param {data.Reocrd} node 节点
  * 
+ * @param {boolean} [isVisible = true] 是否只获取可见的节点
+ * 
  * @return {array} 节点集合
  * 
  */
@@ -17,11 +19,11 @@ let {
 } = node,
 result = [];
 
-if(expanded){
+if(expanded || !isVisible){
 
     for(let childNode of children){
 
-        result.push(childNode , ...getDescendantNodes(childNode)) ;
+        result.push(childNode , ...getDescendantNodes(childNode , isVisible)) ;
     }
 
 }
