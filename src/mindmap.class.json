@@ -23,6 +23,14 @@
         "delete",
         "append",
         {
+            "name":"getParentNode",
+            "impl":".mindmap.node.parent"
+        },
+        {
+            "name":"getChildNodes",
+            "impl":".mindmap.nodes.child"
+        },
+        {
             "name":"setNodeText",
             "impl":".mindmap.node.text"
         },

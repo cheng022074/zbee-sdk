@@ -26,9 +26,9 @@
 
     rootNode.selected = true ;
 
-    initVisibilityNodes() ;
-
     initNodes() ;
+
+    initVisibilityNodes() ;
 
     await tryLayout() ;
  }

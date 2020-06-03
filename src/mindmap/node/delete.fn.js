@@ -27,26 +27,15 @@
 
     hide(node) ;
 
-    let {
-        nodes
-    } = this,
-    descendantNodes = getDescendantNodes(node , false),
-    deleteNodes = [];
+    let descendantNodes = getDescendantNodes(node , false),
+        deleteNodes = [];
 
     for(let node of descendantNodes){
 
-        let {
-            id
-        } = node ;
-
         deleteNodes.push(data(node)) ;
-
-        nodes.delete(id) ;
     }
 
     deleteNodes.push(data(node)) ;
-
-    nodes.delete(node.id) ;
 
     node.parentNodeId = null ;
 

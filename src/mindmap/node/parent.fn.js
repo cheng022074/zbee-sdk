@@ -5,16 +5,40 @@
  * 
  * @import isRootNode from .is.root
  * 
- * @import get from .get scoped
+ * @import data from .data scoped
  * 
- * @param {data.Record} node 节点
+ * @import is.string
  * 
- * @return {data.Record} 父节点 
+ * @import query from .query scoped
+ * 
+ * @param {data.Record|string} node 节点
+ * 
+ * @param {boolean} [isReturnData = false] 是否返回数据
+ * 
+ * @return {data.Record|object} 父节点 
  * 
  */
 
+ if(isString(node)){
+
+   node = query(node) ;
+
+   if(!node){
+
+      return ;
+   }
+ }
+
  if(!isRootNode(node)){
 
-    return get(node.parentNodeId) ;
+   let parentNode = query(node.parentNodeId) ;
+
+   if(isReturnData){
+
+      return data(parentNode) ;
+   }
+
+   return parentNode ;
+
  }
 

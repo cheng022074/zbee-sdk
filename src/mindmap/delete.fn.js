@@ -70,7 +70,17 @@ if(id){
             parentNode.selected = true ;
         }
 
-        let deleteNodes = remove(selectedNode) ;
+        let deleteNodes = remove(selectedNode),
+            {
+                nodes
+            } = me;
+
+        for(let {
+            id
+        } of deleteNodes){
+
+            nodes.delete(id) ;
+        }
 
         layout() ;
 
