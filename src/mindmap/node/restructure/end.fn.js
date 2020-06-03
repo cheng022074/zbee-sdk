@@ -35,10 +35,7 @@ if(!restructureIndicatedNode){
    return ;
 }
 
-let {
-   order:oldOrder,
-   parentNodeId:oldParentNodeId
-} = selectedNode ;
+let fireEvent ;
 
 restructureIndicatedNode.indicated = false ;
 
@@ -48,11 +45,15 @@ if(is(placeholderNode)){
 
    if(insertBefore(selectedNode , placeholderNode)){
 
-      let parentNode = getParentNode(selectedNode) ;
+      fireEvent = () => {
 
-      me.fireEvent('nodemove' , data(selectedNode) , data(parentNode) , data(oldParentNode)) ;
+         let parentNode = getParentNode(selectedNode) ;
 
-      doOrder(parentNode) ;
+         me.fireEvent('nodemove' , data(selectedNode) , data(parentNode) , data(oldParentNode)) ;
+   
+         doOrder(parentNode) ;
+      } ;
+
    }
 
    remove(placeholderNode) ;
@@ -71,14 +72,11 @@ for(let node of nodes){
    node.restructuring = false ;
 }
 
-let {
-   order,
-   parentNodeId
-} = selectedNode ;
-
-if(order !== oldOrder || parentNodeId !== oldParentNodeId){
+if(fireEvent){
 
    layout() ;
+
+   fireEvent() ;
 
 }else{
 
