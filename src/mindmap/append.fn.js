@@ -28,7 +28,7 @@
     restructuring
  } = me;
 
- if(!restructuring){
+ if(restructuring){
 
     return ;
  }

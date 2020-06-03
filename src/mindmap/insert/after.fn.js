@@ -26,7 +26,7 @@ let me = this,
    restructuring
 } = me;
 
-if(!restructuring){
+if(restructuring){
 
    return ;
 }
