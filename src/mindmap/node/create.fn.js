@@ -9,7 +9,13 @@
  * 
  * @import isVisibilityNode from .is.visibility
  * 
- * @import remove from .delete scoped
+ * @import removeNode from .delete scoped
+ * 
+ * @import remove from array.remove
+ * 
+ * @import get from .get scoped
+ * 
+ * @import create from .create scoped
  * 
  * @param {mixed} node 节点信息
  * 
@@ -19,31 +25,45 @@
  * 
  */
 
- let {
-    reader,
-    nodes
- } = this ;
+let {
+   reader,
+   nodes
+} = this ;
 
- if(is(node)){
+if(is(node)){
 
-   if(isVisibilityNode(node)){
+   if(node.parentNodeId === parentNode.id){
 
-      remove(node) ;
+      remove(parentNode.children , node) ;
+   
+   }else{
+
+      removeNode(node) ;
+
+      node.parentNodeId = parentNode.id ;
    }
 
-   node.parentNodeId = parentNode.id ;
-
    return node ;
- }
+}
+
+let {
+   id
+} = node,
+existNode = get(id);
+
+if(existNode){
+
+   return create(existNode , parentNode) ;
+}
 
 node = reader.create({
-    ...node,
-    id:generate('node-'),
-    children:[],
-    parentNodeId:parentNode.id
+   id:generate('node-'),
+   ...node,
+   children:[],
+   parentNodeId:parentNode.id
 }) ;
 
-nodes.get(node.id , node) ;
+nodes.set(node.id , node) ;
 
 return node ;
 

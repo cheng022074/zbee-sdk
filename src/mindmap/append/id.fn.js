@@ -19,7 +19,12 @@
 
  if(parentNode){
 
-    append(parentNode , node) ;
+    let node = append(parentNode , node) ;
+
+    if(node === false){
+
+        return ;
+    }
 
     let {
         hidden,

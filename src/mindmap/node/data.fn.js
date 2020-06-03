@@ -32,35 +32,41 @@
     heightPadding = padding ;
  }
 
- if(!hidden){
+let data = Object.assign({} , node) ;
 
-    let data = Object.assign({} , node) ;
+if(!hidden){
 
-    data.x += padding ;
+   data.x += padding ;
 
-    data.y += heightPadding ;
+   data.y += heightPadding ;
 
-    delete data.children ;
+}else{
 
-    delete data.hidden ;
+   delete data.x ;
 
-    delete data.level ;
+   delete data.y ;
+}
 
-    delete data.parentNodeId ;
+delete data.children ;
 
-    delete data.leafNodes ;
+delete data.hidden ;
 
-    delete data.relationNodes ;
+delete data.level ;
 
-    delete data.firstChildNodes ;
+delete data.parentNodeId ;
 
-    delete data.lastChildNodes ;
+delete data.leafNodes ;
 
-    data.root = isRootNode(node) ;
+delete data.relationNodes ;
 
-    data.leaf = isLeafNode(node) ;
+delete data.firstChildNodes ;
 
-    return data ;
- }
+delete data.lastChildNodes ;
+
+data.root = isRootNode(node) ;
+
+data.leaf = isLeafNode(node) ;
+
+return data ;
 
  

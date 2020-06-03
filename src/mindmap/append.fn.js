@@ -11,24 +11,49 @@
  * 
  * @import select from .select scoped
  * 
+ * @import appendById from .append.id scoped
+ * 
+ * @import data from .node.data scoped
+ * 
  * @param {object} [node = {}] 子节点配置信息
+ * 
+ * @param {string} [parentNodeId] 父节点编号
  * 
  */
 
- let me = this,
- {
-    selectedNode
- } = me,
- {
-    expanded
- } = selectedNode;
+if(parentNodeId){
 
- node = append(selectedNode , node) ;
+  appendById(node , parentNodeId) ;
+  
+}else{
 
- if(!expanded){
+  let me = this,
+  {
+      selectedNode
+  } = me,
+  {
+      expanded
+  } = selectedNode;
 
-   expand(selectedNode) ;
-   
- }
+  node = append(selectedNode , node) ;
 
- tryLayout().then(() => select(node.id)) ;
+  if(node === false){
+
+    return ;
+    
+  }
+
+  if(!expanded){
+
+    expand(selectedNode) ;
+    
+  }
+
+  tryLayout().then(() => {
+  
+    me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+
+    select(node.id) ;
+  
+  }) ;
+}

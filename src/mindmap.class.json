@@ -23,10 +23,6 @@
         "delete",
         "append",
         {
-            "name":"appendById",
-            "impl":".mindmap.append.id"
-        },
-        {
             "name":"setNodeText",
             "impl":".mindmap.node.text"
         },

@@ -9,24 +9,31 @@
  * 
  * @import show from .show scoped
  * 
- * @import is from .is.visibility
+ * @import data from .data scoped
  * 
  * @param {data.Record} parentNode 节点
  * 
  * @param {mixed} node 节点配置
  * 
+ * 
  */
-
- if(!is(parentNode)){
-
-    return ;
- }
 
  let {
     children,
     hidden,
     expanded
- } = parentNode ;
+ } = parentNode,
+ {
+   length
+ } = children;
+
+ if(length){
+
+   if(children[length - 1] === node){
+
+      return false ;
+   }
+ }
 
  node = create(node , parentNode) ;
  
