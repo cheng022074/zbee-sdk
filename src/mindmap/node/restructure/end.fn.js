@@ -44,11 +44,13 @@ restructureIndicatedNode.indicated = false ;
 
 if(is(placeholderNode)){
 
+   let oldParentNode = getParentNode(selectedNode) ;
+
    if(insertBefore(selectedNode , placeholderNode)){
 
       let parentNode = getParentNode(selectedNode) ;
 
-      me.fireEvent('nodemove' , data(selectedNode) , data(parentNode)) ;
+      me.fireEvent('nodemove' , data(selectedNode) , data(parentNode) , data(oldParentNode)) ;
 
       doOrder(parentNode) ;
    }
