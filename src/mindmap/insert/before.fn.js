@@ -13,28 +13,37 @@
  * 
  * @import getParentNode from ..node.parent scoped
  * 
+ * @import insertBeforeById from .before.id scoped
+ * 
  * @param {mixed} node 插入的节点配置
  * 
- * @param {data.Record} beforeNode 参数节点
+ * @param {string} [beforeNodeId] 参数节点编号
  * 
  */
 
- let me = this,
- {
-    selectedNode
- } = me ;
+ if(beforeNodeId){
+
+  insertBeforeById(node , beforeNodeId) ;
  
- node = insert(node , selectedNode) ;
+ }else{
 
- if(node){
+  let me = this,
+    {
+        selectedNode
+    } = me ;
+    
+    node = insert(node , selectedNode) ;
 
-   node.selected = true ;
-   
-   tryLayout().then(() => {
+    if(node){
 
-    me.fireEvent('nodeinsertbefore' , data(node) , data(selectedNode)) ;
+      node.selected = true ;
+      
+      tryLayout().then(() => {
 
-    order(getParentNode(selectedNode)) ;
+        me.fireEvent('nodeinsertbefore' , data(node) , data(selectedNode)) ;
 
-   }) ;
+        order(getParentNode(selectedNode)) ;
+
+      }) ;
+    }
  }

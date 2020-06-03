@@ -43,6 +43,11 @@ if(!isRootNode(baseNode)){
 
         index = 0 ;
     }
+    
+    if(children[index] === insertNode){
+
+        return false ;
+    }
 
     children.splice(index , 0 , insertNode) ;
 
