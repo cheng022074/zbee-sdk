@@ -17,11 +17,13 @@
  * 
  */
 
- if(!isRootNode(node)){
+ let parentNode = getParentNode(node) ;
+
+ if(!isRootNode(node) && parentNode){
 
     let {
         children
-    } = getParentNode(node);
+    } = parentNode;
 
     hide(node) ;
 
