@@ -7,9 +7,9 @@
  * 
  * @import tryLayout from ..layout.try scoped
  * 
- * @import data from ..data scoped
+ * @import data from ..node.data scoped
  * 
- * @import order from ..order
+ * @import order from ..order scoped
  * 
  * @import getParentNode from ..node.parent scoped
  * 

@@ -11,7 +11,7 @@
  * 
  * @import show from .show scoped
  * 
- * @param {mixed} insertNode 需要插入的节点
+ * @param {mixed} [insertNode = {}] 需要插入的节点
  * 
  * @param {data.Record} baseNode 参照节点
  * 

@@ -3,7 +3,7 @@
  * 
  * 将指定节点的子节点进行排序，如果排序信息有变化则抛出事件
  * 
- * @import data from .data scoped
+ * @import data from .node.data scoped
  * 
  * @param {data.Record} node 节点
  * 
