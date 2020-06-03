@@ -9,6 +9,8 @@
  * 
  * @import query from ..node.query scoped
  * 
+ * @import data from ..node.data scoped
+ * 
  * @param {object} [node = {}] 子节点配置信息
  * 
  * @param {string} id 父节点编号
@@ -19,7 +21,7 @@
 
  if(parentNode){
 
-    let node = append(parentNode , node) ;
+    node = append(parentNode , node) ;
 
     if(node === false){
 
@@ -29,11 +31,16 @@
     let {
         hidden,
         expanded
-    } = parentNode ;
+    } = parentNode,
+    me = this;
 
     if(!hidden && expanded){
 
-        tryLayout() ;
+        tryLayout().then(() => me.fireEvent('nodeappend' , data(node) , data(parentNode))) ;
+    
+    }else{
+
+        me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
     }
 
  }

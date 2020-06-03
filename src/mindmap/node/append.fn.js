@@ -9,8 +9,6 @@
  * 
  * @import show from .show scoped
  * 
- * @import data from .data scoped
- * 
  * @param {data.Record} parentNode 节点
  * 
  * @param {mixed} node 节点配置

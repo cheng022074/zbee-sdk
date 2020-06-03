@@ -51,7 +51,7 @@ if(parentNodeId){
 
   tryLayout().then(() => {
   
-    me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+    me.fireEvent('nodeappend' , data(node) , data(selectedNode)) ;
 
     select(node.id) ;
   
