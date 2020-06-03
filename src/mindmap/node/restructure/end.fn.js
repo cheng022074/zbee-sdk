@@ -7,6 +7,8 @@
  * 
  * @import layout from ....layout scoped
  * 
+ * @import fireDrawEvent from ....fire.draw scoped
+ * 
  * @import getParentNode from ..parent scoped
  * 
  * @import remove from ..delete scoped
@@ -16,6 +18,10 @@
  * @import show from ..show scoped
  * 
  * @import is from ..is.visibility
+ * 
+ * @import data from ..data scoped
+ * 
+ * @import doOrder from ....order scoped
  * 
  */
 
@@ -31,6 +37,11 @@ if(!restructureIndicatedNode){
    return ;
 }
 
+let {
+   order:oldOrder,
+   parentNodeId:oldParentNodeId
+} = selectedNode ;
+
 restructureIndicatedNode.indicated = false ;
 
 if(is(placeholderNode)){
@@ -42,6 +53,8 @@ if(is(placeholderNode)){
    remove(placeholderNode) ;
 
    selectedNode.selected = true ;
+
+   doOrder(getParentNode(selectedNode)) ;
 }
 
 delete me.restructureIndicatedNode ;
@@ -57,4 +70,20 @@ for(let node of nodes){
    node.restructuring = false ;
 }
 
- layout() ;
+let {
+   order,
+   parentNodeId
+} = selectedNode ;
+
+if(order !== oldOrder || parentNodeId !== oldParentNodeId){
+
+   layout() ;
+
+   me.fireEvent('nodemove' , data(selectedNode) , data(getParentNode(selectedNode))) ;
+
+}else{
+
+   fireDrawEvent() ;
+}
+
+ 
