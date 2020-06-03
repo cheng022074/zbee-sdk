@@ -15,8 +15,6 @@
  * 
  * @import insertBefore from ..insert.before scoped
  * 
- * @import show from ..show scoped
- * 
  * @import is from ..is.visibility
  * 
  * @import data from ..data scoped
@@ -46,15 +44,16 @@ restructureIndicatedNode.indicated = false ;
 
 if(is(placeholderNode)){
 
-   insertBefore(selectedNode , placeholderNode) ;
+   if(insertBefore(selectedNode , placeholderNode)){
 
-   show(selectedNode) ;
+      let parentNode = getParentNode(selectedNode) ;
+
+      me.fireEvent('nodemove' , data(selectedNode) , data(parentNode)) ;
+
+      doOrder(parentNode) ;
+   }
 
    remove(placeholderNode) ;
-
-   selectedNode.selected = true ;
-
-   doOrder(getParentNode(selectedNode)) ;
 }
 
 delete me.restructureIndicatedNode ;
@@ -78,8 +77,6 @@ let {
 if(order !== oldOrder || parentNodeId !== oldParentNodeId){
 
    layout() ;
-
-   me.fireEvent('nodemove' , data(selectedNode) , data(getParentNode(selectedNode))) ;
 
 }else{
 
