@@ -21,14 +21,24 @@
  * 
  */
 
+ let me = this,
+ {
+    restructuring
+ } = me;
+
+ if(!restructuring){
+
+    return ;
+ }
+
+
 if(id){
 
     removeById(id) ;
 
 }else{
 
-    let me = this,
-    {
+    let {
         selectedNode
     } = me ;
 

@@ -21,14 +21,23 @@
  * 
  */
 
+let me = this,
+{
+   restructuring
+} = me;
+
+if(!restructuring){
+
+   return ;
+}
+
  if(beforeNodeId){
 
   insertBeforeById(node , beforeNodeId) ;
  
  }else{
 
-  let me = this,
-    {
+  let {
         selectedNode
     } = me ;
     

@@ -23,14 +23,24 @@
  * 
  */
 
+ let me = this,
+ {
+    restructuring
+ } = me;
+
+ if(!restructuring){
+
+    return ;
+ }
+
+
 if(parentNodeId){
 
   appendById(node , parentNodeId) ;
   
 }else{
 
-  let me = this,
-  {
+  let {
       selectedNode
   } = me,
   {

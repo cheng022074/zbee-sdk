@@ -14,10 +14,11 @@
  let me = this,
  {
     visibilityNodes,
-    selectedNode
+    selectedNode,
+    restructuring
  } = me ;
 
- if(selectedNode.id !== id && visibilityNodes.has(id)){
+ if(!restructuring && selectedNode.id !== id && visibilityNodes.has(id)){
 
     visibilityNodes.get(id).selected = true ;
         
