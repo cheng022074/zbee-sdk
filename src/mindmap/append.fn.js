@@ -15,6 +15,8 @@
  * 
  * @import data from .node.data scoped
  * 
+ * @import order from .order scoped
+ * 
  * @param {object} [node = {}] 子节点配置信息
  * 
  * @param {string} [parentNodeId] 父节点编号
@@ -52,6 +54,8 @@ if(parentNodeId){
   tryLayout().then(() => {
   
     me.fireEvent('nodeappend' , data(node) , data(selectedNode)) ;
+
+    order(selectedNode) ;
 
     select(node.id) ;
   

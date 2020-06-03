@@ -21,11 +21,7 @@
  * 
  */
 
-let {
-    hidden
-} = baseNode ;
-
-if(!hidden && !isRootNode(baseNode)){
+if(!isRootNode(baseNode)){
 
     let parentNode = getParentNode(baseNode),
     {
@@ -54,3 +50,5 @@ if(!hidden && !isRootNode(baseNode)){
 
     return insertNode ;
 }
+
+return false ;

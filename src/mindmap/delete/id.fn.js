@@ -9,6 +9,10 @@
  * 
  * @import layout from ..layout scoped
  * 
+ * @import getParentNode from ..node.parent scoped
+ * 
+ * @import order from ..order scoped
+ * 
  * @param {string} id 节点编号
  * 
  */
@@ -17,6 +21,7 @@ let node = query(id),
 {
     hidden
 } = node,
+parentNode = getParentNode(node),
 deleteNodes = remove(node) ;
 
 if(!hidden && deleteNodes !== false){
@@ -25,3 +30,5 @@ if(!hidden && deleteNodes !== false){
 }
 
 this.fireEvent('nodedelete' , deleteNodes) ;
+
+order(parentNode) ;

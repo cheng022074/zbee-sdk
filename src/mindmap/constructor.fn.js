@@ -144,6 +144,10 @@
 
                return setIndicated(this , indicated) ;
             }
+         },
+         order:{
+            mode:'readwrite',
+            defaultValue:0
          }
       }) ;
 

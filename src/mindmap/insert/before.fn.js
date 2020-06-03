@@ -7,6 +7,12 @@
  * 
  * @import tryLayout from ..layout.try scoped
  * 
+ * @import data from ..data scoped
+ * 
+ * @import order from ..order
+ * 
+ * @import getParentNode from ..node.parent scoped
+ * 
  * @param {mixed} node 插入的节点配置
  * 
  * @param {data.Record} beforeNode 参数节点
@@ -22,9 +28,13 @@
 
  if(node){
 
-   selectedNode.selected = false ;
+   node.selected = true ;
+   
+   tryLayout().then(() => {
 
-   me.selectedNode = node ;
-  
-   tryLayout() ;
+    me.fireEvent('nodeinsertbefore' , data(node) , data(selectedNode)) ;
+
+    order(getParentNode(selectedNode)) ;
+
+   }) ;
  }
