@@ -5,9 +5,9 @@
  * 
  * @import isRootNode from .is.root scoped
  * 
- * @import is from .is.visibility
- * 
  * @import getParentNode from .parent scoped
+ * 
+ * @import data from .data scoped
  * 
  * @import getDescendantNodes from ..nodes.relation.descendant scoped
  * 
@@ -17,7 +17,7 @@
  * 
  */
 
- if(is(node) && !isRootNode(node)){
+ if(!isRootNode(node)){
 
     let {
         children
@@ -28,19 +28,30 @@
     let {
         nodes
     } = this,
-    descendantNodes = getDescendantNodes(node , false);
+    descendantNodes = getDescendantNodes(node , false),
+    deleteNodes = [];
 
-    for(let {
-        id
-    } of descendantNodes){
+    for(let node of descendantNodes){
+
+        let {
+            id
+        } = node ;
+
+        deleteNodes.push(data(node)) ;
 
         nodes.delete(id) ;
     }
+
+    deleteNodes.push(data(node)) ;
 
     nodes.delete(node.id) ;
 
     node.parentNodeId = null ;
 
     children.splice(children.indexOf(node) , 1) ;
+
+    return deleteNodes ;
     
  }
+
+ return false ;

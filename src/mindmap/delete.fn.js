@@ -7,46 +7,62 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
+ * @import data from .node.data scoped
+ * 
  * @import remove from .node.delete scoped
  * 
  * @import layout from .layout scoped
  * 
+ * @import removeById from .delete.id scoped 
+ * 
+ * @param {string} [id] 节点编号
+ * 
  */
 
- 
-let {
-    selectedNode
- } = this ;
+if(id){
 
- if(!isRootNode(selectedNode)){
+    removeById(id) ;
 
-    let parentNode = getParentNode(selectedNode),
+}else{
+
+    let me = this,
     {
-        children
-    } = parentNode,
-    {
-        length
-    } = children,
-    index = children.indexOf(selectedNode);
+        selectedNode
+    } = me ;
 
-    if(length - 1){
+    if(!isRootNode(selectedNode)){
 
-        if(index + 1 <= length - 1){
+        let parentNode = getParentNode(selectedNode),
+        {
+            children
+        } = parentNode,
+        {
+            length
+        } = children,
+        index = children.indexOf(selectedNode);
 
-            children[index + 1].selected = true ;
+        if(length - 1){
+
+            if(index + 1 <= length - 1){
+
+                children[index + 1].selected = true ;
+            }
+
+            if(index - 1 >= 0){
+
+                children[index - 1].selected = true ;
+            }
+        
+        }else{
+
+            parentNode.selected = true ;
         }
 
-        if(index - 1 >= 0){
+        let deleteNodes = remove(selectedNode) ;
 
-            children[index - 1].selected = true ;
-        }
-    
-    }else{
+        layout() ;
 
-        parentNode.selected = true ;
+        me.fireEvent('nodedelete' , deleteNodes) ;
     }
 
-    remove(selectedNode) ;
-
-    layout() ;
- }
+}
