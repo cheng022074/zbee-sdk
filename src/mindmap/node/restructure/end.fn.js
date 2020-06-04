@@ -21,6 +21,8 @@
  * 
  * @import data from ..data scoped
  * 
+ * @import getPreviousSibling from ..sibling.previous scoped
+ * 
  * @import doOrder from ....order scoped
  * 
  */
@@ -37,24 +39,33 @@ if(!restructureIndicatedNode){
    return ;
 }
 
-let {
-   order:oldOrder,
-   parentNodeId:oldParentNodeId
-} = selectedNode ;
+let fireEvent;
 
 restructureIndicatedNode.indicated = false ;
 
 if(is(placeholderNode)){
 
+   let oldPreviousSibling = getPreviousSibling(selectedNode),
+       oldParentNode = getParentNode(selectedNode);
+
    insertBefore(selectedNode , placeholderNode) ;
-
-   show(selectedNode) ;
-
-   remove(placeholderNode) ;
 
    selectedNode.selected = true ;
 
-   doOrder(getParentNode(selectedNode)) ;
+   remove(placeholderNode) ;
+
+   let parentNode = getParentNode(selectedNode);
+
+   if(!(oldParentNode === parentNode && oldPreviousSibling === getPreviousSibling(selectedNode))){
+
+      fireEvent = () => {
+
+         me.fireEvent('nodemove' , data(selectedNode) , data(parentNode) , oldParentNode) ;
+
+         doOrder(parentNode) ;
+
+      } ;
+   }
 }
 
 delete me.restructureIndicatedNode ;
@@ -70,16 +81,11 @@ for(let node of nodes){
    node.restructuring = false ;
 }
 
-let {
-   order,
-   parentNodeId
-} = selectedNode ;
-
-if(order !== oldOrder || parentNodeId !== oldParentNodeId){
+if(fireEvent){
 
    layout() ;
 
-   me.fireEvent('nodemove' , data(selectedNode) , data(getParentNode(selectedNode))) ;
+   fireEvent() ;
 
 }else{
 
