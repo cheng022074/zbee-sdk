@@ -15,9 +15,10 @@
 
  function main(event , ...args){
 
-    let me = this ;
+    let me = this,
+        isSuspendEvents = get(me , 'suspendEvents');
 
-    if(get(me , 'suspendEvents') === true){
+    if(isSuspendEvents === true || isArray(isSuspendEvents) && isSuspendEvents.includes(eent)){
 
         return ;
     }
