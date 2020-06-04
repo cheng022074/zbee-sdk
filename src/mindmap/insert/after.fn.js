@@ -47,12 +47,10 @@ if(restructuring){
 
       node.selected = true ;
 
-      tryLayout().then(() => {
+      await tryLayout() ;
 
-         me.fireEvent('nodeinsertafter' , data(node) , data(selectedNode)) ;
+      me.fireEvent('nodeinsertafter' , data(node) , data(selectedNode)) ;
 
-         order(getParentNode(selectedNode)) ;
-
-      }) ;
+      order(getParentNode(selectedNode)) ;
    }
  }

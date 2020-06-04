@@ -20,18 +20,8 @@
     children,
     hidden,
     expanded
- } = parentNode,
- {
-   length
- } = children;
+ } = parentNode;
 
- if(length){
-
-   if(children[length - 1] === node){
-
-      return false ;
-   }
- }
 
  node = create(node , parentNode) ;
  

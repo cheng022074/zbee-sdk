@@ -11,7 +11,7 @@
  * 
  * @import data from ..node.data scoped
  * 
- * @import order from .order scoped
+ * @import order from ..order scoped
  * 
  * @param {object} [node = {}] 子节点配置信息
  * 
@@ -25,11 +25,6 @@
 
     node = append(parentNode , node) ;
 
-    if(node === false){
-
-        return ;
-    }
-
     let {
         hidden,
         expanded
@@ -38,19 +33,12 @@
 
     if(!hidden && expanded){
 
-        tryLayout().then(() => {
-
-            me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
-
-            order(parentNode) ;
-
-        }) ;
+        await tryLayout();
     
-    }else{
-
-        me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
-
-        order(parentNode) ;
     }
+
+    me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+
+    order(parentNode) ;
 
  }

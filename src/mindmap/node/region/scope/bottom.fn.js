@@ -20,8 +20,6 @@ let {
 } =  getBottom(getNode(node)),
 nodes = getNodes(node);
 
-let startY = y ;
-
 for(let childNode of nodes){
 
     let {

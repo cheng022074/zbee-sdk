@@ -35,8 +35,8 @@
 
 
 if(parentNodeId){
-
-  appendById(node , parentNodeId) ;
+  
+  await appendById(node , parentNodeId) ;
   
 }else{
 
@@ -61,13 +61,11 @@ if(parentNodeId){
     
   }
 
-  tryLayout().then(() => {
-  
-    me.fireEvent('nodeappend' , data(node) , data(selectedNode)) ;
+  await tryLayout();
 
-    order(selectedNode) ;
+  me.fireEvent('nodeappend' , data(node) , data(selectedNode)) ;
 
-    select(node.id) ;
-  
-  }) ;
+  order(selectedNode) ;
+
+  select(node.id) ;
 }
