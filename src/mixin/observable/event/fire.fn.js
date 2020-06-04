@@ -18,7 +18,7 @@
     let me = this,
         isSuspendEvents = get(me , 'suspendEvents');
 
-    if(isSuspendEvents === true || isArray(isSuspendEvents) && isSuspendEvents.includes(eent)){
+    if(isSuspendEvents === true || isArray(isSuspendEvents) && isSuspendEvents.includes(event)){
 
         return ;
     }
