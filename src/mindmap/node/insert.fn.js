@@ -29,8 +29,11 @@ if(!isRootNode(baseNode)){
     } = parentNode,
     {
         length
-    } = children,
-    index = children.indexOf(baseNode) + offset ;
+    } = children;
+
+    insertNode = create(insertNode , parentNode) ;
+
+    let index = children.indexOf(baseNode) + offset ;
 
     if(index > length - 1){
 
@@ -40,20 +43,15 @@ if(!isRootNode(baseNode)){
 
         index = 0 ;
     }
-
+    
     if(children[index] === insertNode){
 
         return false ;
     }
 
-    insertNode = create(insertNode , parentNode) ;
-
     children.splice(index , 0 , insertNode) ;
 
-    if(!baseNode.hidden){
-
-        show(insertNode) ;
-    }
+    show(insertNode) ;
 
     return insertNode ;
 }
