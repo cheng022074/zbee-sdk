@@ -22,6 +22,7 @@
         "select",
         "delete",
         "append",
+        "move",
         {
             "name":"getParentNode",
             "impl":".mindmap.node.parent"
