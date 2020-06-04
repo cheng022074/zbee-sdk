@@ -31,10 +31,9 @@
 
     if(!afterNode.hidden){
 
-        tryLayout().then(() => me.fireEvent('nodeinsertafter' , data(node) , data(afterNode))) ;
+        await tryLayout();
     
-    }else{
-
-        me.fireEvent('nodeinsertafter' , data(node) , data(afterNode)) ;
     }
+
+    me.fireEvent('nodeinsertafter' , data(node) , data(afterNode)) ;
  }
