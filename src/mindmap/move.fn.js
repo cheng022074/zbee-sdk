@@ -15,6 +15,8 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
+ * @import getPreviousSibling from .node.sibling.previous scoped
+ * 
  * @import order from .order scoped
  * 
  * @param {string} id 需要移动的节点编号
@@ -26,12 +28,13 @@
  */
 
  let node = query(id),
-     baseNode = query(id);
+     baseNode = query(baseId);
 
 if(node && baseNode){
 
     let me = this,
-        oldParentNode = getParentNode(node);
+        oldParentNode = getParentNode(node),
+        oldPreviousSibling = getPreviousSibling(node);
 
     switch(method){
 
@@ -65,7 +68,10 @@ if(node && baseNode){
 
     let parentNode = getParentNode(node) ;
 
-    me.fireEvent('nodemove' , node , parentNode , oldParentNode) ;
+    if(!(oldParentNode === parentNode && oldPreviousSibling === getPreviousSibling(node))){
 
-    order(parentNode)
+        me.fireEvent('nodemove' , node , parentNode , oldParentNode) ;
+
+        order(parentNode) ;
+    }
 }

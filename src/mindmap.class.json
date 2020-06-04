@@ -23,6 +23,7 @@
         "delete",
         "append",
         "move",
+        "refresh",
         {
             "name":"getParentNode",
             "impl":".mindmap.node.parent"
