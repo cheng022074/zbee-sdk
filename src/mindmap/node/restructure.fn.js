@@ -43,6 +43,8 @@ if(!restructuring || restructureIndicateLocked){
  if(id){
 
     preinsert(get(id) , xy) ;
+
+    layout() ;
  
  }else{
 

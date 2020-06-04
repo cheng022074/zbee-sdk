@@ -16,10 +16,11 @@
 prevent(e) ;
 
 let me = this,
+nativeEvent = getEvent(e , 'move'),
 {
     pageX:x,
     pageY:y
-} = getEvent(e , 'move'),
+} = nativeEvent,
 {
     lastPoint,
     dispatch
@@ -45,4 +46,7 @@ let {
 
 info.time = Date.now();
 
-dispatch('drag' , info) ;
+dispatch('drag' , {
+    info,
+    nativeEvent
+}) ;
