@@ -32,16 +32,9 @@ let {
 
 if(is(node)){
 
-   if(node.parentNodeId === parentNode.id){
+   removeNode(node) ;
 
-      remove(parentNode.children , node) ;
-   
-   }else{
-
-      removeNode(node) ;
-
-      node.parentNodeId = parentNode.id ;
-   }
+   node.parentNodeId = parentNode.id ;
 
    return node ;
 }
