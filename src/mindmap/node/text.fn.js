@@ -12,9 +12,11 @@
  * 
  */
 
- let {
-    selectedNode
- } = this,
+ let me = this,
+ {
+    selectedNode,
+    unsizedNodes
+ } = me,
  node = id ? get(id) : selectedNode;
 
  if(node){
@@ -23,6 +25,11 @@
 
         node.text = text ;
 
-        this.fireEvent('nodetextupdated' , node.id , text) ;
+        if(!node.hidden){
+
+            me.fireEvent('nodeunsized' , [
+               node
+            ]) ;   
+        }
     }
  }

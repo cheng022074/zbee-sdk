@@ -5,7 +5,7 @@
  * 
  * @import get from .get scoped
  * 
- * @import tryLayout from ..layout.try scoped
+ * @import layout from ..layout scoped
  * 
  * @param {string} id 编号
  * 
@@ -27,6 +27,11 @@
 
     node.height = height;
 
+    if(node.hidden){
+
+      return ;
+    }
+
     let {
       size
     } = unsizedNodes ;
@@ -39,7 +44,7 @@
     
     }else if(size === 0){
 
-      tryLayout() ;
+      layout() ;
     }
  }
  
