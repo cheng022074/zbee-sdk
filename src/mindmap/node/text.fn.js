@@ -29,7 +29,13 @@
 
             me.fireEvent('nodeunsized' , [
                node
-            ]) ;   
+            ]) ;
+
+        }else{
+
+            node.width = false ;
+
+            node.height = false ;
         }
     }
  }

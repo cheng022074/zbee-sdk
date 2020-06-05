@@ -8,13 +8,18 @@
  */
 
 let {
-    id
+    id,
+    width,
+    height
 } = node,
 me = this,
 {
     unsizedNodes
 } = me;
 
-unsizedNodes.set(id , node) ;
+if(!(width && height)){
 
-me.fireNodeUnsizedEvent() ;
+    unsizedNodes.set(id , node) ;
+
+    me.fireNodeUnsizedEvent() ;
+}
