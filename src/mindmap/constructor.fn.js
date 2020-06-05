@@ -165,13 +165,13 @@
 
  me.placeholderNode = placeholderNode ;
 
- me.fireNodeCreatedEvent = buffer(() => {
+ me.fireNodeUnsizedEvent = buffer(() => {
     
    let {
        unsizedNodes
    } = me ;
 
-   me.fireEvent('nodecreated' , data(unsizedNodes.values()).nodes) ;
+   me.fireEvent('nodeunsized' , data(unsizedNodes.values()).nodes) ;
 
 }) ;
 

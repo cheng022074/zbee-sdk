@@ -15,14 +15,6 @@ me = this,
     unsizedNodes
 } = me;
 
-let {
-    width,
-    height
-} = node ; 
+unsizedNodes.set(id , node) ;
 
-if(!(width && height)){
-
-    unsizedNodes.set(id , node) ;
-
-    me.fireNodeCreatedEvent() ;
-}
+me.fireNodeUnsizedEvent() ;
