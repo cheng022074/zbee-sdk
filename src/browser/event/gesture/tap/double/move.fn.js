@@ -23,8 +23,14 @@ let me = this,
         pageY
     } = getEvent(e , 'move'),
     {
-        startPoint
+        startPoint,
+        timer
     } = this;
+
+if(timer){
+
+    return ;
+}
 
 if(Math.round(getDistance({
     x:pageX,

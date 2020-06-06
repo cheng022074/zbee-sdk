@@ -84,7 +84,7 @@ let {
 
  }else{
 
-    me.lastTapTime = Date.now() ;
+    me.lastTapTime = time ;
 
     me.lastTarget = nativeEvent.target ;
 
@@ -96,7 +96,7 @@ let {
     
         disabled() ;
 
-    } , maxDuration - (time - startTime)) ;
+    } , maxDuration) ;
  }
 
  

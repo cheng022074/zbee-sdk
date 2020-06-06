@@ -22,6 +22,8 @@ if(mindmapWidth !== width || mindmapHeight !== height){
 
     me.height = height;
 
+    delete me.region ;
+
     fireDrawEvent() ;
 
     return true ;
