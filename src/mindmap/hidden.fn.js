@@ -28,9 +28,7 @@ let {
 } = node,
 me = this,
 {
-    visibilityNodes,
-    leafNodes,
-    unsizedNodes
+    visibilityNodes
 } = me;
 
 reset(node) ;
