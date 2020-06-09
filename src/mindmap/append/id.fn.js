@@ -31,14 +31,13 @@
     } = parentNode,
     me = this;
 
+    me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+
+    order(parentNode) ;
+
     if(!hidden && expanded){
 
         await tryLayout();
     
     }
-
-    me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
-
-    order(parentNode) ;
-
  }

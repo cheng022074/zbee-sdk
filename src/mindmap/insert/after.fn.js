@@ -15,6 +15,8 @@
  * 
  * @import insertAfterById from .after.id scoped
  * 
+ * @import select from ..select scoped
+ * 
  * @param {mixed} node 插入的节点配置
  * 
  * @param {string} [beforeNodeId] 参数节点编号
@@ -45,12 +47,12 @@ if(restructuring){
 
    if(node){
 
-      node.selected = true ;
-
-      await tryLayout() ;
-
       me.fireEvent('nodeinsertafter' , data(node) , data(selectedNode)) ;
 
       order(getParentNode(selectedNode)) ;
+
+      select(node.id , false) ;
+
+      await tryLayout() ;
    }
  }

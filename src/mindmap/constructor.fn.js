@@ -21,6 +21,8 @@
  * 
  * @import data from .data scoped
  * 
+ * @import layout from .layout scoped
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -175,6 +177,4 @@
 
 }) ;
 
-
-
-
+me.layout = buffer(() => layout()) ;

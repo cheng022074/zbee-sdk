@@ -30,7 +30,7 @@ let {
 
     if(ids.length === 0){
 
-       visibilityNodeLevels.delete(ids) ;
+       visibilityNodeLevels.delete(oldLevel) ;
     }
  }
 

@@ -3,7 +3,7 @@
  * 
  * 修改节点文本
  * 
- * @import get from .get scoped
+ * @import setNodeInfo from .info scoped
  * 
  * @param {string} text 节点文本
  * 
@@ -12,30 +12,6 @@
  * 
  */
 
- let me = this,
- {
-    selectedNode,
-    unsizedNodes
- } = me,
- node = id ? get(id) : selectedNode;
-
- if(node){
-
-    if(node.text !== text){
-
-        node.text = text ;
-
-        if(!node.hidden){
-
-            me.fireEvent('nodeunsized' , [
-               node
-            ]) ;
-
-        }else{
-
-            node.width = false ;
-
-            node.height = false ;
-        }
-    }
- }
+setNodeInfo({
+    text
+} , id) ;

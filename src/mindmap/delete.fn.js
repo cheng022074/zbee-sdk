@@ -82,11 +82,11 @@ if(id){
             nodes.delete(id) ;
         }
 
-        layout() ;
-
         me.fireEvent('nodedelete' , deleteNodes) ;
 
         order(parentNode) ;
+
+        layout() ;
     }
 
 }

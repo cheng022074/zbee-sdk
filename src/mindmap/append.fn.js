@@ -61,11 +61,11 @@ if(parentNodeId){
     
   }
 
-  await tryLayout();
-
   me.fireEvent('nodeappend' , data(node) , data(selectedNode)) ;
 
   order(selectedNode) ;
 
-  select(node.id) ;
+  select(node.id , false) ;
+
+  await tryLayout();
 }

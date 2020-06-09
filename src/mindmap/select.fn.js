@@ -5,6 +5,8 @@
  * 
  * @import fireDrawEvent from .fire.draw scoped
  * 
+ * @import data from .node.data scoped
+ * 
  * @param {string} id 节点编号
  * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发重绘事件 
@@ -20,9 +22,11 @@
 
  if(!restructuring && selectedNode.id !== id && visibilityNodes.has(id)){
 
-    visibilityNodes.get(id).selected = true ;
+   let node = visibilityNodes.get(id) ;
+
+   node.selected = true ;
         
-    me.fireEvent('nodeselect' , id) ;
+    me.fireEvent('nodeselect' , data(node)) ;
 
     if(isFireDrawEvent){
 

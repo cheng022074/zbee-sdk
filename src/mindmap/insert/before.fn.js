@@ -5,6 +5,8 @@
  * 
  * @import insert from ..node.insert.before scoped
  * 
+ * @import select from ..select scoped
+ * 
  * @import tryLayout from ..layout.try scoped
  * 
  * @import data from ..node.data scoped
@@ -45,12 +47,14 @@ if(restructuring){
 
     if(node){
 
-      node.selected = true ;
-      
-      await tryLayout();
-
       me.fireEvent('nodeinsertbefore' , data(node) , data(selectedNode)) ;
 
       order(getParentNode(selectedNode)) ;
+
+      select(node.id , false) ;
+      
+      await tryLayout();
+
+      
     }
  }
