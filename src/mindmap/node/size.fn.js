@@ -5,8 +5,6 @@
  * 
  * @import get from .get scoped
  * 
- * @import layout from ..layout scoped
- * 
  * @param {string} id 编号
  * 
  * @param {number} width 宽度
@@ -44,7 +42,7 @@
     
     }else if(size === 0){
 
-      layout() ;
+      me.layout() ;
     }
  }
  

@@ -14,8 +14,7 @@
 
  let me = this,
  {
-    selectedNode,
-    unsizedNodes
+    selectedNode
  } = me,
  node = id ? get(id) : selectedNode;
 

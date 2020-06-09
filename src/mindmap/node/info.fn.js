@@ -5,8 +5,6 @@
  * 
  * @import equals from data.equals
  * 
- * @import fireDrawEvent from ..fire.draw scoped
- * 
  * @param {object} data 修改节点信息
  * 
  * @param {string} [id] 节点编号
@@ -17,8 +15,8 @@ function main(data , id){
 
     let me = this,
     {
-    selectedNode,
-    nodes
+        selectedNode,
+        nodes
     } = me,
     node = id ? get(id) : selectedNode;
 
@@ -58,16 +56,18 @@ function main(data , id){
                 case 'id':
 
                 {
-                    if(nodes.has(value)){
-
-                        throw new Error(`${id} - 脑图中已经存该节点`) ;
-                    }
-
-                   
+                    
                     let {
                         id,
                         children
                     } = node ;
+
+                    if(nodes.has(value)){
+
+                        console.error(`${value} - 脑图中已经存该节点`) ;
+
+                        continue ;
+                    }
 
                     node.id = value ;
 
@@ -93,7 +93,18 @@ function main(data , id){
 
         if(isUpdated = true){
 
-            fireDrawEvent() ;
+            if(!node.hidden){
+
+                me.fireEvent('nodeunsized' , [
+                   node
+                ]) ;
+    
+            }else{
+    
+                node.width = false ;
+    
+                node.height = false ;
+            }
         }
     }
 }
@@ -110,11 +121,11 @@ function sync(oldId , id){
 
     syncMap(nodes , oldId) ;
 
-    syncMap(visibilityNodes , id) ;
+    syncMap(visibilityNodes , oldId) ;
 
-    syncMap(unsizedNodes , id) ;
+    syncMap(unsizedNodes , oldId) ;
 
-    syncMap(leafNodes , id) ;
+    syncMap(leafNodes , oldId) ;
 
     let keys = visibilityNodeLevels.keys() ;
 
