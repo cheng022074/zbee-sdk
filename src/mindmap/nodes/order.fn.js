@@ -3,23 +3,40 @@
  * 
  * 修改一组节点的排序序号
  * 
- * @import fireDrawEvent from ..fire.draw scoped
- * 
  * @param {object} orders 排序序号集合
  * 
  */
 
- let {
+ let me = this,
+ {
      nodes
- } = this,
- ids = Object.keys(orders);
+ } = me,
+ ids = Object.keys(orders),
+ fireNodeUnsizedNodes = [];
 
  for(let id of ids){
 
     if(nodes.has(id)){
 
-        nodes.get(id).order = orders[id] ;
+        let node = nodes.get(id) ;
+
+        node.order = orders[id] ;
+
+        if(node.hidden){
+
+            node.width = false ;
+
+            node.height = false ;
+        
+        }else{
+
+            fireNodeUnsizedNodes.push(node) ;
+        }
     }
  }
 
- fireDrawEvent() ;
+ if(fireNodeUnsizedNodes.length){
+
+    me.fireEvent('nodeunsized' , fireNodeUnsizedNodes) ;
+
+ }
