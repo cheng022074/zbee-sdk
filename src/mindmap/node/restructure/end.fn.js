@@ -83,9 +83,9 @@ for(let node of nodes){
 
 if(fireEvent){
 
-   layout() ;
-
    fireEvent() ;
+
+   layout() ;
 
 }else{
 
