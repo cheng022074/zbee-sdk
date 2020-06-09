@@ -5,6 +5,8 @@
  * 
  * @import equals from data.equals
  * 
+ * @import get from .get scoped
+ * 
  * @param {object} data 修改节点信息
  * 
  * @param {string} [id] 节点编号
