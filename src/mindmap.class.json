@@ -25,6 +25,10 @@
         "move",
         "refresh",
         {
+            "name":"updateOrderByNodes",
+            "impl":".mindmap.nodes.order"
+        },
+        {
             "name":"getParentNode",
             "impl":".mindmap.node.parent"
         },
