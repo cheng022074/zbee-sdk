@@ -29,11 +29,11 @@ if(beforeNode){
         return ;
    }
 
+   me.fireEvent('nodeinsertbefore' , data(node) , data(beforeNode)) ;
+
    if(!beforeNode.hidden){
 
        await tryLayout() ;
    
    }
-
-   me.fireEvent('nodeinsertbefore' , data(node) , data(beforeNode)) ;
 }
