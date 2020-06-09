@@ -15,8 +15,6 @@
  * 
  * @import removeById from .delete.id scoped
  * 
- * @import order from .order scoped
- * 
  * @param {string} [id] 节点编号
  * 
  */
@@ -82,11 +80,9 @@ if(id){
             nodes.delete(id) ;
         }
 
-        layout() ;
-
         me.fireEvent('nodedelete' , deleteNodes) ;
 
-        order(parentNode) ;
+        layout() ;
     }
 
 }
