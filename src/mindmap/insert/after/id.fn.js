@@ -29,11 +29,11 @@
         return ;
     }
 
+    me.fireEvent('nodeinsertafter' , data(node) , data(afterNode)) ;
+
     if(!afterNode.hidden){
 
         await tryLayout();
     
     }
-
-    me.fireEvent('nodeinsertafter' , data(node) , data(afterNode)) ;
  }
