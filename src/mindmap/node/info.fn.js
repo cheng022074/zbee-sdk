@@ -37,7 +37,6 @@ function main(data , id){
             switch(field){
 
                 case 'parentNodeId':
-                case 'text':
                 case 'x':
                 case 'y':
                 case 'width':
