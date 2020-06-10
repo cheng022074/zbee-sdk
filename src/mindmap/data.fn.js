@@ -45,6 +45,8 @@
 
       if(parentNode){
 
+          let isRoot = isRootNode(parentNode) ;
+
           parentNode = getData(parentNode) ;
 
           let {
@@ -52,7 +54,7 @@
             y:nodeY
           } = getLeftXY(node);
 
-          if(isRootNode(parentNode)){
+          if(isRoot){
 
             let {
               x:parentNodeX,
