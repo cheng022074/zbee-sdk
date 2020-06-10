@@ -26,7 +26,8 @@
  */
 
  const {
-   nodeHorizontalSeparationDistance
+   nodeHorizontalSeparationDistance,
+   nodeHorizontalLineBreakPointOffset
  } = this;
 
  let nodes = [],
@@ -88,7 +89,7 @@
               points:[
                 parentNodeX,
                 parentNodeY,
-                parentNodeX + nodeHorizontalSeparationDistance / 2,
+                parentNodeX + nodeHorizontalLineBreakPointOffset,
                 parentNodeY
               ]
             }) ;
@@ -97,9 +98,9 @@
               draw:'line.bezierCurve',
               indicated,
               points:[
-                parentNodeX + nodeHorizontalSeparationDistance / 2,
+                parentNodeX + nodeHorizontalLineBreakPointOffset,
                 parentNodeY,
-                parentNodeX + nodeHorizontalSeparationDistance / 2,
+                parentNodeX + nodeHorizontalLineBreakPointOffset,
                 nodeY,
                 parentNodeX + nodeHorizontalSeparationDistance * .75,
                 nodeY,
