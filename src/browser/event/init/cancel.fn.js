@@ -3,7 +3,7 @@
  * 
  * 取消实始化事件应用环境
  * 
- * @import listeners from .init.listeners value
+ * @import listeners from .listeners value
  * 
  * @import remove from browser.event.listener.remove
  * 
