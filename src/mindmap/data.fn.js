@@ -36,7 +36,6 @@
  for(let mindNode of mindNodes){
 
     let node = getData(mindNode),
-        isLeaf = isLeafNode(mindNode),
         indicated = mindNode.placeholder;
 
     if(generateLines){
@@ -105,26 +104,6 @@
                 parentNodeX + nodeHorizontalSeparationDistance * .75,
                 nodeY,
                 nodeX,
-                nodeY
-              ]
-            }) ;
-
-          }
-
-          if(!isLeaf){
-
-            let {
-              x:nodeX,
-              y:nodeY
-            } = getRightXY(node);
-
-            lines.push({
-              draw:'line',
-              indicated,
-              points:[
-                nodeX,
-                nodeY,
-                nodeX + nodeHorizontalSeparationDistance / 2,
                 nodeY
               ]
             }) ;
