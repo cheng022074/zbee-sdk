@@ -23,101 +23,103 @@
  * 
  */
 
+const {
+    push
+} = Array.prototype ;
+
 class main extends Array{
 
-    constructor(reader , records){
+    constructor(...args){
 
-        let me = this ;
+        let [
+            reader,
+            records
+        ] = args ;
 
-        me.data = [] ;
+        if(reader.__ZBEE_CLASS__ === true && isArray(records)){
 
-        define(me , 'reader' , reader) ;
+            super() ;
+            
+            let me = this ;
 
-        define(me , 'observable' , createObservable()) ;
+            define(me , 'reader' , reader) ;
 
-        for(let record of records){
+            define(me , 'observable' , createObservable()) ;
 
-            if(is(record)){
+            for(let record of records){
 
-                get(record , 'observable').belongTo(me) ;
+                if(is(record)){
 
-                me.push(record) ;
+                    get(record , 'observable').belongTo(me) ;
+
+                    push.call(me , record) ;
+                }
             }
+        
+        }else{
+
+            super(...args) ;
         }
     }
 
-    push(...raws){
+    push(...raws){  
 
-        let me = this ;
-        
-        return me.data.push(...createRecords.call(me , raws)) ;
+        return super.push(...createRecords.call(this , raws)) ;
     }
 
     unshift(...raws){
 
-        let me = this ;
-
-        return me.data.unshift(...createRecords.call(me , raws)) ;
+        return super.unshift(...createRecords.call(this , raws)) ;
     }
 
     splice(index , howMany , ...raws){
 
         let me = this,
         {
-            data
+            length
         } = me;
 
         for(let i = 0 ; i < howMany ; i ++){
 
             let itemIndex = index + i ;
 
-            if(itemIndex < data.length){
+            if(itemIndex < length){
 
                 get(me[itemIndex] , 'observable').independent() ;
             }
         }
 
-        return data.splice(index , howMany , ...createRecords.call(me , raws)) ;
+        return super.splice(index , howMany , ...createRecords.call(me , raws)) ;
     }
 
     pop(){
 
         let me = this,
         {
-            data
-        } = me,
-        {
             length
-        } = data;
+        } = me;
 
         if(length){
 
-            get(data[length - 1] , 'observable').independent() ;
+            get(me[length - 1] , 'observable').independent() ;
         }
 
-        return data.pop() ;
+        return super.pop() ;
     }
 
     shift(){
 
-        let {
-            data
-        } = this,
+        let me = this,
         {
             length
-        } = data;
+        } = me;
 
         if(length){
 
-            get(data[0] , 'observable').independent() ;
+            get(me[0] , 'observable').independent() ;
         }
 
-        return data.shift() ;
-    }
-
-    [Symbol.iterator](){
-
-        return this.data[Symbol.iterator]() ;
+        return super.shift() ;
     }
  }
 
