@@ -83,6 +83,10 @@
  let mindmap = me;
  
  reader = me.reader = createReader({
+         order:{
+            mode:'readwrite',
+            defaultValue:0
+         },
          ...reader,
          expanded:{
             mode:'readwrite',
@@ -155,10 +159,6 @@
 
                return setIndicated(this , indicated) ;
             }
-         },
-         order:{
-            mode:'readwrite',
-            defaultValue:0
          }
       }) ;
 

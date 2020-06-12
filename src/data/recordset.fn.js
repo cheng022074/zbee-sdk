@@ -27,40 +27,21 @@ const {
     push
 } = Array.prototype ;
 
-class main extends Array{
+function main(reader , records){
 
-    constructor(...args){
+    let recordset = new Recordset() ;
 
-        let [
-            reader,
-            records
-        ] = args ;
+    define(recordset , 'reader' , reader) ;
 
-        if(reader.__ZBEE_CLASS__ === true && isArray(records)){
+    define(recordset , 'observable' , createObservable()) ;
 
-            super() ;
-            
-            let me = this ;
+    push.call(recordset , ...createRecords.call(recordset , records)) ;
 
-            define(me , 'reader' , reader) ;
+    return recordset ;
 
-            define(me , 'observable' , createObservable()) ;
+}
 
-            for(let record of records){
-
-                if(is(record)){
-
-                    get(record , 'observable').belongTo(me) ;
-
-                    push.call(me , record) ;
-                }
-            }
-        
-        }else{
-
-            super(...args) ;
-        }
-    }
+class Recordset extends Array{
 
     push(...raws){  
 
