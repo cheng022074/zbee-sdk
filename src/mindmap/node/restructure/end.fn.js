@@ -34,14 +34,14 @@ let me = this,
    placeholderNode
 } = me;
 
-if(!restructureIndicatedNode){
+if(restructureIndicatedNode){
 
-   return ;
+   restructureIndicatedNode.indicated = false ;
+
+   delete me.restructureIndicatedNode ;
 }
 
 let fireEvent;
-
-restructureIndicatedNode.indicated = false ;
 
 if(is(placeholderNode)){
 
@@ -67,8 +67,6 @@ if(is(placeholderNode)){
       } ;
    }
 }
-
-delete me.restructureIndicatedNode ;
 
 delete me.restructuring ;
 
