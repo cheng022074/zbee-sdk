@@ -83,11 +83,7 @@ if(fireEvent){
 
    fireEvent() ;
 
-   layout() ;
-
-}else{
-
-   fireDrawEvent() ;
 }
 
+layout() ;
  
