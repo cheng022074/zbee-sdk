@@ -23,16 +23,15 @@
  * 
  */
 
-if(getTouchEvents(e , 'start')){
+ let me = this ;
 
-    disabled() ;
+if(me.info){
 
     return ;
 
 }
 
-let me = this,
-{
+let {
     pageX:x,
     pageY:y
 } = getEvent(e , 'start');

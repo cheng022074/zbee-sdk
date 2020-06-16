@@ -27,7 +27,14 @@
 
 prevent(e) ;
 
-let me = this,{
+let me = this;
+
+if(!me.startPoint){
+
+    return ;
+}
+
+let {
     pageX:x,
     pageY:y
 } = getEvent(e , 'move'),

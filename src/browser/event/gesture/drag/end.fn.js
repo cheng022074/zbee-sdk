@@ -19,8 +19,14 @@
 
 prevent(e) ;
 
-let me = this,
-{
+let me = this;
+
+if(!me.startPoint){
+
+    return ;
+}
+
+let {
     info,
     dispatch
 } = me,

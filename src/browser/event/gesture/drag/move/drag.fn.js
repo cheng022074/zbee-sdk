@@ -15,8 +15,14 @@
 
 prevent(e) ;
 
-let me = this,
-nativeEvent = getEvent(e , 'move'),
+let me = this;
+
+if(!me.startPoint){
+
+    return ;
+}
+
+let nativeEvent = getEvent(e , 'move'),
 {
     pageX:x,
     pageY:y

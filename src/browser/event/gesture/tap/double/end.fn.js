@@ -21,6 +21,13 @@
  * 
  */
 
+let me = this ;
+
+if(!me.startPoint){
+
+    return ;
+}
+
 let {
     pointerType,
     button
@@ -36,8 +43,7 @@ let {
     }
  }
 
- let me = this,
- {
+ let {
     startTime,
     lastTapTime,
     lastTarget,

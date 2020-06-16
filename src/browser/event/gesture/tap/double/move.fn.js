@@ -17,15 +17,21 @@
  * 
  */
 
-let me = this,
-    {
-        pageX,
-        pageY
-    } = getEvent(e , 'move'),
-    {
-        startPoint,
-        timer
-    } = this;
+let me = this;
+
+if(!me.startPoint){
+
+    return ;
+}
+
+let {
+    pageX,
+    pageY
+} = getEvent(e , 'move'),
+{
+    startPoint,
+    timer
+} = me;
 
 if(timer){
 
