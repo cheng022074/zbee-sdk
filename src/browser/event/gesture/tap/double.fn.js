@@ -13,7 +13,7 @@
  * 
  */
 
- let me = this ;
+ let  me = this ;
 
 if(me.startPoint){
 
@@ -21,8 +21,7 @@ if(me.startPoint){
  
  }
  
-let me = this,
-{
+let {
    timer
 } = me;
 
