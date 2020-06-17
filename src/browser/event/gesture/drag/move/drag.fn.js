@@ -9,20 +9,25 @@
  * 
  * @import updateInfo from ..info.update scoped
  * 
+ * @import getTouchEvents from browser.event.touches
+ * 
+ * @import disabled from ..disabled scoped
+ * 
  * @param {Event} e 事件对象
  * 
  */
 
 prevent(e) ;
 
-let me = this;
+if(getTouchEvents(e ,'move')){
 
-if(!me.startPoint){
+    disabled(e) ;
 
     return ;
 }
 
-let nativeEvent = getEvent(e , 'move'),
+let me = this,
+nativeEvent = getEvent(e , 'move'),
 {
     pageX:x,
     pageY:y

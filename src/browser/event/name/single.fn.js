@@ -9,10 +9,28 @@
  * 
  * @param {string} name 事件名称
  * 
+ * @param {PointerEvent} [e] 事件对象
+ * 
  * @return {mixed} 返回说明 
  * 
  */
-if(isSupportTouch()){
+
+ let isTouch = isSupportTouch() ;
+
+ if(e){
+
+    let {
+        pointerType,
+        touches
+    } = e;
+    
+    if(pointerType === 'touch' || touches){
+
+        isTouch = true ;
+    }
+ }
+
+if(isTouch){
 
     return `touch${name}` ;
 

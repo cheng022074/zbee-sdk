@@ -11,6 +11,8 @@
  * 
  * @import un from browser.event.listener.global.remove
  * 
+ * @param {Event} e 事件对象
+ * 
  */
 
 let me = this,
@@ -20,11 +22,11 @@ let me = this,
     onEnd
 } = me;
 
-un(getName('move') , onStart) ;
+un(getName('move' , e) , onStart) ;
 
-un(getName('move') ,  onMove) ;
+un(getName('move' , e) ,  onMove) ;
 
-un(getName('end') , onEnd) ;
+un(getName('end' , e) , onEnd) ;
 
 delete me.onStart ;
 

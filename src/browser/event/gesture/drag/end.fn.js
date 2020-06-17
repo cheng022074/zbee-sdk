@@ -19,14 +19,8 @@
 
 prevent(e) ;
 
-let me = this;
-
-if(!me.startPoint){
-
-    return ;
-}
-
-let {
+let me = this,
+{
     info,
     dispatch
 } = me,
@@ -52,5 +46,5 @@ onAxisEnd('y', info);
 
 dispatch('dragend', info);
 
-disabled() ;
+disabled(e) ;
 

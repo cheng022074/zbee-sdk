@@ -3,8 +3,6 @@
  * 
  * 启动事件监听
  * 
- * @import getTouchEvents from browser.event.touches
- * 
  * @import getEvent from browser.event.single
  * 
  * @import disabled from .drag.disabled scoped
@@ -14,8 +12,6 @@
  * @import on from browser.event.listener.global.add
  * 
  * @import onStart from .drag.move.start scoped
- * 
- * @import disabled from .drag.disabled scoped
  * 
  * @import .drag.event
  * 
@@ -28,12 +24,12 @@
 if(me.info){
 
     return ;
-
 }
 
 let {
     pageX:x,
-    pageY:y
+    pageY:y,
+    pointerType
 } = getEvent(e , 'start');
 
 me.info = {
@@ -77,8 +73,8 @@ me.startPoint = {
 
 me.dragStartNativeEvent = e ;
 
-on(getName('move') , me.onStart = onStart) ;
+on(getName('move' , e) , me.onStart = onStart) ;
 
-on(getName('end') , me.onEnd = disabled , {
+on(getName('end' , e) , me.onEnd = () => disabled(e) , {
     once:true
 }) ;

@@ -2,6 +2,8 @@
  * 
  * 检查是否启用拖曳事件
  * 
+ * @import getTouchEvents from browser.event.touches
+ * 
  * @import prevent from browser.event.prevent
  * 
  * @import getEvent from browser.event.single
@@ -18,6 +20,8 @@
  * 
  * @import un from browser.event.listener.global.remove
  * 
+ * @import disabled from ..disabled scoped
+ * 
  * @config minDistance from event.drag...minDistance
  * 
  * @param {Event} e 事件对象
@@ -27,14 +31,15 @@
 
 prevent(e) ;
 
-let me = this;
+if(getTouchEvents(e , 'move')){
 
-if(!me.startPoint){
+    disabled(e) ;
 
     return ;
 }
 
-let {
+let me = this,
+{
     pageX:x,
     pageY:y
 } = getEvent(e , 'move'),
@@ -71,9 +76,9 @@ if (Math.round(getDistance(startPoint , point)) * scale() >= minDistance) {
 
     delete me.dragStartNativeEvent ;
 
-    un(getName('move') , me.onStart) ;
+    un(getName('move' , e) , me.onStart) ;
 
-    un(getName('end') , me.onEnd) ;
+    un(getName('end' , e) , me.onEnd) ;
 
-    enabled() ;
+    enabled(e) ;
 }
