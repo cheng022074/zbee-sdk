@@ -5,11 +5,7 @@
  * 
  * @import getEvent from browser.event.single
  * 
- * @import getTouchEvents from browser.event.touches
- * 
  * @import enabled from .double.enabled scoped
- * 
- * @import disabled from .double.disabled scoped
  * 
  * @import .double.event
  * 
@@ -17,10 +13,10 @@
  * 
  */
 
-if(getTouchEvents(e , 'start')){
+ let me = this ;
 
-    disabled() ;
- 
+if(me.startPoint){
+
     return ;
  
  }
@@ -50,4 +46,4 @@ let nativeEvent = getEvent(e , 'start'),
 
  me.startTime = Date.now() ;
  
- enabled() ;
+ enabled(e) ;

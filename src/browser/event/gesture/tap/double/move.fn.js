@@ -3,7 +3,9 @@
  * 
  * 移动事件监听
  * 
- *  @import getEvent from browser.event.single
+ * @import getTouchEvents from browser.event.touches
+ * 
+ * @import getEvent from browser.event.single
  * 
  * @import getDistance from math.point.distance
  * 
@@ -17,14 +19,15 @@
  * 
  */
 
-let me = this;
+if(getTouchEvents(e , 'move')){
 
-if(!me.startPoint){
+    disabled(e) ;
 
     return ;
 }
 
-let {
+let me = this,
+{
     pageX,
     pageY
 } = getEvent(e , 'move'),
@@ -43,5 +46,5 @@ if(Math.round(getDistance({
     y:pageY
 } , startPoint)) * getScale() >= moveDistance){
 
-    disabled() ;
+    disabled(e) ;
 }

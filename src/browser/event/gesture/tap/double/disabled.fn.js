@@ -7,6 +7,8 @@
  * 
  * @import un from browser.event.listener.global.remove
  * 
+ * @param {Event} e 事件对象
+ * 
  */
 
 let me = this,
@@ -22,9 +24,9 @@ if(timer){
 
 }
 
-un(getName('move') ,  onMove) ;
+un(getName('move' , e) ,  onMove) ;
 
-un(getName('end') ,  onEnd) ;
+un(getName('end' , e) ,  onEnd) ;
 
 delete me.timer ;
 

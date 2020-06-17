@@ -3,6 +3,8 @@
  * 
  * 结束事件监听
  * 
+ * @import getTouchEvents from browser.event.touches
+ * 
  * @import getEvent from browser.event.single
  * 
  * @import getDistance from math.point.distance
@@ -21,14 +23,15 @@
  * 
  */
 
-let me = this ;
+if(getTouchEvents(e , 'end')){
 
-if(!me.startPoint){
+    disabled(e) ;
 
     return ;
 }
 
-let {
+let me = this,
+{
     pointerType,
     button
  } = e ;
@@ -37,7 +40,7 @@ let {
 
     if(button !== 0){
 
-        disabled() ;
+        disabled(e) ;
 
         return ;
     }
@@ -78,7 +81,7 @@ let {
 
     }
 
-    disabled() ;
+    disabled(e) ;
 
  }else if(time - startTime > maxDuration){
  
@@ -86,7 +89,7 @@ let {
         nativeEvent
     }) ;
 
-    disabled() ;
+    disabled(e) ;
 
  }else{
 
@@ -100,7 +103,7 @@ let {
             nativeEvent
         }) ;
     
-        disabled() ;
+        disabled(e) ;
 
     } , maxDuration) ;
  }
