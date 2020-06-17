@@ -2,8 +2,10 @@
  * 
  * 获得启动监听事件名称
  * 
+ * @import getName from browser.event.name.single
+ * 
  * @return {string}
  * 
  */
 
-return 'touchstart' ;
+return getName('start') ;

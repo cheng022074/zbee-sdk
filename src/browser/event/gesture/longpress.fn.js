@@ -3,8 +3,6 @@
  * 
  * 开始事件监听
  * 
- * @import getTouchEvents from browser.event.touches
- * 
  * @import getEvent from browser.event.single
  * 
  * @import enabled from .longpress.enabled scoped
@@ -21,20 +19,19 @@
  * 
  */
 
-if(getTouchEvents(e , 'start')){
+let me = this ;
 
-   disabled() ;
+if(me.startPoint){
 
    return ;
 
 }
 
-let me = this,
-nativeEvent = getEvent(e , 'start'),
-{
-    pageX:x,
-    pageY:y
-} = nativeEvent;
+let nativeEvent = getEvent(e , 'start'),
+    {
+        pageX:x,
+        pageY:y
+    } = nativeEvent;
 
  me.startPoint = {
     x,
@@ -47,8 +44,8 @@ me.timer = setTimeout(() => {
         nativeEvent
     }) ;
 
-    disabled() ;
+    disabled(e) ;
 
  } , minDuration);
 
-enabled() ;
+enabled(e) ;

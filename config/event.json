@@ -4,5 +4,6 @@
     "drag":"drag",
     "dragend":"drag",
     "singletap":"tap.double",
-    "doubletap":"tap.double"
+    "doubletap":"tap.double",
+    "longpress":"longpress"
 }

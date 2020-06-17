@@ -5,6 +5,10 @@
  * 
  * @import un from browser.event.listener.global.remove
  * 
+ * @import getName from browser.event.name.single
+ * 
+ * @param {Event} e 事件对象
+ * 
  */
 
 let me = this,
@@ -19,12 +23,14 @@ if(timer){
     clearTimeout(timer) ;
 }
 
-un('touchmove' , onMove) ;
+un(getName('move' , e) , onMove) ;
 
-un('touchend' ,  onEnd) ;
+un(getName('end' , e) ,  onEnd) ;
 
 delete me.onMove ;
 
 delete me.onEnd ;
 
 delete me.timer ;
+
+delete me.startPoint ;
