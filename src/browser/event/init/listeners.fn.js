@@ -31,6 +31,7 @@ return {
     touchmove:doPrevent,
     mousedown:doPrevent,
     keydown:doPrevent,
+    mousewheel:doPrevent,
     contextmenu(e){
 
         stop(e) ;
