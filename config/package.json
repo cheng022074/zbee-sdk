@@ -23,7 +23,8 @@
             "os.name",
             "number.format",
             "log.node",
-            "process.spawn"
+            "process.spawn",
+            "vue.component"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-SDK"
