@@ -89,7 +89,7 @@ if(originDestroyed){
 
       let me = this ;
 
-      innerDestroyed.call(me) ;
+      innerDestroyed.call(me , componentConfig) ;
 
       originDestroyed.call(me) ;
 
