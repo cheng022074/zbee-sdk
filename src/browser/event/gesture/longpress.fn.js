@@ -3,6 +3,10 @@
  * 
  * 开始事件监听
  * 
+ * @import on from browser.event.listener.global.add
+ * 
+ * @import getName from browser.event.name.single
+ * 
  * @import getEvent from browser.event.single
  * 
  * @import enabled from .longpress.enabled scoped
@@ -45,6 +49,15 @@ me.timer = setTimeout(() => {
     }) ;
 
     disabled(e) ;
+
+    if(event === 'longpress'){
+
+        on(getName('end' , e) , e =>  me.dispatch('longpresscancel' , {
+            nativeEvent:getEvent(e , 'end')
+        }) , {
+            once:true
+        }) ;
+    }
 
  } , minDuration);
 
