@@ -16,7 +16,6 @@
             "file.*",
             "mindmap",
             "function.get",
-            "map.set.multi",
             "id.generate",
             "calendar.month.view",
             "miniprogram.storage",
