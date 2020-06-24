@@ -23,7 +23,8 @@
             "number.format",
             "log.node",
             "process.spawn",
-            "vue.component"
+            "vue.component",
+            "css::reset.viewport"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-SDK"
