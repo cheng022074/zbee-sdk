@@ -51,8 +51,6 @@ delete data.children ;
 
 delete data.hidden ;
 
-delete data.level ;
-
 delete data.parentNodeId ;
 
 delete data.leafNodes ;

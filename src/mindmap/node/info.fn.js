@@ -45,7 +45,6 @@ function main(data , id){
                 case 'height':
                 case 'hidden':
                 case 'expanded':
-                case 'level':
                 case 'selected':
                 case 'placeholder':
                 case 'restructuring':

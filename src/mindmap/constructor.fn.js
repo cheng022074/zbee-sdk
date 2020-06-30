@@ -7,8 +7,6 @@
  * 
  * @import setHidden from .hidden scoped
  * 
- * @import setLevel from .level scoped
- * 
  * @import setSelected from .selected scoped
  * 
  * @import setIndicated from .indicated scoped
@@ -120,15 +118,6 @@
          y:{
             mode:'readwrite',
             local:true,
-            defaultValue:0
-         },
-         level:{
-            mode:'readwrite',
-            local:true,
-            set(level , oldLevel){
-               
-               return setLevel(this , level , oldLevel) ;
-            },
             defaultValue:0
          },
          selected:{

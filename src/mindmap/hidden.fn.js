@@ -9,8 +9,6 @@
  * 
  * @import reset from .hidden.reset scoped
  * 
- * @import level from .hidden.level scoped
- * 
  * @import leaf from .hidden.leaf scoped
  * 
  * @import unsized from .hidden.unsized scoped
@@ -32,8 +30,6 @@ me = this,
 } = me;
 
 reset(node) ;
-
-level(node , hidden) ;
 
 leaf(node , hidden) ;
 
