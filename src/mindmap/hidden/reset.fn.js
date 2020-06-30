@@ -13,6 +13,8 @@
 
 if(node){
 
+    delete node.descendantNodes ;
+
     delete node.leafNodes ;
 
     delete node.relationNodes ;

@@ -14,18 +14,28 @@
  */
 
 let {
+    descendantNodes
+} = node ;
+
+if(descendantNodes){
+
+    return descendantNodes ;
+}
+
+let {
     expanded,
     children
-} = node,
-result = [];
+} = node;
+
+descendantNodes = node.descendantNodes = [] ;
 
 if(expanded || !isVisible){
 
     for(let childNode of children){
 
-        result.push(childNode , ...getDescendantNodes(childNode , isVisible)) ;
+        descendantNodes.push(childNode , ...getDescendantNodes(childNode , isVisible)) ;
     }
 
 }
 
-return result ;
+return descendantNodes ;
