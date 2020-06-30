@@ -11,14 +11,31 @@
  * 
  */
 
-let parentNode,
-result = [];
+let {
+    ancestorNodes
+} = node ;
+
+if(ancestorNodes){
+
+    return ancestorNodes ;
+}
+
+let parentNode;
+
+ancestorNodes = node.ancestorNodes = [] ;
 
 while(parentNode = getParentNode(node)){
 
-    result.push(parentNode) ;
+    if(!parentNode.hidden){
 
-    node = parentNode ;
+        ancestorNodes.push(parentNode) ;
+
+        node = parentNode ;
+    
+    }else{
+
+        break ;
+    }
 }
 
-return result ;
+return ancestorNodes ;

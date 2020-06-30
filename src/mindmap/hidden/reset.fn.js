@@ -9,20 +9,53 @@
  * 
  * @param {data.Record} node 节点
  * 
+ * @param {string} direction 重置方向
+ * 
  */
 
 if(node){
 
-    delete node.descendantNodes ;
+    switch(direction){
 
-    delete node.leafNodes ;
+        case 'up':
 
-    delete node.relationNodes ;
+            delete node.descendantNodes ;
 
-    delete node.firstChildNodes ;
+            delete node.leafNodes ;
 
-    delete node.lastChildNodes ;
+            delete node.relationNodes ;
 
-    reset(getParentNode(node)) ;
+            delete node.firstChildNodes ;
+
+            delete node.lastChildNodes ;
+
+            reset(getParentNode(node) , 'up') ;
+
+            break ;
+
+        case 'down':
+
+            delete node.ancestorNodes ;
+
+            if(node.expanded){
+
+                let {
+                    children
+                } = node ;
+
+                for(let childNode of children){
+
+                    reset(childNode , 'down') ;
+                }
+            }
+
+            break ;
+
+        default:
+
+            reset(node , 'up') ;
+
+            reset(node , 'down') ;
+    }
 }
 
