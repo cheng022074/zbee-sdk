@@ -5,8 +5,6 @@
  * 
  * @import is from ..is.visibility
  * 
- * @import create from math.region.create
- * 
  * @import getParentNode from ..parent scoped
  * 
  * @import insertBefore from ..insert.before scoped
