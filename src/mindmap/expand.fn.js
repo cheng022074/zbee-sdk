@@ -25,7 +25,8 @@
 
 let me = this,
 {
-    selectedNode
+    selectedNode,
+    visibilityLevel
 } = me ;
 
 if(expand(selectedNode)){
@@ -34,9 +35,9 @@ if(expand(selectedNode)){
 
     let firstChildNode = getFirstChildNode(selectedNode) ;
 
-    if(getLevel(firstChildNode) === 4){
+    if(getLevel(firstChildNode) > visibilityLevel){
 
-        ellipsis(selectedNode , 3) ;
+        ellipsis(selectedNode , visibilityLevel - 1) ;
     }
 
     fireDrawEvent() ;

@@ -23,6 +23,8 @@
  * 
  * @import defer from function.defer
  * 
+ * @import getRootNode from .node.root scoped
+ * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
  * 
  * @return {mixed} 返回说明 
@@ -33,10 +35,10 @@ function main(isFireDrawEvent){
 
     let me = this,
     {
-        rootNode,
         height:mindmapHeight,
         visibilityNodes
-    } = me;
+    } = me,
+    rootNode = getRootNode();
 
     delete me.region ;
 

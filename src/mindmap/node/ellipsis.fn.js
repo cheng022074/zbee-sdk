@@ -5,6 +5,8 @@
  * 
  * @import getAncestorNode from .ancestor scoped
  * 
+ * @import getAncestorNodes from ..nodes.relation.ancestor scoped
+ * 
  * @import getDescendantNodes from ..nodes.relation.descendant scoped
  * 
  * @import ellipsis from .ellipsis scoped
@@ -32,6 +34,15 @@ if(ancestorNode){
         return ;
     }
 
+    {
+        let nodes = getAncestorNodes(ancestorNode) ;
+
+        for(let node of nodes){
+
+            node.hidden = true ;
+        }
+    }
+
     let nodes = getDescendantNodes(ancestorNode),
         excludeRootNode = getAncestorNode(node , level - 1),
         excludeNodes = [
@@ -52,10 +63,11 @@ if(ancestorNode){
     } = doCenterXY(from(excludeRootNode)),
     {
         ellipsisNodeWidth,
-        ellipsisNodeHeight
+        ellipsisNodeHeight,
+        nodeHorizontalSeparationDistance
     } = me,
     region = from({
-        x:excludeRootNode.x - (ellipsisNodeWidth - excludeRootNode.width),
+        x:excludeRootNode.x - nodeHorizontalSeparationDistance - ellipsisNodeWidth,
         y:excludeRootNode.y,
         width:ellipsisNodeWidth,
         height:ellipsisNodeHeight
@@ -68,6 +80,8 @@ if(ancestorNode){
         x,
         y
     }) ;
+
+    ancestorNode.x = region.left ;
 
     ancestorNode.y = region.top ;
 

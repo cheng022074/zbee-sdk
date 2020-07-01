@@ -11,6 +11,8 @@
  * 
  * @import getRegion from .node.region.scope scoped
  * 
+ * @import getRootNode from .node.root scoped
+ * 
  * @return {object} 区域数据 
  * 
  */
@@ -26,12 +28,12 @@
  }
 
  let {
-   rootNode,
    leafNodes,
    padding,
    width:mindmapWidth,
    height:mindmapHeight
  } = me,
+ rootNode = getRootNode(),
  left = 0,
  right,
  bottom,
