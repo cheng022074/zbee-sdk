@@ -25,6 +25,10 @@
  * 
  * @import getRootNode from .node.root scoped
  * 
+ * @import getChildNodes from .nodes.child.visible scoped
+ * 
+ * @import isRootNode from .node.is.root scoped
+ * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
  * 
  * @return {mixed} 返回说明 
@@ -49,7 +53,7 @@ function main(isFireDrawEvent){
         height
     } = getRegion() ;
 
-    if(mindmapHeight === height){
+    if(mindmapHeight === height && isRootNode(rootNode)){
 
         let {
             height:rootNodeHeight
@@ -83,9 +87,7 @@ function layout(node){
 
     if(expanded){
 
-        let {
-            children
-        } = node,
+        let children = getChildNodes(node),
         childCountHeight = 0;
 
         for(let {

@@ -58,33 +58,6 @@ if(ancestorNode){
         }
     }
 
-    let {
-        y
-    } = doCenterXY(from(excludeRootNode)),
-    {
-        ellipsisNodeWidth,
-        ellipsisNodeHeight,
-        nodeHorizontalSeparationDistance
-    } = me,
-    region = from({
-        x:excludeRootNode.x - nodeHorizontalSeparationDistance - ellipsisNodeWidth,
-        y:excludeRootNode.y,
-        width:ellipsisNodeWidth,
-        height:ellipsisNodeHeight
-    }),
-    {
-        x
-    } = doCenterXY(region);
-
-    doCenterXY(region , {
-        x,
-        y
-    }) ;
-
-    ancestorNode.x = region.left ;
-
-    ancestorNode.y = region.top ;
-
     ancestorNode.ellipsis = true ;
 
  }else{

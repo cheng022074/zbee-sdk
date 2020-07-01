@@ -31,8 +31,6 @@ let me = this,
 
 if(expand(selectedNode)){
 
-    await tryLayout(false) ;
-
     let firstChildNode = getFirstChildNode(selectedNode) ;
 
     if(getLevel(firstChildNode) > visibilityLevel){
@@ -40,5 +38,5 @@ if(expand(selectedNode)){
         ellipsis(selectedNode , visibilityLevel - 1) ;
     }
 
-    fireDrawEvent() ;
+    await tryLayout() ;
 }
