@@ -7,10 +7,6 @@
  * 
  * @import getRightXY from .node.xy.right scoped
  * 
- * @import getTopRightXY from .node.xy.topright scoped
- * 
- * @import getBottomRightXY from .node.xy.bottomright scoped
- * 
  * @import getScopeRegion from .node.region.scope scoped
  * 
  * @import moveY from .node.move.y
