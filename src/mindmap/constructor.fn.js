@@ -11,6 +11,8 @@
  * 
  * @import setIndicated from .indicated scoped
  * 
+ * @import setEllipsis from .ellipsis scoped
+ * 
  * @import createVisibilityNodes from .nodes.visibility scoped
  * 
  * @import generate from id.generate
@@ -170,7 +172,11 @@
          ellipsis:{
             mode:'readwrite',
             local:true,
-            defaultValue:false
+            defaultValue:false,
+            set(ellipsis){
+
+               return setEllipsis(this , ellipsis) ;
+            }
          }
       }) ;
 

@@ -19,13 +19,17 @@
  * 
  */
 
- let ancestorNode = getAncestorNode(node , level);
+ let me = this,
+     ancestorNode = getAncestorNode(node , level),
+     {
+        ellipsisRootNode
+     } = me;
+     
+if(ancestorNode){
 
- if(ancestorNode){
+    if(ellipsisRootNode === ancestorNode){
 
-    if(ancestorNode.ellipsis === true){
-
-        return ancestorNode;
+        return ;
     }
 
     let nodes = getDescendantNodes(ancestorNode),
@@ -49,13 +53,9 @@
     {
         ellipsisNodeWidth,
         ellipsisNodeHeight
-    } = this,
-    {
-        width,
-        height
-    } = excludeRootNode,
+    } = me,
     region = from({
-        x:excludeRootNode.x - (ellipsisNodeWidth - width),
+        x:excludeRootNode.x - (ellipsisNodeWidth - excludeRootNode.width),
         y:excludeRootNode.y,
         width:ellipsisNodeWidth,
         height:ellipsisNodeHeight
@@ -70,14 +70,6 @@
     }) ;
 
     ancestorNode.y = region.top ;
-
-    ancestorNode.beforeEllipsisWidth = width ;
-
-    ancestorNode.beforeEllipsisHeight = height ;
-
-    ancestorNode.width = ellipsisNodeWidth ;
-
-    ancestorNode.height = ellipsisNodeHeight ;
 
     ancestorNode.ellipsis = true ;
 
