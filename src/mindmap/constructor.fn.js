@@ -39,6 +39,10 @@
  * 
  * @param {number} [config.placeholderNodeHeight = 20] 占位符高度
  * 
+ * @param {number} [config.ellipsisNodeWidth = 60] 省略符宽度
+ * 
+ * @param {number} [config.ellipsisNodeHeight = 20] 省略符高度
+ * 
  * @param {number} [config.padding = 5] 脑图四周填充距离
  * 
  * @param {number} [config.width = 0] 脑图宽度
@@ -60,6 +64,10 @@
  me.unsizedNodes = new Map();
  
  me.leafNodes = new Map();
+
+ me.ellipsisNodeWidth = ellipsisNodeWidth ;
+
+ me.ellipsisNodeHeight = ellipsisNodeHeight ;
 
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
 
@@ -110,6 +118,16 @@
             local:true,
             defaultValue:false
          },
+         beforeEllipsisWidth:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
+         },
+         beforeEllipsisHeight:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
+         },
          x:{
             mode:'readwrite',
             local:true,
@@ -148,6 +166,11 @@
 
                return setIndicated(this , indicated) ;
             }
+         },
+         ellipsis:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
          }
       }) ;
 

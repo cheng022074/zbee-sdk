@@ -9,6 +9,10 @@
  * 
  * @import ellipsis from .ellipsis scoped
  * 
+ * @import doCenterXY from math.region.xy.center
+ * 
+ * @import from from math.region.from
+ * 
  * @param {data.Record} node  脑图节点
  * 
  * @param {number} level 省略脑图节点层次
@@ -39,9 +43,43 @@
         }
     }
 
-    // 这里要考虑节点大小不一致的情况
-    
-    ancestorNode.y = excludeRootNode.y ;
+    let {
+        y
+    } = doCenterXY(from(excludeRootNode)),
+    {
+        ellipsisNodeWidth,
+        ellipsisNodeHeight
+    } = this,
+    {
+        width,
+        height
+    } = excludeRootNode,
+    region = from({
+        x:excludeRootNode.x - (ellipsisNodeWidth - width),
+        y:excludeRootNode.y,
+        width:ellipsisNodeWidth,
+        height:ellipsisNodeHeight
+    }),
+    {
+        x
+    } = doCenterXY(region);
+
+    doCenterXY(region , {
+        x,
+        y
+    }) ;
+
+    ancestorNode.y = region.top ;
+
+    ancestorNode.beforeEllipsisWidth = width ;
+
+    ancestorNode.beforeEllipsisHeight = height ;
+
+    ancestorNode.width = ellipsisNodeWidth ;
+
+    ancestorNode.height = ellipsisNodeHeight ;
+
+    ancestorNode.ellipsis = true ;
 
  }else{
 
