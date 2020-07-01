@@ -49,7 +49,7 @@ function main(isFireDrawEvent){
         height
     } = getRegion() ;
 
-    if(mindmapHeight === height && isRootNode(rootNode)){
+    if(mindmapHeight === height){
 
         let {
             height:rootNodeHeight

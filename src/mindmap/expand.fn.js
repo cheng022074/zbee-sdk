@@ -17,8 +17,6 @@
  * 
  * @import ellipsis from .node.ellipsis scoped
  * 
- * @import fireDrawEvent from .fire.draw scoped
- * 
  * @param {string} id 节点编号
  * 
  */

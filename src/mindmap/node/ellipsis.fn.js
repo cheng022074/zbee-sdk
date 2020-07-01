@@ -21,6 +21,11 @@
  * 
  */
 
+ if(level === 0){
+
+    return ;
+ }
+
  let me = this,
      ancestorNode = getAncestorNode(node , level),
      {

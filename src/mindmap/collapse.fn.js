@@ -9,6 +9,8 @@
  * 
  * @import hide from .node.hide scoped
  * 
+ * @import cancelEllipsis from .node.ellipsis.cancel scoped
+ * 
  */
 
 let {
@@ -30,6 +32,8 @@ if(expanded && !isLeaf(selectedNode)){
     }
 
     selectedNode.expanded = false ;
+
+    cancelEllipsis() ;
 
     layout() ;
 }
