@@ -7,6 +7,8 @@
  * 
  * @import layout from ..layout scoped
  * 
+ * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
+ * 
  */
 
 let me = this,
@@ -18,7 +20,7 @@ if(unsizedNodes.size){
 
     return new Promise(callback =>   add(me , 'nodesized' , () => {
 
-        layout() ;
+        layout(isFireDrawEvent) ;
 
         callback() ;
 

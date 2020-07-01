@@ -23,11 +23,13 @@
  * 
  * @import defer from function.defer
  * 
+ * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
+ * 
  * @return {mixed} 返回说明 
  * 
  */
 
-function main(){
+function main(isFireDrawEvent){
 
     let me = this,
     {
@@ -60,7 +62,10 @@ function main(){
 
     defer(() => visibilityNodes.resort()) ;
 
-    fireDrawEvent() ;
+    if(isFireDrawEvent){
+
+        fireDrawEvent() ;
+    }
 }
 
 function layout(node){
