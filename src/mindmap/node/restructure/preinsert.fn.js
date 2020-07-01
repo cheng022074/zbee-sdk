@@ -28,8 +28,7 @@ if(is(node)){
     let {
         y
     } = xy,
-    region = from(node),
-    outY = getOutOfBoundOffsetY(region , y),
+    outY = getOutOfBoundOffsetY(from(node) , y),
     {
         placeholderNode
     } = this;
@@ -45,12 +44,6 @@ if(is(node)){
     }else{
 
         let {
-            top,
-            bottom,
-            left,
-            right
-        } = region,
-        {
             y:nodeY,
             height
         } = node;
