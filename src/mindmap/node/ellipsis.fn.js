@@ -34,26 +34,41 @@
      
 if(ancestorNode){
 
-    if(ellipsisRootNode === ancestorNode){
+if(ellipsisRootNode === ancestorNode){
 
-        return ;
-    }
+    return ;
+}
+
+let excludeRootNode = getAncestorNode(node , level - 1),
+    excludeNodes = [
+        excludeRootNode,
+        ...getDescendantNodes(excludeRootNode)
+    ] ;
 
     {
-        let nodes = getAncestorNodes(ancestorNode) ;
+        let nodes = getAncestorNodes(ancestorNode),
+            {
+                length
+            } = nodes;
 
-        for(let node of nodes){
+        if(length){
 
-            node.hidden = true ;
+            let hiddenAncestorNode = nodes[length - 1],
+                descendantNodes = getDescendantNodes(hiddenAncestorNode) ;
+
+            hiddenAncestorNode.hidden = true ;
+
+            for(let descendantNode of descendantNodes){
+
+                if(!excludeNodes.includes(descendantNode) && descendantNode !== ancestorNode){
+
+                    descendantNode.hidden = true ;
+                }
+            }
         }
     }
 
-    let nodes = getDescendantNodes(ancestorNode),
-        excludeRootNode = getAncestorNode(node , level - 1),
-        excludeNodes = [
-            excludeRootNode,
-            ...getDescendantNodes(excludeRootNode)
-        ];
+    let nodes = getDescendantNodes(ancestorNode);
 
     for(let node of nodes){
 
@@ -65,8 +80,8 @@ if(ancestorNode){
 
     ancestorNode.ellipsis = true ;
 
- }else{
+}else{
 
     ellipsis(node , level - 1) ;
 
- }
+}
