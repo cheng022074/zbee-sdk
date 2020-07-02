@@ -11,7 +11,7 @@
  * 
  * @import tryLayout from .layout.try scoped
  * 
- * @import getFirstChildNode from .node.child.first scoped
+ * @import getDeepestLeafNode from .node.leaf.deepest scoped
  * 
  * @import getAncestorNode from .node.ancestor scoped
  * 
@@ -29,11 +29,11 @@ let me = this,
 
 if(expand(selectedNode)){
 
-    let firstChildNode = getFirstChildNode(selectedNode) ;
+    let deepestLeafNode = getDeepestLeafNode(selectedNode) ;
 
-    if(getLevel(firstChildNode) > visibilityLevel){
+    if(getLevel(deepestLeafNode) > visibilityLevel){
 
-        ellipsis(selectedNode , visibilityLevel - 1) ;
+        ellipsis(deepestLeafNode , visibilityLevel) ;
     }
 
     await tryLayout() ;
