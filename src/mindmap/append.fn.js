@@ -41,7 +41,8 @@ if(parentNodeId){
 }else{
 
   let {
-      selectedNode
+      selectedNode,
+      visibilityLevel
   } = me,
   {
       expanded
@@ -66,6 +67,11 @@ if(parentNodeId){
   order(selectedNode) ;
 
   select(node.id , false) ;
+
+  if(getLevel(selectedNode) > visibilityLevel){
+
+      ellipsis(selectedNode , visibilityLevel) ;
+  }
 
   await tryLayout();
 }
