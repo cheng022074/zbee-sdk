@@ -1,15 +1,15 @@
 
 /**
  * 
- * 取消省略
+ * 被动取消省略
  * 
- * @import getParentNode from ..parent scoped
+ * @import getParentNode from ....parent scoped
  * 
- * @import getLevel from ..level scoped
+ * @import getLevel from ....level scoped
  * 
- * @import getDeepestLeafNode from ..leaf.deepest scoped
+ * @import getDeepestLeafNode from ....leaf.deepest scoped
  * 
- * @import ellipsis from ..ellipsis scoped
+ * @import ellipsis from ....ellipsis scoped
  * 
  */
 
