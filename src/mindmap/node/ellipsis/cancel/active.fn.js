@@ -6,7 +6,9 @@
  * 
  * @import getDeepestLeafNodes from ......nodes.leaf.deepest scoped
  * 
- * @imoprt cancelEllipsis from .passive scoped
+ * @import cancelEllipsis from .passive scoped
+ * 
+ * @import layout from ......layout scoped
  * 
  */
 
@@ -20,10 +22,12 @@ let {
 
     for(let deepestLeafNode of deepestLeafNodes){
 
-        deepestLeafNode.hidden = false ;
+        deepestLeafNode.hidden = true ;
 
         getParentNode(deepestLeafNode).expanded = false ;
     }
 
     cancelEllipsis() ;
+
+    layout() ;
  }
