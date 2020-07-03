@@ -9,33 +9,34 @@
  * 
  * @import getDeepestLeafNode from ....leaf.deepest scoped
  * 
+ * @import getRootNode from ....root scoped
+ * 
  * @import ellipsis from ....ellipsis scoped
  * 
  */
 
  let {
-    ellipsisRootNode,
     ellipsisNodes,
-    visibilityLevel
- } = this ;
+    visibilityLevel,
+    ellipsisRootNode
+ } = this,
+ deepestLeafNode = getDeepestLeafNode(getRootNode()),
+ level = getLevel(deepestLeafNode);
 
- if(ellipsisRootNode){
+if(level < visibilityLevel || level > visibilityLevel){
 
-    let deepestLeafNode = getDeepestLeafNode(ellipsisRootNode) ;
+    for(let ellipsisNode of ellipsisNodes){
 
-    if(getLevel(deepestLeafNode) < visibilityLevel){
-
-        for(let ellipsisNode of ellipsisNodes){
-    
-            ellipsisNode.hidden = false ;
-        }
-
-        ellipsisNodes.length = 0 ;
-    
-        ellipsisRootNode.ellipsis = false ;
-    
-
-        ellipsis(deepestLeafNode , visibilityLevel) ;
+        ellipsisNode.hidden = false ;
     }
-    
- }
+
+    ellipsisNodes.length = 0 ;
+
+    if(ellipsisRootNode){
+
+        ellipsisRootNode.ellipsis = false ;
+    }
+
+    ellipsis(deepestLeafNode , visibilityLevel) ;
+
+}

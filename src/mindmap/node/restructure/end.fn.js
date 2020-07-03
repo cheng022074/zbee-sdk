@@ -25,6 +25,8 @@
  * 
  * @import doOrder from ....order scoped
  * 
+ * @import cancelEllipsis from ..ellipsis.cancel.passive scoped
+ * 
  */
 
 let me = this,
@@ -63,6 +65,8 @@ if(is(placeholderNode)){
          me.fireEvent('nodemove' , data(selectedNode) , data(parentNode) , oldParentNode) ;
 
          doOrder(parentNode) ;
+
+         cancelEllipsis() ;
 
       } ;
    }
