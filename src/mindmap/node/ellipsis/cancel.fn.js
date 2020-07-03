@@ -5,36 +5,37 @@
  * 
  * @import getParentNode from ..parent scoped
  * 
- * @import show from ..show scoped
+ * @import getLevel from ..level scoped
+ * 
+ * @import getDeepestLeafNode from ..leaf.deepest scoped
  * 
  * @import ellipsis from ..ellipsis scoped
  * 
  */
 
  let {
-    ellipsisRootNode
+    ellipsisRootNode,
+    ellipsisNodes,
+    visibilityLevel
  } = this ;
 
  if(ellipsisRootNode){
 
-    let {
-        children
-    } = ellipsisRootNode ;
+    let deepestLeafNode = getDeepestLeafNode(ellipsisRootNode) ;
 
-    for(let childNode of children){
+    if(getLevel(deepestLeafNode) < visibilityLevel){
 
-        show(childNode) ;
+        for(let ellipsisNode of ellipsisNodes){
+    
+            ellipsisNode.hidden = false ;
+        }
+
+        ellipsisNodes.length = 0 ;
+    
+        ellipsisRootNode.ellipsis = false ;
+    
+
+        ellipsis(deepestLeafNode , visibilityLevel) ;
     }
-
-    ellipsisRootNode.ellipsis = false ;
-
-    let parentNode = getParentNode(ellipsisRootNode) ;
-
-    if(parentNode){
-
-        parentNode.hidden = false ;
-    }
-
-    ellipsis(ellipsisRootNode , 1) ;
     
  }

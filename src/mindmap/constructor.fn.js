@@ -69,6 +69,8 @@
  
  me.leafNodes = new Map();
 
+ me.ellipsisNodes = [];
+
  me.ellipsisNodeWidth = ellipsisNodeWidth ;
 
  me.ellipsisNodeHeight = ellipsisNodeHeight ;

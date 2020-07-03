@@ -9,7 +9,7 @@
  * 
  * @import getDescendantNodes from ..nodes.relation.descendant scoped
  * 
- * @import ellipsis from .ellipsis scoped
+ * @import show from .show scoped
  * 
  * @import doCenterXY from math.region.xy.center
  * 
@@ -29,21 +29,22 @@
  let me = this,
      ancestorNode = getAncestorNode(node , level),
      {
-        ellipsisRootNode
+        ellipsisRootNode,
+        ellipsisNodes
      } = me;
      
 if(ancestorNode){
 
-if(ellipsisRootNode === ancestorNode){
+    if(ellipsisRootNode === ancestorNode){
 
-    return ;
-}
+        return ;
+    }
 
-let excludeRootNode = getAncestorNode(node , level - 1),
-    excludeNodes = [
-        excludeRootNode,
-        ...getDescendantNodes(excludeRootNode)
-    ] ;
+    let excludeRootNode = getAncestorNode(node , level - 1),
+        excludeNodes = [
+            excludeRootNode,
+            ...getDescendantNodes(excludeRootNode)
+        ] ;
 
     {
         let nodes = getAncestorNodes(ancestorNode),
@@ -58,11 +59,15 @@ let excludeRootNode = getAncestorNode(node , level - 1),
 
             hiddenAncestorNode.hidden = true ;
 
+            ellipsisNodes.push(hiddenAncestorNode) ;
+
             for(let descendantNode of descendantNodes){
 
                 if(!excludeNodes.includes(descendantNode) && descendantNode !== ancestorNode){
 
                     descendantNode.hidden = true ;
+
+                    ellipsisNodes.push(descendantNode) ;
                 }
             }
         }
@@ -75,13 +80,11 @@ let excludeRootNode = getAncestorNode(node , level - 1),
         if(!excludeNodes.includes(node)){
 
             node.hidden = true ;
+
+            ellipsisNodes.push(node) ;
         }
     }
 
     ancestorNode.ellipsis = true ;
-
-}else{
-
-    ellipsis(node , level - 1) ;
 
 }
