@@ -17,6 +17,10 @@
  * 
  * @import order from .order scoped
  * 
+ * @import getLevel from .node.level scoped
+ * 
+ * @import ellipsis from .node.ellipsis scoped
+ * 
  * @param {object} [node = {}] 子节点配置信息
  * 
  * @param {string} [parentNodeId] 父节点编号
@@ -68,9 +72,9 @@ if(parentNodeId){
 
   select(node.id , false) ;
 
-  if(getLevel(selectedNode) > visibilityLevel){
+  if(getLevel(node) > visibilityLevel){
 
-      ellipsis(selectedNode , visibilityLevel) ;
+      ellipsis(node , visibilityLevel) ;
   }
 
   await tryLayout();
