@@ -9,7 +9,7 @@
  * 
  * @import hide from .node.hide scoped
  * 
- * @import cancelEllipsis from .node.ellipsis.cancel scoped
+ * @import cancelEllipsis from .node.ellipsis.cancel.passive scoped
  * 
  */
 
