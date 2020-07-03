@@ -31,7 +31,7 @@
  * 
  * @param {boolean} [config.initVisibilityLevel = 2] 初始显示脑图节点层数
  * 
- * @param {boolean} [config.visibilityLevel = 3] 显示脑图节点层数
+ * @param {boolean} [config.visibilityLevel = Number.MAX_VALUE] 显示脑图节点层数
  * 
  * @param {number} [config.nodeVerticalSeparationDistance = 15] 节点垂直间隔距离
  * 
