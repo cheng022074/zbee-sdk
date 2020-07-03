@@ -4,7 +4,7 @@
  * 
  * @import getParentNode from ....parent scoped
  * 
- * @import getDeepestLeafNodes from ....nodes.leaf.deepest scoped
+ * @import getDeepestLeafNodes from ......nodes.leaf.deepest scoped
  * 
  * @imoprt cancelEllipsis from .passive scoped
  * 
