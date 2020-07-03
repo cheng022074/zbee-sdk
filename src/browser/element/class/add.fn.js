@@ -13,17 +13,14 @@
  * 
  */
 
- function main(el , cls){
+if(isString(cls)){
 
-    if(isString(cls)){
+    el.classList.add(cls) ;
 
-        el.classList.add(cls) ;
-    
-    }else if(isArray(cls)){
+}else if(isArray(cls)){
 
-        for(let item of cls){
+    for(let item of cls){
 
-            main(el , item) ;
-        }
+        main(el , item) ;
     }
- }
+}
