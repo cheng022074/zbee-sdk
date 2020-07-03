@@ -11,4 +11,4 @@
  * 
  */
 
- return el.classList.has(cls) ;
+ return el.classList.contains(cls) ;
