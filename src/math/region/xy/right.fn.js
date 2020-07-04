@@ -11,13 +11,19 @@
  * 
  * @import getRight from ..right
  * 
- * @param {object} config 配置
+ * @param {object} region 配置
  * 
  * @return {object} 坐标 
  * 
  */
 
+let {
+    right,
+    top,
+    bottom
+} = region ;
+
 return {
-    x:getLeft(config) + getRight(config) - getLeft(config),
-    y:getTop(config) + (getBottom(config) - getTop(config)) / 2
+    x:right,
+    y:top + (bottom - top) / 2
 } ;

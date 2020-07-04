@@ -42,9 +42,11 @@
         let me = this,
         nodes = me.nodes = Array.from(me.values()).map(node => {
 
+            let region = from(node) ;
+
             return {
-                xy:getCenterXY(node),
-                rightXY:getRightXY(node),
+                xy:getCenterXY(region),
+                rightXY:getRightXY(region),
                 node
             } ;
 
