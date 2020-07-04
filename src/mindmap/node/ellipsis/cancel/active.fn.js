@@ -10,6 +10,8 @@
  * 
  * @import layout from ......layout scoped
  * 
+ * @import select from ......select scoped
+ * 
  */
 
 let {
@@ -28,6 +30,8 @@ let {
     }
 
     cancelEllipsis() ;
+
+    select(ellipsisRootNode.id , false) ;
 
     layout() ;
  }
