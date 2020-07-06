@@ -1,5 +1,8 @@
 {
     "xy":{
+        "prefixes":{
+            "css":"xy"
+        },
         "classes":[
             "array.*",
             "data.*",
@@ -25,7 +28,8 @@
             "log.node",
             "process.spawn",
             "vue.component",
-            "css::reset.viewport"
+            "css::reset.viewport",
+            "css::layout.vertical"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-SDK",
