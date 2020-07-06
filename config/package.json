@@ -29,7 +29,7 @@
             "process.spawn",
             "vue.component",
             "css::reset.viewport",
-            "css::layout.vertical"
+            "css::layout.*"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-SDK",

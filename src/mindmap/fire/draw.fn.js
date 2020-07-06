@@ -7,10 +7,6 @@
  * 
  * @import data from ..data scoped
  * 
- * @param {mixed} data 参数说明
- * 
- * @return {mixed} 返回说明 
- * 
  */
 
  let me = this,
