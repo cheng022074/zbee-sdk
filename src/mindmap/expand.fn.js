@@ -13,8 +13,6 @@
  * 
  * @import getDeepestLeafNode from .node.leaf.deepest scoped
  * 
- * @import getAncestorNode from .node.ancestor scoped
- * 
  * @import ellipsis from .node.ellipsis scoped
  * 
  * @param {string} id 节点编号
