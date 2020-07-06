@@ -19,7 +19,9 @@
  * 
  */
 
- function main(target , event , fn){
+ function main(target , event , fn , {
+    scope
+ } = {}){
 
     if(isObject(event)){
 
@@ -35,30 +37,32 @@
                 if(isObject(listener)){
 
                     fn = listener.fn ;
+
+                    scope = scope || listener.scope ;
                 
                 }else{
 
                     fn = listener ;
                 }
 
-                remove(target , name , fn) ;
+                remove(target , name , fn , scope) ;
             }
         }
     
     }else{
 
-        remove(target , event , fn) ;
+        remove(target , event , fn , scope) ;
     }
  }
 
- function remove(target , event , fn){
+ function remove(target , event , fn , scope){
 
-    let listener = listeners.get(target , event , fn);
+    let listener = listeners.get(target , event , fn , scope);
 
     if(listener){
 
         doRemove(target , event , listener) ;
 
-        listeners.delete(target , event , fn) ;
+        listeners.delete(target , event , fn , scope) ;
     }
  }

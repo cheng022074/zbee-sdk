@@ -76,7 +76,7 @@
      ...config
  }){
 
-    if(listeners.has(target , event , fn)){
+    if(listeners.has(target , event , fn , scope)){
 
         return ;
     }
@@ -111,7 +111,7 @@
             }
         };
     
-    listeners.set(target , event , fn , listener) ;
+    listeners.set(target , event , fn , scope , listener) ;
     
     doAdd(target , event , listener , {
         passive:false,
