@@ -7,7 +7,7 @@
  * 
  * @import setHidden from .hidden scoped
  * 
- * @import setSelected from .selected
+ * @import setSelected from .selected scoped
  * 
  * @import setIndicated from .indicated scoped
  * 
@@ -58,8 +58,6 @@
  */
 
  let me = this ;
-
- let setSelected2 = setSelected.bind(me) ; 
 
  me.nodes = new Map() ;
 
@@ -151,7 +149,7 @@
             local:true,
             set(selected){
 
-               return setSelected2(this , selected) ;
+               return setSelected(this , selected) ;
 
             },
             defaultValue:false
