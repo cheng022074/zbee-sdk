@@ -1,6 +1,6 @@
-@import "var.layout.flex" ;
+$max:3 ;
 
-@for $flex from 1 through $var-layout-flex-max{
+@for $flex from 1 through $max{
     .-main-#{$flex}{
         flex:$flex;
     }
