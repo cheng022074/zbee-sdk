@@ -5,7 +5,7 @@
  * 
  * @import add from event.listener.add
  * 
- * @import layout from ..layout scoped
+ * @import layout from ..layout
  * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
  * 
@@ -20,7 +20,7 @@ if(unsizedNodes.size){
 
     return new Promise(callback =>   add(me , 'nodesized' , () => {
 
-        layout(isFireDrawEvent) ;
+        layout.call(me , isFireDrawEvent) ;
 
         callback() ;
 
