@@ -29,7 +29,8 @@
             "process.spawn",
             "vue.component",
             "css::reset.viewport",
-            "css::layout.*"
+            "css::layout.*",
+            "css::mindmap"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-SDK",
