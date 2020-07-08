@@ -58,7 +58,7 @@
 
       for(let ellipsisNode of ellipsisNodes){
 
-          if(ellipsisNode === node || isDescendantNode(ellipsisNode , node)){
+          if(ellipsisNode === node || isDescendantNode(ellipsisNode , node) || isDescendantNode(node , ellipsisNode)){
 
               for(let ellipsisNode of ellipsisNodes){
 
@@ -128,20 +128,33 @@
 
       }else{
 
-        let deepestLeafNode = getDeepestLeafNode(node) ;
+        let deepestLeafNode = getDeepestLeafNode(node),
+            level = getLevel(deepestLeafNode) ;
 
-        if(getLevel(deepestLeafNode) > visibilityLevel){
+          if(level > visibilityLevel){
 
           let {
               unsizedNodes
-          } = me ;
+          } = me,
+          nodeLevel = getLevel(node);
+
+          if(nodeLevel < level - visibilityLevel + 1){
+
+            level -= visibilityLevel ;
+
+            for(let i = 0 ; i < level ; i ++){
+
+              deepestLeafNode = getParentNode(deepestLeafNode) ;
+
+            }
+          }
 
           if(unsizedNodes.size){
 
               await new Promise(callback => add(me , 'nodesized' , () => {
 
                 ellipsis(deepestLeafNode , visibilityLevel) ;
-                
+
                 callback() ;
 
               } , {

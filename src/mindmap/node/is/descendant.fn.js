@@ -1,7 +1,7 @@
 
 /**
  * 
- * 判断一个脑图节点是否是另外一个脑图的子函节点
+ * 判断一个脑图节点是否是另外一个脑图的子孙节点
  * 
  * @import getParentNode from ..parent scoped
  * 
