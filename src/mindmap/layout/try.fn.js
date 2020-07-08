@@ -31,3 +31,5 @@ if(unsizedNodes.size){
 }
 
 layout() ;
+
+return Promise.resolve() ;
