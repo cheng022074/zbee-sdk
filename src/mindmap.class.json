@@ -33,6 +33,10 @@
             "impl":".mindmap.nodes.order"
         },
         {
+            "name":"query",
+            "impl":".mindmap.node.query"
+        },
+        {
             "name":"getParentNode",
             "impl":".mindmap.node.parent"
         },
