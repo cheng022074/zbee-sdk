@@ -140,13 +140,7 @@
 
           if(nodeLevel < level - visibilityLevel + 1){
 
-            level -= visibilityLevel ;
-
-            for(let i = 0 ; i < level ; i ++){
-
-              deepestLeafNode = getParentNode(deepestLeafNode) ;
-
-            }
+            deepestLeafNode = node ;
           }
 
           if(unsizedNodes.size){
