@@ -54,29 +54,17 @@
 
    if(node.hidden){
 
-      let isEllipsisNode = false ;
-
       for(let ellipsisNode of ellipsisNodes){
 
-          if(ellipsisNode === node || isDescendantNode(ellipsisNode , node) || isDescendantNode(node , ellipsisNode)){
+        ellipsisNode.hidden = false ;
 
-              for(let ellipsisNode of ellipsisNodes){
+      }
 
-                ellipsisNode.hidden = false ;
+      ellipsisNodes.length = 0 ;
 
-              }
+      if(ellipsisRootNode){
 
-              ellipsisNodes.length = 0 ;
-
-              if(ellipsisRootNode){
-
-                  ellipsisRootNode.ellipsis = false ;
-              }
-
-              isEllipsisNode = true ;
-
-              break ;
-          }
+          ellipsisRootNode.ellipsis = false ;
       }
 
       let parentNodes = [],
@@ -102,66 +90,32 @@
           expand(parentNode) ;
       }
 
-      if(!isEllipsisNode){
+      let {
+          unsizedNodes
+      } = me ;
 
-        let {
-            unsizedNodes
-        } = me ;
+      if(unsizedNodes.size){
 
-        if(unsizedNodes.size){
+          await new Promise(callback => add(me , 'nodesized' , callback , {
+              once:true
+          })) ;
 
-            await new Promise(callback => add(me , 'nodesized' , () => {
+      }
 
-              passiveCancelEllipsis() ;
+      let deepestLeafNode = getDeepestLeafNode(node),
+          level = getLevel(deepestLeafNode) ;
 
-              callback() ;
+      if(level > visibilityLevel){
 
-            } , {
-                once:true
-            })) ;
+        let nodeLevel = getLevel(node);
 
-        }else{
+        if(nodeLevel < level - visibilityLevel + 1){
 
-          passiveCancelEllipsis() ;
-
+          deepestLeafNode = node ;
         }
 
-      }else{
+        ellipsis(deepestLeafNode , visibilityLevel) ;
 
-        let deepestLeafNode = getDeepestLeafNode(node),
-            level = getLevel(deepestLeafNode) ;
-
-          if(level > visibilityLevel){
-
-          let {
-              unsizedNodes
-          } = me,
-          nodeLevel = getLevel(node);
-
-          if(nodeLevel < level - visibilityLevel + 1){
-
-            deepestLeafNode = node ;
-          }
-
-          if(unsizedNodes.size){
-
-              await new Promise(callback => add(me , 'nodesized' , () => {
-
-                ellipsis(deepestLeafNode , visibilityLevel) ;
-
-                callback() ;
-
-              } , {
-                  once:true
-              })) ;
-
-          }else{
-
-            ellipsis(deepestLeafNode , visibilityLevel) ;
-
-          }
-  
-        }
       }
 
       useLayout = true ;
