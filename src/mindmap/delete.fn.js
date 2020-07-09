@@ -86,6 +86,8 @@ if(id){
 
         me.fireEvent('nodedelete' , deleteNodes) ;
 
+        me.fireEvent('nodeselect' , data(me.selectedNode)) ;
+
         order(parentNode) ;
 
         cancelEllipsis() ;

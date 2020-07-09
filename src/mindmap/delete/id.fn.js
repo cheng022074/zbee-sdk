@@ -17,8 +17,14 @@
  * 
  */
 
-let node = query(id),
-{
+let node = query(id) ;
+
+if(!node){
+
+    return ;
+}
+
+let {
     hidden
 } = node,
 parentNode = getParentNode(node),
