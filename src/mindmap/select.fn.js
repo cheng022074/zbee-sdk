@@ -115,7 +115,7 @@
 
       if(level > visibilityLevel){
 
-        /*let nodeLevel = getLevel(node);
+        let nodeLevel = getLevel(node);
 
         if(nodeLevel < level - visibilityLevel + 1){
 
@@ -127,7 +127,7 @@
           }
 
           collapse(deepestLeafNode) ;
-        }*/
+        }
 
         ellipsis(deepestLeafNode , visibilityLevel) ;
 
