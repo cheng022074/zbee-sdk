@@ -13,11 +13,12 @@
  * 
  * @param {mixed} [config.buffer = 0] 缓存时间
  * 
+ * 
  */
 
 let bufferId ;
 
-return () =>{
+return (...args) =>{
 
     if(bufferId){
 
@@ -26,7 +27,7 @@ return () =>{
 
     bufferId = setTimeout(() => {
 
-        get(fn , scope)() ;
+        get(fn , scope)(...args) ;
 
         bufferId = null ;
 
