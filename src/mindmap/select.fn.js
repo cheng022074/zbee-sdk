@@ -27,6 +27,10 @@
  * 
  * @import getDeepestLeafNode from .node.leaf.deepest scoped
  * 
+ * @import getLeafNodes from .nodes.leaf scoped
+ * 
+ * @import getRootNode from .node.root scoped
+ * 
  * @param {string} id 节点编号
  * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发重绘事件 
@@ -122,6 +126,36 @@
         }
 
         ellipsis(deepestLeafNode , visibilityLevel) ;
+
+      }
+
+      {
+        let {
+          rootNode
+        } = me ;
+
+        if(rootNode === getRootNode()){
+          
+            let nodes = getLeafNodes(rootNode) ;
+
+            for(let node of nodes){
+
+                let level = getLevel(node) ;
+
+                if(level > visibilityLevel){
+
+                  let count = level - visibilityLevel;
+
+                  for(let i = 0 ; i < count ; i ++){
+
+                    node = getParentNode(node) ;
+                  }
+
+                  collapse(node) ;
+
+                }
+            }
+        }
 
       }
 
