@@ -50,15 +50,11 @@
  } = me,
  useLayout = false;
 
- if(ellipsisRootNode && ellipsisRootNode.id === id){
-
-  cancelEllipsis() ;
-    
- }else if(!restructuring && selectedNode.id !== id && nodes.has(id)){
+ if(!restructuring && selectedNode.id !== id && nodes.has(id)){
 
    let node = nodes.get(id) ;
 
-   if(node.hidden){
+   if(node.hidden || node.ellipsis){
 
       for(let ellipsisNode of ellipsisNodes){
 

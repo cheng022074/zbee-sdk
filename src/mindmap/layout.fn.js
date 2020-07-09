@@ -40,6 +40,8 @@ function main(isFireDrawEvent){
     } = me,
     rootNode = getRootNode();
 
+    rootNode.x = 0 ;
+
     delete me.region ;
 
     layout.call(me , rootNode) ;
