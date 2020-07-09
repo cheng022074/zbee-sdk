@@ -7,8 +7,7 @@
     touch-action: none;
     > .texts{
         visibility: hidden;
-        > p{
-            word-break: break-all;
+        > .text{
             display: inline-flex;
         }
     }
