@@ -3,9 +3,13 @@
  * 
  * 初始化显示节点
  * 
+ * @param {data.Record} node 脑图节点
+ * 
+ * @param {Number} visibilityLevel 显示层次
+ * 
  */
 
- function main(){
+ function main(node , visibilityLevel){
 
     let me = this,
     {
@@ -13,7 +17,7 @@
         initVisibilityLevel
     } = me ;
 
-    initVisibilityNode.call(me , rootNode , 1 , initVisibilityLevel) ;
+    initVisibilityNode.call(me , node || rootNode , 1 , visibilityLevel || initVisibilityLevel) ;
  }
 
  function initVisibilityNode(node , level , maxLevel){
