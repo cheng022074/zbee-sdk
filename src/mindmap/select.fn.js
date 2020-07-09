@@ -13,9 +13,9 @@
  * 
  * @import expand from .node.expand scoped
  * 
- * @import layout from .layout scoped
+ * @import collapse from .node.collapse scoped
  * 
- * @import passiveCancelEllipsis from .node.ellipsis.cancel.passive scoped
+ * @import layout from .layout scoped
  * 
  * @import add from event.listener.add
  * 
@@ -111,7 +111,14 @@
 
         if(nodeLevel < level - visibilityLevel + 1){
 
-          deepestLeafNode = node ;
+          let count = level - visibilityLevel - nodeLevel + 1;
+
+          for(let i = 0 ; i < count ; i ++){
+
+              deepestLeafNode = getParentNode(deepestLeafNode) ;
+          }
+
+          collapse(deepestLeafNode) ;
         }
 
         ellipsis(deepestLeafNode , visibilityLevel) ;
