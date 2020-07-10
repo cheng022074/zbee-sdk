@@ -1,90 +1,84 @@
 
 /**
  * 
- * 从该节点开始省略
+ * 省略指定节点的父节点
  * 
- * @import getAncestorNode from .ancestor scoped
+ * @import cancel from .ellipsis.cancel scoped
  * 
- * @import getAncestorNodes from ..nodes.relation.ancestor scoped
+ * @import getParentNode from .parent scoped
  * 
- * @import getDescendantNodes from ..nodes.relation.descendant scoped
+ * @import next from ..nodes.sibling.next scoped
  * 
- * @import show from .show scoped
- * 
- * @import doCenterXY from math.region.xy.center
- * 
- * @import from from math.region.from
+ * @import previous from ..nodes.sibling.previous scoped
  * 
  * @param {data.Record} node  脑图节点
  * 
- * @param {number} level 省略脑图节点层次
- * 
  */
 
- if(level === 0){
+ function main(node , useEllipsis = true){
 
-    return ;
- }
+    if(useEllipsis){
 
- let me = this,
-     ancestorNode = getAncestorNode(node , level),
-     {
-        ellipsisRootNode,
-        ellipsisNodes
-     } = me;
-     
-if(ancestorNode){
-
-    if(ellipsisRootNode === ancestorNode){
-
-        return ;
+        cancel() ;
     }
+    
+    let parentNode = getParentNode(node),
+        me = this,
+        {
+            ellipsisNodes
+        } = me;
 
-    let excludeRootNode = getAncestorNode(node , level - 1),
-        excludeNodes = [
-            excludeRootNode,
-            ...getDescendantNodes(excludeRootNode)
-        ] ;
+    if(parentNode){
 
-    {
-        let nodes = getAncestorNodes(ancestorNode),
-            {
-                length
-            } = nodes;
+        hide.call(me , previous(node)) ;
 
-        if(length){
+        hide.call(me , next(node)) ;
 
-            let hiddenAncestorNode = nodes[length - 1],
-                descendantNodes = getDescendantNodes(hiddenAncestorNode) ;
+        main.call(me , parentNode , false) ;
+        
+        if(useEllipsis){
 
-            hiddenAncestorNode.hidden = true ;
+            parentNode.ellipsis = true ;
+        
+        }else{
 
-            ellipsisNodes.push(hiddenAncestorNode) ;
+            parentNode.hidden = true ;
 
-            for(let descendantNode of descendantNodes){
-
-                if(!excludeNodes.includes(descendantNode) && descendantNode !== ancestorNode){
-
-                    descendantNode.hidden = true ;
-
-                    ellipsisNodes.push(descendantNode) ;
-                }
-            }
+            ellipsisNodes.push(parentNode) ;
         }
     }
+ }
 
-    let nodes = getDescendantNodes(ancestorNode);
+ function hide(nodes){
+
+    let me = this ;
 
     for(let node of nodes){
 
-        if(!excludeNodes.includes(node)){
+        downHide.call(me , node) ;
+    }
+ }
 
-            node.hidden = true ;
+ function downHide(node){
 
-            ellipsisNodes.push(node) ;
+    let me = this,
+    {
+        ellipsisNodes
+    } = me ;
+
+    node.hidden = true ;
+
+    ellipsisNodes.push(node) ;
+
+    if(node.expanded){
+
+        let {
+            children
+        } = node ;
+
+        for(let childNode of children){
+
+            hide.call(me , childNode) ;
         }
     }
-
-    ancestorNode.ellipsis = true ;
-
-}
+ }
