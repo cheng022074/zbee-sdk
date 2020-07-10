@@ -3,21 +3,19 @@
  * 
  * 收起节点
  * 
+ * @import get from .node.get scoped
+ * 
  * @import layout from .layout scoped
  * 
  * @import collapse from .node.collapse scoped
  * 
- * @import cancelEllipsis from .node.ellipsis.cancel.passive scoped
+ * @param {string} id 节点编号
  * 
  */
 
-let {
-    selectedNode
-} = this ;
+let node = get(id) ;
 
-if(collapse(selectedNode)){
-
-    cancelEllipsis() ;
+if(node && collapse(node)){
 
     layout() ;
 }
