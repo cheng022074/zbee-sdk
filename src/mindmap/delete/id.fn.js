@@ -17,6 +17,8 @@
  * 
  */
 
+ // 此处未考虑忽略节点时的情况
+
 let node = query(id) ;
 
 if(!node){

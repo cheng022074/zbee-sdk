@@ -17,8 +17,6 @@
  * 
  * @import order from .order scoped
  * 
- * @import cancelEllipsis from .node.ellipsis.cancel.passive scoped
- * 
  * @param {string} [id] 节点编号
  * 
  */
@@ -89,8 +87,6 @@ if(id){
         me.fireEvent('nodeselect' , data(me.selectedNode)) ;
 
         order(parentNode) ;
-
-        cancelEllipsis() ;
 
         layout() ;
     }
