@@ -17,6 +17,8 @@
  * 
  * @import waitNodeSized from .node.sized.wait scoped
  * 
+ * @import initVisibilityLevel from .load.visibility scoped
+ * 
  * @param {string} id 节点编号
  * 
  * @param {boolean} [isLayout = true] 是否重新布局 
@@ -68,6 +70,11 @@
   if(ellipsisPattern){
 
     ellipsis(node) ;
+
+    initVisibilityLevel(node , me.visibilityLevel) ;
+
+    await waitNodeSized() ;
+    
   }
       
   me.fireEvent('nodeselect' , data(node)) ;

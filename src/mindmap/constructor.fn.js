@@ -53,6 +53,8 @@
  * 
  * @param {number} [config.ellipsisPattern = true] 标识是否启用省略模式
  * 
+ * @param {number} [config.visibilityLevel = 3] 省略节点时选定节点展现子节点层数
+ * 
  * @param {object} [...config.options] 其它脑图配置
  * 
  */
@@ -189,6 +191,8 @@
  me.readerAsRoot = readerAsRoot ;
 
  me.initVisibilityLevel = initVisibilityLevel ;
+
+ me.visibilityLevel = visibilityLevel ;
 
  let placeholderNode = reader.create({
    id:generate('placeholder-'),
