@@ -3,8 +3,6 @@
  * 
  * 省略指定节点的父节点
  * 
- * @import cancel from .ellipsis.cancel scoped
- * 
  * @import getParentNode from .parent scoped
  * 
  * @import next from ..nodes.sibling.next scoped
@@ -16,11 +14,6 @@
  */
 
  function main(node , useEllipsis = true){
-
-    if(useEllipsis){
-
-        cancel() ;
-    }
     
     let parentNode = getParentNode(node),
         me = this,

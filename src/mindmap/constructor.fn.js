@@ -51,6 +51,8 @@
  * 
  * @param {number} [config.height = 0] 脑图高度
  * 
+ * @param {number} [config.ellipsisPattern = true] 标识是否启用省略模式
+ * 
  * @param {object} [...config.options] 其它脑图配置
  * 
  */

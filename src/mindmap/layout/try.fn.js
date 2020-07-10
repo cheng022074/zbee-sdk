@@ -3,7 +3,7 @@
  * 
  * 尝试布局
  * 
- * @import add from event.listener.add
+ * @import waitNodeSized from ..node.sized.wait scoped
  * 
  * @import layout from ..layout scoped
  * 
@@ -11,25 +11,6 @@
  * 
  */
 
-let me = this,
-{
-    unsizedNodes
-} = me ;
+ await waitNodeSized() ;
 
-if(unsizedNodes.size){
-
-    return new Promise(callback =>   add(me , 'nodesized' , () => {
-
-        layout(isFireDrawEvent) ;
-
-        callback() ;
-
-    } , {
-        once:true
-    })) ;
-
-}
-
-layout() ;
-
-return Promise.resolve() ;
+ layout(isFireDrawEvent) ;
