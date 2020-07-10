@@ -68,6 +68,8 @@ if(is(placeholderNode)){
 
 delete me.restructuring ;
 
+delete me.restructuredNode ;
+
 selectedNode.restructuring = false ;
 
 let nodes = getDescendantNodes(selectedNode) ;

@@ -13,8 +13,6 @@
  * 
  * @import setEllipsis from .ellipsis scoped
  * 
- * @import setRestructuring from .restructuring scoped
- * 
  * @import createVisibilityNodes from .nodes.visibility scoped
  * 
  * @import generate from id.generate
@@ -168,11 +166,7 @@
          restructuring:{
             mode:'readwrite',
             local:true,
-            defaultValue:false,
-            set(restructuring){
-
-               return setRestructuring(this , restructuring) ;
-            }
+            defaultValue:false
          },
          indicated:{
             mode:'readwrite',

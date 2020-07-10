@@ -27,6 +27,8 @@
 
  selectedNode.restructuring = true ;
 
+ me.restructuredNode = selectedNode ;
+
  let nodes = getDescendantNodes(selectedNode) ;
 
  for(let node of nodes){
