@@ -71,6 +71,8 @@
 
  me.ellipsisNodes = [];
 
+ me.ellipsisPattern = ellipsisPattern ;
+
  me.ellipsisNodeWidth = ellipsisNodeWidth ;
 
  me.ellipsisNodeHeight = ellipsisNodeHeight ;
