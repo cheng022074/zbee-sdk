@@ -13,7 +13,7 @@
  * 
  * @import append from .append scoped
  * 
- * @import getOutOfBoundOffsetY from math.region.bound.out.y
+ * @import getOutOfBoundOffsetY from math.region.outOfBoundOffset.y
  * 
  * @import from from math.region.from
  * 

@@ -15,7 +15,7 @@
  * 
  * @import from from math.region.from
  * 
- * @import getOutOfBoundOffsetY from math.region.bound.out.y
+ * @import getOutOfBoundOffsetY from math.region.outOfBoundOffset.y
  * 
  * @import is from ..node.is.normal
  * 
