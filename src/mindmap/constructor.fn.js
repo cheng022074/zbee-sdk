@@ -31,8 +31,6 @@
  * 
  * @param {boolean} [config.initVisibilityLevel = 2] 初始显示脑图节点层数
  * 
- * @param {boolean} [config.visibilityLevel = Number.MAX_VALUE] 显示脑图节点层数
- * 
  * @param {number} [config.nodeVerticalSeparationDistance = 15] 节点垂直间隔距离
  * 
  * @param {number} [config.nodeHorizontalSeparationDistance = 25] 节点水平间隔距离
@@ -187,13 +185,6 @@
  me.readerAsRoot = readerAsRoot ;
 
  me.initVisibilityLevel = initVisibilityLevel ;
-
- if(visibilityLevel <= initVisibilityLevel){
-
-   visibilityLevel = initVisibilityLevel + 1 ;
- }
-
- me.visibilityLevel = visibilityLevel ;
 
  let placeholderNode = reader.create({
    id:generate('placeholder-'),
