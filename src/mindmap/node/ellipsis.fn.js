@@ -9,6 +9,8 @@
  * 
  * @import previous from ..nodes.sibling.previous scoped
  * 
+ * @import collapse from .collapse scoped
+ * 
  * @param {data.Record} node  脑图节点
  * 
  */
@@ -23,9 +25,18 @@
 
     if(parentNode){
 
-        hide.call(me , previous(node)) ;
+        if(useEllipsis){
 
-        hide.call(me , next(node)) ;
+            collapses(previous(node)) ;
+
+            collapses(next(node)) ;
+
+        }else{
+
+            hide.call(me , previous(node)) ;
+
+            hide.call(me , next(node)) ;
+        }
 
         main.call(me , parentNode , false) ;
         
@@ -49,6 +60,14 @@
     for(let node of nodes){
 
         downHide.call(me , node) ;
+    }
+ }
+
+ function collapses(nodes){
+
+    for(let node of nodes){
+
+        collapse(node) ;
     }
  }
 
