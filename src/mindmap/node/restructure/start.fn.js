@@ -9,15 +9,16 @@
  * 
  * @import fireDrawEvent from ....fire.draw scoped
  * 
+ * @import get from ..get scoped
+ * 
+ * @param {string} id 节点编号
  * 
  */
 
  let me = this,
- {
-    selectedNode
- } = me;
+     selectedNode = get(id) ;
 
- if(isRootNode(selectedNode)){
+ if(!selectedNode || isRootNode(selectedNode)){
 
     return ;
  }

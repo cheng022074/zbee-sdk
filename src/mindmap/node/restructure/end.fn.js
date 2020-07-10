@@ -29,7 +29,7 @@
 
 let me = this,
 {
-   selectedNode,
+   restructuredNode:selectedNode,
    restructureIndicatedNode,
    placeholderNode
 } = me;
@@ -49,8 +49,6 @@ if(is(placeholderNode)){
        oldParentNode = getParentNode(selectedNode);
 
    insertBefore(selectedNode , placeholderNode) ;
-
-   selectedNode.selected = true ;
 
    remove(placeholderNode) ;
 
