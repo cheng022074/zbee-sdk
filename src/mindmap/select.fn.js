@@ -31,8 +31,6 @@
  * 
  * @import getRootNode from .node.root scoped
  * 
- * @import initVisibilityNode from .load.visibility scoped
- * 
  * @param {string} id 节点编号
  * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发重绘事件 
@@ -91,8 +89,6 @@
 
           expand(parentNode) ;
       }
-
-      initVisibilityNode(node , visibilityLevel) ;
 
       let {
           unsizedNodes
