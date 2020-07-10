@@ -78,7 +78,7 @@
 
         for(let childNode of children){
 
-            hide.call(me , childNode) ;
+            downHide.call(me , childNode) ;
         }
     }
  }

@@ -24,21 +24,21 @@
 
  if(!restructuring && selectedNode.id !== id && nodes.has(id)){
 
-   let node = nodes.get(id) ;
+  let node = nodes.get(id) ;
 
-   if(node.hidden){
+  if(node.hidden){
 
-   }
+  }
 
-   node.selected = true ;
+  node.selected = true ;
 
-   ellipsis(node) ;
-        
-   me.fireEvent('nodeselect' , data(node)) ;
+  ellipsis(node) ;
+      
+  me.fireEvent('nodeselect' , data(node)) ;
 
-    if(isLayout){
+  if(isLayout){
 
-      layout() ;
-    
-    }    
+    layout() ;
+  
+  }    
  }
