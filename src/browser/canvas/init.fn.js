@@ -3,9 +3,11 @@
  * 
  * 初始化画板
  * 
- * @import scale from browser.scale value
+ * @import browserScale from browser.scale value
  * 
  * @param {HTMLElement} canvas 画板元素
+ * 
+ * @param {number} [scale = 1] 外部传入缩放比例
  * 
  * 
  */
@@ -15,8 +17,8 @@
     clientHeight
  } = canvas ;
 
- canvas.width = clientWidth * scale ;
+ canvas.width = clientWidth * browserScale * scale;
 
- canvas.height = clientHeight * scale ;
+ canvas.height = clientHeight * browserScale * scale;
 
  

@@ -3,7 +3,7 @@
  * 
  * 绘制直线
  * 
- * @import scale from browser.scale value
+ * @import browserScale from browser.scale value
  * 
  * @import doBegin from browser.canvas.begin
  * 
@@ -12,6 +12,8 @@
  * @param {canvas.Context} context 画板的上下文对象
  * 
  * @param {object} [config = {}] 画线配置
+ * 
+ *  @param {number} [config.scale = 1] 外部传入缩放比例
  * 
  * @param {array} [config.points = []] 画线点集合
  * 
@@ -33,7 +35,7 @@
 
     for(let point of points){
 
-      newPoints.push(point * scale) ;
+      newPoints.push(point * browserScale * scale) ;
     }
 
     context.moveTo(...newPoints.slice(0 , 2));
