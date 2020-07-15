@@ -5,9 +5,31 @@
  * 
  * @import from from math.region.from
  * 
+ * @import move from math.region.move
+ * 
+ * @import getRegion from ..region scoped
+ * 
  * @return {math.Region} 区域 
  * 
  */
 
- return from(this.selectedNode) ;
+ let {
+    height,
+    padding,
+    selectedNode
+ } = this,
+ {
+    height:regionHeight
+ } = getRegion(),
+ heightPadding = 0;
+
+ if(height !== regionHeight){
+
+    heightPadding = padding ;
+ }
+
+ return move(from(selectedNode) , {
+    x:padding,
+    y:heightPadding
+ }) ;
 

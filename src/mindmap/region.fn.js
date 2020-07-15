@@ -51,7 +51,7 @@
 padding *= 2 ;
 
 let width = right - left,
-      height = bottom - top ;
+    height = bottom - top ;
 
 if(mindmapHeight > height){
 
