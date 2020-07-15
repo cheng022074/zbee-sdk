@@ -47,11 +47,6 @@
 
       while(parentNode = getParentNode(baseNode)){
 
-        if(parentNode.expanded){
-
-          break ;
-        }
-
         parentNode.hidden = false ;
 
         parentNodes.unshift(parentNode) ;
