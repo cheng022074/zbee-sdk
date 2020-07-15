@@ -52,6 +52,8 @@
           break ;
         }
 
+        parentNode.hidden = false ;
+
         parentNodes.unshift(parentNode) ;
 
         baseNode = parentNode ; 
