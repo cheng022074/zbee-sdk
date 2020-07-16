@@ -16,8 +16,6 @@
  if(ellipsis){
 
     let {
-        ellipsisNodeWidth,
-        ellipsisNodeHeight,
         ellipsisRootNode
     } = me ;
 
@@ -26,23 +24,11 @@
         ellipsisRootNode.ellipsis = false ;
     }
 
-    node.beforeEllipsisWidth = node.width ;
-
-    node.beforeEllipsisHeight = node.height ;
-
-    node.width = ellipsisNodeWidth ;
-
-    node.height = ellipsisNodeHeight ;
-
     me.ellipsisRootNode = node ;
 
  }else{
 
     delete me.ellipsisRootNode ;
-
-    node.width = node.beforeEllipsisWidth ;
-
-    node.height = node.beforeEllipsisHeight ;
  }
 
  return ellipsis ;

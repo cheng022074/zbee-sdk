@@ -128,16 +128,6 @@
             local:true,
             defaultValue:false
          },
-         beforeEllipsisWidth:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
-         },
-         beforeEllipsisHeight:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
-         },
          x:{
             mode:'readwrite',
             local:true,

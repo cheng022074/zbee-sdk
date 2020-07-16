@@ -11,6 +11,8 @@
  * 
  * @import collapse from .collapse scoped
  * 
+ * @import isRootNode from .is.root scoped
+ * 
  * @param {data.Record} node  脑图节点
  * 
  */
@@ -22,6 +24,11 @@
         {
             ellipsisNodes
         } = me;
+
+    if(useEllipsis && parentNode && isRootNode(parentNode)){
+
+        return false ;
+    }
 
     if(parentNode){
 
@@ -51,6 +58,8 @@
             ellipsisNodes.push(parentNode) ;
         }
     }
+
+    return true ;
  }
 
  function hide(nodes){
