@@ -64,7 +64,9 @@
 
   node.selected = true ;
 
-  if(ellipsisPattern && ellipsis(node)){
+  if(ellipsisPattern){
+
+    ellipsis(node)
 
     initVisibilityLevel(node , me.visibilityLevel) ;
 
