@@ -11,6 +11,8 @@
  * 
  * @import moveY from .node.move.y
  * 
+ *  @import moveX from .node.move.x
+ * 
  * @import moveToY from .node.move.to.y
  * 
  * @import getRegion from .region scoped
@@ -21,9 +23,17 @@
  * 
  * @import getRootNode from .node.root scoped
  * 
+ * @import getParentNode from .node.parent scoped
+ * 
  * @import getChildNodes from .nodes.child.visible scoped
  * 
  * @import isRootNode from .node.is.root scoped
+ * 
+ * @import getDeepestNode from .node.leaf.deepest scoped
+ * 
+ * @import getLevel from .node.level scoped
+ * 
+ * @import from from math.region.from
  * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
  * 
@@ -36,7 +46,8 @@ function main(isFireDrawEvent){
     let me = this,
     {
         height:mindmapHeight,
-        visibilityNodes
+        visibilityNodes,
+        nodeHorizontalSeparationDistance
     } = me,
     rootNode = getRootNode();
 
@@ -62,6 +73,38 @@ function main(isFireDrawEvent){
     }else{
 
         moveY(rootNode , -top) ;
+    }
+
+    if(nodeHorizontalSeparationDistance === 0){
+        
+        let {
+                padding,
+                width
+            } = me,
+            {
+                width:nodeWidth
+            } = rootNode,
+            regionWidth = (width - padding * 2 - nodeWidth) / (getLevel(getDeepestNode(rootNode)) - 1);
+            
+        visibilityNodes.forEach(node => {
+
+            if(!isRootNode(node)){
+
+                let {
+                    right:parentNodeRight
+                } = from(getParentNode(node)),
+                {
+                    right:nodeRight
+                } = from(node),
+                width = nodeRight - parentNodeRight;
+
+                if(width < regionWidth){
+
+                    moveX(node , regionWidth - width) ;
+                }
+            }
+
+        }) ;
     }
 
     defer(() => visibilityNodes.resort()) ;

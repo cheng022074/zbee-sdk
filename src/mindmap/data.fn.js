@@ -102,7 +102,7 @@
                   parentNodeY,
                   parentNodeX + nodeHorizontalLineBreakPointOffset,
                   nodeY,
-                  parentNodeX + nodeHorizontalSeparationDistance * .75,
+                  parentNodeX + (nodeX - parentNodeX) * .75,
                   nodeY,
                   nodeX,
                   nodeY
