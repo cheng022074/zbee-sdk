@@ -3,7 +3,7 @@
  * 
  * 重新计算大小
  * 
- * @import fireDrawEvent from .fire.draw scoped
+ * @import layout from .layout scoped
  * 
  * @param {number} width 宽度
  * 
@@ -24,7 +24,7 @@ if(mindmapWidth !== width || mindmapHeight !== height){
 
     delete me.region ;
 
-    fireDrawEvent() ;
+    layout() ;
 
     return true ;
 }
