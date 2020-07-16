@@ -83,31 +83,54 @@
               y:parentNodeY
             } = getRightXY(parentNode);
 
-            lines.push({
-              draw:'line',
-              indicated,
-              points:[
-                parentNodeX,
-                parentNodeY,
-                parentNodeX + nodeHorizontalLineBreakPointOffset,
-                parentNodeY
-              ]
-            }) ;
+            if(nodeHorizontalLineBreakPointOffset){
 
-            lines.push({
-              draw:'line.bezierCurve',
-              indicated,
-              points:[
-                parentNodeX + nodeHorizontalLineBreakPointOffset,
-                parentNodeY,
-                parentNodeX + nodeHorizontalLineBreakPointOffset,
-                nodeY,
-                parentNodeX + nodeHorizontalSeparationDistance * .75,
-                nodeY,
-                nodeX,
-                nodeY
-              ]
-            }) ;
+              lines.push({
+                draw:'line',
+                indicated,
+                points:[
+                  parentNodeX,
+                  parentNodeY,
+                  parentNodeX + nodeHorizontalLineBreakPointOffset,
+                  parentNodeY
+                ]
+              } , {
+                draw:'line.bezierCurve',
+                indicated,
+                points:[
+                  parentNodeX + nodeHorizontalLineBreakPointOffset,
+                  parentNodeY,
+                  parentNodeX + nodeHorizontalLineBreakPointOffset,
+                  nodeY,
+                  parentNodeX + nodeHorizontalSeparationDistance * .75,
+                  nodeY,
+                  nodeX,
+                  nodeY
+                ]
+              }) ;
+            
+            }else{
+
+              let {
+                x:parentNodeX,
+                y:parentNodeY
+              } = getCenterXY(parentNode);
+  
+              lines.push({
+                draw:'line.bezierCurve',
+                indicated,
+                points:[
+                  parentNodeX,
+                  parentNodeY,
+                  parentNodeX,
+                  nodeY,
+                  parentNodeX + (nodeX - parentNodeX) / 2,
+                  nodeY,
+                  nodeX,
+                  nodeY
+                ]
+              }) ;
+            }
 
           }
       }
