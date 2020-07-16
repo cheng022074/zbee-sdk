@@ -190,9 +190,14 @@
 
  me.readerAsRoot = readerAsRoot ;
 
- me.initVisibilityLevel = initVisibilityLevel ;
-
  me.visibilityLevel = visibilityLevel ;
+
+ if(visibilityLevel > initVisibilityLevel){
+
+   initVisibilityLevel = visibilityLevel ;
+ }
+
+ me.initVisibilityLevel = initVisibilityLevel ;
 
  let placeholderNode = reader.create({
    id:generate('placeholder-'),
