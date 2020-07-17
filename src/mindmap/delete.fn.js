@@ -17,6 +17,8 @@
  * 
  * @import order from .order scoped
  * 
+ * @import select from .select scoped
+ * 
  * @param {string} [id] 节点编号
  * 
  */
@@ -51,23 +53,24 @@ if(id){
         {
             length
         } = children,
-        index = children.indexOf(selectedNode);
+        index = children.indexOf(selectedNode),
+        nextSelectedNode;
 
         if(length - 1){
 
             if(index + 1 <= length - 1){
 
-                children[index + 1].selected = true ;
+                nextSelectedNode = children[index + 1] ;
             }
 
             if(index - 1 >= 0){
 
-                children[index - 1].selected = true ;
+                nextSelectedNode = children[index - 1] ;
             }
         
         }else{
 
-            parentNode.selected = true ;
+            nextSelectedNode = parentNode ;
         }
 
         let deleteNodes = remove(selectedNode),
@@ -84,7 +87,7 @@ if(id){
 
         me.fireEvent('nodedelete' , deleteNodes) ;
 
-        me.fireEvent('nodeselect' , data(me.selectedNode)) ;
+        select(nextSelectedNode.id , false) ;
 
         order(parentNode) ;
 
