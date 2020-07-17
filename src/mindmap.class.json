@@ -25,6 +25,14 @@
         "move",
         "refresh",
         {
+            "name":"getNextSiblingNode",
+            "impl":".mindmap.node.sibling.next"
+        },
+        {
+            "name":"getPreviousSiblingNode",
+            "impl":".mindmap.node.sibling.previous"
+        },
+        {
             "name":"setNodeInfo",
             "impl":".mindmap.node.info"
         },

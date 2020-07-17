@@ -5,11 +5,26 @@
  * 
  * @import getParentNode from ..parent scoped
  * 
- * @param {data.Record} node 
+ * @import get from ....get scoped
+ * 
+ * @import data from ....data scoped
+ * 
+ * @import is.string
+ * 
+ * @param {mixed} node 
  * 
  * @return {data.Record} 下兄弟节点 
  * 
  */
+
+ let isData = false ;
+
+ if(isString(node)){
+
+    node = get(node) ;
+
+    isData = true ;
+ }
 
  let {
     hidden
@@ -28,7 +43,14 @@
 
         if(index !== children.length - 1){
 
-            return children[index + 1] ;
+            let result = children[index + 1] ;
+
+            if(isData){
+
+                return data(result) ;
+            }
+
+            return result ;
         }
     }
  }
