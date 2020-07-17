@@ -50,25 +50,18 @@
 
 padding *= 2 ;
 
-let width = right - left,
-    height = bottom - top ;
+let width = right - left + padding,
+    height = bottom - top + padding;
 
 if(mindmapHeight > height){
 
    height = mindmapHeight ;
 
-}else{
-
-   height += padding ;
 }
 
 if(mindmapWidth > width){
 
    width = mindmapWidth;
-
-}else{
-
-   width += padding;
 
 }
 
