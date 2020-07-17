@@ -37,8 +37,6 @@
  * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
  * 
- * @return {mixed} 返回说明 
- * 
  */
 
 function main(isFireDrawEvent){
