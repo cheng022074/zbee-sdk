@@ -5,11 +5,11 @@
  * 
  * @import getParentNode from ..parent scoped
  * 
- * @import get from ....get scoped
+ * @import get from ..get scoped
  * 
  * @import is.string
  * 
- * @import data from ....data scoped
+ * @import data from ..data scoped
  * 
  * @param {data.Record} node 
  * 

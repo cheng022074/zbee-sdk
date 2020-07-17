@@ -5,9 +5,9 @@
  * 
  * @import getParentNode from ..parent scoped
  * 
- * @import get from ....get scoped
+ * @import get from ..get scoped
  * 
- * @import data from ....data scoped
+ * @import data from ..data scoped
  * 
  * @import is.string
  * 
