@@ -60,6 +60,8 @@
       }
 
       await waitNodeSized() ;
+
+      isLayout = true ;
   }
 
   node.selected = true ;
@@ -69,6 +71,8 @@
     initVisibilityLevel(node , me.visibilityLevel) ;
 
     await waitNodeSized() ;
+
+    isLayout = true ;
     
   }
       
