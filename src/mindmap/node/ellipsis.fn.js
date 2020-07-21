@@ -25,11 +25,6 @@
             ellipsisNodes
         } = me;
 
-    if(useEllipsis && parentNode && isRootNode(parentNode)){
-
-        return false ;
-    }
-
     if(parentNode){
 
         if(useEllipsis){
@@ -49,8 +44,11 @@
         
         if(useEllipsis){
 
-            parentNode.ellipsis = true ;
-        
+            if(!isRootNode(parentNode)){
+
+                parentNode.ellipsis = true ;
+            }
+
         }else{
 
             parentNode.hidden = true ;
