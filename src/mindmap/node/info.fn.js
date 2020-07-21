@@ -85,9 +85,16 @@ function main(data , id){
 
                 default:
 
-                    node[field] = value ;
+                    let oldValue = node[field] ;
 
-                    isUpdated = true ;
+                    value = node[field] = value ;
+
+                    if(oldValue !== value){
+
+                        me.fireEvent(`node${field}change` , node.id , value , oldValue) ;
+
+                        isUpdated = true ;
+                    }
             }
         }
 
