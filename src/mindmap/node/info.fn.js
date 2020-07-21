@@ -7,6 +7,8 @@
  * 
  * @import get from .get scoped
  * 
+ * @import getData from .data scoped
+ * 
  * @param {object} data 修改节点信息
  * 
  * @param {string} [id] 节点编号
@@ -98,12 +100,12 @@ function main(data , id){
             }
         }
 
-        if(isUpdated = true){
+        if(isUpdated === true){
 
             if(!node.hidden){
 
                 me.fireEvent('nodeunsized' , [
-                   node
+                    getData(node)
                 ]) ;
     
             }else{
