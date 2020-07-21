@@ -21,11 +21,11 @@ if(el !== document && el !== document.body){
     let {
         left:bodyLeft,
         top:bodyTop
-    } = body.getBoundingClientRect(),
+    } = document.body.getBoundingClientRect(),
     {
         left,
         top
-    } = dom.getBoundingClientRect();
+    } = el.getBoundingClientRect();
 
     x = left - bodyLeft,
     y = top - bodyTop;
