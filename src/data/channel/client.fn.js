@@ -21,26 +21,38 @@ class main extends Channel{
 
         super(target) ;
 
-        let me = this ;
+        let me = this,
+        {
+            __ZBEE_CLASS_NAME__
+        } = me;
 
-        add(me , {
-            data:'onData',
-            scope:me
-        }) ;
+        if(__ZBEE_CLASS_NAME__ === 'src::data.channel.client'){
+
+            add(me , {
+                data:'onData',
+                scope:me
+            }) ;
+        }
     }
 
     getEventNameByParams(params){
 
-        return this.target.getEventNameByParams(params) ;
+        let target = get(this , 'target') ;
+
+        if(target){
+
+            return target.getEventNameByParams(params) ;
+        }
     }
 
     onData(client , data , params){
 
-        let event = target.callIf('getEventNameByParams' , params) ;
+        let me = this,
+            event = get(me , 'target').callIf('getEventNameByParams' , params) ;
 
         if(isString(event)){
 
-            this.fireEvent(event , data , params) ;
+            me.fireEvent(event , data , params) ;
         }
     }
 

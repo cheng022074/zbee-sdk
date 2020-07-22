@@ -11,11 +11,13 @@
  * 
  * @import is.string
  * 
+ * @import data.channel.client
+ * 
+ * @import from from array.from
+ * 
  * @class
  * 
  */
-
-const { resolveInclude } = require("ejs");
 
 class main extends mixins({
     mixins:[
@@ -25,29 +27,31 @@ class main extends mixins({
 
     constructor(target){
 
+        super() ;
+
         let me = this ;
 
         if(target){
 
-            define(me , 'bubbleTarget' , target) ;
+            define(target , 'bubbleTarget' , me) ;
 
             define(me , 'target' , createProxy(target)) ;
         }
-
-        super() ;
     }
 
     static client(classNames){
+        
+        classNames = from(classNames) ;
 
         classNames.reverse() ;
 
-        classNames.unshift('data.channel.client') ;
+        classNames.push('data.channel.client') ;
 
         let target ;
 
         for(let className of classNames){
 
-            target = include(className)(target) ;
+            target = new (include(className)())(target) ;
         }
 
         return target ;

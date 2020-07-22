@@ -15,6 +15,14 @@ class main extends Channel{
 
     send(params){
 
-        return axios(params) ;
+        return axios(params).then(({
+            data
+        }) => {
+
+            this.fireEvent('data' , data , params) ;
+
+            return true ;
+
+        }) ;
     }
 }
