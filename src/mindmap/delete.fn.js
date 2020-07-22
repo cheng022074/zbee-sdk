@@ -87,7 +87,7 @@ if(id){
 
         me.fireEvent('nodedelete' , deleteNodes) ;
 
-        select(nextSelectedNode.id , false) ;
+        await select(nextSelectedNode.id , false) ;
 
         order(parentNode) ;
 
