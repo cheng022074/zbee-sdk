@@ -27,6 +27,8 @@ class main extends mixins({
 
     constructor(target){
 
+        super() ;
+
         let me = this ;
 
         if(target){

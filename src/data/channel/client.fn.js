@@ -68,11 +68,33 @@ class main extends Channel{
         }
     }
 
-    async send(params){
+    async send(params , isReturnData = false){
 
-        let target = get(this , 'target') ;
+        let me = this,
+            target = get(me , 'target'),
+            data;
 
-        return await target.call('send' , params) ;
+        if(isReturnData){
+
+            let event = target.callIf('getEventNameByParams' , params) ;
+
+            if(isString(event)){
+
+                data = new Promise(callback => add(me , event , (client , data) => callback(data) , {
+                    once:true
+                }) ) ;
+            }
+        }
+
+        let state = await target.call('send' , params) ;
+
+        if(isReturnData){
+
+            return data ;
+        }
+
+        return state ;
+
     }
 
     async cancel(params){
