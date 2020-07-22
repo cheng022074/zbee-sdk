@@ -21,7 +21,19 @@ class main extends Channel{
             data
         }) => {
 
-            me.fireEvent('data' , data , params) ;
+            let {
+                op,
+                data:result
+            } = data ;
+
+            if(op.code === 'Y'){
+
+                me.fireEvent('data' , result , params) ;
+            
+            }else{
+
+                me.fireEvent('dataerror' , op , params) ;
+            }
 
             return true ;
 

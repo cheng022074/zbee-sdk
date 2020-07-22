@@ -30,6 +30,7 @@ class main extends Channel{
 
             add(me , {
                 data:'onData',
+                dataerror:'onErrorData',
                 scope:me
             }) ;
         }
@@ -42,6 +43,17 @@ class main extends Channel{
         if(target){
 
             return target.getEventNameByParams(params) ;
+        }
+    }
+
+    onErrorData(client , data , params){
+
+        let me = this,
+            event = get(me , 'target').callIf('getEventNameByParams' , params) ;
+
+        if(isString(event)){
+
+            me.fireEvent(`${event}error` , data , params) ;
         }
     }
 
