@@ -5,6 +5,8 @@
  * 
  * @import get from object.property.inner.get
  * 
+ * @import define from object.property.inner.define
+ * 
  * @import add from event.listener.add
  * 
  * @import is.string
@@ -14,6 +16,8 @@
  * @class
  * 
  */
+
+const { get } = require("request-promise");
 
 class main extends Channel{
 
@@ -33,6 +37,8 @@ class main extends Channel{
                 dataerror:'onErrorData',
                 scope:me
             }) ;
+
+            define(me , 'defaultEventName' , `${__ZBEE_CLASS_NAME__}-${Date.now()}`) ;
         }
     }
 
@@ -48,24 +54,12 @@ class main extends Channel{
 
     onErrorData(client , data , params){
 
-        let me = this,
-            event = get(me , 'target').callIf('getEventNameByParams' , params) ;
-
-        if(isString(event)){
-
-            me.fireEvent(`${event}error` , data , params) ;
-        }
+        me.fireEvent(`${getEventName.call(me)}error` , data , params) ;
     }
 
     onData(client , data , params){
 
-        let me = this,
-            event = get(me , 'target').callIf('getEventNameByParams' , params) ;
-
-        if(isString(event)){
-
-            me.fireEvent(event , data , params) ;
-        }
+        me.fireEvent(getEventName.call(me) , data , params) ;
     }
 
     async send(params , isReturnData = false){
@@ -76,14 +70,10 @@ class main extends Channel{
 
         if(isReturnData){
 
-            let event = target.callIf('getEventNameByParams' , params) ;
-
-            if(isString(event)){
-
-                data = new Promise(callback => add(me , event , (client , data) => callback(data) , {
-                    once:true
-                }) ) ;
-            }
+            data = new Promise(callback => add(me , getEventName.call(me) , (client , data) => callback(data) , {
+                once:true
+            }) ) ;
+            
         }
 
         let state = await target.call('send' , params) ;
@@ -103,4 +93,12 @@ class main extends Channel{
 
         return await target.call('cancel' , params) ;
     }
+ }
+
+ function getEventName(){
+
+    let me = this ;
+
+    return get(me , 'target').callIf('getEventNameByParams' , params) || get(me , 'defaultEventName');
+
  }
