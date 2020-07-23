@@ -17,8 +17,6 @@
  * 
  */
 
-const { get } = require("request-promise");
-
 class main extends Channel{
 
     constructor(target){
@@ -54,12 +52,16 @@ class main extends Channel{
 
     onErrorData(client , data , params){
 
-        me.fireEvent(`${getEventName.call(me)}error` , data , params) ;
+        let me = this ;
+
+        me.fireEvent(`${getEventName.call(me , params)}error` , data , params) ;
     }
 
     onData(client , data , params){
 
-        me.fireEvent(getEventName.call(me) , data , params) ;
+        let me = this ;
+
+        me.fireEvent(getEventName.call(me , params) , data , params) ;
     }
 
     async send(params , isReturnData = false){
@@ -70,7 +72,7 @@ class main extends Channel{
 
         if(isReturnData){
 
-            data = new Promise(callback => add(me , getEventName.call(me) , (client , data) => callback(data) , {
+            data = new Promise(callback => add(me , getEventName.call(me , params) , (client , data) => callback(data) , {
                 once:true
             }) ) ;
             
@@ -95,7 +97,7 @@ class main extends Channel{
     }
  }
 
- function getEventName(){
+ function getEventName(params){
 
     let me = this ;
 
