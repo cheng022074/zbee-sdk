@@ -9,6 +9,8 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import remove from event.listener.remove
+ * 
  * @import is.string
  * 
  * @import Channel from ..channel value
@@ -72,9 +74,24 @@ class main extends Channel{
 
         if(isReturnData){
 
-            data = new Promise(callback => add(me , getEventName.call(me , params) , (client , data) => callback(data) , {
-                once:true
-            }) ) ;
+            data = new Promise(callback => {
+
+                let event = getEventName.call(me , params),
+                    listener = (client , data , currentParams) => {
+
+                        if(params === currentParams){
+
+                            remove(me , event , listener) ;
+
+                            callback(data) ;
+    
+                        }
+
+                    } ;
+
+                add(me , event , listener) ;
+
+            }) ;
             
         }
 
