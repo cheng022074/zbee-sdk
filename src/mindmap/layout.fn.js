@@ -55,24 +55,6 @@ function main(isFireDrawEvent){
 
     layout.call(me , rootNode) ;
 
-    let {
-        top,
-        height
-    } = getRegion() ;
-
-    if(mindmapHeight === height){
-
-        let {
-            height:rootNodeHeight
-        } = rootNode ;
-
-        moveToY(rootNode , height / 2 - rootNodeHeight / 2) ;
-
-    }else{
-
-        moveY(rootNode , -top) ;
-    }
-
     if(nodeHorizontalSeparationDistance === 0){
         
         let {
@@ -98,11 +80,44 @@ function main(isFireDrawEvent){
 
                 if(width < regionWidth){
 
-                    moveX(node , regionWidth - width) ;
+                    let distance = regionWidth - width,
+                    {
+                        maxNodeHorizontalSeparationDistance,
+                        minNodeHorizontalSeparationDistance
+                    } = me;
+
+                    if(distance < minNodeHorizontalSeparationDistance){
+
+                        distance = minNodeHorizontalSeparationDistance ;
+
+                    }else if(distance > maxNodeHorizontalSeparationDistance){
+
+                        distance = maxNodeHorizontalSeparationDistance;
+                    }
+
+                    moveX(node , distance) ;
                 }
             }
 
         }) ;
+    }
+
+    let {
+        top,
+        height
+    } = getRegion() ;
+
+    if(mindmapHeight === height){
+
+        let {
+            height:rootNodeHeight
+        } = rootNode ;
+
+        moveToY(rootNode , height / 2 - rootNodeHeight / 2) ;
+
+    }else{
+
+        moveY(rootNode , -top) ;
     }
 
     defer(() => visibilityNodes.resort()) ;
