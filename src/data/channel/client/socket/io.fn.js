@@ -9,6 +9,8 @@
  * 
  * @import create from socket.io
  * 
+ * @import createSocket from socket.io
+ * 
  * @class
  * 
  */
@@ -20,55 +22,13 @@ class main extends mixins({
     ]
 }){
 
-    async emit(url , path , event , params){
+    async send(url , path , event , params){
 
-        let socket = getSocket(url , path) ;
-    
-        if(socket.connected){
-    
-            socket.emit(event , ...params) ;
-    
-            return true ;
-        
-        }
-    
-        return await new Promise(callback => {
-    
-            const onConnect = () => {
-    
-                off() ;
-    
-                socket.emit(event , ...params) ;
-    
-                callback(true) ;
-            },
-            onError = () => {
-    
-                off() ;
-    
-                callback(false) ;
-            },
-            off = () => {
-    
-                socket.off('connect' , onConnect) ;
-    
-                socket.off('connect_error' , onError) ;
-    
-                socket.once('connect_timeout' , onError) ;
-    
-            };
-    
-            socket.once('connect' , onConnect) ;
-    
-            socket.once('connect_error' , onError) ;
-    
-            socket.once('connect_timeout' , onError) ;
-    
-        }) ;
+        getSocket.call(this , url , path).emit(event , ...params) ;
+
+        return true ;
     }
 }
-
-const io = require('socket.io-client');
 
 const sockets = new Map() ;
 
@@ -78,12 +38,14 @@ function getSocket(url , path = '/socket.io'){
 
     if(!sockets.has(key)){
 
-        sockets.set(key , io(url , {
+        let {
+            socketOptions = {}
+        } = this ;
+
+        sockets.set(key , createSocket({
+            url,
             path,
-            forceNew: true,
-            transports: [
-                'websocket'
-            ]
+            ...socketOptions
         })) ;
     }
 

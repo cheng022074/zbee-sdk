@@ -19,8 +19,6 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @class
- * 
  */
 
  const IO = require('socket.io-client') ;
