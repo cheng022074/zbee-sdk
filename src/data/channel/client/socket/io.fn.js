@@ -24,7 +24,12 @@ class main extends mixins({
     ]
 }){
 
-    send(url , path , event , ...params){
+    send({
+        url,
+        path,
+        event,
+        params
+    }){
 
         getSocket.call(this , url , path).emit(event , ...params) ;
 
