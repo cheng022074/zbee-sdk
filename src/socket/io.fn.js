@@ -19,6 +19,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @param {object} options Socket.io 配置
+ * 
  */
 
  const IO = require('socket.io-client') ;

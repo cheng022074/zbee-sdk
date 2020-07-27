@@ -3,13 +3,15 @@
  * 
  * 基于 Socket.io 数据通道客户端实现
  * 
- * @import Channel from ..client value
+ * @import Channel from ....client value
  * 
  * @import Observable from mixin.observable
  * 
  * @import create from socket.io
  * 
  * @import createSocket from socket.io
+ * 
+ * @import add from event.listener.add
  * 
  * @class
  * 
@@ -65,7 +67,7 @@ function getSocket(url , path = '/socket.io'){
             ...socketOptions
         });
 
-        socket.on('data' , 'onData' , {
+        add(socket , 'data' , 'onData' , {
             scope:me
         }) ;
 
