@@ -13,6 +13,12 @@
  * 
  * @import .parser value
  * 
+ * @import is.defined
+ * 
+ * @import is.number
+ * 
+ * @import isObject from is.object.simple
+ * 
  * @class
  * 
  */
@@ -27,11 +33,40 @@
      ]
  }){
 
-    constructor(url , path){
+    constructor({
+        url,
+        path,
+        reconnection = true
+    }){
 
         super() ;
 
         let me = this ;
+        
+        me.reconnectionMax = Number.MAX_VALUE ;
+
+        if(isDefined(reconnection)){
+
+            if(reconnection === true){
+
+                me.reconnectionDelay = 1000 ;
+            
+            }else if(isNumber(reconnection)){
+
+                me.reconnectionDelay = reconnection ;
+            
+            }else if(isObject(reconnection)){
+
+                let {
+                    delay = 1000,
+                    max = 5000 
+                } = reconnection ;
+
+                me.reconnectionDelay = delay ;
+
+                me.reconnectionMax = max ;
+            }
+        }
 
         me.url = url ;
 
@@ -181,7 +216,52 @@
         
         }else{
 
-            me.connect() ;
+            me.autoReconnect() ;
+        }
+    }
+
+    autoReconnect(){
+
+        let me = this,
+        {
+            reconnectionCount = 0,
+            reconnectionMax,
+            reconnectionDelay
+        } = me;
+
+        if(!isDefined(reconnectionDelay)){
+
+            me.fireEvent('disconnect') ;
+
+            return ;
+        }
+
+        reconnectionCount ++ ;
+
+        if(reconnectionCount > reconnectionMax){
+
+            delete me.reconnectionCount ;
+
+            me.fireEvent('disconnect') ;
+
+        }else{
+
+            me.reconnectionCount = reconnectionCount ;
+
+            setTimeout(() => me.connect() , reconnectionDelay) ;
+        }
+    }
+
+    onError(){
+
+        let me = this,
+        {
+            state
+        } = me ;
+
+        if(state === 0){
+
+            me.onDisconnect() ;
         }
     }
 
@@ -223,6 +303,7 @@
     }) , {
         connect:'onConnect',
         disconnect:'onDisconnect',
+        connect_error:'onError',
         scope:me
     }) ;
  }
