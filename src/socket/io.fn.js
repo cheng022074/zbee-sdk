@@ -9,7 +9,11 @@
  * 
  * @import environment from environment.name value
  * 
- * @param {object} config socket.io 配置
+ * @import Observable from mixin.observable
+ * 
+ * @import .parser value
+ * 
+ * @class
  * 
  */
 
@@ -17,16 +21,17 @@
 
  const browserRe = /browser$/ ;
 
- class main{
+ class main extends mixins({
+     mixins:[
+        Observable
+     ]
+ }){
 
-    constructor({
-        url,
-        path
-    }){
+    constructor(url , path){
+
+        super() ;
 
         let me = this ;
-
-        me.emitData = [] ;
 
         me.url = url ;
 
@@ -120,7 +125,7 @@
         }
     }
 
-    disconnect(){
+    async disconnect(){
 
         let me = this ;
 
