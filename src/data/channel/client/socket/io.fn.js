@@ -22,11 +22,28 @@ class main extends mixins({
     ]
 }){
 
-    async send(url , path , event , params){
+    send(url , path , event , ...params){
 
         getSocket.call(this , url , path).emit(event , ...params) ;
 
         return true ;
+    }
+
+    onData(socket , ...params){
+
+        let me = this ;
+
+        me.fireEvent('data' , me.processReceiveData(...params) , me.processReceiveParams(...params)) ;
+    }
+
+    processReceiveData(){
+
+        return {} ;
+    }
+
+    processReceiveParams(){
+
+        return {} ;
     }
 }
 
@@ -38,15 +55,21 @@ function getSocket(url , path = '/socket.io'){
 
     if(!sockets.has(key)){
 
-        let {
+        let me = this,
+        {
             socketOptions = {}
-        } = this ;
-
-        sockets.set(key , createSocket({
+        } = me,
+        socket = createSocket({
             url,
             path,
             ...socketOptions
-        })) ;
+        });
+
+        socket.on('data' , 'onData' , {
+            scope:me
+        }) ;
+
+        sockets.set(key , socket) ;
     }
 
     return sockets.get(key) ;
