@@ -54,16 +54,12 @@ class main extends Channel{
 
     onErrorData(client , data , params){
 
-        let me = this ;
-
-        me.fireEvent(`${getEventName.call(me , params)}error` , data , params) ;
+        fireEvent.call(this , data , params , 'error') ;
     }
 
     onData(client , data , params){
 
-        let me = this ;
-
-        me.fireEvent(getEventName.call(me , params) , data , params) ;
+        fireEvent.call(this , data , params) ;
     }
 
     async send(params , isReturnData = false){
@@ -120,4 +116,11 @@ class main extends Channel{
 
     return get(me , 'target').callIf('getEventNameByParams' , params) || get(me , 'defaultEventName');
 
+ }
+
+ function fireEvent(data , params , eventSuffix = ''){
+
+    let me = this ;
+
+    me.fireEvent(`${getEventName.call(me , params)}${eventSuffix}` , data , params) ;
  }
