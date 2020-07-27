@@ -24,14 +24,14 @@ class main extends mixins({
     ]
 }){
 
-    send({
+    async send({
         url,
         path,
         event,
         params
     }){
 
-        getSocket.call(this , url , path).emit(event , ...params) ;
+        await getSocket.call(this , url , path).emit(event , ...params) ;
 
         return true ;
     }
@@ -41,6 +41,11 @@ class main extends mixins({
         let me = this ;
 
         me.fireEvent('data' , me.processReceiveData(...params) , me.processReceiveParams(...params)) ;
+    }
+
+    onConnect(){
+
+
     }
 
     processReceiveData(){
@@ -72,7 +77,9 @@ function getSocket(url , path = '/socket.io'){
             ...socketOptions
         });
 
-        add(socket , 'data' , 'onData' , {
+        add(socket , {
+            data:'onData',
+            connect:'onConnect',
             scope:me
         }) ;
 
