@@ -34,12 +34,15 @@
     constructor({
         url,
         path,
+        dataEventName = 'data',
         reconnection = true
     }){
 
         super() ;
 
         let me = this ;
+
+        me.dataEventName = dataEventName ;
         
         me.reconnectionMax = Number.MAX_VALUE ;
 
@@ -260,6 +263,11 @@
         }
     }
 
+    onData(...params){
+
+        this.fireEvent('data' , ...params) ;
+    }
+
     onError(){
 
         let me = this,
@@ -299,7 +307,8 @@
     {
         url,
         path,
-        socket
+        socket,
+        dataEventName
     } = me ;
 
     if(socket){
@@ -323,6 +332,7 @@
         connect:'onConnect',
         disconnect:'onDisconnect',
         connect_error:'onError',
+        [dataEventName]:'onData',
         scope:me
     }) ;
  }
