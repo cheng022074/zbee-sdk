@@ -26,29 +26,35 @@
 
         let me = this ;
 
+        me.emitData = [] ;
+
         me.url = url ;
 
         me.path = path ;
 
-        me.connect() ;
+        me.state = 3 ;
 
-        me.connected = false ;
+        me.connect() ;
 
         if(browserRe.test(environment)){
 
-            add(window , 'offline' , 'onOffline' , {
+            add(window , {
+                offline:'onOffline',
+                online:'onOnline',
+                visibilitychange:'onVisibilityChange',
                 scope:me
             }) ;
-
-            add(window , 'visibilitychange' , 'onVisibilityChange' , {
-                scope:me
-            })
         }
+    }
+
+    onOnline(){
+
+        me.connect() ;
     }
 
     onOffline(){
 
-        this.reconnect() ;
+        me.disconnect() ;
     }
 
     onVisibilityChange(){
@@ -65,143 +71,132 @@
         }
     }
 
-    async reconnect(){
+    isDisconnected(){
 
-        let me = this ;
-
-        if(me.reconnecting !== true){
-
-            me.reconnecting = true ;
-
-            await me.disconnect() ;
-
-            await me.connect() ;
-
-            delete me.reconnecting ;
-        }
+        return this.state === 3 ;
     }
 
-    connect(){
+    isConnected(){
+
+        return this.state === 1 ;
+    }
+
+    isConnecting(){
+
+        return this.state = 0 ;
+    }
+
+    isDisconnecting(){
+
+        return this.state === 2 ;
+    }
+
+    async connect(){
 
         let me = this ;
 
-        if(!me.connected){
+        if(me.isConnected()){
+
+            return ;
+        }
+
+        if(me.isDisconnected()){
+
+            me.state = 0 ;
 
             createSocket.call(me) ;
 
-            return new Promise(callback => add(me , 'connect' , () => callback(true) , {
+            return await (me.transitionState = new Promise(callback => add(me , 'connect' , () => callback() , {
                 once:true
-            })) ;
+            }))) ;
+
         }
 
-        return Promise.resolve(false) ;
+        await me.transitionState ;
+
+        if(me.isDisconnecting()){
+
+            await me.connect() ;
+        }
     }
 
     disconnect(){
 
         let me = this ;
 
-        if(me.connected && me.disconnecting !== true){
+        if(me.isDisconnected()){
 
-            me.disconnecting = true ;
+            return ;
+        }
+
+        if(me.isConnected()){
+
+            me.state = 2 ;
 
             me.socket.disconnect() ;
 
-            return new Promise(callback => add(me , 'disconnect' , () => {
-
-                delete me.disconnecting ;
-
-                callback(true) ;
-
-            } , {
+            return await (me.transitionState =  new Promise(callback => add(me , 'disconnect' , () => callback() , {
                 once:true
-            })) ;
+            }))) ;
         }
 
-        return false ;
+        await me.transitionState ;
+
+        if(me.isConnecting()){
+
+            await me.disconnect() ;
+        }
     }
 
     onConnect(){
 
         let me = this ;
 
-        me.connected = true ;
+        me.state = 1 ;
+        
+        delete me.transitionState ;
 
         me.fireEvent('connect') ;
     }
 
-    onError(){
-
-        let me = this ;
-
-        me.connected = false ;
-
-        me.fireEvent('error') ;
-    }
-
     onDisconnect(){
 
-        let me = this ;
+        let me = this,
+        {
+            state:oldState
+        } = me;
 
-        if(me.connected){
+        me.state = 3 ;
 
-            me.connected = false ;
+        delete me.transitionState ;
+
+        if(oldState === 2){
 
             me.fireEvent('disconnect') ;
-
+        
         }else{
 
             me.connect() ;
         }
     }
 
-    emit(event , ...params){
+    async emit(event , ...params){
 
-        let {
+        let me = this,
+        {
             socket
-        } = this ;
+        } = me;
 
-        if(socket.connected){
+        if(me.isConnected()){
     
             socket.emit(event , ...params) ;
-    
-            return true ;
         
-        }
-    
-        return await new Promise(callback => {
-    
-            const onConnect = () => {
-    
-                off() ;
-    
-                socket.emit(event , ...params) ;
-    
-                callback(true) ;
-            },
-            onError = () => {
-    
-                off() ;
-    
-                callback(false) ;
-            },
-            off = () =>  remove(me , {
-                connect:onConnect,
-                error:onError
-            }) ;
+        }else{
 
-            add(me , {
-                connect:{
-                    fn:onConnect,
-                    once:true
-                },
-                error:{
-                    fn:onError,
-                    once:true
-                }
-            }) ;
-    
-        }) ;
+            await me.connect() ;
+
+            me.emit(event , ...params) ;
+        }
     }
  }
 
@@ -222,7 +217,6 @@
         reconnection:false
     }) , {
         connect:'onConnect',
-        error:'onError',
         disconnect:'onDisconnect',
         scope:me
     }) ;
