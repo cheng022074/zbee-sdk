@@ -152,9 +152,11 @@
 
         }
 
+        let isDisconnecting = me.isDisconnecting() ;
+
         await me.transitionState ;
 
-        if(me.isDisconnecting()){
+        if(isDisconnecting){
 
             await me.connect() ;
         }
@@ -180,9 +182,11 @@
             }))) ;
         }
 
+        let isConnecting = me.isConnecting() ;
+
         await me.transitionState ;
 
-        if(me.isConnecting()){
+        if(isConnecting){
 
             await me.disconnect() ;
         }
@@ -248,7 +252,13 @@
 
             me.reconnectionCount = reconnectionCount ;
 
-            setTimeout(() => me.connect() , reconnectionDelay) ;
+            setTimeout(() => {
+
+                me.connect() ;
+
+                me.fireEvent('reconnecting' , reconnectionCount) ;
+
+            } , reconnectionDelay) ;
         }
     }
 
@@ -290,8 +300,19 @@
     let me = this,
     {
         url,
-        path
+        path,
+        socket
     } = me ;
+
+    if(socket){
+
+        remove(socket , {
+            connect:'onConnect',
+            disconnect:'onDisconnect',
+            connect_error:'onError',
+            scope:me
+        }) ;
+    }
 
     add(me.socket = IO(url , {
         path,
