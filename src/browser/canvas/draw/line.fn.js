@@ -13,9 +13,11 @@
  * 
  * @param {object} [config = {}] 画线配置
  * 
- *  @param {number} [config.scale = 1] 外部传入缩放比例
+ * @param {number} [config.scale = 1] 外部传入缩放比例
  * 
  * @param {array} [config.points = []] 画线点集合
+ * 
+ * @param {array} [config.lineDash = []] 虚线设置
  * 
  * @param {boolean} [config.independent = true] 是否为独立图形
  * 
@@ -37,6 +39,8 @@
 
       newPoints.push(point * browserScale * scale) ;
     }
+
+    context.setLineDash(lineDash) ;
 
     context.moveTo(...newPoints.slice(0 , 2));
     
