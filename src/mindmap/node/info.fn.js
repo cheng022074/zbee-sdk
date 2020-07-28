@@ -9,113 +9,154 @@
  * 
  * @import getData from .data scoped
  * 
+ * @import getDescendantNodes from ..nodes.relation.descendant scoped
+ * 
  * @param {object} data 修改节点信息
  * 
  * @param {string} [id] 节点编号
  * 
+ * @param {boolean} [isRecursive = false] 是否递归
+ * 
  */
 
-function main(data , id){
+function main(data , id , isRecursive){
 
     let me = this,
     {
-        selectedNode,
-        nodes
+        selectedNode
     } = me,
     node = id ? get(id) : selectedNode;
 
     if(node){
 
-        let fields = Object.keys(data),
-            isUpdated = false;
+        let updatedNodes = [] ;
 
-        for(let field of fields){
+        if(setNodeInfo.call(me , node , data)){
 
-            let value = data[field] ;
+            updatedNodes.push(node) ;
+        }
 
-            if(equals(node[field] , value)){
+        if(isRecursive){
 
-                continue ; 
-            }
+            let nodes = getDescendantNodes(node , false) ;
 
-            switch(field){
+            for(let node of nodes){
 
-                case 'parentNodeId':
-                case 'x':
-                case 'y':
-                case 'width':
-                case 'height':
-                case 'hidden':
-                case 'expanded':
-                case 'selected':
-                case 'placeholder':
-                case 'restructuring':
-                case 'indicated':
-                case 'order':
+                if(setNodeInfo.call(me , node , data)){
 
-                    continue ;
-
-                case 'id':
-
-                {
-                    
-                    let {
-                        id,
-                        children
-                    } = node ;
-
-                    if(nodes.has(value)){
-
-                        console.error(`${value} - 脑图中已经存该节点`) ;
-
-                        continue ;
-                    }
-
-                    node.id = value ;
-
-                    for(let childNode of children){
-
-                        childNode.parentNodeId = value ;
-                    }
-
-                    sync.call(me , id , value) ;
+                    updatedNodes.push(node) ;
                 }
-
-                isUpdated = true ;
-
-                break ;
-
-                default:
-
-                    let oldValue = node[field] ;
-
-                    value = node[field] = value ;
-
-                    if(oldValue !== value){
-
-                        me.fireEvent(`node${field}change` , node.id , value , oldValue) ;
-
-                        isUpdated = true ;
-                    }
             }
         }
 
-        if(isUpdated === true){
+        if(updatedNodes.length){
 
-            if(!node.hidden){
+            let unsizedNodes = [] ;
 
-                me.fireEvent('nodeunsized' , [
-                    getData(node)
-                ]) ;
+            for(let node of updatedNodes){
+
+                if(!node.hidden){
+
+                    unsizedNodes.push(getData(node)) ;
+                
+                }else{
+
+                    node.width = false ;
     
-            }else{
+                    node.height = false ;
+                }
+            }
+
+            if(unsizedNodes.length){
+
+                me.fireEvent('nodeunsized' , unsizedNodes) ;
     
-                node.width = false ;
-    
-                node.height = false ;
             }
         }
     }
+}
+
+function setNodeInfo(node , data){
+
+    let fields = Object.keys(data),
+        me = this,
+        {
+            nodes
+        } = me,
+        isUpdated = false;
+
+    for(let field of fields){
+
+        let value = data[field] ;
+
+        if(equals(node[field] , value)){
+
+            continue ; 
+        }
+
+        switch(field){
+
+            case 'parentNodeId':
+            case 'x':
+            case 'y':
+            case 'width':
+            case 'height':
+            case 'hidden':
+            case 'expanded':
+            case 'selected':
+            case 'placeholder':
+            case 'restructuring':
+            case 'indicated':
+            case 'order':
+
+                continue ;
+
+            case 'id':
+
+            {
+                
+                let {
+                    id,
+                    children
+                } = node ;
+
+                if(nodes.has(value)){
+
+                    console.error(`${value} - 脑图中已经存该节点`) ;
+
+                    continue ;
+                }
+
+                node.id = value ;
+
+                for(let childNode of children){
+
+                    childNode.parentNodeId = value ;
+                }
+
+                sync.call(me , id , value) ;
+            }
+
+            isUpdated = true ;
+
+            break ;
+
+            default:
+
+                let oldValue = node[field] ;
+
+                value = node[field] = value ;
+
+                if(oldValue !== value){
+
+                    me.fireEvent(`node${field}change` , node.id , value , oldValue) ;
+
+                    isUpdated = true ;
+                }
+        }
+    }
+
+    return isUpdated ;
 }
 
 function sync(oldId , id){
