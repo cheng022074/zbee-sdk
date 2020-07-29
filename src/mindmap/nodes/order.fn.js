@@ -39,4 +39,8 @@
 
     me.fireEvent('nodeunsized' , fireNodeUnsizedNodes) ;
 
+    return true ;
+
  }
+
+ return false ;

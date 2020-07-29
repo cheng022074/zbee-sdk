@@ -17,6 +17,8 @@
  * 
  * @param {string} id 父节点编号
  * 
+ * @param {boolean} [isSilentMode = false] 是否静默模式
+ * 
  */
 
  let parentNode = query(id) ;
@@ -25,19 +27,25 @@
 
     node = append(parentNode , node) ;
 
-    let {
-        hidden,
-        expanded
-    } = parentNode,
-    me = this;
+    if(!isSilentMode){
 
-    me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+        let {
+            hidden,
+            expanded
+        } = parentNode;    
 
-    order(parentNode) ;
+        this.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
 
-    if(!hidden && expanded){
-
-        await tryLayout();
+        order(parentNode) ;
     
+        if(!hidden && expanded){
+    
+            await tryLayout();
+        
+        }
     }
+
+    return true ;
  }
+
+ return false ;
