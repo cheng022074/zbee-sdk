@@ -7,8 +7,6 @@
  * 
  * @import Observable from mixin.observable
  * 
- * @import create from socket.io
- * 
  * @import createSocket from socket.io
  * 
  * @import add from event.listener.add
