@@ -3,7 +3,9 @@
  * 
  * 判断位置是否在指定区域之内
  * 
- * @import from from .from
+ * @import containsY from .contains.y
+ * 
+ * @import containsX from .contains.x
  * 
  * @param {object} region 参照范围
  * 
@@ -13,17 +15,4 @@
  * 
  */
 
-let {
-    left,
-    top,
-    right,
-    bottom
- } = region,
- {
-    left:positionOLeft,
-    top:positionTop,
-    right:positionRight,
-    bottom:positionBottom,
- } = from(position);
- 
- return positionOLeft >= left && positionRight <= right && positionTop >= top && positionBottom <= bottom;
+ return containsX(region , position) && containsY(region , position);
