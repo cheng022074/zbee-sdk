@@ -32,10 +32,12 @@ let touches = getTouchEvents(e , 'move'),
     }),
     {
         startDistance,
-        dispatch
+        dispatch,
+        pinchPoint
     } = this;
 
 dispatch('pinch', {
     distance,
+    point:pinchPoint,
     scale:distance / startDistance
 });
