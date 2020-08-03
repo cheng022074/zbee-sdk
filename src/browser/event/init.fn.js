@@ -7,8 +7,22 @@
  * 
  * @import add from browser.event.listener.add
  * 
+ * @import os from os.name value
+ * 
  * @param {HTMLElement} target 事件应用环境元素
  * 
  */
 
-add(target , listeners) ;
+ switch(os){
+
+    case 'iOS':
+    case 'Android':
+
+        add(window , listeners) ;
+
+    break ;
+
+    default:
+
+        add(target , listeners) ;
+ }
