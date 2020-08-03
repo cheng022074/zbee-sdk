@@ -16,7 +16,7 @@
  * 
  * @import resetInfo from ..info.reset scoped
  * 
- * @import getDistance from math.point.distance
+ * @import getDistance from math.point.line.distance
  * 
  * @import un from browser.event.listener.global.remove
  * 

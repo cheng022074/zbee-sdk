@@ -7,7 +7,7 @@
  * 
  * @import getRightXY from math.region.xy.right
  * 
- * @import getDistance from math.point.distance
+ * @import getDistance from math.point.line.distance
  * 
  * @import getRelationNodes from .relation scoped
  * 
