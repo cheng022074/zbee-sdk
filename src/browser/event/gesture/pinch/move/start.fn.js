@@ -50,15 +50,10 @@ let {
 
 me.startDistance = distance ;
 
-let pinchPoint = getCenterXY(firstXY , lastXY) ;
-
 dispatch('pinchstart', {
     distance,
-    point:pinchPoint,
-    scale: 1
+    point:getCenterXY(firstXY , lastXY)
 });
-
-me.pinchPoint = pinchPoint ;
 
 un('touchmove' , me.onStart) ;
 
