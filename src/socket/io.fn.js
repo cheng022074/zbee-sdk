@@ -92,12 +92,12 @@
 
     onOnline(){
 
-        me.connect() ;
+        this.connect() ;
     }
 
     onOffline(){
 
-        me.disconnect() ;
+        this.disconnect() ;
     }
 
     onVisibilityChange(){
