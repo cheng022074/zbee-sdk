@@ -19,6 +19,10 @@
  * 
  * @import is from ..node.is.normal
  * 
+ * @import data from ..node.data scoped
+ * 
+ * @import translate from math.region.translate
+ * 
  * @import is.defined
  * 
  */
@@ -219,16 +223,26 @@
         x,
         y
     } = xy,
+    dataNode = data(node),
     {
         right
-    } = from(node);
+    } = from(dataNode),
+    offsetNodeX = dataNode.x - node.x,
+    offsetNodeY = dataNode.y - node.y;
 
     if(!(x >= right)){
 
         return ;
     }
 
-    let offsetY = getOutOfBoundOffsetY(from(getRegion(node)) , y) ;
+    let region = from(getRegion(node)) ;
+
+    region = translate(region , {
+        x:region.left + offsetNodeX,
+        y:region.top + offsetNodeY
+    }) ;
+
+    let offsetY = getOutOfBoundOffsetY(region , y) ;
 
     if(offsetY === 0){
 

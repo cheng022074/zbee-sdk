@@ -17,6 +17,8 @@
  * 
  * @import from from math.region.from
  * 
+ * @import data from ..data scoped
+ * 
  * @param {data.Record} node 节点
  * 
  * @param {object} xy 坐标信息
@@ -25,10 +27,13 @@
 
 if(is(node)){
 
-    let {
+
+
+    let region = from(data(node)),
+    {
         y
     } = xy,
-    outY = getOutOfBoundOffsetY(from(node) , y),
+    outY = getOutOfBoundOffsetY(region , y),
     {
         placeholderNode
     } = this;
@@ -44,7 +49,9 @@ if(is(node)){
     }else{
 
         let {
-            y:nodeY,
+            top:nodeY
+        } = region,
+        {
             height
         } = node;
 
