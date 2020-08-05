@@ -42,10 +42,15 @@ if(!restructuring || restructureIndicateLocked){
 
  if(id){
 
-    preinsert(get(id) , xy) ;
+    let node = get(id) ;
 
-    layout() ;
- 
+    if(is(node)){
+
+        preinsert(get(id) , xy) ;
+
+        layout() ;
+    }
+
  }else{
 
     let parentNode = visibilityNodes.getNearestParentNode(xy) ;
