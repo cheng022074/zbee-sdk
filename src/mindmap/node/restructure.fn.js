@@ -1,7 +1,7 @@
 
 /**
  * 
- * 函数实现说明
+ * 重构
  * 
  * @import expand from .expand scoped
  * 
