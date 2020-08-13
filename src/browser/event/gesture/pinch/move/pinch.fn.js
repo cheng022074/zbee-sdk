@@ -6,7 +6,9 @@
  * 
  * @import stop from browser.event.stop
  * 
- * @import getDistance from math.point.distance
+ * @import getDistance from math.point.line.distance
+ * 
+ * @import getCenterXY from math.point.line.center
  * 
  * @import un from browser.event.listener.global.remove
  * 
@@ -23,13 +25,15 @@ let touches = getTouchEvents(e , 'move'),
         firstTouch,
         lastTouch
     ] = touches,
-    distance = getDistance({
+    startXY = {
         x:firstTouch.pageX,
         y:firstTouch.pageY
-    } , {
+    },
+    endXY = {
         x:lastTouch.pageX,
         y:lastTouch.pageY
-    }),
+    },
+    distance = getDistance(startXY , endXY),
     {
         startDistance,
         dispatch
@@ -37,5 +41,6 @@ let touches = getTouchEvents(e , 'move'),
 
 dispatch('pinch', {
     distance,
+    point:getCenterXY(startXY , endXY),
     scale:distance / startDistance
 });

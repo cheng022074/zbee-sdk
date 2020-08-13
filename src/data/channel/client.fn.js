@@ -5,7 +5,11 @@
  * 
  * @import get from object.property.inner.get
  * 
+ * @import define from object.property.inner.define
+ * 
  * @import add from event.listener.add
+ * 
+ * @import remove from event.listener.remove
  * 
  * @import is.string
  * 
@@ -33,6 +37,8 @@ class main extends Channel{
                 dataerror:'onErrorData',
                 scope:me
             }) ;
+
+            define(me , 'defaultEventName' , `${__ZBEE_CLASS_NAME__}-${Date.now()}`) ;
         }
     }
 
@@ -48,24 +54,12 @@ class main extends Channel{
 
     onErrorData(client , data , params){
 
-        let me = this,
-            event = get(me , 'target').callIf('getEventNameByParams' , params) ;
-
-        if(isString(event)){
-
-            me.fireEvent(`${event}error` , data , params) ;
-        }
+        fireEvent.call(this , data , params , 'error') ;
     }
 
     onData(client , data , params){
 
-        let me = this,
-            event = get(me , 'target').callIf('getEventNameByParams' , params) ;
-
-        if(isString(event)){
-
-            me.fireEvent(event , data , params) ;
-        }
+        fireEvent.call(this , data , params) ;
     }
 
     async send(params , isReturnData = false){
@@ -76,14 +70,25 @@ class main extends Channel{
 
         if(isReturnData){
 
-            let event = target.callIf('getEventNameByParams' , params) ;
+            data = new Promise(callback => {
 
-            if(isString(event)){
+                let event = getEventName.call(me , params),
+                    listener = (client , data , currentParams) => {
 
-                data = new Promise(callback => add(me , event , (client , data) => callback(data) , {
-                    once:true
-                }) ) ;
-            }
+                        if(params === currentParams){
+
+                            remove(me , event , listener) ;
+
+                            callback(data) ;
+    
+                        }
+
+                    } ;
+
+                add(me , event , listener) ;
+
+            }) ;
+            
         }
 
         let state = await target.call('send' , params) ;
@@ -103,4 +108,19 @@ class main extends Channel{
 
         return await target.call('cancel' , params) ;
     }
+ }
+
+ function getEventName(params){
+
+    let me = this ;
+
+    return get(me , 'target').callIf('getEventNameByParams' , params) || get(me , 'defaultEventName');
+
+ }
+
+ function fireEvent(data , params , eventSuffix = ''){
+
+    let me = this ;
+
+    me.fireEvent(`${getEventName.call(me , params)}${eventSuffix}` , data , params) ;
  }

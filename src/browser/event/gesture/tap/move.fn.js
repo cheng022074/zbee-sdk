@@ -3,9 +3,9 @@
  * 
  * 移动事件监听
  * 
- *  @import getEvent from browser.event.single
+ * @import getEvent from browser.event.single
  * 
- * @import getDistance from math.point.distance
+ * @import getDistance from math.point.line.distance
  * 
  * @import getScale from browser.scale
  * 

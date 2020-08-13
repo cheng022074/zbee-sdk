@@ -64,6 +64,8 @@
             lines.push({
               draw:'line.bezierCurve',
               indicated,
+              start:parentNode,
+              end:node,
               points:[
                 parentNodeX,
                 parentNodeY,
@@ -88,6 +90,8 @@
               lines.push({
                 draw:'line',
                 indicated,
+                start:parentNode,
+                end:node,
                 points:[
                   parentNodeX,
                   parentNodeY,
@@ -97,6 +101,8 @@
               } , {
                 draw:'line.bezierCurve',
                 indicated,
+                start:parentNode,
+                end:node,
                 points:[
                   parentNodeX + nodeHorizontalLineBreakPointOffset,
                   parentNodeY,
@@ -119,6 +125,8 @@
               lines.push({
                 draw:'line.bezierCurve',
                 indicated,
+                start:parentNode,
+                end:node,
                 points:[
                   parentNodeX,
                   parentNodeY,

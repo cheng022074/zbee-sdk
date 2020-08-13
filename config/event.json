@@ -6,5 +6,8 @@
     "singletap":"tap.double",
     "doubletap":"tap.double",
     "longpress":"longpress",
-    "longpresscancel":"longpress"
+    "longpresscancel":"longpress",
+    "pinchstart":"pinch",
+    "pinch":"pinch",
+    "pinchend":"pinch"
 }

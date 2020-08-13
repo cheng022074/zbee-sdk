@@ -45,7 +45,12 @@ class main extends mixins({
 
         classNames.reverse() ;
 
-        classNames.push('data.channel.client') ;
+        let clientClassName = 'data.channel.client' ;
+
+        if(!classNames.includes(clientClassName)){
+
+            classNames.push(clientClassName) ;
+        }
 
         let target ;
 

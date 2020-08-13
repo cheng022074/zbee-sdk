@@ -46,9 +46,14 @@ let fireEvent;
 if(is(placeholderNode)){
 
    let oldPreviousSibling = getPreviousSibling(selectedNode),
-       oldParentNode = getParentNode(selectedNode);
+       oldParentNode = getParentNode(selectedNode),
+       {
+          selected
+       } = selectedNode;
 
    insertBefore(selectedNode , placeholderNode) ;
+
+   selectedNode.selected = selected ;
 
    remove(placeholderNode) ;
 

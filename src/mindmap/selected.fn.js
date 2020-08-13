@@ -24,7 +24,7 @@ let me = this,
 
     me.selectedNode = node ;
  
- }else if(me === selectedNode){
+ }else if(node === selectedNode){
 
    delete me.selectedNode ;
    

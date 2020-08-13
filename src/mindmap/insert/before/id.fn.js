@@ -22,12 +22,21 @@ let beforeNode = get(beforeNodeId),
 
 if(beforeNode){
 
+    let {
+        id
+    } = me.selectedNode ;
+
    node = insert(node , beforeNode) ;
 
    if(node === false){
 
         return ;
    }
+
+    if(node.id === id){
+
+        node.selected = true ;
+    }
 
    me.fireEvent('nodeinsertbefore' , data(node) , data(beforeNode)) ;
 

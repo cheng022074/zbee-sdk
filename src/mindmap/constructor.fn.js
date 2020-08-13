@@ -23,6 +23,8 @@
  * 
  * @import layout from .layout scoped
  * 
+ * @import isObject from is.object.simple
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -80,6 +82,20 @@
  me.ellipsisNodeHeight = ellipsisNodeHeight ;
 
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
+
+ if(isObject(nodeHorizontalSeparationDistance)){
+
+   let {
+      max = 0,
+      min = 0
+   } = nodeHorizontalSeparationDistance ;
+
+   me.maxNodeHorizontalSeparationDistance = max ;
+
+   me.minNodeHorizontalSeparationDistance = min ;
+
+   nodeHorizontalSeparationDistance = 0 ;
+ }
 
  me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
 

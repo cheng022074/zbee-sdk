@@ -114,7 +114,9 @@
     listeners.set(target , event , fn , scope , listener) ;
     
     doAdd(target , event , listener , {
-        passive:false,
+        options:{
+            passive:false
+        },
         ...config
     }) ;
  }

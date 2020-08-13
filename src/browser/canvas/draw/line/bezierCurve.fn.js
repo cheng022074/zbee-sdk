@@ -9,6 +9,8 @@
  * 
  * @param {object} [config = {}] 画线配置
  * 
+ * @param {array} [config.lineDash = []] 虚线设置
+ * 
  * @param {number} [config.scale = 1] 外部传入缩放比例
  * 
  * @param {array} [config.points = []] 画线点集合
@@ -29,6 +31,8 @@
 
       newPoints.push(point * browserScale * scale) ;
     }
+
+    context.setLineDash(lineDash) ;
 
     context.moveTo(...newPoints.slice(0 , 2));
     
