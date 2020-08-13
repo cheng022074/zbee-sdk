@@ -22,11 +22,20 @@
 
  if(afterNode){
 
+    let {
+        id
+    } = me.selectedNode ;
+
     node = insert(node , afterNode) ;
 
     if(node === false){
 
         return ;
+    }
+
+    if(node.id === id){
+
+        node.selected = true ;
     }
 
     me.fireEvent('nodeinsertafter' , data(node) , data(afterNode)) ;
