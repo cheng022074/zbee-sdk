@@ -3,13 +3,7 @@
  * 
  * 解析表达式中的字符串
  * 
- * @import is.string
- * 
  * @import is.number
- * 
- * @import parse from .string
- * 
- * @import from from array.from
  * 
  * @param {string} expression 表达式
  * 
@@ -61,7 +55,7 @@ if(isNumber(startIndex) && isNumber(endIndex)){
             datatype:'string',
             value:expression.substring(startIndex + 1 , endIndex)
         },
-        ...from(parse(expression.substring(endIndex + 1 , expression.length)))
+        expression.substring(endIndex + 1 , expression.length)
     ] ;
 
 }

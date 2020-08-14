@@ -3,13 +3,7 @@
  * 
  * 解析表达式中的字符串
  * 
- * @import is.string
- * 
- * @import is.number
- * 
- * @import parse from .operator
- * 
- * @import from from array.from
+ * @import parse from .regex
  * 
  * @param {string} expression 表达式
  * 
@@ -17,19 +11,7 @@
  * 
  */
 
-
-let operatorRe = /\+|\-|\*|=/g,
-    match = operatorRe.exec(expression);
-
-if(match){
-
-    let {
-        index
-    } = match,
-    [
-        name
-    ] = match,
-    endIndex = index + name.length;
+ return parse(expression , /\+|\-|\*|=/ , name => {
 
     switch(name){
 
@@ -38,14 +20,9 @@ if(match){
             name = '===' ;
     }
 
-    return [
-        expression.substring(0 , index),
-        {
-            syntax:'operator',
-            name
-        },
-        ...from(parse(expression.substring(endIndex , expression.length)))
-    ] ;
-}
+    return {
+        syntax:'operator',
+        name
+    } ;
 
-return expression ;
+ }) ;
