@@ -11,13 +11,19 @@
  * 
  */
 
- return parse(expression , /\+|\-|\*|=/ , name => {
+ return parse(expression , /\+|\-|\*|=|div/ , name => {
 
     switch(name){
 
         case '=':
 
             name = '===' ;
+
+            break ;
+
+        case 'div':
+
+            name = '/' ;
     }
 
     return {

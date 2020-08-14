@@ -7,6 +7,8 @@
  * 
  * @import .param.split
  * 
+ * @import ..string
+ * 
  * @import doParse from ....parse
  * 
  * @param {string} expression 表达式
@@ -28,6 +30,7 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
         operation:'call',
         name,
         children:doParse(children , [
+            'expression.parser.string',
             'expression.parser.function.param.split'
         ])
     } ;

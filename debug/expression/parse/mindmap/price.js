@@ -19,9 +19,12 @@
  * 
  * @import expression.parser.function.call
  * 
+ * @import expression.parser.operator
+ * 
  */
 
 let parsers = [
+    'expression.parser.operator',
     'expression.parser.function.call',
     'expression.parser.mindmap.node.current',
     'expression.parser.mindmap.nodes.descendant',
@@ -31,4 +34,4 @@ let parsers = [
     'expression.parser.empty'
  ] ;
 
- console.log(JSON.stringify(parse('sum(.//price/position())' , parsers) , null , 2)) ;
+ console.log(JSON.stringify(parse('sum(.//price/@price) div count(.//price)' , parsers) , null , 2)) ;
