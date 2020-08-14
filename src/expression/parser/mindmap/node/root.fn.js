@@ -11,6 +11,7 @@
 
     return {
         syntax:'node',
+        type:'axis',
         name:'root'
     } ;
  }
