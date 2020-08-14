@@ -9,7 +9,7 @@
  * 
  */
 
-return parse(expression , /\// , () => ({
+return parse(expression , /,/ , () => ({
     syntax:'split',
-    name:'path'
+    name:'param'
 })) ;

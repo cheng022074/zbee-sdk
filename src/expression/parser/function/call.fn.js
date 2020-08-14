@@ -3,7 +3,11 @@
  * 
  * 解析表达式中的函数
  * 
- * @import parse from .block
+ * @import parse from ..block
+ * 
+ * @import .param.split
+ * 
+ * @import doParse from ....parse
  * 
  * @param {string} expression 表达式
  * 
@@ -19,12 +23,13 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
         children
     ] = content.match(/^([A-Za-z]\w*)\s*\((.+)\)$/) ;
 
-
-
     return {
         syntax:'function',
+        operation:'call',
         name,
-        children
+        children:doParse(children , [
+            'expression.parser.function.param.split'
+        ])
     } ;
 
 } , char => {
