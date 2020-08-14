@@ -21,7 +21,7 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
         ,
         name,
         children
-    ] = content.match(/^([A-Za-z]\w*)\s*\((.+)\)$/) ;
+    ] = content.match(/^([A-Za-z]\w*)\s*\((.*)\)$/) ;
 
     return {
         syntax:'function',
@@ -32,9 +32,9 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
         ])
     } ;
 
-} , char => {
+} , function(char){
 
-   if(!tag){
+   if(!tag && char !== ')'){
 
        tag = char ;
 
@@ -43,4 +43,25 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
 
    return false ;
 
-} , (char , chars) => char === ')' && chars[tag] === chars[char]) ;
+} , (char , chars) => {
+
+    if(char === ')'){
+
+        let keys = Object.keys(chars),
+            count = 0,
+            leftBracketRe = /\($/;
+
+        for(let key of keys){
+
+            if(leftBracketRe.test(key)){
+
+                count += chars[key] ;
+            }
+        }
+
+        return count === chars[')'] ;
+    }
+
+    return false ;
+
+}) ;

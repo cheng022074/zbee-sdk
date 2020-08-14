@@ -19,8 +19,6 @@
  * 
  * @import expression.parser.function.call
  * 
- * @import expression.parser.number
- * 
  */
 
 let parsers = [
@@ -30,8 +28,7 @@ let parsers = [
     'expression.parser.mindmap.node.attribute',
     'expression.parser.mindmap.node.plugin',
     'expression.parser.mindmap.nodes.children',
-    'expression.parser.number',
     'expression.parser.empty'
  ] ;
 
- console.log(JSON.stringify(parse('sum(.//price/@price)' , parsers) , null , 2)) ;
+ console.log(JSON.stringify(parse('sum(.//price/position())' , parsers) , null , 2)) ;
