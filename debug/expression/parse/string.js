@@ -9,11 +9,14 @@
  * 
  * @import expression.parser.operator
  * 
+ * @import expression.parser.empty
+ * 
  */
 
  let parsers = [
     'expression.parser.string',
-    'expression.parser.operator'
+    'expression.parser.operator',
+    'expression.parser.empty'
  ] ;
 
  console.log(parse('"陈治文"' , parsers)) ;

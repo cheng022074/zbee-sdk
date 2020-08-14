@@ -17,9 +17,12 @@
  * 
  * @import expression.parser.empty
  * 
+ * @import expression.parser.function
+ * 
  */
 
 let parsers = [
+    'expression.parser.function',
     'expression.parser.mindmap.node.current',
     'expression.parser.mindmap.nodes.descendant',
     'expression.parser.mindmap.node.attribute',
@@ -28,4 +31,4 @@ let parsers = [
     'expression.parser.empty'
  ] ;
 
- console.log(parse('.//price/@price' , parsers)) ;
+ console.log(JSON.stringify(parse('sum(.//price/@price)' , parsers) , null , 2)) ;

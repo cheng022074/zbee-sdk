@@ -3,61 +3,30 @@
  * 
  * 解析表达式中的字符串
  * 
- * @import is.number
+ * @import parse from .block
  * 
  * @param {string} expression 表达式
  * 
  */
 
+ let tag ;
 
-let quotationMarkRe = /"|\\"|'|\\'/g,
-    match,
-    startChar,
-    startIndex,
-    endIndex;
+ return parse(expression , /"|\\"|'|\\'/g , value => ({
+    syntax:'literal',
+    datatype:'string',
+    value:value.substring(1 , value.length - 1)
+}) , char => {
 
-while(match = quotationMarkRe.exec(expression)){
+    if(!tag){
 
-    if(!isNumber(startIndex)){
+        tag = char ;
 
-        [
-            startChar
-        ] = match ;
-
-        if(startChar === '\\"' || startChar === "\\'"){
-
-            break ;
-        }
-
-        startIndex = match.index ;
-    
-    }else{
-
-        [
-            char
-        ] = match ;
-
-        if(startChar === char){
-
-            endIndex = match.index ;
-
-            break ;
-        }
+        return true ;
     }
-}
 
-if(isNumber(startIndex) && isNumber(endIndex)){
+    return false ;
 
-    return [
-        expression.substring(0 , startIndex),
-        {
-            syntax:'literal',
-            datatype:'string',
-            value:expression.substring(startIndex + 1 , endIndex)
-        },
-        expression.substring(endIndex + 1 , expression.length)
-    ] ;
-
-}
-
-return expression ;
+ } , (char , chars) => char === tag , [
+    '\\"',
+    "\\'"
+ ]) ;

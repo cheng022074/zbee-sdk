@@ -7,9 +7,13 @@
  * 
  * @import is.string
  * 
+ * @import isObject from is.object.simple
+ * 
  * @import from from array.from
  * 
- * @param {string} expression 表达式
+ * @import parse from .parse
+ * 
+ * @param {mixed} ast 语法树
  * 
  * @param {array} parsers 解析器集合
  * 
@@ -17,9 +21,7 @@
  * 
  */
 
- let ast = [
-     expression
- ] ;
+ ast = from(ast) ;
 
  for(let parser of parsers){
 
@@ -48,7 +50,14 @@
             }
  
             ast.splice(i , 1 , ...nodes) ;
-         }
+
+            node = nodes[i] ;
+        }
+
+        if(isObject(node) && node.hasOwnProperty('children')){
+
+            node.children = parse(node.children , parsers) ;
+        }
     }
  }
 
