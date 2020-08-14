@@ -9,8 +9,10 @@
  * 
  */
 
- return parse(expression , /\d+(?:\.\d+)?/ , value => ({
+ return parse(expression , /\-?\d+(?:\.\d+)?/ , value => ({
     syntax:'literal',
     datatype:'number',
     value:Number(value)
 })) ;
+
+

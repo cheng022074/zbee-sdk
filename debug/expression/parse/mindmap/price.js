@@ -19,6 +19,8 @@
  * 
  * @import expression.parser.function.call
  * 
+ * @import expression.parser.number
+ * 
  */
 
 let parsers = [
@@ -32,4 +34,4 @@ let parsers = [
     'expression.parser.empty'
  ] ;
 
- console.log(JSON.stringify(parse('sum(.//price/@price , 1)' , parsers) , null , 2)) ;
+ console.log(JSON.stringify(parse('-30000' , parsers) , null , 2)) ;
