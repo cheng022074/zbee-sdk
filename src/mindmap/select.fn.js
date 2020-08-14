@@ -33,7 +33,7 @@
       ellipsisPattern
     } = me;
   
-    if(!restructuring && selectedNode.id !== id && nodes.has(id)){
+    if(!restructuring && (selectedNode ? selectedNode.id !== id : true) && nodes.has(id)){
   
       cancelEllipsis() ;
     
