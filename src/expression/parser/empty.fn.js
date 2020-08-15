@@ -3,12 +3,23 @@
  * 
  * 空字符串解析
  * 
- * @param {string} expression 表达式
+ * @import is.string
+ * 
+ * @param {array} nodes 表达式中间数据
  * 
  */
 
-if(expression.trim() !== ''){
+ let result = [] ;
 
-    return expression ;
-}
+ for(let node of nodes){
+
+    if(isString(node) && node.trim() === ''){
+
+        continue ;
+    }
+
+    result.push(node) ;
+ }
+
+ return result ;
 
