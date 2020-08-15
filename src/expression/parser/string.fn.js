@@ -3,19 +3,25 @@
  * 
  * 解析表达式中的字符串
  * 
- * @import parse from .block
+ * @import parse from .container
  * 
- * @param {string} expression 表达式
+ * @param {array} nodes 表达式中间数据
  * 
  */
 
  let tag ;
 
- return parse(expression , /"|\\"|'|\\'/g , value => ({
-    syntax:'literal',
-    datatype:'string',
-    value:value.substring(1 , value.length - 1)
-}) , char => {
+ return parse(nodes , /"|\\"|'|\\'/g , (children , start  ,  end) => {
+
+    console.log(children , start , end) ;
+
+    return {
+        syntax:'literal',
+        datatype:'string',
+        value:children[0]
+    } ;
+
+ } , char => {
 
     if(!tag){
 

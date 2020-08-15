@@ -11,7 +11,7 @@
  * 
  * @import doParse from ....parse.inner
  * 
- * @import is.string
+ * @import isObject from is.object.simple
  * 
  * @param {string} expression 表达式
  * 
@@ -41,14 +41,7 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
 
         let node = children[i] ;
 
-        if(isString(node)){
-
-            children[i] = {
-                syntax:'expression',
-                children:node
-            } ;
-
-        }else{
+        if(isObject(node)){
 
             let {
                 syntax
@@ -73,15 +66,20 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
 
     for(let i = 0 ; i < length ; i ++){
 
-        let {
-            syntax
-        } = children[i] ;
+        let node = children[i] ;
 
-        if(syntax !== 'expression'){
+        if(isObject(node)){
 
-            children.splice(i , 1) ;
-
-            length -- ;
+            let {
+                syntax
+            } = children[i] ;
+    
+            if(syntax !== 'expression'){
+    
+                children.splice(i , 1) ;
+    
+                length -- ;
+            }
         }
     }
 
