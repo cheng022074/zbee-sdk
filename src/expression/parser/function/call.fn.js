@@ -9,7 +9,9 @@
  * 
  * @import ..string
  * 
- * @import doParse from ....parse
+ * @import doParse from ....parse.inner
+ * 
+ * @import is.string
  * 
  * @param {string} expression 表达式
  * 
@@ -25,14 +27,69 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
         children
     ] = content.match(/^([A-Za-z]\w*)\s*\((.*)\)$/) ;
 
+    children = doParse(children , [
+        'expression.parser.string',
+        'expression.parser.function.param.split',
+        'expression.parser.empty'
+    ]) ;
+
+    let {
+        length
+    } = children ;
+
+    for(let i = 0 ; i < length ; i ++){
+
+        let node = children[i] ;
+
+        if(isString(node)){
+
+            children[i] = {
+                syntax:'expression',
+                children:node
+            } ;
+
+        }else{
+
+            let {
+                syntax
+            } = node ;
+
+            if(syntax === 'split' && (i === 0 || children[i - 1].syntax === 'split')){
+
+                children.splice(i , 0 , {
+                    syntax:'expression',
+                    children:[{
+                        syntax:'literal',
+                        datatype:'undefined',
+                        value:undefined
+                    }]
+                }) ;
+
+                length ++ ;
+                
+            }
+        }
+    }
+
+    for(let i = 0 ; i < length ; i ++){
+
+        let {
+            syntax
+        } = children[i] ;
+
+        if(syntax !== 'expression'){
+
+            children.splice(i , 1) ;
+
+            length -- ;
+        }
+    }
+
     return {
         syntax:'function',
         operation:'call',
         name,
-        children:doParse(children , [
-            'expression.parser.string',
-            'expression.parser.function.param.split'
-        ])
+        children
     } ;
 
 } , function(char){

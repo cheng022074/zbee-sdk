@@ -34,4 +34,4 @@ let parsers = [
     'expression.parser.empty'
  ] ;
 
- console.log(JSON.stringify(parse('sum(.//price/@price) div count(.//price)' , parsers) , null , 2)) ;
+ console.log(JSON.stringify(parse('sum(.//price/@price)' , parsers) , null , 2)) ;
