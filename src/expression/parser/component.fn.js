@@ -17,15 +17,18 @@
  * 
  */
 
-let result = [] ;
+let result = [],
+    {
+        length
+    } = nodes;
 
-for(let node of nodes){
+for(let i = 0 ; i < length ; i ++){
+
+    let node = nodes[i] ;
 
     if(isString(node)){
 
         let match = node.match(regex);
-
-        console.log(regex , match)
 
         if(match){
 

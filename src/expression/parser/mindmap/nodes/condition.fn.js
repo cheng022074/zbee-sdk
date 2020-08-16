@@ -9,8 +9,6 @@
  * 
  */
 
- console.log(expression) ;
-
 return parse(expression , /\[|\]/g , value => {
 
     return {
