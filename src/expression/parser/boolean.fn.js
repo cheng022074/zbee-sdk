@@ -1,9 +1,9 @@
 
 /**
  * 
- * 解析表达式中的字符串
+ * 解析表达式中的布尔型
  * 
- * @import parse from .regex
+ * @import parse from .component
  * 
  * @param {string} expression 表达式
  * 
