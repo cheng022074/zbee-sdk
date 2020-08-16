@@ -7,8 +7,6 @@
  * 
  * @import expression.parser.mindmap.node.current
  * 
- * @import expression.parser.mindmap.node.plugin
- * 
  * @import expression.parser.mindmap.node.attribute
  * 
  * @import expression.parser.mindmap.nodes.descendant
@@ -25,19 +23,20 @@
  * 
  * @import expression.parser.string
  * 
+ * @import expression.parser.mindmap.node.root
+ * 
  */
 
 let parsers = [
     'expression.parser.string',
-    'expression.parser.operator',
-    'expression.parser.function.call',
+    'expression.parser.mindmap.node.root',
     'expression.parser.mindmap.node.current',
     'expression.parser.mindmap.nodes.descendant',
+    'expression.parser.mindmap.nodes.children',
     'expression.parser.mindmap.nodes.condition',
     'expression.parser.mindmap.node.attribute',
-    'expression.parser.mindmap.node.plugin',
-    'expression.parser.mindmap.nodes.children',
+    'expression.parser.function.call',
     'expression.parser.empty'
  ] ;
 
- console.log(JSON.stringify(parse('sum(.//[@plugins]/@price)' , parsers) , null , 2)) ;
+ console.log(JSON.stringify(parse('sum(.//[contains(@plugins , "price")]/@price)' , parsers) , null , 2)) ;

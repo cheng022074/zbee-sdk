@@ -1,15 +1,15 @@
 
 /**
  * 
- * 解析路径中的节点插件描述符
+ * 解析路径中的属性节点
  * 
- * @import parse from ....regex
+ * @import parse from ....component
  * 
- * @param {string} expression 表达式
+ * @param {array} nodes 表达式中间数据
  * 
  */
 
-return parse(expression , /@([A-Za-z]\w*)/ , name => ({
+return parse(nodes , /@([A-Za-z]\w*)/ , name => ({
     syntax:'attribute',
     name
 }) , 1) ;

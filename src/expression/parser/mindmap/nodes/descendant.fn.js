@@ -1,15 +1,15 @@
 
 /**
  * 
- * 解析路径中的所有子节点标识符
+ * 解析路径中的所有子孙节点标识符
  * 
- * @import parse from ....regex
+ * @import parse from ....component
  * 
- * @param {string} expression 表达式
+ * @param {array} nodes 表达式中间数据
  * 
  */
 
- return parse(expression , /\/{2}/ , () => ({
+ return parse(nodes , /\/{2}/ , () => ({
     syntax:'nodes',
     name:'descendants'
 })) ;

@@ -1,17 +1,30 @@
 
 /**
  * 
- * 解析路径中的根节点描述符
+ * 根节点解析
  * 
- * @param {string} expression 表达式
+ * @import is.string
+ * 
+ * @param {array} nodes 表达式中间数据
  * 
  */
 
- if(expression.trim() === '\/'){
+let result = [] ;
 
-    return {
-        syntax:'node',
-        type:'axis',
-        name:'root'
-    } ;
- }
+for(let node of nodes){
+
+   if(isString(node) && node.trim() === '/'){
+
+       result.push({
+            syntax:'node',
+            name:'root'
+       }) ;
+   
+    }else{
+
+        result.push(node) ;
+    }
+}
+
+return result ;
+
