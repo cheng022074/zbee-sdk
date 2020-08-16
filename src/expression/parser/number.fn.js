@@ -3,13 +3,13 @@
  * 
  * 解析表达式中的字符串
  * 
- * @import parse from .regex
+ * @import parse from .component
  * 
- * @param {string} expression 表达式
+ * @param {array} nodes 表达式中间数据
  * 
  */
 
- return parse(expression , /\-?\d+(?:\.\d+)?/ , value => ({
+ return parse(nodes , /\-?\d+(?:\.\d+)?/ , value => ({
     syntax:'literal',
     datatype:'number',
     value:Number(value)

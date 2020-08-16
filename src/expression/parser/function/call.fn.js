@@ -33,7 +33,6 @@ return parse(nodes , /[A-Za-z]\w*\s*\(|\)/g , (children , startTag , endTag) => 
         'expression.parser.empty'
     ]) ;
 
-
     let {
         length
     } = children ;
@@ -46,7 +45,7 @@ return parse(nodes , /[A-Za-z]\w*\s*\(|\)/g , (children , startTag , endTag) => 
 
             let prevNode = children[i - 1] ;
 
-            if(prevNode === undefined || isObject(prevNode) && node.syntax === 'split'){
+            if(i === 0 || isObject(prevNode) && prevNode.syntax === 'split'){
 
                 children.splice(i , 0 , {
                     syntax:'literal',
@@ -57,6 +56,14 @@ return parse(nodes , /[A-Za-z]\w*\s*\(|\)/g , (children , startTag , endTag) => 
                 i ++ ;
 
                 length ++ ;
+            
+            }else if(i === length - 1){
+
+                children.push({
+                    syntax:'literal',
+                    datatype:'undefined',
+                    value:undefined
+                }) ;
             }
         }
     }
