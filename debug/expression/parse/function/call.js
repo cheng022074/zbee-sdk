@@ -25,10 +25,10 @@
     'expression.parser.empty'
  ] ;
 
- //console.log(JSON.stringify(parse('sum()' , parsers) , null , 2)) ;
+ console.log(JSON.stringify(parse('sum()' , parsers) , null , 2)) ;
 
- //console.log(JSON.stringify(parse('sum() div count()' , parsers) , null , 2)) ;
+ console.log(JSON.stringify(parse('sum() div count()' , parsers) , null , 2)) ;
 
  console.log(JSON.stringify(parse('sum(count(1 , 2) , "5" + 56)' , parsers) , null , 2)) ;
 
- //console.log(JSON.stringify(parse('sum(,50,)' , parsers) , null , 2)) ;
+ console.log(JSON.stringify(parse('sum(,50,)' , parsers) , null , 2)) ;
