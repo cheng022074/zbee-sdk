@@ -3,15 +3,15 @@
  * 
  * 解析表达式中的字符串
  * 
- * @import parse from .regex
+ * @import parse from .component
  * 
- * @param {string} expression 表达式
+ * @param {array} nodes 表达式中间数据
  * 
  * @return {mixed} 解析后语法树
  * 
  */
 
- return parse(expression , /\+|\-|\*|=|div/ , name => {
+ return parse(nodes , /\+|\-|\*|=|div/ , name => {
 
     switch(name){
 

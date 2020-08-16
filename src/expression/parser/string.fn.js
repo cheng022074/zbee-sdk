@@ -11,14 +11,16 @@
 
  let tag ;
 
- return parse(nodes , /"|\\"|'|\\'/g , (children , start  ,  end) => {
+ return parse(nodes , /"|\\"|'|\\'/g , ([
+    value
+ ] , start  ,  end) => {
 
-    console.log(children , start , end) ;
+    tag = undefined ;
 
     return {
         syntax:'literal',
         datatype:'string',
-        value:children[0]
+        value
     } ;
 
  } , char => {

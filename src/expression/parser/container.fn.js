@@ -50,10 +50,14 @@
                 char
             ] = match ;
 
+           
+
             if(ignores.includes(char)){
 
                 continue ;
             }
+
+            
 
             if(!chars.hasOwnProperty(char)){
 
