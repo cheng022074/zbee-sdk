@@ -3,35 +3,36 @@
  * 
  * 解析表达式中的函数
  * 
- * @import parse from ..block
+ * @import parse from ..container
  * 
  * @import .param.split
  * 
  * @import ..string
  * 
+ * @import ..empty
+ * 
  * @import doParse from ....parse.inner
  * 
  * @import isObject from is.object.simple
  * 
- * @param {string} expression 表达式
+ * @param {array} nodes 表达式中间数据
  * 
  */
 
 let tag ;
 
-return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
+const leftBracketRe = /\($/ ;
 
-    let [
-        ,
-        name,
-        children
-    ] = content.match(/^([A-Za-z]\w*)\s*\((.*)\)$/) ;
+return parse(nodes , /[A-Za-z]\w*\s*\(|\)/g , (children , startTag , endTag) => {
+
+    tag = undefined ;
 
     children = doParse(children , [
         'expression.parser.string',
         'expression.parser.function.param.split',
         'expression.parser.empty'
     ]) ;
+
 
     let {
         length
@@ -41,44 +42,21 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
 
         let node = children[i] ;
 
-        if(isObject(node)){
+        if(isObject(node) && node.syntax === 'split'){
 
-            let {
-                syntax
-            } = node ;
+            let prevNode = children[i - 1] ;
 
-            if(syntax === 'split' && (i === 0 || children[i - 1].syntax === 'split')){
+            if(prevNode === undefined || isObject(prevNode) && node.syntax === 'split'){
 
                 children.splice(i , 0 , {
-                    syntax:'expression',
-                    children:[{
-                        syntax:'literal',
-                        datatype:'undefined',
-                        value:undefined
-                    }]
+                    syntax:'literal',
+                    datatype:'undefined',
+                    value:undefined
                 }) ;
 
+                i ++ ;
+
                 length ++ ;
-                
-            }
-        }
-    }
-
-    for(let i = 0 ; i < length ; i ++){
-
-        let node = children[i] ;
-
-        if(isObject(node)){
-
-            let {
-                syntax
-            } = children[i] ;
-    
-            if(syntax !== 'expression'){
-    
-                children.splice(i , 1) ;
-    
-                length -- ;
             }
         }
     }
@@ -86,7 +64,7 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
     return {
         syntax:'function',
         operation:'call',
-        name,
+        name:startTag.replace(leftBracketRe , ''),
         children
     } ;
 
@@ -106,8 +84,7 @@ return parse(expression , /[A-Za-z]\w*\s*\(|\)/g , content => {
     if(char === ')'){
 
         let keys = Object.keys(chars),
-            count = 0,
-            leftBracketRe = /\($/;
+            count = 0;
 
         for(let key of keys){
 

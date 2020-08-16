@@ -50,14 +50,10 @@
                 char
             ] = match ;
 
-           
-
             if(ignores.includes(char)){
 
                 continue ;
             }
-
-            
 
             if(!chars.hasOwnProperty(char)){
 
@@ -97,7 +93,7 @@
             
             }else{
 
-                children.push(node) ;    
+                children.push(node) ;
             }
 
             continue ;
@@ -127,6 +123,11 @@
 
             return parse(result , regex , fn , startFn , endFn , ignores);
         }
+    }else if(isDefined(children)){
+
+        children.push(node) ;
+
+        continue ;
     }
 
     result.push(node) ;

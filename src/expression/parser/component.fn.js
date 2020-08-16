@@ -5,6 +5,8 @@
  * 
  * @import is.string
  * 
+ * @import parse from .component
+ * 
  * @param {array} nodes 表达式中间数据
  * 
  * @param {RegExp} regex 正则表达式
@@ -23,6 +25,8 @@ for(let node of nodes){
 
         let match = node.match(regex);
 
+        console.log(regex , match)
+
         if(match){
 
             let {
@@ -32,7 +36,9 @@ for(let node of nodes){
 
             result.push(node.substring(0 , index) , fn(value) , node.substring(index + match[0].length , node.length)) ;
 
-            continue ;
+            result.push(...nodes.slice(i + 1)) ;
+
+            return parse(result , regex , fn , position) ;
 
         }
     }
