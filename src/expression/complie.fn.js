@@ -37,7 +37,7 @@
     `).bind(context) ;
  }
 
- function complie(CONTEXT , nodes , compliers , joinCharacter = ''){
+ function complie(context , nodes , compliers , joinCharacter = ''){
 
     let result = [] ;
    
@@ -47,7 +47,7 @@
         ...options
     } of nodes){
 
-        result.push(get(compliers[syntax])(options , joinCharacter => complie(children , compliers , joinCharacter) , CONTEXT)) ;
+        result.push(get(compliers[syntax])(options , joinCharacter => complie(context , children , compliers , joinCharacter) , context)) ;
     }
 
     return result.join(joinCharacter) ;
