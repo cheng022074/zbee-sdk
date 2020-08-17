@@ -1,5 +1,5 @@
 {
-    "moveDistance":8,
-    "maxDuration": 300,
-    "tapDistance": 24
+    "moveDistance":50,
+    "maxDuration": 600,
+    "tapDistance": 50
 }
