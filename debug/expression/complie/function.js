@@ -2,6 +2,8 @@
  * 
  * 基于字面量的表达式编译
  * 
+ * @import sum from math.sum
+ * 
  * @import complie from expression.complie
  * 
  * @import expression.parser.number
@@ -29,10 +31,7 @@
 const 
 context = {
     functions:{
-        sum(){
-
-            return 100 ;
-        }
+        sum
     }
 },
 parsers = [
@@ -49,4 +48,4 @@ compliers = {
    function:'expression.complier.function'
 };
 
-console.log(complie(context , 'sum()' , parsers , compliers)()) ;
+console.log(complie(context , 'sum(1 , 2 , 10)' , parsers , compliers)()) ;
