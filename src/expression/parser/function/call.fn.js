@@ -21,7 +21,7 @@ let tag ;
 
 const leftBracketRe = /\($/ ;
 
-return parse(nodes , /[A-Za-z]\w*\s*\(|\)/g , (children , startTag , endTag) => {
+return parse(nodes , /[A-Za-z]\w*\s*\(|\(|\)/g , (children , startTag , endTag) => {
 
     tag = undefined ;
 
@@ -74,7 +74,15 @@ return parse(nodes , /[A-Za-z]\w*\s*\(|\)/g , (children , startTag , endTag) => 
 
 } , function(char){
 
-   if(!tag && char !== ')'){
+    switch(char){
+
+        case '(':
+        case ')':
+
+            return false ;
+    }
+
+   if(!tag){
 
        tag = char ;
 

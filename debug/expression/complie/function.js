@@ -48,4 +48,4 @@ compliers = {
    function:'expression.complier.function'
 };
 
-console.log(complie(context , 'sum(1 , 2 , 10)' , parsers , compliers)()) ;
+console.log(complie(context , 'sum(1 , 2 , (10 + 20) * 10)' , parsers , compliers)()) ;

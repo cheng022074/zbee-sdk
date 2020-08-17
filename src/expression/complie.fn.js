@@ -24,6 +24,8 @@
 
     let CONTEXT = getContext() ;
 
+    console.log(JSON.stringify(parse(expresssion , parsers) , null , 2)) ;
+
     return new Function(`
 
         const ${
