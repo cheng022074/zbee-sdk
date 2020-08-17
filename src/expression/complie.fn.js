@@ -6,6 +6,8 @@
  * 
  * @import getContext from .complie.context
  * 
+ * @import get from function.get
+ * 
  * @param {mixed} context 表达式中的上下文数据
  * 
  * @param {string} expresssion 表达式
@@ -45,7 +47,7 @@
         ...options
     } of nodes){
 
-        result.push(include(compliers[syntax])(options , joinCharacter => complie(children , compliers , joinCharacter) , CONTEXT)) ;
+        result.push(get(compliers[syntax])(options , joinCharacter => complie(children , compliers , joinCharacter) , CONTEXT)) ;
     }
 
     return result.join(joinCharacter) ;
