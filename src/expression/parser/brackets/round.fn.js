@@ -3,7 +3,7 @@
  * 
  * 解析表达式中的圆括号
  * 
- * @import parse from ....container
+ * @import parse from ..container
  * 
  * @param {array} nodes 表达式中间数据
  * 
