@@ -11,5 +11,5 @@
 
 return parse(nodes , /^\s*\// , name => ({
     syntax:'node',
-    name:'current'
+    name:'root'
 })) ;
