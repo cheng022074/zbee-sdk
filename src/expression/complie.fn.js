@@ -10,7 +10,7 @@
  * 
  * @param {array} parsers 解析器集合
  * 
- * @param {array} compliers 编译器集合
+ * @param {object} compliers 编译器集合
  * 
  * @return {function} 编译成可用的函数
  * 
