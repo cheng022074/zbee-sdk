@@ -1,7 +1,7 @@
 
 /**
  * 
- * 解析路径中的属性
+ * 解析路径中的所有属性
  * 
  * @import parse from ....component
  * 
@@ -9,7 +9,6 @@
  * 
  */
 
-return parse(nodes , /@([A-Za-z]\w*)/ , name => ({
-    syntax:'attribute',
-    name
+return parse(nodes , /@\*/ , name => ({
+    syntax:'attributes'
 }) , 1) ;

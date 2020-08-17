@@ -9,7 +9,7 @@
  * 
  */
 
- return parse(nodes , /\// , () => ({
+ return parse(nodes , /\/\*?/ , () => ({
     syntax:'nodes',
     name:'children'
 })) ;
