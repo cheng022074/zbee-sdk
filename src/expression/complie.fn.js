@@ -29,7 +29,7 @@
     `).bind(context) ;
  }
 
- function compile(nodes , compliers){
+ function complie(nodes , compliers){
 
     let result = [] ;
    
@@ -39,7 +39,7 @@
         ...options
     } of nodes){
 
-        result.push(include(compliers[syntax])(options , () => compile(children , compliers))) ;
+        result.push(include(compliers[syntax])(options , () => complie(children , compliers))) ;
     }
 
     return result.join(' ') ;
