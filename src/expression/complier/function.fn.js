@@ -10,7 +10,7 @@
  * 
  * @param {function} complie 编译子项
  * 
- * @param {object} context 上下文引用变量名称集合
+ * @param {object} context 上下文引用常量名称集合
  * 
  * @return {string} 代码
  * 
