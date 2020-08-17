@@ -11,4 +11,4 @@
 
 return parse(nodes , /@\*/ , name => ({
     syntax:'attributes'
-}) , 1) ;
+})) ;
