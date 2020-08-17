@@ -29,7 +29,7 @@
     `).bind(context) ;
  }
 
- function complie(nodes , compliers){
+ function complie(nodes , compliers , joinCharacter = ''){
 
     let result = [] ;
    
@@ -39,10 +39,10 @@
         ...options
     } of nodes){
 
-        result.push(include(compliers[syntax])(options , () => complie(children , compliers))) ;
+        result.push(include(compliers[syntax])(options , joinCharacter => complie(children , compliers , joinCharacter))) ;
     }
 
-    return result.join(' ') ;
+    return result.join(joinCharacter) ;
  }
 
 

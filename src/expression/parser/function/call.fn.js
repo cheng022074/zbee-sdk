@@ -7,8 +7,6 @@
  * 
  * @import .param.split
  * 
- * @import ..string
- * 
  * @import ..empty
  * 
  * @import doParse from ....parse.inner
@@ -28,7 +26,6 @@ return parse(nodes , /[A-Za-z]\w*\s*\(|\)/g , (children , startTag , endTag) => 
     tag = undefined ;
 
     children = doParse(children , [
-        'expression.parser.string',
         'expression.parser.function.param.split',
         'expression.parser.empty'
     ]) ;

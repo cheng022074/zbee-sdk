@@ -25,4 +25,8 @@
     case 'boolean':
 
         return value ? 'true' : 'false' ;
+
+    case 'undefined':
+
+        return 'undefined' ;
  }
