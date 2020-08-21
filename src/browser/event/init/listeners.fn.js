@@ -15,12 +15,23 @@
 
  const doPrevent = e => {
 
-    switch(e.target.tagName){
+    let {
+        target
+    } = e ;
+
+    switch(target.nodeName){
 
         case 'INPUT':
         case 'TEXTAREA':
 
             return ;
+
+        default:
+
+            if(target.contentEditable === 'true'){
+
+                return ;
+            }
     }
 
     prevent(e) ;
