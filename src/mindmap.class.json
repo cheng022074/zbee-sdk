@@ -86,12 +86,6 @@
         },{
             "name":"endRestructureNode",
             "impl":".mindmap.node.restructure.end"
-        },{
-            "name":"startEdit",
-            "impl":".mindmap.edit.start"
-        },{
-            "name":"endEdit",
-            "impl":".mindmap.edit.end"
         }
     ]
 }

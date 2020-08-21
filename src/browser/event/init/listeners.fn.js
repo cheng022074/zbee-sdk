@@ -30,7 +30,21 @@
 
             if(target.contentEditable === 'true'){
 
-                return ;
+                let {
+                    type
+                } = e ;
+
+                switch(type){
+
+                    case 'touchstart':
+                    case 'touchmove':
+
+                        break ;
+
+                    default:
+
+                        return ;
+                }
             }
     }
 
