@@ -191,6 +191,11 @@
 
                return setEllipsis(this , ellipsis) ;
             }
+         },
+         editing:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
          }
       }) ;
 
