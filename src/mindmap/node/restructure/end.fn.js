@@ -34,7 +34,7 @@ let me = this,
    placeholderNode
 } = me;
 
-if(selectedNode){
+if(!selectedNode){
 
    return ;
 }
