@@ -25,7 +25,17 @@
 
  if(parentNode){
 
+    let me = this,
+    {
+        id
+    } = me.selectedNode ;
+
     node = append(parentNode , node) ;
+
+    if(id === node.id){
+
+        node.selected = true ;
+    }
 
     let {
         hidden,
@@ -34,7 +44,7 @@
 
     if(!isSilentMode){
 
-        this.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+        me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
 
         order(parentNode) ;
     }

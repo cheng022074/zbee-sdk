@@ -63,16 +63,12 @@ if(parentNodeId){
     
   }
 
-  if(!isSilentMode){
+  me.fireEvent('nodeappend' , data(node) , data(selectedNode)) ;
+
+  order(selectedNode) ;
+
+  select(node.id , false) ;
   
-    me.fireEvent('nodeappend' , data(node) , data(selectedNode)) ;
-
-    order(selectedNode) ;
-
-    select(node.id , false) ;
-  
-  }
-
   await tryLayout();
 
   return true ;
