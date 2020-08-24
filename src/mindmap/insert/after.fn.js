@@ -17,6 +17,8 @@
  * 
  * @import select from ..select scoped
  * 
+ * @import isObject from is.object.simple
+ * 
  * @param {mixed} node 插入的节点配置
  * 
  * @param {string} [beforeNodeId] 参数节点编号
@@ -26,7 +28,8 @@
 let me = this,
 {
    restructuring
-} = me;
+} = me,
+isNewNode = isObject(node);
 
 if(restructuring){
 
@@ -47,7 +50,7 @@ if(restructuring){
 
    if(node){
 
-      me.fireEvent('nodeinsertafter' , data(node) , data(selectedNode)) ;
+      me.fireEvent('nodeinsertafter' , data(node) , data(selectedNode) , isNewNode) ;
 
       order(getParentNode(selectedNode)) ;
 
