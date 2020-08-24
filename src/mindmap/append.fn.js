@@ -70,10 +70,10 @@ if(parentNodeId){
     order(selectedNode) ;
 
     select(node.id , false) ;
-
-    await tryLayout();
   
   }
+
+  await tryLayout();
 
   return true ;
 

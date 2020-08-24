@@ -27,22 +27,22 @@
 
     node = append(parentNode , node) ;
 
-    if(!isSilentMode){
+    let {
+        hidden,
+        expanded
+    } = parentNode;    
 
-        let {
-            hidden,
-            expanded
-        } = parentNode;    
+    if(!isSilentMode){
 
         this.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
 
         order(parentNode) ;
+    }
+
+    if(!hidden && expanded){
     
-        if(!hidden && expanded){
+        await tryLayout();
     
-            await tryLayout();
-        
-        }
     }
 
     return true ;
