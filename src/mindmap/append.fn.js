@@ -17,6 +17,8 @@
  * 
  * @import order from .order scoped
  * 
+ * @import isObject from is.object.simple
+ * 
  * @param {object} [node = {}] 子节点配置信息
  * 
  * @param {string} [parentNodeId] 父节点编号
@@ -28,7 +30,8 @@
  let me = this,
  {
     restructuring
- } = me;
+ } = me,
+ isNewNode = isObject(node);
 
  if(restructuring){
 
@@ -63,7 +66,7 @@ if(parentNodeId){
     
   }
 
-  me.fireEvent('nodeappend' , data(node) , data(selectedNode)) ;
+  me.fireEvent('nodeappend' , data(node) , data(selectedNode) , isNewNode) ;
 
   order(selectedNode) ;
 

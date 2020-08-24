@@ -13,6 +13,8 @@
  * 
  * @import order from ..order scoped
  * 
+ * @import isObject from is.object.simple
+ * 
  * @param {object} [node = {}] 子节点配置信息
  * 
  * @param {string} id 父节点编号
@@ -21,7 +23,8 @@
  * 
  */
 
- let parentNode = query(id) ;
+ let parentNode = query(id),
+     isNewNode = isObject(node);
 
  if(parentNode){
 
@@ -44,7 +47,7 @@
 
     if(!isSilentMode){
 
-        me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+        me.fireEvent('nodeappend' , data(node) , data(parentNode) , isNewNode) ;
 
         order(parentNode) ;
     }
