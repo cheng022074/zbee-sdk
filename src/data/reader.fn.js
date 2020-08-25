@@ -8,8 +8,6 @@
  * 
  * @import getRaws from .reader.raws
  * 
- * @import createRecordset from .recordset
- * 
  * @import isObject from is.object.simple
  * 
  * @class
@@ -59,11 +57,6 @@
         for(let raw of raws){
 
             records.push(getRecord.call(me , raw , raws , count ++ , data)) ;
-        }
-
-        if(isRecordset){
-
-            return createRecordset(me , records) ;
         }
 
         return records ;
