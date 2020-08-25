@@ -31,8 +31,7 @@
     read(data , root = '.'){
 
         let config = {
-            root:'.',
-            isRecordset:true
+            root:'.'
         } ;
 
         if(isObject(root)){
@@ -46,10 +45,7 @@
 
         root = config.root ;
 
-        let {
-            isRecordset
-        } = config,
-        me = this,
+        let me = this,
             raws = getRaws.call(me , data , root),
             records = [],
             count = 0;

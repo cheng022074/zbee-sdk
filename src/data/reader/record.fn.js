@@ -17,6 +17,8 @@
  * 
  * @import is.defined
  * 
+ * @import getFields from .fields
+ * 
  * @param {mixed} raw 行级原始数据
  * 
  * @param {array} raws 一组行级原始数据
@@ -25,58 +27,79 @@
  * 
  * @param {mixed} data 原始数据
  * 
+ * @param {function} [addFields = () => {}] 自定义数据记录
+ * 
  * @return {object} 正式数据
  * 
  */
 
+ function main(raw , raws , index , data , addFields){
 
-let {
-    fields
-} = this,
-record = {},
-isConvert = isDefined(raw) && isDefined(raws) && isDefined(index) && isDefined(data) ;
-
-innerDefine(record , 'observable' , createObservable()) ;
-
-for(let {
-    name,
-    convert,
-    mode,
-    equals,
-    set,
-    get,
-    defaultValue
-} of fields){
-
-    if(isConvert){
-
-        let value = convert(raw , raws , index , data) ;
-
-        define(record , name , {
-            mode,
-            equals,
-            set,
-            get,
-            value
-        }) ;
-
-        if(is(value)){
-
-            innerGet(value , 'observable').belongTo(record) ;   
-        }
+    let me = this,
+    {
+        fields
+    } = me,
+    record = {},
+    isConvert = isDefined(raw) && isDefined(raws) && isDefined(index) && isDefined(data) ;
     
-    }else{
+    innerDefine(record , 'observable' , createObservable()) ;
 
-        let value = raw[name] ;
+    processFields(isConvert , record , fields , raw , raws , index , data) ;
 
-        define(record , name , {
-            mode,
-            equals,
-            set,
-            get,
-            value:isDefined(value) ? value : defaultValue
-        }) ;
+    let additionalFields = addFields() ;
+
+    if(isDefined(additionalFields)){
+
+        additionalFields = getFields.call(me , additionalFields) ;
+
+        processFields(isConvert , record , additionalFields , raw , raws , index , data) ;
+
+        fields.push(...additionalFields) ;
     }
-}
+    
+    return record ;
+ }
 
-return record ;
+ function processFields(isConvert , record , fields , raw , raws , index , data){
+
+    for(let {
+        name,
+        convert,
+        mode,
+        equals,
+        set,
+        get,
+        defaultValue
+    } of fields){
+    
+        if(isConvert){
+    
+            let value = convert(raw , raws , index , data) ;
+    
+            define(record , name , {
+                mode,
+                equals,
+                set,
+                get,
+                value
+            }) ;
+    
+            if(is(value)){
+    
+                innerGet(value , 'observable').belongTo(record) ;   
+            }
+        
+        }else{
+    
+            let value = raw[name] ;
+    
+            define(record , name , {
+                mode,
+                equals,
+                set,
+                get,
+                value:isDefined(value) ? value : defaultValue
+            }) ;
+        }
+    }
+ }
