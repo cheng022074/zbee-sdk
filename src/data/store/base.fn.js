@@ -15,8 +15,6 @@
  * 
  * @import createReader from data.reader.json
  * 
- * @import createRecordset from data.recordset
- * 
  * @class
  * 
  */
