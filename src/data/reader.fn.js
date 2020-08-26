@@ -46,19 +46,23 @@
 
         root = config.root ;
 
-        let me = this,
-            raws = getRaws.call(me , data , root),
-            records = [],
-            count = 0;
+        let {
+            multi,
+            addFields
+        } = config,
+        me = this,
+        raws = getRaws.call(me , data , root),
+        records = [],
+        count = 0;
 
         if(multi === false && raws.length){
 
-            return getRecord.call(me , raws[0] , raws , count , data) ;
+            return getRecord.call(me , raws[0] , raws , count , data , addFields) ;
         }
 
         for(let raw of raws){
 
-            records.push(getRecord.call(me , raw , raws , count ++ , data)) ;
+            records.push(getRecord.call(me , raw , raws , count ++ , data , addFields)) ;
         }
 
         return records ;

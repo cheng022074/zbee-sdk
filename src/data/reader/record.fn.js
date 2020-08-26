@@ -17,6 +17,8 @@
  * 
  * @import is.defined
  * 
+ * @import is.array
+ * 
  * @import getFields from .fields
  * 
  * @param {mixed} raw 行级原始数据
@@ -87,6 +89,16 @@
             if(is(value)){
     
                 innerGet(value , 'observable').belongTo(record) ;   
+            
+            }else if(isArray(value)){
+
+                for(let item of value){
+
+                    if(is(item)){
+
+                        innerGet(item , 'observable').belongTo(record) ;
+                    }
+                }
             }
         
         }else{
