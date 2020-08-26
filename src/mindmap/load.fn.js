@@ -18,9 +18,9 @@
  let me = this,
  {
     reader,
-    readerAsRoot
+    readConfig
  } = me,
- result = reader.read(data , readerAsRoot) ;
+ result = reader.read(data , readConfig) ;
 
  if(result.length === 1){
 

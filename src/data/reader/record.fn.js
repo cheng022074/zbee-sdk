@@ -48,7 +48,7 @@
 
     processFields(isConvert , record , fields , raw , raws , index , data) ;
 
-    let additionalFields = addFields() ;
+    let additionalFields = addFields(record) ;
 
     if(isDefined(additionalFields)){
 

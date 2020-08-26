@@ -147,10 +147,17 @@
                         rootProperty = root ;
                     }
 
-                    return createReader(fields).read(data , {
+                    let readConfig = {
                         root:rootProperty,
                         ...options
-                    }) ;
+                    } ;
+
+                    if(fields){
+
+                        return createReader(fields).read(data , readConfig) ;
+                    }
+
+                    return me.read(data , readConfig) ;
                 }
 
                 return [] ;
