@@ -133,7 +133,8 @@
 
                     let {
                         fields,
-                        root
+                        root,
+                        ...options
                     } = reader,
                     rootProperty;
 
@@ -146,7 +147,10 @@
                         rootProperty = root ;
                     }
 
-                    return createReader(fields).read(data , rootProperty) ;
+                    return createReader(fields).read(data , {
+                        root:rootProperty,
+                        ...options
+                    }) ;
                 }
 
                 return [] ;

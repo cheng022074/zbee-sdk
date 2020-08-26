@@ -31,7 +31,8 @@
     read(data , root = '.'){
 
         let config = {
-            root:'.'
+            root:'.',
+            multi:true
         } ;
 
         if(isObject(root)){
@@ -49,6 +50,11 @@
             raws = getRaws.call(me , data , root),
             records = [],
             count = 0;
+
+        if(multi === false && raws.length){
+
+            return getRecord.call(me , raws[0] , raws , count , data) ;
+        }
 
         for(let raw of raws){
 
