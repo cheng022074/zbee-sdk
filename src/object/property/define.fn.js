@@ -55,6 +55,7 @@
     
                 Object.defineProperty(target , name , {
                     get:doGet(name , get),
+                    configurable:true,
                     enumerable:true
                 }) ;
     
@@ -64,6 +65,7 @@
     
                 Object.defineProperty(target , name , {
                     value,
+                    configurable:true,
                     enumerable:true
                 }) ;
             }
@@ -73,7 +75,9 @@
         case 'writeonly':
     
             Object.defineProperty(target , name , {
-                set:doSet(name , set , equals)
+                set:doSet(name , set , equals),
+                configurable:true,
+                enumerable:true
             }) ;
     
             innerDefine(target , name , value) ;
@@ -85,6 +89,7 @@
             Object.defineProperty(target , name , {
                 set:doSet(name , set , equals),
                 get:doGet(name , get),
+                configurable:true,
                 enumerable:true
             }) ;
     
