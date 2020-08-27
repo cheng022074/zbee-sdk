@@ -11,6 +11,8 @@
  * 
  * @import is.string
  * 
+ * @import is.number
+ * 
  * @import empty from function.empty value
  * 
  * @import is.function
@@ -184,7 +186,18 @@
 
             }
 
-            return isDefined(raw) ? raw : defaultValue ;
+            if(isDefined(raw)){
+
+                if(typeof raw === 'number' && isNaN(raw)){
+
+                    return defaultValue ;
+                }
+
+                return raw ;
+            }
+
+            return defaultValue ;
+
         } ;
     
     }else{
