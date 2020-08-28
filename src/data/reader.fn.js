@@ -23,9 +23,14 @@
         me.fields = getFields.call(me , fields) ;
     }
 
+    redefine(record){
+
+        return getRecord.call(this , record) ;
+    }
+
     create(data){
 
-        return getRecord.call(this , data) ;
+        return getRecord.call(this , null , data) ;
     }
 
     read(data , root = '.'){
@@ -57,12 +62,12 @@
 
         if(multi === false && raws.length){
 
-            return getRecord.call(me , raws[0] , raws , count , data , addFields) ;
+            return getRecord.call(me , null , raws[0] , raws , count , data , addFields) ;
         }
 
         for(let raw of raws){
 
-            records.push(getRecord.call(me , raw , raws , count ++ , data , addFields)) ;
+            records.push(getRecord.call(me , null , raw , raws , count ++ , data , addFields)) ;
         }
 
         return records ;

@@ -21,6 +21,8 @@
  * 
  * @import getFields from .fields
  * 
+ * @param {mixed} record 数据记录 
+ * 
  * @param {mixed} raw 行级原始数据
  * 
  * @param {array} raws 一组行级原始数据
@@ -35,14 +37,15 @@
  * 
  */
 
- function main(raw , raws , index , data , addFields){
+ function main(record , raw , raws , index , data , addFields){
 
     let me = this,
     {
         fields
     } = me,
-    record = {},
     isConvert = isDefined(raw) && isDefined(raws) && isDefined(index) && isDefined(data) ;
+
+    record = record || {} ;
     
     innerDefine(record , 'observable' , createObservable()) ;
 
@@ -73,6 +76,11 @@
         get,
         defaultValue
     } of fields){
+
+        if(record.hasOwnProperty(name)){
+
+            continue ;
+        }
     
         if(isConvert){
     
@@ -102,16 +110,26 @@
             }
         
         }else{
-    
-            let value = raw[name] ;
-    
-            define(record , name , {
+
+            let config = {
                 mode,
                 equals,
                 set,
-                get,
-                value:isDefined(value) ? value : defaultValue
-            }) ;
+                get
+            } ;
+
+            if(raw){
+
+                let value = raw[name] ;
+
+                config.value = isDefined(value) ? value : defaultValue ;
+            
+            }else{
+
+                config.value = defaultValue ;
+            }
+    
+            define(record , name , config) ;
         }
     }
  }
