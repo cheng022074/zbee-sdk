@@ -23,6 +23,7 @@
 
         case 'INPUT':
         case 'TEXTAREA':
+        case 'SELECT':
 
             return ;
 
