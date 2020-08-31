@@ -112,10 +112,19 @@
         name,
         mode,
         equals,
-        set,
         get,
         defaultValue
     }  ;
+
+    if(isString(type) && !isFunction(set)){
+
+        field.set = value => include(`data.convert.${type}`)(value , options) ;
+    
+    }else{
+
+        field.set = set ;
+
+    }
 
     if(!local){
 
