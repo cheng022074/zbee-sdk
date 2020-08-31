@@ -136,6 +136,7 @@
                     let {
                         fields,
                         root,
+                        addFields,
                         ...options
                     } = reader,
                     rootProperty;
@@ -156,7 +157,7 @@
 
                     if(fields){
 
-                        return createReader(fields).read(data , readConfig) ;
+                        return createReader(fields , addFields).read(data , readConfig) ;
                     }
 
                     return me.read(data , readConfig) ;

@@ -16,16 +16,18 @@
 
  class main {
 
-    constructor(fields = []){
+    constructor(fields = [] , addFields){
 
         let me = this ;
 
         me.fields = getFields.call(me , fields) ;
+
+        me.addFields = addFields ;
     }
 
     redefine(record){
 
-        return getRecord.call(this , record) ;
+        return getRecord.call(this , record , null , null , null , null , this.addFields) ;
     }
 
     create(data){
@@ -52,10 +54,12 @@
         root = config.root ;
 
         let {
-            multi,
-            addFields
+            multi
         } = config,
         me = this,
+        {
+            addFields
+        } = me,
         raws = getRaws.call(me , data , root),
         records = [],
         count = 0;

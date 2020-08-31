@@ -112,14 +112,18 @@
 
  me.height = height ;
 
- let mindmap = me;
+ let mindmap = me,
+ {
+    fields:readerFields,
+    addFields:readerAddFields
+ } = reader;
  
  reader = me.reader = createReader({
          order:{
             mode:'readwrite',
             defaultValue:0
          },
-         ...reader,
+         ...readerFields,
          expanded:{
             mode:'readwrite',
             local:true,
@@ -197,7 +201,7 @@
             local:true,
             defaultValue:false
          }
-      }) ;
+      } , readerAddFields) ;
 
  me.readConfig = readConfig ;
 
