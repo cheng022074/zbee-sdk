@@ -1,0 +1,10 @@
+{
+    "params":[
+        "mindmap"
+    ],
+    "constructor":true,
+    "methods":[{
+        "name":"isLeafNode",
+        "impl":".view.node.is.leaf"
+    }]
+}
