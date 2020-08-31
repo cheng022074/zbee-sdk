@@ -6,7 +6,9 @@
  * 
  * @import get from object.value.get
  * 
- * @param {object} model 模型配置
+ * @param {object} fields 字段配置
+ * 
+ * @param {function} addFields 附加字段配置
  * 
  */
 
