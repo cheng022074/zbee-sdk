@@ -6,5 +6,8 @@
     "methods":[{
         "name":"isLeafNode",
         "impl":".view.node.is.leaf"
+    },{
+        "name":"getLeafNodes",
+        "impl":".view.nodes.leaf"
     }]
 }
