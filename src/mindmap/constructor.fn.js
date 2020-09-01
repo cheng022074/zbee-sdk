@@ -59,7 +59,7 @@
  * 
  * @param {number} [config.visibilityLevel = 1] 省略节点时选定节点展现子节点层数
  * 
- * @param {object} [...config.options] 其它脑图配置
+ * @param {object} [config.placeholderNodeData = {}] 其它脑图配置
  * 
  */
 
@@ -216,13 +216,13 @@
 
  me.initVisibilityLevel = initVisibilityLevel ;
 
- let placeholderNode = reader.create({
+ let placeholderNode = reader.create(Object.assign({
    id:generate('placeholder-'),
    width:placeholderNodeWidth,
    height:placeholderNodeHeight,
    placeholder:true,
    children:[]
- }) ;
+ } , placeholderNodeData)) ;
 
  me.placeholderNode = placeholderNode ;
 
