@@ -9,5 +9,8 @@
     },{
         "name":"getLeafNodes",
         "impl":".view.nodes.leaf"
+    },{
+        "name":"getDescendantNodes",
+        "impl":".view.nodes.descendant"
     }]
 }
