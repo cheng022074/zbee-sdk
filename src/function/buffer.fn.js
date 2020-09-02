@@ -23,6 +23,8 @@ return (...args) =>{
     if(bufferId){
 
         clearTimeout(bufferId) ;
+
+        bufferId = null ;
     }
 
     bufferId = setTimeout(() => {
