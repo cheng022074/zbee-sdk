@@ -5,8 +5,6 @@
  * 
  * @import data from .node.data scoped
  * 
- * @import layout from .layout scoped
- * 
  * @import cancelEllipsis from .node.ellipsis.cancel scoped
  * 
  * @import ellipsis from .node.ellipsis scoped
