@@ -15,9 +15,8 @@ let node = get(id) ;
 
 if(node){
 
-    expand(node) ;
+    return expand(node) ;
 
-    return true ;
 }
 
 return false ;

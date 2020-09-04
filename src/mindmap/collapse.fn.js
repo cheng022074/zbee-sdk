@@ -15,7 +15,9 @@
 
 let node = get(id) ;
 
-if(node && collapse(node)){
+if(node){
 
-    layout() ;
+    return collapse(node) ;
 }
+
+return false ;
