@@ -19,11 +19,9 @@
  * 
  * @param {string} id 节点编号
  * 
- * @param {boolean} [isLayout = true] 是否重新布局 
- * 
  */
 
- async function main(id , isLayout){
+ async function main(id){
 
     let me = this,
     {
@@ -34,9 +32,12 @@
     } = me;
   
     if(!restructuring && (selectedNode ? selectedNode.id !== id : true) && nodes.has(id)){
+
+      if(ellipsisPattern){
+
+        cancelEllipsis() ;
+      }
   
-      cancelEllipsis() ;
-    
       let node = nodes.get(id) ;
     
       if(node.hidden){
@@ -66,7 +67,7 @@
     
       if(ellipsisPattern){
     
-        ellipsis(node)
+        ellipsis(node) ;
     
         initVisibilityLevel(node , me.visibilityLevel) ;
     
@@ -74,13 +75,7 @@
         
       }
           
-      me.fireEvent('nodeselect' , data(node)) ;
-    
-      if(isLayout){
-    
-        layout() ;
-      
-      }    
+      me.fireEvent('nodeselect' , data(node)) ;  
     }
  }
 
