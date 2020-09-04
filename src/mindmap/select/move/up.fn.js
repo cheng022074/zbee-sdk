@@ -17,7 +17,7 @@ let me = this,
 
  if(node){
 
-    select(node.id) ;
+   return await select(node.id) ;
  
 }else{
 
@@ -29,6 +29,8 @@ let me = this,
 
    if(node){
 
-      select(node.id) ;
+      return await select(node.id) ;
    }
 }
+
+return false ;
