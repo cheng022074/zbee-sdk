@@ -19,6 +19,8 @@
  * 
  * @param {string} id 节点编号
  * 
+ * @return {Boolean} 如果成功选定节点则返回 true , 否则返回  false
+ * 
  */
 
  async function main(id){
@@ -76,7 +78,12 @@
       }
           
       me.fireEvent('nodeselect' , data(node)) ;  
+
+      return true ;
+
     }
+
+    return false ;
  }
 
  function initVisibilityLevel(node , maxLevel , level = 1){
