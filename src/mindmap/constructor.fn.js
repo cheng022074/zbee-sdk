@@ -21,7 +21,7 @@
  * 
  * @import data from .data scoped
  * 
- * @import layout from .layout scoped
+ * @import tryLayout from .layout.try scoped
  * 
  * @import isObject from is.object.simple
  * 
@@ -236,6 +236,21 @@
 
 }) ;
 
-me.layout = buffer(() => layout()) ;
+me.isLayouting = false ;
+
+me.layout = buffer(async () => {
+
+   if(me.isLayouting){
+
+      return ;
+   }
+
+   me.isLayouting = true ;
+
+   await tryLayout() ;
+
+   me.isLayouting = false ;
+
+}) ;
 
 me.view = createView(me) ;
