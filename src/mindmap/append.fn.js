@@ -7,8 +7,6 @@
  * 
  * @import expand from .node.expand scoped
  * 
- * @import tryLayout from .layout.try scoped
- * 
  * @import select from .select scoped
  * 
  * @import appendById from .append.id scoped
@@ -70,9 +68,7 @@ if(parentNodeId){
 
   order(selectedNode) ;
 
-  select(node.id , false) ;
-  
-  await tryLayout();
+  select(node.id) ;
 
   return true ;
 

@@ -117,6 +117,7 @@
                 mode,
                 equals,
                 set,
+                afterSet,
                 get
             } ;
 

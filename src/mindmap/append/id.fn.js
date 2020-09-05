@@ -54,7 +54,7 @@
 
     if(!hidden && expanded){
     
-        await tryLayout();
+        me.layout() ;
     
     }
 
