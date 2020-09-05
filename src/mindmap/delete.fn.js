@@ -11,8 +11,6 @@
  * 
  * @import remove from .node.delete scoped
  * 
- * @import layout from .layout scoped
- * 
  * @import removeById from .delete.id scoped
  * 
  * @import order from .order scoped
@@ -30,13 +28,13 @@
 
  if(restructuring){
 
-    return ;
+    return false;
  }
 
 
 if(id){
 
-    removeById(id) ;
+    return removeById(id) ;
 
 }else{
 
@@ -87,11 +85,13 @@ if(id){
 
         me.fireEvent('nodedelete' , deleteNodes) ;
 
-        await select(nextSelectedNode.id , false) ;
+        select(nextSelectedNode.id) ;
 
         order(parentNode) ;
 
-        layout() ;
+        return true; 
     }
+
+    return false ;
 
 }

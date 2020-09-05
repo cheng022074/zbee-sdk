@@ -7,8 +7,6 @@
  * 
  * @import query from ..node.query scoped
  * 
- * @import layout from ..layout scoped
- * 
  * @import getParentNode from ..node.parent scoped
  * 
  * @import order from ..order scoped
@@ -17,26 +15,32 @@
  * 
  */
 
- // 此处未考虑忽略节点时的情况
-
 let node = query(id) ;
 
 if(!node){
 
-    return ;
+    return false;
 }
 
 let {
     hidden
 } = node,
 parentNode = getParentNode(node),
-deleteNodes = remove(node) ;
+deleteNodes = remove(node),
+me = this;
 
-if(!hidden && deleteNodes !== false){
+if(deleteNodes !== false){
 
-    layout() ;
+    me.fireEvent('nodedelete' , deleteNodes) ;
+
+    order(parentNode) ;
+
+    if(!hidden){
+
+        me.layout() ;
+    }
+
+    return true ;
 }
 
-this.fireEvent('nodedelete' , deleteNodes) ;
-
-order(parentNode) ;
+return true ;
