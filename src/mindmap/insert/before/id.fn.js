@@ -33,7 +33,7 @@ if(beforeNode){
 
    if(node === false){
 
-        return ;
+        return false;
    }
 
     if(node.id === id){
@@ -45,7 +45,11 @@ if(beforeNode){
 
    if(!beforeNode.hidden){
 
-       await tryLayout() ;
+       me.layout() ;
    
    }
+
+   return true ;
 }
+
+return false ;

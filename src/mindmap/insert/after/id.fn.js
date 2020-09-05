@@ -7,8 +7,6 @@
  * 
  * @import get from ....node.get scoped
  * 
- * @import tryLayout from ....layout.try scoped
- * 
  * @import data from ....node.data scoped
  * 
  * @import isObject from is.object.simple
@@ -33,7 +31,7 @@
 
     if(node === false){
 
-        return ;
+        return false;
     }
 
     if(node.id === id){
@@ -45,7 +43,11 @@
 
     if(!afterNode.hidden){
 
-        await tryLayout();
-    
+        me.layout() ;
+
     }
+
+    return true ;
  }
+
+ return false ;

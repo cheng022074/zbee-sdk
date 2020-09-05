@@ -39,7 +39,7 @@
 
 if(parentNodeId){
   
-  return await appendById(node , parentNodeId , isSilentMode) ;
+  return appendById(node , parentNodeId , isSilentMode) ;
   
 }else{
 

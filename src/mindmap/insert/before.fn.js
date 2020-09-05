@@ -33,12 +33,12 @@ isNewNode = isObject(node);
 
 if(restructuring){
 
-   return ;
+   return false;
 }
 
  if(beforeNodeId){
 
-  insertBeforeById(node , beforeNodeId) ;
+  return insertBeforeById(node , beforeNodeId) ;
  
  }else{
 
@@ -54,10 +54,10 @@ if(restructuring){
 
       order(getParentNode(selectedNode)) ;
 
-      select(node.id , false) ;
-      
-      await tryLayout();
+      select(node.id) ;
 
-      
+      return true ;
     }
+
+    return false ;
  }
