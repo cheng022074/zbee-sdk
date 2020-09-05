@@ -15,10 +15,13 @@
     id,
     hidden,
     width,
-    height
+    height,
+    forceSize
  } = node;
 
- if(!unsizedNodes.has(id) && !hidden && !(width && height)){
+ if(!unsizedNodes.has(id) && ((!hidden && !(width && height)) || forceSize === true)){
+
+    delete node.forceSize ;
 
     unsizedNodes.set(id , node) ;
 

@@ -55,9 +55,7 @@ function main(data , id , isRecursive){
 
             for(let node of updatedNodes){
 
-                node.width = false ;
-
-                node.height = false ;
+                node.forceSize = true ;
 
                 unsized(node) ;
             }
