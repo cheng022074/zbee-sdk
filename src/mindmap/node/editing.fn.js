@@ -5,8 +5,6 @@
  * 
  * @import get from .get scoped
  * 
- * @import layout from ..layout scoped
- * 
  * @param {string} id 节点编号
  * 
  * @param {string} text 编辑中的文本
@@ -26,5 +24,5 @@
 
  node.height = height ;
 
- layout() ;
+ this.layout() ;
 

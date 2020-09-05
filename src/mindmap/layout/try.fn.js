@@ -7,15 +7,9 @@
  * 
  * @import layout from ..layout scoped
  * 
- * @import fireDrawEvent from ..fire.draw scoped
- * 
  */
 
- if(await waitNodeSized()){
+ await waitNodeSized() ;
 
-    layout() ;
+ layout() ;
  
- }else{
-
-    fireDrawEvent() ;
- }

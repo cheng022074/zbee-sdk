@@ -5,6 +5,8 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import wait from .wait scoped
+ * 
  */
 
 let me = this,
@@ -14,7 +16,13 @@ let me = this,
 
 if(unsizedNodes.size){
 
-    return new Promise(callback =>   add(me , 'nodesized' , () => callback(true) , {
+    return new Promise(callback =>   add(me , 'nodesized' , async () => {
+
+        await wait() ;
+
+        callback(true) ;
+
+    } , {
         once:true
     })) ;
 

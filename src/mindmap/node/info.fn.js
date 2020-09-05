@@ -61,6 +61,8 @@ function main(data , id , isRecursive){
 
                 unsized(node) ;
             }
+
+            me.layout() ;
         }
     }
 }
@@ -136,12 +138,9 @@ function setNodeInfo(node , data){
 
                 value = node[field] = value ;
 
-                if(oldValue !== value){
+                me.fireEvent(`node${field}change` , node.id , value , oldValue) ;
 
-                    me.fireEvent(`node${field}change` , node.id , value , oldValue) ;
-
-                    isUpdated = true ;
-                }
+                isUpdated = true ;
         }
     }
 
