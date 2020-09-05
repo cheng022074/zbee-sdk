@@ -5,6 +5,8 @@
  * 
  * @import get from .get scoped
  * 
+ * @import unsized from .unsized.unregister scoped
+ * 
  * @param {string} id 编号
  * 
  * @param {number} width 宽度
@@ -13,11 +15,7 @@
  * 
  */
 
- let me = this,
- {
-    unsizedNodes
- } = me,
- node = get(id);
+ let ode = get(id);
 
  if(node){
 
@@ -25,24 +23,6 @@
 
     node.height = height;
 
-    if(node.hidden){
-
-      return ;
-    }
-
-    let {
-      size
-    } = unsizedNodes ;
-
-    unsizedNodes.delete(id) ;
-
-    if(size && unsizedNodes.size === 0){
-
-      me.fireEvent('nodesized') ;
-    
-    }else if(size === 0){
-
-      me.layout() ;
-    }
+    unsized(node) ;
  }
  

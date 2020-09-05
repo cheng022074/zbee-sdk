@@ -30,6 +30,8 @@
  * 
  * @param {function} [options.set] 设置值
  * 
+ * @param {function} [options.afterSet] 设置值之后调用
+ * 
  * @param {function} [options.get] 获取值
  * 
  */
@@ -75,7 +77,7 @@
         case 'writeonly':
     
             Object.defineProperty(target , name , {
-                set:doSet(name , set , equals),
+                set:doSet(name , set , afterSet , equals),
                 configurable:true,
                 enumerable:true
             }) ;
@@ -87,7 +89,7 @@
         case 'readwrite':
 
             Object.defineProperty(target , name , {
-                set:doSet(name , set , equals),
+                set:doSet(name , set , afterSet , equals),
                 get:doGet(name , get),
                 configurable:true,
                 enumerable:true

@@ -11,8 +11,7 @@
  {
      nodes
  } = me,
- ids = Object.keys(orders),
- fireNodeUnsizedNodes = [];
+ ids = Object.keys(orders);
 
  for(let id of ids){
 
@@ -21,26 +20,5 @@
         let node = nodes.get(id) ;
 
         node.order = orders[id] ;
-
-        if(node.hidden){
-
-            node.width = false ;
-
-            node.height = false ;
-        
-        }else{
-
-            fireNodeUnsizedNodes.push(node) ;
-        }
     }
  }
-
- if(fireNodeUnsizedNodes.length){
-
-    me.fireEvent('nodeunsized' , fireNodeUnsizedNodes) ;
-
-    return true ;
-
- }
-
- return false ;

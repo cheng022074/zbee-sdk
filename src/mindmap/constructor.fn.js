@@ -7,6 +7,8 @@
  * 
  * @import setHidden from .hidden scoped
  * 
+ * @import afterSetHidden from .hidden.after scoped
+ * 
  * @import setSelected from .selected scoped
  * 
  * @import setIndicated from .indicated scoped
@@ -138,6 +140,10 @@
 
                return setHidden(this , hidden) ;
             },
+            afterSet(){
+
+               return afterSetHidden(this) ;
+            },
             defaultValue:true
          },
          width:{
@@ -226,15 +232,32 @@
 
  me.placeholderNode = placeholderNode ;
 
- me.fireNodeUnsizedEvent = buffer(() => {
+ {
+   me.fireNodeUnsizedEvent = buffer(() => {
     
-   let {
-       unsizedNodes
-   } = me ;
+      let {
+          unsizedNodes
+      } = me ;
 
-   me.fireEvent('nodeunsized' , data(unsizedNodes.values()).nodes) ;
+      if(!unsizedNodes.size()){
 
-}) ;
+         me.fireEvent('nodeunsized' , data(unsizedNodes.values()).nodes) ;
+      }
+   }) ;
+
+   me.fireNodeSizedEvent = buffer(() => {
+
+      let {
+         unsizedNodes
+      } = me ;
+
+      if(unsizedNodes.size() === 0){
+
+         me.fireEvent('nodesized') ;
+      }
+
+   }) ;
+ }
 
 me.isLayouting = false ;
 

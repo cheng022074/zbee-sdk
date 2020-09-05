@@ -11,8 +11,6 @@
  * 
  * @import leaf from .hidden.leaf scoped
  * 
- * @import unsized from .node.unsized.register scoped
- * 
  * @param {data.Record} node 脑图节点
  * 
  * @param {boolean} hidden 决定节点是否隐藏，隐藏为 true , 显示为 false
@@ -33,8 +31,6 @@ reset(node) ;
 
 leaf(node , hidden) ;
 
-unsized(node) ;
-
 if(hidden === false){
 
     visibilityNodes.set(id , node) ;
@@ -43,7 +39,7 @@ if(hidden === false){
 
     visibilityNodes.delete(id) ;
 
-    node.selected = false ;        
+    node.selected = false ;
 }
 
 return hidden ;

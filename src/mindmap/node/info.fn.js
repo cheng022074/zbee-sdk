@@ -11,6 +11,8 @@
  * 
  * @import getDescendantNodes from ..nodes.relation.descendant scoped
  * 
+ * @import unsized from .unsized.register scoped
+ * 
  * @param {object} data 修改节点信息
  * 
  * @param {string} [id] 节点编号
@@ -51,26 +53,13 @@ function main(data , id , isRecursive){
 
         if(updatedNodes.length){
 
-            let unsizedNodes = [] ;
-
             for(let node of updatedNodes){
 
-                if(!node.hidden){
+                node.width = false ;
 
-                    unsizedNodes.push(getData(node)) ;
-                
-                }else{
+                node.height = false ;
 
-                    node.width = false ;
-    
-                    node.height = false ;
-                }
-            }
-
-            if(unsizedNodes.length){
-
-                me.fireEvent('nodeunsized' , unsizedNodes) ;
-    
+                unsized(node) ;
             }
         }
     }

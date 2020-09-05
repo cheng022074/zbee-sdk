@@ -96,6 +96,7 @@
     local = false,
     equals,
     set,
+    afterSet,
     get,
     defaultValue,
     reader,
@@ -113,7 +114,8 @@
         mode,
         equals,
         get,
-        defaultValue
+        defaultValue,
+        afterSet
     }  ;
 
     if(isString(type) && !isFunction(set)){
