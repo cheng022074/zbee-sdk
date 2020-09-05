@@ -7,10 +7,15 @@
  * 
  * @import layout from ..layout scoped
  * 
- * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
+ * @import fireDrawEvent from ..fire.draw scoped
  * 
  */
 
- await waitNodeSized() ;
+ if(await waitNodeSized()){
 
- layout(isFireDrawEvent) ;
+    layout() ;
+ 
+ }else{
+
+    fireDrawEvent() ;
+ }

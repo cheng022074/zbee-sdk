@@ -13,9 +13,11 @@
 
 let node = get(id) ;
 
-if(node){
+if(node && expand(node)){
 
-    return expand(node) ;
+    this.layout() ;
+
+    return true ;
 
 }
 

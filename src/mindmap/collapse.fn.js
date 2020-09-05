@@ -15,9 +15,11 @@
 
 let node = get(id) ;
 
-if(node){
+if(node && collapse(node)){
 
-    return collapse(node) ;
+    this.layout() ;
+
+    return true ;
 }
 
 return false ;

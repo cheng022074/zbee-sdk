@@ -239,7 +239,7 @@
           unsizedNodes
       } = me ;
 
-      if(!unsizedNodes.size()){
+      if(unsizedNodes.size){
 
          me.fireEvent('nodeunsized' , data(unsizedNodes.values()).nodes) ;
       }
@@ -251,7 +251,7 @@
          unsizedNodes
       } = me ;
 
-      if(unsizedNodes.size() === 0){
+      if(!unsizedNodes.size){
 
          me.fireEvent('nodesized') ;
       }

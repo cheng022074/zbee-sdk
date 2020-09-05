@@ -13,15 +13,13 @@
  * 
  * @import expand from .node.expand scoped
  * 
- * @import waitNodeSized from .node.sized.wait scoped
- * 
  * @param {string} id 节点编号
  * 
  * @return {Boolean} 如果成功选定节点则返回 true , 否则返回  false
  * 
  */
 
- async function main(id){
+ function main(id){
 
     let me = this,
     {
@@ -59,8 +57,6 @@
     
             expand(parentNode) ;
           }
-    
-          await waitNodeSized() ;
       }
     
       node.selected = true ;
@@ -70,12 +66,11 @@
         ellipsis(node) ;
     
         initVisibilityLevel(node , me.visibilityLevel) ;
-    
-        await waitNodeSized() ;
-        
       }
-          
-      me.fireEvent('nodeselect' , data(node)) ;  
+
+      me.fireEvent('nodeselect' , data(node)) ;
+
+      me.layout() ;
 
       return true ;
 
