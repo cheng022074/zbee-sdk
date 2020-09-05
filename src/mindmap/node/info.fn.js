@@ -9,19 +9,15 @@
  * 
  * @import getData from .data scoped
  * 
- * @import getDescendantNodes from ..nodes.relation.descendant scoped
- * 
  * @import unsized from .unsized.register scoped
  * 
  * @param {object} data 修改节点信息
  * 
  * @param {string} [id] 节点编号
  * 
- * @param {boolean} [isRecursive = false] 是否递归
- * 
  */
 
-function main(data , id , isRecursive){
+function main(data , id){
 
     let me = this,
     {
@@ -31,34 +27,11 @@ function main(data , id , isRecursive){
 
     if(node){
 
-        let updatedNodes = [] ;
-
         if(setNodeInfo.call(me , node , data)){
 
-            updatedNodes.push(node) ;
-        }
+            node.forceSize = true ;
 
-        if(isRecursive){
-
-            let nodes = getDescendantNodes(node , false) ;
-
-            for(let node of nodes){
-
-                if(setNodeInfo.call(me , node , data)){
-
-                    updatedNodes.push(node) ;
-                }
-            }
-        }
-
-        if(updatedNodes.length){
-
-            for(let node of updatedNodes){
-
-                node.forceSize = true ;
-
-                unsized(node) ;
-            }
+            unsized(node) ;
 
             me.layout() ;
         }

@@ -259,21 +259,6 @@
    }) ;
  }
 
-me.isLayouting = false ;
-
-me.layout = buffer(async () => {
-
-   if(me.isLayouting){
-
-      return ;
-   }
-
-   me.isLayouting = true ;
-
-   await tryLayout() ;
-
-   me.isLayouting = false ;
-
-}) ;
+me.layout = buffer(tryLayout) ;
 
 me.view = createView(me) ;
