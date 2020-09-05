@@ -5,8 +5,6 @@
  * 
  * @import getDescendantNodes from ....nodes.relation.descendant
  * 
- * @import layout from ....layout scoped
- * 
  * @import fireDrawEvent from ....fire.draw scoped
  * 
  * @import getParentNode from ..parent scoped
@@ -95,5 +93,5 @@ if(fireEvent){
 
 }
 
-layout() ;
+me.layout() ;
  

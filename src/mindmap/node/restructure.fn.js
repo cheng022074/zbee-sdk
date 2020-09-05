@@ -5,10 +5,6 @@
  * 
  * @import expand from .expand scoped
  * 
- * @import tryLayout from ..layout.try scoped
- * 
- * @import layout from ..layout scoped
- * 
  * @import preinsert from .restructure.preinsert scoped
  * 
  * @import append from .append scoped
@@ -48,7 +44,7 @@ if(!restructuring || restructureIndicateLocked){
 
         preinsert(get(id) , xy) ;
 
-        layout() ;
+        me.layout() ;
     }
 
  }else{
@@ -65,7 +61,7 @@ if(!restructuring || restructureIndicateLocked){
 
             expand(parentNode) ;
 
-            await tryLayout() ;
+            me.layout() ;
 
             me.restructureIndicateLocked = false ;
 
@@ -93,7 +89,7 @@ if(!restructuring || restructureIndicateLocked){
 
                 preinsert(childNode , xy) ;
 
-                layout() ;
+                me.layout() ;
                 
                 return ;
             }
@@ -101,6 +97,6 @@ if(!restructuring || restructureIndicateLocked){
 
         append(parentNode , placeholderNode) ;
 
-        layout() ;
+        me.layout() ;
     }
  }
