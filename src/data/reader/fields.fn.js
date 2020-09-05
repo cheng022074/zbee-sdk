@@ -88,6 +88,16 @@
     return result ;
  }
 
+ function processDefaultValue(defaultValue) {
+     
+    if(isFunction(defaultValue)){
+
+        return defaultValue ;
+    }
+
+    return () => defaultValue ;
+ }
+
  function getField({
     name,
     type,
@@ -108,6 +118,8 @@
    {
        getData
    } = me;
+
+   defaultValue = processDefaultValue(defaultValue) ;
 
     let field = {
         name,
@@ -202,19 +214,19 @@
 
                 if(typeof raw === 'number' && isNaN(raw)){
 
-                    return defaultValue ;
+                    return defaultValue() ;
                 }
 
                 return raw ;
             }
 
-            return defaultValue ;
+            return defaultValue() ;
 
         } ;
     
     }else{
 
-        field.convert = () => defaultValue ;
+        field.convert = () => defaultValue() ;
     }
 
     return field ;

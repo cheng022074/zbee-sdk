@@ -125,11 +125,11 @@
 
                 let value = raw[name] ;
 
-                config.value = isDefined(value) ? value : defaultValue ;
+                config.value = isDefined(value) ? value : defaultValue() ;
             
             }else{
 
-                config.value = defaultValue ;
+                config.value = defaultValue() ;
             }
     
             define(record , name , config) ;
