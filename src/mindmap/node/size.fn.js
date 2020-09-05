@@ -15,7 +15,7 @@
  * 
  */
 
- let ode = get(id);
+ let node = get(id);
 
  if(node){
 

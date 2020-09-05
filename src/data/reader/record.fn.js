@@ -73,6 +73,7 @@
         mode,
         equals,
         set,
+        afterSet,
         get,
         defaultValue
     } of fields){
@@ -90,6 +91,7 @@
                 mode,
                 equals,
                 set,
+                afterSet,
                 get,
                 value
             }) ;

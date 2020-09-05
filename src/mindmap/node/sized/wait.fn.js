@@ -14,7 +14,7 @@ let me = this,
 
 if(unsizedNodes.size){
 
-    return new Promise(callback =>   add(me , 'nodesized' , callback(true) , {
+    return new Promise(callback =>   add(me , 'nodesized' , () => callback(true) , {
         once:true
     })) ;
 
