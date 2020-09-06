@@ -11,8 +11,6 @@
  * 
  * @import remove from .node.delete scoped
  * 
- * @import removeById from .delete.id scoped
- * 
  * @import order from .order scoped
  * 
  * @import select from .select scoped
@@ -33,16 +31,16 @@
     return false;
  }
 
- let node = from(node) ;
+ node = from(node) ;
 
  if(node && !isRootNode(node)){
 
-    let nextSelectedNode ;
+    let nextSelectedNode,
+        parentNode = getParentNode(node);
 
     if(node.selected === true){
 
-        let parentNode = getParentNode(node),
-        {
+        let {
             children
         } = parentNode,
         {

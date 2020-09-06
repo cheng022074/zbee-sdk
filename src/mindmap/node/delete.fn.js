@@ -43,7 +43,7 @@
 
     let {
         nodes
-    } = me;
+    } = this;
 
     for(let {
         id

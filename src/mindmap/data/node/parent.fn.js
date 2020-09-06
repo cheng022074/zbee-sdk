@@ -11,9 +11,16 @@
  * 
  */
 
- let node = from(node) ;
+ node = from(node) ;
 
  if(node){
 
-    return from(node.parentNodeId) ;
+    let {
+       parentNodeId
+    } = node ;
+
+    if(parentNodeId){
+
+      return from(parentNodeId) ;
+    }
  }
