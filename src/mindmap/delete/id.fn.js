@@ -7,7 +7,7 @@
  * 
  * @import query from ..node.query scoped
  * 
- * @import getParentNode from ..node.parent scoped
+ * @import getParentNode from ..data.node.parent scoped
  * 
  * @import order from ..order scoped
  * 

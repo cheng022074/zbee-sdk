@@ -5,7 +5,7 @@
  * 
  * @import isRootNode from .node.is.root scoped
  * 
- * @import getParentNode from .node.parent scoped
+ * @import getParentNode from .data.node.parent scoped
  * 
  * @import data from .node.data scoped
  * 
@@ -17,7 +17,9 @@
  * 
  * @import select from .select scoped
  * 
- * @param {string} [id] 节点编号
+ * @import from from .data.node.from scoped
+ * 
+ * @param {string} [node] 节点编号
  * 
  */
 
@@ -31,28 +33,22 @@
     return false;
  }
 
+ let node = from(node) ;
 
-if(id){
+ if(node && !isRootNode(node)){
 
-    return removeById(id) ;
+    let nextSelectedNode ;
 
-}else{
+    if(node.selected === true){
 
-    let {
-        selectedNode
-    } = me ;
-
-    if(!isRootNode(selectedNode)){
-
-        let parentNode = getParentNode(selectedNode),
+        let parentNode = getParentNode(node),
         {
             children
         } = parentNode,
         {
             length
         } = children,
-        index = children.indexOf(selectedNode),
-        nextSelectedNode;
+        index = children.indexOf(node);
 
         if(length - 1){
 
@@ -70,28 +66,18 @@ if(id){
 
             nextSelectedNode = parentNode ;
         }
-
-        let deleteNodes = remove(selectedNode),
-            {
-                nodes
-            } = me;
-
-        for(let {
-            id
-        } of deleteNodes){
-
-            nodes.delete(id) ;
-        }
-
-        me.fireEvent('nodedelete' , deleteNodes) ;
-
-        select(nextSelectedNode.id) ;
-
-        order(parentNode) ;
-
-        return true; 
     }
 
-    return false ;
+    me.fireEvent('nodedelete' , remove(node)) ;
 
+    if(nextSelectedNode){
+
+        select(nextSelectedNode.id) ;
+    }
+
+    order(parentNode) ;
+
+    return true ;
 }
+
+return false ;
