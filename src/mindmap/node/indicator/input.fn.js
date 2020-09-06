@@ -7,8 +7,18 @@
  * 
  * @param {object} indicator 指示器配置
  * 
- * @param {mixed} value 指示器事件
+ * @param {array} oldIndicators 指示器配置
  * 
  */
 
- this.fireEvent('indicatorinput' , node , indicator , value) ;
+ let me = this ;
+
+ me.fireEvent('nodeindicatorinput' , node , indicator) ;
+
+ let {
+    indicators
+ } = node ;
+
+ me.fireEvent('nodeindicatorschange' , indicators , oldIndicators) ;
+
+ me.fireEvent('nodechange' , 'indicators' , indicator , oldIndicators) ;
