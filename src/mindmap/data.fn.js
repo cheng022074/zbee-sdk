@@ -9,7 +9,7 @@
  * 
  * @import getLeftXY from .node.xy.left scoped
  * 
- * @import getParentNode from .node.parent scoped
+ * @import getParentNode from .data.node.parent scoped
  * 
  * @import isRootNode from .node.is.root scoped
  * 
