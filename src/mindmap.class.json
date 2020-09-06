@@ -34,7 +34,7 @@
         },
         {
             "name":"info",
-            "impl":".mindmap.node.info"
+            "impl":".mindmap.data.node.info"
         },
         {
             "name":"updateOrderByNodes",
@@ -53,8 +53,8 @@
             "impl":".mindmap.nodes.child"
         },
         {
-            "name":"setNodeText",
-            "impl":".mindmap.node.text"
+            "name":"text",
+            "impl":".mindmap.data.node.text"
         },
         {
             "name":"insertBefore",

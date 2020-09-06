@@ -5,13 +5,11 @@
  * 
  * @import equals from data.equals
  * 
- * @import get from .get scoped
+ * @import getData from ....node.data scoped
  * 
- * @import getData from .data scoped
+ * @import unsized from ....node.unsized.register scoped
  * 
- * @import unsized from .unsized.register scoped
- * 
- * @import from from ..data.node.from scoped
+ * @import from from .from scoped
  * 
  * @import isObject from is.object.simple
  * 
@@ -21,13 +19,13 @@
  * 
  * @import copy from object.copy
  * 
- * @param {mixed} node 脑图节点
+ * @param {object} data 修改节点信息
  * 
- * @param {object} [data] 修改节点信息
+ * @param {mixed} [node] 脑图节点
  * 
  */
 
-function main(node , data){
+function main(data , node){
 
     let me =  this ;
 
@@ -42,8 +40,11 @@ function main(node , data){
                 node.forceSize = true ;
     
                 unsized(node) ;
-    
-                me.layout() ;
+
+                if(!node.hidden){
+
+                    me.layout() ;
+                }
             }
         
         }else if(isString(data)){

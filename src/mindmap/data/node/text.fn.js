@@ -3,7 +3,7 @@
  * 
  * 修改节点文本
  * 
- * @import setNodeInfo from .info scoped
+ * @import info from .info scoped
  * 
  * @param {string} text 节点文本
  * 
@@ -12,6 +12,6 @@
  * 
  */
 
-setNodeInfo(id , {
+return info({
     text
-}) ;
+} , id) ;
