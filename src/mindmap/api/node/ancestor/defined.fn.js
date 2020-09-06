@@ -5,6 +5,8 @@
  * 
  * @import getAncestorNode from ......data.node.ancestor scoped
  * 
+ * @import is.defined
+ * 
  * @param {mixed} node 脑图节点
  * 
  * @param {string} name 属性名称
@@ -13,5 +15,5 @@
  * 
  */
 
- return getAncestorNode(node , node => node.hasOwnProperty(name)) ;
+ return getAncestorNode(node , node => isDefined(node[name])) ;
 

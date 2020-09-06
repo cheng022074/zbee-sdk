@@ -27,6 +27,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import is.array
+ * 
  * @import addNodeIndicator from .api.node.indicator.add scoped
  * 
  * @import removeNodeIndicator from .api.node.indicator.remove scoped
@@ -138,7 +140,7 @@
  let mindmap = me,
  {
     fields:readerFields,
-    addFields:readerAddFields
+    addFields:readerAddFields = () => {}
  } = reader;
  
  reader = me.reader = createReader({
@@ -228,7 +230,36 @@
             local:true,
             defaultValue:false
          }
-      } , readerAddFields) ;
+      } , ({
+         properties
+      }) => {
+
+         let ownAddtionFields = {} ;
+
+         if(isArray(properties)){
+
+            for(let property of properties){
+
+               ownAddtionFields[property] = {
+                  mapping:property,
+                  mode:'readwrite'
+               } ;
+            }
+         }
+
+         let addtionFields = readerAddFields();
+
+         if(isObject(addtionFields)){
+
+            return {
+               ...ownAddtionFields,
+               ...addtionFields
+            } ;
+         }
+
+         return ownAddtionFields ;
+
+      }) ;
 
  me.readConfig = readConfig ;
 
@@ -246,7 +277,8 @@
    width:placeholderNodeWidth,
    height:placeholderNodeHeight,
    placeholder:true,
-   children:[]
+   children:[],
+   properties:[]
  } , placeholderNodeData)) ;
 
  me.placeholderNode = placeholderNode ;
