@@ -33,7 +33,7 @@
             "impl":".mindmap.node.sibling.previous"
         },
         {
-            "name":"setNodeInfo",
+            "name":"info",
             "impl":".mindmap.node.info"
         },
         {

@@ -12,6 +12,6 @@
  * 
  */
 
-setNodeInfo({
+setNodeInfo(id , {
     text
-} , id) ;
+}) ;

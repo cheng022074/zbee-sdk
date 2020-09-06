@@ -13,13 +13,21 @@
  * 
  * @import from from ..data.node.from scoped
  * 
- * @param {object} data 修改节点信息
+ * @import isObject from is.object.simple
  * 
- * @param {mixed} [node] 脑图节点
+ * @import is.string
+ * 
+ * @import is.array
+ * 
+ * @import copy from object.copy
+ * 
+ * @param {mixed} node 脑图节点
+ * 
+ * @param {object} [data] 修改节点信息
  * 
  */
 
-function main(data , node){
+function main(node , data){
 
     let me =  this ;
 
@@ -27,14 +35,27 @@ function main(data , node){
 
     if(node){
 
-        if(setNodeInfo.call(me , node , data)){
+        if(isObject(data)){
 
-            node.forceSize = true ;
+            if(setNodeInfo.call(me , node , data)){
 
-            unsized(node) ;
+                node.forceSize = true ;
+    
+                unsized(node) ;
+    
+                me.layout() ;
+            }
+        
+        }else if(isString(data)){
 
-            me.layout() ;
+            return node[data] ;
+        
+        }else if(isArray(data)){
+
+            return copy({} , node , data) ;
         }
+
+        return getData(node) ;
     }
 }
 
