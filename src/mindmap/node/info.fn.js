@@ -11,19 +11,19 @@
  * 
  * @import unsized from .unsized.register scoped
  * 
+ * @import from from ..data.node.from scoped
+ * 
  * @param {object} data 修改节点信息
  * 
- * @param {string} [id] 节点编号
+ * @param {mixed} [node] 脑图节点
  * 
  */
 
-function main(data , id){
+function main(data , node){
 
-    let me = this,
-    {
-        selectedNode
-    } = me,
-    node = id ? get(id) : selectedNode;
+    let me =  this ;
+
+    node = from(node) ;
 
     if(node){
 
@@ -99,8 +99,6 @@ function setNodeInfo(node , data){
                 sync.call(me , id , value) ;
             }
 
-            isUpdated = true ;
-
             break ;
 
             default:
@@ -110,9 +108,9 @@ function setNodeInfo(node , data){
                 value = node[field] = value ;
 
                 me.fireEvent(`node${field}change` , node.id , value , oldValue) ;
-
-                isUpdated = true ;
         }
+
+        isUpdated = true ;
     }
 
     return isUpdated ;
