@@ -7,11 +7,11 @@
  * 
  * @param {string} text 节点文本
  * 
- * @param {string} [id] 节点编号
+ * @param {mixed} [node] 脑图节点
  * 
  * 
  */
 
 return info({
     text
-} , id) ;
+} , node) ;

@@ -19,13 +19,15 @@
  * 
  * @import copy from object.copy
  * 
- * @param {object} data 修改节点信息
- * 
  * @param {mixed} [node] 脑图节点
+ * 
+ * @param {object} [data] 修改节点信息
+ * 
+ * @param {boolean} [isLayout = true] 是否应用自动布局
  * 
  */
 
-function main(data , node){
+function main(node , data , isLayout){
 
     let me =  this ;
 
@@ -43,7 +45,10 @@ function main(data , node){
 
                 if(!node.hidden){
 
-                    me.layout() ;
+                    if(isLayout){
+
+                        me.layout() ;
+                    }
                 }
             }
         
@@ -129,7 +134,13 @@ function setNodeInfo(node , data){
 
                 value = node[field] = value ;
 
-                me.fireEvent(`node${field}change` , node.id , value , oldValue) ;
+                let {
+                    id
+                } = node ;
+
+                me.fireEvent(`node${field}change` , id , value , oldValue) ;
+
+                me.fireEvent('nodechange' , id , field , value , oldValue) ;
         }
 
         isUpdated = true ;

@@ -34,7 +34,7 @@
         },
         {
             "name":"info",
-            "impl":".mindmap.data.node.info"
+            "impl":".mindmap.node.info"
         },
         {
             "name":"updateOrderByNodes",
@@ -54,7 +54,7 @@
         },
         {
             "name":"text",
-            "impl":".mindmap.data.node.text"
+            "impl":".mindmap.node.text"
         },
         {
             "name":"insertBefore",
@@ -89,6 +89,9 @@
         },{
             "name":"nodeEditing",
             "impl":".mindmap.node.editing"
+        },{
+            "name":"fireIndicatorInput",
+            "impl":".mindmap.node.indicator.input"
         }
     ]
 }
