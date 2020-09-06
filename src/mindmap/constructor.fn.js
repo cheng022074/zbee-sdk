@@ -31,11 +31,11 @@
  * 
  * @import removeNodeIndicator from .api.node.indicator.remove scoped
  * 
- * @import getAncestorNode from .api.node.ancestor scoped
+ * @import getDefinedAncestorNode from .api.node.ancestor.defined scoped
  * 
  * @import getSelectedNode from .api.node.selected scoped
  * 
- * @import nodeInfo from .api.node.info scoped
+ * @import node from .api.node.info scoped
  * 
  * @import getDescendantNodes from .api.nodes.descendant scoped
  * 
@@ -80,9 +80,9 @@
  me.api = {
    addNodeIndicator,
    removeNodeIndicator,
-   getAncestorNode,
+   getDefinedAncestorNode,
    getSelectedNode,
-   nodeInfo,
+   node,
    getDescendantNodes
  } ;
 
