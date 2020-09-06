@@ -27,7 +27,17 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import createView from .view
+ * @import addNodeIndicator from .api.node.indicator.add scoped
+ * 
+ * @import removeNodeIndicator from .api.node.indicator.remove scoped
+ * 
+ * @import getAncestorNode from .api.node.ancestor scoped
+ * 
+ * @import getSelectedNode from .api.node.selected scoped
+ * 
+ * @import nodeInfo from .api.node.info scoped
+ * 
+ * @import getDescendantNodes from .api.nodes.descendant scoped
  * 
  * @param {object} config 脑图配置
  * 
@@ -66,6 +76,15 @@
  */
 
  let me = this ;
+
+ me.api = {
+   addNodeIndicator,
+   removeNodeIndicator,
+   getAncestorNode,
+   getSelectedNode,
+   nodeInfo,
+   getDescendantNodes
+ } ;
 
  me.nodes = new Map() ;
 
@@ -260,5 +279,3 @@
  }
 
 me.layout = buffer(tryLayout) ;
-
-me.view = createView(me) ;
