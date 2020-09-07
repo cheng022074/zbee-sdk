@@ -68,7 +68,7 @@
         initVisibilityLevel(node , me.visibilityLevel) ;
       }
 
-      me.fireEvent('nodeselect' , data(node)) ;
+      me.fireEvent('nodeselect' , data(node) , data(selectedNode)) ;
 
       me.layout() ;
 

@@ -28,9 +28,10 @@ function assign(dest , source){
             dest[name] = assign(dest[name] , source[name]) ;
         }
 
-    }
+    }else{
 
-    return clone(source) ;
+        return clone(source) ;
+    }
 }
 
 function main(dest , ...sources){
