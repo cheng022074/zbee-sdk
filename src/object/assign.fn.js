@@ -7,7 +7,11 @@
  * 
  * @import is.array
  * 
- * @import clone from array.clone
+ * @import is.date
+ * 
+ * @import array.clone
+ * 
+ * @import date.clone
  * 
  * @param {object} dest 目标数据
  * 
@@ -32,7 +36,11 @@ function assign(dest , source){
 
     }else if(isArray(source)){
 
-        source = clone(source) ;
+        source = arrayClone(source) ;
+    
+    }else if(isDate(source)){
+
+        source = dateClone(source) ;
     }
 
     return source ;
