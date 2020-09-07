@@ -5,13 +5,7 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import is.array
- * 
- * @import is.date
- * 
- * @import array.clone
- * 
- * @import date.clone
+ * @import clone from data.clone
  * 
  * @param {object} dest 目标数据
  * 
@@ -34,16 +28,9 @@ function assign(dest , source){
             dest[name] = assign(dest[name] , source[name]) ;
         }
 
-    }else if(isArray(source)){
-
-        source = arrayClone(source) ;
-    
-    }else if(isDate(source)){
-
-        source = dateClone(source) ;
     }
 
-    return source ;
+    return clone(source) ;
 }
 
 function main(dest , ...sources){
