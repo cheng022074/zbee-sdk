@@ -19,6 +19,8 @@
  * 
  * @import copy from object.copy
  * 
+ * @import clone from data.clone
+ * 
  * @param {mixed} [node] 脑图节点
  * 
  * @param {object} [data] 修改节点信息
@@ -132,7 +134,7 @@ function setNodeInfo(node , data){
 
                 let oldValue = node[field] ;
 
-                value = node[field] = value ;
+                value = node[field] = clone(value) ;
 
                 let {
                     id

@@ -9,6 +9,8 @@
  * 
  * @import getRegion from ..region scoped
  * 
+ * @import assign from object.assign
+ * 
  * @param {data.Record} node 节点
  * 
  * @return {object} 数据信息 
@@ -65,6 +67,6 @@ data.root = isRootNode(node) ;
 
 data.leaf = isLeafNode(node) ;
 
-return data ;
+return assign({} , data) ;
 
  
