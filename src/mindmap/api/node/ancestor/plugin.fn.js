@@ -17,6 +17,8 @@
  * 
  */
 
+ plugins = from(plugins) ;
+
  return getAncestorNode(node , ({
      plugins:nodePlugins
  }) => {
