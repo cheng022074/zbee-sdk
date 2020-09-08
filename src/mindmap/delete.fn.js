@@ -66,7 +66,20 @@
         }
     }
 
-    me.fireEvent('nodedelete' , remove(node)) ;
+    let deleteNodes = remove(node),
+    {
+        nodes
+    } = this;
+
+    for(let {
+        id
+    } of deleteNodes){
+
+        nodes.delete(id) ;
+    }
+
+
+    me.fireEvent('nodedelete' , deleteNodes) ;
 
     if(nextSelectedNode){
 

@@ -41,17 +41,6 @@
 
     children.splice(children.indexOf(node) , 1) ;
 
-    let {
-        nodes
-    } = this;
-
-    for(let {
-        id
-    } of deleteNodes){
-
-        nodes.delete(id) ;
-    }
-
     return deleteNodes ;
     
  }
