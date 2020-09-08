@@ -1,12 +1,26 @@
 
 /**
  * 
- * 函数实现说明
+ * 获得所有的子孙节点
  * 
- * @param {mixed} data 参数说明
+ * @import is.function
  * 
- * @return {mixed} 返回说明 
+ * @import getDescendantNodes from ....data.nodes.descendant scoped
+ * 
+ * @param {mixed} node 脑图节点
+ * 
+ * @param {function} [fn] 查询条件函数
+ * 
+ * @return {array} 节点集合 
  * 
  */
 
- // 代码实现
+ if(isFunction(fn)){
+
+    return getDescendantNodes(node , fn) ;
+ }
+
+ return getDescendantNodes(node , () => ({
+    result:true,
+    next:true
+ })) ;

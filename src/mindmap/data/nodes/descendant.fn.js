@@ -3,7 +3,7 @@
  * 
  * 获得所有的子孙节点
  * 
- * @import from ..node.from scoped
+ * @import from from ..node.from scoped
  * 
  * @param {mixed} node 脑图节点
  * 
@@ -15,7 +15,7 @@
 
 function main(node , fn){
 
-    let nodes = getDescendantNodes(from(node , fn)) ;
+    let nodes = getDescendantNodes(from(node) , fn) ;
 
     if(nodes.length && nodes[0] === node){
 
