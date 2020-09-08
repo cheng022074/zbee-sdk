@@ -17,10 +17,7 @@ function main(node , fn){
 
     let nodes = getDescendantNodes(from(node) , fn) ;
 
-    if(nodes.length && nodes[0] === node){
-
-        nodes.shift() ;
-    }
+    nodes.shift() ;
 
     return nodes ;
 }

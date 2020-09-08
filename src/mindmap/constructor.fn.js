@@ -37,7 +37,11 @@
  * 
  * @import getSelectedNode from .api.node.selected scoped
  * 
- * @import node from .api.node.info scoped
+ * @import on from .api.on scoped
+ * 
+ * @import off from .api.off scoped
+ * 
+ * @import property from .api.node.property scoped
  * 
  * @import getDescendantNodes from .api.nodes.descendant scoped
  * 
@@ -84,8 +88,10 @@
    removeNodeIndicator,
    getPluginAncestorNode,
    getSelectedNode,
-   node,
-   getDescendantNodes
+   property,
+   getDescendantNodes,
+   on,
+   off
  } ;
 
  me.nodes = new Map() ;
