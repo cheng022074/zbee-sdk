@@ -3,10 +3,33 @@
  * 
  * 移除脑图节点指示器
  * 
+ * @import from from ......data.node.from scoped
+ * 
+ * @import remove from array.remove.index
+ * 
  * @param {mixed} node 脑图节点
  * 
- * @param {mixed} ids 需要移除的脑图节点指示器标识
+ * @param {string} id 组件相对于脑图节点的唯一标识
  * 
  */
 
-console.log('移除脑图节点指示器') ;
+let  {
+    indicators
+} = from(node),
+index = 0;
+
+for(let {
+    id:componentId
+} of indicators){
+
+    if(componentId === id){
+
+        remove(indicators , index) ;
+
+        this.layout() ;
+
+        break ;
+    }
+
+    index ++ ;
+}
