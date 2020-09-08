@@ -82,7 +82,7 @@
  me.api = {
    addNodeIndicator,
    removeNodeIndicator,
-   getDefinedAncestorNode,
+   getPluginAncestorNode,
    getSelectedNode,
    node,
    getDescendantNodes
