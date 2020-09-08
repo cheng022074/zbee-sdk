@@ -15,8 +15,8 @@
 
  let me = this ;
 
- me.fireEvent('nodeindicatorinput' , node , indicator) ;
-
-info({
+ info({
    indicators
 } , node , false) ;
+
+ me.fireEvent('nodeindicatorinput' , node , indicator) ;

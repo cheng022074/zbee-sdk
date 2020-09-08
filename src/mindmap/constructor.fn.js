@@ -33,6 +33,8 @@
  * 
  * @import removeNodeIndicator from .api.node.indicator.remove scoped
  * 
+ * @import hasNodeIndicator from .api.node.indicator.has scoped
+ * 
  * @import getPluginAncestorNode from .api.node.ancestor.plugin scoped
  * 
  * @import getSelectedNode from .api.node.selected scoped
@@ -86,6 +88,7 @@
  me.api = {
    addNodeIndicator,
    removeNodeIndicator,
+   hasNodeIndicator,
    getPluginAncestorNode,
    getSelectedNode,
    property,

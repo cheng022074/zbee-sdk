@@ -15,10 +15,15 @@
 
 function main(node , fn){
 
-    let nodes = getDescendantNodes(from(node) , fn) ;
+    node = from(node) ;
 
-    nodes.shift() ;
+    let nodes = getDescendantNodes(node , fn) ;
 
+    if(nodes.length && nodes[0].id === node.id){
+
+        nodes.shift() ;
+    }
+    
     return nodes ;
 }
 
