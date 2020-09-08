@@ -7,6 +7,8 @@
  * 
  * @import getDescendantNodes from ....data.nodes.descendant scoped
  * 
+ * @import data from .data scoped
+ * 
  * @param {mixed} node 脑图节点
  * 
  * @param {function} [fn] 查询条件函数
@@ -17,10 +19,10 @@
 
  if(isFunction(fn)){
 
-    return getDescendantNodes(node , fn) ;
+    return data(getDescendantNodes(node , fn)) ;
  }
 
- return getDescendantNodes(node , () => ({
+ return data(getDescendantNodes(node , () => ({
     result:true,
     next:true
- })) ;
+ }))) ;

@@ -16,8 +16,7 @@
  */
 
  let {
-    nodes,
-    selectedNode
+    nodes
  } = this ;
 
 if(isString(node)){

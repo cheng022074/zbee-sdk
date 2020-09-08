@@ -9,7 +9,7 @@
  * 
  * @import getRegion from ..region scoped
  * 
- * @import assign from object.assign
+ * @import clone from object.clone
  * 
  * @param {data.Record} node 节点
  * 
@@ -49,6 +49,8 @@ if(!hidden){
    delete data.y ;
 }
 
+delete data.properties ;
+
 delete data.children ;
 
 delete data.hidden ;
@@ -67,6 +69,6 @@ data.root = isRootNode(node) ;
 
 data.leaf = isLeafNode(node) ;
 
-return assign({} , data) ;
+return clone(data) ;
 
  
