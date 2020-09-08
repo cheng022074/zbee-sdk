@@ -149,9 +149,27 @@
             defaultValue:0
          },
 
-         plugins:'plugins',
+         plugins:{
 
-         properties:'properties',
+            mapping:'plugins',
+
+            defaultValue(){
+
+               return [] ;
+            }
+
+         },
+
+         properties:{
+
+            mapping:'properties',
+
+            defaultValue(){
+
+               return [] ;
+            }
+
+         },
 
          indicators:{
                mapping:'indicators',
@@ -159,6 +177,12 @@
 
                   return value === oldValue ;
                },
+
+               defaultValue(){
+
+                  return [] ;
+               },
+               
                mode:'readwrite'
          },
          ...readerFields,
