@@ -33,5 +33,3 @@ if(isString(node)){
    return from(id) ;
 }
 
-return selectedNode ;
-

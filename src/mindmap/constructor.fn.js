@@ -321,6 +321,8 @@
 
  me.placeholderNode = placeholderNode ;
 
+ me.nodes.set(placeholderNode.id , placeholderNode) ;
+
  {
    me.fireNodeUnsizedEvent = buffer(() => {
     
