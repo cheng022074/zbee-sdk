@@ -33,7 +33,7 @@
  * 
  * @import removeNodeIndicator from .api.node.indicator.remove scoped
  * 
- * @import getDefinedAncestorNode from .api.node.ancestor.defined scoped
+ * @import getPluginAncestorNode from .api.node.ancestor.plugin scoped
  * 
  * @import getSelectedNode from .api.node.selected scoped
  * 
@@ -147,6 +147,19 @@
          order:{
             mode:'readwrite',
             defaultValue:0
+         },
+
+         plugins:'plugins',
+
+         properties:'properties',
+
+         indicators:{
+               mapping:'indicators',
+               equals(value , oldValue){
+
+                  return value === oldValue ;
+               },
+               mode:'readwrite'
          },
          ...readerFields,
          expanded:{
@@ -278,7 +291,8 @@
    height:placeholderNodeHeight,
    placeholder:true,
    children:[],
-   properties:[]
+   properties:[],
+   plugins:[]
  } , placeholderNodeData)) ;
 
  me.placeholderNode = placeholderNode ;
