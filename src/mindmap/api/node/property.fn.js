@@ -7,6 +7,8 @@
  * 
  * @import info from ....data.node.info scoped
  * 
+ * @import from from ....data.node.from scoped
+ * 
  * @param {mixed} [node] 脑图节点
  * 
  * @param {string} name 属性名称
@@ -20,6 +22,20 @@
  */
 
  if(isDefined(value)){
+
+    let {
+      properties
+    } = from(node) ;
+
+    if(!properties.includes(name)){
+
+      info(node , {
+         properties:[
+            ...properties,
+            name
+         ]
+      } , false) ; 
+    }
 
     info(node , {
         [name]:value

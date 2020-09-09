@@ -173,10 +173,17 @@
 
             mapping:'properties',
 
+            equals(value , oldValue){
+
+               return value === oldValue ;
+            },
+
             defaultValue(){
 
                return [] ;
-            }
+            },
+
+            mode:'readwrite'
 
          },
 
