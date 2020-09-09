@@ -31,7 +31,7 @@
      }
  } ;
 
- function main(node , fields){
+ function main(node , fields = DATA_FIELDS){
 
     node = from(node) ;
 
