@@ -7,68 +7,66 @@
  * 
  * @import isLeafNode from .is.leaf scoped
  * 
+ * @import getData from ..data.node.data scoped
+ * 
  * @import getRegion from ..region scoped
  * 
- * @import clone from object.clone
+ * @import from from ..data.node.from scoped
  * 
- * @param {data.Record} node 节点
+ * @param {mixed} node 节点
  * 
  * @return {object} 数据信息 
  * 
  */
 
- let {
-    height,
-    padding
- } = this,
- {
-    hidden
- } = node,
- {
-    height:regionHeight
- } = getRegion(),
- heightPadding = 0;
+ const options = {
+      root(node){
 
- if(height !== regionHeight){
+         return isRootNode(node) ;
+      },
 
-    heightPadding = padding ;
+      leaf(node){
+
+         return isLeafNode(node) ;
+      }
+ } ;
+
+ function main(node){
+
+   node = from(node) ;
+
+   let {
+      hidden
+   } = node ;
+   
+   let data = getData(node , options) ;
+   
+   if(!hidden){
+
+      let {
+         height,
+         padding
+      } = this ;
+   
+      data.x = node.x + padding ;
+
+      let {
+         height:regionHeight
+      } = getRegion(),
+      heightPadding = 0;
+   
+      if(height !== regionHeight){
+   
+         heightPadding = padding ;
+      }
+   
+      data.y = node.y + heightPadding ;
+   
+   }
+   
+   return data ;
  }
 
-let data = Object.assign({} , node) ;
-
-if(!hidden){
-
-   data.x += padding ;
-
-   data.y += heightPadding ;
-
-}else{
-
-   delete data.x ;
-
-   delete data.y ;
-}
-
-delete data.properties ;
-
-delete data.children ;
-
-delete data.hidden ;
-
-delete data.parentNodeId ;
-
-delete data.leafNodes ;
-
-delete data.relationNodes ;
-
-delete data.firstChildNodes ;
-
-delete data.lastChildNodes ;
-
-data.root = isRootNode(node) ;
-
-data.leaf = isLeafNode(node) ;
-
-return clone(data) ;
+ 
 
  
