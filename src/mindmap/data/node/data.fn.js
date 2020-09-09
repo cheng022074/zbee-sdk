@@ -3,6 +3,10 @@
  * 
  * 获取节点实际的数据信息
  * 
+ * @import isRootNode from .is.root scoped
+ * 
+ * @import isLeafNode from .is.leaf scoped
+ * 
  * @import clone from object.clone
  * 
  * @import from from .from scoped
@@ -15,37 +19,53 @@
  * 
  */
 
- node = from(node) ;
+ const DATA_FIELDS = {
+    root(node){
 
-let data = Object.assign({} , node) ;
+        return isRootNode(node) ;
+     },
 
-delete data.x ;
+     leaf(node){
 
-delete data.y ;
+        return isLeafNode(node) ;
+     }
+ } ;
 
-delete data.properties ;
+ function main(node , fields){
 
-delete data.children ;
+    node = from(node) ;
 
-delete data.hidden ;
+    let data = Object.assign({} , node) ;
+    
+    delete data.x ;
+    
+    delete data.y ;
+    
+    delete data.properties ;
+    
+    delete data.children ;
+    
+    delete data.hidden ;
+    
+    delete data.parentNodeId ;
+    
+    delete data.leafNodes ;
+    
+    delete data.relationNodes ;
+    
+    delete data.firstChildNodes ;
+    
+    delete data.lastChildNodes ;
+    
+    let names = Object.keys(fields) ;
+    
+    for(let name of names){
+    
+        data[name] = fields[name](node) ;
+    }
+    
+    return clone(data) ;
+ }
 
-delete data.parentNodeId ;
-
-delete data.leafNodes ;
-
-delete data.relationNodes ;
-
-delete data.firstChildNodes ;
-
-delete data.lastChildNodes ;
-
-let names = Object.keys(fields) ;
-
-for(let name of names){
-
-    data[name] = fields[name](node) ;
-}
-
-return clone(data) ;
 
  

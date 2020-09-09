@@ -19,7 +19,7 @@
  * 
  */
 
- const options = {
+ const fields = {
       root(node){
 
          return isRootNode(node) ;
@@ -39,7 +39,7 @@
       hidden
    } = node ;
    
-   let data = getData(node , options) ;
+   let data = getData(node , fields) ;
    
    if(!hidden){
 
