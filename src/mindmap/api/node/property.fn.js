@@ -24,6 +24,10 @@
     info(node , {
         [name]:value
     } , isLayout) ; 
+ 
+ }else{
+
+    return info(node , name) ;
  }
 
- return info(node , name) ;
+ 

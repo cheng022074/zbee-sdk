@@ -21,9 +21,9 @@
 
  if(!unsizedNodes.has(id) && ((!hidden && !(width && height)) || forceSize === true)){
 
-    delete node.forceSize ;
-
     unsizedNodes.set(id , node) ;
 
     me.fireNodeUnsizedEvent() ;
  }
+
+ delete node.forceSize ;
