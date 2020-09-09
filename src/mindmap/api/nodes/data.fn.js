@@ -3,7 +3,7 @@
  * 
  * 获得数据集合
  * 
- * @import data from ....node.data scoped
+ * @import data from ....data.node.data scoped
  * 
  * @param {array} nodes 一组脑图节点
  * 

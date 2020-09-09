@@ -11,5 +11,5 @@
  * 
  */
 
-return node.parentNodeId === null ;
+return from(node).parentNodeId === null ;
 
