@@ -25,14 +25,19 @@
         return params ;
     }
 
+    processReceiveData(data){
+
+        
+    }
+
     send(params , isReturnData = false){
 
         let me = this,
             eventName = me.getEventNameByParams(params),
             dataEvent = eventName,
             errorEvent = `${eventName}-error`,
-            fireDataEvent = (...params) => me.fireEvent(dataEvent , ...params),
-            fireErrorEvent = (...params) => me.fireEvent(errorEvent , ...params);
+            fireDataEvent = (...params) => me.fireEvent(dataEvent , me.processReceiveData(...params)),
+            fireErrorEvent = data => me.fireEvent(errorEvent , data);
 
         params = me.processSendParams(params) ;
 

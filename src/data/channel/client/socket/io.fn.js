@@ -15,35 +15,23 @@
  * 
  */
 
-class main extends mixins({
-    extend:Channel,
-    mixins:[
-       Observable
-    ]
-}){
+class main extends Channel{
 
-    async send({
+    doSend({
         url,
         path,
         event,
         params
-    }){
+    } , fireDataEvent , fireErrorEvent){
 
-        await getSocket.call(this , url , path).emit(event , ...params) ;
+        await getSocket.call(this , {
+            url,
+            path,
+            fireDataEvent,
+            fireErrorEvent
+        }).emit(event , ...params) ;
 
         return true ;
-    }
-
-    onData(socket , ...params){
-
-        let me = this ;
-
-        me.fireEvent('data' , me.processReceiveData(...params) , me.processReceiveParams(...params)) ;
-    }
-
-    onConnect(){
-
-
     }
 
     processReceiveData(){
@@ -59,7 +47,12 @@ class main extends mixins({
 
 const sockets = new Map() ;
 
-function getSocket(url , path = '/socket.io'){
+function getSocket({
+    url,
+    path = '/socket.io',
+    fireDataEvent,
+    fireErrorEvent
+}){
 
     let key = `${url}:${path}` ;
 
@@ -75,13 +68,16 @@ function getSocket(url , path = '/socket.io'){
             ...socketOptions
         });
 
-        add(socket , {
-            data:'onData',
-            connect:'onConnect',
-            scope:me
-        }) ;
+        sockets.set(key , new Promise((resolve , reject) => add(socket , {
+            data:fireDataEvent,
+            connect:resolve,
+            connect_error(){
 
-        sockets.set(key , socket) ;
+                reject() ;
+
+                fireErrorEvent() ;
+            }
+        }))) ;
     }
 
     return sockets.get(key) ;

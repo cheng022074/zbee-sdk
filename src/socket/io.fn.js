@@ -238,7 +238,7 @@
 
         if(!isDefined(reconnectionDelay)){
 
-            me.fireEvent('disconnect') ;
+            me.fireEvent('connect_error') ;
 
             return ;
         }
@@ -249,7 +249,7 @@
 
             delete me.reconnectionCount ;
 
-            me.fireEvent('disconnect') ;
+            me.fireEvent('connect_error') ;
 
         }else{
 
