@@ -41,9 +41,7 @@ function main(node , data , isLayout){
 
             if(setNodeInfo.call(me , node , data)){
 
-                node.forceSize = true ;
-    
-                unsized(node) ;
+                unsized(node , true) ;
 
                 if(!node.hidden){
 
