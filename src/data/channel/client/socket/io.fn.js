@@ -33,16 +33,6 @@ class main extends Channel{
 
         return true ;
     }
-
-    processReceiveData(){
-
-        return {} ;
-    }
-
-    processReceiveParams(){
-
-        return {} ;
-    }
 }
 
 const sockets = new Map() ;

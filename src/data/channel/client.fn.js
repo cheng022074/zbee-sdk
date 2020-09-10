@@ -25,9 +25,9 @@
         return params ;
     }
 
-    processReceiveData(data){
+    processReceiveData(){
 
-        
+        return {} ;
     }
 
     send(params , isReturnData = false){
