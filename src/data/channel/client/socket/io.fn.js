@@ -73,9 +73,9 @@ function getSocket({
             connect:resolve,
             connect_error(){
 
-                reject() ;
-
                 fireErrorEvent() ;
+
+                reject() ;
             }
         }))) ;
     }
