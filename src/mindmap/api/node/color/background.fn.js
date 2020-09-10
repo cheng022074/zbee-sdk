@@ -5,9 +5,9 @@
  * 
  * @import is.defined
  * 
- * @import info from ....data.node.info scoped
+ * @import info from ......data.node.info scoped
  * 
- * @import from from ....data.node.from scoped
+ * @import from from ......data.node.from scoped
  * 
  * @param {mixed} [node] 脑图节点
  * 

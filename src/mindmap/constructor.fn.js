@@ -29,23 +29,7 @@
  * 
  * @import is.array
  * 
- * @import addNodeIndicator from .api.node.indicator.add scoped
- * 
- * @import removeNodeIndicator from .api.node.indicator.remove scoped
- * 
- * @import hasNodeIndicator from .api.node.indicator.has scoped
- * 
- * @import getPluginAncestorNode from .api.node.ancestor.plugin scoped
- * 
- * @import getSelectedNode from .api.node.selected scoped
- * 
- * @import on from .api.on scoped
- * 
- * @import off from .api.off scoped
- * 
- * @import property from .api.node.property scoped
- * 
- * @import getDescendantNodes from .api.nodes.descendant scoped
+ * @import getAPI from .constructor.api scoped
  * 
  * @param {object} config 脑图配置
  * 
@@ -85,17 +69,7 @@
 
  let me = this ;
 
- me.api = {
-   addNodeIndicator,
-   removeNodeIndicator,
-   hasNodeIndicator,
-   getPluginAncestorNode,
-   getSelectedNode,
-   property,
-   getDescendantNodes,
-   on,
-   off
- } ;
+ me.api = getAPI() ;
 
  me.nodes = new Map() ;
 
@@ -202,6 +176,11 @@
                mode:'readwrite'
          },
          ...readerFields,
+         backgroundColor:{
+            mapping:'backgroundColor',
+            default:'transparent',
+            mode:'readwrite'
+         },
          expanded:{
             mode:'readwrite',
             local:true,
