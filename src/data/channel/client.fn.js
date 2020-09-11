@@ -5,6 +5,8 @@
  * 
  * @import Observable from mixin.observable
  * 
+ * @import is.defined
+ * 
  * @class
  * 
  */
@@ -15,9 +17,13 @@
     ]
 }){
 
-    getEventNameByParams(params){
+    getEventNameBySendParams(params){
 
         return JSON.stringify(params) ;
+    }
+
+    getEventNameByReceiveParams(){
+        
     }
 
     processSendParams(params){
@@ -36,7 +42,20 @@
             eventName = me.getEventNameByParams(params),
             dataEvent = eventName,
             errorEvent = `${eventName}-error`,
-            fireDataEvent = (...params) => me.fireEvent(dataEvent , me.processReceiveData(...params)),
+            fireDataEvent = (...params) => {
+
+                let receiveData = me.processReceiveData(...params) ;
+
+                let receiveDataEvent = me.getEventNameByReceiveParams(receiveData) ;
+
+                if(isDefined(receiveDataEvent) && receiveDataEvent !== dataEvent){
+
+                    return ;
+                }
+
+                me.fireEvent(dataEvent , receiveData) ;
+
+            },
             fireErrorEvent = data => me.fireEvent(errorEvent , data);
 
         params = me.processSendParams(params) ;

@@ -15,18 +15,17 @@
  * 
  */
 
+
 class main extends Channel{
 
     doSend({
-        url,
-        path,
         event,
-        params
+        params,
+        ...options
     } , fireDataEvent , fireErrorEvent){
 
-        await getSocket.call(this , {
-            url,
-            path,
+        getSocket.call(this , {
+            ...options,
             fireDataEvent,
             fireErrorEvent
         }).emit(event , ...params) ;
@@ -41,33 +40,26 @@ function getSocket({
     url,
     path = '/socket.io',
     fireDataEvent,
-    fireErrorEvent
+    fireErrorEvent,
+    ...options
 }){
 
     let key = `${url}:${path}` ;
 
     if(!sockets.has(key)){
 
-        let me = this,
-        {
-            socketOptions = {}
-        } = me,
-        socket = createSocket({
+        let socket = createSocket({
             url,
             path,
-            ...socketOptions
+            ...options
         });
 
-        sockets.set(key , new Promise((resolve , reject) => add(socket , {
+        add(socket , {
             data:fireDataEvent,
-            connect:resolve,
-            connect_error(){
+            connect_error:fireErrorEvent
+        });
 
-                fireErrorEvent() ;
-
-                reject() ;
-            }
-        }))) ;
+        sockets.set(key , socket) ;
     }
 
     return sockets.get(key) ;
