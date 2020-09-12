@@ -7,6 +7,10 @@
  * 
  * @import is.defined
  * 
+ * @import on from event.listener.add
+ * 
+ * @import off from event.listener.remove
+ * 
  * @class
  * 
  */
@@ -39,7 +43,7 @@
     send(params , isReturnData = false){
 
         let me = this,
-            eventName = me.getEventNameByParams(params),
+            eventName = me.getEventNameBySendParams(params),
             dataEvent = eventName,
             errorEvent = `${eventName}-error`,
             fireDataEvent = (...params) => {
@@ -64,10 +68,22 @@
 
             return new Promise((resolve , reject) => {
 
-                me.on({
-                    [dataEvent]:resolve,
-                    [errorEvent]:reject
-                }) ;
+                let listeners = {
+                    [dataEvent](client , data){
+
+                        off(me , listeners) ;
+                    
+                        resolve(data) ;
+                    },
+                    [errorEvent](client , data){
+
+                        off(me , listeners) ;
+
+                        reject(data) ;
+                    }
+                } ;
+
+                on(me , listeners) ;
 
                 me.doSend(params , fireDataEvent , fireErrorEvent) ;
 

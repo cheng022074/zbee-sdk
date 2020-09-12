@@ -24,13 +24,11 @@ class main extends Channel{
         ...options
     } , fireDataEvent , fireErrorEvent){
 
-        getSocket.call(this , {
+        /*getSocket.call(this , {
             ...options,
             fireDataEvent,
             fireErrorEvent
-        }).emit(event , ...params) ;
-
-        return true ;
+        }).emit(event , ...params) ;*/
     }
 }
 
