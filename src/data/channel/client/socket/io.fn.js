@@ -55,7 +55,11 @@ function getSocket({
         });
 
         add(socket , {
-            data:fireDataEvent,
+            data(client , ...params){
+
+                fireDataEvent(...params) ;
+
+            },
             connect_error:fireErrorEvent
         });
 
