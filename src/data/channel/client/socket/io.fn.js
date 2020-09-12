@@ -11,6 +11,8 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import from from array.from
+ * 
  * @class
  * 
  */
@@ -24,11 +26,11 @@ class main extends Channel{
         ...options
     } , fireDataEvent , fireErrorEvent){
 
-        /*getSocket.call(this , {
+        getSocket.call(this , {
             ...options,
             fireDataEvent,
             fireErrorEvent
-        }).emit(event , ...params) ;*/
+        }).emit(event , ...from(params)) ;
     }
 }
 
