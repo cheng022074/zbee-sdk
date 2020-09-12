@@ -32,4 +32,9 @@ class main extends Channel{
 
         return params ;
     }
+
+    processReceiveData(data){
+
+        return data ;
+    }
 }
