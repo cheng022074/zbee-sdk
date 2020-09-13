@@ -27,7 +27,6 @@
 
     let me = this,
     {
-      nodes,
       selectedNode,
       restructuring,
       ellipsisPattern
