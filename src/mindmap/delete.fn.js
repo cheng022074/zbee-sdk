@@ -15,7 +15,7 @@
  * 
  * @import select from .select scoped
  * 
- * @import from from .data.node.from scoped
+ * @import from from .node.from scoped
  * 
  * @param {string} [node] 节点编号
  * 
@@ -66,6 +66,11 @@
         }
     }
 
+    if(nextSelectedNode){
+
+        select(nextSelectedNode.id) ;
+    }
+
     let deleteNodes = remove(node),
     {
         nodes
@@ -80,11 +85,6 @@
 
 
     me.fireEvent('nodedelete' , deleteNodes) ;
-
-    if(nextSelectedNode){
-
-        select(nextSelectedNode.id) ;
-    }
 
     order(parentNode) ;
 
