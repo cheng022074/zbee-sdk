@@ -66,10 +66,7 @@
         }
     }
 
-    if(nextSelectedNode){
-
-        select(nextSelectedNode.id) ;
-    }
+    select(nextSelectedNode) ;
 
     let deleteNodes = remove(node),
     {

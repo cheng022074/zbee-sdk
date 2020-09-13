@@ -13,13 +13,17 @@
  * 
  * @import expand from .node.expand scoped
  * 
- * @param {string} id 节点编号
+ * @import from from .node.from scoped
+ * 
+ * @param {mixed} node 脑图节点
  * 
  * @return {Boolean} 如果成功选定节点则返回 true , 否则返回  false
  * 
  */
 
- function main(id){
+ function main(node){
+
+    node = from(node) ;
 
     let me = this,
     {
@@ -29,15 +33,13 @@
       ellipsisPattern
     } = me;
   
-    if(!restructuring && (selectedNode ? selectedNode.id !== id : true) && nodes.has(id)){
+    if(!restructuring && node !== selectedNode){
 
       if(ellipsisPattern){
 
         cancelEllipsis() ;
       }
   
-      let node = nodes.get(id) ;
-    
       if(node.hidden){
     
           let parentNode,
