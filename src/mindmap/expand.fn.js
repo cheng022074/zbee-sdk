@@ -3,22 +3,17 @@
  * 
  * 展开节点
  * 
- * @import get from .node.get scoped
+ * @import from from .node.from scoped
  * 
  * @import expand from .node.expand scoped
  * 
- * @param {string} id 节点编号
+ * @param {mixed} node 脑图节点
  * 
  */
 
-let node = get(id) ;
+node = from(node) ;
 
-if(node && expand(node)){
+if(expand(node)){
 
     this.layout() ;
-
-    return true ;
-
 }
-
-return false ;

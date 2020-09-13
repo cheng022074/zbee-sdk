@@ -32,5 +32,3 @@
    show(node) ;
  }
 
- return node ;
-

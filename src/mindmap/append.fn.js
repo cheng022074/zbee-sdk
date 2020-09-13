@@ -9,67 +9,50 @@
  * 
  * @import select from .select scoped
  * 
- * @import appendById from .append.id scoped
- * 
  * @import data from .node.data scoped
  * 
  * @import order from .order scoped
  * 
- * @import isObject from is.object.simple
+ * @import isNode from is.data.record
+ * 
+ * @import from from .node.from scoped
  * 
  * @param {object} [node = {}] 子节点配置信息
  * 
- * @param {string} [parentNodeId] 父节点编号
+ * @param {mixed} [parentNode] 脑图父节点
  * 
  * @param {boolean} [isSilentMode = false] 是否静默模式
  * 
  */
 
- let me = this,
- {
-    restructuring
- } = me,
- isNewNode = isObject(node);
+let me = this,
+{
+  restructuring
+} = me,
+isNewNode = !isNode(node);
 
- if(restructuring){
+if(restructuring){
 
-    return false;
- }
-
-
-if(parentNodeId){
-  
-  return appendById(node , parentNodeId , isSilentMode) ;
-  
-}else{
-
-  let {
-      selectedNode
-  } = me,
-  {
-      expanded
-  } = selectedNode;
-
-  node = append(selectedNode , node) ;
-
-  if(node === false){
-
-    return false;
-    
-  }
-
-  if(!expanded){
-
-    expand(selectedNode) ;
-    
-  }
-
-  me.fireEvent('nodeappend' , data(node) , data(selectedNode) , isNewNode) ;
-
-  order(selectedNode) ;
-
-  select(node.id) ;
-
-  return true ;
-
+  return false;
 }
+
+parentNode = from(parentNode) ; 
+
+let {
+    expanded,
+    selected
+} = parentNode;
+
+append(parentNode , node) ;
+
+if(selected && !expanded){
+
+  expand(parentNode) ;
+  
+}
+
+me.fireEvent('nodeappend' , data(node) , data(parentNode) , isNewNode) ;
+
+order(parentNode) ;
+
+select(node) ;
