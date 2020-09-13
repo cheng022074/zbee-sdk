@@ -56,6 +56,8 @@
     delete data.firstChildNodes ;
     
     delete data.lastChildNodes ;
+
+    delete data.descendantNodes ;
     
     let names = Object.keys(fields) ;
     
