@@ -25,12 +25,9 @@ function assign(dest , source){
 
         for(let name of names){
 
-            dest[name] = assign(dest[name] , source[name]) ;
+            dest[name] = clone(source[name]) ;
         }
 
-    }else{
-
-        return clone(source) ;
     }
 }
 
