@@ -19,6 +19,8 @@
  * 
  * @param {string} [node] 节点编号
  * 
+ * @param {boolean} [isSilentMode = false] 是否静默模式
+ * 
  */
 
  let me = this,
@@ -35,8 +37,7 @@
 
  if(node && !isRootNode(node)){
 
-    let nextSelectedNode,
-        parentNode = getParentNode(node);
+    let parentNode = getParentNode(node);
 
     if(node.selected === true){
 
@@ -46,7 +47,8 @@
         {
             length
         } = children,
-        index = children.indexOf(node);
+        index = children.indexOf(node),
+        nextSelectedNode;
 
         if(length - 1){
 
@@ -64,9 +66,9 @@
 
             nextSelectedNode = parentNode ;
         }
-    }
 
-    select(nextSelectedNode) ;
+        select(nextSelectedNode) ;
+    }
 
     let deleteNodes = remove(node),
     {
@@ -80,12 +82,10 @@
         nodes.delete(id) ;
     }
 
+    if(!isSilentMode){
 
-    me.fireEvent('nodedelete' , deleteNodes) ;
+        order(parentNode) ;
 
-    order(parentNode) ;
-
-    return true ;
+        me.fireEvent('nodedelete' , deleteNodes) ;
+    }
 }
-
-return false ;
