@@ -23,6 +23,8 @@
  * 
  * @param {mixed} [afterNode] 参考脑图节点
  * 
+ * @param {boolean} [isSilentMode = false] 是否静默模式
+ * 
  */
 
 let me = this,
