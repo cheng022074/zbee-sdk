@@ -33,7 +33,7 @@ isNewNode = !isNode(node);
 
 if(restructuring){
 
-  return false;
+  return;
 }
 
 parentNode = from(parentNode) ; 
@@ -43,16 +43,40 @@ let {
     selected
 } = parentNode;
 
-append(parentNode , node) ;
+if(isNewNode){
 
-if(selected && !expanded){
+  append(parentNode , node) ;
 
-  expand(parentNode) ;
-  
+}else{
+
+  let {
+    selected
+  } = node ;
+
+  append(parentNode , node) ;
+
+  if(selected){
+
+    node.selected = true ;
+  }
 }
 
-me.fireEvent('nodeappend' , data(node) , data(parentNode) , isNewNode) ;
+if(!isSilentMode){
 
-order(parentNode) ;
+  if(selected && !expanded){
 
-select(node) ;
+    expand(parentNode) ;
+    
+  }
+  
+  me.fireEvent('nodeappend' , data(node) , data(parentNode) , isNewNode) ;
+  
+  order(parentNode) ;
+  
+  select(node) ;
+
+}else{
+
+  me.layout() ;
+  
+}

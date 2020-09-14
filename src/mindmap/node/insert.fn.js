@@ -53,5 +53,3 @@ if(!isRootNode(baseNode)){
 
     return insertNode ;
 }
-
-return false ;

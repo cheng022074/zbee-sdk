@@ -13,15 +13,15 @@
  * 
  * @import getParentNode from ..node.parent scoped
  * 
- * @import insertAfterById from .after.id scoped
- * 
  * @import select from ..select scoped
  * 
- * @import isObject from is.object.simple
+ * @import isNode from is.data.record
+ * 
+ * @import from from ..node.from scoped
  * 
  * @param {mixed} node 插入的节点配置
  * 
- * @param {string} [beforeNodeId] 参数节点编号
+ * @param {mixed} [afterNode] 参考脑图节点
  * 
  */
 
@@ -29,35 +29,45 @@ let me = this,
 {
    restructuring
 } = me,
-isNewNode = isObject(node);
+isNewNode = !isNode(node);
 
 if(restructuring){
 
-   return false;
+   return;
 }
 
- if(beforeNodeId){
+afterNode = from(afterNode) ;
 
-   return insertAfterById(node , beforeNodeId) ;
- 
- }else{
+if(isNewNode){
+
+   node = insert(node , afterNode) ;
+
+}else{
 
    let {
-      selectedNode
-   } = me ;
+      selected
+   } = node ;
 
-   node = insert(node , selectedNode) ;
+   node = insert(node , afterNode) ;
 
-   if(node){
+   if(selected && node){
 
-      me.fireEvent('nodeinsertafter' , data(node) , data(selectedNode) , isNewNode) ;
-
-      order(getParentNode(selectedNode)) ;
-
-      select(node.id) ;
-
-      return true ;
+      node.selected = true ;
    }
+}
 
-   return false ;
- }
+if(node){
+
+   if(!isSilentMode){
+
+      me.fireEvent('nodeinsertafter' , data(node) , data(afterNode) , isNewNode) ;
+
+      order(getParentNode(afterNode)) ;
+   
+      select(node) ;
+   
+   }else{
+
+      me.layout() ;
+   }
+}
