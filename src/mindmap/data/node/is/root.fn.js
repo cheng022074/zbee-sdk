@@ -11,5 +11,5 @@
  * 
  */
 
-return from(node).parentNodeId === null ;
+return from(node) === this.rootNode ;
 
