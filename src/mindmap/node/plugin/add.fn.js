@@ -5,6 +5,8 @@
  * 
  * @import from from ..from scoped
  * 
+ * @import data from ..data scoped
+ * 
  * @param {mixed} node 脑图节点
  * 
  * @param {string} plugin 脑图节点插件名称
@@ -19,5 +21,9 @@ if(!plugins.includes(plugin)){
 
     plugins.push(plugin) ;
 
-    this.layout() ;
+    let me = this ;
+
+    me.fireEvent('addnodeplugin' , data(node) , plugin) ;
+
+    me.layout() ;
 }
