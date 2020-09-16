@@ -45,7 +45,7 @@ let {
 
 if(isNewNode){
 
-  append(parentNode , node) ;
+  node = append(parentNode , node) ;
 
 }else{
 
