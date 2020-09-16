@@ -63,7 +63,7 @@
  * 
  * @param {number} [config.visibilityLevel = 1] 省略节点时选定节点展现子节点层数
  * 
- * @param {object} [config.placeholderNodeData = {}] 其它脑图配置
+ * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
  * 
  */
 
