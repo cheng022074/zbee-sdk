@@ -97,8 +97,13 @@ function removeEventListener(el , name , fn){
     let event = `gesture:${name}` ;
 
     if(isObject(fn)){
+
+        let {
+            fn:listenerFn,
+            ...options
+        } = fn ;
         
-        un(el , event , fn.fn);
+        un(el , event , listenerFn , options);
 
     }else if(isFunction(fn)){
 

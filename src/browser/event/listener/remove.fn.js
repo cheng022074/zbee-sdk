@@ -15,6 +15,8 @@
  * 
  * @param {mixed} fn 目标监听回调
  * 
+ * @param {object} [options] 配置
+ * 
  * @return {mixed} 返回说明 
  * 
  */
