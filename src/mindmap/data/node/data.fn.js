@@ -37,6 +37,8 @@
 
     let data = Object.assign({} , node) ;
 
+    delete data.selected ;
+
     delete data.width ;
 
     delete data.height ;

@@ -60,6 +60,8 @@
 
       data.expanded = node.expanded;
 
+      data.selected = node.selected ;
+
       let {
          properties
       } = node ;
