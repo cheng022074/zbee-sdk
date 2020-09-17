@@ -58,8 +58,6 @@
         additionalFields = getFields.call(me , additionalFields) ;
 
         processFields(isConvert , record , additionalFields , raw , raws , index , data) ;
-
-        fields.push(...additionalFields) ;
     }
     
     return record ;
