@@ -21,7 +21,7 @@
  * 
  * @param {mixed} node 节点信息
  * 
- * @param {mixed} parentNode 父节点
+ * @param {mixed} [parentNode] 父节点
  * 
  * @return {data.Record} 创建出来的新节点 
  * 
