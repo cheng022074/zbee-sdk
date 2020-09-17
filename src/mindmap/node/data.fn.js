@@ -37,11 +37,37 @@
 
    let {
       hidden
-   } = node ;
-   
-   let data = getData(node , fields) ;
-   
+   } = node,
+   data;
+
    if(!hidden){
+   
+      data = getData(node , fields) ;
+
+      data.width = node.width;
+
+      data.height = node.height;
+
+      data.restructuring = node.restructuring;
+
+      data.placeholder = node.placeholder;
+
+      data.indicated = node.indicated;
+
+      data.editing = node.editing;
+
+      data.ellipsis = node.ellipsis;
+
+      data.expanded = node.expanded;
+
+      let {
+         properties
+      } = node ;
+
+      for(let property of properties){
+
+         data[property] = node[property];
+      }
 
       let {
          height,
@@ -62,6 +88,9 @@
    
       data.y = node.y + heightPadding ;
    
+   }else{
+
+      data = getData(node) ;
    }
    
    return data ;
