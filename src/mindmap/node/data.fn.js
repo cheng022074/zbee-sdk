@@ -44,6 +44,8 @@
    
       data = getData(node , fields) ;
 
+      data.order = node.order ;
+
       data.width = node.width;
 
       data.height = node.height;
