@@ -98,6 +98,12 @@
         },{
             "name":"removePlugin",
             "impl":".mindmap.node.plugin.remove"
+        },{
+            "name":"serialize",
+            "impl":".mindmap.node.serialize"
+        },{
+            "name":"deserialize",
+            "impl":".mindmap.node.deserialize"
         }
     ]
 }
