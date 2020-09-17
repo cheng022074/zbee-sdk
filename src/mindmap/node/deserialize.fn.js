@@ -54,7 +54,7 @@ function deserialize(node , {
 
         if(dataSet.hasOwnProperty(id)){
 
-            deserialize(node , dataSet[id]) ;
+            deserialize(childNode , dataSet[id]) ;
         }
     }
 
