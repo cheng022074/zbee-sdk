@@ -9,12 +9,16 @@
  * 
  * @import show from .show scoped
  * 
- * @param {data.Record} parentNode 节点
+ * @import from from ..data.node.from scoped
+ * 
+ * @param {mixed} parentNode 节点
  * 
  * @param {mixed} node 节点配置
  * 
  * 
  */
+
+ parentNode = from(parentNode) ;
 
  let {
     children,

@@ -5,6 +5,8 @@
  * 
  * @import create from ..node.create scoped
  * 
+ * @import append from ..node.append scoped
+ * 
  * @import initSortNodes from ..load.sort scoped
  * 
  * @import initVisibilityNodes from ..load.visibility scoped
@@ -17,18 +19,35 @@
  * 
  */
 
- let {
-    root
- } = data ;
+ async function main(data){
 
- let rootNode = this.rootNode = create(root) ;
+   let {
+      root
+   } = data ;
+  
+   let rootNode = this.rootNode = create(root) ;
 
- rootNode.selected = true ;
+   doAppend(rootNode , root.children) ;
+  
+   rootNode.selected = true ;
+   
+   initSortNodes() ;
+   
+   initNodes() ;
+   
+   initVisibilityNodes() ;
+   
+   await tryLayout() ;
+ }
 
-initSortNodes() ;
+ function doAppend(node , children){
 
-initNodes() ;
+   for(let child of children){
 
-initVisibilityNodes() ;
+      let childNode = append(node , child) ;
 
-await tryLayout() ;
+      doAppend(childNode , child.children) ;
+   }
+ }
+
+ 
