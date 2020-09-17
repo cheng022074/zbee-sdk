@@ -32,11 +32,11 @@ function deserialize(node , {
     children
 }){
 
-    info(node , {
+    info({
         text,
         backgroundColor,
         indicators
-    }) ;
+    } , node) ;
 
     let childNodes = getChildNodes(node),
         dataSet = {};
