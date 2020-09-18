@@ -43,6 +43,8 @@
      lines = [],
      selectedNode;
 
+ mindNodes = Array.from(mindNodes) ;
+
  for(let mindNode of mindNodes){
 
     let node = getNodeData(mindNode),
@@ -50,9 +52,9 @@
 
     if(generateLines){
 
-      let parentNode =getParentNode(mindNode);
+      let parentNode = getParentNode(mindNode);
 
-      if(parentNode){
+      if(parentNode && mindNodes.includes(parentNode)){
 
           let isRoot = isRootNode(parentNode) ;
 
