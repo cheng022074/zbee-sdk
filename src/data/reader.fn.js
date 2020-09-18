@@ -25,14 +25,14 @@
         me.addFields = addFields ;
     }
 
-    redefine(record){
-
-        return getRecord.call(this , record , null , null , null , null , this.addFields) ;
-    }
-
     create(data){
 
-        return getRecord.call(this , null , data) ;
+        let me = this,
+        {
+            addFields
+        } = me ;
+
+        return getRecord.call(me , undefined , data , undefined , undefined , undefined , addFields) ;
     }
 
     read(data , root = '.'){
