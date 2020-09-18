@@ -40,9 +40,7 @@ if(!restructuring || restructureIndicateLocked){
 
     let node = get(id) ;
 
-    if(is(node)){
-
-        preinsert(get(id) , xy) ;
+    if(is(node) && preinsert(node , xy)){
 
         me.layout() ;
     }
@@ -61,7 +59,7 @@ if(!restructuring || restructureIndicateLocked){
 
             expand(parentNode) ;
 
-            me.layout() ;
+            //me.layout() ;
 
             me.restructureIndicateLocked = false ;
 
@@ -89,7 +87,7 @@ if(!restructuring || restructureIndicateLocked){
 
                 preinsert(childNode , xy) ;
 
-                me.layout() ;
+                //me.layout() ;
                 
                 return ;
             }
@@ -97,6 +95,6 @@ if(!restructuring || restructureIndicateLocked){
 
         append(parentNode , placeholderNode) ;
 
-        me.layout() ;
+       //me.layout() ;
     }
  }

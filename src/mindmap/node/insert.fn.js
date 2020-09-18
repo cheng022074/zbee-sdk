@@ -11,6 +11,8 @@
  * 
  * @import show from .show scoped
  * 
+ * @import isNode from is.data.record
+ * 
  * @param {mixed} [insertNode = {}] 需要插入的节点
  * 
  * @param {data.Record} baseNode 参照节点
@@ -31,8 +33,6 @@ if(!isRootNode(baseNode)){
         length
     } = children;
 
-    insertNode = create(insertNode , parentNode) ;
-
     let index = children.indexOf(baseNode) + offset ;
 
     if(index > length - 1){
@@ -43,6 +43,13 @@ if(!isRootNode(baseNode)){
 
         index = 0 ;
     }
+
+    if(isNode(insertNode) && getParentNode(insertNode) === parentNode && children[index] === insertNode){
+
+        return ;
+    }
+    
+    insertNode = create(insertNode , parentNode) ;
 
     children.splice(index , 0 , insertNode) ;
 
