@@ -51,6 +51,8 @@ function main(node , data , isLayout){
                     }
                 }
             }
+
+            return ;
         
         }else if(isString(data)){
 

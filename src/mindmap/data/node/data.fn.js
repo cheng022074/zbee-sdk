@@ -7,13 +7,15 @@
  * 
  * @import isLeafNode from .is.leaf scoped
  * 
+ * @import is.array
+ * 
  * @import clone from object.clone
  * 
  * @import from from .from scoped
  * 
  * @param {mixed} node 节点
  * 
- * @param {object} [fields = {}] 附加字段信息
+ * @param {object} [options = {}] 附加字段信息
  * 
  * @return {object} 数据信息 
  * 
@@ -31,11 +33,42 @@
      }
  } ;
 
- function main(node , fields = DATA_FIELDS){
+ function main(node , {
+   fields,
+   addFields = DATA_FIELDS
+ }){
 
     node = from(node) ;
 
-    let data = Object.assign({} , node) ;
+    let data ;
+
+    if(isArray(fields)){
+
+      data = {};
+
+      for(let field of fields){
+
+         if(node.hasOwnProperty(field)){
+
+            data[field] = node[field] ;
+         
+         }else if(addFields.hasOwnProperty(field)){
+
+            data[field] = addFields[field](node) ;
+         }
+      }
+
+    }else{
+
+      data = Object.assign({} , node) ;
+
+      let names = Object.keys(addFields) ;
+    
+      for(let name of names){
+      
+         data[name] = addFields[name](node) ;
+      }
+    }
 
     delete data.children ;
     
@@ -54,13 +87,6 @@
     delete data.descendantNodes ;
 
     delete data.ancestorNodes ;
-    
-    let names = Object.keys(fields) ;
-    
-    for(let name of names){
-    
-        data[name] = fields[name](node) ;
-    }
     
     return clone(data) ;
  }

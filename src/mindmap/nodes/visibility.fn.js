@@ -223,7 +223,14 @@
         x,
         y
     } = xy,
-    dataNode = data(node),
+    dataNode = data(node , {
+        fields:[
+            'x',
+            'y',
+            'width',
+            'height'
+        ]
+    }),
     {
         right
     } = from(dataNode),

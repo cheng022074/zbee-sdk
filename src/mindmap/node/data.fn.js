@@ -15,11 +15,13 @@
  * 
  * @param {mixed} node 节点
  * 
+ * @param {array} [fields] 字段数组
+ * 
  * @return {object} 数据信息 
  * 
  */
 
- const fields = {
+ const addFields = {
       root(node){
 
          return isRootNode(node) ;
@@ -31,36 +33,50 @@
       }
  } ;
 
- function main(node){
+ function main(node , fields){
 
    node = from(node) ;
 
    let {
       hidden
    } = node,
-   data = getData(node , fields);
+   data = getData(node , {
+      fields,
+      addFields
+   });
 
    if(!hidden){
-   
-      let {
-         height,
-         padding
-      } = this ;
-   
-      data.x = node.x + padding ;
 
-      let {
-         height:regionHeight
-      } = getRegion(),
-      heightPadding = 0;
-   
-      if(height !== regionHeight){
-   
-         heightPadding = padding ;
+      let me = this,
+      {
+         padding
+      } = me ;
+
+      if(data.hasOwnProperty('x')){
+      
+         data.x += padding ;
       }
+
+      if(data.hasOwnProperty('y')){
+
+         let {
+            height
+         } = me ;
    
-      data.y = node.y + heightPadding ;
-   
+         let {
+            height:regionHeight
+         } = getRegion(),
+         heightPadding = 0;
+      
+         if(height !== regionHeight){
+      
+            heightPadding = padding ;
+         }
+      
+         data.y += heightPadding ;
+      
+      }
+
    }
    
    return data ;
