@@ -133,7 +133,6 @@
          },
 
          indicators:{
-               mapping:'indicators',
                equals(value , oldValue){
 
                   return value === oldValue ;
