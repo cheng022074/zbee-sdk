@@ -37,41 +37,6 @@
 
     let data = Object.assign({} , node) ;
 
-    delete data.order ;
-
-    delete data.selected ;
-
-    delete data.width ;
-
-    delete data.height ;
-
-    delete data.restructuring ;
-
-    delete data.placeholder ;
-
-    delete data.indicated ;
-
-    delete data.editing ;
-
-    delete data.ellipsis ;
-
-    delete data.expanded ;
-
-    delete data.x ;
-    
-    delete data.y ;
-
-    let {
-      properties
-    } = data ;
-
-    for(let property of properties){
-
-      delete data[property] ;
-    }
-    
-    delete data.properties ;
-    
     delete data.children ;
     
     delete data.hidden ;

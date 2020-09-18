@@ -132,35 +132,6 @@
             defaultValue:0
          },
 
-         plugins:{
-
-            mapping:'plugins',
-
-            defaultValue(){
-
-               return [] ;
-            }
-
-         },
-
-         properties:{
-
-            mapping:'properties',
-
-            equals(value , oldValue){
-
-               return value === oldValue ;
-            },
-
-            defaultValue(){
-
-               return [] ;
-            },
-
-            mode:'readwrite'
-
-         },
-
          indicators:{
                mapping:'indicators',
                equals(value , oldValue){
@@ -262,36 +233,7 @@
             local:true,
             defaultValue:false
          }
-      } , ({
-         properties
-      }) => {
-
-         let ownAddtionFields = {} ;
-
-         if(isArray(properties)){
-
-            for(let property of properties){
-
-               ownAddtionFields[property] = {
-                  mapping:property,
-                  mode:'readwrite'
-               } ;
-            }
-         }
-
-         let addtionFields = readerAddFields();
-
-         if(isObject(addtionFields)){
-
-            return {
-               ...ownAddtionFields,
-               ...addtionFields
-            } ;
-         }
-
-         return ownAddtionFields ;
-
-      }) ;
+      } , readerAddFields) ;
 
  me.readConfig = readConfig ;
 

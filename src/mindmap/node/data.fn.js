@@ -38,41 +38,10 @@
    let {
       hidden
    } = node,
-   data;
+   data = getData(node , fields);
 
    if(!hidden){
    
-      data = getData(node , fields) ;
-
-      data.order = node.order ;
-
-      data.width = node.width;
-
-      data.height = node.height;
-
-      data.restructuring = node.restructuring;
-
-      data.placeholder = node.placeholder;
-
-      data.indicated = node.indicated;
-
-      data.editing = node.editing;
-
-      data.ellipsis = node.ellipsis;
-
-      data.expanded = node.expanded;
-
-      data.selected = node.selected ;
-
-      let {
-         properties
-      } = node ;
-
-      for(let property of properties){
-
-         data[property] = node[property];
-      }
-
       let {
          height,
          padding
@@ -92,9 +61,6 @@
    
       data.y = node.y + heightPadding ;
    
-   }else{
-
-      data = getData(node) ;
    }
    
    return data ;
