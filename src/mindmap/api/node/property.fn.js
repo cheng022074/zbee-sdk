@@ -7,7 +7,7 @@
  * 
  * @import info from ....data.node.info scoped
  * 
- * @param {mixed} [node] 脑图节点
+ * @param {mixed} node 脑图节点
  * 
  * @param {string} name 属性名称
  * 
