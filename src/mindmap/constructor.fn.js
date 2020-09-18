@@ -232,7 +232,7 @@
             local:true,
             defaultValue:false
          }
-      } , readerAddFields) ;
+      } , readerAddFields.bind(me)) ;
 
  me.readConfig = readConfig ;
 
