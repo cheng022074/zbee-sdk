@@ -11,7 +11,7 @@
  * 
  * @import setNodeBackgroundColor from ..api.node.color.background scoped
  * 
- * @import getPluginAncestorNode from ..api.node.ancestor.plugin scoped
+ * @import getPropertyAncestorNode from ..api.node.ancestor.property scoped
  * 
  * @import getSelectedNode from ..api.node.selected scoped
  * 
@@ -22,6 +22,8 @@
  * @import property from ..api.node.property scoped
  * 
  * @import getDescendantNodes from ..api.nodes.descendant scoped
+ * 
+ * @import getLeafNodes from ..api.nodes.descendant.leaf scoped
  *
  * @return {object} 
  *
@@ -32,10 +34,11 @@
    addNodeIndicator,
    removeNodeIndicator,
    hasNodeIndicator,
-   getPluginAncestorNode,
+   getPropertyAncestorNode,
    getSelectedNode,
    property,
    getDescendantNodes,
+   getLeafNodes,
    setNodeBackgroundColor,
    on,
    off

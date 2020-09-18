@@ -26,17 +26,26 @@
  */
 
  const {
-   nodeHorizontalSeparationDistance,
    nodeHorizontalLineBreakPointOffset
- } = this;
+ } = this,
+ nodeMap = new Map(),
+ getNodeData = node => {
+
+    if(!nodeMap.has(node)){
+
+        nodeMap.set(node , getData(node)) ;
+    }
+
+    return nodeMap.get(node) ;
+ };
 
  let nodes = [],
      lines = [],
-     selectedNode ;
+     selectedNode;
 
  for(let mindNode of mindNodes){
 
-    let node = getData(mindNode),
+    let node = getNodeData(mindNode),
         indicated = mindNode.placeholder;
 
     if(generateLines){
@@ -47,7 +56,7 @@
 
           let isRoot = isRootNode(parentNode) ;
 
-          parentNode = getData(parentNode) ;
+          parentNode = getNodeData(parentNode) ;
 
           let {
             x:nodeX,

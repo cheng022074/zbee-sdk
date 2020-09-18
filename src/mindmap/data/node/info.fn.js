@@ -76,9 +76,10 @@ function setNodeInfo(node , data){
 
     for(let field of fields){
 
-        let value = data[field] ;
+        let value = data[field],
+            oldValue = node[field];
 
-        if(equals(node[field] , value)){
+        if(equals(oldValue , value)){
 
             continue ; 
         }
@@ -129,8 +130,6 @@ function setNodeInfo(node , data){
             break ;
 
             default:
-
-                let oldValue = node[field] ;
 
                 value = node[field] = clone(value) ;
 
