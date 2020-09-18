@@ -21,13 +21,6 @@
 
  if(isDefined(value)){
 
-   info(node , {
-      properties:[
-         ...properties,
-         name
-      ]
-   } , false) ; 
-
     info(node , {
         [name]:value
     } , isLayout) ; 
