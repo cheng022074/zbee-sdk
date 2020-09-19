@@ -7,9 +7,11 @@
  * 
  * @import get from object.property.inner.get
  * 
+ * @import clear from object.clear
+ * 
  * @import clone from data.clone
  * 
- * @import getNames from array.object.property
+ * @import is.function
  * 
  * @import getFields from .fields
  * 
@@ -25,18 +27,32 @@
     defineProperty
  } = Object ;
 
- function Data(record , names){
+ function Data(record , names , cacheNames){
 
     let me = this ;
 
-    define(me , 'record' , record) ;
+    define(me , {
+        record,
+        cache:{},
+        reset(){
+
+            clear(get(me , 'cache')) ; 
+        }
+    }) ;
 
     for(let name of names){
 
         defineProperty(me , name , {
             get(){
 
-                return clone(get(me , 'record')[name]) ;
+                let cache = get(me , 'cache') ;
+
+                if((cacheNames.includes(name) && !cache.hasOwnProperty(name)) || !cacheNames.includes(name)){
+
+                    cache[name] = clone(get(me , 'record')[name]) ;
+                }
+
+                return cache[name] ;
             },
             configurable:true,
             enumerable:true
@@ -51,13 +67,31 @@
         fields,
         addFields
     } = me,
-    names = getNames(fields , 'name'),
-    additionalFields = addFields(record) ;
+    additionalFields = addFields(record),
+    allFields = [
+        ...fields
+    ];
 
     if(isDefined(additionalFields)){
 
-        names.push(...getNames(getFields.call(me , additionalFields) , 'name')) ;
+        allFields.push(...getFields.call(me , additionalFields)) ;
     }
 
-    return new Data(record , names) ;
+    let names = [],
+        cacheNames = [];
+
+    for(let {
+        name,
+        get
+    } of allFields){
+
+        names.push(name) ;
+
+        if(get){
+
+            cacheNames.push(name) ;
+        }
+    }
+
+    return new Data(record , names , cacheNames) ;
  }

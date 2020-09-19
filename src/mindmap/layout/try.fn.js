@@ -7,7 +7,11 @@
  * 
  * @import layout from ..layout scoped
  * 
+ * @import reset from ..data.nodes.data.reset scoped
+ * 
  */
+
+ reset() ;
 
  await waitNodeSized() ;
 
