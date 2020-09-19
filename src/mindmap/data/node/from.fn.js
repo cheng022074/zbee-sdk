@@ -5,7 +5,7 @@
  * 
  * @import is.string
  * 
- * @import isObject from is.object.simple
+ * @import isObject from is.object
  * 
  * @import from from .from scoped
  * 

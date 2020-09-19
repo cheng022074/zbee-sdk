@@ -56,7 +56,7 @@
 
     if(isDefined(additionalFields)){
 
-        names.push(...getNames(getFields.call(me , additionalFields))) ;
+        names.push(...getNames(getFields.call(me , additionalFields) , 'name')) ;
     }
 
     return new Data(record , names) ;

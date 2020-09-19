@@ -28,16 +28,7 @@
  const {
    nodeHorizontalLineBreakPointOffset
  } = this,
- nodeMap = new Map(),
- getNodeData = node => {
-
-    if(!nodeMap.has(node)){
-
-        nodeMap.set(node , getData(node)) ;
-    }
-
-    return nodeMap.get(node) ;
- };
+ nodeMap = new Map();
 
  let nodes = [],
      lines = [],
@@ -47,7 +38,7 @@
 
  for(let mindNode of mindNodes){
 
-    let node = getNodeData(mindNode),
+    let node = getData(mindNode),
         indicated = mindNode.placeholder;
 
     if(generateLines){
@@ -58,7 +49,7 @@
 
           let isRoot = isRootNode(parentNode) ;
 
-          parentNode = getNodeData(parentNode) ;
+          parentNode = getData(parentNode) ;
 
           let {
             x:nodeX,
@@ -159,7 +150,7 @@
 
     if(node.selected){
 
-      selectedNode = Object.assign({} , node) ;
+      selectedNode = node ;
     }
  }
 
