@@ -7,15 +7,15 @@
  * 
  * @import isLeafNode from .is.leaf scoped
  * 
- * @import is.array
+ * @import has from object.property.inner.has
  * 
- * @import clone from object.clone
+ * @import define from object.property.inner.define
  * 
- * @import from from .from scoped
+ * @import get from object.property.inner.get
  * 
  * @param {mixed} node 节点
  * 
- * @param {object} [options = {}] 附加字段信息
+ * @param {array} [addFields] 附加字段信息
  * 
  * @return {object} 数据信息 
  * 
@@ -33,34 +33,13 @@
      }
  } ;
 
- function main(node , {
-   fields,
-   addFields = DATA_FIELDS
- }){
+ function main(node , addFields = DATA_FIELDS){
 
     node = from(node) ;
 
-    let data ;
+    if(!has(node , 'data')){
 
-    if(isArray(fields)){
-
-      data = {};
-
-      for(let field of fields){
-
-         if(node.hasOwnProperty(field)){
-
-            data[field] = node[field] ;
-         
-         }else if(addFields.hasOwnProperty(field)){
-
-            data[field] = addFields[field](node) ;
-         }
-      }
-
-    }else{
-
-      data = Object.assign({} , node) ;
+      let data = this.reader.data(node) ;
 
       let names = Object.keys(addFields) ;
     
@@ -68,27 +47,11 @@
       
          data[name] = addFields[name](node) ;
       }
+
+      define(node , 'data' , data) ;
     }
 
-    delete data.children ;
-    
-    delete data.hidden ;
-    
-    delete data.parentNodeId ;
-    
-    delete data.leafNodes ;
-    
-    delete data.relationNodes ;
-    
-    delete data.firstChildNodes ;
-    
-    delete data.lastChildNodes ;
-
-    delete data.descendantNodes ;
-
-    delete data.ancestorNodes ;
-    
-    return clone(data) ;
+    return get(node , 'data') ;
  }
 
 
