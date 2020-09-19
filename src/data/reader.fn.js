@@ -10,6 +10,8 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import createData from .reader.data
+ * 
  * @class
  * 
  */
@@ -23,6 +25,11 @@
         me.fields = getFields.call(me , fields) ;
 
         me.addFields = addFields ;
+    }
+
+    data(record){
+
+        return createData.call(me , record) ;
     }
 
     create(data){
