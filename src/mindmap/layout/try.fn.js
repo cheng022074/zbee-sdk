@@ -11,7 +11,14 @@
  * 
  */
 
- reset() ;
+ let {
+    restructuring
+ } = this ;
+
+ if(!restructuring){
+
+    reset() ;
+ }
 
  await waitNodeSized() ;
 
