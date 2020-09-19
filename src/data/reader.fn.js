@@ -29,7 +29,7 @@
 
     data(record){
 
-        return createData.call(me , record) ;
+        return createData.call(this , record) ;
     }
 
     create(data){

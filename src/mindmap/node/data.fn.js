@@ -15,8 +15,6 @@
  * 
  * @param {mixed} node 节点
  * 
- * @param {array} [fields] 字段数组
- * 
  * @return {object} 数据信息 
  * 
  */
@@ -33,49 +31,39 @@
       }
  } ;
 
- function main(node , fields){
+ function main(node){
 
    node = from(node) ;
 
    let {
       hidden
    } = node,
-   data = getData(node , {
-      fields,
-      addFields
-   });
+   data = getData(node , addFields);
 
    if(!hidden){
 
       let me = this,
       {
-         padding
-      } = me ;
+         padding,
+         height
+      } = me,
+      {
+         height:regionHeight
+      } = getRegion(),
+      heightPadding = 0;
 
-      if(data.hasOwnProperty('x')){
-      
-         data.x += padding ;
-      }
+      delete data.x ;
 
-      if(data.hasOwnProperty('y')){
-
-         let {
-            height
-         } = me ;
+      data.x = node.x + padding ;
    
-         let {
-            height:regionHeight
-         } = getRegion(),
-         heightPadding = 0;
-      
-         if(height !== regionHeight){
-      
-            heightPadding = padding ;
-         }
-      
-         data.y += heightPadding ;
-      
+      if(height !== regionHeight){
+   
+         heightPadding = padding ;
       }
+
+      delete data.y ;
+   
+      data.y = node.y + heightPadding ;
 
    }
    

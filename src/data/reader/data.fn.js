@@ -37,7 +37,9 @@
             get(){
 
                 return clone(get(me , 'record')[name]) ;
-            }
+            },
+            configurable:true,
+            enumerable:true
         }) ;
     }
  }

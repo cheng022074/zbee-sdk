@@ -13,6 +13,10 @@
  * 
  * @import get from object.property.inner.get
  * 
+ * @import from from .from scoped
+ * 
+ * @import getInnerPropertyName from .property.name scoped
+ * 
  * @param {mixed} node 节点
  * 
  * @param {array} [addFields] 附加字段信息
@@ -35,9 +39,11 @@
 
  function main(node , addFields = DATA_FIELDS){
 
-    node = from(node) ;
+    node = from(node);
 
-    if(!has(node , 'data')){
+    let innerPropertyName = getInnerPropertyName(node , 'data') ;
+
+    if(!has(node , innerPropertyName)){
 
       let data = this.reader.data(node) ;
 
@@ -48,10 +54,12 @@
          data[name] = addFields[name](node) ;
       }
 
-      define(node , 'data' , data) ;
+      delete data.children ;
+
+      define(node , innerPropertyName , data) ;
     }
 
-    return get(node , 'data') ;
+    return get(node , innerPropertyName) ;
  }
 
 
