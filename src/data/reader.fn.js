@@ -12,6 +12,8 @@
  * 
  * @import createData from .reader.data
  * 
+ * @import getNames from .reader.names
+ * 
  * @class
  * 
  */
@@ -22,9 +24,20 @@
 
         let me = this ;
 
-        me.fields = getFields.call(me , fields) ;
+        fields = getFields.call(me , fields) ;
 
         me.addFields = addFields ;
+
+        let {
+            names,
+            cacheNames
+        } = getNames(fields) ;
+
+        me.names = names ;
+
+        me.cacheNames = cacheNames ;
+
+        me.fields = fields ;
     }
 
     data(record){

@@ -17,6 +17,8 @@
  * 
  * @import is.defined
  * 
+ * @import getNames from .names
+ * 
  * @param {data.Record} record 数据记录
  * 
  * @return {object} 数据对象
@@ -64,33 +66,30 @@
 
     let me = this,
     {
-        fields,
-        addFields
+        addFields,
+        names,
+        cacheNames
     } = me,
-    additionalFields = addFields(record),
-    allFields = [
-        ...fields
-    ];
+    additionalFields = addFields(record);
+
+    names = [
+        ...names
+    ] ;
+
+    cacheNames = [
+        ...cacheNames
+    ] ;
 
     if(isDefined(additionalFields)){
 
-        allFields.push(...getFields.call(me , additionalFields)) ;
-    }
+        let {
+            names:addNames,
+            cacheNames:addCacheNames
+        } = getNames(getFields.call(me , additionalFields)) ;
 
-    let names = [],
-        cacheNames = [];
+        names.push(...addNames) ;
 
-    for(let {
-        name,
-        get
-    } of allFields){
-
-        names.push(name) ;
-
-        if(get){
-
-            cacheNames.push(name) ;
-        }
+        cacheNames.push(...addCacheNames) ;
     }
 
     return new Data(record , names , cacheNames) ;
