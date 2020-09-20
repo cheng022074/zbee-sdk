@@ -11,6 +11,8 @@
  * 
  * @import from from ..data.node.from scoped
  * 
+ * @import getLastChildNode from ..data.node.child.last scoped
+ * 
  * @param {mixed} parentNode 节点
  * 
  * @param {mixed} node 节点配置
@@ -18,23 +20,33 @@
  * 
  */
 
- parentNode = from(parentNode) ;
+parentNode = from(parentNode) ;
 
- let {
-    children,
-    hidden,
-    expanded
- } = parentNode;
+if(parentNode){
+  
+  node = from(node) ;
 
+  if(node && getLastChildNode(parentNode) === node){
 
- node = create(node , parentNode) ;
- 
- children.push(node) ;
+    return ;
 
- if(!hidden && expanded){
+  }
 
-   show(node) ;
- }
+  let {
+      children,
+      hidden,
+      expanded
+  } = parentNode;
 
- return node ;
+  node = create(node , parentNode) ;
+  
+  children.push(node) ;
+
+  if(!hidden && expanded){
+
+    show(node) ;
+  }
+
+  return node ;
+}
 
