@@ -58,9 +58,10 @@
 
     getAddFields(record){
 
-        let {
+        let me = this,
+        {
             addFields
-        } = this,
+        } = me,
         additionalFields = addFields(record);
     
         if(isDefined(additionalFields)){
