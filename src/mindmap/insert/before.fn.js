@@ -60,7 +60,10 @@ if(node){
    
       order(getParentNode(beforeNode)) ;
    
-      select(node) ;  
+      if(!select(node)){
+
+         me.layout() ;
+      }  
    
    }else{
    

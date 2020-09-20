@@ -59,7 +59,7 @@ if(!restructuring || restructureIndicateLocked){
 
             expand(parentNode) ;
 
-            //me.layout() ;
+            me.layout() ;
 
             me.restructureIndicateLocked = false ;
 
@@ -85,16 +85,18 @@ if(!restructuring || restructureIndicateLocked){
 
             if(offsetY >= 0){
 
-                preinsert(childNode , xy) ;
+                if(preinsert(childNode , xy)){
 
-                //me.layout() ;
+                    me.layout() ;
+                }
                 
                 return ;
             }
         }
 
-        append(parentNode , placeholderNode) ;
+        if(append(parentNode , placeholderNode)){
 
-       //me.layout() ;
+            me.layout() ;
+        }
     }
  }

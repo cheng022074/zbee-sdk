@@ -70,26 +70,15 @@ if(!isRootNode(baseNode)){
 
     let index = children.indexOf(baseNode) ;
 
-    switch(region){
+    if(region === 'after'){
 
-        case 'before':
-
-            index -- ;
-
-            break ;
-
-        case 'after':
-
-            index ++ ;
+        index ++ ;
     }
 
     if(index > length - 1){
 
         index = length ;
     
-    }else if(index < 0){
-
-        index = 0 ;
     }
     
     insertNode = create(insertNode , parentNode) ;

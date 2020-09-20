@@ -73,7 +73,10 @@ if(node){
     
     order(parentNode) ;
     
-    select(node) ;
+    if(!select(node)){
+
+      me.layout() ;
+    }
   
   }else{
   
