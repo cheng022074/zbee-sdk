@@ -26,7 +26,7 @@ if(parentNode){
   
   node = from(node) ;
 
-  if(node && getLastChildNode(parentNode) === node){
+  if(node && (parentNode === node || getLastChildNode(parentNode) === node)){
 
     return ;
 
