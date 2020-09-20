@@ -13,8 +13,6 @@
  * 
  * @import order from .order scoped
  * 
- * @import isNode from is.data.record
- * 
  * @import from from .node.from scoped
  * 
  * @param {object} [node = {}] 子节点配置信息
@@ -28,8 +26,7 @@
 let me = this,
 {
   restructuring
-} = me,
-isNewNode = !isNode(node);
+} = me;
 
 if(restructuring){
 
@@ -43,40 +40,44 @@ let {
     selected
 } = parentNode;
 
-if(isNewNode){
+node = from(node) ;
 
-  node = append(parentNode , node) ;
+let nodeSelected,
+    isNewNode = true;
 
-}else{
+if(node){
 
-  let {
-    selected
-  } = node ;
+    isNewNode = false ;
 
-  append(parentNode , node) ;
+    nodeSelected = node.selected ;
+}
 
-  if(selected){
+node = append(parentNode , node) ;
+
+if(node){
+
+  if(nodeSelected){
 
     node.selected = true ;
   }
-}
 
-if(!isSilentMode){
+  if(!isSilentMode){
 
-  if(selected && !expanded){
-
-    expand(parentNode) ;
+    if(selected && !expanded){
+  
+      expand(parentNode) ;
+      
+    }
+    
+    me.fireEvent('nodeappend' , data(node) , data(parentNode) , isNewNode) ;
+    
+    order(parentNode) ;
+    
+    select(node) ;
+  
+  }else{
+  
+    me.layout() ;
     
   }
-  
-  me.fireEvent('nodeappend' , data(node) , data(parentNode) , isNewNode) ;
-  
-  order(parentNode) ;
-  
-  select(node) ;
-
-}else{
-
-  me.layout() ;
-  
 }
