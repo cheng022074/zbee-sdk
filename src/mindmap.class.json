@@ -110,6 +110,9 @@
         },{
             "name":"save",
             "impl":".mindmap.save"
+        },{
+            "name":"restore",
+            "impl":".mindmap.restore"
         }
     ]
 }
