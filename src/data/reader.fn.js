@@ -14,6 +14,8 @@
  * 
  * @import getNames from .reader.names
  * 
+ * @import is.defined
+ * 
  * @class
  * 
  */
@@ -43,6 +45,30 @@
     data(record){
 
         return createData.call(this , record) ;
+    }
+
+    getAddFieldNames(record){
+
+        let {
+            names
+        } = this.getAddFields(record) ;
+
+        return names ;
+    }
+
+    getAddFields(record){
+
+        let {
+            addFields
+        } = this,
+        additionalFields = addFields(record);
+    
+        if(isDefined(additionalFields)){
+    
+            return getFields.call(me , additionalFields) ;
+        }
+    
+        return [] ;
     }
 
     create(data){

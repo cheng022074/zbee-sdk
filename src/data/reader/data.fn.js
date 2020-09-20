@@ -66,31 +66,19 @@
 
     let me = this,
     {
-        addFields,
         names,
         cacheNames
     } = me,
-    additionalFields = addFields(record);
+    {
+        names:addNames,
+        cacheNames:addCacheNames
+    } = getNames(me.getAddFields(record));
 
-    names = [
-        ...names
-    ] ;
-
-    cacheNames = [
-        ...cacheNames
-    ] ;
-
-    if(isDefined(additionalFields)){
-
-        let {
-            names:addNames,
-            cacheNames:addCacheNames
-        } = getNames(getFields.call(me , additionalFields)) ;
-
-        names.push(...addNames) ;
-
-        cacheNames.push(...addCacheNames) ;
-    }
-
-    return new Data(record , names , cacheNames) ;
+    return new Data(record , [
+        ...names,
+        ...addNames,
+    ] , [
+        ...cacheNames,
+        ...addCacheNames
+    ]) ;
  }
