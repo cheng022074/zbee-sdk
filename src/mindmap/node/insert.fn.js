@@ -5,25 +5,60 @@
  * 
  * @import create from .create scoped
  * 
- * @import isRootNode from .is.root scoped
+ * @import isRootNode from ..data.node.is.root scoped
  * 
- * @import getParentNode from .parent scoped
+ * @import getParentNode from ..data.node.parent scoped
+ * 
+ * @import getPreviousNode from ..data.node.slibing.previous scoped
+ * 
+ * @import getNextNode from ..data.node.slibing.next scoped
  * 
  * @import show from .show scoped
  * 
- * @import isNode from is.data.record
+ * @import from from ..data.node.from scoped
  * 
  * @param {mixed} [insertNode = {}] 需要插入的节点
  * 
- * @param {data.Record} baseNode 参照节点
+ * @param {mixed} baseNode 参照节点
  * 
- * @param {number} [offset = 0] 插入偏移位置
+ * @param {number} region 插入偏移位置
  * 
  * @return {data.Record} 插入后的节点
  * 
  */
 
 if(!isRootNode(baseNode)){
+
+    baseNode = from(baseNode) ;
+
+    insertNode = from(insertNode) ;
+
+    if(insertNode){
+
+        if(insertNode === baseNode){
+
+            return ;
+        }
+
+        switch(region){
+
+            case 'before':
+
+                if(getPreviousNode(baseNode) === insertNode){
+
+                    return ;
+                }
+
+                break;
+
+            case 'after':
+
+                if(getNextNode(baseNode) === insertNode){
+
+                    return ;
+                }
+        }
+    }
 
     let parentNode = getParentNode(baseNode),
     {
@@ -33,7 +68,20 @@ if(!isRootNode(baseNode)){
         length
     } = children;
 
-    let index = children.indexOf(baseNode) + offset ;
+    let index = children.indexOf(baseNode) ;
+
+    switch(region){
+
+        case 'before':
+
+            index -- ;
+
+            break ;
+
+        case 'after':
+
+            index ++ ;
+    }
 
     if(index > length - 1){
 
@@ -42,11 +90,6 @@ if(!isRootNode(baseNode)){
     }else if(index < 0){
 
         index = 0 ;
-    }
-
-    if(isNode(insertNode) && getParentNode(insertNode) === parentNode && children[index] === insertNode){
-
-        return ;
     }
     
     insertNode = create(insertNode , parentNode) ;

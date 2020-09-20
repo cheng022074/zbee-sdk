@@ -13,8 +13,6 @@
  * 
  * @import select from ..select scoped
  * 
- * @import isNode from is.data.record
- * 
  * @import from from ..node.from scoped
  * 
  * @param {mixed} node 插入的节点配置
@@ -28,35 +26,33 @@
 let me = this,
 {
    restructuring
-} = me,
-isNewNode = !isNode(node);
+} = me;
 
 if(restructuring){
 
    return;
 }
 
-afterNode = from(afterNode) ;
+node = from(node) ;
 
-if(isNewNode){
+let nodeSelected,
+    isNewNode = true;
 
-   node = insert(node , afterNode) ;
+if(node){
 
-}else{
+   isNewNode = false ;
 
-   let {
-      selected
-   } = node ;
+   nodeSelected = node.selected ;
+}
 
-   node = insert(node , afterNode) ;
+node = insert(node , afterNode) ;
 
-   if(selected && node){
+if(node){
+
+   if(nodeSelected){
 
       node.selected = true ;
    }
-}
-
-if(node){
 
    if(!isSilentMode){
 
