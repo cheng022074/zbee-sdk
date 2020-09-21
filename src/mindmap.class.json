@@ -96,12 +96,6 @@
             "name":"fireIndicatorInput",
             "impl":".mindmap.node.indicator.input"
         },{
-            "name":"addPlugin",
-            "impl":".mindmap.node.plugin.add"
-        },{
-            "name":"removePlugin",
-            "impl":".mindmap.node.plugin.remove"
-        },{
             "name":"serialize",
             "impl":".mindmap.node.serialize"
         },{
