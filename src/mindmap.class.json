@@ -92,12 +92,6 @@
         },{
             "name":"fireIndicatorInput",
             "impl":".mindmap.node.indicator.input"
-        },{
-            "name":"serialize",
-            "impl":".mindmap.node.serialize"
-        },{
-            "name":"deserialize",
-            "impl":".mindmap.node.deserialize"
         }
     ]
 }
