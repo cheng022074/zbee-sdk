@@ -101,12 +101,6 @@
         },{
             "name":"deserialize",
             "impl":".mindmap.node.deserialize"
-        },{
-            "name":"save",
-            "impl":".mindmap.save"
-        },{
-            "name":"restore",
-            "impl":".mindmap.restore"
         }
     ]
 }
