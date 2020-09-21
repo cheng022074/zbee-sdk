@@ -3,33 +3,38 @@
  * 
  * 保存脑图节点数据
  * 
- * @import copy from object.copy
+ * @import getData from .data.node.data scoped
  * 
  * @return {array} 脑图节点数据  
  * 
  */
 
- let {
-    nodes,
-    reader
- } = this,
- result = [],
- names = [
-     'id',
-     'text'
- ];
+function main(){
 
- nodes.forEach(node => {
+   let me = this ;
 
-    let data = {} ;
-    
-    copy(data , node , names) ;
+   me.snapshotData = save(me.rootNode) ;
+}
 
-    copy(data , node , reader.getAddFieldNames(node)) ;
+function save(node){
 
-    result.push(data) ;
+   let data = {
+      ...getData(node),
+      children:[]
+   },
+   {
+      children:items
+   } = data,
+   {
+      children
+   } = node;
 
- }) ;
+   for(let childNode of children){
 
- return result ;
+      items.push(save(childNode)) ;
+   }
+
+   return data ;
+}
+
 
