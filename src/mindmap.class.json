@@ -13,9 +13,6 @@
     },
     "methods":[
         "load",{
-            "name":"loadData",
-            "impl":".mindmap.load.data"
-        },{
             "name":"setNodeSize",
             "impl":".mindmap.node.size"
         },
