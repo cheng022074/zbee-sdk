@@ -31,11 +31,11 @@ if(!isRootNode(baseNode)){
 
     baseNode = from(baseNode) ;
 
-    insertNode = from(insertNode) ;
+    let insertMindmapNode = from(insertNode) ;
 
-    if(insertNode){
+    if(insertMindmapNode){
 
-        if(insertNode === baseNode){
+        if(insertMindmapNode === baseNode){
 
             return ;
         }
@@ -44,7 +44,7 @@ if(!isRootNode(baseNode)){
 
             case 'before':
 
-                if(getPreviousNode(baseNode) === insertNode){
+                if(getPreviousNode(baseNode) === insertMindmapNode){
 
                     return ;
                 }
@@ -53,7 +53,7 @@ if(!isRootNode(baseNode)){
 
             case 'after':
 
-                if(getNextNode(baseNode) === insertNode){
+                if(getNextNode(baseNode) === insertMindmapNode){
 
                     return ;
                 }

@@ -40,12 +40,10 @@ let {
     selected
 } = parentNode;
 
-node = from(node) ;
-
 let nodeSelected,
     isNewNode = true;
 
-if(node){
+if(from(node)){
 
     isNewNode = false ;
 

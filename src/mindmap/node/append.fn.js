@@ -24,9 +24,9 @@ parentNode = from(parentNode) ;
 
 if(parentNode){
   
-  node = from(node) ;
+  let mindmapNode = from(node) ;
 
-  if(node && (parentNode === node || getLastChildNode(parentNode) === node)){
+  if(mindmapNode && (parentNode === mindmapNode || getLastChildNode(parentNode) === mindmapNode)){
 
     return ;
 
