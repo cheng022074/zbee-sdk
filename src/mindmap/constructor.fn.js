@@ -31,6 +31,8 @@
  * 
  * @import getAPI from .constructor.api scoped
  * 
+ * @import emptyFn from function.empty value
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -65,6 +67,8 @@
  * 
  * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
  * 
+ * @param {function} [config.callback] 脑图内部回调
+ * 
  */
 
  let me = this ;
@@ -72,6 +76,8 @@
  me.api = getAPI() ;
 
  me.nodes = new Map() ;
+
+ me.callback = callback || emptyFn ;
 
  me.visibilityNodeLevels = new Map();
 

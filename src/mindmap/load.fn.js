@@ -18,7 +18,8 @@
  let me = this,
  {
     reader,
-    readConfig
+    readConfig,
+    callback
  } = me,
  result = reader.read(data , readConfig) ;
 
@@ -33,6 +34,8 @@
     initNodes() ;
 
     initVisibilityNodes() ;
+
+    callback('load') ;
 
     await tryLayout() ;
  }
