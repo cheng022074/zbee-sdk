@@ -15,6 +15,8 @@
  * 
  * @import getSelectedNode from ..api.node.selected scoped
  * 
+ * @import getRootNode from ..api.node.root scoped
+ * 
  * @import on from ..api.on scoped
  * 
  * @import off from ..api.off scoped
@@ -36,6 +38,7 @@
    hasNodeIndicator,
    getPropertyAncestorNode,
    getSelectedNode,
+   getRootNode,
    property,
    getDescendantNodes,
    getLeafNodes,

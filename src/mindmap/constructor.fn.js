@@ -77,7 +77,9 @@
 
  me.nodes = new Map() ;
 
- me.callback = callback || emptyFn ;
+ callback = callback || emptyFn ;
+
+ me.callback = (...args) => callback.call(me , ...args) ;
 
  me.visibilityNodeLevels = new Map();
 
