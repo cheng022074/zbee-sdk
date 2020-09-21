@@ -133,15 +133,17 @@ function setNodeInfo(node , data){
 
             default:
 
-                value = node[field] = clone(value) ;
-
-                let {
+                let newValue = node[field] = clone(value),
+                {
                     id
                 } = node ;
 
-                me.fireEvent(`node${field}change` , id , value , oldValue) ;
+                if(!equals(newValue , oldValue)){
 
-                me.fireEvent('nodechange' , id , field , value , oldValue) ;
+                    me.fireEvent(`node${field}change` , id , value , oldValue) ;
+
+                    me.fireEvent('nodechange' , id , field , value , oldValue) ;
+                }
         }
 
         isUpdated = true ;
