@@ -41,9 +41,9 @@ function main(node , data , isSilentMode){
 
             if(setNodeInfo.call(me , node , data , isSilentMode)){
 
-                unsized(node , true) ;
-
                 if(!node.hidden){
+
+                    unsized(node , true) ;
 
                     me.layout() ;
                 }
