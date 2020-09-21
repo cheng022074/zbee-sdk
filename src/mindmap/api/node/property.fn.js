@@ -13,8 +13,6 @@
  * 
  * @param {mixed}  [value] 属性值
  * 
- * @param {boolean} [isLayout = true] 是否应用自动布局
- * 
  * @return {mixed} 属性值
  * 
  */
@@ -23,7 +21,7 @@
 
     info(node , {
         [name]:value
-    } , isLayout) ; 
+    } , true) ; 
  
  }else{
 

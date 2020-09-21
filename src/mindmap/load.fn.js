@@ -35,7 +35,7 @@
 
     initVisibilityNodes() ;
 
-    callback('load') ;
-
     await tryLayout() ;
+
+    callback('load') ;
  }

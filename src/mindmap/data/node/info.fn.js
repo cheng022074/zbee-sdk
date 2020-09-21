@@ -25,11 +25,11 @@
  * 
  * @param {object} [data] 修改节点信息
  * 
- * @param {boolean} [isLayout = true] 是否应用自动布局
+ * @param {boolean} [isSilentMode = false] 是否静默模式
  * 
  */
 
-function main(node , data , isLayout){
+function main(node , data , isSilentMode){
 
     let me =  this ;
 
@@ -39,16 +39,13 @@ function main(node , data , isLayout){
 
         if(isObject(data)){
 
-            if(setNodeInfo.call(me , node , data)){
+            if(setNodeInfo.call(me , node , data , isSilentMode)){
 
                 unsized(node , true) ;
 
                 if(!node.hidden){
 
-                    if(isLayout){
-
-                        me.layout() ;
-                    }
+                    me.layout() ;
                 }
             }
 
@@ -67,7 +64,7 @@ function main(node , data , isLayout){
     }
 }
 
-function setNodeInfo(node , data){
+function setNodeInfo(node , data , isSilentMode){
 
     let fields = Object.keys(data),
         me = this,
@@ -138,7 +135,7 @@ function setNodeInfo(node , data){
                     id
                 } = node ;
 
-                if(!equals(newValue , oldValue)){
+                if(!equals(newValue , oldValue) && !isSilentMode){
 
                     me.fireEvent(`node${field}change` , id , value , oldValue) ;
 
