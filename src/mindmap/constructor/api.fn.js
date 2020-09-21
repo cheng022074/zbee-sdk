@@ -26,6 +26,10 @@
  * @import getDescendantNodes from ..api.nodes.descendant scoped
  * 
  * @import getLeafNodes from ..api.nodes.descendant.leaf scoped
+ * 
+ * @import isLeafNode from ..api.node.is.leaf scoped
+ * 
+ * @import isRootNode from ..api.node.is.root scoped
  *
  * @return {object} 
  *
@@ -33,6 +37,8 @@
  */
 
  return {
+   isLeafNode,
+   isRootNode,
    addNodeIndicator,
    removeNodeIndicator,
    hasNodeIndicator,
