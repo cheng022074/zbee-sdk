@@ -5,7 +5,7 @@
  * 
  * @import data from ....node.data scoped
  * 
- * @return {data.Record} 脑图节点
+ * @return {object} 脑图节点
  * 
  */
 
