@@ -33,15 +33,15 @@ function main(node , addFields = DATA_FIELDS){
 
    node = from(node);
 
-   let data = this.reader.data(node),
+   let data = this.reader.data(node , [
+      'children'
+   ]),
          names = Object.keys(addFields) ;
 
    for(let name of names){
 
       data[name] = addFields[name](node) ;
    }
-
-   delete data.children ;
 
    return data ;
 }

@@ -29,7 +29,7 @@
     defineProperty
  } = Object ;
 
- function main(record){
+ function main(record , ignoreNames = []){
 
     let me = this,
     {
@@ -46,6 +46,11 @@
         cache = {};
 
     for(let name of names){
+
+        if(ignoreNames.includes(name)){
+
+            continue ;
+        }
 
         defineProperty(data , name , {
             get(){
