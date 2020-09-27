@@ -29,36 +29,6 @@
     defineProperty
  } = Object ;
 
- function Data(record , names , cacheNames){
-
-    let me = this,
-        cache = {};
-
-    define(me , {
-        reset(){
-
-            clear(get(me , 'cache')) ; 
-        }
-    }) ;
-
-    for(let name of names){
-
-        defineProperty(me , name , {
-            get(){
-
-                if((cacheNames.includes(name) && !cache.hasOwnProperty(name)) || !cacheNames.includes(name)){
-
-                    cache[name] = clone(record[name]) ;
-                }
-
-                return cache[name] ;
-            },
-            configurable:true,
-            enumerable:true
-        }) ;
-    }
- }
-
  function main(record){
 
     let me = this,
@@ -72,14 +42,20 @@
         ...addNames
     ] ;
 
-    let data = {} ;
+    let data = {},
+        cache = {};
 
     for(let name of names){
 
         defineProperty(data , name , {
             get(){
 
-                return record[name] ;
+                if(cache.hasOwnProperty(name)){
+
+                    return cache[name] ;
+                }
+
+                return cache[name] = clone(record[name]) ;
             },
             enumerable:true,
             configurable:true
