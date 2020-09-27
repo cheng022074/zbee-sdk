@@ -34,9 +34,9 @@ function main(node , addFields = DATA_FIELDS){
    node = from(node);
 
    let data = this.reader.data(node , [
-      'children'
-   ]),
-         names = Object.keys(addFields) ;
+         'children'
+      ]),
+      names = Object.keys(addFields) ;
 
    for(let name of names){
 
