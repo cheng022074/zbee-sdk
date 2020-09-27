@@ -37,9 +37,9 @@
         me.fields = fields ;
     }
 
-    data(record){
+    data(record , options){
 
-        return createData.call(this , record) ;
+        return createData.call(this , record , options) ;
     }
 
     getAddFieldNames(record){

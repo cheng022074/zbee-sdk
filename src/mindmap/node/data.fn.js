@@ -9,7 +9,9 @@
  * 
  * @import getData from ..data.node.data scoped
  * 
- * @import getRegion from ..region scoped
+ * @import getX from .x scoped
+ * 
+ * @import getY from .y scoped
  * 
  * @import from from ..data.node.from scoped
  * 
@@ -28,46 +30,23 @@
       leaf(node){
 
          return isLeafNode(node) ;
+      },
+
+      x(node){
+
+         return getX(node) ;
+      },
+
+      y(node){
+
+         return getY(node) ;
       }
  } ;
 
  function main(node){
 
-   node = from(node) ;
-
-   let {
-      hidden
-   } = node,
-   data = getData(node , addFields);
-
-   if(!hidden){
-
-      let me = this,
-      {
-         padding,
-         height
-      } = me,
-      {
-         height:regionHeight
-      } = getRegion(),
-      heightPadding = 0;
-
-      delete data.x ;
-
-      data.x = node.x + padding ;
+   return getData(from(node) , addFields);
    
-      if(height !== regionHeight){
-   
-         heightPadding = padding ;
-      }
-
-      delete data.y ;
-   
-      data.y = node.y + heightPadding ;
-
-   }
-   
-   return data ;
  }
 
  

@@ -21,6 +21,8 @@
  * 
  * @param {data.Record} record 数据记录
  * 
+ * @param {object} [options = {}] 配置
+ * 
  * @return {object} 数据对象
  * 
  */
@@ -29,7 +31,10 @@
     defineProperty
  } = Object ;
 
- function main(record , ignoreNames = []){
+ function main(record , {
+    ignoreFields = [],
+    fields = {}
+ }){
 
     let me = this,
     {
@@ -39,15 +44,18 @@
 
     names = [
         ...names,
-        ...addNames
+        ...addNames,
+        ...Object.keys(fields)
     ] ;
+
+    names = Array.from(new Set(names)) ;
 
     let data = {},
         cache = {};
 
     for(let name of names){
 
-        if(ignoreNames.includes(name)){
+        if(ignoreFields.includes(name)){
 
             continue ;
         }
@@ -60,10 +68,14 @@
                     return cache[name] ;
                 }
 
+                if(fields.hasOwnProperty(name)){
+
+                    return cache[name] = clone(fields[name](record)) ;
+                }
+
                 return cache[name] = clone(record[name]) ;
             },
-            enumerable:true,
-            configurable:true
+            enumerable:true
         }) ;
     }
 
