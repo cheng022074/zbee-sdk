@@ -11,23 +11,13 @@
  * 
  */
 
- let names = [],
-     cacheNames = [] ;
+ let names = [] ;
 
 for(let {
-    name,
-    get
+    name
 } of fields){
 
     names.push(name) ;
-
-    if(isFunction(get)){
-
-        cacheNames.push(name) ;
-    }
 }
 
-return {
-    names,
-    cacheNames
-} ;
+return names ;

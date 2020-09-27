@@ -31,11 +31,10 @@
 
  function Data(record , names , cacheNames){
 
-    let me = this ;
+    let me = this,
+        cache = {};
 
     define(me , {
-        record,
-        cache:{},
         reset(){
 
             clear(get(me , 'cache')) ; 
@@ -47,11 +46,9 @@
         defineProperty(me , name , {
             get(){
 
-                let cache = get(me , 'cache') ;
-
                 if((cacheNames.includes(name) && !cache.hasOwnProperty(name)) || !cacheNames.includes(name)){
 
-                    cache[name] = clone(get(me , 'record')[name]) ;
+                    cache[name] = clone(record[name]) ;
                 }
 
                 return cache[name] ;
@@ -66,19 +63,28 @@
 
     let me = this,
     {
-        names,
-        cacheNames
+        names
     } = me,
-    {
-        names:addNames,
-        cacheNames:addCacheNames
-    } = getNames(me.getAddFields(record));
+    addNames = getNames(me.getAddFields(record));
 
-    return new Data(record , [
+    names = [
         ...names,
-        ...addNames,
-    ] , [
-        ...cacheNames,
-        ...addCacheNames
-    ]) ;
+        ...addNames
+    ] ;
+
+    let data = {} ;
+
+    for(let name of names){
+
+        defineProperty(data , name , {
+            get(){
+
+                return record[name] ;
+            },
+            enumerable:true,
+            configurable:true
+        }) ;
+    }
+
+    return data ;
  }

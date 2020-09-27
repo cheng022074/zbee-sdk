@@ -30,14 +30,9 @@
 
         me.addFields = addFields ;
 
-        let {
-            names,
-            cacheNames
-        } = getNames(fields) ;
+        let names = getNames(fields) ;
 
         me.names = names ;
-
-        me.cacheNames = cacheNames ;
 
         me.fields = fields ;
     }

@@ -7,18 +7,7 @@
  * 
  * @import layout from ..layout scoped
  * 
- * @import reset from ..data.nodes.data.reset scoped
- * 
  */
-
- let {
-    restructuring
- } = this ;
-
- if(!restructuring){
-
-    reset() ;
- }
 
  await waitNodeSized() ;
 
