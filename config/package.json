@@ -54,17 +54,16 @@
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
         ]
     },
-    "webpack-vue":{
-        "type":"webpack",
+    "zbee-webpack":{
+        "type":"node",
+        "version":"0.0.0",
         "classes":[
-            "browser.event.gesture.contextmenu",
-            "browser.event.gesture.tap",
-            "browser.event.gesture.drag",
-            "browser.event.gesture.vue",
-            "browser.event.touch.init"
+            "webpack.*"
         ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\TEST\\WEBPACK\\src\\lib.js"
-        ]
+        "api":{
+            "SPATest":"webpack.spa.test",
+            "SPADevelopment":"webpack.spa.development",
+            "SPAProduction":"webpack.spa.production"
+        }
     }
 }

@@ -26,10 +26,12 @@
     "axios": "^0.18.0",
     "body-parser": "^1.19.0",
     "chokidar": "^3.1.1",
+    "clean-webpack-plugin": "^3.0.0",
     "date-and-time": "^0.11.0",
     "ejs": "^2.6.1",
     "ejsexcel": "^3.5.2",
     "express": "^4.17.1",
+    "file-loader": "^6.1.0",
     "html-minifier": "^3.5.20",
     "js-beautify": "^1.7.5",
     "koa": "^2.5.1",
@@ -61,6 +63,6 @@
     "debug": "zb debug",
     "plan": "zb plan",
     "compile": "zb compile",
-    "zbee":"node ../ZBEE-COMPLIER/bin/zb.js"
+    "zbee": "node ../ZBEE-COMPLIER/bin/zb.js"
   }
 }
