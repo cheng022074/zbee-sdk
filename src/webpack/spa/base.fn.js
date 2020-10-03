@@ -76,7 +76,7 @@ return {
   context,
   output: {
     filename: 'main.js',
-    path: join(__dirname , '../dist'),
+    path: join(context , 'dist'),
   },
   plugins:[
     new CleanWebpackPlugin()

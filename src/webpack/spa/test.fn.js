@@ -50,7 +50,10 @@ return merge(base({
         }]
     },
     optimization:{
-        minimize:false
+        minimize:false,
+        splitChunks:{
+            chunks:'all'
+        }
     },
     plugins:[
         new MiniCssExtractPlugin(),
@@ -58,5 +61,12 @@ return merge(base({
             template:join(context , htmlPath),
             minify:false
         })
-    ]
+    ],
+    performance:{
+        hints:false,
+        assetFilter(){
+  
+          return false ;
+        } 
+    }
 }) ;
