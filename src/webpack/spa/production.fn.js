@@ -21,6 +21,10 @@
  * 
  * @param {string} options.context 工程目录
  * 
+ * @param {string} options.htmlPath 页面路径
+ * 
+ * @param {string} [...options.options] 其它配置
+ * 
  * @return {object} Webpack 配置 
  * 
  */
@@ -37,7 +41,8 @@ HtmlWebpackPlugin = require('html-webpack-plugin'),
 } = require('path');
   
 return  merge(base({
-  context
+  context,
+  ...options
 }) , {
   mode:'production',
   optimization: {
@@ -60,7 +65,7 @@ return  merge(base({
   },
   plugins:[
     new HtmlWebpackPlugin({
-        template:join(context , 'public/index.html')
+        template:join(context , htmlPath)
     }),
     new MiniCssExtractPlugin()
   ],

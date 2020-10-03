@@ -11,6 +11,8 @@
  * 
  * @param {string} options.context 工程目录
  * 
+ * @param {string} options.bootstrapPath 引导脚本路径 
+ * 
  * @return {object} Webpack 配置 
  * 
  */
@@ -23,7 +25,7 @@ const {
 } = require('clean-webpack-plugin');
 
 return {
-  entry: './src/index.js',
+  entry: join(context , bootstrapPath),
   context,
   output: {
     filename: 'main.js',

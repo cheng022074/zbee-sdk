@@ -17,6 +17,10 @@
  * 
  * @param {string} options.context 工程目录
  * 
+ * @param {string} options.htmlPath 页面路径
+ * 
+ * @param {string} [...options.options] 其它配置
+ * 
  * @return {object} Webpack 配置 
  * 
  */
@@ -30,7 +34,8 @@ const {
   } = require('path');
   
  return merge(base({
-   context
+   context,
+   ...options
  }) , {
     mode:'development',
     devtool: 'inline-source-map',
@@ -39,7 +44,7 @@ const {
     },
     plugins:[
       new HtmlWebpackPlugin({
-          template:join(context , 'public/index.html')
+          template:join(context , htmlPath)
       })
     ],
     module:{

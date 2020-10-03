@@ -17,6 +17,10 @@
  * 
  * @param {string} options.context 工程目录
  * 
+ * @param {string} options.htmlPath 页面路径
+ * 
+ * @param {string} [...options.options] 其它配置
+ * 
  * @return {object} Webpack 配置 
  * 
  */
@@ -31,7 +35,8 @@ HtmlWebpackPlugin = require('html-webpack-plugin'),
 } = require('path');
   
 return merge(base({
-    context
+    context,
+    ...options
 }) , {
     mode:'production',
     devtool: 'inline-source-map',
@@ -50,7 +55,7 @@ return merge(base({
     plugins:[
         new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
-            template:join(context , 'public/index.html'),
+            template:join(context , htmlPath),
             minify:false
         })
     ]
