@@ -29,7 +29,9 @@ const {
     join
   } = require('path');
   
- return merge(base() , {
+ return merge(base({
+   context
+ }) , {
     mode:'development',
     devtool: 'inline-source-map',
     devServer:{

@@ -7,6 +7,10 @@
  * 
  * @require file-loader
  * 
+ * @param {object} options 配置
+ * 
+ * @param {string} options.context 工程目录
+ * 
  * @return {object} Webpack 配置 
  * 
  */
@@ -20,6 +24,7 @@ const {
 
 return {
   entry: './src/index.js',
+  context,
   output: {
     filename: 'main.js',
     path: join(__dirname , '../dist'),
