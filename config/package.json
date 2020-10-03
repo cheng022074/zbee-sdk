@@ -64,6 +64,9 @@
             "SPATest":"webpack.spa.test",
             "SPADevelopment":"webpack.spa.development",
             "SPAProduction":"webpack.spa.production"
-        }
+        },
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\TEMPLATE\\TEMPLATE-WEBPACK-WEB\\node_modules\\zbee-webpack"
+        ]
     }
 }
