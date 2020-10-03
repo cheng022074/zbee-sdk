@@ -13,6 +13,10 @@
  * 
  * @require css-loader
  * 
+ * @param {object} options 配置
+ * 
+ * @param {string} options.context 工程目录
+ * 
  * @return {object} Webpack 配置 
  * 
  */
@@ -25,7 +29,7 @@ const {
     join
   } = require('path');
   
-  module.exports = merge(base() , {
+ return merge(base() , {
     mode:'development',
     devtool: 'inline-source-map',
     devServer:{
@@ -33,7 +37,7 @@ const {
     },
     plugins:[
       new HtmlWebpackPlugin({
-          template:join(__dirname , '../public/index.html')
+          template:join(context , 'public/index.html')
       })
     ],
     module:{
