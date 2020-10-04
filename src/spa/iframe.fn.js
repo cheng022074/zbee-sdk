@@ -3,7 +3,11 @@
  * 
  * 基于 iframe 的 SPA 方案
  * 
- * @import add from event.listener.add
+ * @import on from event.listener.add
+ * 
+ * @import addCls from browser.element.class.add
+ * 
+ * @import removeCls from browser.element.class.remove
  * 
  * @class
  * 
@@ -57,9 +61,9 @@
 
                 let iframeEl = await getCacheIframe(url) ;
 
-                if(url === me.$url){
+                if(iframeEl.dataset.url === me.$url){
 
-                    processCacheIframe(iframeEl) ;
+                    processCacheIframe(iframeEl , url) ;
 
                     createCacheIframe.call(me , url) ;
 
@@ -102,11 +106,16 @@
     } = this,
     iframeEl = document.createElement('iframe');
 
-    iframeEl.className = `${cls} ${cacheCls}` ;
+    addCls(iframeEl , [
+        cls,
+        cacheCls
+    ]) ;
+
+    iframeEl.dataset.url = url ;
 
     containerEl.append(iframeEl) ;
 
-    cacheIframeMap[url] = new Promise(callback => add(iframeEl , 'load' , callback , {
+    cacheIframeMap[url] = new Promise(callback => on(iframeEl , 'load' , callback , {
         once:true
     })) ;
  }
@@ -120,12 +129,31 @@
     return await cacheIframeMap[url] ;
  }
 
- function processCacheIframe(cacheIframe){
+ function processCacheIframe(cacheIframeEl){
 
+    let {
+        cacheCls,
+        cacheIframeMap
+    } = this ;
 
+    removeCls(cacheIframeEl , cacheCls) ;
+
+    delete cacheIframeMap[cacheIframeEl.dataset.url] ;
+
+    return cacheIframeEl ;
  }
 
  function getIframeURL(){
 
+    let {
+        containerEl,
+        cacheCls
+    } = this ;
 
+    let iframeEl = containerEl.querySelector(`iframe:not(.${cacheCls})`) ;
+
+    if(iframeEl){
+
+        return iframeEl.dataset.url ;
+    }
  }
