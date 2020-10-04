@@ -68,5 +68,16 @@
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\TEMPLATE\\TEMPLATE-WEBPACK-WEB\\node_modules\\zbee_webpack"
         ]
+    },
+    "spa-iframe":{
+        "type":"webpack",
+        "prefixes":{
+            "css":"zbee"
+        },
+        "classes":[
+            "spa.iframe",
+            "css::spa.iframe.cache",
+            "css::spa.iframe"
+        ]
     }
 }

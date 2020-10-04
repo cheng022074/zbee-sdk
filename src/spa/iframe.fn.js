@@ -19,8 +19,8 @@
         containerEl,
         urls,
         defaultURL,
-        cls = 'zbee-spa-iframe',
-        cacheCls = 'zbee-spa-iframe-cache'
+        cls = 'css-spa-iframe',
+        cacheCls = 'css-spa-iframe-cache'
     }){
 
         let me = this ;
@@ -42,7 +42,7 @@
         me.url = defaultURL ;
     }
 
-    async set url(url){
+    set url(url){
 
         let me = this ;
 
@@ -59,7 +59,7 @@
 
             while(true){
 
-                let iframeEl = await getCacheIframe(url) ;
+                let iframeEl =  getCacheIframe(url) ;
 
                 if(iframeEl.dataset.url === me.$url){
 
@@ -99,7 +99,6 @@
 
     let {
         cacheIframeMap,
-        iframeEl,
         cls,
         cacheCls,
         containerEl
