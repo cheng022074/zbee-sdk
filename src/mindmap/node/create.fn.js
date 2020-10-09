@@ -62,6 +62,8 @@ let options = {
    children:[]
 } ;
 
+delete options.hidden ;
+
 if(parentNode){
 
    options.parentNodeId = parentNode.id ;
