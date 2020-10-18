@@ -33,9 +33,9 @@
             "css::mindmap"
         ],
         "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-SDK",
-            "/Users/cheng022074/Documents/Code/XY/XY-SDK",
-            "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-SDK"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-SDK\\node_modules\\zbee-sdk\\package\\xy",
+            "/Users/cheng022074/Documents/Code/XY/XY-SDK/node_modules/zbee-sdk/package/xy",
+            "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-SDK\\node_modules\\zbee-sdk\\package\\xy"
         ]
     },
     "mind-sdk":{
