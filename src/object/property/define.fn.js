@@ -4,8 +4,6 @@
  * 
  * @import innerDefine from .inner.define
  * 
- * @import innerName from .inner.name
- * 
  * @import is.function
  * 
  * @import doSet from .define.set
