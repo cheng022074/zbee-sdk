@@ -7,12 +7,6 @@
  * 
  * @import define from object.property.define
  * 
- * @import createObservable from ..observable
- * 
- * @import innerDefine from object.property.inner.define
- * 
- * @import innerGet from object.property.inner.get
- * 
  * @import is from is.data.item
  * 
  * @import is.defined
@@ -46,8 +40,6 @@
     isConvert = isDefined(raw) && isDefined(raws) && isDefined(index) && isDefined(data) ;
 
     record = record || {} ;
-    
-    innerDefine(record , 'observable' , createObservable()) ;
 
     processFields(isConvert , record , fields , raw , raws , index , data) ;
 
@@ -93,21 +85,6 @@
                 get,
                 value
             }) ;
-    
-            if(is(value)){
-    
-                innerGet(value , 'observable').belongTo(record) ;   
-            
-            }else if(isArray(value)){
-
-                for(let item of value){
-
-                    if(is(item)){
-
-                        innerGet(item , 'observable').belongTo(record) ;
-                    }
-                }
-            }
         
         }else{
 
