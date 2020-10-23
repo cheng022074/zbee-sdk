@@ -13,8 +13,6 @@
  * 
  * @import has from ..inner.has
  * 
- * @import is from is.data.item
- * 
  * @param {string} name 属性名称
  * 
  * @param {function} [onSet] 设置属性值
@@ -39,17 +37,7 @@
             value = onSet.call(me , value , oldValue) ;
         }
 
-        if(is(oldValue)){
-
-            get(oldValue , 'observable').independent() ;
-        }
-
         set(me , name , value) ;
-
-        if(is(me)){
-
-            get(me , 'observable').fireEvent('propertychange' , me , name , value , oldValue) ;
-        }
 
         if(isFunction(onAfterSet)){
 
