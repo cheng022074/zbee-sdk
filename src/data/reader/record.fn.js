@@ -7,6 +7,8 @@
  * 
  * @import define from object.property.define
  * 
+ * @import innerDefine from object.property.inner.define
+ * 
  * @import is from is.data.item
  * 
  * @import is.defined
@@ -40,6 +42,8 @@
     isConvert = isDefined(raw) && isDefined(raws) && isDefined(index) && isDefined(data) ;
 
     record = record || {} ;
+
+    innerDefine(record , 'DATA_RECORD' , true) ;
 
     processFields(isConvert , record , fields , raw , raws , index , data) ;
 
