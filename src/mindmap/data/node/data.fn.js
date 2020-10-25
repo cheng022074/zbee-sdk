@@ -33,14 +33,15 @@ function main(node , fields = DATA_FIELDS){
 
    node = from(node);
 
-   let data = this.reader.data(node , {
-      ignoreFields:[
-         'children'
-      ],
-      fields
-   }) ;
+   if(node){
 
-   return data ;
+      return this.reader.data(node , {
+         ignoreFields:[
+            'children'
+         ],
+         fields
+      }) ;
+   }
 }
 
 
