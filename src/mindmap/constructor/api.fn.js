@@ -29,6 +29,8 @@
  * 
  * @import getLeafNodes from ..api.nodes.descendant.leaf scoped
  * 
+ * @import getChildrenNodes from ..api.nodes.descendant.children scoped
+ * 
  * @import isLeafNode from ..api.node.is.leaf scoped
  * 
  * @import isRootNode from ..api.node.is.root scoped
@@ -50,6 +52,7 @@
    getParentNode,
    property,
    getDescendantNodes,
+   getChildrenNodes,
    getLeafNodes,
    setNodeBackgroundColor,
    on,
