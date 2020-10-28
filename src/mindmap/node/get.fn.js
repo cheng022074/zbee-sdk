@@ -3,14 +3,17 @@
  * 
  * 通过ID获得节点引用
  * 
- * @param {string} id 节点编号
+ * @import from from ..data.node.from scoped
+ * 
+ * @param {mixed} node 脑图节点
  * 
  * @return {data.Record} 节点
  * 
  */
 
- let {
-    visibilityNodes
- } = this ;
+ node = from(node) ;
 
- return visibilityNodes.get(id) ;
+ if(node && !node.hidden){
+
+   return node ;
+ }

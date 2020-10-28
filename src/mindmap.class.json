@@ -87,9 +87,6 @@
             "name":"endRestructureNode",
             "impl":".mindmap.node.restructure.end"
         },{
-            "name":"nodeEditing",
-            "impl":".mindmap.node.editing"
-        },{
             "name":"fireIndicatorInput",
             "impl":".mindmap.node.indicator.input"
         }

@@ -7,15 +7,17 @@
  * 
  * @import unsized from .unsized.unregister scoped
  * 
- * @param {string} id 编号
+ * @param {mixed} node 脑图节点
  * 
  * @param {number} width 宽度
  * 
  * @param {number} height 高度
  * 
+ * @param {boolean} [isLayout = false] 是否强制布局
+ * 
  */
 
- let node = get(id);
+ node = get(node);
 
  if(node){
 
@@ -23,6 +25,13 @@
 
     node.height = height;
 
-    unsized(node) ;
+    if(isLayout){
+
+      this.layout() ;
+    
+    }else{
+
+      unsized(node) ;
+    }
  }
  
