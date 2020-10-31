@@ -13,8 +13,6 @@
  * 
  */
 
-const { delete } = require("request-promise");
-
 class main extends Channel{
 
     constructor(name , {
