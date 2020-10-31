@@ -5,6 +5,8 @@
  * 
  * @import Channel from ..client value
  * 
+ * @require axios
+ * 
  * @class
  * 
  */

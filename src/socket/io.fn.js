@@ -21,6 +21,8 @@
  * 
  * @param {object} options Socket.io 配置
  * 
+ * @require socket.io-client
+ * 
  */
 
  const IO = require('socket.io-client') ;
