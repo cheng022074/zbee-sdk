@@ -11,7 +11,9 @@
  * 
  * @param {function} fn 目标监听回调
  * 
+ * @param {mixed} scope 作用域
+ * 
  * 
  */
 
-remove(el , event , fn) ;
+remove(el , event , fn , scope) ;

@@ -15,15 +15,13 @@
  * 
  * @param {mixed} fn 目标监听回调
  * 
- * @param {object} [options] 配置
+ * @param {object} [scope] 作用域
  * 
  * @return {mixed} 返回说明 
  * 
  */
 
- function main(target , event , fn , {
-    scope
- } = {}){
+ function main(target , event , fn , scope){
 
     if(isObject(event)){
 
