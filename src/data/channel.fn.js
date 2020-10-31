@@ -97,12 +97,12 @@ class main extends mixins({
         return generate(Date.now()) ;
     }
 
-    receiveConnectSuccess(){
+    receiveConnected(){
 
         this.receiveConnectState(2) ;
     }
 
-    receiveConnectFailure(){
+    receiveDisconnected(){
 
         this.receiveConnectState(3) ;
     }
@@ -125,7 +125,7 @@ class main extends mixins({
 
             case 3:
 
-                me.fireEvent('connect_error') ;
+                me.fireEvent('disconnect') ;
         }
 
     }

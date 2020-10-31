@@ -13,6 +13,8 @@
  * 
  */
 
+const { delete } = require("request-promise");
+
 class main extends Channel{
 
     constructor(name , {
@@ -29,7 +31,7 @@ class main extends Channel{
             ports
         }) => {
 
-            if(data === name){
+            if(data === `${name}-connect`){
 
                 let port = ports[0] ;
 
@@ -37,9 +39,22 @@ class main extends Channel{
                     data
                 }) => me.receive(data) ;
 
-                port.postMessage(`${name}-ready`) ;
+                port.postMessage(`${name}-connected`) ;
 
                 me.receivePort = port ;
+            
+            }else if(data === `${name}-disconnect`){
+
+                let {
+                    receivePort
+                } = me ;
+
+                receivePort.postMessage(`${name}-disconnected`) ;
+
+                receivePort.close() ;
+
+                delete me.receivePort ;
+
             }
         }) ;
 
@@ -64,10 +79,18 @@ class main extends Channel{
             data
         }) => {
 
-            if(data === `${name}-ready`){
+            if(data === `${name}-connected`){
 
-                me.receiveConnectSuccess() ;
+                me.receiveConnected() ;
             
+            }else if(data === `${name}-disconnected`){
+
+                me.sendPort.close() ;
+
+                delete me.sendPort ;
+
+                me.receiveDisconnected() ;
+
             }else{
 
                 me.receive(data) ;
@@ -76,14 +99,14 @@ class main extends Channel{
 
         me.sendPort = port1 ;
 
-        window.postMessage(name , '*' , [
+        window.postMessage(`${name}-connect` , '*' , [
             port2
         ]) ;
     }
 
     doDisconnect(){
 
-
+       window.postMessage(`${name}-disconnect` , '*') ;
     }
 
     doSend(data){
