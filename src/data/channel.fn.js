@@ -168,7 +168,13 @@ class main extends mixins({
 
         if(receivers.hasOwnProperty(name)){
 
-            me.reply(id , await receivers[name](params)) ;
+            let reply = value => me.reply(id , value),
+                result = receivers[name](params , reply) ;
+
+            if(result !== reply){
+
+                reply(await result) ;
+            }
         }
     }
 
