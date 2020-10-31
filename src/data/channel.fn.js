@@ -1,13 +1,15 @@
 
 /**
  * 
- * 数据通道
+ * 数据通信 
  * 
  * @import Observable from mixin.observable
  * 
  * @import generate from id.generate
  * 
  * @import on from event.listener.add
+ * 
+ * @import isObject from is.object.simple
  * 
  * @class
  * 
@@ -27,10 +29,67 @@ class main extends mixins({
 
         me.receivers = receivers ;
 
-        on(me , {
-            connect:'onConnect',
-            scope:me
-        }) ;
+        me.connectState = 3 ;
+    }
+
+    connect(){
+
+        let me = this,
+        {
+            connectState
+        } = me;
+
+        switch(connectState){
+
+            case 0:
+            case 1:
+            
+                return ;
+
+            case 2:
+
+                on(me , 'disconnect' , () => me.connect() , {
+                    once:true
+                }) ;
+
+                break ;
+
+            case 3:
+
+                me.connectState = 0 ;
+
+                me.doConnect() ;
+        }
+    }
+
+    disconnect(){
+
+        let me = this,
+        {
+            connectState
+        } = me;
+
+        switch(connectState){
+
+            case 0:
+
+                on(me , 'connect' , () => me.disconnect() , {
+                    once:true
+                }) ;
+
+                break ;
+
+            case 1:
+
+                me.connectState = 2 ;
+
+                me.doDisconnect() ;
+
+                break ;
+
+            case 2:
+            case 3:
+        }
     }
 
     generateCallID(){
@@ -38,16 +97,69 @@ class main extends mixins({
         return generate(Date.now()) ;
     }
 
-    notifyConnect(){
+    receiveConnectSuccess(){
+
+        this.receiveConnectState(2) ;
+    }
+
+    receiveConnectFailure(){
+
+        this.receiveConnectState(3) ;
+    }
+
+    receiveConnectState(state){
 
         let me = this ;
 
-        me.connected = true ;
+        me.connectState = state ;
 
-        me.fireEvent('connect') ;
+        switch(state){
+
+            case 2:
+
+                me.connected = true ;
+
+                me.fireEvent('connect') ;
+
+                break ;
+
+            case 3:
+
+                me.fireEvent('connect_error') ;
+        }
+
     }
 
-    async receive(id , name , params){
+    receiveData(data){
+
+        if(isObject(data)){
+
+            let {
+                type,
+                ...options
+            } = data,
+            me = this ;
+    
+            switch(type){
+    
+                case 'send':
+    
+                    me.receiveSendInfo(options) ;
+    
+                    break ;
+    
+                case 'reply':
+    
+                    me.receiveReplyValue(options) ;
+            }
+        }
+    }
+
+    async receiveSendInfo({
+        id,
+        name,
+        params
+    }){
 
         let me = this,
         {
@@ -60,9 +172,21 @@ class main extends mixins({
         }
     }
 
-    reply(id , returnValue){
+    receiveReplyValue({
+        id,
+        value
+    }){
 
-        
+        me.fireEvent(id , value) ;
+    }
+
+    reply(id , value){
+
+        this.doReply({
+            type:'reply',
+            id,
+            value
+        }) ;
     }
 
     async send(name , params , {
@@ -78,7 +202,12 @@ class main extends mixins({
 
             let id = me.generateCallID() ;
 
-            me.doSend(id , name , params) ;
+            me.doSend({
+                type:'send',
+                id,
+                name,
+                params
+            }) ;
 
             switch(returnMode){
 
@@ -100,8 +229,22 @@ class main extends mixins({
         })) ;
     }
 
-    doSend(id , name , params){
+    doSend(data){
 
+
+    }
+
+    doReply(data){
+
+
+    }
+
+    doConnect(){
+
+
+    }
+
+    doDisconnect(){
 
     }
 }
