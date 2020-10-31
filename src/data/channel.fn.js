@@ -9,7 +9,11 @@
  * 
  * @import on from event.listener.add
  * 
+ * @import off from event.listener.remove
+ * 
  * @import isObject from is.object.simple
+ * 
+ * @import is.function
  * 
  * @class
  * 
@@ -30,6 +34,8 @@ class main extends mixins({
         me.receivers = receivers ;
 
         me.connectState = 3 ;
+
+        me.cancelSendFunctions = {} ;
     }
 
     connect(){
@@ -151,7 +157,27 @@ class main extends mixins({
                 case 'reply':
     
                     me.receiveReplyValue(options) ;
+
+                case 'cancel-send':
+
+                    me.receiveCancelSendData(options) ;
             }
+        }
+    }
+
+    receiveCancelSendData({
+        id
+    }){
+
+        let {
+            cancelSendFunctions
+        } = this ;
+
+        if(cancelSendFunctions.hasOwnProperty(id)){
+
+            cancelSendFunctions[id]() ;
+
+            delete cancelSendFunctions[id] ;
         }
     }
 
@@ -163,7 +189,8 @@ class main extends mixins({
 
         let me = this,
         {
-            receivers
+            receivers,
+            cancelSendFunctions
         } = me;
 
         if(receivers.hasOwnProperty(name)){
@@ -171,7 +198,11 @@ class main extends mixins({
             let reply = value => me.reply(id , value),
                 result = receivers[name](params , reply) ;
 
-            if(result !== reply){
+            if(isFunction(result)){
+
+                cancelSendFunctions[id] = result ;
+                
+            }else{
 
                 reply(await result) ;
             }
@@ -195,8 +226,21 @@ class main extends mixins({
         }) ;
     }
 
+    cancelSend(id){
+
+        let me = this ;
+
+        me.doSend({
+            type:'cancel-send',
+            id
+        }) ;
+
+        off(me , id) ;
+    }
+
     async send(name , params , {
-        returnMode = 'single'
+        returnMode = 'single',
+        callback = () => {}
     }){
 
         let me = this,
@@ -219,18 +263,26 @@ class main extends mixins({
 
                 case 'single':
 
-                    return await new Promise(callback => on(me , id , data => callback(data) , {
+                    return await new Promise(resolve => on(me , id , data => {
+
+                        callback(data) ;
+
+                        resolve(data) ;
+
+                    } , {
                         once:true
                     })) ;
 
                 case 'multi':
+
+                    on(me , id , data => callback(data)) ;
 
                     return id ;
             }
 
         }
 
-        return await new Promise(callback => on(me , 'connect' , async () => callback(await call(name , params , options)) , {
+        return await new Promise(resolve => on(me , 'connect' , async () => resolve(await call(name , params , options)) , {
             once:true
         })) ;
     }
