@@ -15,10 +15,7 @@
 
 class main extends Channel{
 
-    constructor(name , {
-        window,
-        receivers
-    }){
+    constructor(name , window , receivers){
 
         super(receivers) ;
 
@@ -29,7 +26,11 @@ class main extends Channel{
             ports
         }) => {
 
-            if(data === `${name}-connect`){
+            let {
+                receivePort
+            } = me ;
+
+            if(data === `${name}-connect` && !receivePort){
 
                 let port = ports[0] ;
 
@@ -41,7 +42,7 @@ class main extends Channel{
 
                 me.receivePort = port ;
             
-            }else if(data === `${name}-disconnect`){
+            }else if(data === `${name}-disconnect` && receivePort){
 
                 let {
                     receivePort
@@ -59,6 +60,8 @@ class main extends Channel{
         me.window = window ;
 
         me.name = name ;
+
+        me.connect() ;
     }
 
     doConnect(){
