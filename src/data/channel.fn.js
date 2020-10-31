@@ -267,6 +267,8 @@ class main extends mixins({
 
                         callback(data) ;
 
+                        me.cancelSend(id) ;
+
                         resolve(data) ;
 
                     } , {
