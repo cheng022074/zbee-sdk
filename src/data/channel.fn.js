@@ -250,14 +250,14 @@ class main extends mixins({
 
             if(isFunction(callback)){
 
-                on(me , id , data => callback(data)) ;
+                on(me , id , (channel , data) => callback.call(channel , data)) ;
 
                 return id ;
             }
 
-            return await new Promise(resolve => on(me , id , data => {
+            return await new Promise(resolve => on(me , id , (channel , data) => {
 
-                me.cancelSend(id) ;
+                channel.cancelSend(id) ;
 
                 resolve(data) ;
 
