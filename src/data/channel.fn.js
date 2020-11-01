@@ -206,7 +206,7 @@ class main extends mixins({
         value
     }){
 
-        me.fireEvent(id , value) ;
+        this.fireEvent(id , value) ;
     }
 
     reply(id , value){
