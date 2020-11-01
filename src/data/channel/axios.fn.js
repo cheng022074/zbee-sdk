@@ -36,6 +36,11 @@ class main extends Channel{
         return params ;
     }
 
+    processReceiveData(data){
+
+        return data ;
+    }
+
     doSend({
         type,
         id,
@@ -51,13 +56,13 @@ class main extends Channel{
 
             case 'send':
 
-                cancelTokens[id] = axios(me.processSendParams(params) , (isSuccess , value) => {
+                cancelTokens[id] = axios(me.processSendParams(params) , (isSuccess , data , response) => {
 
                     if(isSuccess){
 
                         me.receiveReplyValue({
                             id,
-                            value
+                            value:me.processReceiveData(data , response)
                         }) ;
                     }
 
@@ -74,7 +79,7 @@ class main extends Channel{
                     delete cancelTokens[id] ;
                 }
         }
-
-        
     }
+
+
 }
