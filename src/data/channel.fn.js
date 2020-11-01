@@ -47,11 +47,6 @@ class main extends mixins({
 
         switch(connectState){
 
-            case 0:
-            case 1:
-            
-                return ;
-
             case 2:
 
                 on(me , 'disconnect' , () => me.connect() , {
@@ -90,11 +85,6 @@ class main extends mixins({
                 me.connectState = 2 ;
 
                 me.doDisconnect() ;
-
-                break ;
-
-            case 2:
-            case 3:
         }
     }
 
@@ -150,7 +140,7 @@ class main extends mixins({
     
                 case 'send':
     
-                    me.receiveSendInfo(options) ;
+                    me.receiveSendInstruction(options) ;
     
                     break ;
     
@@ -181,7 +171,7 @@ class main extends mixins({
         }
     }
 
-    async receiveSendInfo({
+    async receiveSendInstruction({
         id,
         name,
         params
