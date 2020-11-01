@@ -228,10 +228,7 @@ class main extends mixins({
         off(me , id) ;
     }
 
-    async send(name , params , {
-        returnMode = 'single',
-        callback = () => {}
-    }){
+    async send(name , params , callback){
 
         let me = this,
         {
@@ -249,28 +246,22 @@ class main extends mixins({
                 params
             }) ;
 
-            switch(returnMode){
+            if(isFunction(callback)){
 
-                case 'single':
+                on(me , id , data => callback(data)) ;
 
-                    return await new Promise(resolve => on(me , id , data => {
-
-                        callback(data) ;
-
-                        me.cancelSend(id) ;
-
-                        resolve(data) ;
-
-                    } , {
-                        once:true
-                    })) ;
-
-                case 'multi':
-
-                    on(me , id , data => callback(data)) ;
-
-                    return id ;
+                return id ;
             }
+
+            return await new Promise(resolve => on(me , id , data => {
+
+                me.cancelSend(id) ;
+
+                resolve(data) ;
+
+            } , {
+                once:true
+            })) ;
 
         }
 
