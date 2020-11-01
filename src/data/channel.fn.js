@@ -27,6 +27,8 @@ class main extends mixins({
 
     constructor(receivers = {}){
 
+        super() ;
+
         let me = this ;
 
         me.connected = false ;
