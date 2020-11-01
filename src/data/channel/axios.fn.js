@@ -21,6 +21,8 @@ class main extends Channel{
 
         super(receivers) ;
 
+        let me = this ;
+
         me.receiveConnected() ;
 
         me.cancelTokens = {} ;
