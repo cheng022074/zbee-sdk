@@ -11,10 +11,15 @@
  * 
  * @require axios
  * 
+ * @require fs
+ * 
  */
 
  const 
  axios = require('axios'),
+ {
+    stringify
+ } = require('qs'),
  CancelToken = axios.CancelToken;
 
  function main(params , callback){
@@ -38,9 +43,24 @@
     return () => source.cancel() ;
  }
 
- function processParams(params){
+ function processParams({
+     form = false,
+     params,
+     ...options
+ }){
 
-    return params ;
+    if(form){
+
+        return {
+            ...options,
+            data:stringify(params)
+        } ;
+    }
+
+    return {
+        params,
+        ...options
+    } ;
  }
 
  
