@@ -54,7 +54,7 @@
      ...options
  }){
 
-    if(form){
+    if(form && options.method !== 'GET'){
 
        return processForm(options , params) ;
     }
