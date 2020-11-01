@@ -3,7 +3,7 @@
  * 
  * 窗口之间的数据通道
  * 
- * @import Channel from data.channel
+ * @import Channel from data.channel value
  * 
  * @import on from event.listener.add
  * 
