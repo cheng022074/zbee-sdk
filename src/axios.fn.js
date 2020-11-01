@@ -3,6 +3,10 @@
  * 
  * 基于 axios 的再封装
  * 
+ * @import from from array.from
+ * 
+ * @import generate from id.generate
+ * 
  * @param {object} params 请求参数
  * 
  * @param {function} [callback = ()=>{}] 请求回调
@@ -46,15 +50,18 @@
  function processParams({
      form = false,
      params,
+     files,
      ...options
  }){
 
     if(form){
 
-        return {
-            ...options,
-            data:stringify(params)
-        } ;
+       return processForm(options , params) ;
+    }
+
+    if(files){
+
+        return processUpload(options , from(files)) ;
     }
 
     return {
@@ -63,4 +70,25 @@
     } ;
  }
 
- 
+ function processForm(options , params){
+
+    return {
+        ...options,
+        data:stringify(params)
+    } ;
+ }
+
+ function processUpload(options , files){
+
+    let data = new FormData() ;
+
+    for(let file of files){
+
+        data.append(generate('file-') , file) ;
+    }
+
+    return {
+        ...options,
+        data
+    } ;
+ }
