@@ -7,6 +7,8 @@
  * 
  * @import remove from event.listener.remove
  * 
+ * @import is.function
+ * 
  * @param {mixed} target 需要代理的对象
  * 
  * @param {mixed} [interceptor = {}] 需要代理的对象
@@ -143,9 +145,9 @@
         interceptor
     } = this ;
 
-    if('__interceptor__' in interceptor){
+    if(isFunction(interceptor)){
 
-        return interceptor.__interceptor__(target , method , ...args) === false;
+        return interceptor(target , method , ...args) === false;
     }
 
     if(method in interceptor){
