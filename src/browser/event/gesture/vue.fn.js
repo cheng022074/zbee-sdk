@@ -100,10 +100,10 @@ function removeEventListener(el , name , fn){
 
         let {
             fn:listenerFn,
-            ...options
+            scope
         } = fn ;
         
-        un(el , event , listenerFn , options);
+        un(el , event , listenerFn , scope);
 
     }else if(isFunction(fn)){
 
