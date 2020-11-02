@@ -19,15 +19,14 @@
  * 
  */
 
-let node = get(id) ;
-
-if(node && collapse(node)){
-
-    let me = this,
+let node = get(id),
+    me = this,
     {
         selectedNode
     } = me,
     oldSelectedNode = selectedNode;
+
+if(node && collapse(node)){
 
     while(selectedNode.hidden){
 
