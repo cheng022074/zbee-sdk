@@ -143,7 +143,17 @@
         interceptor
     } = this ;
 
-    return method in interceptor && interceptor[method](target , ...args) === false;
+    if('__interceptor__' in interceptor){
+
+        return interceptor.__interceptor__(target , method , ...args) === false;
+    }
+
+    if(method in interceptor){
+
+        return interceptor[method](target , ...args) === false ;
+    }
+
+    return false ;
  }
 
  class ProxyMethodNotFoundError extends Error{
