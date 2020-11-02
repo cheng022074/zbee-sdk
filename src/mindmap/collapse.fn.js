@@ -9,6 +9,12 @@
  * 
  * @import collapse from .node.collapse scoped
  * 
+ * @import select from .select scoped
+ * 
+ * @import getParentNode from .data.node.parent scoped
+ * 
+ * @import data from .node.data scoped
+ * 
  * @param {string} id 节点编号
  * 
  */
@@ -17,7 +23,25 @@ let node = get(id) ;
 
 if(node && collapse(node)){
 
-    this.layout() ;
+    let me = this,
+    {
+        selectedNode
+    } = me,
+    oldSelectedNode = selectedNode;
+
+    while(selectedNode.hidden){
+
+        selectedNode = getParentNode(selectedNode) ;
+    }
+
+    if(oldSelectedNode !== selectedNode){
+
+        selectedNode.selected = true ;
+
+        me.fireEvent('nodeselect' , data(selectedNode) , data(oldSelectedNode)) ;
+    }
+
+    me.layout() ;
 
     return true ;
 }
