@@ -15,7 +15,7 @@
 
 class main extends Channel{
 
-    constructor(name , window , receivers){
+    constructor(name , target , receivers){
 
         super(receivers) ;
 
@@ -57,7 +57,7 @@ class main extends Channel{
             }
         }) ;
 
-        me.window = window ;
+        me.target = target ;
 
         me.name = name ;
 
@@ -69,7 +69,7 @@ class main extends Channel{
         let me = this,
         {
             name,
-            window
+            target
         } = me,
         {
             port1,
@@ -100,14 +100,14 @@ class main extends Channel{
 
         me.sendPort = port1 ;
 
-        window.postMessage(`${name}-connect` , '*' , [
+        target.postMessage(`${name}-connect` , '*' , [
             port2
         ]) ;
     }
 
     doDisconnect(){
 
-       this.window.postMessage(`${name}-disconnect` , '*') ;
+       this.target.postMessage(`${name}-disconnect` , '*') ;
     }
 
     doSend(data){
