@@ -188,7 +188,7 @@ class main extends mixins({
         if(receivers.hasOwnProperty(name)){
 
             let reply = value => me.reply(id , value),
-                result = receivers[name](params , reply) ;
+                result = receivers[name].call(me , params , reply) ;
 
             if(isFunction(result)){
 
