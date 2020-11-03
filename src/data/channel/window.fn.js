@@ -36,7 +36,7 @@ class main extends Channel{
 
                 port.onmessage = ({
                     data
-                }) => me.receive(data) ;
+                }) => me.receiveData(data) ;
 
                 port.postMessage(`${name}-connected`) ;
 
@@ -94,7 +94,7 @@ class main extends Channel{
 
             }else{
 
-                me.receive(data) ;
+                me.receiveData(data) ;
             }
         } ;
 
@@ -107,7 +107,7 @@ class main extends Channel{
 
     doDisconnect(){
 
-       window.postMessage(`${name}-disconnect` , '*') ;
+       this.window.postMessage(`${name}-disconnect` , '*') ;
     }
 
     doSend(data){

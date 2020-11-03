@@ -11,7 +11,7 @@
  * 
  * @import off from event.listener.remove
  * 
- * @import isObject from is.object.simple
+ * @import is.object
  * 
  * @import is.function
  * 
@@ -267,7 +267,7 @@ class main extends mixins({
 
         }
 
-        return await new Promise(resolve => on(me , 'connect' , async () => resolve(await call(name , params , options)) , {
+        return await new Promise(resolve => on(me , 'connect' , async () => resolve(await me.send(name , params , callback)) , {
             once:true
         })) ;
     }
