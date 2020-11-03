@@ -41,6 +41,8 @@ class main extends Channel{
                 port.postMessage(`${name}-connected`) ;
 
                 me.receivePort = port ;
+
+                me.connect() ;
             
             }else if(data === `${name}-disconnect` && receivePort){
 
@@ -54,14 +56,14 @@ class main extends Channel{
 
                 delete me.receivePort ;
 
+                me.disconnect() ;
+
             }
         }) ;
 
         me.target = target ;
 
         me.name = name ;
-
-        me.connect() ;
     }
 
     doConnect(){
