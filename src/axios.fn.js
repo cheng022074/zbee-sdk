@@ -87,6 +87,8 @@
         data.append(generate('file-') , file) ;
     }
 
+    options.method = 'POST' ;
+
     return {
         ...options,
         data
