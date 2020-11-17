@@ -5,11 +5,14 @@
  * 
  */
 
- let {
+ let me = this,
+ {
     selectedNode
- } = this ;
+ } = me ;
 
  if(selectedNode){
 
     selectedNode.selected = false ;
+
+    me.layout() ;
  }
