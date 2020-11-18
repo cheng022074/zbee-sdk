@@ -16,12 +16,17 @@
  * @import .tap.event
  * 
  * @import stop from ..stop
+ * 
+ * @import OS from os.name value
  *
  * @param {Event} e 事件对象
  * 
  */
 
-stop(e) ;
+ if(OS !== 'iOS'){
+
+   stop(e) ;
+ }
 
 if(getTouchEvents(e , 'start')){
 
