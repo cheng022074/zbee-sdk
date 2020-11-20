@@ -37,7 +37,7 @@ if(node && collapse(node)){
 
         selectedNode.selected = true ;
 
-        me.fireEvent('nodeselect' , data(selectedNode) , data(oldSelectedNode)) ;
+        me.fireEvent('nodeselect' , data(selectedNode) , oldSelectedNode ? data(oldSelectedNode) : undefined) ;
     }
 
     me.layout() ;
