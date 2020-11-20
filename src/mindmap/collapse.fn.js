@@ -28,16 +28,19 @@ let node = get(id),
 
 if(node && collapse(node)){
 
-    while(selectedNode.hidden){
+    if(selectedNode){
 
-        selectedNode = getParentNode(selectedNode) ;
-    }
+        while(selectedNode.hidden){
 
-    if(oldSelectedNode !== selectedNode){
-
-        selectedNode.selected = true ;
-
-        me.fireEvent('nodeselect' , data(selectedNode) , oldSelectedNode ? data(oldSelectedNode) : undefined) ;
+            selectedNode = getParentNode(selectedNode) ;
+        }
+    
+        if(oldSelectedNode !== selectedNode){
+    
+            selectedNode.selected = true ;
+    
+            me.fireEvent('nodeselect' , data(selectedNode) , data(oldSelectedNode)) ;
+        }
     }
 
     me.layout() ;
