@@ -157,11 +157,9 @@
 
         }
 
-        let isDisconnecting = me.isDisconnecting() ;
-
         await me.transitionState ;
 
-        if(isDisconnecting){
+        if(me.isDisconnected()){
 
             await me.connect() ;
         }
@@ -187,11 +185,9 @@
             }))) ;
         }
 
-        let isConnecting = me.isConnecting() ;
-
         await me.transitionState ;
 
-        if(isConnecting){
+        if(me.isConnected()){
 
             await me.disconnect() ;
         }
