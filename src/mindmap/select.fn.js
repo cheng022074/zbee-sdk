@@ -57,6 +57,16 @@
           for(let parentNode of parentNodes){
     
             expand(parentNode) ;
+
+            let {
+              children
+            } = parentNode ;
+
+            for(let childNode of children){
+
+              childNode.hidden = false ;
+
+            }
           }
       }
     
