@@ -42,17 +42,11 @@ function main(server){
         
         }else if(isObject(service)){
     
-            let {
-                method = 'get',
-                params = [],
-                source = () => {},
-            } = service ;
-    
-            source = processSource(source) ;
+            source = processSource(service.source) ;
 
-            method = processMethod(method) ;
+            method = processMethod(service.method) ;
 
-            params = processParams(method , params) ;
+            params = processParams(method , service.params) ;
 
         }
     
@@ -69,7 +63,7 @@ function main(server){
     return result ;
 }
 
-function processSource(source){
+function processSource(source = () => {}){
 
     if(isString(source)){
 
@@ -83,7 +77,7 @@ function processSource(source){
     return () => {} ;
 }
 
-function processMethod(method){
+function processMethod(method = 'get'){
 
     switch(method){
 
@@ -96,14 +90,12 @@ function processMethod(method){
         case 'get':
 
             return method ;
-
-        default:
-
-            return 'get' ;
     }
+
+    return 'get' ;
 }
 
-function processParams(method , params){
+function processParams(method , params = []){
 
     let result = [] ;
 

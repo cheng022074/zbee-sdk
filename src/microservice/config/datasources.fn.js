@@ -35,7 +35,7 @@ for(let name of names){
         datasourceConfig = datasource.config ;
     }
 
-    if(datasourceConfig){
+    if(datasourceClassName){
 
         result[name] = include(datasourceClassName)(datasourceConfig) ;
     }

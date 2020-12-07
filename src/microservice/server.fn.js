@@ -7,6 +7,8 @@
  * 
  * @import get from object.value.get
  * 
+ * @import is.defined
+ * 
  * @param {object} config 服务器启动配置
  * 
  * @require koa
@@ -55,11 +57,24 @@ for(let uri of uris){
             args.push(get(request[target] , property)) ;
         }
 
-        source(...args) ;
+        let data = source(...args),
+            success = true;
 
-        ctx.body = {
-            success:true
-        } ;
+        if(isDefined(data)){
+
+            ctx.body = {
+                success,
+                data
+            }
+        
+        }else{
+
+            ctx.body = {
+                success
+            } ;
+        }
+
+        
 
     }) ;
 }

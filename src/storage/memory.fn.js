@@ -13,6 +13,8 @@
 
     constructor(){
 
+      let me = this ;
+
       me.storage = {} ;
 
       me.keys = [] ;
@@ -50,7 +52,7 @@
          storage
       } = this ;
 
-      return storage[key] ;
+      return storage[key] || null;
     }
 
     removeItem(key){
