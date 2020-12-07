@@ -13,4 +13,4 @@ const {
     stat
 } = require('fs') ;
 
-return new Promise((resolve , reject) => stat(path , (error , stats) => error ? reject(error) : resolve(stats.isDirectory())))  ;
+return new Promise(resolve => stat(path , (error , stats) => error ? resolve(false) : resolve(stats.isDirectory())))  ;

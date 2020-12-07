@@ -11,6 +11,8 @@
  * 
  * @import is.defined
  * 
+ * @param {object} [config = {}] 配置
+ * 
  */
 
  async function doStorage(){
@@ -38,7 +40,7 @@
 
     constructor({
       storagePath
-    } = {}){
+    }){
 
       let me = this ;
 
@@ -53,22 +55,23 @@
 
     setItem(key , value){
 
-      let {
+      let me = this,
+      {
          storage,
          keys
-      } = this ;
+      } = me ;
 
       if(!keys.includes(key)){
 
         keys.push(key) ;
 
-        storage[key] = value ;
-
-        me.storageVersion ++ ;
-
-        doStorage.call(me) ;
-
       }
+
+      storage[key] = value ;
+
+      me.storageVersion ++ ;
+
+      doStorage.call(me) ;
     }
 
     length(){
