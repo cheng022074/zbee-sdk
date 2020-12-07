@@ -11,4 +11,4 @@
  * 
  */
 
-write(path , JSON.stringify(data , null , 2)) ;
+return write(path , JSON.stringify(data , null , 2)) ;

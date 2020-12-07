@@ -10,8 +10,7 @@
  */
 
 const {
-    existsSync,
-    statSync
+    stat
 } = require('fs') ;
 
-return existsSync(path) && statSync(path).isDirectory() ;
+return new Promise((resolve , reject) => stat(path , (error , stats) => error ? reject(error) : resolve(stats.isDirectory())))  ;

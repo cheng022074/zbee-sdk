@@ -10,8 +10,7 @@
  */
 
 const {
-    existsSync,
-    statSync
+    stat
 } = require('fs') ;
 
-return existsSync(path) && statSync(path).isFile() ;
+return new Promise((resolve , reject) => stat(path , (error , stats) => error ? reject(error) : resolve(stats.isFile())))  ;
