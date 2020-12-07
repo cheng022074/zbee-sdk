@@ -7,17 +7,48 @@
  * 
  * @import remove from array.remove
  * 
+ * @import save from file.write.json
+ * 
+ * @import is.defined
+ * 
  */
+
+ async function doStorage(){
+
+    let me = this,
+    {
+      storagePath,
+      storage,
+      storageVersion
+    } = me ;
+
+    if(isDefined(storagePath)){
+
+      await save(storagePath , storage) ;
+
+      if(storageVersion !== me.storageVersion){
+
+        await doStorage() ;
+
+      }
+    }
+ }
 
  class main{
 
-    constructor(){
+    constructor({
+      storagePath
+    } = {}){
 
       let me = this ;
 
       me.storage = {} ;
 
       me.keys = [] ;
+
+      me.storagePath = storagePath ;
+
+      me.storageVersion = 0 ;
     }
 
     setItem(key , value){
@@ -27,13 +58,17 @@
          keys
       } = this ;
 
-      storage[key] = value ;
-
       if(!keys.includes(key)){
 
-         keys.push(key) ;
-      }
+        keys.push(key) ;
 
+        storage[key] = value ;
+
+        me.storageVersion ++ ;
+
+        doStorage.call(me) ;
+
+      }
     }
 
     length(){
