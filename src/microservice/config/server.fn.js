@@ -7,52 +7,145 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import is.function
+ * 
  * @param {object} server 服务端配置
  * 
  * @return {object} 处理后的服务端配置
  * 
  */
 
-let uris = Object.keys(server),
-    result = {};
-
 const {
     join
 } = require('path'),
 rootPath = process.cwd();
 
-for(let uri of uris){
+function main(server){
 
-    let service = server[uri] ;
+    let uris = Object.keys(server),
+        result = {};
 
-    if(isString(service)){
+    for(let uri of uris){
 
-        service = {
-            method:'get',
-            params:[],
-            source:require(join(rootPath , service))
-        } ;
-    
-    }else if(isObject(service)){
-
-        let {
-            method = 'get',
-            params = [],
-            source = () => {},
-        } = service ;
-
-        service = {
+        let service = server[uri],
             method,
             params,
-            source
-        } ;
+            source;
+    
+        if(isString(service)){
+
+            method = processMethod('get') ;
+
+            params = [] ;
+    
+            source = processSource(service) ;
+        
+        }else if(isObject(service)){
+    
+            let {
+                method = 'get',
+                params = [],
+                source = () => {},
+            } = service ;
+    
+            source = processSource(source) ;
+
+            method = processMethod(method) ;
+
+            params = processParams(method , params) ;
+
+        }
+    
+        if(method && params && source){
+    
+            result[uri] = {
+                method,
+                params,
+                source
+            } ;
+        }
+    }
+    
+    return result ;
+}
+
+function processSource(source){
+
+    if(isString(source)){
+
+        return (...args) => require(join(rootPath , source))(...args) ;
+    
+    }else if(isFunction(source)){
+
+        return source ;
     }
 
-    if(isObject(service)){
+    return () => {} ;
+}
 
-        result[uri] = service ;
+function processMethod(method){
+
+    switch(method){
+
+        case 'delete':
+
+            return 'del' ;
+
+        case 'post':
+        case 'put':
+        case 'get':
+
+            return method ;
+
+        default:
+
+            return 'get' ;
     }
 }
 
-return result ;
+function processParams(method , params){
+
+    let result = [] ;
+
+    for(let param of params){
+
+        if(isString(param)){
+
+            result.push({
+                target:getDefaultParamTarget(method),
+                property:param
+            }) ;
+        
+        }else if(isObject(param)){
+
+            let {
+                target = getDefaultParamTarget(method),
+                property
+            } = param ;
+
+            result.push({
+                target,
+                property
+            }) ;
+        }
+    }
+
+    return result ;
+}
+
+function getDefaultParamTarget(method){
+
+    switch(method){
+
+        case 'get':
+        case 'del':
+
+            return 'query' ;
+
+        case 'post':
+        case 'put':
+
+            return 'body' ;
+    }
+}
 

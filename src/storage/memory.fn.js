@@ -7,15 +7,11 @@
  * 
  * @import remove from array.remove
  * 
- * @singleton
- * 
  */
 
- class main extends Storage{
+ class main{
 
     constructor(){
-
-      let me = this ;
 
       me.storage = {} ;
 

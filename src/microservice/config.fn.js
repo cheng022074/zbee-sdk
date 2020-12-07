@@ -7,6 +7,8 @@
  * 
  * @import processDatasourceMap from .config.datasources
  * 
+ * @import processServerMap from .config.server
+ * 
  * @param {object} config 服务器配置
  * 
  * @return {object} 处理后的服务器配置 
@@ -21,12 +23,14 @@
 
         let {
             port = 8080,
-            datasources
+            datasources,
+            server
         } = config ;
 
         innerConfig = {
             port,
-            datasources:processDatasourceMap(datasources)
+            datasources:processDatasourceMap(datasources),
+            server:processServerMap(server)
         } ;
     }
 
