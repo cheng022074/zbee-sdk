@@ -73,7 +73,8 @@
         "type":"node",
         "version":"1.0.0",
         "classes":[
-            "microservice.server"
+            "microservice.server",
+            "microservice.datasource"
         ],
         "to":[
             "C:\\Users\\nero.chen\\Desktop\\Code\\GitHub\\NODE-MS\\lib\\node.js"

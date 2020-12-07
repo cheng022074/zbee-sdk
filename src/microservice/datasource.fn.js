@@ -11,13 +11,9 @@
  * 
  */
 
- const {
-    datasources
- } = config ;
-
  function main(name){
 
-    return datasources[name] ;
+    return config.datasources[name] ;
  }
 
 
