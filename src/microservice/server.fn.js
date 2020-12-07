@@ -13,11 +13,14 @@
  * 
  * @require @koa/router
  * 
+ * @require koa-bodyparser
+ * 
  */
 
 const
 Koa = require('koa'),
 Router = require('@koa/router'),
+Body = require('koa-bodyparser'),
 {
     port,
     server
@@ -26,6 +29,8 @@ Router = require('@koa/router'),
 let app = new Koa(),
     router = new Router(),
     uris = Object.keys(server);
+
+app.use(Body()) ;
 
 for(let uri of uris){
 
