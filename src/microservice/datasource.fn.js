@@ -11,10 +11,5 @@
  * 
  */
 
- function main(name){
-
-    return config.datasources[name] ;
- }
-
-
+return config.datasources[name] ;
 
