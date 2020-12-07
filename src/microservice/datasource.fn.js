@@ -3,28 +3,22 @@
  * 
  * 数据源
  * 
- * @param {object} config 数据源配置
+ * @import config from .config value
  * 
- * @require koa
+ * @param {string} name 数据源名称
  * 
- * @require @koa/router
+ * @return {mixed} 数据源对象
  * 
  */
 
-const
-Koa = require('koa'),
-Router = require('@koa/router'),
-{
-    port
-} = getConfig(config);
+ const {
+    datasources
+ } = config ;
 
-let app = new Koa(),
-    router = new Router();
+ function main(name){
 
-app.use(async ctx => ctx.body = 'Hello World');
+    return datasources[name] ;
+ }
 
-server = app
-.use(router.routes())
-.use(router.allowedMethods())
-.listen(port) ;
+
 

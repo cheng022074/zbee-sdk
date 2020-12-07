@@ -5,8 +5,6 @@
  * 
  * @import Storage from ..storage value
  * 
- * @import clear from object.clear
- * 
  * @import remove from array.remove
  * 
  * @singleton
@@ -24,16 +22,7 @@
       me.keys = [] ;
     }
 
-    get length(){
-
-      let {
-         keys
-      } = this ;
-
-      return keys.length ;
-    }
-
-    doSetItem(key , value){
+    setItem(key , value){
 
       let {
          storage,
@@ -49,7 +38,17 @@
 
     }
 
-    doGetItem(key){
+    length(){
+
+      return this.keys.length ;
+    }
+
+    key(index){
+
+      return this.keys[index] ;
+    }
+
+    getItem(key){
 
       let {
          storage
@@ -58,7 +57,7 @@
       return storage[key] ;
     }
 
-    doRemoveItem(key){
+    removeItem(key){
 
       let {
          storage
@@ -70,23 +69,5 @@
 
          delete storage[key] ;
       }
-   }
-
-   doClear(){
-
-      let {
-         storage
-      } = this ;
-
-      clear(storage) ;
-   }
-
-   doKey(index){
-
-      let {
-         keys
-      } = this ;
-
-      return keys[index] ;
    }
  }
