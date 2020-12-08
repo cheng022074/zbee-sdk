@@ -21,18 +21,25 @@
     {
       storagePath,
       storage,
-      storageVersion
+      storageVersion,
+      storageLocked
     } = me ;
 
-    if(isDefined(storagePath)){
+    if(isDefined(storagePath) && storageLocked !== true){
+
+      me.storageLocked = true ;
 
       await save(storagePath , storage) ;
 
-      if(storageVersion !== me.storageVersion){
+      while(storageVersion !== me.storageVersion){
 
-        await doStorage() ;
+        storageVersion = me.storageVersion ;
+
+        await save(storagePath , storage) ;
 
       }
+
+      me.storageLocked = false ;
     }
  }
 
