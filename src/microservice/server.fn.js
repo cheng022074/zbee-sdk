@@ -42,7 +42,7 @@ for(let uri of uris){
         source
     } = server[uri] ;
 
-    router[method](uri , ctx => {
+    router[method](uri , async ctx => {
 
         const {
             request
@@ -57,7 +57,7 @@ for(let uri of uris){
             args.push(get(request[target] , property)) ;
         }
 
-        let data = source(...args),
+        let data = await source(...args),
             success = true;
 
         if(isDefined(data)){
@@ -73,9 +73,6 @@ for(let uri of uris){
                 success
             } ;
         }
-
-        
-
     }) ;
 }
 

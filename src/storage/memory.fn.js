@@ -9,6 +9,8 @@
  * 
  * @import save from file.write.json
  * 
+ * @import read from file.read.json
+ * 
  * @import is.defined
  * 
  * @param {object} [config = {}] 配置
@@ -43,6 +45,21 @@
     }
  }
 
+ async function doLoad(){
+
+    let me = this,
+    {
+      storagePath
+    } = me,
+    storage = await read(storagePath) ;
+
+    me.storage = storage ;
+
+    me.keys = Object.keys(storage) ;
+
+    doLoad = () => {} ;
+ }
+
  class main{
 
     constructor({
@@ -60,10 +77,13 @@
       me.storageVersion = 0 ;
     }
 
-    setItem(key , value){
+    async setItem(key , value){
 
-      let me = this,
-      {
+      let me = this ;
+
+      await doLoad.call(me) ;
+
+      let {
          storage,
          keys
       } = me ;
@@ -78,33 +98,54 @@
 
       me.storageVersion ++ ;
 
-      doStorage.call(me) ;
+      await doStorage.call(me) ;
     }
 
-    length(){
+    get length(){
 
-      return this.keys.length ;
+      let me = this ;
+
+      return new Promise(async callback => {
+
+        await doLoad.call(me) ;
+
+        callback(me.keys.length) ;
+
+      }) ;
+
     }
 
-    key(index){
+    async key(index){
 
-      return this.keys[index] ;
+      let me = this ;
+
+      await doLoad.call(me) ;
+
+      return me.keys[index] ;
     }
 
-    getItem(key){
+    async getItem(key){
+
+      let me = this ;
+
+      await doLoad.call(me) ;
 
       let {
          storage
-      } = this ;
+      } = me ;
 
       return storage[key] || null;
     }
 
-    removeItem(key){
+    async removeItem(key){
+
+      let me = this ;
+
+      await doLoad.call(me) ;
 
       let {
          storage
-      } = this ;
+      } = me ;
 
       if(keys.includes(key)){
 

@@ -67,7 +67,7 @@ function processSource(source = () => {}){
 
     if(isString(source)){
 
-        return (...args) => require(join(rootPath , source))(...args) ;
+        return async (...args) => await require(join(rootPath , source))(...args) ;
     
     }else if(isFunction(source)){
 
