@@ -13,7 +13,7 @@
  * 
  * @param {object} params 请求参数
  * 
- * @param {function} [callback = ()=>{}] 请求回调
+ * @param {function} [callback] 请求回调
  * 
  * @return {function} 取消请求函数  
  * 
