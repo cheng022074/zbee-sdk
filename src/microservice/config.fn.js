@@ -23,8 +23,8 @@
 
         let {
             port = 8080,
-            datasources,
-            server
+            datasources = {},
+            server = {}
         } = config ;
 
         innerConfig = {
