@@ -35,7 +35,7 @@ let app = new Koa(),
 
 app.use(Body()) ;
 
-app.user(Cros()) ;
+app.use(Cors()) ;
 
 for(let uri of uris){
 
