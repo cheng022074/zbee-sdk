@@ -61,7 +61,7 @@
  * 
  * @param {number} [config.height = 0] 脑图高度
  * 
- * @param {number} [config.ellipsisPattern = true] 标识是否启用省略模式
+ * @param {number} [config.ellipsisPattern = false] 标识是否启用省略模式
  * 
  * @param {number} [config.visibilityLevel = 1] 省略节点时选定节点展现子节点层数
  * 
