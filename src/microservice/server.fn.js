@@ -23,6 +23,7 @@ const
 Koa = require('koa'),
 Router = require('@koa/router'),
 Body = require('koa-bodyparser'),
+Cors = require('@koa/cors'),
 {
     port,
     server
@@ -33,6 +34,8 @@ let app = new Koa(),
     uris = Object.keys(server);
 
 app.use(Body()) ;
+
+app.user(Cros()) ;
 
 for(let uri of uris){
 

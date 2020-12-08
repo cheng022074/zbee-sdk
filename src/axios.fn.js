@@ -7,6 +7,10 @@
  * 
  * @import generate from id.generate
  * 
+ * @import is.function
+ * 
+ * @import is.string
+ * 
  * @param {object} params 请求参数
  * 
  * @param {function} [callback = ()=>{}] 请求回调
@@ -28,23 +32,42 @@
 
  function main(params , callback){
 
-    let source = CancelToken.source();
+    if(isFunction(callback)){
 
-    axios({
-        ...processParams(params),
-        cancelToken: source.token
-    })
-    .then(response => callback(true , response.data , response))
-    .catch(error => {
+        let source = CancelToken.source() ;
 
-        if(!axios.isCancel(error)){
+        axios({
+            ...processParams(params),
+            cancelToken: source.token
+        })
+            .then(response => callback(true , response.data , response))
+            .catch(error => {
 
-            callback(false , error.message , error) ;
-        }
+                if(!axios.isCancel(error)){
 
-    });
+                    callback(false , error.message , error) ;
+                }
 
-    return () => source.cancel() ;
+            });
+
+        return () => source.cancel() ;
+    }
+
+    return new Promise((resolve , reject) => axios(processParams(params))
+                .then(({
+                    data
+                }) => resolve(data))
+                .catch(error => reject(error))) ;
+ }
+
+ function processMethod(method){
+
+    if(isString(method)){
+
+        return method.toUpperCase() ;
+    }
+
+    return 'GET' ;
  }
 
  function processParams({
@@ -53,6 +76,8 @@
      files,
      ...options
  }){
+
+    options.method = processMethod(options.method) ;
 
     if(form && options.method !== 'GET'){
 
