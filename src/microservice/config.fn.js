@@ -15,6 +15,10 @@
  * 
  */
 
+ const {
+    join
+ } = require('path') ;
+
  let innerConfig ;
 
  function main(config){
@@ -24,13 +28,17 @@
         let {
             port = 8080,
             datasources = {},
-            server = {}
+            server = {},
+            sourceCodeDirectory = 'src'
         } = config ;
 
+        sourceCodeDirectory = join(process.cwd() , sourceCodeDirectory) ;
+
         innerConfig = {
+            sourceCodeDirectory,
             port,
             datasources:processDatasourceMap(datasources),
-            server:processServerMap(server)
+            server:processServerMap(server , sourceCodeDirectory)
         } ;
     }
 

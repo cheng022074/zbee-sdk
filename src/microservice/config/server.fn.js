@@ -17,10 +17,9 @@
 
 const {
     join
-} = require('path'),
-rootPath = process.cwd();
+} = require('path');
 
-function main(server){
+function main(server , rootPath){
 
     let uris = Object.keys(server),
         result = {};
@@ -38,11 +37,11 @@ function main(server){
 
             params = [] ;
     
-            source = processSource(service) ;
+            source = processSource(service , rootPath) ;
         
         }else if(isObject(service)){
     
-            source = processSource(service.source) ;
+            source = processSource(service.source , rootPath) ;
 
             method = processMethod(service.method) ;
 
@@ -63,7 +62,7 @@ function main(server){
     return result ;
 }
 
-function processSource(source = () => {}){
+function processSource(source = () => {} , rootPath){
 
     if(isString(source)){
 
