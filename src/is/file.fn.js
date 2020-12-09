@@ -13,4 +13,4 @@ const {
     stat
 } = require('fs') ;
 
-return new Promise(resolve => stat(path , (error , stats) => error ? reject(false) : resolve(stats.isFile())))  ;
+return new Promise(resolve => stat(path , (error , stats) => error ? resolve(false) : resolve(stats.isFile())))  ;

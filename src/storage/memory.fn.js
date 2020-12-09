@@ -51,7 +51,7 @@
     {
       storagePath
     } = me,
-    storage = await read(storagePath) ;
+    storage = await read(storagePath) || {};
 
     me.storage = storage ;
 
