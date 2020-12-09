@@ -5,6 +5,8 @@
  * 
  * @import storage.memory
  * 
+ * @import axios
+ * 
  * @import is.string
  * 
  * @import isObject from is.object.simple
@@ -35,10 +37,23 @@ for(let name of names){
         datasourceConfig = datasource.config ;
     }
 
-    if(datasourceClassName){
+    switch(datasourceClassName){
 
-        result[name] = include(datasourceClassName)(datasourceConfig) ;
+        case 'axios':
+
+            result[name] = axios ;
+
+            break ;
+
+        default:
+
+            if(datasourceClassName){
+
+                result[name] = include(datasourceClassName)(datasourceConfig) ;
+            }
     }
+
+    
 }
 
 return result ;
