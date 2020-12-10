@@ -56,13 +56,15 @@ if(existNode){
    return create(existNode , parentNode) ;
 }
 
+delete node.hidden ;
+
+delete node.level ;
+
 let options = {
    id:generate('node-'),
    ...node,
    children:[]
 } ;
-
-delete options.hidden ;
 
 if(parentNode){
 

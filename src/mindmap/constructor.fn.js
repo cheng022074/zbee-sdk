@@ -177,6 +177,11 @@
             },
             defaultValue:true
          },
+         level:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:-1
+         },
          width:{
             mode:'readwrite',
             local:true,
