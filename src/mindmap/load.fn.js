@@ -25,9 +25,7 @@
 
  if(result.length === 1){
 
-    let rootNode = me.rootNode = result[0] ;
-
-    rootNode.selected = true ;
+    me.rootNode = result[0] ;
 
     initSortNodes() ;
 

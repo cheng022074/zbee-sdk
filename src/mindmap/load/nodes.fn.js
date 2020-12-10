@@ -9,11 +9,11 @@
 
         
     let {
-        selectedNode,
+        rootNode,
         nodes
     } = this ;
 
-    deepNodes(selectedNode , nodes) ;
+    deepNodes(rootNode , nodes) ;
  }
 
 
