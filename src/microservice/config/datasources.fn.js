@@ -11,50 +11,80 @@
  * 
  * @import isObject from is.object.simple
  * 
+ * @import is.function
+ * 
  * @param {object} datasources 数据源配置
  * 
  * @return {object} 处理后的数据源配置
  * 
  */
 
- let names = Object.keys(datasources),
-     result = {};
+function main(datasources){
 
-for(let name of names){
+    let names = Object.keys(datasources),
+        result = {};
 
-    let datasource = datasources[name],
-        datasourceClassName,
-        datasourceConfig;
+    for(let name of names){
 
-    if(isString(datasource)){
+        let datasource = datasources[name],
+            datasourceClassName,
+            datasourceConfig;
 
-        datasourceClassName = datasource ;
-    
-    }else if(isObject(datasource)){
+        if(isString(datasource)){
 
-        datasourceClassName = datasource.type ;
+            datasourceClassName = datasource ;
+        
+        }else if(isObject(datasource)){
 
-        datasourceConfig = datasource.config ;
+            datasourceClassName = datasource.type ;
+
+            datasourceConfig = datasource.config ;
+        }
+
+        switch(datasourceClassName){
+
+            case 'axios':
+
+                result[name] = createAxios(datasourceConfig) ;
+
+                break ;
+
+            default:
+
+                if(datasourceClassName){
+
+                    result[name] = include(datasourceClassName)(datasourceConfig) ;
+                }
+        }
+
+        
     }
 
-    switch(datasourceClassName){
-
-        case 'axios':
-
-            result[name] = axios ;
-
-            break ;
-
-        default:
-
-            if(datasourceClassName){
-
-                result[name] = include(datasourceClassName)(datasourceConfig) ;
-            }
-    }
-
-    
+    return result ;
 }
 
-return result ;
+function defaultFn(result){
+
+    return result ;
+}
+
+function createAxios(config = {}){
+
+    let {
+        before:beforeFn,
+        after:afterFn
+    } = config ;
+
+    if(!isFunction(beforeFn)){
+
+        beforeFn = defaultFn ;
+    }
+
+    if(!isFunction(afterFn)){
+
+        afterFn = defaultFn ;
+    }
+
+    return config => afterFn(axios(beforeFn(config))) ;
+}
 
