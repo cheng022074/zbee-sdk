@@ -30,15 +30,28 @@ if(getTouchEvents(e , 'start')){
 }
 
 let me = this,
-{
-   pageX:x,
-   pageY:y
-} = getEvent(e , 'start') ;
+   nativeEvent = getEvent(e , 'start'),
+   {
+      pageX:x,
+      pageY:y,
+      pointerType,
+      button
+   } = nativeEvent;
+
+if(pointerType === 'mouse'){
+
+   if(button !== 0){
+
+      return ;
+   }
+}
 
 me.startPoint = {
    x,
    y
 } ;
+
+me.nativeEvent = nativeEvent ;
 
 enabled() ;
 
