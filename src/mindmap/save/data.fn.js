@@ -7,7 +7,7 @@
  * 
  */
 
- function main(){
+function main(){
 
     let {
         reader,
@@ -20,11 +20,13 @@
 
  function generateNodeData(reader , node){
 
-    let data =  reader.data(node , {
-        ignoreFields:[
-            'children'
-        ]
-    }),{
+    let data =  {
+        ...reader.data(node , {
+            ignoreFields:[
+                'children'
+            ]
+        })
+    },{
         children
     } = node,
     childNodes = data.children = [];
