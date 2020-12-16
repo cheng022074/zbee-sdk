@@ -41,6 +41,20 @@
         me.sortedYNodeIndexes = new Map() ;
     }
 
+    clear(){
+
+        super.clear() ;
+
+        let {
+            sortedXNodeIndexes,
+            sortedYNodeIndexes
+        } = this ;
+
+        sortedXNodeIndexes.clear() ;
+
+        sortedYNodeIndexes.clear() ;
+    }
+
     resort(){
 
         let me = this,

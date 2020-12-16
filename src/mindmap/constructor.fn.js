@@ -81,8 +81,6 @@
 
  me.callback = (...args) => callback.call(me , ...args) ;
 
- me.visibilityNodeLevels = new Map();
-
  me.visibilityNodes = createVisibilityNodes() ;
  
  me.unsizedNodes = new Map();

@@ -155,8 +155,7 @@ function sync(oldId , id){
         nodes,
         visibilityNodes,
         unsizedNodes,
-        leafNodes,
-        visibilityNodeLevels
+        leafNodes
     } = this ;
 
     syncMap(nodes , oldId) ;
@@ -166,21 +165,6 @@ function sync(oldId , id){
     syncMap(unsizedNodes , oldId) ;
 
     syncMap(leafNodes , oldId) ;
-
-    let keys = visibilityNodeLevels.keys() ;
-
-    for(let key of keys){
-
-        let ids = visibilityNodeLevels.get(key),
-            index = ids.indexOf(oldId);
-
-        if(index !== -1){
-
-            ids[index] = id ;
-
-            break ;
-        }
-    }
 }
 
 function syncMap(map , id){
