@@ -15,7 +15,9 @@
         "load",{
             "name":"loadData",
             "impl":".mindmap.load.data"
-        },{
+        },
+        "save",
+        {
             "name":"setNodeSize",
             "impl":".mindmap.node.size"
         },
