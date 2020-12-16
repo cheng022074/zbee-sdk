@@ -15,9 +15,14 @@
  * 
  */
 
+let me = this,
+{
+    callback
+} = me ;
+
 if(data.length === 1){
 
-    let rootNode = this.rootNode = data[0] ;
+    let rootNode = me.rootNode = data[0] ;
 
     rootNode.selected = true ;
 
@@ -28,4 +33,6 @@ if(data.length === 1){
     initVisibilityNodes() ;
 
     await tryLayout() ;
+
+    callback('load') ;
  }
