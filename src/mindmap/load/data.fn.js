@@ -11,7 +11,7 @@
  * 
  * @import tryLayout from ..layout.try scoped
  * 
- * @param {array} data 脑图数据
+ * @param {object} rootNode 脑图数据
  * 
  */
 
@@ -20,19 +20,17 @@ let me = this,
     callback
 } = me ;
 
-if(data.length === 1){
 
-    let rootNode = me.rootNode = data[0] ;
+me.rootNode = rootNode ;
 
-    rootNode.selected = true ;
+rootNode.selected = true ;
 
-    initSortNodes() ;
+initSortNodes() ;
 
-    initNodes() ;
+initNodes() ;
 
-    initVisibilityNodes() ;
+initVisibilityNodes() ;
 
-    await tryLayout() ;
+await tryLayout() ;
 
-    callback('load') ;
- }
+callback('load') ;

@@ -13,6 +13,10 @@
  {
     reader,
     readConfig
- } = me;
+ } = me,
+ records = reader.read(data , readConfig);
 
- await loadData(reader.read(data , readConfig)) ;
+ if(records.length === 1){
+
+   await loadData(records[0]) ;
+ }

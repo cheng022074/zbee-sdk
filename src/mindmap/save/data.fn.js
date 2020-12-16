@@ -23,6 +23,7 @@ function main(){
     let data =  {
         ...reader.data(node , {
             ignoreFields:[
+                'hidden',
                 'children'
             ]
         })
