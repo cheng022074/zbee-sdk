@@ -20,20 +20,19 @@
 
  function generateNodeData(reader , node){
 
-    let result = [
-        reader.data(node , {
-            ignoreFields:[
-                'children'
-            ]
-        })
-    ],{
+    let data =  reader.data(node , {
+        ignoreFields:[
+            'children'
+        ]
+    }),{
         children
-    } = node ;
+    } = node,
+    childNodes = data.children = [];
 
     for(let childNode of children){
 
-        result.push(...generateNodeData(reader , childNode)) ;
+        childNodes.push(generateNodeData(reader , childNode)) ;
     }
 
-    return result ;
+    return data ;
  }
