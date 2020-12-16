@@ -12,8 +12,7 @@
  let me = this,
  {
     reader,
-    readConfig,
-    callback
+    readConfig
  } = me;
 
  await loadData(reader.read(data , readConfig)) ;

@@ -28,6 +28,4 @@ if(data.length === 1){
     initVisibilityNodes() ;
 
     await tryLayout() ;
-
-    callback('load') ;
  }
