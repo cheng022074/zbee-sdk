@@ -7,15 +7,18 @@
  * 
  */
 
- let {
+ let me = this,
+ {
     rootNode,
     nodes,
     visibilityNodes,
     unsizedNodes,
     leafNodes
- } = this,{
+ } = me,{
     children
  } = rootNode ;
+
+ me.removeAllListeners() ;
 
  for(let childNode of children){
 
