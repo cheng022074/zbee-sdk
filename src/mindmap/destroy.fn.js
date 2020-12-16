@@ -10,7 +10,9 @@
  let {
     rootNode,
     nodes,
-    visibilityNodes
+    visibilityNodes,
+    unsizedNodes,
+    leafNodes
  } = this,{
     children
  } = rootNode ;
