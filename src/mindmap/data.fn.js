@@ -47,102 +47,34 @@
 
       if(parentNode && mindNodes.includes(parentNode)){
 
-          let isRoot = isRootNode(parentNode) ;
-
           parentNode = getData(parentNode) ;
 
           let {
             x:nodeX,
             y:nodeY
-          } = getLeftXY(node);
+          } = getLeftXY(node),
+          {
+            x:parentNodeX,
+            y:parentNodeY
+          } = getRightXY(parentNode),
+          offset = (nodeX - parentNodeX) / 2;
 
-          if(isRoot){
-
-            let {
-              x:parentNodeX,
-              y:parentNodeY
-            } = getCenterXY(parentNode);
-
-            lines.push({
-              draw:'line.bezierCurve',
-              indicated,
-              start:parentNode,
-              end:node,
-              points:[
-                parentNodeX,
-                parentNodeY,
-                parentNodeX,
-                nodeY,
-                parentNodeX + (nodeX - parentNodeX) / 2,
-                nodeY,
-                nodeX,
-                nodeY
-              ]
-            }) ;
-          
-          }else{
-
-            let {
-              x:parentNodeX,
-              y:parentNodeY
-            } = getRightXY(parentNode);
-
-            if(nodeHorizontalLineBreakPointOffset){
-
-              lines.push({
-                draw:'line',
-                indicated,
-                start:parentNode,
-                end:node,
-                points:[
-                  parentNodeX,
-                  parentNodeY,
-                  parentNodeX + nodeHorizontalLineBreakPointOffset,
-                  parentNodeY
-                ]
-              } , {
-                draw:'line.bezierCurve',
-                indicated,
-                start:parentNode,
-                end:node,
-                points:[
-                  parentNodeX + nodeHorizontalLineBreakPointOffset,
-                  parentNodeY,
-                  parentNodeX + nodeHorizontalLineBreakPointOffset,
-                  nodeY,
-                  parentNodeX + (nodeX - parentNodeX) * .75,
-                  nodeY,
-                  nodeX,
-                  nodeY
-                ]
-              }) ;
-            
-            }else{
-
-              let {
-                x:parentNodeX,
-                y:parentNodeY
-              } = getCenterXY(parentNode);
-  
-              lines.push({
-                draw:'line.bezierCurve',
-                indicated,
-                start:parentNode,
-                end:node,
-                points:[
-                  parentNodeX,
-                  parentNodeY,
-                  parentNodeX,
-                  nodeY,
-                  parentNodeX + (nodeX - parentNodeX) / 2,
-                  nodeY,
-                  nodeX,
-                  nodeY
-                ]
-              }) ;
-            }
-
-          }
+          lines.push({
+            draw:'line.bezierCurve',
+            indicated,
+            start:parentNode,
+            end:node,
+            points:[
+              parentNodeX,
+              parentNodeY,
+              parentNodeX + offset,
+              parentNodeY,
+              parentNodeX + offset,
+              nodeY,
+              nodeX,
+              nodeY
+            ]
+          }) ;
       }
     }
 
