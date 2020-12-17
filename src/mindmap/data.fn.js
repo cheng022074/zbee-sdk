@@ -69,7 +69,7 @@
               parentNodeY,
               parentNodeX + offset,
               parentNodeY,
-              parentNodeX + offset,
+              nodeX - offset,
               nodeY,
               nodeX,
               nodeY
