@@ -164,7 +164,8 @@ function readjust(node){
                     width
                 } = childNode,
                 {
-                    y:scopeRegionY
+                    y:scopeRegionY,
+                    height:scopeRegionHeight
                 } = getScopeRegion(childNode) ;
 
                 {
@@ -176,11 +177,6 @@ function readjust(node){
                         let startMoveToY = childNode.y - nodeVerticalSeparationDistance - previousNode.height ;
 
                         moveToY(previousNode , startMoveToY) ;
-
-                        let {
-                            y:scopeRegionY,
-                            height:scopeRegionHeight
-                        } = getScopeRegion(childNode) ;
 
                         while(position --){
 
@@ -238,7 +234,7 @@ function readjust(node){
 
                             if(y <= scopeRegionBottom){
 
-                                if(width >= previousNode.width){
+                                if(width >= nextNode.width){
 
                                     startMoveToY = y ;
                                 
