@@ -45,7 +45,7 @@
  * 
  * @param {number} [config.nodeHorizontalSeparationDistance = 0] 节点水平间隔距离
  * 
- * @param {number} [config.nodeHorizontalLineBreakPointOffset = 12.5] 非根脑图节点之间连线的折点的偏移位置
+ * @param {number} [config.nodeHorizontalLineBreakPointOffset = 12.5] 脑图节点之间连线的折点的偏移位置
  * 
  * @param {number} [config.placeholderNodeWidth = 60] 占位符宽度
  * 
