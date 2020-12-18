@@ -99,6 +99,8 @@ function main(isFireDrawEvent){
         }) ;
     }
 
+    readjust.call(me , rootNode) ;
+
     let {
         top,
         height
@@ -122,6 +124,140 @@ function main(isFireDrawEvent){
     if(isFireDrawEvent){
 
         fireDrawEvent() ;
+    }
+}
+
+function isLeafNode({
+    expanded,
+    children
+}){
+
+    return !expanded || children.length === 0 ;
+}
+
+function readjust(node){
+
+    let {
+        expanded,
+        children
+    } = node,
+    me = this,
+    {
+        nodeVerticalSeparationDistance
+    } = me;
+
+    if(expanded){
+
+        let {
+            length
+        } = children ;
+
+        for(let i = 0 ; i < length ; i ++){
+
+            let childNode = children[i] ;
+
+            if(!isLeafNode(childNode)){
+
+                readjust.call(me , childNode) ;
+
+                let {
+                    width
+                } = childNode,
+                {
+                    y:scopeRegionY
+                } = getScopeRegion(childNode) ;
+
+                {
+                    let position = i - 1,
+                        previousNode = children[position];
+
+                    if(previousNode && isLeafNode(previousNode) && width >= previousNode.width){
+
+                        let startMoveToY = childNode.y - nodeVerticalSeparationDistance - previousNode.height ;
+
+                        moveToY(previousNode , startMoveToY) ;
+
+                        let {
+                            y:scopeRegionY,
+                            height:scopeRegionHeight
+                        } = getScopeRegion(childNode) ;
+
+                        while(position --){
+
+                            previousNode = children[position] ;
+
+                            if(!isLeafNode(previousNode)){
+
+                                break ;
+                            }
+
+                            let y = startMoveToY - nodeVerticalSeparationDistance ;
+
+                            if(y >= scopeRegionY){
+
+                                if(width >= previousNode.width){
+
+                                    startMoveToY = y - previousNode.height ;
+                                
+                                }else{
+
+                                    startMoveToY = scopeRegionY - nodeVerticalSeparationDistance ;
+                                }
+
+                            }else{
+
+                                startMoveToY = y - previousNode.height ;
+                            }
+
+                            moveToY(previousNode , startMoveToY) ;
+                        }
+                    }
+                }
+
+                {
+                    let position = i + 1,
+                        nextNode = children[position];
+
+                    if(nextNode && isLeafNode(nextNode) && width >= nextNode.width){
+
+                        let startMoveToY = childNode.y + childNode.height + nodeVerticalSeparationDistance ;
+
+                        moveToY(nextNode , startMoveToY) ;
+
+                        while(++ position < length){
+
+                            nextNode = children[position] ;
+
+                            if(!isLeafNode(nextNode)){
+
+                                break ;
+                            }
+
+                            let scopeRegionBottom = scopeRegionY + scopeRegionHeight,
+                                y = startMoveToY + children[position - 1].height + nodeVerticalSeparationDistance ;
+
+                            if(y <= scopeRegionBottom){
+
+                                if(width >= previousNode.width){
+
+                                    startMoveToY = y ;
+                                
+                                }else{
+
+                                    startMoveToY = scopeRegionBottom + nodeVerticalSeparationDistance ;
+                                }
+
+                            }else{
+
+                                startMoveToY = y ;
+                            }
+
+                            moveToY(nextNode , startMoveToY) ;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
