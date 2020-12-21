@@ -6,6 +6,8 @@
  * 
  * @import insertAfter from ..node.insert.after scoped
  * 
+ * @import data from ..node.data scoped
+ * 
  */
 
 let me = this,
@@ -19,6 +21,8 @@ if(node){
     insertAfter(selectedNode , node) ;
 
     selectedNode.selected = true ;
+
+    me.fireEvent('nodeinsertafter' , data(selectedNode) , data(node) , false) ;
 
     me.layout() ;
     
@@ -35,6 +39,8 @@ if(node){
         insertAfter(selectedNode , node) ;
 
         selectedNode.selected = true ;
+
+        me.fireEvent('nodeinsertafter' , data(selectedNode) , data(node) , false) ;
 
         me.layout() ;
    }
