@@ -8,6 +8,10 @@
  * 
  * @import data from ..node.data scoped
  * 
+ * @import order from ..order scoped
+ * 
+ * @import getParentNode from ..node.parent scoped
+ * 
  */
 
 let me = this,
@@ -23,6 +27,8 @@ if(node){
     selectedNode.selected = true ;
 
     me.fireEvent('nodeinsertbefore' , data(selectedNode) , data(node) , false) ;
+
+    order(getParentNode(node)) ;
 
     me.layout() ;
 
@@ -41,6 +47,8 @@ if(node){
         selectedNode.selected = true ;
 
         me.fireEvent('nodeinsertbefore' , data(selectedNode) , data(node) , false) ;
+
+        order(getParentNode(node)) ;
 
         me.layout() ;
     }

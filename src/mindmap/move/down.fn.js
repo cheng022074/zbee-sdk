@@ -6,6 +6,10 @@
  * 
  * @import insertAfter from ..node.insert.after scoped
  * 
+ * @import order from ..order scoped
+ * 
+ * @import getParentNode from ..node.parent scoped
+ * 
  * @import data from ..node.data scoped
  * 
  */
@@ -24,6 +28,8 @@ if(node){
 
     me.fireEvent('nodeinsertafter' , data(selectedNode) , data(node) , false) ;
 
+    order(getParentNode(node)) ;
+
     me.layout() ;
     
 }else{
@@ -41,6 +47,8 @@ if(node){
         selectedNode.selected = true ;
 
         me.fireEvent('nodeinsertafter' , data(selectedNode) , data(node) , false) ;
+
+        order(getParentNode(node)) ;
 
         me.layout() ;
    }
