@@ -68,6 +68,8 @@ if(!isRootNode(baseNode)){
         length
     } = children;
 
+    insertNode = create(insertNode , parentNode) ;
+
     let index = children.indexOf(baseNode) ;
 
     if(region === 'after'){
@@ -80,8 +82,6 @@ if(!isRootNode(baseNode)){
         index = length ;
     
     }
-    
-    insertNode = create(insertNode , parentNode) ;
 
     children.splice(index , 0 , insertNode) ;
 

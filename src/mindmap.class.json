@@ -33,6 +33,14 @@
         "delete",
         "append",
         "move",
+        {
+            "name":"moveDown",
+            "impl":".mindmap.move.down"
+        },
+        {
+            "name":"moveUp",
+            "impl":".mindmap.move.up"
+        },
         "refresh",
         {
             "name":"getNextSiblingNode",
