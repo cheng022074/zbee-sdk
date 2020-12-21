@@ -212,35 +212,53 @@ function readjust(node){
                 }else if(childNode.width >= nodeWidth &&　isLeaf){
 
                     let position = i - 1,
-                        moveY,
+                        moveToYValue,
+                        minMoveToYValue = nodeBottom +　nodeVerticalSeparationDistance,
                         width = childNode.width;
 
                     while(position --){
 
-                        let previousNode = children[position] ;
+                        moveToYValue = 0 ;
+
+                        let previousNode = children[position],
+                            previousWidth;
 
                         if(isLeafNode(previousNode)){
 
-                            moveY = previousNode.y + previousNode.height ;
+                            moveToYValue = previousNode.y + previousNode.height ;
+
+                            previousWidth = previousNode.width ;
 
                         }else{
 
                             let {
                                 y,
+                                width,
                                 height
                             } = getScopeRegion(previousNode) ;
 
-                            moveY = y + height ;
+                            moveToYValue = y + height ;
+
+                            previousWidth = width ;
                         }
 
-                        if(width < previousNode.width){
+                        moveToYValue += nodeVerticalSeparationDistance + offset ;
+
+                        if(moveToYValue < minMoveToYValue){
+
+                            moveToYValue = minMoveToYValue ;
+
+                            break ;
+                        }
+
+                        if(width < previousWidth){
 
                             break ;
                         }
 
                     }
                     
-                    moveToY(childNode , moveY + nodeVerticalSeparationDistance + offset) ;
+                    moveToY(childNode , moveToYValue) ;
 
                 }else{
 
