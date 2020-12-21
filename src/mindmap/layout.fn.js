@@ -175,77 +175,89 @@ function readjust(node){
                     while(position --){
 
                         let previousNode = children[position],
-                            previousWidth,
+                            previousNodeWidth,
+                            previousNodeHeight,
                             previousOffset;
 
                         if(!isLeafNode(previousNode)){
 
                             let region = getScopeRegion(previousNode) ;
 
-                            previousWidth = region.width ;
+                            previousNodeWidth = region.width ;
 
-                            previousOffset = region.height - previousNode.y + region.y ;
+                            previousNodeHeight = region.height ;
+
+                            previousOffset = previousNode.y - region.y ;
                         
                         }else{
 
-                            previousWidth = previousNode.width ;
+                            previousNodeWidth = previousNode.width ;
 
-                            previousOffset = previousNode.height ;
+                            previousNodeHeight = previousNode.height ;
+
+                            previousOffset = 0 ;
                         }
 
                         let y = startMoveToY - nodeVerticalSeparationDistance ;
 
-                        if(y >= scopeRegionY && width < previousWidth){
+                        if(y >= scopeRegionY && width < previousNodeWidth){
 
-                            startMoveToY = scopeRegionY - nodeVerticalSeparationDistance ;
+                            startMoveToY = scopeRegionY - nodeVerticalSeparationDistance - previousNodeHeight;
 
                         }else{
 
-                            startMoveToY = y - previousOffset ;
+                            startMoveToY = y - previousNodeHeight;
                         }
 
-                        moveToY(previousNode , startMoveToY) ;
+                        moveToY(previousNode , startMoveToY + previousOffset) ;
                     }
                 }
 
                 {
                     let position = i,
-                        startMoveToY = childNode.y;
+                        startMoveToY = childNode.y + childNode.height;
 
                     while(++ position < length){
 
                         let nextNode = children[position],
-                            nextWidth,
+                            nextNodeWidth,
+                            nextNodeHeight,
                             nextOffset;
 
                         if(!isLeafNode(nextNode)){
 
                             let region = getScopeRegion(nextNode) ;
 
-                            nextWidth = region.width ;
+                            nextNodeWidth = region.width ;
+
+                            nextNodeHeight = region.height ;
 
                             nextOffset = nextNode.y - region.y ;
                         
                         }else{
 
-                            nextWidth = nextNode.width ;
+                            nextNodeWidth = nextNode.width ;
+
+                            nextNodeHeight = nextNode.height ;
 
                             nextOffset = 0 ;
                         }
 
                         let scopeRegionBottom = scopeRegionY + scopeRegionHeight,
-                            y = startMoveToY + children[position - 1].height + nodeVerticalSeparationDistance ;
+                            y = startMoveToY + nodeVerticalSeparationDistance ;
 
-                        if(y <= scopeRegionBottom && width < nextWidth){
+                        if(y <= scopeRegionBottom && width < nextNodeWidth){
 
                             startMoveToY = scopeRegionBottom + nodeVerticalSeparationDistance ;
 
                         }else{
 
-                            startMoveToY = y + nextOffset;
+                            startMoveToY = y;
                         }
 
-                        moveToY(nextNode , startMoveToY) ;
+                        moveToY(nextNode , startMoveToY + nextOffset) ;
+
+                        startMoveToY += nextNodeHeight ;
                     }
                 }
             }
