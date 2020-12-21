@@ -169,87 +169,83 @@ function readjust(node){
                 } = getScopeRegion(childNode) ;
 
                 {
-                    let position = i - 1,
-                        previousNode = children[position];
+                    let position = i,
+                        startMoveToY = childNode.y ;
 
-                    if(previousNode && isLeafNode(previousNode) && width >= previousNode.width){
+                    while(position --){
 
-                        let startMoveToY = childNode.y - nodeVerticalSeparationDistance - previousNode.height ;
+                        let previousNode = children[position],
+                            previousWidth,
+                            previousOffset;
+
+                        if(!isLeafNode(previousNode)){
+
+                            let region = getScopeRegion(previousNode) ;
+
+                            previousWidth = region.width ;
+
+                            previousOffset = region.height - previousNode.y + region.y ;
+                        
+                        }else{
+
+                            previousWidth = previousNode.width ;
+
+                            previousOffset = previousNode.height ;
+                        }
+
+                        let y = startMoveToY - nodeVerticalSeparationDistance ;
+
+                        if(y >= scopeRegionY && width < previousWidth){
+
+                            startMoveToY = scopeRegionY - nodeVerticalSeparationDistance ;
+
+                        }else{
+
+                            startMoveToY = y - previousOffset ;
+                        }
 
                         moveToY(previousNode , startMoveToY) ;
-
-                        while(position --){
-
-                            previousNode = children[position] ;
-
-                            if(!isLeafNode(previousNode)){
-
-                                break ;
-                            }
-
-                            let y = startMoveToY - nodeVerticalSeparationDistance ;
-
-                            if(y >= scopeRegionY){
-
-                                if(width >= previousNode.width){
-
-                                    startMoveToY = y - previousNode.height ;
-                                
-                                }else{
-
-                                    startMoveToY = scopeRegionY - nodeVerticalSeparationDistance ;
-                                }
-
-                            }else{
-
-                                startMoveToY = y - previousNode.height ;
-                            }
-
-                            moveToY(previousNode , startMoveToY) ;
-                        }
                     }
                 }
 
                 {
-                    let position = i + 1,
-                        nextNode = children[position];
+                    let position = i,
+                        startMoveToY = childNode.y;
 
-                    if(nextNode && isLeafNode(nextNode) && width >= nextNode.width){
+                    while(++ position < length){
 
-                        let startMoveToY = childNode.y + childNode.height + nodeVerticalSeparationDistance ;
+                        let nextNode = children[position],
+                            nextWidth,
+                            nextOffset;
+
+                        if(!isLeafNode(nextNode)){
+
+                            let region = getScopeRegion(nextNode) ;
+
+                            nextWidth = region.width ;
+
+                            nextOffset = nextNode.y - region.y ;
+                        
+                        }else{
+
+                            nextWidth = nextNode.width ;
+
+                            nextOffset = 0 ;
+                        }
+
+                        let scopeRegionBottom = scopeRegionY + scopeRegionHeight,
+                            y = startMoveToY + children[position - 1].height + nodeVerticalSeparationDistance ;
+
+                        if(y <= scopeRegionBottom && width < nextWidth){
+
+                            startMoveToY = scopeRegionBottom + nodeVerticalSeparationDistance ;
+
+                        }else{
+
+                            startMoveToY = y + nextOffset;
+                        }
 
                         moveToY(nextNode , startMoveToY) ;
-
-                        while(++ position < length){
-
-                            nextNode = children[position] ;
-
-                            if(!isLeafNode(nextNode)){
-
-                                break ;
-                            }
-
-                            let scopeRegionBottom = scopeRegionY + scopeRegionHeight,
-                                y = startMoveToY + children[position - 1].height + nodeVerticalSeparationDistance ;
-
-                            if(y <= scopeRegionBottom){
-
-                                if(width >= nextNode.width){
-
-                                    startMoveToY = y ;
-                                
-                                }else{
-
-                                    startMoveToY = scopeRegionBottom + nodeVerticalSeparationDistance ;
-                                }
-
-                            }else{
-
-                                startMoveToY = y ;
-                            }
-
-                            moveToY(nextNode , startMoveToY) ;
-                        }
                     }
                 }
             }
