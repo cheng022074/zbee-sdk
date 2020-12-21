@@ -15,7 +15,7 @@ let me = this,
  } = me,
  node = previous(selectedNode) ;
 
- if(node){
+if(node){
 
    return await select(node.id) ;
  
