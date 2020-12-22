@@ -272,23 +272,15 @@ function getReadjustNonLeafNodeY(previousReadjustNodes , node){
 
         if(leaf){
 
-            // 当前置节点为叶子节点时, 且当前节点宽度大于等于前置节点宽度时，则当前节点放置在其下方
-            if(width >= previousNodeWidth){
+            let y = previousNodeBottom + nodeVerticalSeparationDistance,
+                bottom = getReadjustNodeMaxBottom(previousReadjustNodes , width);
 
-                let y = previousNodeBottom + nodeVerticalSeparationDistance,
-                    bottom = getReadjustNodeMaxBottom(previousReadjustNodes , width);
+            if(bottom === null){
 
-                if(bottom === null){
-
-                    return y ;
-                }
-
-                return Math.max(y , bottom + nodeVerticalSeparationDistance + offset) ;
+                return y ;
             }
 
-            // 当前置节点为叶子节点时, 且当前节点宽度小于前置节点宽度时，则当前节点的第一个子节点放置其下方
-
-            return previousNodeBottom + nodeVerticalSeparationDistance + offset ;
+            return Math.max(y , bottom + nodeVerticalSeparationDistance + offset) ;
         }
 
         // 当前置节点为非叶子节点时，且当前节点宽度大于等于前置节点展开宽度时，则当前节点放置在其最后一个子节点的下方
@@ -336,7 +328,9 @@ function getReadjustNodeMaxBottom(previousReadjustNodes , width){
 
                 bottoms.push(previousNodeBottom) ;
             
-            }else if(previousNodeRegionWidth >　width){
+            }
+            
+            if(previousNodeRegionWidth >　width){
 
                 bottoms.push(previousNodeRegionBottom) ;
             }
