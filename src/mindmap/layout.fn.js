@@ -141,142 +141,148 @@ function readjust(node){
         expanded,
         children
     } = node,
+    me = this;
+
+    if(expanded){
+
+        let previousReadjustNodes = [] ;
+
+        for(let childNode of children){
+
+            readjust.call(me , childNode) ;
+
+            moveToY(node , getReadjustNodeY.call(me , previousReadjustNodes , node)) ;
+
+            previousReadjustNodes.unshift(getReadjustNode.call(me , node)) ;
+        }
+    }
+}
+
+function getReadjustNode(node){
+
+
+}
+
+function getReadjustNodeY(previousReadjustNodes , node){
+
+    let me = this ;
+
+    if(isLeafNode(node)){
+
+        return getReadjustLeafNodeY.call(me , previousReadjustNodes , node) ;
+    }
+
+    return getReadjustNonLeafNodeY.call(me , previousReadjustNodes , node) ;
+}
+
+function getReadjustLeafNodeY(previousReadjustNodes , node){
+
+    let {
+        y,
+        width
+    } = node,
+    {
+        nodeVerticalSeparationDistance
+    } = this;
+
+    if(previousReadjustNodes.length){
+
+        let {
+            width:previousNodeWidth,
+            bottom:previousNodeBottom,
+            regionBottom:previousNodeRegionBottom,
+            leaf
+        } = previousReadjustNodes[0] ;
+
+        if(leaf || width <= previousNodeWidth){
+
+            return previousNodeBottom + nodeVerticalSeparationDistance ;
+        
+        }
+
+        return previousNodeRegionBottom + nodeVerticalSeparationDistance ;
+    }
+
+    return y ;
+}
+
+function getReadjustNonLeafNodeY(previousReadjustNodes , node){
+
+    let {
+        y,
+        width
+    } = node,
+    {
+        y:regionY,
+        width:regionWidth
+    } = getScopeRegion(node),
+    offset = y - regionY,
     me = this,
     {
         nodeVerticalSeparationDistance
     } = me;
 
-    if(expanded){
+    if(previousReadjustNodes.length){
 
         let {
-            length
-        } = children,
-        nodeWidth = 0,
-        regionBottom = 0,
-        nodeBottom = 0,
-        isLeaf = false;
+            width:previousNodeWidth,
+            bottom:previousNodeBottom,
+            regionBottom:previousNodeRegionBottom,
+            leaf
+        } = previousReadjustNodes[0] ;
 
-        for(let i = 0 ; i < length ; i ++){
+        if(leaf){
 
-            let childNode = children[i] ;
+            if(previousNodeWidth <= width){
 
-            readjust.call(me , childNode) ;
-
-            if(i === 0){
-
-                let {
-                    y,
-                    height
-                } = getScopeRegion(childNode) ;
-
-                regionBottom = y + height ;
-
-                nodeWidth = childNode.width ;
-
-                nodeBottom = childNode.y + childNode.height ;
-
-                isLeaf = isLeafNode(childNode) ;
+                return Math.max(previousNodeBottom + nodeVerticalSeparationDistance , getReadjustNonLeafNearestBottom.call(me , previousReadjustNodes , width , regionWidth , offset)) ;
             
-            }else if(isLeafNode(childNode)){
+            }
 
-                if(childNode.width <= nodeWidth){
+            return previousNodeBottom + nodeVerticalSeparationDistance + offset ;
+        }
 
-                    moveToY(childNode , nodeBottom +　nodeVerticalSeparationDistance) ;
-                
-                }else{
+        if(regionWidth <= previousNodeWidth){
 
-                    moveToY(childNode , regionBottom + nodeVerticalSeparationDistance);
-                }
+            return previousNodeBottom + nodeVerticalSeparationDistance + offset ;
+        }
 
-                nodeWidth = childNode.width ;
+        return previousNodeRegionBottom + nodeVerticalSeparationDistance + offset ;
+    }
 
-                nodeBottom = childNode.y + childNode.height ;
+    return y ;
+}
 
-                if(regionBottom < nodeBottom){
+function getReadjustNonLeafNearestBottom(previousReadjustNodes , width , regionWidth , offset){
 
-                    regionBottom = nodeBottom ;
-                }
+    let {
+        nodeVerticalSeparationDistance
+    } = this ;
 
-                isLeaf = true ;
+    for(let {
+        width:previousNodeWidth,
+        bottom:previousNodeBottom,
+        regionWidth:previousNodeRegionWidth,
+        regionBottom:previousNodeRegionBottom,
+        leaf
+    } of previousReadjustNodes){
+
+        if(leaf){
+
+            if(previousNodeWidth > width){
+
+                return previousNodeBottom +　nodeVerticalSeparationDistance + offset;
+            }
+        
+        }else{
+
+            if(previousNodeWidth > width){
+
+                return previousNodeBottom +　nodeVerticalSeparationDistance ;
             
-            }else{
+            }else if(previousNodeRegionWidth <= width){
 
-                let region = getScopeRegion(childNode),
-                    offset = childNode.y - region.y,
-                    regionHeight = region.height;
-
-                if(region.width <= nodeWidth){
-
-                    moveToY(childNode , nodeBottom +　nodeVerticalSeparationDistance + offset) ;
-                
-                }else if(childNode.width >= nodeWidth &&　isLeaf){
-
-                    let position = i - 1,
-                        moveToYValue,
-                        minMoveToYValue = nodeBottom +　nodeVerticalSeparationDistance,
-                        width = childNode.width;
-
-                    while(position --){
-
-                        moveToYValue = 0 ;
-
-                        let previousNode = children[position],
-                            previousWidth;
-
-                        if(isLeafNode(previousNode)){
-
-                            moveToYValue = previousNode.y + previousNode.height ;
-
-                            previousWidth = previousNode.width ;
-
-                        }else{
-
-                            let {
-                                y,
-                                width,
-                                height
-                            } = getScopeRegion(previousNode) ;
-
-                            moveToYValue = y + height ;
-
-                            previousWidth = width ;
-                        }
-
-                        moveToYValue += nodeVerticalSeparationDistance + offset ;
-
-                        if(moveToYValue < minMoveToYValue){
-
-                            moveToYValue = minMoveToYValue ;
-
-                            break ;
-                        }
-
-                        if(width < previousWidth){
-
-                            break ;
-                        }
-
-                    }
-                    
-                    moveToY(childNode , moveToYValue) ;
-
-                }else{
-
-                    moveToY(childNode , regionBottom + nodeVerticalSeparationDistance + offset);
-                }
-
-                nodeWidth = childNode.width ;
-
-                let currentRegionBottom = childNode.y - offset + regionHeight ;
-
-                nodeBottom = childNode.y + childNode.height ;
-
-                if(regionBottom < currentRegionBottom){
-
-                    regionBottom = currentRegionBottom ;
-                }
-
-                isLeaf = false ;
+                return previousNodeRegionBottom + nodeVerticalSeparationDistance + offset;
             }
         }
     }
