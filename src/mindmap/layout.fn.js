@@ -151,9 +151,9 @@ function readjust(node){
 
             readjust.call(me , childNode) ;
 
-            moveToY(node , getReadjustNodeY.call(me , previousReadjustNodes , node)) ;
+            moveToY(childNode , getReadjustNodeY.call(me , previousReadjustNodes , childNode)) ;
 
-            previousReadjustNodes.unshift(getReadjustNode.call(me , node)) ;
+            previousReadjustNodes.unshift(getReadjustNode.call(me , childNode)) ;
         }
     }
 }
