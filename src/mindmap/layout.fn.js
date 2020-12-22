@@ -263,7 +263,6 @@ function getReadjustNonLeafNodeY(previousReadjustNodes , node){
     if(previousReadjustNodes.length){
 
         let {
-            width:previousNodeWidth,
             bottom:previousNodeBottom,
             regionBottom:previousNodeRegionBottom,
             regionWidth:previousNodeRegionWidth,
