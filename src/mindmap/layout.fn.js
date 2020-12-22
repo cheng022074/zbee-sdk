@@ -160,7 +160,36 @@ function readjust(node){
 
 function getReadjustNode(node){
 
+    let {
+        y,
+        width,
+        height
+    } = node,
+    isLeaf = isLeafNode(node),
+    config = {
+        bottom:y + height,
+        width,
+        leaf:isLeaf
+    };
 
+    if(isLeaf){
+
+        return config ;
+    }
+
+    {
+        let {
+            y,
+            width,
+            height
+        } = getScopeRegion(node) ;
+
+        config.regionBottom = y + height ;
+
+        config.regionWidth = width ;
+    }
+
+    return config ;
 }
 
 function getReadjustNodeY(previousReadjustNodes , node){
@@ -194,15 +223,25 @@ function getReadjustLeafNodeY(previousReadjustNodes , node){
             leaf
         } = previousReadjustNodes[0] ;
 
-        if(leaf || width <= previousNodeWidth){
+        if(leaf){
 
+            // 当前置节点为叶子节点时，则放置在其下方
             return previousNodeBottom + nodeVerticalSeparationDistance ;
         
-        }
+        }else{
 
-        return previousNodeRegionBottom + nodeVerticalSeparationDistance ;
+            // 当前置节点为非叶子节点时，且当前节点宽度小于等于前置节点宽度，则放置在其下方
+            if(width <= previousNodeWidth){
+
+                return previousNodeBottom + nodeVerticalSeparationDistance ;
+            }
+            
+            // 当前置节点为非叶子节点时，且当前节点宽度大于前置节点宽度，则放置在其最后子节点的下方
+            return previousNodeRegionBottom + nodeVerticalSeparationDistance ;
+        }
     }
 
+    // 没有前置节点时，则位置不发生改变
     return y ;
 }
 
@@ -213,8 +252,7 @@ function getReadjustNonLeafNodeY(previousReadjustNodes , node){
         width
     } = node,
     {
-        y:regionY,
-        width:regionWidth
+        y:regionY
     } = getScopeRegion(node),
     offset = y - regionY,
     me = this,
@@ -228,64 +266,89 @@ function getReadjustNonLeafNodeY(previousReadjustNodes , node){
             width:previousNodeWidth,
             bottom:previousNodeBottom,
             regionBottom:previousNodeRegionBottom,
+            regionWidth:previousNodeRegionWidth,
             leaf
         } = previousReadjustNodes[0] ;
 
         if(leaf){
 
-            if(previousNodeWidth <= width){
+            // 当前置节点为叶子节点时, 且当前节点宽度大于等于前置节点宽度时，则当前节点放置在其下方
+            if(width >= previousNodeWidth){
 
-                return Math.max(previousNodeBottom + nodeVerticalSeparationDistance , getReadjustNonLeafNearestBottom.call(me , previousReadjustNodes , width , regionWidth , offset)) ;
-            
+                let y = previousNodeBottom + nodeVerticalSeparationDistance,
+                    bottom = getReadjustNodeMaxBottom(previousReadjustNodes , width);
+
+                if(bottom === null){
+
+                    return y ;
+                }
+
+                return Math.max(y , bottom + nodeVerticalSeparationDistance + offset) ;
             }
 
-            return previousNodeBottom + nodeVerticalSeparationDistance + offset ;
-        }
-
-        if(regionWidth <= previousNodeWidth){
+            // 当前置节点为叶子节点时, 且当前节点宽度小于前置节点宽度时，则当前节点的第一个子节点放置其下方
 
             return previousNodeBottom + nodeVerticalSeparationDistance + offset ;
         }
 
+        // 当前置节点为非叶子节点时，且当前节点宽度大于等于前置节点展开宽度时，则当前节点放置在其最后一个子节点的下方
+        if(width >= previousNodeRegionWidth){
+
+            let y = previousNodeRegionBottom + nodeVerticalSeparationDistance,
+                    bottom = getReadjustNodeMaxBottom(previousReadjustNodes , width);
+
+            if(bottom === null){
+
+                return y ;
+            }
+
+            return Math.max(y , bottom + nodeVerticalSeparationDistance + offset) ;
+        }
+        // 当前置节点为非叶子节点时，且当前节点宽度小于前置节点展开宽度时，则当前节点的第一个子节点放置在其最后一个子节点的下方
         return previousNodeRegionBottom + nodeVerticalSeparationDistance + offset ;
     }
 
     return y ;
 }
 
-function getReadjustNonLeafNearestBottom(previousReadjustNodes , width , regionWidth , offset){
+function getReadjustNodeMaxBottom(previousReadjustNodes , width){
 
-    let {
-        nodeVerticalSeparationDistance
-    } = this ;
+    let bottoms = [] ;
 
     for(let {
         width:previousNodeWidth,
         bottom:previousNodeBottom,
-        regionWidth:previousNodeRegionWidth,
         regionBottom:previousNodeRegionBottom,
+        regionWidth:previousNodeRegionWidth,
         leaf
     } of previousReadjustNodes){
 
         if(leaf){
 
-            if(previousNodeWidth > width){
+            if(previousNodeWidth >　width){
 
-                return previousNodeBottom +　nodeVerticalSeparationDistance + offset;
+                bottoms.push(previousNodeBottom) ;
             }
-        
+
         }else{
 
             if(previousNodeWidth > width){
 
-                return previousNodeBottom +　nodeVerticalSeparationDistance ;
+                bottoms.push(previousNodeBottom) ;
             
-            }else if(previousNodeRegionWidth <= width){
+            }else if(previousNodeRegionWidth >　width){
 
-                return previousNodeRegionBottom + nodeVerticalSeparationDistance + offset;
+                bottoms.push(previousNodeRegionBottom) ;
             }
         }
     }
+
+    if(bottoms.length){
+
+        return Math.max(...bottoms);
+    }
+
+    return null ;
 }
 
 function layout(node){
