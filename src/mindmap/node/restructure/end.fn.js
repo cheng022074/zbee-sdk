@@ -23,6 +23,8 @@
  * 
  * @import doOrder from ....order scoped
  * 
+ * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
+ * 
  */
 
 let me = this,
@@ -63,6 +65,11 @@ if(is(placeholderNode)){
    let parentNode = getParentNode(selectedNode);
 
    if(!(oldParentNode === parentNode && oldPreviousSibling === getPreviousSibling(selectedNode))){
+
+      if(beforeMoveFn(data(parentNode)) === false){
+
+         return ;
+      }
 
       fireEvent = () => {
 
