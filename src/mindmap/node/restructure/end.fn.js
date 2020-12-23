@@ -51,25 +51,24 @@ let fireEvent;
 if(is(placeholderNode)){
 
    let oldPreviousSibling = getPreviousSibling(selectedNode),
-       oldParentNode = getParentNode(selectedNode),
-       {
-          selected
-       } = selectedNode;
+       oldParentNode = getParentNode(selectedNode);
 
-   insertBefore(selectedNode , placeholderNode) ;
+   if(beforeMoveFn(data(getParentNode(placeholderNode))) !== false){
 
-   selectedNode.selected = selected ;
+      let {
+         selected
+      } = selectedNode ;
+
+      insertBefore(selectedNode , placeholderNode) ;
+
+      selectedNode.selected = selected ;
+   }
 
    remove(placeholderNode) ;
 
    let parentNode = getParentNode(selectedNode);
 
    if(!(oldParentNode === parentNode && oldPreviousSibling === getPreviousSibling(selectedNode))){
-
-      if(beforeMoveFn(data(parentNode)) === false){
-
-         return ;
-      }
 
       fireEvent = () => {
 
@@ -78,6 +77,8 @@ if(is(placeholderNode)){
          doOrder(parentNode) ;
 
       } ;
+
+     
    }
 }
 
