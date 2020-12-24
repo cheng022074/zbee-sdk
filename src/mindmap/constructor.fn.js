@@ -63,8 +63,6 @@
  * 
  * @param {number} [config.ellipsisPattern = false] 标识是否启用省略模式
  * 
- * @param {number} [config.visibilityLevel = 1] 省略节点时选定节点展现子节点层数
- * 
  * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
  * 
  * @param {function} [config.callback] 脑图内部回调
@@ -246,13 +244,6 @@
       } , readerAddFields.bind(me)) ;
 
  me.readConfig = readConfig ;
-
- me.visibilityLevel = visibilityLevel ;
-
- if(visibilityLevel > initVisibilityLevel){
-
-   initVisibilityLevel = visibilityLevel ;
- }
 
  me.initVisibilityLevel = initVisibilityLevel ;
 

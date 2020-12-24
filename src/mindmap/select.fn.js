@@ -75,8 +75,7 @@
       if(ellipsisPattern){
     
         ellipsis(node) ;
-    
-        initVisibilityLevel(node , me.visibilityLevel) ;
+
       }
 
       me.fireEvent('nodeselect' , data(node) , data(selectedNode)) ;
@@ -89,21 +88,3 @@
 
     return false ;
  }
-
- function initVisibilityLevel(node , maxLevel , level = 1){
-
-  if(level < maxLevel){
-
-      expand(node) ;
-
-      let {
-        children
-      } = node ;
-
-      for(let childNode of children){
-
-        initVisibilityLevel(childNode , maxLevel , level + 1) ;
-        
-      }
-  }
-}
