@@ -13,11 +13,11 @@
  * 
  * @import has from ..inner.has
  * 
- * @import is from is.data.item
- * 
  * @param {string} name 属性名称
  * 
- * @param {function} onSet 设置属性值
+ * @param {function} [onSet] 设置属性值
+ * 
+ * @param {function} [onAfterSet] 设置属性值之后调用
  * 
  * @param {function} [isEquals] 属性值判断是否相等，只在启动改变属性事件有效
  * 
@@ -37,16 +37,11 @@
             value = onSet.call(me , value , oldValue) ;
         }
 
-        if(is(oldValue)){
-
-            get(oldValue , 'observable').independent() ;
-        }
-
         set(me , name , value) ;
 
-        if(is(me)){
+        if(isFunction(onAfterSet)){
 
-            get(me , 'observable').fireEvent('propertychange' , me , name , value , oldValue) ;
+            value = onAfterSet.call(me , value) ;
         }
     }
 } ;

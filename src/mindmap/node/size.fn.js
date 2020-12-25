@@ -5,19 +5,19 @@
  * 
  * @import get from .get scoped
  * 
- * @param {string} id 编号
+ * @import unsized from .unsized.unregister scoped
+ * 
+ * @param {mixed} node 脑图节点
  * 
  * @param {number} width 宽度
  * 
  * @param {number} height 高度
  * 
+ * @param {boolean} [isLayout = false] 是否强制布局
+ * 
  */
 
- let me = this,
- {
-    unsizedNodes
- } = me,
- node = get(id);
+ node = get(node);
 
  if(node){
 
@@ -25,24 +25,13 @@
 
     node.height = height;
 
-    if(node.hidden){
+    if(isLayout){
 
-      return ;
-    }
-
-    let {
-      size
-    } = unsizedNodes ;
-
-    unsizedNodes.delete(id) ;
-
-    if(size && unsizedNodes.size === 0){
-
-      me.fireEvent('nodesized') ;
+      this.layout() ;
     
-    }else if(size === 0){
+    }else{
 
-      me.layout() ;
+      unsized(node) ;
     }
  }
  

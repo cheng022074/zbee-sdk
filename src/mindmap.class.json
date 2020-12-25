@@ -13,16 +13,34 @@
     },
     "methods":[
         "load",{
+            "name":"loadData",
+            "impl":".mindmap.load.data"
+        },
+        {
+            "name":"saveData",
+            "impl":".mindmap.save.data"
+        },
+        {
             "name":"setNodeSize",
             "impl":".mindmap.node.size"
         },
+        "destroy",
         "resize",
         "expand",
         "collapse",
         "select",
+        "deselect",
         "delete",
         "append",
         "move",
+        {
+            "name":"moveDown",
+            "impl":".mindmap.move.down"
+        },
+        {
+            "name":"moveUp",
+            "impl":".mindmap.move.up"
+        },
         "refresh",
         {
             "name":"getNextSiblingNode",
@@ -33,7 +51,7 @@
             "impl":".mindmap.node.sibling.previous"
         },
         {
-            "name":"setNodeInfo",
+            "name":"info",
             "impl":".mindmap.node.info"
         },
         {
@@ -53,7 +71,7 @@
             "impl":".mindmap.nodes.child"
         },
         {
-            "name":"setNodeText",
+            "name":"text",
             "impl":".mindmap.node.text"
         },
         {
@@ -86,6 +104,9 @@
         },{
             "name":"endRestructureNode",
             "impl":".mindmap.node.restructure.end"
+        },{
+            "name":"fireIndicatorInput",
+            "impl":".mindmap.node.indicator.input"
         }
     ]
 }

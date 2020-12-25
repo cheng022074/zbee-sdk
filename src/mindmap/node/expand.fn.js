@@ -7,25 +7,24 @@
  * 
  * @import isLeaf from .is.leaf scoped
  * 
- * @param {data.Record} node 节点
+ * @import from from .from scoped
+ * 
+ * @param {mixed} node 节点
  * 
  * @return {boolean} 如果正确展开则返回 true , 否则返回 false
  * 
  */
 
+ node = from(node) ;
 
 let me = this,
 {
-    id
-} = node,
-{
-    visibilityNodes
-} = me ;
+    hidden
+} = node;
 
-if(visibilityNodes.has(id)){
+if(!hidden){
 
-    let node = visibilityNodes.get(id),
-    {
+    let {
         expanded
     } = node;
 

@@ -24,7 +24,16 @@ if(isString(fn)){
 
     }else{
 
-        fn = include(fn) ;
+        try{
+
+            fn = include(fn) ;
+        
+        }catch(err){
+
+
+        }
+
+        
     }
 }
 

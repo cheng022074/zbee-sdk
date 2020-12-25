@@ -16,13 +16,11 @@
  * 
  * @param {mixed} target 事件主体
  * 
- * @param {string|object} name 事件名称
+ * @param {string|object|array} name 事件名称
  * 
  * @param {mixed} fn 事件回调
  * 
- * @param {object} [options = {}] 事件配置
- * 
- * @param {mixed} [options.scope] 事件作用域
+ * @param {mixed} [scope] 事件作用域
  * 
  */
 
@@ -68,7 +66,7 @@
 
     for(let name of names){
 
-        remove(target , name , listeners[name]) ;
+        remove(target , name , listeners[name] , scope) ;
     }
 
  }else if(isArray(name)){

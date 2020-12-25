@@ -7,19 +7,19 @@
  * 
  * @import select from ..select scoped
  * 
- * @import tryLayout from ..layout.try scoped
- * 
  * @import data from ..node.data scoped
  * 
  * @import order from ..order scoped
  * 
  * @import getParentNode from ..node.parent scoped
  * 
- * @import insertBeforeById from .before.id scoped
+ * @import from from ..node.from scoped
  * 
  * @param {mixed} node 插入的节点配置
  * 
- * @param {string} [beforeNodeId] 参数节点编号
+ * @param {mixed} [beforeNode] 参考脑图节点
+ * 
+ * @param {boolean} [isSilentMode = false] 是否静默模式
  * 
  */
 
@@ -30,31 +30,41 @@ let me = this,
 
 if(restructuring){
 
-   return ;
+   return;
 }
 
- if(beforeNodeId){
+let nodeSelected,
+    isNewNode = true;
 
-  insertBeforeById(node , beforeNodeId) ;
- 
- }else{
+if(from(node)){
 
-  let {
-        selectedNode
-    } = me ;
-    
-    node = insert(node , selectedNode) ;
+   isNewNode = false ;
 
-    if(node){
+   nodeSelected = node.selected ;
+}
 
-      me.fireEvent('nodeinsertbefore' , data(node) , data(selectedNode)) ;
+node = insert(node , beforeNode) ;
 
-      order(getParentNode(selectedNode)) ;
+if(node){
 
-      select(node.id , false) ;
-      
-      await tryLayout();
+   if(nodeSelected){
 
-      
-    }
- }
+      node.selected = true ;
+   }
+
+   if(!isSilentMode){
+
+      me.fireEvent('nodeinsertbefore' , data(node) , data(beforeNode) , isNewNode) ;
+   
+      order(getParentNode(beforeNode)) ;
+   
+      if(!select(node)){
+
+         me.layout() ;
+      }  
+   
+   }else{
+   
+      me.layout() ;
+   }
+}

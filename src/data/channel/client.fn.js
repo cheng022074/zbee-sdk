@@ -3,124 +3,99 @@
  * 
  * 数据通道客户端基本实现
  * 
- * @import get from object.property.inner.get
+ * @import Observable from mixin.observable
  * 
- * @import define from object.property.inner.define
+ * @import is.defined
  * 
- * @import add from event.listener.add
+ * @import on from event.listener.add
  * 
- * @import remove from event.listener.remove
- * 
- * @import is.string
- * 
- * @import Channel from ..channel value
+ * @import off from event.listener.remove
  * 
  * @class
  * 
  */
 
-class main extends Channel{
+ class main extends mixins({
+    mixins:[
+        Observable
+    ]
+}){
 
-    constructor(target){
+    getEventNameBySendParams(params){
 
-        super(target) ;
+        return JSON.stringify(params) ;
+    }
+
+    getEventNameByReceiveParams(){
+        
+    }
+
+    processSendParams(params){
+
+        return params ;
+    }
+
+    processReceiveData(){
+
+        return {} ;
+    }
+
+    send(params , isReturnData = false){
 
         let me = this,
-        {
-            __ZBEE_CLASS_NAME__
-        } = me;
+            eventName = me.getEventNameBySendParams(params),
+            dataEvent = eventName,
+            errorEvent = `${eventName}-error`,
+            fireDataEvent = (...params) => {
 
-        if(__ZBEE_CLASS_NAME__ === 'src::data.channel.client'){
+                let receiveData = me.processReceiveData(...params) ;
 
-            add(me , {
-                data:'onData',
-                dataerror:'onErrorData',
-                scope:me
-            }) ;
+                let receiveDataEvent = me.getEventNameByReceiveParams(receiveData) ;
 
-            define(me , 'defaultEventName' , `${__ZBEE_CLASS_NAME__}-${Date.now()}`) ;
-        }
-    }
+                if(isDefined(receiveDataEvent) && receiveDataEvent !== dataEvent){
 
-    getEventNameByParams(params){
+                    return ;
+                }
 
-        let target = get(this , 'target') ;
+                me.fireEvent(dataEvent , receiveData) ;
 
-        if(target){
+            },
+            fireErrorEvent = data => me.fireEvent(errorEvent , data);
 
-            return target.getEventNameByParams(params) ;
-        }
-    }
-
-    onErrorData(client , data , params){
-
-        fireEvent.call(this , data , params , 'error') ;
-    }
-
-    onData(client , data , params){
-
-        fireEvent.call(this , data , params) ;
-    }
-
-    async send(params , isReturnData = false){
-
-        let me = this,
-            target = get(me , 'target'),
-            data;
+        params = me.processSendParams(params) ;
 
         if(isReturnData){
 
-            data = new Promise(callback => {
+            return new Promise((resolve , reject) => {
 
-                let event = getEventName.call(me , params),
-                    listener = (client , data , currentParams) => {
+                let listeners = {
+                    [dataEvent](client , data){
 
-                        if(params === currentParams){
+                        off(me , listeners) ;
+                    
+                        resolve(data) ;
+                    },
+                    [errorEvent](client , data){
 
-                            remove(me , event , listener) ;
+                        off(me , listeners) ;
 
-                            callback(data) ;
-    
-                        }
+                        reject(data) ;
+                    }
+                } ;
 
-                    } ;
+                on(me , listeners) ;
 
-                add(me , event , listener) ;
+                me.doSend(params , fireDataEvent , fireErrorEvent) ;
 
             }) ;
-            
         }
 
-        let state = await target.call('send' , params) ;
+        me.doSend(params , fireDataEvent , fireErrorEvent) ;
+    }
 
-        if(isReturnData){
+    doSend(){
 
-            return data ;
-        }
-
-        return state ;
 
     }
 
-    async cancel(params){
-
-        let target = get(this , 'target') ;
-
-        return await target.call('cancel' , params) ;
-    }
- }
-
- function getEventName(params){
-
-    let me = this ;
-
-    return get(me , 'target').callIf('getEventNameByParams' , params) || get(me , 'defaultEventName');
-
- }
-
- function fireEvent(data , params , eventSuffix = ''){
-
-    let me = this ;
-
-    me.fireEvent(`${getEventName.call(me , params)}${eventSuffix}` , data , params) ;
  }

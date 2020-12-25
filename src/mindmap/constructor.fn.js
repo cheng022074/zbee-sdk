@@ -7,6 +7,8 @@
  * 
  * @import setHidden from .hidden scoped
  * 
+ * @import afterSetHidden from .hidden.after scoped
+ * 
  * @import setSelected from .selected scoped
  * 
  * @import setIndicated from .indicated scoped
@@ -21,15 +23,21 @@
  * 
  * @import data from .data scoped
  * 
- * @import layout from .layout scoped
+ * @import tryLayout from .layout.try scoped
  * 
  * @import isObject from is.object.simple
+ * 
+ * @import is.array
+ * 
+ * @import getAPI from .constructor.api scoped
+ * 
+ * @import emptyFn from function.empty value
  * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
  * 
- * @param {data.Reader} [config.readerAsRoot] 数据读取根路径设置
+ * @param {data.Reader} [config.readConfig] 数据读取根路径设置
  * 
  * @param {boolean} [config.initVisibilityLevel = 2] 初始显示脑图节点层数
  * 
@@ -37,7 +45,7 @@
  * 
  * @param {number} [config.nodeHorizontalSeparationDistance = 0] 节点水平间隔距离
  * 
- * @param {number} [config.nodeHorizontalLineBreakPointOffset = 12.5] 非根脑图节点之间连线的折点的偏移位置
+ * @param {number} [config.nodeHorizontalLineBreakPointOffset = 12.5] 脑图节点之间连线的折点的偏移位置
  * 
  * @param {number} [config.placeholderNodeWidth = 60] 占位符宽度
  * 
@@ -53,19 +61,23 @@
  * 
  * @param {number} [config.height = 0] 脑图高度
  * 
- * @param {number} [config.ellipsisPattern = true] 标识是否启用省略模式
+ * @param {number} [config.ellipsisPattern = false] 标识是否启用省略模式
  * 
- * @param {number} [config.visibilityLevel = 1] 省略节点时选定节点展现子节点层数
+ * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
  * 
- * @param {object} [...config.options] 其它脑图配置
+ * @param {function} [config.callback] 脑图内部回调
  * 
  */
 
  let me = this ;
 
+ me.api = getAPI() ;
+
  me.nodes = new Map() ;
 
- me.visibilityNodeLevels = new Map();
+ callback = callback || emptyFn ;
+
+ me.callback = (...args) => callback.call(me , ...args) ;
 
  me.visibilityNodes = createVisibilityNodes() ;
  
@@ -112,14 +124,37 @@
 
  me.height = height ;
 
- let mindmap = me;
+ let mindmap = me,
+ {
+    fields:readerFields,
+    addFields:readerAddFields = () => {}
+ } = reader;
  
  reader = me.reader = createReader({
          order:{
             mode:'readwrite',
             defaultValue:0
          },
-         ...reader,
+
+         indicators:{
+               equals(value , oldValue){
+
+                  return value === oldValue ;
+               },
+
+               defaultValue(){
+
+                  return [] ;
+               },
+               
+               mode:'readwrite'
+         },
+         ...readerFields,
+         backgroundColor:{
+            mapping:'backgroundColor',
+            default:'transparent',
+            mode:'readwrite'
+         },
          expanded:{
             mode:'readwrite',
             local:true,
@@ -132,7 +167,16 @@
 
                return setHidden(this , hidden) ;
             },
+            afterSet(){
+
+               return afterSetHidden(this) ;
+            },
             defaultValue:true
+         },
+         level:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:-1
          },
          width:{
             mode:'readwrite',
@@ -191,38 +235,57 @@
 
                return setEllipsis(this , ellipsis) ;
             }
+         },
+         editing:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
          }
-      }) ;
+      } , readerAddFields.bind(me)) ;
 
- me.readerAsRoot = readerAsRoot ;
-
- me.visibilityLevel = visibilityLevel ;
-
- if(visibilityLevel > initVisibilityLevel){
-
-   initVisibilityLevel = visibilityLevel ;
- }
+ me.readConfig = readConfig ;
 
  me.initVisibilityLevel = initVisibilityLevel ;
 
- let placeholderNode = reader.create({
+ let placeholderNode = reader.create(Object.assign({
    id:generate('placeholder-'),
    width:placeholderNodeWidth,
    height:placeholderNodeHeight,
    placeholder:true,
-   children:[]
- }) ;
+   children:[],
+   properties:[],
+   plugins:[]
+ } , placeholderNodeData)) ;
 
  me.placeholderNode = placeholderNode ;
 
- me.fireNodeUnsizedEvent = buffer(() => {
+ me.nodes.set(placeholderNode.id , placeholderNode) ;
+
+ {
+   me.fireNodeUnsizedEvent = buffer(() => {
     
-   let {
-       unsizedNodes
-   } = me ;
+      let {
+          unsizedNodes
+      } = me ;
 
-   me.fireEvent('nodeunsized' , data(unsizedNodes.values()).nodes) ;
+      if(unsizedNodes.size){
 
-}) ;
+         me.fireEvent('nodeunsized' , data(unsizedNodes.values()).nodes) ;
+      }
+   }) ;
 
-me.layout = buffer(() => layout()) ;
+   me.fireNodeSizedEvent = buffer(() => {
+
+      let {
+         unsizedNodes
+      } = me ;
+
+      if(!unsizedNodes.size){
+
+         me.fireEvent('nodesized') ;
+      }
+
+   }) ;
+ }
+
+me.layout = buffer(tryLayout) ;

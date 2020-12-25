@@ -8,9 +8,13 @@
  * 
  * @import getRaws from .reader.raws
  * 
- * @import createRecordset from .recordset
- * 
  * @import isObject from is.object.simple
+ * 
+ * @import createData from .reader.data
+ * 
+ * @import getNames from .reader.names
+ * 
+ * @import is.defined
  * 
  * @class
  * 
@@ -18,23 +22,66 @@
 
  class main {
 
-    constructor(fields = []){
+    constructor(fields = [] , addFields){
 
         let me = this ;
 
-        me.fields = getFields.call(me , fields) ;
+        fields = getFields.call(me , fields) ;
+
+        me.addFields = addFields ;
+
+        let names = getNames(fields) ;
+
+        me.names = names ;
+
+        me.fields = fields ;
+    }
+
+    data(record , options){
+
+        return createData.call(this , record , options) ;
+    }
+
+    getAddFieldNames(record){
+
+        let {
+            names
+        } = this.getAddFields(record) ;
+
+        return names ;
+    }
+
+    getAddFields(record){
+
+        let me = this,
+        {
+            addFields
+        } = me,
+        additionalFields = addFields(record);
+    
+        if(isDefined(additionalFields)){
+    
+            return getFields.call(me , additionalFields) ;
+        }
+    
+        return [] ;
     }
 
     create(data){
 
-        return getRecord.call(this , data) ;
+        let me = this,
+        {
+            addFields
+        } = me ;
+
+        return getRecord.call(me , undefined , data , undefined , undefined , undefined , addFields) ;
     }
 
     read(data , root = '.'){
 
         let config = {
             root:'.',
-            isRecordset:true
+            multi:true
         } ;
 
         if(isObject(root)){
@@ -49,21 +96,24 @@
         root = config.root ;
 
         let {
-            isRecordset
+            multi
         } = config,
         me = this,
-            raws = getRaws.call(me , data , root),
-            records = [],
-            count = 0;
+        {
+            addFields
+        } = me,
+        raws = getRaws.call(me , data , root),
+        records = [],
+        count = 0;
+
+        if(multi === false && raws.length){
+
+            return getRecord.call(me , null , raws[0] , raws , count , data , addFields) ;
+        }
 
         for(let raw of raws){
 
-            records.push(getRecord.call(me , raw , raws , count ++ , data)) ;
-        }
-
-        if(isRecordset){
-
-            return createRecordset(me , records) ;
+            records.push(getRecord.call(me , null , raw , raws , count ++ , data , addFields)) ;
         }
 
         return records ;

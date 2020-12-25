@@ -41,6 +41,20 @@
         me.sortedYNodeIndexes = new Map() ;
     }
 
+    clear(){
+
+        super.clear() ;
+
+        let {
+            sortedXNodeIndexes,
+            sortedYNodeIndexes
+        } = this ;
+
+        sortedXNodeIndexes.clear() ;
+
+        sortedYNodeIndexes.clear() ;
+    }
+
     resort(){
 
         let me = this,
@@ -223,7 +237,12 @@
         x,
         y
     } = xy,
-    dataNode = data(node),
+    dataNode = data(node , [
+        'x',
+        'y',
+        'width',
+        'height'
+    ]),
     {
         right
     } = from(dataNode),

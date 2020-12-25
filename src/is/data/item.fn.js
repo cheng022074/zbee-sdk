@@ -5,7 +5,7 @@
  * 
  * @import is.object
  * 
- * @import has from object.property.inner.has
+ * @import get from object.property.inner.get
  * 
  * @param {mixed} data 数据
  * 
@@ -13,4 +13,4 @@
  * 
  */
 
- return isObject(data) && has(data , 'observable') ;
+ return isObject(data) && get(data , 'DATA_RECORD') === true ;

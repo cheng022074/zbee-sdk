@@ -25,6 +25,7 @@
 
         innerProperties[innerName(name)] = {
             value:properties[name],
+            configurable:true,
             writable:true
         }
     }
@@ -35,6 +36,7 @@
 
     Object.defineProperty(target , innerName(name) , {
         value,
+        configurable:true,
         writable:true
     }) ;
  }

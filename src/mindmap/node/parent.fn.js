@@ -3,7 +3,7 @@
  * 
  * 获取指定节点的父节点引用
  * 
- * @import isRootNode from .is.root
+ * @import isRootNode from .is.root scoped
  * 
  * @import data from .data scoped
  * 

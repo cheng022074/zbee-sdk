@@ -3,17 +3,7 @@
  * 
  * 对于数组进行拷贝
  * 
- * @import is.array
- * 
- * @import isObject from is.object.simple
- * 
- * @import is.date
- * 
- * @import array.clone
- * 
- * @import assign from object.assign
- * 
- * @import date.clone
+ * @import clone from data.clone
  * 
  * @param {array} data 数组
  * 
@@ -24,20 +14,7 @@
 
  for(let item of data){
 
-    if(isObject(item)){
-
-        item = assign({} , item) ;
-
-    }else if(isArray(item)){
-
-        item = arrayClone(item) ;
-    
-    }else if(isDate(item)){
-
-        item = dateClone(item) ;
-    }
-
-    result.push(item) ;
+    result.push(clone(item)) ;
  }
 
  return result ;

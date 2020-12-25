@@ -9,28 +9,44 @@
  * 
  * @import show from .show scoped
  * 
- * @param {data.Record} parentNode 节点
+ * @import from from ..data.node.from scoped
+ * 
+ * @import getLastChildNode from ..data.node.child.last scoped
+ * 
+ * @param {mixed} parentNode 节点
  * 
  * @param {mixed} node 节点配置
  * 
  * 
  */
 
- let {
-    children,
-    hidden,
-    expanded
- } = parentNode;
+parentNode = from(parentNode) ;
 
+if(parentNode){
+  
+  let mindmapNode = from(node) ;
 
- node = create(node , parentNode) ;
- 
- children.push(node) ;
+  if(mindmapNode && (parentNode === mindmapNode || getLastChildNode(parentNode) === mindmapNode)){
 
- if(!hidden && expanded){
+    return ;
 
-   show(node) ;
- }
+  }
 
- return node ;
+  let {
+      children,
+      hidden,
+      expanded
+  } = parentNode;
+
+  node = create(node , parentNode) ;
+  
+  children.push(node) ;
+
+  if(!hidden && expanded){
+
+    show(node) ;
+  }
+
+  return node ;
+}
 

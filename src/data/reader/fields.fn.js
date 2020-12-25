@@ -11,6 +11,8 @@
  * 
  * @import is.string
  * 
+ * @import is.number
+ * 
  * @import empty from function.empty value
  * 
  * @import is.function
@@ -86,6 +88,16 @@
     return result ;
  }
 
+ function processDefaultValue(defaultValue) {
+     
+    if(isFunction(defaultValue)){
+
+        return defaultValue ;
+    }
+
+    return () => defaultValue ;
+ }
+
  function getField({
     name,
     type,
@@ -94,6 +106,7 @@
     local = false,
     equals,
     set,
+    afterSet,
     get,
     defaultValue,
     reader,
@@ -106,14 +119,26 @@
        getData
    } = me;
 
+   defaultValue = processDefaultValue(defaultValue) ;
+
     let field = {
         name,
         mode,
         equals,
-        set,
         get,
-        defaultValue
+        defaultValue,
+        afterSet
     }  ;
+
+    if(isString(type) && !isFunction(set)){
+
+        field.set = value => include(`data.convert.${type}`)(value , options) ;
+    
+    }else{
+
+        field.set = set ;
+
+    }
 
     if(!local){
 
@@ -133,7 +158,9 @@
 
                     let {
                         fields,
-                        root
+                        root,
+                        addFields,
+                        ...options
                     } = reader,
                     rootProperty;
 
@@ -146,7 +173,17 @@
                         rootProperty = root ;
                     }
 
-                    return createReader(fields).read(data , rootProperty) ;
+                    let readConfig = {
+                        root:rootProperty,
+                        ...options
+                    } ;
+
+                    if(fields){
+
+                        return createReader(fields , addFields).read(data , readConfig) ;
+                    }
+
+                    return me.read(data , readConfig) ;
                 }
 
                 return [] ;
@@ -173,12 +210,23 @@
 
             }
 
-            return isDefined(raw) ? raw : defaultValue ;
+            if(isDefined(raw)){
+
+                if(typeof raw === 'number' && isNaN(raw)){
+
+                    return defaultValue() ;
+                }
+
+                return raw ;
+            }
+
+            return defaultValue() ;
+
         } ;
     
     }else{
 
-        field.convert = () => defaultValue ;
+        field.convert = () => defaultValue() ;
     }
 
     return field ;

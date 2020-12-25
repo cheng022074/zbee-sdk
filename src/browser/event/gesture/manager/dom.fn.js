@@ -13,6 +13,10 @@
  * 
  * @import is.array
  * 
+ * @import on from ....listener.element.add
+ * 
+ * @import off from ....listener.element.remove
+ * 
  * @config eventConfig from event
  * 
  * @once
@@ -53,7 +57,7 @@
 
     }
 
-    install(el , name){
+    install(el , name , options = {}){
 
         let {
             events
@@ -81,9 +85,7 @@
 
                 listeners.push(listener) ;
 
-                el.addEventListener(event , listener , {
-                    passive:false
-                }) ;
+                on(el , event , listener , options) ;
 
                 isAddMainListener = true ;
             
@@ -97,9 +99,7 @@
 
                 listeners.push(listener) ;
 
-                el.addEventListener(name , listener , {
-                    passive:false
-                }) ;
+                on(el , name , listener , options) ;
             }
         }
 
@@ -129,15 +129,15 @@
 
                 if(isString(event)){
 
-                    el.removeEventListener(event , listener) ;
-                
+                    off(el , event , listener) ;
+
                 }else if(isObject(event)){
 
                     let {
                         event:name
                     } = event ;
 
-                    el.removeEventListener(name , listener) ;
+                    off(el , name , listener) ;
                 }
             }
 

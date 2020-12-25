@@ -5,21 +5,21 @@
  * 
  * @import isRootNode from .node.is.root scoped
  * 
- * @import getParentNode from .node.parent scoped
+ * @import getParentNode from .data.node.parent scoped
  * 
  * @import data from .node.data scoped
  * 
  * @import remove from .node.delete scoped
  * 
- * @import layout from .layout scoped
- * 
- * @import removeById from .delete.id scoped
- * 
  * @import order from .order scoped
  * 
  * @import select from .select scoped
  * 
- * @param {string} [id] 节点编号
+ * @import from from .node.from scoped
+ * 
+ * @param {string} [node] 节点编号
+ * 
+ * @param {boolean} [isSilentMode = false] 是否静默模式
  * 
  */
 
@@ -30,30 +30,24 @@
 
  if(restructuring){
 
-    return ;
+    return false;
  }
 
+ node = from(node) ;
 
-if(id){
+ if(node && !isRootNode(node)){
 
-    removeById(id) ;
+    let parentNode = getParentNode(node);
 
-}else{
+    if(node.selected === true){
 
-    let {
-        selectedNode
-    } = me ;
-
-    if(!isRootNode(selectedNode)){
-
-        let parentNode = getParentNode(selectedNode),
-        {
+        let {
             children
         } = parentNode,
         {
             length
         } = children,
-        index = children.indexOf(selectedNode),
+        index = children.indexOf(node),
         nextSelectedNode;
 
         if(length - 1){
@@ -73,25 +67,25 @@ if(id){
             nextSelectedNode = parentNode ;
         }
 
-        let deleteNodes = remove(selectedNode),
-            {
-                nodes
-            } = me;
+        select(nextSelectedNode) ;
+    }
 
-        for(let {
-            id
-        } of deleteNodes){
+    let deleteNodes = remove(node),
+    {
+        nodes
+    } = this;
 
-            nodes.delete(id) ;
-        }
+    for(let {
+        id
+    } of deleteNodes){
 
-        me.fireEvent('nodedelete' , deleteNodes) ;
+        nodes.delete(id) ;
+    }
 
-        await select(nextSelectedNode.id , false) ;
+    if(!isSilentMode){
 
         order(parentNode) ;
 
-        layout() ;
+        me.fireEvent('nodedelete' , deleteNodes) ;
     }
-
 }

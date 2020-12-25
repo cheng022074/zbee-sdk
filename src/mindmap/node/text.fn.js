@@ -3,15 +3,15 @@
  * 
  * 修改节点文本
  * 
- * @import setNodeInfo from .info scoped
+ * @import info from .info scoped
  * 
  * @param {string} text 节点文本
  * 
- * @param {string} [id] 节点编号
+ * @param {mixed} [node] 脑图节点
  * 
  * 
  */
 
-setNodeInfo({
+return info({
     text
-} , id) ;
+} , node) ;

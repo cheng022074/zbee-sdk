@@ -27,8 +27,6 @@
         value:fn
     }){
 
-      EventDom.install(el, name);
-
       addEventListener(el , name , fn) ;
 
     },
@@ -53,8 +51,6 @@
     }){
 
         removeEventListener(el , name , fn) ;
-
-        EventDom.uninstall(el, name);
       
     }
 }) ;
@@ -81,12 +77,19 @@ function addEventListener(el , name , fn){
 
         let {
             fn:listenerFn,
+            scope,
             ...options
         } = fn ;
+
+        EventDom.install(el, name , options);
         
-        on(el , event , listenerFn , options);
+        on(el , event , listenerFn , {
+            scope
+        });
 
     }else{
+
+        EventDom.install(el, name);
 
         on(el , event , fn) ;
     }
@@ -97,11 +100,18 @@ function removeEventListener(el , name , fn){
     let event = `gesture:${name}` ;
 
     if(isObject(fn)){
+
+        let {
+            fn:listenerFn,
+            scope
+        } = fn ;
         
-        un(el , event , fn.fn);
+        un(el , event , listenerFn , scope);
 
     }else if(isFunction(fn)){
 
         un(el , event , fn) ;
     }
+
+    EventDom.uninstall(el, name);
 }

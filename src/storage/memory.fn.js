@@ -5,64 +5,147 @@
  * 
  * @import Storage from ..storage value
  * 
- * @import clear from object.clear
- * 
  * @import remove from array.remove
  * 
- * @singleton
+ * @import save from file.write.json
+ * 
+ * @import read from file.read.json
+ * 
+ * @import is.defined
+ * 
+ * @param {object} [config = {}] 配置
  * 
  */
 
- class main extends Storage{
+ async function doStorage(){
 
-    constructor(){
+    let me = this,
+    {
+      storagePath,
+      storage,
+      storageVersion,
+      storageLocked
+    } = me ;
+
+    if(isDefined(storagePath) && storageLocked !== true){
+
+      me.storageLocked = true ;
+
+      await save(storagePath , storage) ;
+
+      while(storageVersion !== me.storageVersion){
+
+        storageVersion = me.storageVersion ;
+
+        await save(storagePath , storage) ;
+
+      }
+
+      me.storageLocked = false ;
+    }
+ }
+
+ async function doLoad(){
+
+    let me = this,
+    {
+      storagePath
+    } = me,
+    storage = await read(storagePath) || {};
+
+    me.storage = storage ;
+
+    me.keys = Object.keys(storage) ;
+
+    doLoad = () => {} ;
+ }
+
+ class main{
+
+    constructor({
+      storagePath
+    }){
 
       let me = this ;
 
       me.storage = {} ;
 
       me.keys = [] ;
+
+      me.storagePath = storagePath ;
+
+      me.storageVersion = 0 ;
     }
 
-    get length(){
+    async setItem(key , value){
 
-      let {
-         keys
-      } = this ;
+      let me = this ;
 
-      return keys.length ;
-    }
-
-    doSetItem(key , value){
+      await doLoad.call(me) ;
 
       let {
          storage,
          keys
-      } = this ;
-
-      storage[key] = value ;
+      } = me ;
 
       if(!keys.includes(key)){
 
-         keys.push(key) ;
+        keys.push(key) ;
+
       }
 
+      storage[key] = value ;
+
+      me.storageVersion ++ ;
+
+      await doStorage.call(me) ;
     }
 
-    doGetItem(key){
+    get length(){
+
+      let me = this ;
+
+      return new Promise(async callback => {
+
+        await doLoad.call(me) ;
+
+        callback(me.keys.length) ;
+
+      }) ;
+
+    }
+
+    async key(index){
+
+      let me = this ;
+
+      await doLoad.call(me) ;
+
+      return me.keys[index] ;
+    }
+
+    async getItem(key){
+
+      let me = this ;
+
+      await doLoad.call(me) ;
 
       let {
          storage
-      } = this ;
+      } = me ;
 
-      return storage[key] ;
+      return storage[key] || null;
     }
 
-    doRemoveItem(key){
+    async removeItem(key){
+
+      let me = this ;
+
+      await doLoad.call(me) ;
 
       let {
          storage
-      } = this ;
+      } = me ;
 
       if(keys.includes(key)){
 
@@ -70,23 +153,5 @@
 
          delete storage[key] ;
       }
-   }
-
-   doClear(){
-
-      let {
-         storage
-      } = this ;
-
-      clear(storage) ;
-   }
-
-   doKey(index){
-
-      let {
-         keys
-      } = this ;
-
-      return keys[index] ;
    }
  }
