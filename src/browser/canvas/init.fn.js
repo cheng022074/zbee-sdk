@@ -17,8 +17,10 @@
     clientHeight
  } = canvas ;
 
- canvas.width = clientWidth * browserScale * scale;
+ scale *= browserScale ;
 
- canvas.height = clientHeight * browserScale * scale;
+ canvas.width = clientWidth * scale;
 
- 
+ canvas.height = clientHeight * scale;
+
+ canvas.getContext('2d').scale(scale , scale) ;
