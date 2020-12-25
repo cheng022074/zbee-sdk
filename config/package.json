@@ -19,7 +19,7 @@
             "file.*",
             "mindmap",
             "mindmap.node.ellipsis.cancel.active",
-            "function.get",
+            "function.*",
             "id.generate",
             "calendar.month.view",
             "miniprogram.storage",
