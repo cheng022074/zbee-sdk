@@ -9,7 +9,7 @@
  * 
  * @import getLeftXY from .node.xy.left scoped
  * 
- * @import getParentNode from .node.parent scoped
+ * @import getParentNode from .data.node.parent scoped
  * 
  * @import isRootNode from .node.is.root scoped
  * 
@@ -26,13 +26,15 @@
  */
 
  const {
-   nodeHorizontalSeparationDistance,
    nodeHorizontalLineBreakPointOffset
- } = this;
+ } = this,
+ nodeMap = new Map();
 
  let nodes = [],
      lines = [],
-     selectedNode ;
+     selectedNode;
+
+ mindNodes = Array.from(mindNodes) ;
 
  for(let mindNode of mindNodes){
 
@@ -41,9 +43,9 @@
 
     if(generateLines){
 
-      let parentNode =getParentNode(mindNode);
+      let parentNode = getParentNode(mindNode);
 
-      if(parentNode){
+      if(parentNode && mindNodes.includes(parentNode)){
 
           let isRoot = isRootNode(parentNode) ;
 
@@ -52,14 +54,14 @@
           let {
             x:nodeX,
             y:nodeY
-          } = getLeftXY(node);
+          } = getLeftXY(node),
+          {
+            x:parentNodeX,
+            y:parentNodeY
+          } = getRightXY(parentNode),
+          offset = nodeX - parentNodeX ;
 
           if(isRoot){
-
-            let {
-              x:parentNodeX,
-              y:parentNodeY
-            } = getCenterXY(parentNode);
 
             lines.push({
               draw:'line.bezierCurve',
@@ -69,9 +71,9 @@
               points:[
                 parentNodeX,
                 parentNodeY,
-                parentNodeX,
-                nodeY,
-                parentNodeX + (nodeX - parentNodeX) / 2,
+                parentNodeX + offset / 3,
+                parentNodeY,
+                parentNodeX + offset / 3,
                 nodeY,
                 nodeX,
                 nodeY
@@ -80,66 +82,22 @@
           
           }else{
 
-            let {
-              x:parentNodeX,
-              y:parentNodeY
-            } = getRightXY(parentNode);
-
-            if(nodeHorizontalLineBreakPointOffset){
-
-              lines.push({
-                draw:'line',
-                indicated,
-                start:parentNode,
-                end:node,
-                points:[
-                  parentNodeX,
-                  parentNodeY,
-                  parentNodeX + nodeHorizontalLineBreakPointOffset,
-                  parentNodeY
-                ]
-              } , {
-                draw:'line.bezierCurve',
-                indicated,
-                start:parentNode,
-                end:node,
-                points:[
-                  parentNodeX + nodeHorizontalLineBreakPointOffset,
-                  parentNodeY,
-                  parentNodeX + nodeHorizontalLineBreakPointOffset,
-                  nodeY,
-                  parentNodeX + (nodeX - parentNodeX) * .75,
-                  nodeY,
-                  nodeX,
-                  nodeY
-                ]
-              }) ;
-            
-            }else{
-
-              let {
-                x:parentNodeX,
-                y:parentNodeY
-              } = getCenterXY(parentNode);
-  
-              lines.push({
-                draw:'line.bezierCurve',
-                indicated,
-                start:parentNode,
-                end:node,
-                points:[
-                  parentNodeX,
-                  parentNodeY,
-                  parentNodeX,
-                  nodeY,
-                  parentNodeX + (nodeX - parentNodeX) / 2,
-                  nodeY,
-                  nodeX,
-                  nodeY
-                ]
-              }) ;
-            }
-
+            lines.push({
+              draw:'line.bezierCurve',
+              indicated,
+              start:parentNode,
+              end:node,
+              points:[
+                parentNodeX + nodeHorizontalLineBreakPointOffset,
+                parentNodeY,
+                parentNodeX + nodeHorizontalLineBreakPointOffset + offset / 3,
+                parentNodeY,
+                parentNodeX + nodeHorizontalLineBreakPointOffset + offset / 3,
+                nodeY,
+                nodeX,
+                nodeY
+              ]
+            }) ;
           }
       }
     }
@@ -148,7 +106,7 @@
 
     if(node.selected){
 
-      selectedNode = Object.assign({} , node) ;
+      selectedNode = node ;
     }
  }
 

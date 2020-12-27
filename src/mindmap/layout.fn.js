@@ -75,28 +75,25 @@ function main(isFireDrawEvent){
                 } = from(getParentNode(node)),
                 {
                     right:nodeRight
-                } = from(node),
-                width = nodeRight - parentNodeRight;
+                } = from(node);
 
-                if(width < regionWidth){
+                let distance = regionWidth - (nodeRight - parentNodeRight - node.width),
+                {
+                    maxNodeHorizontalSeparationDistance,
+                    minNodeHorizontalSeparationDistance
+                } = me;
 
-                    let distance = regionWidth - width,
-                    {
-                        maxNodeHorizontalSeparationDistance,
-                        minNodeHorizontalSeparationDistance
-                    } = me;
+                if(distance < minNodeHorizontalSeparationDistance){
 
-                    if(distance < minNodeHorizontalSeparationDistance){
+                    distance = minNodeHorizontalSeparationDistance ;
 
-                        distance = minNodeHorizontalSeparationDistance ;
+                }else if(distance > maxNodeHorizontalSeparationDistance){
 
-                    }else if(distance > maxNodeHorizontalSeparationDistance){
-
-                        distance = maxNodeHorizontalSeparationDistance;
-                    }
-
-                    moveX(node , distance) ;
+                    distance = maxNodeHorizontalSeparationDistance;
                 }
+
+                moveX(node , distance) ;
+                
             }
 
         }) ;

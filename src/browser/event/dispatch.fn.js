@@ -13,5 +13,6 @@
 
 el.dispatchEvent(new CustomEvent(name , {
    detail,
-   bubbles:true
+   bubbles:false,
+   cancelable:false
 })) ;

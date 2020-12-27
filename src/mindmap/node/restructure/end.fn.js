@@ -5,8 +5,6 @@
  * 
  * @import getDescendantNodes from ....nodes.relation.descendant
  * 
- * @import layout from ....layout scoped
- * 
  * @import fireDrawEvent from ....fire.draw scoped
  * 
  * @import getParentNode from ..parent scoped
@@ -25,6 +23,8 @@
  * 
  * @import doOrder from ....order scoped
  * 
+ * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
+ * 
  */
 
 let me = this,
@@ -33,6 +33,11 @@ let me = this,
    restructureIndicatedNode,
    placeholderNode
 } = me;
+
+if(!selectedNode){
+
+   return ;
+}
 
 if(restructureIndicatedNode){
 
@@ -46,14 +51,18 @@ let fireEvent;
 if(is(placeholderNode)){
 
    let oldPreviousSibling = getPreviousSibling(selectedNode),
-       oldParentNode = getParentNode(selectedNode),
-       {
-          selected
-       } = selectedNode;
+       oldParentNode = getParentNode(selectedNode);
 
-   insertBefore(selectedNode , placeholderNode) ;
+   if(beforeMoveFn(data(getParentNode(placeholderNode))) !== false){
 
-   selectedNode.selected = selected ;
+      let {
+         selected
+      } = selectedNode ;
+
+      insertBefore(selectedNode , placeholderNode) ;
+
+      selectedNode.selected = selected ;
+   }
 
    remove(placeholderNode) ;
 
@@ -68,6 +77,8 @@ if(is(placeholderNode)){
          doOrder(parentNode) ;
 
       } ;
+
+     
    }
 }
 
@@ -90,5 +101,5 @@ if(fireEvent){
 
 }
 
-layout() ;
+me.layout() ;
  

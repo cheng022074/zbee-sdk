@@ -11,75 +11,57 @@
  * 
  * @import add from event.listener.add
  * 
+ * @import from from array.from
+ * 
  * @class
  * 
  */
 
-class main extends mixins({
-    extend:Channel,
-    mixins:[
-       Observable
-    ]
-}){
 
-    async send({
-        url,
-        path,
+class main extends Channel{
+
+    doSend({
         event,
-        params
-    }){
+        params,
+        ...options
+    } , fireDataEvent , fireErrorEvent){
 
-        await getSocket.call(this , url , path).emit(event , ...params) ;
-
-        return true ;
-    }
-
-    onData(socket , ...params){
-
-        let me = this ;
-
-        me.fireEvent('data' , me.processReceiveData(...params) , me.processReceiveParams(...params)) ;
-    }
-
-    onConnect(){
-
-
-    }
-
-    processReceiveData(){
-
-        return {} ;
-    }
-
-    processReceiveParams(){
-
-        return {} ;
+        getSocket.call(this , {
+            ...options,
+            fireDataEvent,
+            fireErrorEvent
+        }).emit(event , ...from(params)) ;
     }
 }
 
 const sockets = new Map() ;
 
-function getSocket(url , path = '/socket.io'){
+function getSocket({
+    url,
+    path = '/socket.io',
+    fireDataEvent,
+    fireErrorEvent,
+    ...options
+}){
 
     let key = `${url}:${path}` ;
 
     if(!sockets.has(key)){
 
-        let me = this,
-        {
-            socketOptions = {}
-        } = me,
-        socket = createSocket({
+        let socket = createSocket({
             url,
             path,
-            ...socketOptions
+            ...options
         });
 
         add(socket , {
-            data:'onData',
-            connect:'onConnect',
-            scope:me
-        }) ;
+            data(client , ...params){
+
+                fireDataEvent(...params) ;
+
+            },
+            connect_error:fireErrorEvent
+        });
 
         sockets.set(key , socket) ;
     }

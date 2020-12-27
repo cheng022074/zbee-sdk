@@ -7,15 +7,17 @@
  * 
  * @import define from object.property.define
  * 
- * @import createObservable from ..observable
- * 
  * @import innerDefine from object.property.inner.define
- * 
- * @import innerGet from object.property.inner.get
  * 
  * @import is from is.data.item
  * 
  * @import is.defined
+ * 
+ * @import is.array
+ * 
+ * @import getFields from .fields
+ * 
+ * @param {mixed} record 数据记录 
  * 
  * @param {mixed} raw 行级原始数据
  * 
@@ -25,58 +27,91 @@
  * 
  * @param {mixed} data 原始数据
  * 
+ * @param {function} [addFields = () => {}] 自定义数据记录
+ * 
  * @return {object} 正式数据
  * 
  */
 
+ function main(record , raw , raws , index , data , addFields){
 
-let {
-    fields
-} = this,
-record = {},
-isConvert = isDefined(raw) && isDefined(raws) && isDefined(index) && isDefined(data) ;
+    let me = this,
+    {
+        fields
+    } = me,
+    isConvert = isDefined(raw) && isDefined(raws) && isDefined(index) && isDefined(data) ;
 
-innerDefine(record , 'observable' , createObservable()) ;
+    record = record || {} ;
 
-for(let {
-    name,
-    convert,
-    mode,
-    equals,
-    set,
-    get,
-    defaultValue
-} of fields){
+    innerDefine(record , 'DATA_RECORD' , true) ;
 
-    if(isConvert){
+    processFields(isConvert , record , fields , raw , raws , index , data) ;
 
-        let value = convert(raw , raws , index , data) ;
+    let additionalFields = addFields(record) ;
 
-        define(record , name , {
-            mode,
-            equals,
-            set,
-            get,
-            value
-        }) ;
+    if(isDefined(additionalFields)){
 
-        if(is(value)){
+        additionalFields = getFields.call(me , additionalFields) ;
 
-            innerGet(value , 'observable').belongTo(record) ;   
+        processFields(isConvert , record , additionalFields , raw , raws , index , data) ;
+    }
+    
+    return record ;
+ }
+
+ function processFields(isConvert , record , fields , raw , raws , index , data){
+
+    for(let {
+        name,
+        convert,
+        mode,
+        equals,
+        set,
+        afterSet,
+        get,
+        defaultValue
+    } of fields){
+
+        if(record.hasOwnProperty(name)){
+
+            continue ;
         }
     
-    }else{
+        if(isConvert){
+    
+            let value = convert(raw , raws , index , data) ;
+    
+            define(record , name , {
+                mode,
+                equals,
+                set,
+                afterSet,
+                get,
+                value
+            }) ;
+        
+        }else{
 
-        let value = raw[name] ;
+            let config = {
+                mode,
+                equals,
+                set,
+                afterSet,
+                get
+            } ;
 
-        define(record , name , {
-            mode,
-            equals,
-            set,
-            get,
-            value:isDefined(value) ? value : defaultValue
-        }) ;
+            if(raw){
+
+                let value = raw[name] ;
+
+                config.value = isDefined(value) ? value : defaultValue() ;
+            
+            }else{
+
+                config.value = defaultValue() ;
+            }
+    
+            define(record , name , config) ;
+        }
     }
-}
-
-return record ;
+ }

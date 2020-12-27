@@ -7,6 +7,8 @@
  * 
  * @import remove from event.listener.remove
  * 
+ * @import is.function
+ * 
  * @param {mixed} target 需要代理的对象
  * 
  * @param {mixed} [interceptor = {}] 需要代理的对象
@@ -143,7 +145,17 @@
         interceptor
     } = this ;
 
-    return method in interceptor && interceptor[method](target , ...args) === false;
+    if(isFunction(interceptor)){
+
+        return interceptor(target , method , ...args) === false;
+    }
+
+    if(method in interceptor){
+
+        return interceptor[method](target , ...args) === false ;
+    }
+
+    return false ;
  }
 
  class ProxyMethodNotFoundError extends Error{

@@ -5,6 +5,8 @@
  * 
  * @import browserScale from browser.scale value
  * 
+ * @import OS from os.name value
+ * 
  * @param {HTMLElement} canvas 画板元素
  * 
  * @param {number} [scale = 1] 外部传入缩放比例
@@ -17,8 +19,18 @@
     clientHeight
  } = canvas ;
 
- canvas.width = clientWidth * browserScale * scale;
+ scale *= browserScale ;
 
- canvas.height = clientHeight * browserScale * scale;
+ switch(OS){
 
- 
+   case 'Android':
+   case 'iOS':
+
+      scale = 1 ;
+ }
+
+ canvas.width = clientWidth * scale;
+
+ canvas.height = clientHeight * scale;
+
+ canvas.getContext('2d').scale(scale , scale) ;

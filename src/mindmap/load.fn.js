@@ -3,13 +3,7 @@
  * 
  * 初始化脑图数据
  * 
- * @import initSortNodes from .load.sort scoped
- * 
- * @import initVisibilityNodes from .load.visibility scoped
- * 
- * @import initNodes from .load.nodes scoped
- * 
- * @import tryLayout from .layout.try scoped
+ * @import loadData from .load.data scoped
  * 
  * @param {mixed} data 数据
  * 
@@ -18,21 +12,11 @@
  let me = this,
  {
     reader,
-    readerAsRoot
+    readConfig
  } = me,
- result = reader.read(data , readerAsRoot) ;
+ records = reader.read(data , readConfig);
 
- if(result.length === 1){
+ if(records.length === 1){
 
-    let rootNode = me.rootNode = result[0] ;
-
-    rootNode.selected = true ;
-
-    initSortNodes() ;
-
-    initNodes() ;
-
-    initVisibilityNodes() ;
-
-    await tryLayout() ;
+   await loadData(records[0]) ;
  }

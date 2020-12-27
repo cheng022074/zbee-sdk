@@ -13,7 +13,7 @@
  * 
  * @import disabled from .disabled scoped
  * 
- * @config moveDistance from event.tap.double...moveDistance
+ * @config moveDistance from event.tap...moveDistance
  * 
  * @param {Event} e 事件对象
  * 

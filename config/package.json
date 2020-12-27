@@ -19,7 +19,7 @@
             "file.*",
             "mindmap",
             "mindmap.node.ellipsis.cancel.active",
-            "function.get",
+            "function.*",
             "id.generate",
             "calendar.month.view",
             "miniprogram.storage",
@@ -33,9 +33,9 @@
             "css::mindmap"
         ],
         "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-SDK",
-            "/Users/cheng022074/Documents/Code/XY/XY-SDK",
-            "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-SDK"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-SDK\\node_modules\\zbee-sdk\\package\\xy",
+            "/Users/cheng022074/Documents/Code/XY/XY-SDK/node_modules/zbee-sdk/package/xy",
+            "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-SDK\\node_modules\\zbee-sdk\\package\\xy"
         ]
     },
     "mind-sdk":{
@@ -54,17 +54,31 @@
             "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
         ]
     },
-    "webpack-vue":{
-        "type":"webpack",
+    "zbee-webpack":{
+        "type":"node",
+        "version":"1.0.0",
         "classes":[
-            "browser.event.gesture.contextmenu",
-            "browser.event.gesture.tap",
-            "browser.event.gesture.drag",
-            "browser.event.gesture.vue",
-            "browser.event.touch.init"
+            "webpack.*"
+        ],
+        "api":{
+            "SPATest":"webpack.spa.test",
+            "SPADevelopment":"webpack.spa.development",
+            "SPAProduction":"webpack.spa.production"
+        },
+        "to":[
+            "C:\\Users\\nero.chen\\Desktop\\Code\\TEMPLATE\\TEMPLATE-WEBPACK-WEB\\node_modules\\zbee_webpack"
+        ]
+    },
+    "node-ms":{
+        "type":"node",
+        "version":"1.0.0",
+        "classes":[
+            "microservice.server",
+            "microservice.datasource"
         ],
         "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\TEST\\WEBPACK\\src\\lib.js"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\GitHub\\NODE-MS\\lib\\node.js",
+            "C:\\Users\\DEV\\Documents\\Code\\GITHUB\\NODE-MS\\lib\\node.js"
         ]
     }
 }

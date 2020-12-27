@@ -13,4 +13,4 @@
  * 
  */
 
- return insert(insertNode , beforeNode) ;
+ return insert(insertNode , beforeNode , 'before') ;

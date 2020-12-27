@@ -11,7 +11,7 @@
  * 
  * @import leaf from .hidden.leaf scoped
  * 
- * @import unsized from .hidden.unsized scoped
+ * @import level from .hidden.level scoped
  * 
  * @param {data.Record} node 脑图节点
  * 
@@ -33,17 +33,17 @@ reset(node) ;
 
 leaf(node , hidden) ;
 
+level(node , hidden) ;
+
 if(hidden === false){
 
     visibilityNodes.set(id , node) ;
-
-    unsized(node) ;
 
 }else{
 
     visibilityNodes.delete(id) ;
 
-    node.selected = false ;        
+    node.selected = false ;
 }
 
 return hidden ;

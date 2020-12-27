@@ -7,74 +7,78 @@
  * 
  * @import expand from .node.expand scoped
  * 
- * @import tryLayout from .layout.try scoped
- * 
  * @import select from .select scoped
- * 
- * @import appendById from .append.id scoped
  * 
  * @import data from .node.data scoped
  * 
  * @import order from .order scoped
  * 
+ * @import from from .node.from scoped
+ * 
  * @param {object} [node = {}] 子节点配置信息
  * 
- * @param {string} [parentNodeId] 父节点编号
+ * @param {mixed} [parentNode] 脑图父节点
  * 
  * @param {boolean} [isSilentMode = false] 是否静默模式
  * 
  */
 
- let me = this,
- {
-    restructuring
- } = me;
+let me = this,
+{
+  restructuring
+} = me;
 
- if(restructuring){
+if(restructuring){
 
-    return false;
- }
+  return;
+}
 
+parentNode = from(parentNode) ; 
 
-if(parentNodeId){
-  
-  return await appendById(node , parentNodeId , isSilentMode) ;
-  
-}else{
+let {
+    expanded,
+    selected
+} = parentNode;
 
-  let {
-      selectedNode
-  } = me,
-  {
-      expanded
-  } = selectedNode;
+let nodeSelected,
+    isNewNode = true;
 
-  node = append(selectedNode , node) ;
+if(from(node)){
 
-  if(node === false){
+    isNewNode = false ;
 
-    return false;
-    
-  }
+    nodeSelected = node.selected ;
+}
 
-  if(!expanded){
+node = append(parentNode , node) ;
 
-    expand(selectedNode) ;
-    
+if(node){
+
+  if(nodeSelected){
+
+    node.selected = true ;
   }
 
   if(!isSilentMode){
+
+    if(selected && !expanded){
   
-    me.fireEvent('nodeappend' , data(node) , data(selectedNode)) ;
+      expand(parentNode) ;
+      
+    }
+    
+    me.fireEvent('nodeappend' , data(node) , data(parentNode) , isNewNode) ;
+    
+    order(parentNode) ;
+    
+    if(!select(node)){
 
-    order(selectedNode) ;
-
-    select(node.id , false) ;
-
-    await tryLayout();
+      me.layout() ;
+    }
   
+  }else{
+  
+    me.layout() ;
+    
   }
-
-  return true ;
-
 }

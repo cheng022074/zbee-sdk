@@ -17,13 +17,17 @@
  * 
  * @import create from .create scoped
  * 
+ * @import from from ..data.node.from scoped
+ * 
  * @param {mixed} node 节点信息
  * 
- * @param {data.Record} parentNode 父节点
+ * @param {mixed} [parentNode] 父节点
  * 
  * @return {data.Record} 创建出来的新节点 
  * 
  */
+
+parentNode = from(parentNode) ;
 
 let {
    reader,
@@ -34,7 +38,10 @@ if(is(node)){
 
    removeNode(node) ;
 
-   node.parentNodeId = parentNode.id ;
+   if(parentNode){
+
+      node.parentNodeId = parentNode.id ;
+   }
 
    return node ;
 }
@@ -49,12 +56,22 @@ if(existNode){
    return create(existNode , parentNode) ;
 }
 
-node = reader.create({
+delete node.hidden ;
+
+delete node.level ;
+
+let options = {
    id:generate('node-'),
    ...node,
-   children:[],
-   parentNodeId:parentNode.id
-}) ;
+   children:[]
+} ;
+
+if(parentNode){
+
+   options.parentNodeId = parentNode.id ;
+}
+
+node = reader.create(options) ;
 
 nodes.set(node.id , node) ;
 

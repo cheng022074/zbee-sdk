@@ -21,6 +21,8 @@
  * 
  * @param {object} options Socket.io 配置
  * 
+ * @require socket.io-client
+ * 
  */
 
  const IO = require('socket.io-client') ;
@@ -155,11 +157,9 @@
 
         }
 
-        let isDisconnecting = me.isDisconnecting() ;
-
         await me.transitionState ;
 
-        if(isDisconnecting){
+        if(me.isDisconnected()){
 
             await me.connect() ;
         }
@@ -185,11 +185,9 @@
             }))) ;
         }
 
-        let isConnecting = me.isConnecting() ;
-
         await me.transitionState ;
 
-        if(isConnecting){
+        if(me.isConnected()){
 
             await me.disconnect() ;
         }
@@ -238,7 +236,7 @@
 
         if(!isDefined(reconnectionDelay)){
 
-            me.fireEvent('disconnect') ;
+            me.fireEvent('connect_error') ;
 
             return ;
         }
@@ -249,7 +247,7 @@
 
             delete me.reconnectionCount ;
 
-            me.fireEvent('disconnect') ;
+            me.fireEvent('connect_error') ;
 
         }else{
 

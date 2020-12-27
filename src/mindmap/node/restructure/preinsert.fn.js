@@ -23,11 +23,11 @@
  * 
  * @param {object} xy 坐标信息
  * 
+ * @return {boolean} 插入如果成功执行则返回 true , 否则返回 false
+ * 
  */
 
 if(is(node)){
-
-
 
     let region = from(data(node)),
     {
@@ -36,15 +36,16 @@ if(is(node)){
     outY = getOutOfBoundOffsetY(region , y),
     {
         placeholderNode
-    } = this;
+    } = this,
+    result;
 
     if(outY > 0){
 
-        insertBefore(placeholderNode , node) ;
+        result = insertBefore(placeholderNode , node) ;
     
     }else if(outY < 0){
 
-        insertAfter(placeholderNode , node) ;
+        result = insertAfter(placeholderNode , node) ;
     
     }else{
 
@@ -57,11 +58,15 @@ if(is(node)){
 
         if(y <= nodeY + height / 2){
 
-            insertBefore(placeholderNode , node) ;
+            result = insertBefore(placeholderNode , node) ;
 
         }else{
 
-            insertAfter(placeholderNode , node) ;
+            result = insertAfter(placeholderNode , node) ;
         }
     }
+
+    return !! result ;
 }
+
+return false ;

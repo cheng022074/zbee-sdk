@@ -11,10 +11,10 @@
  */
 
 const {
-    readFileSync
+    readFile
 } = require('fs') ;
 
-if(isFile(path)){
+if(await isFile(path)){
 
-    return readFileSync(path) ;
+    return new Promise((resolve , reject) => readFile(path , (error , data) => error ? reject(error) : resolve(data))) ;
 }

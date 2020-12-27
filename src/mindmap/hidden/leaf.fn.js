@@ -3,7 +3,7 @@
  * 
  * 有关叶子节点识别
  * 
- * @import isRootNode from ..node.is.root
+ * @import isRootNode from ..node.is.root scoped
  * 
  * @import getParentNode from ..node.parent scoped
  * 

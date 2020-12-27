@@ -15,7 +15,7 @@
  * 
  */
 
- function main(path , watchFn){
+ async function main(path , watchFn){
 
     if(watchFn){
 
@@ -23,7 +23,7 @@
      
     }else{
     
-        return getJSON(read(path)) ;
+        return getJSON(await read(path)) ;
     
     }
  }

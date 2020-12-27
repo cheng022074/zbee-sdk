@@ -17,11 +17,11 @@
  const chokidar = require('chokidar'),
        cacheFiles = {} ;
 
- function main(path , watchFn){
+ async function main(path , watchFn){
 
     if(!watchFn){
 
-        return getText(path) ;
+        return await getText(path) ;
     
     }else{
 
@@ -31,16 +31,16 @@
         
         }else{
 
-            chokidar.watch(path).on('change' , path => setTimeout(() => watchFn(cacheFiles[path] = getText(path) , 1))) ;
+            chokidar.watch(path).on('change' , async path => watchFn(cacheFiles[path] = await getText(path))) ;
 
-            watchFn(cacheFiles[path] = getText(path)) ;
+            watchFn(cacheFiles[path] = await getText(path)) ;
         }   
     }
  }
 
- function getText(path) {
+ async function getText(path) {
      
-    let data = read(path) ;
+    let data = await read(path) ;
 
     if(data){
 

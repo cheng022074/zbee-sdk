@@ -14,11 +14,11 @@
  */
 
 const {
-    mkdirSync
+    mkdir
 } = require('fs'),
 folderRe = /(?:^\/)|(?:[^\/\\]+(?:[\/\\]|$))/g;
 
-function main(path){
+async function main(path){
 
     let folderNames = path.match(folderRe),
         folderPath = '';
@@ -27,9 +27,9 @@ function main(path){
 
         folderPath += folderName ;
 
-        if(folderName !== '/' && !isDirectory(folderPath)){
+        if(folderName !== '/' && !await isDirectory(folderPath)){
 
-            mkdirSync(folderPath) ;
+            await new Promise((resolve , reject) => mkdir(folderPath , error => error ? reject(error) : resolve())) ;
         }
     }
 }

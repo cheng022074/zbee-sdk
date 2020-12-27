@@ -5,9 +5,7 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import is.array
- * 
- * @import clone from array.clone
+ * @import clone from data.clone
  * 
  * @param {object} dest 目标数据
  * 
@@ -27,15 +25,10 @@ function assign(dest , source){
 
         for(let name of names){
 
-            dest[name] = assign(dest[name] , source[name]) ;
+            dest[name] = clone(source[name]) ;
         }
 
-    }else if(isArray(source)){
-
-        source = clone(source) ;
     }
-
-    return source ;
 }
 
 function main(dest , ...sources){

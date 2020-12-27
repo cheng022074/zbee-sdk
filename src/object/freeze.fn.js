@@ -8,15 +8,15 @@
  * 
  * @return {object} 冻结后的对象
  * 
- * @scoped
- * 
  * @import isObject from is.object.simple
+ * 
+ * @import is.array
  * 
  */
 
 function main(data , deep){
 
-    if(isObject(data) && !Object.isFrozen(data)){
+    if((isObject(data) || isArray(data)) && !Object.isFrozen(data)){
 
         if(deep){
 

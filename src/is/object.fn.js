@@ -10,4 +10,4 @@
  * 
  */
 
-return data instanceof Object ;
+return typeof data === 'object' ;

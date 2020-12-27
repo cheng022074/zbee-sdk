@@ -13,12 +13,12 @@
  */
 
 const {
-    writeFileSync
+    writeFile
 } = require('fs'),
 {
     dirname
 } = require('path');
 
-create(dirname(path)) ;
+await create(dirname(path)) ;
 
-writeFileSync(path , data) ;
+return new Promise((resolve , reject) => writeFile(path , data , error => error ? reject(error) : resolve())) ;

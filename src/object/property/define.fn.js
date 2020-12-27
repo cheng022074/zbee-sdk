@@ -4,8 +4,6 @@
  * 
  * @import innerDefine from .inner.define
  * 
- * @import innerName from .inner.name
- * 
  * @import is.function
  * 
  * @import doSet from .define.set
@@ -29,6 +27,8 @@
  * @param {boolean} [options.equals] 判断属性值是否相等
  * 
  * @param {function} [options.set] 设置值
+ * 
+ * @param {function} [options.afterSet] 设置值之后调用
  * 
  * @param {function} [options.get] 获取值
  * 
@@ -55,6 +55,7 @@
     
                 Object.defineProperty(target , name , {
                     get:doGet(name , get),
+                    configurable:true,
                     enumerable:true
                 }) ;
     
@@ -64,6 +65,7 @@
     
                 Object.defineProperty(target , name , {
                     value,
+                    configurable:true,
                     enumerable:true
                 }) ;
             }
@@ -73,7 +75,9 @@
         case 'writeonly':
     
             Object.defineProperty(target , name , {
-                set:doSet(name , set , equals)
+                set:doSet(name , set , afterSet , equals),
+                configurable:true,
+                enumerable:true
             }) ;
     
             innerDefine(target , name , value) ;
@@ -83,8 +87,9 @@
         case 'readwrite':
 
             Object.defineProperty(target , name , {
-                set:doSet(name , set , equals),
+                set:doSet(name , set , afterSet , equals),
                 get:doGet(name , get),
+                configurable:true,
                 enumerable:true
             }) ;
     
