@@ -67,8 +67,6 @@
  * 
  * @param {function} [config.callback] 脑图内部回调
  * 
- * @param {function} [config.getNodeOffset] 脑图节点偏移坐标
- * 
  */
 
  let me = this ;
@@ -78,11 +76,6 @@
  me.nodes = new Map() ;
 
  callback = callback || emptyFn ;
-
- me.getNodeOffset = getNodeOffset || (() => ({
-    x:0,
-    y:0
- }));
 
  me.callback = (...args) => callback.call(me , ...args) ;
 
