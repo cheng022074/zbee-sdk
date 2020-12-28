@@ -133,7 +133,8 @@ function layout(node){
     me = this,
     {
         nodeVerticalSeparationDistance,
-        nodeHorizontalSeparationDistance
+        nodeHorizontalSeparationDistance,
+        getNodeOffset
     } = me;
 
     if(expanded){
@@ -141,11 +142,19 @@ function layout(node){
         let children = getChildNodes(node),
         childCountHeight = 0;
 
-        for(let {
-            height
-        } of children){
+        for(let childNode of children){
+
+            let {
+                height
+            } = childNode ;
 
             childCountHeight += height ;
+
+            let {
+                y
+            } = getNodeOffset(childNode) ;
+
+            childCountHeight += y ;
         }
 
         childCountHeight += nodeVerticalSeparationDistance * (children.length - 1) ;
@@ -187,6 +196,12 @@ function layout(node){
 
                 childY = scopeRegionY + scopeRegionHeight + nodeVerticalSeparationDistance;
             }
+
+            let {
+                y
+            } = getNodeOffset(childNode) ;
+
+            childY += y ;
 
             previousChildNodes.push(childNode) ;
         }
