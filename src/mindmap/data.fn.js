@@ -38,7 +38,10 @@
 
  for(let mindNode of mindNodes){
 
-    let node = getData(mindNode),
+    let {
+          offsetHeight
+        } = mindNode,
+        node = getData(mindNode),
         indicated = mindNode.placeholder;
 
     if(generateLines){
@@ -47,7 +50,10 @@
 
       if(parentNode && mindNodes.includes(parentNode)){
 
-          let isRoot = isRootNode(parentNode) ;
+          let isRoot = isRootNode(parentNode),
+          {
+            offsetHeight:parentNodeOffsetHeight
+          } = parentNode;
 
           parentNode = getData(parentNode) ;
 
@@ -60,6 +66,10 @@
             y:parentNodeY
           } = getRightXY(parentNode),
           offset = nodeX - parentNodeX ;
+
+          parentNodeY -= parentNodeOffsetHeight / 2;
+
+          nodeY -= offsetHeight / 2;
 
           if(isRoot){
 
