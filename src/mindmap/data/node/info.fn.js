@@ -149,7 +149,7 @@ function setNodeInfo(node , data , isSilentMode){
     return isUpdated ;
 }
 
-function sync(oldId , id){
+function sync(oldId){
 
     let {
         nodes,
