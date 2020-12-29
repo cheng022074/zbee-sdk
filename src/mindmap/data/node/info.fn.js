@@ -53,17 +53,20 @@ function main(node , data , {
                     unsized(node , true) ;
 
                     me.layout() ;
+                }
 
-                    if(recursive){
+                if(recursive){
 
-                        let {
-                            children
-                        } = node ;
-    
-                        for(let childNode of children){
-    
-                            main(childNode , data , isSilentMode) ;
-                        }
+                    let {
+                        children
+                    } = node ;
+
+                    for(let childNode of children){
+
+                        main.call(me , childNode , data , {
+                            isSilentMode,
+                            recursive
+                        }) ;
                     }
                 }
             }
