@@ -12,44 +12,59 @@
  * 
  * @import data from ..node.data scoped
  * 
+ * @import {boolean} [isRealMove = true] 是否真实移动s 
+ * 
+ * @return {boolean} 判断是否可以向下移动
+ * 
  */
 
-let me = this,
-{
-   selectedNode
-} = me,
-node = next(selectedNode) ;
+ function main(isRealMove){
 
-if(node){
-
-    insertAfter(selectedNode , node) ;
-
-    selectedNode.selected = true ;
-
-    me.fireEvent('nodeinsertafter' , data(selectedNode) , data(node) , false) ;
-
-    order(getParentNode(node)) ;
-
-    me.layout() ;
-    
-}else{
-
-   let {
-      visibilityNodes
+   let me = this,
+   {
+      selectedNode
    } = me ;
 
-   let node = visibilityNodes.getNearestNode(selectedNode , 'down') ;
+   if(isRealMove){
+
+      if(!doMoveDown.call(me , next(selectedNode))){
+
+         let {
+            visibilityNodes
+         } = me ;
+   
+         return doMoveDown.call(me , visibilityNodes.getNearestNode(selectedNode , 'down')) ;
+      }
+   
+   }else if(!next(selectedNode)){
+
+      return !! visibilityNodes.getNearestNode(selectedNode , 'down') ;
+   }
+
+   return true ;
+ }
+
+ function doMoveDown(node){
+
+   let me = this,
+   {
+      selectedNode
+   } = me ;
 
    if(node){
 
-        insertAfter(selectedNode , node) ;
+      insertAfter(selectedNode , node) ;
 
-        selectedNode.selected = true ;
+      selectedNode.selected = true ;
 
-        me.fireEvent('nodeinsertafter' , data(selectedNode) , data(node) , false) ;
+      me.fireEvent('nodeinsertafter' , data(selectedNode) , data(node) , false) ;
 
-        order(getParentNode(node)) ;
+      order(getParentNode(node)) ;
 
-        me.layout() ;
+      me.layout() ;
+
+      return true ;
    }
-}
+
+   return false ;
+ }
