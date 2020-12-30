@@ -12,7 +12,7 @@
  * 
  * @import data from ..node.data scoped
  * 
- * @import {boolean} [isRealMove = true] 是否真实移动s 
+ * @param {boolean} [isRealMove = true] 是否真实移动
  * 
  * @return {boolean} 判断是否可以向下移动
  * 

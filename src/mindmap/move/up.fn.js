@@ -12,44 +12,57 @@
  * 
  * @import getParentNode from ..node.parent scoped
  * 
+ * @param {boolean} [isRealMove = true] 是否真实移动
+ * 
+ * @return {boolean} 判断是否可以向下移动
+ * 
  */
 
-let me = this,
-{
-    selectedNode
-} = me,
-node = previous(selectedNode) ;
+ function main(isRealMove){
 
-if(node){
-
-    insertBefore(selectedNode , node) ;
-
-    selectedNode.selected = true ;
-
-    me.fireEvent('nodeinsertbefore' , data(selectedNode) , data(node) , false) ;
-
-    order(getParentNode(node)) ;
-
-    me.layout() ;
-
-}else{
-
-    let {
-        visibilityNodes
+    let me = this,
+    {
+        selectedNode
     } = me ;
 
-    let node = visibilityNodes.getNearestNode(selectedNode , 'up') ;
+    if(isRealMove){
 
+        if(!doMoveUp.call(me , previous(selectedNode))){
+
+            let {
+               visibilityNodes
+            } = me ;
+      
+            return doMoveUp.call(me , visibilityNodes.getNearestNode(selectedNode , 'up')) ;
+         }
+
+    }else if(!previous(selectedNode)){
+
+        return !! visibilityNodes.getNearestNode(selectedNode , 'up') ;
+    }
+ }
+
+ function doMoveUp(node){
+
+    let me = this,
+    {
+       selectedNode
+    } = me ;
+ 
     if(node){
-
+ 
         insertBefore(selectedNode , node) ;
 
         selectedNode.selected = true ;
-
+    
         me.fireEvent('nodeinsertbefore' , data(selectedNode) , data(node) , false) ;
-
+    
         order(getParentNode(node)) ;
-
+    
         me.layout() ;
+ 
+       return true ;
     }
-}
+ 
+    return false ;
+  }
