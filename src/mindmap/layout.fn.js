@@ -157,7 +157,7 @@ function layout(node){
             x:rightX
         } = getRightXY(node),
         childX = rightX + nodeHorizontalSeparationDistance,
-        childY,
+        childY = centerY - childCountHeight / 2,
         previousChildNodes = [];
 
         for(let childNode of children){
