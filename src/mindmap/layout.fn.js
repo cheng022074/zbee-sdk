@@ -39,6 +39,10 @@
  * 
  * @import getNodeSeparationDistance from .node.distance.separation scoped
  * 
+ * @import getTop from .node.top scoped
+ * 
+ * @import getBottom from .node.bottom scoped
+ * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
  * 
  */
@@ -132,18 +136,18 @@ function main(isFireDrawEvent){
 function layout(node){
 
     let {
-        expanded
+        expanded,
+        children
     } = node,
     me = this,
     {
         nodeHorizontalSeparationDistance
     } = me;
 
-    if(expanded){
+    if(expanded && children.length){
         
         let {
             y,
-            children,
             height
         } = node,
         {
@@ -162,22 +166,19 @@ function layout(node){
             layout.call(me , childNode) ;
 
             let {
-                height
-            } = childNode,{
                 height:scopeRegionHeight
             } = getScopeRegion(childNode) ;
-
-            childNode.y = childY + scopeRegionHeight / 2 - height / 2;
 
             childCountHeight += scopeRegionHeight ;
 
             childY += scopeRegionHeight ;
         }
 
-        if(childCountHeight){
+        let top = getTop(children[0]),
+            bottom = getBottom(children[children.length - 1]);
 
-            node.y += childCountHeight / 2 - height / 2 ;
-        }
+        node.y = top + (bottom - top) / 2 - height / 2 ;
+        
     }
 
 }

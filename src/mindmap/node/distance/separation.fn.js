@@ -33,21 +33,16 @@
 
     case 'top':
 
-         if(index === 0 && length !== 1){
-
-            return 0 ;
-         }
-
-         return nodeVerticalSeparationDistance ;
+         return 0 ;
 
     case 'bottom':
 
-        if(index === length - 1){
+        if(index < length - 1){
 
-            return 0 ;
+            return nodeVerticalSeparationDistance ;
         }
 
-        return nodeVerticalSeparationDistance ;
+        return 0 ;
  }
 
  return 0 ;
