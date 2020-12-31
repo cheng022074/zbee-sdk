@@ -188,16 +188,6 @@
             local:true,
             defaultValue:false
          },
-         offsetWidth:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:0
-         },
-         offsetHeight:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:0
-         },
          x:{
             mode:'readwrite',
             local:true,

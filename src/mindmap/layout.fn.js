@@ -151,8 +151,6 @@ function layout(node){
         childCountHeight += nodeVerticalSeparationDistance * (children.length - 1) ;
 
         let {
-            offsetHeight
-        } = node,{
             y:centerY
         } = getCenterXY(node),
         {
@@ -161,17 +159,6 @@ function layout(node){
         childX = rightX + nodeHorizontalSeparationDistance,
         childY,
         previousChildNodes = [];
-
-        if(children.length === 1){
-
-            let childNode = children[0] ;
-
-            childY = centerY - offsetHeight / 2 - (childNode.height - childNode.offsetHeight) / 2 ;
-
-        }else{
-
-            childY = centerY - offsetHeight / 2 - childCountHeight / 2 ;
-        }
 
         for(let childNode of children){
 
