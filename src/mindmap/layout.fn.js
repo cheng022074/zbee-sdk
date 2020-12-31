@@ -140,44 +140,20 @@ function layout(node){
     } = me;
 
     if(expanded){
-
-        let children = getChildNodes(node),
-            childCountHeight = 0;
-
-        {
-
-            let nodes = getData(children),
-            {
-                length
-            } = nodes ;
-
-            for(let i = 0 ; i < length ; i ++){
-
-                let node = nodes[i];
-
-                childCountHeight += getNodeSeparationDistance('top' , node , i , length) ;
-
-                childCountHeight += node.height ;
-
-                childCountHeight += getNodeSeparationDistance('bottom' , node , i , length) ;
-            }
-        }
-
+        
         let {
-            y:centerY
-        } = getCenterXY(node),
+            y,
+            children,
+            height
+        } = node,
         {
             x:rightX
         } = getRightXY(node),
         childX = rightX + nodeHorizontalSeparationDistance,
-        childY = centerY - childCountHeight / 2,
-        previousChildNodes = [];
+        childY = y,
+        childCountHeight = 0;
 
         for(let childNode of children){
-
-            let {
-                height
-            } = childNode ;
 
             childNode.x = childX ;
 
@@ -186,23 +162,19 @@ function layout(node){
             layout.call(me , childNode) ;
 
             let {
-                y:scopeRegionY,
+                height
+            } = childNode,{
                 height:scopeRegionHeight
             } = getScopeRegion(childNode) ;
 
-            if(height === scopeRegionHeight){
+            childNode.y = childY + scopeRegionHeight / 2 - height / 2;
 
-                childY += height;
-            
-            }else{
+            childCountHeight += scopeRegionHeight ;
 
-                moveY(previousChildNodes , scopeRegionY - childY) ;
-
-                childY = scopeRegionY + scopeRegionHeight;
-            }
-
-            previousChildNodes.push(childNode) ;
+            childY += scopeRegionHeight ;
         }
+
+        node.y += childCountHeight / 2 - height / 2 ;
     }
 
 }
