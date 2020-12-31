@@ -35,7 +35,7 @@
  * 
  * @import from from math.region.from
  * 
- * @import getData from .nodes.data scoped
+ * @import getData from .node.data scoped
  * 
  * @import getNodeSeparationDistance from .node.distance.separation scoped
  * 
@@ -142,9 +142,12 @@ function layout(node){
     me = this,
     {
         nodeHorizontalSeparationDistance
-    } = me;
+    } = me,
+    {
+        length
+    } = children;
 
-    if(expanded && children.length){
+    if(expanded && length){
         
         let {
             y,
@@ -154,10 +157,12 @@ function layout(node){
             x:rightX
         } = getRightXY(node),
         childX = rightX + nodeHorizontalSeparationDistance,
-        childY = y,
-        childCountHeight = 0;
+        childY = y;
 
-        for(let childNode of children){
+        for(let i = 0 ; i < length ; i ++){
+
+            let childNode = children[i],
+                dataChildNode = getData(childNode);
 
             childNode.x = childX ;
 
@@ -169,16 +174,29 @@ function layout(node){
                 height:scopeRegionHeight
             } = getScopeRegion(childNode) ;
 
-            childCountHeight += scopeRegionHeight ;
+            childY += scopeRegionHeight;
 
-            childY += scopeRegionHeight ;
+            let bottomSeparationDistance = getNodeSeparationDistance('bottom' , dataChildNode , i , length) ;
+
+            if(bottomSeparationDistance){
+
+                childY += bottomSeparationDistance ;
+            }
+
         }
 
-        let top = getTop(children[0]),
-            bottom = getBottom(children[children.length - 1]);
+        let {
+            height:scopeRegionHeight
+        } = getScopeRegion(node) ;
 
-        node.y = top + (bottom - top) / 2 - height / 2 ;
+        if(scopeRegionHeight > height){
+
+            node.y += scopeRegionHeight / 2  - height / 2 - 5;
         
+        }else{
+
+            console.log('没有布局' , getParentNode(node).text);
+        }
     }
 
 }

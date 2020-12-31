@@ -31,18 +31,12 @@
 
  switch(direction){
 
-    case 'top':
-
-         return 0 ;
-
     case 'bottom':
 
         if(index < length - 1){
 
             return nodeVerticalSeparationDistance ;
         }
-
-        return 0 ;
  }
 
  return 0 ;
