@@ -174,7 +174,10 @@ function layout(node){
             childY += scopeRegionHeight ;
         }
 
-        node.y += childCountHeight / 2 - height / 2 ;
+        if(childCountHeight){
+
+            node.y += childCountHeight / 2 - height / 2 ;
+        }
     }
 
 }
