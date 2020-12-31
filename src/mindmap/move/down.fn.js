@@ -22,23 +22,20 @@
 
    let me = this,
    {
-      selectedNode
+      selectedNode,
+      visibilityNodes
    } = me ;
 
    if(isRealMove){
 
       if(!doMoveDown.call(me , next(selectedNode))){
 
-         let {
-            visibilityNodes
-         } = me ;
-   
-         return doMoveDown.call(me , visibilityNodes.getNearestNode(selectedNode , 'down')) ;
+         return !!(visibilityNodes && doMoveDown.call(me , visibilityNodes.getNearestNode(selectedNode , 'down'))) ;
       }
    
    }else if(!next(selectedNode)){
 
-      return !! visibilityNodes.getNearestNode(selectedNode , 'down') ;
+      return !!(visibilityNodes && visibilityNodes.getNearestNode(selectedNode , 'down')) ;
    }
 
    return true ;
