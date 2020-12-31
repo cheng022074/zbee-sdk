@@ -189,14 +189,15 @@ function layout(node){
             height:scopeRegionHeight
         } = getScopeRegion(node) ;
 
-        if(scopeRegionHeight > height){
+        if(scopeRegionHeight === height){
 
-            node.y += scopeRegionHeight / 2  - height / 2 - 5;
-        
+            moveY(children , (scopeRegionHeight - getBottom(children[children.length - 1]) + getTop(children[0])) / 2) ;
+
         }else{
 
-            console.log('没有布局' , getParentNode(node).text);
+            node.y += scopeRegionHeight / 2  - height / 2;   
         }
+        
     }
 
 }

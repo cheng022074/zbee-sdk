@@ -5,15 +5,13 @@
  * 
  * @import isSized from ..sized scoped
  * 
- * @import getScopeTop from .scope.top scoped
+ * @import getTop from .scope.top scoped
  * 
- * @import getScopeBottom from .scope.bottom scoped
+ * @import getBottom from .scope.bottom scoped
  * 
  * @import getRight from .scope.right scoped
  * 
- * @import getTop from ..top scoped
- * 
- * @import getBottom from ..bottom scoped
+ * @import getBottomXY from ..xy.bottom scoped
  * 
  * @param {data.Record} node 节点
  * 
@@ -29,8 +27,8 @@ let {
 
  if(isSized(node) && !hidden){ 
 
-    let top = Math.min(getScopeTop(node) , getTop(node , false)),
-        bottom = Math.max(getScopeBottom(node) , getBottom(node , false)),
+    let top = Math.min(getTop(node) , y),
+        bottom = Math.max(getBottom(node) , getBottomXY(node).y),
         right = getRight(node) ;
 
     return {
