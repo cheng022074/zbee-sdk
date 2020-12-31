@@ -31,7 +31,11 @@
         return y ;
     }
 
-    return y - getNodeSeparationDistance(data(node) , getParentNode(node).children.indexOf(node)) ;
+    let {
+      children
+    } = getParentNode(node) ;
+
+    return y - getNodeSeparationDistance('top' , data(node) , children.indexOf(node) , children.length) ;
  }
 
  return NaN ;

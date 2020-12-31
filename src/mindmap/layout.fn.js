@@ -35,6 +35,10 @@
  * 
  * @import from from math.region.from
  * 
+ * @import getData from .nodes.data scoped
+ * 
+ * @import getNodeSeparationDistance from .node.distance.separation scoped
+ * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
  * 
  */
@@ -132,23 +136,32 @@ function layout(node){
     } = node,
     me = this,
     {
-        nodeVerticalSeparationDistance,
         nodeHorizontalSeparationDistance
     } = me;
 
     if(expanded){
 
         let children = getChildNodes(node),
-        childCountHeight = 0;
+            childCountHeight = 0;
 
-        for(let {
-            height
-        } of children){
+        {
 
-            childCountHeight += height ;
+            let nodes = getData(children),
+            {
+                length
+            } = nodes ;
+
+            for(let i = 0 ; i < length ; i ++){
+
+                let node = nodes[i];
+
+                childCountHeight += getNodeSeparationDistance('top' , node , i , length) ;
+
+                childCountHeight += node.height ;
+
+                childCountHeight += getNodeSeparationDistance('bottom' , node , i , length) ;
+            }
         }
-
-        childCountHeight += nodeVerticalSeparationDistance * (children.length - 1) ;
 
         let {
             y:centerY
@@ -179,13 +192,13 @@ function layout(node){
 
             if(height === scopeRegionHeight){
 
-                childY += height + nodeVerticalSeparationDistance;
+                childY += height;
             
             }else{
 
                 moveY(previousChildNodes , scopeRegionY - childY) ;
 
-                childY = scopeRegionY + scopeRegionHeight + nodeVerticalSeparationDistance;
+                childY = scopeRegionY + scopeRegionHeight;
             }
 
             previousChildNodes.push(childNode) ;

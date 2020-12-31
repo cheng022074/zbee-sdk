@@ -32,7 +32,11 @@ let {
         return y + height;
     }
 
-    return y + height + getNodeSeparationDistance(data(node) , getParentNode(node).children.indexOf(node)) ;
+    let {
+        children
+    } = getParentNode(node) ;
+
+    return y + height + getNodeSeparationDistance('bottom' , data(node) , children.indexOf(node) , children.length) ;
  }
 
  return NaN ;
