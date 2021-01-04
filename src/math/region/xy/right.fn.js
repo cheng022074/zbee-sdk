@@ -3,7 +3,7 @@
  * 
  * 计算右边坐标
  * 
- * @import get from .get
+ * @import get from ..get
  * 
  * @import height from ..height
  * 

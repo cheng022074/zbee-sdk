@@ -3,9 +3,9 @@
  * 
  * 计算中心点坐标
  * 
- * @import get from .get
+ * @import get from ..get
  * 
- * @import from from .from
+ * @import from from ..from
  * 
  * @import getWidth from ..width
  * 
