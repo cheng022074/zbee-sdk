@@ -39,10 +39,6 @@
  * 
  * @import getNodeSeparationDistance from .node.distance.separation scoped
  * 
- * @import getTop from .node.top scoped
- * 
- * @import getBottom from .node.bottom scoped
- * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
  * 
  */
@@ -191,11 +187,11 @@ function layout(node){
 
         if(scopeRegionHeight === height){
 
-            moveY(children , (scopeRegionHeight - getBottom(children[children.length - 1]) + getTop(children[0])) / 2) ;
+            moveY(children , (scopeRegionHeight - from(children[children.length - 1]).bottom + children[0].y) / 2) ;
 
         }else{
 
-            node.y += scopeRegionHeight / 2  - height / 2;   
+            node.y += (scopeRegionHeight  - height) / 2;   
         }
         
     }
