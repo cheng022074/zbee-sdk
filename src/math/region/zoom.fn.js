@@ -3,11 +3,13 @@
  * 
  * 缩放当前目标范围
  * 
+ * @import get from .get
+ * 
  * @import width from .width
  * 
  * @import height from .height
  * 
- * @param {object} target 目标范围
+ * @param {object} region 目标范围
  * 
  * @param {number} scale 缩放值
  * 
@@ -15,12 +17,14 @@
  * 
  */
 
+ region = get(region) ;
+
  let {
     left,
     top
- } = target,
- right = left + width(target) * scale,
- bottom = top + height(target) * scale ;
+ } = region,
+ right = left + width(region) * scale,
+ bottom = top + height(region) * scale ;
 
  return {
     left,
