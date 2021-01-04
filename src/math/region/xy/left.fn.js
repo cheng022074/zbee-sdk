@@ -1,7 +1,7 @@
 
 /**
  * 
- * 计算右边坐标
+ * 计算左边坐标
  * 
  * @import get from .get
  * 
@@ -13,13 +13,13 @@
  * 
  */
 
-region = get(region) ;
+ region = get(region) ;
 
 let {
-    right
+    left
 } = region ;
 
 return {
-    x:right,
+    x:left,
     y:top + height(region) / 2
 } ;
