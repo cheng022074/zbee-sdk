@@ -160,6 +160,13 @@ function layout(node){
             let childNode = children[i],
                 dataChildNode = getData(childNode);
 
+            let topSeparationDistance = getNodeSeparationDistance('top' , dataChildNode , i , length) ;
+
+            if(topSeparationDistance){
+
+                childY += topSeparationDistance ;
+            }
+
             childNode.x = childX ;
 
             childNode.y = childY ;

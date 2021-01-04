@@ -7,6 +7,8 @@
  * 
  * @import is.function
  * 
+ * @import is.number
+ * 
  * @param {string} direction 相对于脑图节点间隔所在的方向
  * 
  * @param {object} node 脑图节点数据
@@ -26,7 +28,12 @@
 
  if(isFunction(nodeSeparationDistance)){
 
-    return nodeSeparationDistance(node , index , length) ;
+   let distance = nodeSeparationDistance(direction , node , index , length) ;
+
+   if(isNumber(distance)){
+
+      return distance ;
+   }
  }
 
  switch(direction){
