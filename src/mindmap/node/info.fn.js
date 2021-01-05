@@ -3,6 +3,8 @@
  * 
  * 修改节点配置
  * 
+ * @import from from .from scoped
+ * 
  * @import info from ..data.node.info scoped
  * 
  * @param {mixed} [data] 节点配置
@@ -14,4 +16,4 @@
  * 
  */
 
-return info(node , data , config) ;
+return info(from(node) , data , config) ;
