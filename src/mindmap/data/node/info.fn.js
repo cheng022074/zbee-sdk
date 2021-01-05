@@ -159,7 +159,7 @@ function setNodeInfo(node , data , isSilentMode){
 
                 if(!equals(newValue , oldValue) && !isSilentMode){
 
-                    me.fireEvent(`node${field}change` , id , value , oldValue) ;
+                    me.fireEvent(`node${field.toLowerCase()}change` , id , value , oldValue) ;
 
                     me.fireEvent('nodechange' , id , field , value , oldValue) ;
                 }
