@@ -15,7 +15,7 @@
  * 
  */
 
- node = from(node) ;
+node = from(node) ;
 
 let me = this,
 {
