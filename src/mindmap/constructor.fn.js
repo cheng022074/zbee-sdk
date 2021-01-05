@@ -154,11 +154,6 @@
                mode:'readwrite'
          },
          ...readerFields,
-         backgroundColor:{
-            mapping:'backgroundColor',
-            default:'transparent',
-            mode:'readwrite'
-         },
          expanded:{
             mode:'readwrite',
             local:true,
