@@ -19,14 +19,14 @@
 
     node = from(node) ;
 
-    let isExpand = doDeepExpand(node , 0 , level) ;
-
-    if(isLayout && isExpand){
+    if(node &&　doDeepExpand(node , 0 , level) && isLayout){
 
         this.layout() ;
+
+        return true ;
     }
     
-    return isExpand ;
+    return false ;
  }
 
  function doDeepExpand(node , level , maxLevel){
