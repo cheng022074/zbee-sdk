@@ -19,12 +19,14 @@
 
     node = from(node) ;
 
-    doDeepExpand(node , 0 , level) ;
+    let isExpand = doDeepExpand(node , 0 , level) ;
 
-    if(isLayout){
+    if(isLayout && isExpand){
 
         this.layout() ;
-    }    
+    }
+    
+    return isExpand ;
  }
 
  function doDeepExpand(node , level , maxLevel){
@@ -35,18 +37,30 @@
 
     if(level <= maxLevel){
 
+        let isExpand = false ;
+
+        if(expand(node)){
+
+            isExpand = true ;
+        }
+
         let {
             children
         } = node ;
 
-        if(children.length){
+        for(let childNode of children){
 
-            expand(node) ;
+            if(doDeepExpand(childNode , level , maxLevel)){
 
-            for(let childNode of children){
-
-                doDeepExpand(childNode , level , maxLevel) ;
+                isExpand = true ;
             }
         }
+
+        if(isExpand){
+
+            return true ;
+        }
     }
+
+    return false ;
  }
