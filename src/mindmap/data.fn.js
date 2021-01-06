@@ -31,10 +31,11 @@
 
     if(!data.has(node)){
 
-        let region = from(node) ;
+        let nodeData = getNodeData(node),
+            region = from(nodeData) ;
 
         data.set(node , {
-          data:getNodeData(node),
+          data:nodeData,
           rightXY:getRegionRightXY(region),
           leftXY:getRegionLeftXY(region),
           centerXY:getRegionCenterXY(region)

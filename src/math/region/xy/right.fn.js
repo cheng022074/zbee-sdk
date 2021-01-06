@@ -16,6 +16,7 @@
 region = get(region) ;
 
 let {
+    top,
     right
 } = region ;
 
