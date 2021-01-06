@@ -3,11 +3,13 @@
  * 
  * 输出脑图节点
  * 
- * @import getCenterXY from .node.xy.center scoped
+ * @import getRegionCenterXY from math.region.xy.center
  * 
- * @import getRightXY from .node.xy.right scoped
+ * @import getRegionRightXY from math.region.xy.right
  * 
- * @import getLeftXY from .node.xy.left scoped
+ * @import getRegionLeftXY from math.region.xy.left
+ * 
+ * @import from from math.region.from
  * 
  * @import getParentNode from .data.node.parent scoped
  * 
@@ -15,7 +17,7 @@
  * 
  * @import isLeafNode from .node.is.leaf scoped
  * 
- * @import getData from .node.data scoped
+ * @import getNodeData from .node.data scoped
  * 
  * @param {array} mindNodes 节点集合
  * 
@@ -25,93 +27,88 @@
  * 
  */
 
- const {
-   nodeHorizontalLineBreakPointOffset
- } = this,
- nodeMap = new Map();
+ function get(node , data){
 
- let nodes = [],
-     lines = [],
-     selectedNode;
+    if(!data.has(node)){
 
- mindNodes = Array.from(mindNodes) ;
+        let region = from(node) ;
 
- for(let mindNode of mindNodes){
-
-    let node = getData(mindNode),
-        indicated = mindNode.placeholder;
-
-    if(generateLines){
-
-      let parentNode = getParentNode(mindNode);
-
-      if(parentNode && mindNodes.includes(parentNode)){
-
-          let isRoot = isRootNode(parentNode) ;
-
-          parentNode = getData(parentNode) ;
-
-          let {
-            x:nodeX,
-            y:nodeY
-          } = getLeftXY(node),
-          {
-            x:parentNodeX,
-            y:parentNodeY
-          } = getRightXY(parentNode),
-          offset = nodeX - parentNodeX ;
-
-          if(isRoot){
-
-            lines.push({
-              draw:'line.bezierCurve',
-              indicated,
-              start:parentNode,
-              end:node,
-              points:[
-                parentNodeX,
-                parentNodeY,
-                parentNodeX + offset / 3,
-                parentNodeY,
-                parentNodeX + offset / 3,
-                nodeY,
-                nodeX,
-                nodeY
-              ]
-            }) ;
-          
-          }else{
-
-            lines.push({
-              draw:'line.bezierCurve',
-              indicated,
-              start:parentNode,
-              end:node,
-              points:[
-                parentNodeX + nodeHorizontalLineBreakPointOffset,
-                parentNodeY,
-                parentNodeX + nodeHorizontalLineBreakPointOffset + offset / 3,
-                parentNodeY,
-                parentNodeX + nodeHorizontalLineBreakPointOffset + offset / 3,
-                nodeY,
-                nodeX,
-                nodeY
-              ]
-            }) ;
-          }
-      }
+        data.set(node , {
+          data:getNodeData(node),
+          rightXY:getRegionRightXY(region),
+          leftXY:getRegionLeftXY(region),
+          centerXY:getRegionCenterXY(region)
+        }) ;
     }
 
-    nodes.push(node) ;
-
-    if(node.selected){
-
-      selectedNode = node ;
-    }
+    return data.get(node) ;
  }
 
- return {
-   selectedNode,
-   nodes,
-   lines
- } ;
+ function getData(node , data){
+
+    return get(node , data).data ;
+ }
+
+ function getRightXY(node , data){
+
+    return get(node , data).rightXY ;
+ }
+
+ function getLeftXY(node , data){
+
+    return get(node , data).leftXY ;
+ }
+
+ function getCenterXY(node , data){
+
+    return get(node , data).centerXY ;
+ }
+
+ function main(mindNodes , generateLines){
+
+    let nodes = [],
+        lines = [],
+        selectedNode,
+        data = new Map();
+  
+    mindNodes = Array.from(mindNodes) ;
+  
+    for(let mindNode of mindNodes){
+  
+      if(generateLines){
+  
+        let parentNode = getParentNode(mindNode);
+  
+        if(parentNode && mindNodes.includes(parentNode)){
+
+            let {
+              placeholder:indicated
+            } = mindNode ;
+  
+            lines.push({
+              indicated,
+              start:getData(parentNode , data),
+              startCenterXY:getCenterXY(parentNode , data),
+              startRightXY:getRightXY(parentNode , data),
+              end:getData(mindNode , data),
+              endLeftXY:getLeftXY(mindNode , data)
+            }) ;
+        }
+      }
+
+      let node = getData(mindNode , data) ;
+  
+      nodes.push(node) ;
+  
+      if(mindNode.selected){
+  
+        selectedNode = node ;
+      }
+    }
+  
+    return {
+      selectedNode,
+      nodes,
+      lines
+    } ;
+ }
