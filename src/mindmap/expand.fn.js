@@ -13,7 +13,7 @@
  * 
  */
 
-if(expand(node , 0 , level) && isLayout){
+if(expand(node , level) && isLayout){
 
     this.layout() ;
 
