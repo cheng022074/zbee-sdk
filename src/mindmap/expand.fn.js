@@ -3,9 +3,7 @@
  * 
  * 展开节点
  * 
- * @import from from .node.from scoped
- * 
- * @import expand from .node.expand scoped
+ * @import expand from .node.expand.deep scoped
  * 
  * @param {mixed} node 脑图节点
  * 
@@ -15,52 +13,11 @@
  * 
  */
 
- function main(node , level , isLayout){
+if(expand(node , 0 , level) && isLayout){
 
-    node = from(node) ;
+    this.layout() ;
 
-    if(node &&　doDeepExpand(node , 0 , level) && isLayout){
+    return true ;
+}
 
-        this.layout() ;
-
-        return true ;
-    }
-    
-    return false ;
- }
-
- function doDeepExpand(node , level , maxLevel){
-
-    node.hidden = false ;
-
-    level ++ ;
-
-    if(level <= maxLevel){
-
-        let isExpand = false ;
-
-        if(expand(node)){
-
-            isExpand = true ;
-        }
-
-        let {
-            children
-        } = node ;
-
-        for(let childNode of children){
-
-            if(doDeepExpand(childNode , level , maxLevel)){
-
-                isExpand = true ;
-            }
-        }
-
-        if(isExpand){
-
-            return true ;
-        }
-    }
-
-    return false ;
- }
+return false ;
