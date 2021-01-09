@@ -3,15 +3,21 @@
  * 
  * 重置脑图
  * 
+ * @import getRootNode from .node.root scoped
+ * 
  * @import getParentNode from .node.parent scoped
+ * 
+ * @param {number} [level] 显示层数
  * 
  */
 
  let me = this,
  {
-    rootNode,
     nodes
- } = me ;
+ } = me,
+ rootNode = getRootNode() ;
+
+
 
  me.select(rootNode) ;
 
