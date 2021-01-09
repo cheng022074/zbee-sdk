@@ -3,6 +3,8 @@
  * 
  * 重置脑图
  * 
+ * @import from from .from scoped
+ * 
  * @import getDescendantNodes from ..nodes.relation.descendant scoped
  * 
  * @import expand from .expand.deep scoped
