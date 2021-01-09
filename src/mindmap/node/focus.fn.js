@@ -24,7 +24,11 @@
 
  if(focusNode !== node){
 
-    reset() ;
+    reset(node , level) ;
 
     me.focusNode = node ;
+
+    return true ;
  }
+
+ return false ;

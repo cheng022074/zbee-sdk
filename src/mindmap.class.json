@@ -34,6 +34,7 @@
         "append",
         "move",
         "reset",
+        "focus",
         {
             "name":"moveDown",
             "impl":".mindmap.move.down"
