@@ -19,7 +19,10 @@
 
  rootNode = from(rootNode) ;
 
-let isReset = false;
+let {
+    level:maxNodeLevel
+} = rootNode,
+isReset = false;
 
 if(expand(rootNode , level)){
 
