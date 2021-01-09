@@ -17,7 +17,10 @@ function main(node , fn){
 
     node = from(node) ;
 
-    let nodes = getDescendantNodes(node , fn) ;
+    let nodes = getDescendantNodes(node , fn || (() => ({
+        result:true,
+        next:true
+    }))) ;
 
     if(nodes.length && nodes[0].id === node.id){
 
