@@ -3,7 +3,9 @@
  * 
  * 判定指定节点是否为根节点
  * 
- * @import isRootNode from ....data.node.is.root scoped
+ * @import getRootNode from ..root scoped
+ * 
+ * @import from from ..from scoped
  * 
  * @param {mixed} node 节点
  * 
@@ -11,4 +13,4 @@
  * 
  */
 
- return isRootNode(node) ;
+ return from(node) === getRootNode() ;
