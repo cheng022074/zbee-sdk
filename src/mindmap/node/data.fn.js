@@ -7,6 +7,8 @@
  * 
  * @import isLeafNode from .is.leaf scoped
  * 
+ * @import getParentNode from .parent scoped
+ * 
  * @import getData from ..data.node.data scoped
  * 
  * @import getX from .x scoped
@@ -14,6 +16,8 @@
  * @import getY from .y scoped
  * 
  * @import from from ..data.node.from scoped
+ * 
+ * @import getNodeData from .data scoped
  * 
  * @param {mixed} node 节点
  * 
@@ -25,6 +29,21 @@
       root(node){
 
          return isRootNode(node) ;
+      },
+
+      hasParentNode(node){
+
+         return !! getParentNode(node) ;
+      },
+
+      parentNode(node){
+
+         let parentNode = getParentNode(node) ;
+
+         if(parentNode){
+
+            return getNodeData(parentNode) ;
+         }
       },
 
       leaf(node){

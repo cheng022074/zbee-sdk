@@ -3,8 +3,6 @@
  * 
  * 获取指定节点的父节点引用
  * 
- * @import isRootNode from .is.root scoped
- * 
  * @import data from .data scoped
  * 
  * @import is.string
@@ -29,9 +27,13 @@
    }
  }
 
- if(!isRootNode(node)){
+ let {
+  parentNodeId
+ } = node ;
 
-   let parentNode = query(node.parentNodeId) ;
+ if(parentNodeId){
+
+   let parentNode = query(parentNodeId) ;
 
    if(isReturnData){
 
