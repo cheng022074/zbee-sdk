@@ -21,13 +21,13 @@
 
  scale *= browserScale ;
 
- switch(OS){
+ /*switch(OS){
 
    case 'Android':
    case 'iOS':
 
       scale = 1 ;
- }
+ }*/
 
  canvas.width = clientWidth * scale;
 
