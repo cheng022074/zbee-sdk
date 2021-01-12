@@ -13,4 +13,4 @@ let {
     padding
 } = this;
 
-return node.x + padding ;
+return node.x + padding.left ;
