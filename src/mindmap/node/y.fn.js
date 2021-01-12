@@ -23,7 +23,7 @@ heightPadding = 0;
 
 if(height !== regionHeight){
 
-   heightPadding = padding ;
+   heightPadding = padding.top ;
 }
 
 return node.y + heightPadding ;
