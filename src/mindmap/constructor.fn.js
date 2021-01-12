@@ -33,6 +33,10 @@
  * 
  * @import emptyFn from function.empty value
  * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.number
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -122,7 +126,33 @@
 
  me.nodeHorizontalLineBreakPointOffset = nodeHorizontalLineBreakPointOffset ;
 
- me.padding = padding ;
+ if(isNumber(padding)){
+
+   me.padding = {
+      top:padding,
+      bottom:padding,
+      left:padding,
+      right:padding
+   } ;
+
+ }else if(isObject(padding)){
+
+   me.padding = Object.assign({
+      top:0,
+      bottom:0,
+      left:0,
+      right:0
+   } , padding) ;
+
+ }else{
+
+   me.padding = {
+      top:0,
+      bottom:0,
+      left:0,
+      right:0
+   } ;
+ }
 
  me.width = width ;
 
