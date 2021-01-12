@@ -49,7 +49,7 @@
  bottom = top + rootNodeRegionHeight ;
 
 let width = right - left + padding.left + padding.right,
-    height = bottom - top + padding.left + padding.right;
+    height = bottom - top + padding.top + padding.bottom;
 
 if(mindmapHeight > height){
 
