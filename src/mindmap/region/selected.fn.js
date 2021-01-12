@@ -25,7 +25,7 @@
 
  if(height !== regionHeight){
 
-    heightPadding = padding ;
+    heightPadding = padding.top ;
  }
 
  return move(from(selectedNode) , {
