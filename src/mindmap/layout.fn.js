@@ -68,7 +68,7 @@ function main(isFireDrawEvent){
             {
                 width:nodeWidth
             } = rootNode,
-            regionWidth = (width - padding * 2 - nodeWidth) / (getLevel(getDeepestNode(rootNode)) - 1);
+            regionWidth = (width - (padding.left + padding.right) - nodeWidth) / (getLevel(getDeepestNode(rootNode)) - 1);
             
         visibilityNodes.forEach(node => {
 
