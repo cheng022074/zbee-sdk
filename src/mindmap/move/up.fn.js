@@ -14,11 +14,13 @@
  * 
  * @param {boolean} [isRealMove = true] 是否真实移动
  * 
+ * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
+ * 
  * @return {boolean} 判断是否可以向下移动
  * 
  */
 
- function main(isRealMove){
+ function main(isRealMove , beforeMoveFn){
 
     let me = this,
     {
@@ -30,7 +32,7 @@
 
         if(!doMoveUp.call(me , previous(selectedNode))){
 
-            return !!(visibilityNodes && doMoveUp.call(me , visibilityNodes.getNearestNode(selectedNode , 'up'))) ;
+            return !!(visibilityNodes && doMoveUp.call(me , visibilityNodes.getNearestNode(selectedNode , 'up') , beforeMoveFn)) ;
          }
 
     }else if(!previous(selectedNode)){
@@ -41,14 +43,14 @@
     return true ;
  }
 
- function doMoveUp(node){
+ function doMoveUp(node , beforeMoveFn){
 
     let me = this,
     {
        selectedNode
     } = me ;
  
-    if(node){
+    if(node && beforeMoveFn(data(getParentNode(node)))){
  
         insertBefore(selectedNode , node) ;
 
