@@ -30,7 +30,7 @@
 
    if(isRealMove){
 
-      if(!doMoveDown.call(me , next(selectedNode))){
+      if(!doMoveDown.call(me , next(selectedNode) , beforeMoveFn)){
 
          return !!(visibilityNodes && doMoveDown.call(me , visibilityNodes.getNearestNode(selectedNode , 'down') , beforeMoveFn)) ;
       }
