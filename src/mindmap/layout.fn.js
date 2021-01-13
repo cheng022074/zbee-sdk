@@ -116,8 +116,6 @@ function main(isFireDrawEvent){
 
         moveToY(rootNode , height / 2 - rootNodeHeight / 2) ;
 
-        rootNode.y -= rootNodeHeight / 2 ;
-
     }else{
 
         moveY(rootNode , -top) ;
