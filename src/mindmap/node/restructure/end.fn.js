@@ -53,7 +53,7 @@ if(is(placeholderNode)){
    let oldPreviousSibling = getPreviousSibling(selectedNode),
        oldParentNode = getParentNode(selectedNode);
 
-   if(beforeMoveFn(data(getParentNode(placeholderNode))) !== false){
+   if(beforeMoveFn(data(getParentNode(placeholderNode) , data(selectedNode))) !== false){
 
       let {
          selected
