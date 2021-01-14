@@ -50,7 +50,7 @@
       selectedNode
    } = me ;
 
-   if(node && beforeMoveFn(data(getParentNode(node)))){
+   if(node && beforeMoveFn(data(getParentNode(selectedNode)) , data(node))){
 
       insertAfter(selectedNode , node) ;
 
