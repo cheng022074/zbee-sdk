@@ -108,6 +108,9 @@
         },{
             "name":"fireIndicatorInput",
             "impl":".mindmap.node.indicator.input"
+        },{
+            "name":"nearOperation",
+            "impl":".mindmap.operation.near"
         }
     ]
 }
