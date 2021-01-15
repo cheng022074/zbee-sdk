@@ -1,0 +1,33 @@
+
+{
+    "name": "xy",
+    "version":"1.1.0",
+    
+    "engines":{
+  "node": ">= 10.1.0"
+},
+    
+    
+    "author": "nero chen",
+    
+    
+    "license": "ISC",
+    
+    
+    "main":"index.js",
+    "files": [
+  "meta.json",
+  "index.js",
+  "index.css"
+],
+    "dependencies": {
+  "axios": "^0.18.0",
+  "socket.io-client": "2.3.0",
+  "qs": "^6.7.0",
+  "url-join": "^4.0.0",
+  "regex-parser": "^2.2.10",
+  "ws": "^7.1.2",
+  "date-and-time": "^0.11.0",
+  "chokidar": "^3.1.1"
+}
+}
