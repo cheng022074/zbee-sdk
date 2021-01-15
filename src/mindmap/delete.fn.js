@@ -41,7 +41,7 @@
 
     let parentNode = getParentNode(node);
 
-    if(node.selected === true){
+    if(node.selected === true && keepSelf !== true){
 
         let {
             children
@@ -89,5 +89,10 @@
         order(parentNode) ;
 
         me.fireEvent('nodedelete' , deleteNodes) ;
+    }
+
+    if(keepSelf === true){
+
+        me.layout() ;
     }
 }
