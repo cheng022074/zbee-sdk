@@ -13,13 +13,36 @@
  * 
  * @import hide from .hide scoped
  * 
+ * @import remove from .delete scoped
+ * 
  * @param {data.Record} node 节点
+ * 
+ * @param {boolean} [keepSelf = false] 删除时是否仅删除指节点的所有子节点，如果是则指定 true , 否则指定 false
  * 
  */
 
  let parentNode = getParentNode(node) ;
 
  if(!isRootNode(node) && parentNode){
+
+    if(keepSelf){
+
+        let {
+            children
+        } = node ;
+
+        children = Array.from(children) ;
+
+        let deleteNodes = [] ;
+
+        for(let childNode of children){
+
+            deleteNodes.push(...remove(childNode)) ;
+        }
+
+        return deleteNodes ;
+
+    }
 
     let {
         children
@@ -42,7 +65,6 @@
     children.splice(children.indexOf(node) , 1) ;
 
     return deleteNodes ;
-    
  }
 
  return false ;
