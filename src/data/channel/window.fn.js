@@ -109,7 +109,12 @@ class main extends Channel{
 
     doDisconnect(){
 
-       this.target.postMessage(`${name}-disconnect` , '*') ;
+        let {
+            name,
+            target
+        } = this ;
+
+       target.postMessage(`${name}-disconnect` , '*') ;
     }
 
     doSend(data){
