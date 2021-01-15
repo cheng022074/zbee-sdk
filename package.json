@@ -67,7 +67,7 @@
   },
   "private": false,
   "devDependencies": {
-    "zbee": "1.1.0"
+    "zbee": "1.1.1"
   },
   "scripts": {
     "package": "zb package",
