@@ -4,7 +4,7 @@
  * 
  * @import previous from ..node.sibling.previous scoped
  * 
- * @import insertBefore from ..node.insert.before scoped
+ * @import insertBefore from ..insert.before scoped
  * 
  * @import data from ..node.data scoped
  * 
@@ -50,17 +50,9 @@
        selectedNode
     } = me ;
  
-    if(node && beforeMoveFn(data(getParentNode(selectedNode)) , data(node))){
- 
-        insertBefore(selectedNode , node) ;
+    if(node && beforeMoveFn(data(getParentNode(selectedNode)) , data(node) , data(selectedNode))){
 
-        selectedNode.selected = true ;
-    
-        me.fireEvent('nodeinsertbefore' , data(selectedNode) , data(node) , false) ;
-    
-        order(getParentNode(node)) ;
-    
-        me.layout() ;
+        insertBefore(node) ;
  
        return true ;
     }

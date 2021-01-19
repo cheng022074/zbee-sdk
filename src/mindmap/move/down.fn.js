@@ -4,7 +4,7 @@
  * 
  * @import next from ..node.sibling.next scoped
  * 
- * @import insertAfter from ..node.insert.after scoped
+ * @import insertAfter from ..insert.after scoped
  * 
  * @import order from ..order scoped
  * 
@@ -50,17 +50,9 @@
       selectedNode
    } = me ;
 
-   if(node && beforeMoveFn(data(getParentNode(selectedNode)) , data(node))){
+   if(node && beforeMoveFn(data(getParentNode(selectedNode)) , data(node) , data(selectedNode))){
 
-      insertAfter(selectedNode , node) ;
-
-      selectedNode.selected = true ;
-
-      me.fireEvent('nodeinsertafter' , data(selectedNode) , data(node) , false) ;
-
-      order(getParentNode(node)) ;
-
-      me.layout() ;
+      insertAfter(node) ;
 
       return true ;
    }
