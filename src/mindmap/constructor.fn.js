@@ -19,8 +19,6 @@
  * 
  * @import createVisibilityNodes from .nodes.visibility scoped
  * 
- * @import generate from id.generate
- * 
  * @import buffer from function.buffer
  * 
  * @import data from .data scoped
@@ -279,7 +277,6 @@
  me.initVisibilityLevel = initVisibilityLevel ;
 
  let placeholderNode = create(Object.assign({
-   id:generate('placeholder-'),
    width:placeholderNodeWidth,
    height:placeholderNodeHeight,
    placeholder:true
