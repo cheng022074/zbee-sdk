@@ -14,9 +14,12 @@
     reader,
     readConfig
  } = me,
- records = reader.read(data , readConfig);
+ node = reader.read(data , {
+   ...readConfig,
+   multi:false
+ });
 
- if(records.length === 1){
+ if(node){
 
-   await loadData(records[0]) ;
+   await loadData(node) ;
  }

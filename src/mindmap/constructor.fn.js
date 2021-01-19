@@ -43,7 +43,7 @@
  * 
  * @param {data.Reader} config.reader 数据读取配置
  * 
- * @param {data.Reader} [config.readConfig] 数据读取根路径设置
+ * @param {data.Reader} [config.readConfig = {}] 数据读取根路径设置
  * 
  * @param {boolean} [config.initVisibilityLevel = 2] 初始显示脑图节点层数
  * 
