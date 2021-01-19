@@ -3,6 +3,8 @@
  * 
  * 初始化脑图
  * 
+ * @import create from .node.create scoped
+ * 
  * @import createReader from data.reader.json
  * 
  * @import setHidden from .hidden scoped
@@ -276,19 +278,14 @@
 
  me.initVisibilityLevel = initVisibilityLevel ;
 
- let placeholderNode = reader.create(Object.assign({
+ let placeholderNode = create(Object.assign({
    id:generate('placeholder-'),
    width:placeholderNodeWidth,
    height:placeholderNodeHeight,
-   placeholder:true,
-   children:[],
-   properties:[],
-   plugins:[]
+   placeholder:true
  } , placeholderNodeData)) ;
 
  me.placeholderNode = placeholderNode ;
-
- me.nodes.set(placeholderNode.id , placeholderNode) ;
 
  {
    me.fireNodeUnsizedEvent = buffer(() => {
