@@ -94,7 +94,7 @@ if(!restructuring || restructureIndicateLocked){
             }
         }
 
-        if(append(parentNode , placeholderNode)){
+        if(append(placeholderNode , parentNode)){
 
             me.layout() ;
         }
