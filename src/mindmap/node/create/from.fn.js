@@ -13,20 +13,60 @@
  * 
  */
 
-let me = this,
-{
-   reader,
-   readConfig
-} = me ;
+ function main(data , readAsRoot){
 
-if(isDefined(readAsRoot)){
+    let me = this,
+    {
+      reader,
+      readConfig
+    } = me ;
+    
+    if(isDefined(readAsRoot)){
+    
+      readConfig = Object.assign({} , readConfig , {
+        root:readAsRoot
+      }) ;
+    }
+    
+    let node = reader.read(data , {
+      ...readConfig,
+      multi:false
+    });
 
-  readConfig = Object.assign({} , readConfig , {
-    root:readAsRoot
-  }) ;
+    if(node){
+
+        register_node.call(me , node) ;
+
+        return node ;
+    }
+ }
+
+ function register_node(node){
+
+    let {
+        id,
+        children
+    } = node,
+    me = this,
+    {
+      nodes
+    } = me;
+
+    nodes.set(id , node) ;
+
+    children.sort(sortByOrder) ;
+
+    for(let childNode of children){
+
+      register_node.call(me , childNode) ;
+    }
+ }
+
+function sortByOrder({
+  order:order1
+} , {
+  order:order2
+}){
+
+  return order1 - order2 ;
 }
-
-return reader.read(data , {
-  ...readConfig,
-  multi:false
-});
