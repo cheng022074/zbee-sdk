@@ -52,7 +52,7 @@
  
     if(node && beforeMoveFn(data(getParentNode(selectedNode)) , data(node) , data(selectedNode))){
 
-        insertBefore(node) ;
+        insertBefore(selectedNode , node) ;
  
        return true ;
     }
