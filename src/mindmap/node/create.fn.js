@@ -76,8 +76,3 @@ node = reader.create(options) ;
 nodes.set(node.id , node) ;
 
 return node ;
-
-
-
-
-
