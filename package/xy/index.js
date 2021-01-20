@@ -47409,6 +47409,122 @@ exports['src::mindmap.focus'] = (() => {
 
 })();
 
+exports['src::mindmap.insert.after'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1611045908107 = new Map();
+
+    return function(node, afterNode, isSilentMode = false) {
+
+
+
+
+
+        if (!var_current_scope_1611045908107.has(this)) {
+
+            var_current_scope_1611045908107.set(this, (() => {
+                const insert = include('src::mindmap.node.insert.after').bind(this);
+                const order = include('src::mindmap.order').bind(this);
+                const data = include('src::mindmap.node.data').bind(this);
+                const getParentNode = include('src::mindmap.node.parent').bind(this);
+                const select = include('src::mindmap.select').bind(this);
+                const from = include('src::mindmap.node.from').bind(this);
+
+                function main(node, afterNode, isSilentMode) {
+
+
+                    /**
+                     * 
+                     * 在选定节点之前插入
+                     * 
+                     * @import insert from ..node.insert.after scoped
+                     * 
+                     * @import order from ..order scoped
+                     * 
+                     * @import data from ..node.data scoped
+                     * 
+                     * @import getParentNode from ..node.parent scoped
+                     * 
+                     * @import select from ..select scoped
+                     * 
+                     * @import from from ..node.from scoped
+                     * 
+                     * @param {mixed} node 插入的节点配置
+                     * 
+                     * @param {mixed} [afterNode] 参考脑图节点
+                     * 
+                     * @param {boolean} [isSilentMode = false] 是否静默模式
+                     * 
+                     */
+
+                    let me = this,
+                        {
+                            restructuring
+                        } = me;
+
+                    if (restructuring) {
+
+                        return;
+                    }
+
+                    let nodeSelected,
+                        isNewNode = true;
+
+                    if (from(node)) {
+
+                        isNewNode = false;
+
+                        nodeSelected = node.selected;
+                    }
+
+                    node = insert(node, from(afterNode));
+
+                    if (node) {
+
+                        if (nodeSelected) {
+
+                            node.selected = true;
+                        }
+
+                        if (!isSilentMode) {
+
+                            me.fireEvent('nodeinsertafter', data(node), data(afterNode), isNewNode);
+
+                            order(getParentNode(afterNode));
+
+                            if (!select(node)) {
+
+                                me.layout();
+                            }
+
+                        } else {
+
+                            me.layout();
+                        }
+                    }
+
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1611045908107.get(this);
+
+
+
+        return main.call(this, node, afterNode, isSilentMode);
+    };
+
+})();
+
 exports['src::mindmap.move.down'] = (() => {
 
 
@@ -47417,7 +47533,7 @@ exports['src::mindmap.move.down'] = (() => {
 
 
 
-    const var_current_scope_1610693102347 = new Map();
+    const var_current_scope_1611048688927 = new Map();
 
     return function(isRealMove = true, beforeMoveFn = () => true) {
 
@@ -47425,11 +47541,11 @@ exports['src::mindmap.move.down'] = (() => {
 
 
 
-        if (!var_current_scope_1610693102347.has(this)) {
+        if (!var_current_scope_1611048688927.has(this)) {
 
-            var_current_scope_1610693102347.set(this, (() => {
+            var_current_scope_1611048688927.set(this, (() => {
                 const next = include('src::mindmap.node.sibling.next').bind(this);
-                const insertAfter = include('src::mindmap.node.insert.after').bind(this);
+                const insertAfter = include('src::mindmap.insert.after').bind(this);
                 const order = include('src::mindmap.order').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
@@ -47440,7 +47556,7 @@ exports['src::mindmap.move.down'] = (() => {
                  * 
                  * @import next from ..node.sibling.next scoped
                  * 
-                 * @import insertAfter from ..node.insert.after scoped
+                 * @import insertAfter from ..insert.after scoped
                  * 
                  * @import order from ..order scoped
                  * 
@@ -47464,39 +47580,27 @@ exports['src::mindmap.move.down'] = (() => {
                             visibilityNodes
                         } = me;
 
-                    if (isRealMove) {
+                    if (!doMoveDown.call(me, next(selectedNode), beforeMoveFn, isRealMove)) {
 
-                        if (!doMoveDown.call(me, next(selectedNode), beforeMoveFn)) {
-
-                            return !!(visibilityNodes && doMoveDown.call(me, visibilityNodes.getNearestNode(selectedNode, 'down'), beforeMoveFn));
-                        }
-
-                    } else if (!next(selectedNode)) {
-
-                        return !!(visibilityNodes && visibilityNodes.getNearestNode(selectedNode, 'down'));
+                        return !!(visibilityNodes && doMoveDown.call(me, visibilityNodes.getNearestNode(selectedNode, 'down'), beforeMoveFn, isRealMove));
                     }
 
                     return true;
                 }
 
-                function doMoveDown(node, beforeMoveFn) {
+                function doMoveDown(node, beforeMoveFn, isRealMove) {
 
                     let me = this,
                         {
                             selectedNode
                         } = me;
 
-                    if (node && beforeMoveFn(data(getParentNode(selectedNode)), data(node))) {
+                    if (node && beforeMoveFn(data(getParentNode(node)), data(selectedNode), data(node))) {
 
-                        insertAfter(selectedNode, node);
+                        if (isRealMove) {
 
-                        selectedNode.selected = true;
-
-                        me.fireEvent('nodeinsertafter', data(selectedNode), data(node), false);
-
-                        order(getParentNode(node));
-
-                        me.layout();
+                            insertAfter(selectedNode, node);
+                        }
 
                         return true;
                     }
@@ -47509,11 +47613,126 @@ exports['src::mindmap.move.down'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1610693102347.get(this);
+        const main = var_current_scope_1611048688927.get(this);
 
 
 
         return main.call(this, isRealMove, beforeMoveFn);
+    };
+
+})();
+
+exports['src::mindmap.insert.before'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1611045908148 = new Map();
+
+    return function(node, beforeNode, isSilentMode = false) {
+
+
+
+
+
+        if (!var_current_scope_1611045908148.has(this)) {
+
+            var_current_scope_1611045908148.set(this, (() => {
+                const insert = include('src::mindmap.node.insert.before').bind(this);
+                const select = include('src::mindmap.select').bind(this);
+                const data = include('src::mindmap.node.data').bind(this);
+                const order = include('src::mindmap.order').bind(this);
+                const getParentNode = include('src::mindmap.node.parent').bind(this);
+                const from = include('src::mindmap.node.from').bind(this);
+
+                function main(node, beforeNode, isSilentMode) {
+
+
+                    /**
+                     * 
+                     * 在选定节点之前插入
+                     * 
+                     * @import insert from ..node.insert.before scoped
+                     * 
+                     * @import select from ..select scoped
+                     * 
+                     * @import data from ..node.data scoped
+                     * 
+                     * @import order from ..order scoped
+                     * 
+                     * @import getParentNode from ..node.parent scoped
+                     * 
+                     * @import from from ..node.from scoped
+                     * 
+                     * @param {mixed} node 插入的节点配置
+                     * 
+                     * @param {mixed} [beforeNode] 参考脑图节点
+                     * 
+                     * @param {boolean} [isSilentMode = false] 是否静默模式
+                     * 
+                     */
+
+                    let me = this,
+                        {
+                            restructuring
+                        } = me;
+
+                    if (restructuring) {
+
+                        return;
+                    }
+
+                    let nodeSelected,
+                        isNewNode = true;
+
+                    if (from(node)) {
+
+                        isNewNode = false;
+
+                        nodeSelected = node.selected;
+                    }
+
+                    node = insert(node, from(beforeNode));
+
+                    if (node) {
+
+                        if (nodeSelected) {
+
+                            node.selected = true;
+                        }
+
+                        if (!isSilentMode) {
+
+                            me.fireEvent('nodeinsertbefore', data(node), data(beforeNode), isNewNode);
+
+                            order(getParentNode(beforeNode));
+
+                            if (!select(node)) {
+
+                                me.layout();
+                            }
+
+                        } else {
+
+                            me.layout();
+                        }
+                    }
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1611045908148.get(this);
+
+
+
+        return main.call(this, node, beforeNode, isSilentMode);
     };
 
 })();
@@ -47526,7 +47745,7 @@ exports['src::mindmap.move.up'] = (() => {
 
 
 
-    const var_current_scope_1610693102374 = new Map();
+    const var_current_scope_1611048688964 = new Map();
 
     return function(isRealMove = true, beforeMoveFn = () => true) {
 
@@ -47534,11 +47753,11 @@ exports['src::mindmap.move.up'] = (() => {
 
 
 
-        if (!var_current_scope_1610693102374.has(this)) {
+        if (!var_current_scope_1611048688964.has(this)) {
 
-            var_current_scope_1610693102374.set(this, (() => {
+            var_current_scope_1611048688964.set(this, (() => {
                 const previous = include('src::mindmap.node.sibling.previous').bind(this);
-                const insertBefore = include('src::mindmap.node.insert.before').bind(this);
+                const insertBefore = include('src::mindmap.insert.before').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
                 const order = include('src::mindmap.order').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
@@ -47549,7 +47768,7 @@ exports['src::mindmap.move.up'] = (() => {
                  * 
                  * @import previous from ..node.sibling.previous scoped
                  * 
-                 * @import insertBefore from ..node.insert.before scoped
+                 * @import insertBefore from ..insert.before scoped
                  * 
                  * @import data from ..node.data scoped
                  * 
@@ -47573,39 +47792,28 @@ exports['src::mindmap.move.up'] = (() => {
                             visibilityNodes
                         } = me;
 
-                    if (isRealMove) {
+                    if (!doMoveUp.call(me, previous(selectedNode), beforeMoveFn, isRealMove)) {
 
-                        if (!doMoveUp.call(me, previous(selectedNode), beforeMoveFn)) {
-
-                            return !!(visibilityNodes && doMoveUp.call(me, visibilityNodes.getNearestNode(selectedNode, 'up'), beforeMoveFn));
-                        }
-
-                    } else if (!previous(selectedNode)) {
-
-                        return !!(visibilityNodes && visibilityNodes.getNearestNode(selectedNode, 'up'));
+                        return !!(visibilityNodes && doMoveUp.call(me, visibilityNodes.getNearestNode(selectedNode, 'up'), beforeMoveFn, isRealMove));
                     }
 
                     return true;
                 }
 
-                function doMoveUp(node, beforeMoveFn) {
+                function doMoveUp(node, beforeMoveFn, isRealMove) {
 
                     let me = this,
                         {
                             selectedNode
                         } = me;
 
-                    if (node && beforeMoveFn(data(getParentNode(selectedNode)), data(node))) {
+                    if (node && beforeMoveFn(data(getParentNode(node)), data(selectedNode), data(node))) {
 
-                        insertBefore(selectedNode, node);
+                        if (isRealMove) {
 
-                        selectedNode.selected = true;
+                            insertBefore(selectedNode, node);
 
-                        me.fireEvent('nodeinsertbefore', data(selectedNode), data(node), false);
-
-                        order(getParentNode(node));
-
-                        me.layout();
+                        }
 
                         return true;
                     }
@@ -47618,7 +47826,7 @@ exports['src::mindmap.move.up'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1610693102374.get(this);
+        const main = var_current_scope_1611048688964.get(this);
 
 
 
@@ -47860,237 +48068,6 @@ exports['src::mindmap.node.text'] = (() => {
 
 
         return main.call(this, text, node);
-    };
-
-})();
-
-exports['src::mindmap.insert.before'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1609121334582 = new Map();
-
-    return function(node, beforeNode, isSilentMode = false) {
-
-
-
-
-
-        if (!var_current_scope_1609121334582.has(this)) {
-
-            var_current_scope_1609121334582.set(this, (() => {
-                const insert = include('src::mindmap.node.insert.before').bind(this);
-                const select = include('src::mindmap.select').bind(this);
-                const data = include('src::mindmap.node.data').bind(this);
-                const order = include('src::mindmap.order').bind(this);
-                const getParentNode = include('src::mindmap.node.parent').bind(this);
-                const from = include('src::mindmap.node.from').bind(this);
-
-                function main(node, beforeNode, isSilentMode) {
-
-
-                    /**
-                     * 
-                     * 在选定节点之前插入
-                     * 
-                     * @import insert from ..node.insert.before scoped
-                     * 
-                     * @import select from ..select scoped
-                     * 
-                     * @import data from ..node.data scoped
-                     * 
-                     * @import order from ..order scoped
-                     * 
-                     * @import getParentNode from ..node.parent scoped
-                     * 
-                     * @import from from ..node.from scoped
-                     * 
-                     * @param {mixed} node 插入的节点配置
-                     * 
-                     * @param {mixed} [beforeNode] 参考脑图节点
-                     * 
-                     * @param {boolean} [isSilentMode = false] 是否静默模式
-                     * 
-                     */
-
-                    let me = this,
-                        {
-                            restructuring
-                        } = me;
-
-                    if (restructuring) {
-
-                        return;
-                    }
-
-                    let nodeSelected,
-                        isNewNode = true;
-
-                    if (from(node)) {
-
-                        isNewNode = false;
-
-                        nodeSelected = node.selected;
-                    }
-
-                    node = insert(node, beforeNode);
-
-                    if (node) {
-
-                        if (nodeSelected) {
-
-                            node.selected = true;
-                        }
-
-                        if (!isSilentMode) {
-
-                            me.fireEvent('nodeinsertbefore', data(node), data(beforeNode), isNewNode);
-
-                            order(getParentNode(beforeNode));
-
-                            if (!select(node)) {
-
-                                me.layout();
-                            }
-
-                        } else {
-
-                            me.layout();
-                        }
-                    }
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1609121334582.get(this);
-
-
-
-        return main.call(this, node, beforeNode, isSilentMode);
-    };
-
-})();
-
-exports['src::mindmap.insert.after'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1609121334596 = new Map();
-
-    return function(node, afterNode, isSilentMode = false) {
-
-
-
-
-
-        if (!var_current_scope_1609121334596.has(this)) {
-
-            var_current_scope_1609121334596.set(this, (() => {
-                const insert = include('src::mindmap.node.insert.after').bind(this);
-                const order = include('src::mindmap.order').bind(this);
-                const data = include('src::mindmap.node.data').bind(this);
-                const getParentNode = include('src::mindmap.node.parent').bind(this);
-                const select = include('src::mindmap.select').bind(this);
-                const from = include('src::mindmap.node.from').bind(this);
-
-                function main(node, afterNode, isSilentMode) {
-
-
-                    /**
-                     * 
-                     * 在选定节点之前插入
-                     * 
-                     * @import insert from ..node.insert.after scoped
-                     * 
-                     * @import order from ..order scoped
-                     * 
-                     * @import data from ..node.data scoped
-                     * 
-                     * @import getParentNode from ..node.parent scoped
-                     * 
-                     * @import select from ..select scoped
-                     * 
-                     * @import from from ..node.from scoped
-                     * 
-                     * @param {mixed} node 插入的节点配置
-                     * 
-                     * @param {mixed} [afterNode] 参考脑图节点
-                     * 
-                     * @param {boolean} [isSilentMode = false] 是否静默模式
-                     * 
-                     */
-
-                    let me = this,
-                        {
-                            restructuring
-                        } = me;
-
-                    if (restructuring) {
-
-                        return;
-                    }
-
-                    let nodeSelected,
-                        isNewNode = true;
-
-                    if (from(node)) {
-
-                        isNewNode = false;
-
-                        nodeSelected = node.selected;
-                    }
-
-                    node = insert(node, afterNode);
-
-                    if (node) {
-
-                        if (nodeSelected) {
-
-                            node.selected = true;
-                        }
-
-                        if (!isSilentMode) {
-
-                            me.fireEvent('nodeinsertafter', data(node), data(afterNode), isNewNode);
-
-                            order(getParentNode(afterNode));
-
-                            if (!select(node)) {
-
-                                me.layout();
-                            }
-
-                        } else {
-
-                            me.layout();
-                        }
-                    }
-
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1609121334596.get(this);
-
-
-
-        return main.call(this, node, afterNode, isSilentMode);
     };
 
 })();
@@ -48779,29 +48756,29 @@ exports['src::mindmap.node.restructure.end'] = (() => {
 
     let getDescendantNodes, is;
 
-    let var_init_locked_1610693102438;
+    let var_init_locked_1611045409112;
 
 
 
-    const var_current_scope_1610693102438 = new Map();
+    const var_current_scope_1611045409112 = new Map();
 
     return function(beforeMoveFn = () => true) {
 
 
-        if (!var_init_locked_1610693102438) {
+        if (!var_init_locked_1611045409112) {
 
             getDescendantNodes = include('src::mindmap.nodes.relation.descendant');
             is = include('src::mindmap.node.is.visibility');
 
-            var_init_locked_1610693102438 = true;
+            var_init_locked_1611045409112 = true;
         }
 
 
 
 
-        if (!var_current_scope_1610693102438.has(this)) {
+        if (!var_current_scope_1611045409112.has(this)) {
 
-            var_current_scope_1610693102438.set(this, (() => {
+            var_current_scope_1611045409112.set(this, (() => {
                 const fireDrawEvent = include('src::mindmap.fire.draw').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
                 const remove = include('src::mindmap.node.delete').bind(this);
@@ -48809,6 +48786,7 @@ exports['src::mindmap.node.restructure.end'] = (() => {
                 const show = include('src::mindmap.node.show').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
                 const getPreviousSibling = include('src::mindmap.node.sibling.previous').bind(this);
+                const getNextSibling = include('src::mindmap.node.sibling.next').bind(this);
                 const doOrder = include('src::mindmap.order').bind(this);
 
                 function main(beforeMoveFn) {
@@ -48835,6 +48813,8 @@ exports['src::mindmap.node.restructure.end'] = (() => {
                      * @import data from ..data scoped
                      * 
                      * @import getPreviousSibling from ..sibling.previous scoped
+                     * 
+                     * @import getNextSibling from ..sibling.next scoped
                      * 
                      * @import doOrder from ....order scoped
                      * 
@@ -48866,9 +48846,24 @@ exports['src::mindmap.node.restructure.end'] = (() => {
                     if (is(placeholderNode)) {
 
                         let oldPreviousSibling = getPreviousSibling(selectedNode),
-                            oldParentNode = getParentNode(selectedNode);
+                            oldParentNode = getParentNode(selectedNode),
+                            position,
+                            siblingNode;
 
-                        if (beforeMoveFn(data(getParentNode(placeholderNode)), data(selectedNode)) !== false) {
+                        if (siblingNode = getPreviousSibling(placeholderNode)) {
+
+                            position = 'after';
+
+                        } else if (siblingNode = getNextSibling(placeholderNode)) {
+
+                            position = 'before';
+
+                        } else {
+
+                            position = 'append';
+                        }
+
+                        if (beforeMoveFn(position, data(getParentNode(placeholderNode)), data(selectedNode), siblingNode) !== false) {
 
                             let {
                                 selected
@@ -48926,7 +48921,7 @@ exports['src::mindmap.node.restructure.end'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1610693102438.get(this);
+        const main = var_current_scope_1611045409112.get(this);
 
 
 
