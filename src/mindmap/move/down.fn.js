@@ -28,31 +28,27 @@
       visibilityNodes
    } = me ;
 
-   if(isRealMove){
+   if(!doMoveDown.call(me , next(selectedNode) , beforeMoveFn , isRealMove)){
 
-      if(!doMoveDown.call(me , next(selectedNode) , beforeMoveFn)){
-
-         return !!(visibilityNodes && doMoveDown.call(me , visibilityNodes.getNearestNode(selectedNode , 'down') , beforeMoveFn)) ;
-      }
-   
-   }else if(!next(selectedNode)){
-
-      return !!(visibilityNodes && visibilityNodes.getNearestNode(selectedNode , 'down')) ;
+      return !!(visibilityNodes && doMoveDown.call(me , visibilityNodes.getNearestNode(selectedNode , 'down') , beforeMoveFn , isRealMove)) ;
    }
 
    return true ;
  }
 
- function doMoveDown(node , beforeMoveFn){
+ function doMoveDown(node , beforeMoveFn , isRealMove){
 
    let me = this,
    {
       selectedNode
    } = me ;
 
-   if(node && beforeMoveFn(data(getParentNode(selectedNode)) , data(node) , data(selectedNode))){
+   if(node && beforeMoveFn(data(getParentNode(node)) , data(selectedNode) , data(node))){
 
-      insertAfter(selectedNode , node) ;
+      if(isRealMove){
+
+         insertAfter(selectedNode , node) ;
+      }
 
       return true ;
    }
