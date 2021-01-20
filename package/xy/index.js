@@ -36451,22 +36451,22 @@ exports['src::file.write.json'] = (() => {
 
 exports['src::mindmap'] = (() => {
 
-    let mixin_1610963812299__1, extend, constructor, get_selectedNodeRegion, method_load, method_loadData, method_saveData, method_setNodeSize, method_destroy, method_resize, method_expand, method_collapse, method_select, method_deselect, method_delete, method_append, method_move, method_reset, method_focus, method_moveDown, method_moveUp, method_getNextSiblingNode, method_getPreviousSiblingNode, method_info, method_updateOrderByNodes, method_query, method_getParentNode, method_getChildNodes, method_text, method_insertBefore, method_insertAfter, method_left, method_right, method_up, method_down, method_startRestructureNode, method_restructureNode, method_endRestructureNode, method_fireIndicatorInput, method_joinNodes, isObject;
+    let mixin_1611120134607__1, extend, constructor, get_selectedNodeRegion, method_load, method_loadData, method_saveData, method_setNodeSize, method_destroy, method_resize, method_expand, method_collapse, method_select, method_deselect, method_delete, method_append, method_move, method_reset, method_focus, method_moveDown, method_moveUp, method_getNextSiblingNode, method_getPreviousSiblingNode, method_info, method_updateOrderByNodes, method_query, method_getParentNode, method_getChildNodes, method_text, method_insertBefore, method_insertAfter, method_left, method_right, method_up, method_down, method_startRestructureNode, method_restructureNode, method_endRestructureNode, method_fireIndicatorInput, isObject;
 
-    let var_init_locked_1610963812300;
+    let var_init_locked_1611120134608;
 
-    let var_class_1610963812300;
+    let var_class_1611120134608;
 
 
 
-    let var_global_main_1610963812300;
+    let var_global_main_1611120134608;
 
     return function(config) {
 
 
-        if (!var_init_locked_1610963812300) {
+        if (!var_init_locked_1611120134608) {
 
-            mixin_1610963812299__1 = include('src::mixin.observable');
+            mixin_1611120134607__1 = include('src::mixin.observable');
             extend = include('src::class.empty')();
             constructor = include('src::mindmap.constructor');
             get_selectedNodeRegion = include('src::mindmap.region.selected');
@@ -36505,7 +36505,6 @@ exports['src::mindmap'] = (() => {
             method_restructureNode = include('src::mindmap.node.restructure');
             method_endRestructureNode = include('src::mindmap.node.restructure.end');
             method_fireIndicatorInput = include('src::mindmap.node.indicator.input');
-            method_joinNodes = include('src::mindmap.nodes.join');
             isObject = include('src::is.object.simple');
 
             class main extends mixins({
@@ -36700,11 +36699,6 @@ exports['src::mindmap'] = (() => {
                     return method_fireIndicatorInput.apply(this, args);
 
                 }
-                joinNodes(...args) {
-
-                    return method_joinNodes.apply(this, args);
-
-                }
 
                 get selectedNodeRegion() {
 
@@ -36714,7 +36708,7 @@ exports['src::mindmap'] = (() => {
 
             }
 
-            var_class_1610963812300 = class extends main {
+            var_class_1611120134608 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -36729,7 +36723,7 @@ exports['src::mindmap'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1610963812300;
+                    return var_class_1611120134608;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -36739,15 +36733,15 @@ exports['src::mindmap'] = (() => {
 
             };
 
-            main = var_class_1610963812300;
+            main = var_class_1611120134608;
 
-            var_global_main_1610963812300 = main;
+            var_global_main_1611120134608 = main;
 
-            var_init_locked_1610963812300 = true;
+            var_init_locked_1611120134608 = true;
         }
 
 
-        return new var_global_main_1610963812300(config);
+        return new var_global_main_1611120134608(config);
     };
 
 })();
@@ -48988,40 +48982,6 @@ exports['src::mindmap.node.indicator.input'] = (() => {
 
 
         return main.call(this, node, indicator, indicators);
-    };
-
-})();
-
-exports['src::mindmap.nodes.join'] = (() => {
-
-
-
-
-
-
-
-    function main(data) {
-
-
-        /**
-         * 
-         * 函数实现说明
-         * 
-         * @param {mixed} data 参数说明
-         * 
-         * @return {mixed} 返回说明 
-         * 
-         */
-
-        // 代码实现
-
-    }
-
-    return function(data) {
-
-
-
-        return main.call(this, data);
     };
 
 })();
