@@ -34,7 +34,7 @@
     "chokidar": "^3.1.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.3.0",
-    "date-and-time": "^0.11.0",
+    "date-and-time": "^0.14.2",
     "ejs": "^2.6.1",
     "ejsexcel": "^3.5.2",
     "express": "^4.17.1",
