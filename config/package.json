@@ -37,48 +37,5 @@
             "/Users/cheng022074/Documents/Code/XY/XY-SDK/node_modules/zbee-sdk/package/xy",
             "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-SDK\\node_modules\\zbee-sdk\\package\\xy"
         ]
-    },
-    "mind-sdk":{
-        "type":"webpack",
-        "webpack":true,
-        "classes":[
-            "data.store.create",
-            "data.store.tree",
-            "data.proxy.memory",
-            "canvas.draw.line.bezierCurve",
-            "browser.event.listener.global.*",
-            "browser.event.key",
-            "event.listener.add"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\Company\\OK\\ENTERPRISE\\PC\\src\\pages\\mind.sdk.js"
-        ]
-    },
-    "zbee-webpack":{
-        "type":"node",
-        "version":"1.0.0",
-        "classes":[
-            "webpack.*"
-        ],
-        "api":{
-            "SPATest":"webpack.spa.test",
-            "SPADevelopment":"webpack.spa.development",
-            "SPAProduction":"webpack.spa.production"
-        },
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\TEMPLATE\\TEMPLATE-WEBPACK-WEB\\node_modules\\zbee_webpack"
-        ]
-    },
-    "node-ms":{
-        "type":"node",
-        "version":"1.0.0",
-        "classes":[
-            "microservice.server",
-            "microservice.datasource"
-        ],
-        "to":[
-            "C:\\Users\\nero.chen\\Desktop\\Code\\GitHub\\NODE-MS\\lib\\node.js",
-            "C:\\Users\\DEV\\Documents\\Code\\GITHUB\\NODE-MS\\lib\\node.js"
-        ]
     }
 }
