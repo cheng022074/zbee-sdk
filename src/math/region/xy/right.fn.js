@@ -3,19 +3,24 @@
  * 
  * 计算右边坐标
  * 
+ * @import get from ..get
+ * 
+ * @import height from ..height
+ * 
  * @param {object} region 配置
  * 
  * @return {object} 坐标 
  * 
  */
 
+region = get(region) ;
+
 let {
-    right,
     top,
-    bottom
+    right
 } = region ;
 
 return {
     x:right,
-    y:top + (bottom - top) / 2
+    y:top + height(region) / 2
 } ;

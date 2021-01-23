@@ -4,7 +4,7 @@
  * 
  * @import previous from ..node.sibling.previous scoped
  * 
- * @import insertBefore from ..node.insert.before scoped
+ * @import insertBefore from ..insert.before scoped
  * 
  * @import data from ..node.data scoped
  * 
@@ -12,44 +12,47 @@
  * 
  * @import getParentNode from ..node.parent scoped
  * 
+ * @param {boolean} [isRealMove = true] 是否真实移动
+ * 
+ * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
+ * 
+ * @return {boolean} 判断是否可以向下移动
+ * 
  */
 
-let me = this,
-{
-    selectedNode
-} = me,
-node = previous(selectedNode) ;
+ function main(isRealMove , beforeMoveFn){
 
-if(node){
-
-    insertBefore(selectedNode , node) ;
-
-    selectedNode.selected = true ;
-
-    me.fireEvent('nodeinsertbefore' , data(selectedNode) , data(node) , false) ;
-
-    order(getParentNode(node)) ;
-
-    me.layout() ;
-
-}else{
-
-    let {
+    let me = this,
+    {
+        selectedNode,
         visibilityNodes
     } = me ;
 
-    let node = visibilityNodes.getNearestNode(selectedNode , 'up') ;
+    if(!doMoveUp.call(me , previous(selectedNode) , beforeMoveFn , isRealMove)){
 
-    if(node){
-
-        insertBefore(selectedNode , node) ;
-
-        selectedNode.selected = true ;
-
-        me.fireEvent('nodeinsertbefore' , data(selectedNode) , data(node) , false) ;
-
-        order(getParentNode(node)) ;
-
-        me.layout() ;
+        return !!(visibilityNodes && doMoveUp.call(me , visibilityNodes.getNearestNode(selectedNode , 'up') , beforeMoveFn , isRealMove)) ;
     }
-}
+
+    return true ;
+ }
+
+ function doMoveUp(node , beforeMoveFn , isRealMove){
+
+    let me = this,
+    {
+       selectedNode
+    } = me ;
+ 
+    if(node && beforeMoveFn(data(getParentNode(node)) , data(selectedNode) , data(node))){
+
+        if(isRealMove){
+
+            insertBefore(selectedNode , node) ;
+ 
+        }
+        
+       return true ;
+    }
+ 
+    return false ;
+  }

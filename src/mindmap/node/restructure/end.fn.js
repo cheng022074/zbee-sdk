@@ -21,6 +21,8 @@
  * 
  * @import getPreviousSibling from ..sibling.previous scoped
  * 
+ * @import getNextSibling from ..sibling.next scoped
+ * 
  * @import doOrder from ....order scoped
  * 
  * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
@@ -51,9 +53,24 @@ let fireEvent;
 if(is(placeholderNode)){
 
    let oldPreviousSibling = getPreviousSibling(selectedNode),
-       oldParentNode = getParentNode(selectedNode);
+       oldParentNode = getParentNode(selectedNode),
+       position,
+       siblingNode;
 
-   if(beforeMoveFn(data(getParentNode(placeholderNode))) !== false){
+   if(siblingNode = getPreviousSibling(placeholderNode)){
+
+      position = 'after' ;
+   
+   }else if(siblingNode = getNextSibling(placeholderNode)){
+
+      position = 'before' ;
+   
+   }else{
+
+      position = 'append' ;
+   }
+
+   if(beforeMoveFn(position , data(getParentNode(placeholderNode)) , data(selectedNode) , siblingNode) !== false){
 
       let {
          selected

@@ -1,0 +1,21 @@
+{
+    "params":[
+        "data"
+    ],
+    "constructor":true,
+    "properties":{
+        "hours":{
+            "get":"date.hours"
+        },
+        "minutes":{
+            "get":"date.minutes"
+        }
+    },
+    "methods":[ {
+        "name":"addMinute",
+        "impl":"date.minute.add"
+    },{
+        "name":"toString",
+        "impl":"date.string"
+    }]
+}

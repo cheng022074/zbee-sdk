@@ -19,6 +19,8 @@
  * 
  * @param {string} [node] 节点编号
  * 
+ * @param {boolean} [keepSelf] 删除时是否仅删除指节点的所有子节点，如果是则指定 true , 否则指定 false
+ * 
  * @param {boolean} [isSilentMode = false] 是否静默模式
  * 
  */
@@ -39,7 +41,7 @@
 
     let parentNode = getParentNode(node);
 
-    if(node.selected === true){
+    if(node.selected === true && keepSelf !== true){
 
         let {
             children
@@ -70,7 +72,7 @@
         select(nextSelectedNode) ;
     }
 
-    let deleteNodes = remove(node),
+    let deleteNodes = remove(node , keepSelf),
     {
         nodes
     } = this;
@@ -87,5 +89,10 @@
         order(parentNode) ;
 
         me.fireEvent('nodedelete' , deleteNodes) ;
+    }
+
+    if(keepSelf === true){
+
+        me.layout() ;
     }
 }

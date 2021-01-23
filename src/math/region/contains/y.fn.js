@@ -3,7 +3,7 @@
  * 
  * 判断纵坐标是否在范围之内
  * 
- * @import from from ..from
+ * @import get from ..get
  * 
  * @param {object} region 参照范围
  * 
@@ -21,6 +21,6 @@ let {
  {
     top:positionTop,
     bottom:positionBottom
- } = from(position);
+ } = get(position);
 
  return positionTop >= top && positionBottom <= bottom ;

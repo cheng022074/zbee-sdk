@@ -7,7 +7,9 @@
  * 
  * @import height from .height
  * 
- * @param {object} target 目标范围
+ * @import get from .get
+ * 
+ * @param {object} region 目标范围
  * 
  * @param {object} xy 坐标
  * 
@@ -17,25 +19,27 @@
  * 
  */
 
+ region = get(region) ;
+
 let {
     left,
     right,
     top,
     bottom
- } = target;
+ } = region;
 
 if(x){
 
     left = x ;
 
-    right = left + width(target) ;
+    right = left + width(region) ;
 }
 
 if(y){
 
     top = y ;
 
-    bottom = top + height(target) ;
+    bottom = top + height(region) ;
 }
 
 return {

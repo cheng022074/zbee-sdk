@@ -35,6 +35,10 @@
  * 
  * @import from from math.region.from
  * 
+ * @import getData from .node.data scoped
+ * 
+ * @import getNodeSeparationDistance from .node.distance.separation scoped
+ * 
  * @param {boolean} [isFireDrawEvent = true] 是否派发绘制事件
  * 
  */
@@ -64,7 +68,7 @@ function main(isFireDrawEvent){
             {
                 width:nodeWidth
             } = rootNode,
-            regionWidth = (width - padding * 2 - nodeWidth) / (getLevel(getDeepestNode(rootNode)) - 1);
+            regionWidth = (width - (padding.left + padding.right) - nodeWidth) / (getLevel(getDeepestNode(rootNode)) - 1);
             
         visibilityNodes.forEach(node => {
 
@@ -128,43 +132,40 @@ function main(isFireDrawEvent){
 function layout(node){
 
     let {
-        expanded
+        expanded,
+        children
     } = node,
     me = this,
     {
-        nodeVerticalSeparationDistance,
         nodeHorizontalSeparationDistance
-    } = me;
+    } = me,
+    {
+        length
+    } = children;
 
-    if(expanded){
-
-        let children = getChildNodes(node),
-        childCountHeight = 0;
-
-        for(let {
-            height
-        } of children){
-
-            childCountHeight += height ;
-        }
-
-        childCountHeight += nodeVerticalSeparationDistance * (children.length - 1) ;
-
+    if(expanded && length){
+        
         let {
-            y:centerY
-        } = getCenterXY(node),
+            y,
+            height
+        } = node,
         {
             x:rightX
         } = getRightXY(node),
         childX = rightX + nodeHorizontalSeparationDistance,
-        childY = centerY - childCountHeight / 2,
-        previousChildNodes = [];
+        childY = y;
 
-        for(let childNode of children){
+        for(let i = 0 ; i < length ; i ++){
 
-            let {
-                height
-            } = childNode ;
+            let childNode = children[i],
+                dataChildNode = getData(childNode);
+
+            let topSeparationDistance = getNodeSeparationDistance('top' , dataChildNode , i , length) ;
+
+            if(topSeparationDistance){
+
+                childY += topSeparationDistance ;
+            }
 
             childNode.x = childX ;
 
@@ -173,23 +174,33 @@ function layout(node){
             layout.call(me , childNode) ;
 
             let {
-                y:scopeRegionY,
                 height:scopeRegionHeight
             } = getScopeRegion(childNode) ;
 
-            if(height === scopeRegionHeight){
+            childY += scopeRegionHeight;
 
-                childY += height + nodeVerticalSeparationDistance;
-            
-            }else{
+            let bottomSeparationDistance = getNodeSeparationDistance('bottom' , dataChildNode , i , length) ;
 
-                moveY(previousChildNodes , scopeRegionY - childY) ;
+            if(bottomSeparationDistance){
 
-                childY = scopeRegionY + scopeRegionHeight + nodeVerticalSeparationDistance;
+                childY += bottomSeparationDistance ;
             }
 
-            previousChildNodes.push(childNode) ;
         }
+
+        let {
+            height:scopeRegionHeight
+        } = getScopeRegion(node) ;
+
+        if(scopeRegionHeight === height){
+
+            moveY(children , (scopeRegionHeight - from(children[children.length - 1]).bottom + children[0].y) / 2) ;
+
+        }else{
+
+            node.y += (scopeRegionHeight  - height) / 2;   
+        }
+        
     }
 
 }

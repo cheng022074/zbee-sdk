@@ -43,7 +43,7 @@ if(from(node)){
    nodeSelected = node.selected ;
 }
 
-node = insert(node , beforeNode) ;
+node = insert(node , from(beforeNode)) ;
 
 if(node){
 

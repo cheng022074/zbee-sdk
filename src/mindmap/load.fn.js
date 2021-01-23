@@ -3,20 +3,17 @@
  * 
  * 初始化脑图数据
  * 
+ * @import create from .node.create.from scoped
+ * 
  * @import loadData from .load.data scoped
  * 
  * @param {mixed} data 数据
  * 
  */
 
- let me = this,
- {
-    reader,
-    readConfig
- } = me,
- records = reader.read(data , readConfig);
+ let node = create(data);
 
- if(records.length === 1){
+ if(node){
 
-   await loadData(records[0]) ;
+   await loadData(node) ;
  }

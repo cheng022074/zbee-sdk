@@ -3,7 +3,7 @@
  * 
  * 判断横坐标是否在范围之内
  * 
- * @import from from ..from
+ * @import get from ..get
  * 
  * @param {object} region 参照范围
  * 
@@ -20,6 +20,6 @@ let {
  {
     left:positionOLeft,
     right:positionRight
- } = from(position);
+ } = get(position);
 
  return positionOLeft >= left && positionRight <= right ;

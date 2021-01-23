@@ -50,7 +50,7 @@ if(from(node)){
     nodeSelected = node.selected ;
 }
 
-node = append(parentNode , node) ;
+node = append(node , parentNode) ;
 
 if(node){
 

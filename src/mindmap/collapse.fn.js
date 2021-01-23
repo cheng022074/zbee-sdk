@@ -3,7 +3,7 @@
  * 
  * 收起节点
  * 
- * @import get from .node.get scoped
+ * @import from from .node.from scoped
  * 
  * @import layout from .layout scoped
  * 
@@ -15,37 +15,44 @@
  * 
  * @import data from .node.data scoped
  * 
- * @param {string} id 节点编号
+ * @param {mixed} node 脑图节点
+ * 
+ * @param {number} [level = 1] 收起层次
  * 
  */
 
-let node = get(id),
-    me = this,
+ function main(node , level){
+
+    node = from(node) ;
+
+    let me = this,
     {
         selectedNode
     } = me,
     oldSelectedNode = selectedNode;
 
-if(node && collapse(node)){
+    if(node && collapse(node)){
 
-    if(selectedNode){
+        if(selectedNode){
 
-        while(selectedNode.hidden){
+            while(selectedNode.hidden){
 
-            selectedNode = getParentNode(selectedNode) ;
+                selectedNode = getParentNode(selectedNode) ;
+            }
+        
+            if(oldSelectedNode !== selectedNode){
+        
+                selectedNode.selected = true ;
+        
+                me.fireEvent('nodeselect' , data(selectedNode) , data(oldSelectedNode)) ;
+            }
         }
-    
-        if(oldSelectedNode !== selectedNode){
-    
-            selectedNode.selected = true ;
-    
-            me.fireEvent('nodeselect' , data(selectedNode) , data(oldSelectedNode)) ;
-        }
+
+        me.layout() ;
+
+        return true ;
     }
 
-    me.layout() ;
+    return false ;
+ }
 
-    return true ;
-}
-
-return false ;

@@ -3,6 +3,8 @@
  * 
  * 初始化脑图
  * 
+ * @import create from .node.create scoped
+ * 
  * @import createReader from data.reader.json
  * 
  * @import setHidden from .hidden scoped
@@ -16,8 +18,6 @@
  * @import setEllipsis from .ellipsis scoped
  * 
  * @import createVisibilityNodes from .nodes.visibility scoped
- * 
- * @import generate from id.generate
  * 
  * @import buffer from function.buffer
  * 
@@ -33,13 +33,19 @@
  * 
  * @import emptyFn from function.empty value
  * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.number
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
  * 
- * @param {data.Reader} [config.readConfig] 数据读取根路径设置
+ * @param {data.Reader} [config.readConfig = {}] 数据读取根路径设置
  * 
  * @param {boolean} [config.initVisibilityLevel = 2] 初始显示脑图节点层数
+ * 
+ * @param {function} [config.nodeSeparationDistance] 节点间隔距离
  * 
  * @param {number} [config.nodeVerticalSeparationDistance = 15] 节点垂直间隔距离
  * 
@@ -93,6 +99,8 @@
 
  me.ellipsisNodeHeight = ellipsisNodeHeight ;
 
+ me.nodeSeparationDistance = nodeSeparationDistance ;
+
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
 
  if(isObject(nodeHorizontalSeparationDistance)){
@@ -118,7 +126,33 @@
 
  me.nodeHorizontalLineBreakPointOffset = nodeHorizontalLineBreakPointOffset ;
 
- me.padding = padding ;
+ if(isNumber(padding)){
+
+   me.padding = {
+      top:padding,
+      bottom:padding,
+      left:padding,
+      right:padding
+   } ;
+
+ }else if(isObject(padding)){
+
+   me.padding = Object.assign({
+      top:0,
+      bottom:0,
+      left:0,
+      right:0
+   } , padding) ;
+
+ }else{
+
+   me.padding = {
+      top:0,
+      bottom:0,
+      left:0,
+      right:0
+   } ;
+ }
 
  me.width = width ;
 
@@ -150,11 +184,6 @@
                mode:'readwrite'
          },
          ...readerFields,
-         backgroundColor:{
-            mapping:'backgroundColor',
-            default:'transparent',
-            mode:'readwrite'
-         },
          expanded:{
             mode:'readwrite',
             local:true,
@@ -247,19 +276,13 @@
 
  me.initVisibilityLevel = initVisibilityLevel ;
 
- let placeholderNode = reader.create(Object.assign({
-   id:generate('placeholder-'),
+ let placeholderNode = create(Object.assign({
    width:placeholderNodeWidth,
    height:placeholderNodeHeight,
-   placeholder:true,
-   children:[],
-   properties:[],
-   plugins:[]
+   placeholder:true
  } , placeholderNodeData)) ;
 
  me.placeholderNode = placeholderNode ;
-
- me.nodes.set(placeholderNode.id , placeholderNode) ;
 
  {
    me.fireNodeUnsizedEvent = buffer(() => {

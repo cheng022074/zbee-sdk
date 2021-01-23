@@ -40,7 +40,7 @@ if(node && baseNode){
 
         case 'append':
 
-            append(baseNode , node) ;
+            append(node , baseNode) ;
 
             if(!baseNode.hidden && baseNode.expanded){
 

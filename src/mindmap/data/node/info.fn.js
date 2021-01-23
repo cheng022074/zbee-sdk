@@ -25,11 +25,18 @@
  * 
  * @param {object} [data] 修改节点信息
  * 
- * @param {boolean} [isSilentMode = false] 是否静默模式
+ * @param {object} [config = {}] 配置
+ * 
+ * @param {boolean} [config.isSilentMode = false] 是否静默模式
+ * 
+ * @param {boolean} [config.recursive = false] 是否递归，仅对于设置脑图节点属性时有效
  * 
  */
 
-function main(node , data , isSilentMode){
+function main(node , data , {
+    isSilentMode,
+    recursive
+}){
 
     let me =  this ;
 
@@ -46,6 +53,21 @@ function main(node , data , isSilentMode){
                     unsized(node , true) ;
 
                     me.layout() ;
+                }
+
+                if(recursive){
+
+                    let {
+                        children
+                    } = node ;
+
+                    for(let childNode of children){
+
+                        main.call(me , childNode , data , {
+                            isSilentMode,
+                            recursive
+                        }) ;
+                    }
                 }
             }
 
@@ -137,7 +159,7 @@ function setNodeInfo(node , data , isSilentMode){
 
                 if(!equals(newValue , oldValue) && !isSilentMode){
 
-                    me.fireEvent(`node${field}change` , id , value , oldValue) ;
+                    me.fireEvent(`node${field.toLowerCase()}change` , id , value , oldValue) ;
 
                     me.fireEvent('nodechange' , id , field , value , oldValue) ;
                 }
@@ -149,7 +171,7 @@ function setNodeInfo(node , data , isSilentMode){
     return isUpdated ;
 }
 
-function sync(oldId , id){
+function sync(oldId){
 
     let {
         nodes,

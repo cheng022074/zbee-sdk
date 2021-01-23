@@ -18,7 +18,7 @@
             "directory.*",
             "file.*",
             "mindmap",
-            "mindmap.node.ellipsis.cancel.active",
+            "mindmap.node.update",
             "function.*",
             "id.generate",
             "calendar.month.view",
