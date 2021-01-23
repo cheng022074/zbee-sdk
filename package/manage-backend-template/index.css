@@ -142,9 +142,30 @@ input, textarea {
   position: relative;
   overflow: hidden; }
 
+.mb-layout-center, .css-layout-center {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.mb-layout-fit-sized, .css-layout-fit-sized {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
 .mb-layout-fit-unsized, .css-layout-fit-unsized {
   width: 100%;
   height: 100%; }
+
+.mb-layout-flex-1 {
+  flex: 1; }
+
+.mb-layout-flex-2 {
+  flex: 2; }
+
+.mb-layout-flex-3 {
+  flex: 3; }
 
 .mb-layout-horizontal, .css-layout-horizontal {
   display: flex;
@@ -157,12 +178,3 @@ input, textarea {
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start; }
-
-.mb-layout-flex-1 {
-  flex: 1; }
-
-.mb-layout-flex-2 {
-  flex: 2; }
-
-.mb-layout-flex-3 {
-  flex: 3; }

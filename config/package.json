@@ -45,10 +45,7 @@
         "classes":[
             "css::reset.viewport",
             "css::container",
-            "css::layout.fit.unsized",
-            "css::layout.horizontal",
-            "css::layout.vertical",
-            "css::layout.flex"
+            "css::layout.*"
         ],
         "to":[
             "C:\\Users\\DEV\\Documents\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template"

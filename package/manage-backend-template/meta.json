@@ -31,6 +31,26 @@
     "folder": "css",
     "name": "container"
   },
+  "css::layout.center": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::layout.center()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `.mb-layout-center,.css-layout-center{\n    &{\r\n    display:flex;\r\n    align-items:center;\r\n    justify-content: center;\r\n}\r\n}`",
+    "folder": "css",
+    "name": "layout.center"
+  },
+  "css::layout.fit.sized": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::layout.fit.sized()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `.mb-layout-fit-sized,.css-layout-fit-sized{\n    &{\r\n    position: absolute;\r\n    top:0;\r\n    bottom:0;\r\n    left:0;\r\n    right:0;\r\n}\r\n}`",
+    "folder": "css",
+    "name": "layout.fit.sized"
+  },
   "css::layout.fit.unsized": {
     "meta": "code.meta.scss",
     "signature": "<void> css::layout.fit.unsized()",
@@ -40,6 +60,16 @@
     "data": "() => `.mb-layout-fit-unsized,.css-layout-fit-unsized{\n    &{\r\n    width:100%;\r\n    height:100%;\r\n}\r\n}`",
     "folder": "css",
     "name": "layout.fit.unsized"
+  },
+  "css::layout.flex": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::layout.flex()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `$css-layout-flex-max:3 !default;\r\n\r\n@for $flex from 1 through $css-layout-flex-max{\r\n    .mb-layout-flex-#{$flex}{\r\n        flex:$flex;\r\n    }\r\n}`",
+    "folder": "css",
+    "name": "layout.flex"
   },
   "css::layout.horizontal": {
     "meta": "code.meta.scss",
@@ -60,15 +90,5 @@
     "data": "() => `.mb-layout-vertical,.css-layout-vertical{\n    &{\r\n    display:flex;\r\n    flex-direction: column;\r\n    align-items:stretch;\r\n    justify-content: flex-start;\r\n}\r\n}`",
     "folder": "css",
     "name": "layout.vertical"
-  },
-  "css::layout.flex": {
-    "meta": "code.meta.scss",
-    "signature": "<void> css::layout.flex()",
-    "standard": true,
-    "importNames": [],
-    "dependentModules": {},
-    "data": "() => `$css-layout-flex-max:3 !default;\r\n\r\n@for $flex from 1 through $css-layout-flex-max{\r\n    .mb-layout-flex-#{$flex}{\r\n        flex:$flex;\r\n    }\r\n}`",
-    "folder": "css",
-    "name": "layout.flex"
   }
 }
