@@ -2643,11 +2643,6 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-date-and-time@^0.11.0:
-  version "0.11.1"
-  resolved "https://registry.npm.taobao.org/date-and-time/download/date-and-time-0.11.1.tgz#0c3c8b21811562c53345b497c5e1c731b12e99eb"
-  integrity sha1-DDyLIYEVYsUzRbSXxeHHMbEumes=
-
 date-and-time@^0.14.2:
   version "0.14.2"
   resolved "https://registry.npm.taobao.org/date-and-time/download/date-and-time-0.14.2.tgz#a4266c3dead460f6c231fe9674e585908dac354e"
