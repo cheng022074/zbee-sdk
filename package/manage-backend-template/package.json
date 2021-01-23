@@ -1,0 +1,24 @@
+
+{
+    "name": "manage_backend_template",
+    "version":"1.5.0",
+    
+    "engines":{
+  "node": ">= 10.1.0"
+},
+    
+    
+    "author": "nero chen",
+    
+    
+    "license": "ISC",
+    
+    
+    "main":"index.js",
+    "files": [
+  "meta.json",
+  "index.js",
+  "index.css"
+],
+    "dependencies": {}
+}

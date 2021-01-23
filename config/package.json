@@ -37,5 +37,21 @@
             "/Users/cheng022074/Documents/Code/XY/XY-SDK/node_modules/zbee-sdk/package/xy",
             "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-SDK\\node_modules\\zbee-sdk\\package\\xy"
         ]
+    },
+    "manage-backend-template":{
+        "prefixes":{
+            "css":"mb"
+        },
+        "classes":[
+            "css::reset.viewport",
+            "css::container",
+            "css::layout.fit.unsized",
+            "css::layout.horizontal",
+            "css::layout.vertical",
+            "css::layout.flex"
+        ],
+        "to":[
+            "C:\\Users\\DEV\\Documents\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template"
+        ]
     }
 }

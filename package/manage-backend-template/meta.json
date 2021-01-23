@@ -1,0 +1,74 @@
+{
+  "css::reset.viewport": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::reset.viewport()",
+    "standard": true,
+    "importNames": [
+      "css::reset"
+    ],
+    "dependentModules": {},
+    "data": "() => `@import \"../css/reset.scss\" ;\r\n\r\nhtml,body {\r\n    position: relative;\r\n    width: 100%;\r\n    height: 100%;\r\n    overflow: hidden;\r\n}`",
+    "folder": "css",
+    "name": "reset.viewport"
+  },
+  "css::reset": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::reset()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `$css-reset-font-family:\"Helvetica Neue\", HelveticaNeue, \"Helvetica-Neue\", Helvetica, \"BBAlpha Sans\", sans-serif !default;\r\n\r\nhtml, body {\r\n    font-family: $css-reset-font-family;\r\n    font-weight: normal;\r\n    text-size-adjust: none;\r\n    margin: 0;\r\n    cursor: default;\r\n}\r\n\r\nbody, div, dl, dt, dd, ul, ol, li, h1, h2, h3,\r\nh4, h5, h6, pre, code, form, fieldset, legend,\r\ninput, textarea, p, blockquote, th, td {\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\ntable {\r\n    border-collapse: collapse;\r\n    border-spacing: 0;\r\n}\r\n\r\nfieldset, img {\r\n    border: 0;\r\n}\r\n\r\naddress, caption, cite, code, dfn, em, strong, th, var {\r\n    font-style: normal;\r\n    font-weight: normal;\r\n}\r\n\r\nli {\r\n    list-style: none;\r\n}\r\n\r\ncaption, th {\r\n    text-align: left;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n    font-size: 100%;\r\n    font-weight: normal;\r\n}\r\n\r\nq:before,\r\nq:after {\r\n    content: '';\r\n}\r\n\r\nabbr, acronym {\r\n    border: 0;\r\n    font-variant: normal;\r\n}\r\n\r\nsup {\r\n    vertical-align: text-top;\r\n}\r\n\r\nsub {\r\n    vertical-align: text-bottom;\r\n}\r\n\r\ninput, textarea, select {\r\n    font-family: inherit;\r\n    font-size: inherit;\r\n    font-weight: inherit;\r\n}\r\n\r\n*:focus {\r\n    outline: none;\r\n}\r\n\r\n*, *:after, *:before {\r\n    box-sizing: border-box;\r\n    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-drag: none;\r\n    user-select: none;\r\n    touch-action: none;\r\n}\r\n\r\ninput, textarea {\r\n    user-select: text;\r\n}`",
+    "folder": "css",
+    "name": "reset"
+  },
+  "css::container": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::container()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `.mb-container,.css-container{\n    &{\r\n    position: relative;\r\n    overflow: hidden;\r\n}\r\n}`",
+    "folder": "css",
+    "name": "container"
+  },
+  "css::layout.fit.unsized": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::layout.fit.unsized()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `.mb-layout-fit-unsized,.css-layout-fit-unsized{\n    &{\r\n    width:100%;\r\n    height:100%;\r\n}\r\n}`",
+    "folder": "css",
+    "name": "layout.fit.unsized"
+  },
+  "css::layout.horizontal": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::layout.horizontal()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `.mb-layout-horizontal,.css-layout-horizontal{\n    &{\r\n    display:flex;\r\n    flex-direction: row;\r\n    align-items:stretch;\r\n    justify-content: flex-start;\r\n}\r\n}`",
+    "folder": "css",
+    "name": "layout.horizontal"
+  },
+  "css::layout.vertical": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::layout.vertical()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `.mb-layout-vertical,.css-layout-vertical{\n    &{\r\n    display:flex;\r\n    flex-direction: column;\r\n    align-items:stretch;\r\n    justify-content: flex-start;\r\n}\r\n}`",
+    "folder": "css",
+    "name": "layout.vertical"
+  },
+  "css::layout.flex": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::layout.flex()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `$css-layout-flex-max:3 !default;\r\n\r\n@for $flex from 1 through $css-layout-flex-max{\r\n    .mb-layout-flex-#{$flex}{\r\n        flex:$flex;\r\n    }\r\n}`",
+    "folder": "css",
+    "name": "layout.flex"
+  }
+}
