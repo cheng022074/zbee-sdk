@@ -139,7 +139,6 @@ input, textarea {
   user-select: text; }
 
 .xy-layout-center, .css-layout-center {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -152,7 +151,6 @@ input, textarea {
   right: 0; }
 
 .xy-layout-fit-unsized, .css-layout-fit-unsized, .xy-mindmap, .css-mindmap {
-  position: relative;
   width: 100%;
   height: 100%; }
 
@@ -166,21 +164,18 @@ input, textarea {
   flex: 3; }
 
 .xy-layout-horizontal, .css-layout-horizontal {
-  position: relative;
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start; }
 
 .xy-layout-vertical, .css-layout-vertical {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start; }
 
 .xy-layout-fit-unsized, .css-layout-fit-unsized, .xy-mindmap, .css-mindmap {
-  position: relative;
   width: 100%;
   height: 100%; }
 
