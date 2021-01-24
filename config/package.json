@@ -39,13 +39,16 @@
         ]
     },
     "manage-backend-template":{
+        "type":"webpack",
         "prefixes":{
             "css":"mb"
         },
         "classes":[
             "css::reset.viewport",
             "css::container",
-            "css::layout.*"
+            "css::component",
+            "css::layout.*",
+            "function.buffer"
         ],
         "to":[
             "C:\\Users\\DEV\\Documents\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template"

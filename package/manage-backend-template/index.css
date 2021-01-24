@@ -142,6 +142,9 @@ input, textarea {
   position: relative;
   overflow: hidden; }
 
+.mb-component, .css-component {
+  position: relative; }
+
 .mb-layout-center, .css-layout-center {
   display: flex;
   align-items: center;

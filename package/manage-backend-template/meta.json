@@ -31,6 +31,16 @@
     "folder": "css",
     "name": "container"
   },
+  "css::component": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::component()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "() => `.mb-component,.css-component{\n    &{\r\n    position: relative;\r\n}\r\n}`",
+    "folder": "css",
+    "name": "component"
+  },
   "css::layout.center": {
     "meta": "code.meta.scss",
     "signature": "<void> css::layout.center()",
@@ -90,5 +100,75 @@
     "data": "() => `.mb-layout-vertical,.css-layout-vertical{\n    &{\r\n    display:flex;\r\n    flex-direction: column;\r\n    align-items:stretch;\r\n    justify-content: flex-start;\r\n}\r\n}`",
     "folder": "css",
     "name": "layout.vertical"
+  },
+  "src::function.buffer": {
+    "meta": "code.meta.script.function",
+    "signature": "<void> src::function.buffer(<mixed> fn , {<mixed> scope , <mixed> buffer})",
+    "standard": true,
+    "importNames": [
+      "src::function.get"
+    ],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    let get;\n    \n                    let var_init_locked_1611469330581;\n    \n                    \n\n                    function main(fn , {scope , buffer}){\n\n        \r\n/**\r\n * \r\n * 实现懒执行模式函数\r\n * \r\n * @import get from function.get\r\n * \r\n * @param {mixed} fn 函数\r\n * \r\n * @param {object} [config = {}] 函数配置\r\n * \r\n * @param {mixed} [config.scope] 函数作用域\r\n * \r\n * @param {mixed} [config.buffer = 0] 缓存时间\r\n * \r\n * \r\n */\r\n\r\nlet bufferId ;\r\n\r\nreturn (...args) =>{\r\n\r\n    if(bufferId){\r\n\r\n        clearTimeout(bufferId) ;\r\n\r\n        bufferId = null ;\r\n    }\r\n\r\n    bufferId = setTimeout(() => {\r\n\r\n        get(fn , scope)(...args) ;\r\n\r\n        bufferId = null ;\r\n\r\n    } , buffer) ;\r\n} ;\n\n    }\n    \n                    return function(fn , {scope , buffer = 0} = {}){\n    \n                        \n        if(!var_init_locked_1611469330581){\n\n            get = include('src::function.get');\n\n            var_init_locked_1611469330581 = true ;\n        }\n        \n    \n                        return main.call(this , fn , {scope , buffer}) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "function.buffer"
+  },
+  "src::is.type": {
+    "meta": "code.meta.script.function",
+    "signature": "<boolean> src::is.type(<mixed> data , <string> type)",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    \n    \n                    \n    \n                    \n\n                    function main(data , type){\n\n        /**\r\n * \r\n * 对于 typeof 的简单封装\r\n * \r\n * @param {mixed} data 检验数据\r\n * \r\n * @param {string} type 检验数据类型\r\n * \r\n * @return {boolean} 如果检验数据的数据类型与检验数据类型一致，则返回 true，否则返回 false \r\n * \r\n */\r\n\r\n return typeof data === type ;\n\n    }\n    \n                    return function(data , type){\n    \n                        \n    \n                        return main.call(this , data , type) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "is.type"
+  },
+  "src::is.string": {
+    "meta": "code.meta.script.function",
+    "signature": "<boolean> src::is.string(<mixed> data)",
+    "standard": true,
+    "importNames": [
+      "src::is.type"
+    ],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    let isType;\n    \n                    let var_init_locked_1611469330630;\n    \n                    \n\n                    function main(data){\n\n        /**\r\n * \r\n * 判定数据是否为字符串类型\r\n * \r\n * @import is.type\r\n * \r\n * @param {mixed} data 检验数据\r\n * \r\n * @return {boolean} 如果给定值为字符串类型则返回 true , 否则返回 false \r\n * \r\n */\r\n\r\nreturn isType(data , 'string') ;\n\n    }\n    \n                    return function(data){\n    \n                        \n        if(!var_init_locked_1611469330630){\n\n            isType = include('src::is.type');\n\n            var_init_locked_1611469330630 = true ;\n        }\n        \n    \n                        return main.call(this , data) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "is.string"
+  },
+  "src::is.function": {
+    "meta": "code.meta.script.function",
+    "signature": "<mixed> src::is.function(<mixed> data)",
+    "standard": true,
+    "importNames": [
+      "src::is.type"
+    ],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    let isType;\n    \n                    let var_init_locked_1611469330665;\n    \n                    \n\n                    function main(data){\n\n        /**\r\n * \r\n * 判定数据是否为函数类型\r\n * \r\n * @import is.type\r\n * \r\n * @param {mixed} data 检验数据\r\n * \r\n * @return {mixed} 如果给定值为函数类型则返回 true , 否则返回 false\r\n * \r\n */\r\n\r\nreturn isType(data , 'function') && !data.__ZBEE_IS_CLASS__;\n\n    }\n    \n                    return function(data){\n    \n                        \n        if(!var_init_locked_1611469330665){\n\n            isType = include('src::is.type');\n\n            var_init_locked_1611469330665 = true ;\n        }\n        \n    \n                        return main.call(this , data) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "is.function"
+  },
+  "src::function.empty": {
+    "meta": "code.meta.script.function",
+    "signature": "<void> src::function.empty()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    \n    \n                    \n    \n                    \n\n                    /**\r\n * \r\n * 返回一个空函数\r\n * \r\n * @scoped\r\n * \r\n */\r\n\r\nconst emptyFn = () =>{\r\n} ;\r\n\r\nfunction main(){\r\n\r\n    return emptyFn ;\r\n}\n    \n                    return function(){\n    \n                        \n    \n                        return main.call(this ) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "function.empty"
+  },
+  "src::function.get": {
+    "meta": "code.meta.script.function",
+    "signature": "<function> src::function.get(<string|function> fn , <mixed> scope)",
+    "standard": true,
+    "importNames": [
+      "src::is.string",
+      "src::is.function",
+      "src::function.empty"
+    ],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    let isString,isFunction,empty;\n    \n                    let var_init_locked_1611469330612;\n    \n                    \n\n                    function main(fn , scope){\n\n        /**\r\n * \r\n * 获得一个函数引用\r\n * \r\n * @import is.string\r\n * \r\n * @import is.function\r\n * \r\n * @import empty from function.empty\r\n * \r\n * @param {string | function} fn 函数描述\r\n * \r\n * @param {mixed} [scope] 函数作用域\r\n * \r\n * @return {function} 函数引用本身 \r\n * \r\n */\r\n\r\nif(isString(fn)){\r\n\r\n    if(scope && fn in scope){\r\n\r\n        fn = scope[fn] ;\r\n\r\n    }else{\r\n\r\n        try{\r\n\r\n            fn = include(fn) ;\r\n        \r\n        }catch(err){\r\n\r\n\r\n        }\r\n\r\n        \r\n    }\r\n}\r\n\r\nif(isFunction(fn)){\r\n\r\n    if(scope){\r\n\r\n        return fn.bind(scope) ;\r\n    }\r\n\r\n    return fn ;\r\n}\r\n\r\nreturn empty() ;\n\n    }\n    \n                    return function(fn , scope){\n    \n                        \n        if(!var_init_locked_1611469330612){\n\n            isString = include('src::is.string');\nisFunction = include('src::is.function');\nempty = include('src::function.empty');\n\n            var_init_locked_1611469330612 = true ;\n        }\n        \n    \n                        return main.call(this , fn , scope) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "function.get"
   }
 }
