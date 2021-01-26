@@ -38976,7 +38976,7 @@ exports['src::mindmap.node.delete'] = (() => {
 
 
 
-    const var_current_scope_1611566410885 = new Map();
+    const var_current_scope_1611650466965 = new Map();
 
     return function(node, keepSelf = false) {
 
@@ -38984,9 +38984,9 @@ exports['src::mindmap.node.delete'] = (() => {
 
 
 
-        if (!var_current_scope_1611566410885.has(this)) {
+        if (!var_current_scope_1611650466965.has(this)) {
 
-            var_current_scope_1611566410885.set(this, (() => {
+            var_current_scope_1611650466965.set(this, (() => {
                 const isRootNode = include('src::mindmap.node.is.root').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
@@ -39038,7 +39038,7 @@ exports['src::mindmap.node.delete'] = (() => {
                                 deleteNodes.push(...remove(childNode));
                             }
 
-                            return deleteNodes;
+                            return [];
 
                         }
 
@@ -39065,7 +39065,7 @@ exports['src::mindmap.node.delete'] = (() => {
                         return deleteNodes;
                     }
 
-                    return false;
+                    return [];
 
                 }
 
@@ -39074,7 +39074,7 @@ exports['src::mindmap.node.delete'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1611566410885.get(this);
+        const main = var_current_scope_1611650466965.get(this);
 
 
 
@@ -46065,7 +46065,7 @@ exports['src::mindmap.delete'] = (() => {
 
 
 
-    const var_current_scope_1611566413269 = new Map();
+    const var_current_scope_1611650467056 = new Map();
 
     return function(node, keepSelf, isSilentMode = false) {
 
@@ -46073,9 +46073,9 @@ exports['src::mindmap.delete'] = (() => {
 
 
 
-        if (!var_current_scope_1611566413269.has(this)) {
+        if (!var_current_scope_1611650467056.has(this)) {
 
-            var_current_scope_1611566413269.set(this, (() => {
+            var_current_scope_1611650467056.set(this, (() => {
                 const isRootNode = include('src::mindmap.node.is.root').bind(this);
                 const getParentNode = include('src::mindmap.data.node.parent').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
@@ -46191,7 +46191,7 @@ exports['src::mindmap.delete'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1611566413269.get(this);
+        const main = var_current_scope_1611650467056.get(this);
 
 
 

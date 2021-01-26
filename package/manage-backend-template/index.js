@@ -464,6 +464,90 @@ empty = include('src::function.empty');
     
                 })();
 
+innerExports['src::is.array'] = (() =>{
+
+                    let isType;
+    
+                    let var_init_locked_1611566398937;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为数组类型
+ * 
+ * @import is.type
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为数组类型则返回 true , 否则返回 false 
+ * 
+ */
+
+ return Array.isArray(data) ;
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1611566398937){
+
+            isType = include('src::is.type');
+
+            var_init_locked_1611566398937 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.number'] = (() =>{
+
+                    let isType;
+    
+                    let var_init_locked_1611566399304;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为数值类型
+ * 
+ * @import is.type
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为数值类型则返回 true , 否则返回 false 
+ * 
+ */
+
+return isType(data , 'number') && isFinite(data);
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1611566399304){
+
+            isType = include('src::is.type');
+
+            var_init_locked_1611566399304 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
 innerExports['src::is.object.simple'] = (() =>{
 
                     
@@ -555,48 +639,6 @@ isString = include('src::is.string');
     
                 })();
 
-innerExports['src::is.array'] = (() =>{
-
-                    let isType;
-    
-                    let var_init_locked_1611566398937;
-    
-                    
-
-                    function main(data){
-
-        /**
- * 
- * 判定数据是否为数组类型
- * 
- * @import is.type
- * 
- * @param {mixed} data 检验数据
- * 
- * @return {boolean} 如果给定值为数组类型则返回 true , 否则返回 false 
- * 
- */
-
- return Array.isArray(data) ;
-
-    }
-    
-                    return function(data){
-    
-                        
-        if(!var_init_locked_1611566398937){
-
-            isType = include('src::is.type');
-
-            var_init_locked_1611566398937 = true ;
-        }
-        
-    
-                        return main.call(this , data) ;
-                    } ;
-    
-                })();
-
 innerExports['src::is.empty'] = (() =>{
 
                     let isArray;
@@ -637,6 +679,55 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
         
     
                         return main.call(this , data , allowEmptyString) ;
+                    } ;
+    
+                })();
+
+innerExports['src::string.split'] = (() =>{
+
+                    let isEmpty;
+    
+                    let var_init_locked_1611566404604;
+    
+                    
+
+                    
+/**
+ * 
+ * 将字符串通过间隔符分隔成数组
+ * 
+ * @import is.empty
+ * 
+ * @param {String} target 字符串
+ * 
+ * @param {RegEx} splitRe 字符串分隔符
+ * 
+ * @scoped
+ * 
+ */
+
+function main(target , splitRe){
+
+    return target.split(splitRe).filter(filter) ;
+ }
+
+ function filter(target){
+
+    return !isEmpty(target) ;
+ }
+    
+                    return function(target , splitRe){
+    
+                        
+        if(!var_init_locked_1611566404604){
+
+            isEmpty = include('src::is.empty');
+
+            var_init_locked_1611566404604 = true ;
+        }
+        
+    
+                        return main.call(this , target , splitRe) ;
                     } ;
     
                 })();

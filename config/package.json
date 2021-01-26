@@ -51,8 +51,11 @@
             "function.buffer",
             "is.function",
             "is.string",
+            "is.array",
+            "is.number",
             "is.object.simple",
-            "array.from"
+            "array.from",
+            "string.split"
         ],
         "to":[
             "C:\\Users\\DEV\\Documents\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template",
