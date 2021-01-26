@@ -40,7 +40,7 @@
             deleteNodes.push(...remove(childNode)) ;
         }
 
-        return deleteNodes ;
+        return [] ;
 
     }
 
@@ -67,4 +67,4 @@
     return deleteNodes ;
  }
 
- return false ;
+ return [] ;

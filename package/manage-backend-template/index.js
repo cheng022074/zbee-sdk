@@ -169,7 +169,7 @@ innerExports['src::function.buffer'] = (() =>{
 
                     let get;
     
-                    let var_init_locked_1611469330581;
+                    let var_init_locked_1611566411927;
     
                     
 
@@ -218,11 +218,11 @@ return (...args) =>{
                     return function(fn , {scope , buffer = 0} = {}){
     
                         
-        if(!var_init_locked_1611469330581){
+        if(!var_init_locked_1611566411927){
 
             get = include('src::function.get');
 
-            var_init_locked_1611469330581 = true ;
+            var_init_locked_1611566411927 = true ;
         }
         
     
@@ -270,7 +270,7 @@ innerExports['src::is.string'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1611469330630;
+                    let var_init_locked_1611566399143;
     
                     
 
@@ -295,11 +295,11 @@ return isType(data , 'string') ;
                     return function(data){
     
                         
-        if(!var_init_locked_1611469330630){
+        if(!var_init_locked_1611566399143){
 
             isType = include('src::is.type');
 
-            var_init_locked_1611469330630 = true ;
+            var_init_locked_1611566399143 = true ;
         }
         
     
@@ -312,7 +312,7 @@ innerExports['src::is.function'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1611469330665;
+                    let var_init_locked_1611566399358;
     
                     
 
@@ -337,11 +337,11 @@ return isType(data , 'function') && !data.__ZBEE_IS_CLASS__;
                     return function(data){
     
                         
-        if(!var_init_locked_1611469330665){
+        if(!var_init_locked_1611566399358){
 
             isType = include('src::is.type');
 
-            var_init_locked_1611469330665 = true ;
+            var_init_locked_1611566399358 = true ;
         }
         
     
@@ -387,7 +387,7 @@ innerExports['src::function.get'] = (() =>{
 
                     let isString,isFunction,empty;
     
-                    let var_init_locked_1611469330612;
+                    let var_init_locked_1611566400053;
     
                     
 
@@ -449,17 +449,194 @@ return empty() ;
                     return function(fn , scope){
     
                         
-        if(!var_init_locked_1611469330612){
+        if(!var_init_locked_1611566400053){
 
             isString = include('src::is.string');
 isFunction = include('src::is.function');
 empty = include('src::function.empty');
 
-            var_init_locked_1611469330612 = true ;
+            var_init_locked_1611566400053 = true ;
         }
         
     
                         return main.call(this , fn , scope) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.object.simple'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为简单对象类型
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为简单对象类型则返回 true , 否则返回 false 
+ * 
+ */
+
+return data instanceof Object && data.constructor === Object;
+
+    }
+    
+                    return function(data){
+    
+                        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::array.from'] = (() =>{
+
+                    let isEmpty,isString;
+    
+                    let var_init_locked_1611566399093;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 将非数组数据打包成数组数据
+ * 
+ * @import is.empty
+ * 
+ * @import is.string
+ * 
+ * @param {mixed} data 数据
+ * 
+ * @return {array} 数组数据
+ * 
+ */
+
+if(isEmpty(data)){
+
+    return [];
+}
+
+if (data && data.length !== undefined && !isString(data)) {
+
+    return Array.from(data);
+
+}
+
+return [
+    data
+];
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1611566399093){
+
+            isEmpty = include('src::is.empty');
+isString = include('src::is.string');
+
+            var_init_locked_1611566399093 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.array'] = (() =>{
+
+                    let isType;
+    
+                    let var_init_locked_1611566398937;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为数组类型
+ * 
+ * @import is.type
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为数组类型则返回 true , 否则返回 false 
+ * 
+ */
+
+ return Array.isArray(data) ;
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1611566398937){
+
+            isType = include('src::is.type');
+
+            var_init_locked_1611566398937 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.empty'] = (() =>{
+
+                    let isArray;
+    
+                    let var_init_locked_1611566399118;
+    
+                    
+
+                    function main(data , allowEmptyString){
+
+        /**
+ * 
+ * 判定数据是否为空
+ * 
+ * @import is.array
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @param {boolean} [allowEmptyString = false] 是否视空符串不为空，默认空符串为空
+ * 
+ * @return {mixed} 如果给定值为空则返回 true , 否则返回 false  
+ * 
+ */
+
+return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(data) && data.length === 0);
+
+    }
+    
+                    return function(data , allowEmptyString = false){
+    
+                        
+        if(!var_init_locked_1611566399118){
+
+            isArray = include('src::is.array');
+
+            var_init_locked_1611566399118 = true ;
+        }
+        
+    
+                        return main.call(this , data , allowEmptyString) ;
                     } ;
     
                 })();

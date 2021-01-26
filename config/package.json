@@ -48,10 +48,15 @@
             "css::container",
             "css::component",
             "css::layout.*",
-            "function.buffer"
+            "function.buffer",
+            "is.function",
+            "is.string",
+            "is.object.simple",
+            "array.from"
         ],
         "to":[
-            "C:\\Users\\DEV\\Documents\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template"
+            "C:\\Users\\DEV\\Documents\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template",
+            "C:\\Users\\nero.chen\\Desktop\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template"
         ]
     }
 }
