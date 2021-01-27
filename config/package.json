@@ -55,7 +55,9 @@
             "is.number",
             "is.object.simple",
             "array.from",
-            "string.split"
+            "string.split",
+            "browser.event.gesture.vue",
+            "browser.event.gesture.drag"
         ],
         "to":[
             "C:\\Users\\DEV\\Documents\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template",

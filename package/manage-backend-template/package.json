@@ -1,7 +1,7 @@
 
 {
     "name": "manage_backend_template",
-    "version":"1.5.3",
+    "version":"1.5.4",
     
     "engines":{
   "node": ">= 10.1.0"
