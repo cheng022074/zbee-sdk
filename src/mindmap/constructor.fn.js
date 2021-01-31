@@ -33,8 +33,6 @@
  * 
  * @import emptyFn from function.empty value
  * 
- * @import isObject from is.object.simple
- * 
  * @import is.number
  * 
  * @param {object} config 脑图配置
