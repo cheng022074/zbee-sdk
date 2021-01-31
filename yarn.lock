@@ -7585,10 +7585,10 @@ yocto-queue@^0.1.0:
   resolved "https://registry.npm.taobao.org/yocto-queue/download/yocto-queue-0.1.0.tgz?cache=0&sync_timestamp=1606290469373&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyocto-queue%2Fdownload%2Fyocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha1-ApTrPe4FAo0x7hpfosVWpqrxChs=
 
-zbee@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npm.taobao.org/zbee/download/zbee-1.1.1.tgz?cache=0&sync_timestamp=1610750413976&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fzbee%2Fdownload%2Fzbee-1.1.1.tgz#3e4bc7d2f4daa73d0333e2bf482dc1d079b39edf"
-  integrity sha1-PkvH0vTapz0DM+K/SC3B0Hmznt8=
+zbee@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npm.taobao.org/zbee/download/zbee-1.1.2.tgz#b9b47ffc282d94643f30094460431d2b9374c346"
+  integrity sha1-ubR//CgtlGQ/MAlEYEMdK5N0w0Y=
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/parser" "^7.12.11"
