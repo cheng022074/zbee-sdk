@@ -106,19 +106,18 @@ function main(isFireDrawEvent){
     let {
         top,
         height
-    } = getRegion() ;
+    } = getRegion(),
+    {
+        height:rootNodeHeight
+    } = rootNode;
 
     if(mindmapHeight === height){
-
-        let {
-            height:rootNodeHeight
-        } = rootNode ;
 
         moveToY(rootNode , height / 2 - rootNodeHeight / 2) ;
 
     }else{
 
-        moveY(rootNode , -top) ;
+        moveY(rootNode , -top - rootNodeHeight / 2) ;
     }
 
     defer(() => visibilityNodes.resort()) ;
