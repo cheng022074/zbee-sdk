@@ -117,7 +117,7 @@ function main(isFireDrawEvent){
 
     }else{
 
-        moveY(rootNode , -top - rootNodeHeight / 2) ;
+        moveY(rootNode , -top + rootNodeHeight) ;
     }
 
     defer(() => visibilityNodes.resort()) ;
