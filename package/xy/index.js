@@ -41777,16 +41777,16 @@ exports['src::mindmap.layout'] = (() => {
 
     let moveY, moveX, moveToY, defer, from;
 
-    let var_init_locked_1612163005725;
+    let var_init_locked_1612255264386;
 
 
 
-    const var_current_scope_1612163005725 = new Map();
+    const var_current_scope_1612255264386 = new Map();
 
     return function(isFireDrawEvent = true) {
 
 
-        if (!var_init_locked_1612163005725) {
+        if (!var_init_locked_1612255264386) {
 
             moveY = include('src::mindmap.node.move.y');
             moveX = include('src::mindmap.node.move.x');
@@ -41794,15 +41794,15 @@ exports['src::mindmap.layout'] = (() => {
             defer = include('src::function.defer');
             from = include('src::math.region.from');
 
-            var_init_locked_1612163005725 = true;
+            var_init_locked_1612255264386 = true;
         }
 
 
 
 
-        if (!var_current_scope_1612163005725.has(this)) {
+        if (!var_current_scope_1612255264386.has(this)) {
 
-            var_current_scope_1612163005725.set(this, (() => {
+            var_current_scope_1612255264386.set(this, (() => {
                 const getCenterXY = include('src::mindmap.node.xy.center').bind(this);
                 const getRightXY = include('src::mindmap.node.xy.right').bind(this);
                 const getScopeRegion = include('src::mindmap.node.region.scope').bind(this);
@@ -41933,7 +41933,7 @@ exports['src::mindmap.layout'] = (() => {
 
                     } else {
 
-                        moveY(rootNode, -top + rootNodeHeight);
+                        moveY(rootNode, -top);
                     }
 
                     defer(() => visibilityNodes.resort());
@@ -42023,7 +42023,7 @@ exports['src::mindmap.layout'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1612163005725.get(this);
+        const main = var_current_scope_1612255264386.get(this);
 
 
 
@@ -44185,29 +44185,29 @@ exports['src::mindmap.region.selected'] = (() => {
 
     let from, move;
 
-    let var_init_locked_1612162353806;
+    let var_init_locked_1612267661172;
 
 
 
-    const var_current_scope_1612162353806 = new Map();
+    const var_current_scope_1612267661172 = new Map();
 
     return function() {
 
 
-        if (!var_init_locked_1612162353806) {
+        if (!var_init_locked_1612267661172) {
 
             from = include('src::math.region.from');
             move = include('src::math.region.move');
 
-            var_init_locked_1612162353806 = true;
+            var_init_locked_1612267661172 = true;
         }
 
 
 
 
-        if (!var_current_scope_1612162353806.has(this)) {
+        if (!var_current_scope_1612267661172.has(this)) {
 
-            var_current_scope_1612162353806.set(this, (() => {
+            var_current_scope_1612267661172.set(this, (() => {
                 const getRegion = include('src::mindmap.region').bind(this);
 
                 function main() {
@@ -44242,7 +44242,7 @@ exports['src::mindmap.region.selected'] = (() => {
                     }
 
                     return move(from(selectedNode), {
-                        x: padding,
+                        x: padding.left,
                         y: heightPadding
                     });
 
@@ -44255,7 +44255,7 @@ exports['src::mindmap.region.selected'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1612162353806.get(this);
+        const main = var_current_scope_1612267661172.get(this);
 
 
 
