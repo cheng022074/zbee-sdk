@@ -29,7 +29,7 @@
  }
 
  return move(from(selectedNode) , {
-    x:padding,
+    x:padding.left,
     y:heightPadding
  }) ;
 
