@@ -69,7 +69,10 @@ class main extends Channel{
                     
                     }else{
 
-                        me.receiveError(data , response) ;
+                        me.receiveError({
+                            id,
+                            error:data
+                        }) ;
                     }
 
                 }) ;
