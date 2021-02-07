@@ -7,8 +7,6 @@
  * 
  * @param {data.Record} node 节点
  * 
- * @param {data.Record} unorderNode 未排序节点
- * 
  */
 
  let {
