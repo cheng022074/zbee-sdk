@@ -15,6 +15,8 @@
  * 
  * @import from from ..node.from scoped
  * 
+ * @import is.defined
+ * 
  * @param {mixed} node 插入的节点配置
  * 
  * @param {mixed} [afterNode] 参考脑图节点
@@ -36,7 +38,7 @@ if(restructuring){
 let nodeSelected,
     isNewNode = true;
 
-if(from(node)){
+if(isDefined(node) &&　from(node)){
 
    isNewNode = false ;
 
