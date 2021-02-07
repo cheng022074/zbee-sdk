@@ -3092,18 +3092,18 @@ exports['src::data.channel.axios'] = (() => {
 
     let Channel, on, off, axios;
 
-    let var_init_locked_1612162345648;
+    let var_init_locked_1612673825884;
 
-    let var_class_1612162345648;
+    let var_class_1612673825884;
 
 
 
-    let var_global_main_1612162345648;
+    let var_global_main_1612673825884;
 
     return function() {
 
 
-        if (!var_init_locked_1612162345648) {
+        if (!var_init_locked_1612673825884) {
 
             Channel = include('src::data.channel')();
             on = include('src::event.listener.add');
@@ -3178,6 +3178,13 @@ exports['src::data.channel.axios'] = (() => {
                                         id,
                                         value: me.processReceiveData(data, response)
                                     });
+
+                                } else {
+
+                                    me.receiveError({
+                                        id,
+                                        error: data
+                                    });
                                 }
 
                             });
@@ -3198,7 +3205,7 @@ exports['src::data.channel.axios'] = (() => {
 
             }
 
-            var_class_1612162345648 = class extends main {
+            var_class_1612673825884 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -3213,7 +3220,7 @@ exports['src::data.channel.axios'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1612162345648;
+                    return var_class_1612673825884;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -3223,15 +3230,15 @@ exports['src::data.channel.axios'] = (() => {
 
             };
 
-            main = var_class_1612162345648;
+            main = var_class_1612673825884;
 
-            var_global_main_1612162345648 = main;
+            var_global_main_1612673825884 = main;
 
-            var_init_locked_1612162345648 = true;
+            var_init_locked_1612673825884 = true;
         }
 
 
-        return var_global_main_1612162345648;
+        return var_global_main_1612673825884;
     };
 
 })();
@@ -4148,18 +4155,18 @@ exports['src::data.channel'] = (() => {
 
     let Observable, generate, on, off, isObject, isFunction;
 
-    let var_init_locked_1612162345673;
+    let var_init_locked_1612673381276;
 
-    let var_class_1612162345673;
+    let var_class_1612673381276;
 
 
 
-    let var_global_main_1612162345673;
+    let var_global_main_1612673381276;
 
     return function() {
 
 
-        if (!var_init_locked_1612162345673) {
+        if (!var_init_locked_1612673381276) {
 
             Observable = include('src::mixin.observable');
             generate = include('src::id.generate');
@@ -4379,6 +4386,14 @@ exports['src::data.channel'] = (() => {
                     this.fireEvent(id, value);
                 }
 
+                receiveError({
+                    id,
+                    error
+                }) {
+
+                    this.fireEvent(`${id}-error`, error);
+                }
+
                 reply(id, value) {
 
                     this.doReply({
@@ -4425,15 +4440,37 @@ exports['src::data.channel'] = (() => {
                             return id;
                         }
 
-                        return await new Promise(resolve => on(me, id, (channel, data) => {
+                        return await new Promise((resolve, reject) => {
 
-                            channel.cancelSend(id);
+                            let
+                                onResolve = (channel, data) => {
 
-                            resolve(data);
+                                    channel.cancelSend(id);
 
-                        }, {
-                            once: true
-                        }));
+                                    off(me, `${id}-error`, onReject);
+
+                                    resolve(data);
+
+                                },
+                                onReject = (channel, error) => {
+
+                                    channel.cancelSend(id);
+
+                                    off(me, id, onResolve);
+
+                                    reject(error);
+
+                                };
+
+                            on(me, id, onResolve, {
+                                once: true
+                            });
+
+                            on(me, `${id}-error`, onReject, {
+                                once: true
+                            });
+
+                        });
 
                     }
 
@@ -4462,7 +4499,7 @@ exports['src::data.channel'] = (() => {
                 }
             }
 
-            var_class_1612162345673 = class extends main {
+            var_class_1612673381276 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -4477,7 +4514,7 @@ exports['src::data.channel'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1612162345673;
+                    return var_class_1612673381276;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -4487,15 +4524,15 @@ exports['src::data.channel'] = (() => {
 
             };
 
-            main = var_class_1612162345673;
+            main = var_class_1612673381276;
 
-            var_global_main_1612162345673 = main;
+            var_global_main_1612673381276 = main;
 
-            var_init_locked_1612162345673 = true;
+            var_init_locked_1612673381276 = true;
         }
 
 
-        return var_global_main_1612162345673;
+        return var_global_main_1612673381276;
     };
 
 })();
@@ -45966,20 +46003,20 @@ exports['src::mindmap.order'] = (() => {
 
 
 
-    const var_current_scope_1612162354231 = new Map();
+    const var_current_scope_1612665962878 = new Map();
 
-    return function(node, unorderNode) {
-
-
+    return function(node) {
 
 
 
-        if (!var_current_scope_1612162354231.has(this)) {
 
-            var_current_scope_1612162354231.set(this, (() => {
+
+        if (!var_current_scope_1612665962878.has(this)) {
+
+            var_current_scope_1612665962878.set(this, (() => {
                 const data = include('src::mindmap.node.data').bind(this);
 
-                function main(node, unorderNode) {
+                function main(node) {
 
 
                     /**
@@ -45989,8 +46026,6 @@ exports['src::mindmap.order'] = (() => {
                      * @import data from .node.data scoped
                      * 
                      * @param {data.Record} node 节点
-                     * 
-                     * @param {data.Record} unorderNode 未排序节点
                      * 
                      */
 
@@ -46043,11 +46078,11 @@ exports['src::mindmap.order'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1612162354231.get(this);
+        const main = var_current_scope_1612665962878.get(this);
 
 
 
-        return main.call(this, node, unorderNode);
+        return main.call(this, node);
     };
 
 })();
@@ -46369,7 +46404,7 @@ exports['src::mindmap.append'] = (() => {
 
 
 
-    const var_current_scope_1612162354246 = new Map();
+    const var_current_scope_1612665962903 = new Map();
 
     return function(node = {}, parentNode, isSilentMode = false) {
 
@@ -46377,9 +46412,9 @@ exports['src::mindmap.append'] = (() => {
 
 
 
-        if (!var_current_scope_1612162354246.has(this)) {
+        if (!var_current_scope_1612665962903.has(this)) {
 
-            var_current_scope_1612162354246.set(this, (() => {
+            var_current_scope_1612665962903.set(this, (() => {
                 const append = include('src::mindmap.node.append').bind(this);
                 const expand = include('src::mindmap.node.expand').bind(this);
                 const select = include('src::mindmap.select').bind(this);
@@ -46458,9 +46493,7 @@ exports['src::mindmap.append'] = (() => {
 
                             }
 
-                            me.fireEvent('nodeappend', data(node), data(parentNode), isNewNode);
-
-                            order(parentNode);
+                            me.fireEvent('nodeappend', data(node), data(parentNode), isNewNode, () => order(parentNode));
 
                             if (!select(node)) {
 
@@ -46481,7 +46514,7 @@ exports['src::mindmap.append'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1612162354246.get(this);
+        const main = var_current_scope_1612665962903.get(this);
 
 
 
@@ -47400,23 +47433,30 @@ exports['src::mindmap.focus'] = (() => {
 
 exports['src::mindmap.insert.after'] = (() => {
 
+    let isDefined;
+
+    let var_init_locked_1612669909326;
 
 
 
-
-
-
-    const var_current_scope_1612162354493 = new Map();
+    const var_current_scope_1612669909326 = new Map();
 
     return function(node, afterNode, isSilentMode = false) {
 
 
+        if (!var_init_locked_1612669909326) {
+
+            isDefined = include('src::is.defined');
+
+            var_init_locked_1612669909326 = true;
+        }
 
 
 
-        if (!var_current_scope_1612162354493.has(this)) {
 
-            var_current_scope_1612162354493.set(this, (() => {
+        if (!var_current_scope_1612669909326.has(this)) {
+
+            var_current_scope_1612669909326.set(this, (() => {
                 const insert = include('src::mindmap.node.insert.after').bind(this);
                 const order = include('src::mindmap.order').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
@@ -47443,6 +47483,8 @@ exports['src::mindmap.insert.after'] = (() => {
                      * 
                      * @import from from ..node.from scoped
                      * 
+                     * @import is.defined
+                     * 
                      * @param {mixed} node 插入的节点配置
                      * 
                      * @param {mixed} [afterNode] 参考脑图节点
@@ -47464,7 +47506,7 @@ exports['src::mindmap.insert.after'] = (() => {
                     let nodeSelected,
                         isNewNode = true;
 
-                    if (from(node)) {
+                    if (isDefined(node) && from(node)) {
 
                         isNewNode = false;
 
@@ -47482,9 +47524,7 @@ exports['src::mindmap.insert.after'] = (() => {
 
                         if (!isSilentMode) {
 
-                            me.fireEvent('nodeinsertafter', data(node), data(afterNode), isNewNode);
-
-                            order(getParentNode(afterNode));
+                            me.fireEvent('nodeinsertafter', data(node), data(afterNode), isNewNode, () => order(getParentNode(afterNode)));
 
                             if (!select(node)) {
 
@@ -47505,7 +47545,7 @@ exports['src::mindmap.insert.after'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1612162354493.get(this);
+        const main = var_current_scope_1612669909326.get(this);
 
 
 
@@ -47613,23 +47653,30 @@ exports['src::mindmap.move.down'] = (() => {
 
 exports['src::mindmap.insert.before'] = (() => {
 
+    let isDefined;
+
+    let var_init_locked_1612669909356;
 
 
 
-
-
-
-    const var_current_scope_1612162354525 = new Map();
+    const var_current_scope_1612669909356 = new Map();
 
     return function(node, beforeNode, isSilentMode = false) {
 
 
+        if (!var_init_locked_1612669909356) {
+
+            isDefined = include('src::is.defined');
+
+            var_init_locked_1612669909356 = true;
+        }
 
 
 
-        if (!var_current_scope_1612162354525.has(this)) {
 
-            var_current_scope_1612162354525.set(this, (() => {
+        if (!var_current_scope_1612669909356.has(this)) {
+
+            var_current_scope_1612669909356.set(this, (() => {
                 const insert = include('src::mindmap.node.insert.before').bind(this);
                 const select = include('src::mindmap.select').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
@@ -47656,6 +47703,8 @@ exports['src::mindmap.insert.before'] = (() => {
                      * 
                      * @import from from ..node.from scoped
                      * 
+                     * @import is.defined
+                     * 
                      * @param {mixed} node 插入的节点配置
                      * 
                      * @param {mixed} [beforeNode] 参考脑图节点
@@ -47677,7 +47726,7 @@ exports['src::mindmap.insert.before'] = (() => {
                     let nodeSelected,
                         isNewNode = true;
 
-                    if (from(node)) {
+                    if (isDefined(node) && from(node)) {
 
                         isNewNode = false;
 
@@ -47695,9 +47744,7 @@ exports['src::mindmap.insert.before'] = (() => {
 
                         if (!isSilentMode) {
 
-                            me.fireEvent('nodeinsertbefore', data(node), data(beforeNode), isNewNode);
-
-                            order(getParentNode(beforeNode));
+                            me.fireEvent('nodeinsertbefore', data(node), data(beforeNode), isNewNode, () => order(getParentNode(beforeNode)));
 
                             if (!select(node)) {
 
@@ -47717,7 +47764,7 @@ exports['src::mindmap.insert.before'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1612162354525.get(this);
+        const main = var_current_scope_1612669909356.get(this);
 
 
 
