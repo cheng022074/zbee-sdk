@@ -67,9 +67,7 @@ if(node){
       
     }
     
-    me.fireEvent('nodeappend' , data(node) , data(parentNode) , isNewNode) ;
-    
-    order(parentNode) ;
+    me.fireEvent('nodeappend' , data(node) , data(parentNode) , isNewNode , () => order(parentNode)) ;
     
     if(!select(node)){
 
