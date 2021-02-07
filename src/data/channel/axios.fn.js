@@ -66,6 +66,10 @@ class main extends Channel{
                             id,
                             value:me.processReceiveData(data , response)
                         }) ;
+                    
+                    }else{
+
+                        me.receiveError(data , response) ;
                     }
 
                 }) ;

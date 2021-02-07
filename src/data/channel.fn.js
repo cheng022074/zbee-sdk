@@ -209,6 +209,14 @@ class main extends mixins({
         this.fireEvent(id , value) ;
     }
 
+    receiveError({
+        id,
+        error
+    }){
+
+        this.fireEvent(`${id}-error` , error) ;
+    }
+
     reply(id , value){
 
         this.doReply({
@@ -255,15 +263,37 @@ class main extends mixins({
                 return id ;
             }
 
-            return await new Promise(resolve => on(me , id , (channel , data) => {
+            return await new Promise((resolve , reject) => {
 
-                channel.cancelSend(id) ;
+                let
+                onResolve = (channel , data) => {
 
-                resolve(data) ;
+                    channel.cancelSend(id) ;
+                    
+                    off(me , `${id}-error` , onReject) ;
+    
+                    resolve(data) ;
+    
+                },
+                onReject = (channel , error) => {
 
-            } , {
-                once:true
-            })) ;
+                    channel.cancelSend(id) ;
+
+                    off(me , id , onResolve) ;
+
+                    reject(error) ;
+
+                };
+
+                on(me , id , onResolve , {
+                    once:true
+                }) ;
+
+                on(me , `${id}-error` , onReject , {
+                    once:true
+                }) ;
+
+            }) ;
 
         }
 
