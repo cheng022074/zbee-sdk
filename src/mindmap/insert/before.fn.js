@@ -56,9 +56,7 @@ if(node){
 
    if(!isSilentMode){
 
-      me.fireEvent('nodeinsertbefore' , data(node) , data(beforeNode) , isNewNode) ;
-   
-      order(getParentNode(beforeNode)) ;
+      me.fireEvent('nodeinsertbefore' , data(node) , data(beforeNode) , isNewNode , () =>　order(getParentNode(beforeNode))) ;
    
       if(!select(node)){
 

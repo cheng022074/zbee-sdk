@@ -56,10 +56,8 @@ if(node){
 
    if(!isSilentMode){
 
-      me.fireEvent('nodeinsertafter' , data(node) , data(afterNode) , isNewNode) ;
+      me.fireEvent('nodeinsertafter' , data(node) , data(afterNode) , isNewNode , () => order(getParentNode(afterNode))) ;
 
-      order(getParentNode(afterNode)) ;
-   
       if(!select(node)){
 
          me.layout() ;
