@@ -25,6 +25,8 @@
  * 
  * @import setNodeInfo from .node.info scoped
  * 
+ * @import is.defined
+ * 
  * @param {object} [node = {}] 子节点配置信息
  * 
  * @param {mixed} [parentNode] 脑图父节点
@@ -102,11 +104,23 @@ if(node){
 
     await isSilentMode(data(node) , isNewNode , id => {
 
-      setNodeInfo({
-        id
-      } , node) ;
+      if(isDefined(id)){
 
-      unregister(node) ;
+          if(isUnpublished(node)){
+    
+            setNodeInfo({
+                id
+            } , node) ;
+      
+            unregister(node) ;
+          
+          }
+      
+      }else if(!isUnpublished(node)){
+
+          return node.id ;
+
+      }
 
     }) ;
 

@@ -17,6 +17,16 @@
  * 
  * @import is.defined
  * 
+ * @import is.function
+ * 
+ * @import register from ..node.unpublished.register scoped
+ * 
+ * @import unregister from ..node.unpublished.unregister scoped
+ * 
+ * @import isUnpublished from ..node.unpublished.is scoped
+ * 
+ * @import setNodeInfo from ..node.info scoped
+ * 
  * @param {mixed} node 插入的节点配置
  * 
  * @param {mixed} [beforeNode] 参考脑图节点
@@ -54,7 +64,7 @@ if(node){
       node.selected = true ;
    }
 
-   if(!isSilentMode){
+   if(isSilentMode === false){
 
       me.fireEvent('nodeinsertbefore' , data(node) , data(beforeNode) , isNewNode , () =>　order(getParentNode(beforeNode))) ;
    
@@ -63,6 +73,42 @@ if(node){
          me.layout() ;
       }  
    
+   }else if(isFunction(isSilentMode)){
+
+      if(!select(node)){
+
+         me.layout() ;
+      }
+
+      register(node) ;
+
+      await isSilentMode(data(node) , isNewNode , id => {
+
+         if(isDefined(id)){
+
+            if(isUnpublished(node)){
+      
+               setNodeInfo({
+                  id
+               } , node) ;
+         
+               unregister(node) ;
+            
+            }
+         
+         }else if(!isUnpublished(node)){
+   
+            return node.id ;
+   
+         }
+
+      }) ;
+
+      if(!isUnpublished(node)){
+
+         me.fireEvent('nodeinsertbefore' , data(node) , data(beforeNode) , isNewNode , () =>　order(getParentNode(beforeNode))) ;
+      }
+
    }else{
    
       me.layout() ;
