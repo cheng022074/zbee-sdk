@@ -18,7 +18,7 @@ if(!node.hidden){
 
     while(parentNode = getParentNode(node)){
 
-        if(!parentNode.hidden && !parentNode.ellipsis){
+        if(!parentNode.hidden){
 
             level ++ ;
 

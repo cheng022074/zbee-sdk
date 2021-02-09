@@ -5,10 +5,6 @@
  * 
  * @import data from .node.data scoped
  * 
- * @import cancelEllipsis from .node.ellipsis.cancel scoped
- * 
- * @import ellipsis from .node.ellipsis scoped
- * 
  * @import getParentNode from .node.parent scoped
  * 
  * @import expand from .node.expand scoped
@@ -21,70 +17,55 @@
  * 
  */
 
- function main(node){
+node = from(node) ;
 
-    node = from(node) ;
+let me = this,
+{
+  selectedNode,
+  restructuring
+} = me;
 
-    let me = this,
-    {
-      selectedNode,
-      restructuring,
-      ellipsisPattern
-    } = me;
-  
-    if(!restructuring && node !== selectedNode){
+if(!restructuring && node !== selectedNode){
 
-      if(ellipsisPattern){
+  if(node.hidden){
 
-        cancelEllipsis() ;
-      }
-  
-      if(node.hidden){
-    
-          let parentNode,
-              baseNode = node,
-              parentNodes = [];
-    
-          while(parentNode = getParentNode(baseNode)){
-    
-            parentNode.hidden = false ;
-    
-            parentNodes.unshift(parentNode) ;
-    
-            baseNode = parentNode ; 
-          }
-    
-          for(let parentNode of parentNodes){
-    
-            expand(parentNode) ;
+      let parentNode,
+          baseNode = node,
+          parentNodes = [];
 
-            let {
-              children
-            } = parentNode ;
+      while(parentNode = getParentNode(baseNode)){
 
-            for(let childNode of children){
+        parentNode.hidden = false ;
 
-              childNode.hidden = false ;
+        parentNodes.unshift(parentNode) ;
 
-            }
-          }
-      }
-    
-      node.selected = true ;
-    
-      if(ellipsisPattern){
-    
-        ellipsis(node) ;
-
+        baseNode = parentNode ; 
       }
 
-      me.fireEvent('nodeselect' , data(node) , data(selectedNode)) ;
+      for(let parentNode of parentNodes){
 
-      me.layout() ;
+        expand(parentNode) ;
 
-      return true ;
+        let {
+          children
+        } = parentNode ;
 
-    }
+        for(let childNode of children){
 
-    return false ;
- }
+          childNode.hidden = false ;
+
+        }
+      }
+  }
+
+  node.selected = true ;
+
+  me.fireEvent('nodeselect' , data(node) , data(selectedNode)) ;
+
+  me.layout() ;
+
+  return true ;
+
+}
+
+return false ;

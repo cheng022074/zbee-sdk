@@ -15,8 +15,6 @@
  * 
  * @import setIndicated from .indicated scoped
  * 
- * @import setEllipsis from .ellipsis scoped
- * 
  * @import createVisibilityNodes from .nodes.visibility scoped
  * 
  * @import buffer from function.buffer
@@ -55,17 +53,11 @@
  * 
  * @param {number} [config.placeholderNodeHeight = 20] 占位符高度
  * 
- * @param {number} [config.ellipsisNodeWidth = 60] 省略符宽度
- * 
- * @param {number} [config.ellipsisNodeHeight = 20] 省略符高度
- * 
  * @param {number} [config.padding = 5] 脑图四周填充距离
  * 
  * @param {number} [config.width = 0] 脑图宽度
  * 
  * @param {number} [config.height = 0] 脑图高度
- * 
- * @param {number} [config.ellipsisPattern = false] 标识是否启用省略模式
  * 
  * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
  * 
@@ -90,14 +82,6 @@
  me.leafNodes = new Map();
 
  me.unpublishedNodes = new Set() ;
-
- me.ellipsisNodes = [];
-
- me.ellipsisPattern = ellipsisPattern ;
-
- me.ellipsisNodeWidth = ellipsisNodeWidth ;
-
- me.ellipsisNodeHeight = ellipsisNodeHeight ;
 
  me.nodeSeparationDistance = nodeSeparationDistance ;
 
@@ -254,15 +238,6 @@
             set(indicated){
 
                return setIndicated(this , indicated) ;
-            }
-         },
-         ellipsis:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false,
-            set(ellipsis){
-
-               return setEllipsis(this , ellipsis) ;
             }
          },
          editing:{

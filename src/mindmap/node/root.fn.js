@@ -8,9 +8,8 @@
  */
 
  let {
-    ellipsisRootNode,
     focusNode,
     rootNode
  } = this ;
 
- return focusNode || ellipsisRootNode || rootNode ;
+ return focusNode || rootNode ;
