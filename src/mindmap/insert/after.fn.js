@@ -75,12 +75,12 @@ if(node){
    
    }else if(isFunction(isSilentMode)){
 
+      register(node) ;
+
       if(!select(node)){
 
          me.layout() ;
       }
-
-      register(node) ;
 
       await isSilentMode(data(node) , isNewNode , id => {
 

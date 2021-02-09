@@ -88,6 +88,8 @@ if(node){
   
   }else if(isFunction(isSilentMode)){
 
+    register(node) ;
+
     if(selected && !expanded){
   
       expand(parentNode) ;
@@ -99,8 +101,6 @@ if(node){
       me.layout() ;
     
     }
-
-    register(node) ;
 
     await isSilentMode(data(node) , isNewNode , id => {
 
