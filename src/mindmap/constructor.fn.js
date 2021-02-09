@@ -89,6 +89,8 @@
  
  me.leafNodes = new Map();
 
+ me.unpublishedNodes = new Set() ;
+
  me.ellipsisNodes = [];
 
  me.ellipsisPattern = ellipsisPattern ;
