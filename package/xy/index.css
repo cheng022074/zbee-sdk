@@ -183,16 +183,14 @@ input, textarea {
   position: relative;
   overflow: hidden;
   touch-action: none; }
-  .xy-mindmap > .texts, .css-mindmap > .texts {
-    visibility: hidden; }
-    .xy-mindmap > .texts > .text, .css-mindmap > .texts > .text {
-      display: inline-flex; }
   .xy-mindmap > .nodes, .xy-mindmap > .lines, .css-mindmap > .nodes, .css-mindmap > .lines {
     position: absolute;
     top: 0;
     left: 0; }
-  .xy-mindmap > .nodes > .node, .css-mindmap > .nodes > .node {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate3d(0, 0, 0); }
+  .xy-mindmap > .nodes, .css-mindmap > .nodes {
+    width: 100%; }
+    .xy-mindmap > .nodes > .node, .css-mindmap > .nodes > .node {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate3d(0, 0, 0); }
