@@ -58,11 +58,17 @@
       bottom
     } = padding,
     mindmapWidth = getWidth(region) + left + right,
-    mindmapHeight = getHeight(region) + top + bottom;
+    mindmapHeight = getHeight(region) + top + bottom,
+    offsetX = 0,
+    offsetY = 0;
 
     if(width > mindmapWidth){
 
       mindmapWidth = width ;
+    
+    }else{
+
+      offsetX = left ;
     }
 
     if(height > mindmapHeight){
@@ -77,12 +83,20 @@
     
     }else{
 
+      offsetY = top ;
+
       setY(node , - getY(region)) ;
     }
 
     return {
-       width:mindmapWidth,
-       height:mindmapHeight
+      offset:{
+        x:offsetX,
+        y:offsetY
+      },
+      size:{
+        width:mindmapWidth,
+        height:mindmapHeight
+      } 
     } ;
  }
      
