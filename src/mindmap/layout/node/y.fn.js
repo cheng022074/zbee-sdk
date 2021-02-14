@@ -1,12 +1,37 @@
 
 /**
  * 
- * 函数实现说明
+ * 设置节点的纵坐标
  * 
- * @param {mixed} data 参数说明
+ * @import getTopSpacing from .spacing.top scoped
  * 
- * @return {mixed} 返回说明 
+ * @import getChildNodes from ..nodes.child scoped
+ * 
+ * @import setOffsetY from .y.offset scoped
+ * 
+ * @param {data.Record} node 脑图节点
+ * 
+ * @param {number} x 节点纵坐标
+ * 
+ * @param {boolean} [recursive = true] 是否递归设置纵坐标
  * 
  */
 
- // 代码实现
+let value = y + getTopSpacing(node),
+{
+   y:oldValue = 0
+} = node;
+
+node.y = value ;
+
+let offsetValue = value - oldValue ;
+
+if(recursive){
+
+   let childNodes = getChildNodes(node) ;
+
+   for(let childNode of childNodes){
+
+       setOffsetY(childNode , offsetValue) ;
+   }
+}
