@@ -21,7 +21,7 @@
  * 
  * @import getChildRegion from ....node.region.child.logic scoped
  * 
- * @import getRegion from ....node.region scoped
+ * @import getRegion from ....node.region.logic scoped
  * 
  * @import getHeight from math.region.height
  * 
