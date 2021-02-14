@@ -25,7 +25,7 @@
  * 
  * @import setAnchorY from math.region.y.anchor
  * 
- * @import getY from match.region.y
+ * @import getY from math.region.y
  * 
  * @import from from math.from
  * 
@@ -56,7 +56,7 @@
 
     let nodeRegion = from(node) ;
 
-    setAnchorY(nodeRegion , getHeight(getChildRegion(node)) / 2 , 'center') ;
+    setAnchorY(nodeRegion , 'center' , getHeight(getChildRegion(node)) / 2) ;
 
     node.y = getY(nodeRegion) ;
 
