@@ -3,7 +3,7 @@
  * 
  * 设置节点的横坐标
  * 
- * @import getHorizontalSpacing from .spacing.horizontal scoped
+ * @import getLeftSpacing from .spacing.left scoped
  * 
  * @import getChildNodes from ..nodes.child scoped
  * 
@@ -17,7 +17,7 @@
  * 
  */
 
- let value = x + getHorizontalSpacing(node , 'left'),
+ let value = x + getLeftSpacing(node),
  {
     x:oldValue = 0
  } = node;
