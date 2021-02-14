@@ -3,13 +3,13 @@
  * 
  * 获得脑图节点自身范围
  * 
- * @import getLeftSpacing from .spacing.left scoped
+ * @import getLeftSpacing from ..spacing.left scoped
  * 
- * @import getRightSpacing from .spacing.right scoped
+ * @import getRightSpacing from ..spacing.right scoped
  * 
- * @import getTopSpacing from .spacing.top scoped
+ * @import getTopSpacing from ..spacing.top scoped
  * 
- * @import getBottomSpacing from .spacing.bottom scoped
+ * @import getBottomSpacing from ..spacing.bottom scoped
  * 
  * @param {data.Record} node 脑图节点
  * 
