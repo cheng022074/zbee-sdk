@@ -15,7 +15,7 @@
  * 
  * @import getChildNodes from ..nodes.child scoped
  * 
- * @import getFirstDescendantNodes from ..nodes.descendant.first scoped
+ * @import getDescendantRegion from ..node.region.descendant.logic scoped
  * 
  * @import getNodeRegion from ..node.region.self scoped
  * 
@@ -33,7 +33,9 @@
  * 
  * @import intersect from math.region.intersect
  * 
- * @param {data.Record} rootNode 布局的根节点
+ * @import contains from math.region.contains
+ * 
+ * @param {data.Record} node 布局的根节点
  * 
  */
 
@@ -64,7 +66,7 @@
 
       setY(node , getNodeRegion(previousSiblingNode).bottom) ;
 
-      adjustY(node , getFirstDescendantNodes(node) , positionedRegions) ;
+      adjustY(node , getDescendantRegion(node) , positionedRegions) ;
     
     }
 
@@ -81,27 +83,23 @@
    }
  }
 
- function adjustY(node , firstDescendantNodes , positionedRegions){
+ function adjustY(node , region , positionedRegions){
 
-   for(let firstDescendantNode of firstDescendantNodes){
+   let {
+      top
+   } = region ;
 
-      let region = getNodeRegion(firstDescendantNode),
-      {
-         top
-      } = region;
+   for(let positionedRegion of positionedRegions){
 
-      for(let positionedRegion of positionedRegions){
+      let {
+         bottom
+      } = positionedRegion ;
 
-         let {
-            bottom
-         } = positionedRegion ;
+      if(top > bottom && (intersect(region , positionedRegion) || contains(region , positionedRegion) || contains(positionedRegion , region))){
 
-         if(top > bottom && intersect(region , positionedRegion)){
+         setOffsetY(node , top - bottom) ;
 
-            setOffsetY(node , top - bottom) ;
-
-            break ;
-         }
+         break ;
       }
    }
  }
