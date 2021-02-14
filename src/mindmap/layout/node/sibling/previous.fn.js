@@ -1,12 +1,32 @@
 
 /**
  * 
- * 函数实现说明
+ * 获得上兄弟节点
  * 
- * @param {mixed} data 参数说明
+ * @import getParentNode from mindmap.node.parent scoped
  * 
- * @return {mixed} 返回说明 
+ * @param {data.Record} node 脑图节点
+ * 
+ * @return {data.Record} 兄弟节点引用 
  * 
  */
 
- // 代码实现
+ let parentNode = getParentNode(node) ;
+
+ if(parentNode){
+
+    let {
+        children
+    } = parentNode,
+    index = children.indexOf(node) - 1;
+
+    for(let i = index ; i >= 0 ; i --){
+
+        let previousNode = children[i] ;
+
+        if(!previousNode.hidden){
+
+            return previousNode ;
+        }
+    }
+ }
