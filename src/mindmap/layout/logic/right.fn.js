@@ -17,7 +17,7 @@
  * 
  * @import getDescendantRegion from ..node.region.descendant.logic scoped
  * 
- * @import getNodeRegion from ..node.region.self scoped
+ * @import getSelfRegion from ..node.region.self scoped
  * 
  * @import getChildRegion from ..node.region.child.logic scoped
  * 
@@ -64,7 +64,7 @@
 
     if(previousSiblingNode){
 
-      setY(node , getNodeRegion(previousSiblingNode).bottom) ;
+      setY(node , getSelfRegion(previousSiblingNode).bottom) ;
 
       adjustY(node , getDescendantRegion(node) , positionedRegions) ;
     
@@ -72,14 +72,14 @@
 
     adjustX(node , getParentNode(node)) ;
 
-    add(positionedRegions , getNodeRegion(node) , sortPositionedRegions) ;
+    add(positionedRegions , getSelfRegion(node) , sortPositionedRegions) ;
  }
 
  function adjustX(node , parentNode){
 
    if(parentNode){
 
-      setX(node , getNodeRegion(parentNode).right) ;
+      setX(node , getSelfRegion(parentNode).right) ;
    }
  }
 
