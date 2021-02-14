@@ -5,32 +5,59 @@
  * 
  * @import getHeight from ..height
  * 
+ * @import is.number
+ * 
  * @param {object} region 范围
  * 
- * @param {number} y 纵坐标值
+ * @param {string} anchor 锚定位置
  * 
- * @param {string} [anchor='top'] 锚定位置
+ * @param {number} [y] 纵坐标值
  * 
  */
 
- switch(anchor){
+ let height = getHeight(region) ;
 
-    case 'top':
+ if(isNumber(y)){
 
-        region.top = y ;
+    switch(anchor){
 
-        break ;
-
-    case 'center':
-
-        region.top = y - getHeight(region) / 2 ;
-
-        break ;
-
+        case 'top':
     
-    case 'bottom':
+            region.top = y ;
+    
+            break ;
+    
+        case 'center':
+    
+            region.top = y - height / 2 ;
+    
+            break ;
+    
+        
+        case 'bottom':
+    
+            region.top = y - height ;
+    
+            break ;
+     }
 
-        region.top = y - getHeight(region) ;
+     region.bottom = region.top + height ;
+ 
+}else{
 
-        break ;
+    switch(anchor){
+
+        case 'top':
+
+            return region.top ;
+
+        case 'center':
+
+            return region.top + height / 2 ;
+
+        case 'bottom':
+
+            return region.bottom ;
+    }
+
  }
