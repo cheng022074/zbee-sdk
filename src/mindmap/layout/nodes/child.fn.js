@@ -1,12 +1,32 @@
 
 /**
  * 
- * 函数实现说明
+ * 获得子节点集合
  * 
- * @param {mixed} data 参数说明
+ * @param {data.Record} node 脑图节点
  * 
- * @return {mixed} 返回说明 
+ * @return {array} 子节点集合 
  * 
  */
 
- // 代码实现
+ let {
+    children,
+    expanded
+ } = node;
+
+ if(!expanded){
+
+    return [] ;
+ }
+
+ let result = [] ;
+
+ for(let childNode of children){
+
+    if(!childNode.hidden){
+
+        result.push(childNode) ;
+    }
+ }
+
+ return result ;
