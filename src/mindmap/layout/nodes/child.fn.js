@@ -3,30 +3,41 @@
  * 
  * 获得子节点集合
  * 
+ * @import cache from mindmap.layout.cache scoped
+ * 
  * @param {data.Record} node 脑图节点
  * 
  * @return {array} 子节点集合 
  * 
  */
 
- let {
-    children,
-    expanded
- } = node;
+ function main(node){
 
- if(!expanded){
-
-    return [] ;
+   return cache(node , 'getChildNodes' , getChildNodes) ;
  }
 
- let result = [] ;
+ function getChildNodes(node){
 
- for(let childNode of children){
+   let {
+      children,
+      expanded
+   } = node;
 
-    if(!childNode.hidden){
+   if(!expanded){
 
-        result.push(childNode) ;
-    }
+      return [] ;
+   }
+
+   let result = [] ;
+
+   for(let childNode of children){
+
+      if(!childNode.hidden){
+
+         result.push(childNode) ;
+      }
+   }
+
+   return result ;
+
  }
-
- return result ;
