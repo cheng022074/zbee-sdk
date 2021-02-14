@@ -21,13 +21,15 @@
  * 
  * @import getChildRegion from ....node.region.child.logic scoped
  * 
- * @import getHeight from math.region.width
+ * @import getRegion from ....node.region scoped
+ * 
+ * @import getHeight from math.region.height
+ * 
+ * @import getWidth from math.region.width
  * 
  * @import setAnchorY from math.region.y.anchor
  * 
  * @import getY from math.region.y
- * 
- * @import from from math.from
  * 
  * @import add from array.add.sort
  * 
@@ -35,13 +37,53 @@
  * 
  * @import contains from math.region.contains
  * 
- * @param {data.Record} node 布局的根节点
+ * @param {data.Record} node 布局节点
  * 
  */
 
  function main(node){
 
     layout(node) ;
+
+    let region = getRegion(region),
+    {
+      width,
+      height,
+      padding
+    } = me,
+    {
+      left,
+      right,
+      top,
+      bottom
+    } = padding,
+    mindmapWidth = getWidth(region) + left + right,
+    mindmapHeight = getHeight(region) + top + bottom;
+
+    if(width > mindmapWidth){
+
+      mindmapWidth = width ;
+    }
+
+    if(height > mindmapHeight){
+
+      let region = getSelfRegion(node) ;
+
+      setAnchorY(region , 'center' , height / 2) ;
+
+      setY(node , getY(region)) ;
+
+      mindmapHeight = height ;
+    
+    }else{
+
+      setY(node , - getY(region)) ;
+    }
+
+    return {
+       width:mindmapWidth,
+       height:mindmapHeight
+    } ;
  }
      
  function layout(node , positionedRegions = []){
@@ -54,11 +96,11 @@
 
     }
 
-    let nodeRegion = from(node) ;
+    let region = getSelfRegion(node) ;
 
-    setAnchorY(nodeRegion , 'center' , getHeight(getChildRegion(node)) / 2) ;
+    setAnchorY(region , 'center' , getHeight(getChildRegion(node)) / 2) ;
 
-    node.y = getY(nodeRegion) ;
+    node.y = getY(region) ;
 
     let previousSiblingNode = getPreviousSiblingNode(node) ;
 
