@@ -17,9 +17,9 @@
  * 
  * @import getFirstDescendantNodes from ..nodes.descendant.first scoped
  * 
- * @import getNodeRegion from ....region.node scoped
+ * @import getNodeRegion from ..node.region.self scoped
  * 
- * @import getChildRegion from ....region.logic.child scoped
+ * @import getChildRegion from ..node.region.child.logic scoped
  * 
  * @import getHeight from math.region.width
  * 
