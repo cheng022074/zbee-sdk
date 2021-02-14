@@ -1,12 +1,24 @@
 
 /**
  * 
- * 函数实现说明
+ * 获取父节点
  * 
- * @param {mixed} data 参数说明
+ * @param {data.Record} node 脑图节点
  * 
- * @return {mixed} 返回说明 
+ * @return {data.Record} 所获取的父节点
  * 
  */
 
- // 代码实现
+
+ let {
+    nodes
+ } = this,
+ {
+    parentNodeId
+ } = node,
+ parentNode = nodes.get(parentNodeId);
+
+ if(parentNode && !parentNode.hidden){
+
+    return parentNode ;
+ }
