@@ -3,7 +3,7 @@
  * 
  * 设置节点的相对横坐标
  * 
- * @import getDescendantNodes from ..nodes.descendant scoped
+ * @import getDescendantNodes from ....nodes.descendant scoped
  * 
  * @import setX from .offset scoped
  * 
