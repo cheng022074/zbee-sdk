@@ -61,16 +61,13 @@
     } = padding,
     mindmapWidth = getWidth(region) + left + right,
     mindmapHeight = getHeight(region) + top + bottom,
-    offsetX = 0,
+    offsetX = left,
     offsetY = 0;
 
     if(width > mindmapWidth){
 
       mindmapWidth = width ;
     
-    }else{
-
-      offsetX = left ;
     }
 
     if(height > mindmapHeight){
