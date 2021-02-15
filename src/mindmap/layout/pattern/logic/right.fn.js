@@ -15,6 +15,8 @@
  * 
  * @import getChildNodes from ....nodes.child scoped
  * 
+ * @import getDescendantNodes from ....nodes.descendant scoped
+ * 
  * @import getDescendantRegion from ....node.region.descendant.logic scoped
  * 
  * @import getSelfRegion from ....node.region.self scoped
@@ -93,6 +95,10 @@
         x:offsetX,
         y:offsetY
       },
+      nodes:[
+        node,
+        ...getDescendantNodes(node)
+      ],
       size:{
         width:mindmapWidth,
         height:mindmapHeight
