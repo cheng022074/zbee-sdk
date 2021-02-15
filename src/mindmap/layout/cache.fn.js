@@ -33,7 +33,7 @@
 
  if(!cache.hasOwnProperty(cacheName)){
 
-    cache[cacheName] = cacheFn(node) ;
+    cache[cacheName] = cacheFn.call(me , node) ;
  }
 
  return cache[cacheName] ;
