@@ -3,17 +3,75 @@
  * 
  * 初始化脑图数据
  * 
- * @import create from .node.create.from scoped
+ * @import is.defined
  * 
- * @import loadData from .load.data scoped
+ * @import expand from .expand scoped
  * 
  * @param {mixed} data 数据
  * 
+ * @param {mixed} [readAsRoot] 获得脑图节点根读取入口
+ * 
  */
 
- let node = create(data);
+function main(data , readAsRoot){
 
- if(node){
+  let me = this,
+  {
+    reader,
+    readConfig,
+    initVisibilityLevel
+  } = me ;
+  
+  if(isDefined(readAsRoot)){
+  
+    readConfig = Object.assign({} , readConfig , {
+      root:readAsRoot
+    }) ;
+  }
+  
+  let node = reader.read(data , {
+    ...readConfig,
+    multi:false
+  });
 
-   await loadData(node) ;
- }
+  if(node){
+
+      register_node.call(me , node) ;
+
+      me.rootNode = rootNode ;
+
+      rootNode.selected = true ;
+
+      expand(rootNode , initVisibilityLevel) ;
+  }
+}
+
+function register_node(node){
+
+  let {
+      id,
+      children
+  } = node,
+  me = this,
+  {
+    nodes
+  } = me;
+
+  nodes.set(id , node) ;
+
+  children.sort(sortByOrder) ;
+
+  for(let childNode of children){
+
+    register_node.call(me , childNode) ;
+  }
+}
+
+function sortByOrder({
+  order:order1
+} , {
+  order:order2
+}){
+
+  return order1 - order2 ;
+}
