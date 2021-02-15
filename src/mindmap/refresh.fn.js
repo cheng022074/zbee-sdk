@@ -26,9 +26,11 @@
     } = layoutData,
     {
         nodes,
-        selectedNode,
+        selectedNode
+    } = getNodeDataset(layoutNodes , offset),
+    {
         placeholderNode
-    } = getNodeDataset(layoutNodes , offset) ;
+    } = me;
 
     me.fireEvent('draw' , {
         nodes:Array.from(nodes.values()),
@@ -76,19 +78,14 @@
  function getNodeDataset(nodes , offset){
 
     let result = new Map(),
-        selectedNode,
-        placeholderNode;
+        selectedNode;
 
     for(let node of nodes){
 
         let data = getData(node , offset),
             region = from(data);
 
-        if(data.placeholder){
-
-            placeholderNode = data ;
-        
-        }else if(data.selected){
+        if(data.selected){
 
             selectedNode = data ;
         }
@@ -103,8 +100,7 @@
 
     return {
         nodes:result,
-        selectedNode,
-        placeholderNode
+        selectedNode
     } ;
  }
 
