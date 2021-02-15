@@ -25,8 +25,6 @@
  * 
  * @import is.array
  * 
- * @import getAPI from .constructor.api scoped
- * 
  * @import emptyFn from function.empty value
  * 
  * @import is.number
@@ -93,8 +91,6 @@
    me.layoutConfig = layoutConfig ;
    
  }
-
- me.api = getAPI() ;
 
  me.nodes = new Map() ;
 

@@ -20,9 +20,15 @@ me = this;
 
 level(node , hidden) ;
 
+size(node , hidden) ;
+
 if(hidden){
 
     node.selected = false ;
+
+    node.width = false ;
+
+    node.height = false ;
 }
 
 return hidden ;

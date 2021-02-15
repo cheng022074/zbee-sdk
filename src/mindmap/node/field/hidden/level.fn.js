@@ -3,7 +3,7 @@
  * 
  * 设置脑图节点层次
  * 
- * @import getParentNode from ..node.parent scoped
+ * @import getParentNode from ....node.parent scoped
  * 
  * @param {data.Record} node 节点
  * 
