@@ -28,11 +28,14 @@
       return [] ;
    }
 
-   let result = [] ;
+   let result = [],
+   {
+      layoutNodes
+   } = this;
 
    for(let childNode of children){
 
-      if(!childNode.hidden){
+      if(!childNode.hidden && layoutNodes.includes(childNode)){
 
          result.push(childNode) ;
       }
