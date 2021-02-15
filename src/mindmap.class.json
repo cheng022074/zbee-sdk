@@ -28,12 +28,12 @@
             "impl":".mindmap.node.expand"
         },
         {
-            "name":"moveDown",
-            "impl":".mindmap.move.down"
+            "name":"isNodeMoveDown",
+            "impl":".mindmap.node.is.move.down"
         },
         {
-            "name":"moveUp",
-            "impl":".mindmap.move.up"
+            "name":"isNodeMoveUp",
+            "impl":".mindmap.node.is.move.up"
         },
         {
             "name":"getNextSiblingNode",
