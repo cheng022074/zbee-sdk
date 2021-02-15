@@ -11,14 +11,15 @@
 
 
  let {
-    nodes
+    nodes,
+    layoutNodes
  } = this,
  {
     parentNodeId
  } = node,
  parentNode = nodes.get(parentNodeId);
 
- if(parentNode && !parentNode.hidden){
+ if(parentNode && !parentNode.hidden && layoutNodes.includes(parentNode)){
 
     return parentNode ;
  }
