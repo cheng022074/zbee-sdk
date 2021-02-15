@@ -2,13 +2,11 @@
  * 
  * 选中节点向上移动
  * 
- * @import previous from ..node.sibling.previous scoped
- * 
- * @import insertBefore from ..insert.before scoped
+ * @import previous from mindmap.layout.node.sibling.previous scoped
  * 
  * @import data from layout.node.data.param scoped
  * 
- * @import getParentNode from ..node.parent scoped
+ * @import getParentNode from ....parent scoped
  * 
  * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
  * 

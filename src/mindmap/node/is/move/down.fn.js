@@ -2,11 +2,9 @@
  * 
  * 选中节点向下移动
  * 
- * @import next from ..node.sibling.next scoped
+ * @import next from mindmap.layout.node.sibling.next scoped
  * 
- * @import insertAfter from ..insert.after scoped
- * 
- * @import getParentNode from ..node.parent scoped
+ * @import getParentNode from ....parent scoped
  * 
  * @import data from layout.node.data.param scoped
  * 
