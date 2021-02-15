@@ -153,20 +153,6 @@
             mode:'readwrite',
             defaultValue:0
          },
-
-         indicators:{
-               equals(value , oldValue){
-
-                  return value === oldValue ;
-               },
-
-               defaultValue(){
-
-                  return [] ;
-               },
-               
-               mode:'readwrite'
-         },
          ...readerFields,
          expanded:{
             mode:'readwrite',
