@@ -33,11 +33,27 @@
     } = me;
 
     me.fireEvent('draw' , {
-        nodes:Array.from(nodes.values()),
+        nodes:getNodes(nodes),
         lines:getLines(nodes , placeholderNode),
         selectedNode,
         canvas:size
     }) ;
+ }
+
+ function getNodes(nodes){
+
+    nodes = nodes.values() ;
+
+    let result = [] ;
+
+    for(let {
+        data
+    } of nodes){
+
+        result.push(data) ;
+    }
+
+    return result ;
  }
 
  function getLines(nodes , placeholderNode){
