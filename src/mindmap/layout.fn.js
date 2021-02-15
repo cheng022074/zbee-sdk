@@ -9,6 +9,8 @@
  * 
  * @import getData from .layout.node.data.param scoped
  * 
+ * @import clear from .layout.cache.clear scoped
+ * 
  */
 
  function main(){
@@ -37,6 +39,8 @@
       rootNode,
       ...getDescendantNodes(rootNode)
    ] , () => {
+
+      clear() ;
 
       me.layoutData = layout(rootNode) ;
 
