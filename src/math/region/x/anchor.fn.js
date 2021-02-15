@@ -57,7 +57,7 @@ if(isNumber(x)){
 
        case 'center':
 
-           return region.left + height / 2 ;
+           return region.left + width / 2 ;
 
        case 'right':
 

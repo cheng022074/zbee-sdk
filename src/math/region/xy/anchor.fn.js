@@ -101,15 +101,15 @@
 
  if(isDefined(xy)){
 
-    doAnchorX(anchorX , xy.x) ;
+    doAnchorX(region , anchorX , xy.x) ;
 
-    doAnchorY(anchorY , xy.y) ;
+    doAnchorY(region , anchorY , xy.y) ;
  
 }else{
 
     return {
-        x:doAnchorX(anchorX),
-        y:doAnchorY(anchorY)
+        x:doAnchorX(region , anchorX),
+        y:doAnchorY(region , anchorY)
     }
 
 }
