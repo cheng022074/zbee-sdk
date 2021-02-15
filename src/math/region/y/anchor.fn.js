@@ -3,6 +3,8 @@
  * 
  * 根据锚定位置设置纵坐标
  * 
+ * @import get from ..get
+ * 
  * @import getHeight from ..height
  * 
  * @import is.number
@@ -14,6 +16,8 @@
  * @param {number} [y] 纵坐标值
  * 
  */
+
+ region = get(region) ;
 
  let height = getHeight(region) ;
 
