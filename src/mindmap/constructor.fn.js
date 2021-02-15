@@ -47,6 +47,8 @@
  * 
  * @param {number} [config.nodeHorizontalLineBreakPointOffset = 12.5] 脑图节点之间连线的折点的偏移位置
  * 
+ * @param {number} [config.nodeSpacing = 5] 节点间隔设置
+ * 
  * @param {number} [config.placeholderNodeWidth = 60] 占位符宽度
  * 
  * @param {number} [config.placeholderNodeHeight = 20] 占位符高度
@@ -87,6 +89,22 @@
    layoutConfig.getRootNode = include(`mindmap.layout.node.root.${layout.getRootNode || 'normal'}`).bind(me) ;
 
    layoutConfig.getDescendantNodes = include(`mindmap.layout.nodes.descendant.${layout.getDescendantNodes || 'normal'}`).bind(me) ;
+
+   if(isNumber(nodeSpacing)){
+
+      nodeSpacing = {
+         top:nodeSpacing,
+         bottom:nodeSpacing,
+         left:nodeSpacing,
+         right:nodeSpacing
+      } ;
+   }
+
+   if(isObject(nodeSpacing)){
+
+      layoutConfig.nodeSpacing = nodeSpacing ;
+   
+   }
 
    me.layoutConfig = layoutConfig ;
    
