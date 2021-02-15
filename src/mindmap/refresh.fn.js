@@ -7,6 +7,8 @@
  * 
  * @import from from math.region.from
  * 
+ * @import getRegion from .layout.node.region.self scoped
+ * 
  * @import getAnchorXY from math.region.xy.anchor
  * 
  * @import getParentNode from .layout.node.parent scoped
@@ -36,6 +38,7 @@
         nodes:getNodes(nodes),
         lines:getLines(nodes , placeholderNode),
         selectedNode,
+        selectedNodeRegion:getRegion(selectedNode),
         canvas:size
     }) ;
  }
