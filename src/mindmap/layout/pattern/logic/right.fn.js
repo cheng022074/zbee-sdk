@@ -95,11 +95,6 @@
         x:offsetX,
         y:offsetY
       },
-      nodes:[
-        node,
-        ...getDescendantNodes(node)
-      ],
-      lines:[],
       size:{
         width:mindmapWidth,
         height:mindmapHeight
