@@ -84,7 +84,7 @@
       layout = {} ;
    }
    
-   layoutConfig.pattern = include(`mindmap.layout.patteron.${layout.pattern || 'logic.right'}`) ;
+   layoutConfig.pattern = include(`mindmap.layout.pattern.${layout.pattern || 'logic.right'}`) ;
 
    layoutConfig.getRootNode = include(`mindmap.layout.node.root.${layout.getRootNode || 'normal'}`) ;
 
