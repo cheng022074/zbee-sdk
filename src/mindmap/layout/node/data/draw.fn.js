@@ -11,6 +11,8 @@
  * 
  * @param {mixed} node 节点
  * 
+ * @param {object} offset 坐标偏移值
+ * 
  * @return {object} 数据信息 
  * 
  */
@@ -25,5 +27,16 @@
    leaf(node){
 
       return isLeafNode(node) ;
+   },
+
+   x(node){
+
+      return node.x + offset.x ;
+   },
+
+   y(node){
+
+      return node.y + offset.y ;
    }
+
  }) ;
