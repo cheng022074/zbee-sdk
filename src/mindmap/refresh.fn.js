@@ -9,6 +9,8 @@
  * 
  * @import getAnchorXY from math.region.xy.anchor
  * 
+ * @import getParentNode from .layout.node.parent scoped
+ * 
  */
 
  function main(){
@@ -21,24 +23,75 @@
     {
         size,
         offset
-    } = layoutData;
+    } = layoutData,
+    {
+        nodes,
+        selectedNode,
+        placeholderNode
+    } = getNodeDataset(layoutNodes , offset) ;
 
     me.fireEvent('draw' , {
-        nodes:nodes(layoutNodes , offset),
-        lines:lines(layoutNodes),
-        selectedNode:selectedNode(layoutNodes),
+        nodes:Array.from(nodes.values()),
+        lines:getLines(nodes , placeholderNode),
+        selectedNode,
         canvas:size
     }) ;
  }
 
- function getNodes(nodes , offset){
+ function getLines(nodes , placeholderNode){
 
-    let result = new Map() ;
+    let layoutNodes = nodes.keys(),
+        lines = [];
+
+    for(let layoutNode of layoutNodes){
+
+        let parentNode = getParentNode(layoutNode) ;
+
+        if(parentNode){
+
+            let {
+                data:start,
+                centerXY:startCenterXY,
+                rightXY:startRightXY
+            } = nodes.get(parentNode),
+            {
+                data:end,
+                leftXY:endLeftXY
+            } = nodes.get(layoutNode);
+
+            lines.push({
+                indicated:layoutNode === placeholderNode,
+                start,
+                startCenterXY,
+                startRightXY,
+                end,
+                endLeftXY
+            }) ;
+        }
+    }
+
+    return lines ;
+ }
+
+ function getNodeDataset(nodes , offset){
+
+    let result = new Map(),
+        selectedNode,
+        placeholderNode;
 
     for(let node of nodes){
 
         let data = getData(node , offset),
             region = from(data);
+
+        if(data.placeholder){
+
+            placeholderNode = data ;
+        
+        }else if(data.selected){
+
+            selectedNode = data ;
+        }
 
         result.set(node , {
             data,
@@ -48,7 +101,11 @@
         })
     }
 
-    return result ;
+    return {
+        nodes:result,
+        selectedNode,
+        placeholderNode
+    } ;
  }
 
 
