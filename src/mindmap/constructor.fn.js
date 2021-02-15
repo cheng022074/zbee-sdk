@@ -21,6 +21,8 @@
  * 
  * @import doLayout from .layout scoped
  * 
+ * @import doRefresh from .refresh scoped
+ * 
  * @import isObject from is.object.simple
  * 
  * @import is.array
@@ -266,3 +268,5 @@
 
 
  me.layout = buffer(doLayout) ;
+
+ me.refresh = buffer(doRefresh) ;
