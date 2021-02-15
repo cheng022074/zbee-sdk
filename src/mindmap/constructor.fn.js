@@ -21,7 +21,7 @@
  * 
  * @import data from .data scoped
  * 
- * @import tryLayout from .layout.try scoped
+ * @import doLayout from .layout scoped
  * 
  * @import isObject from is.object.simple
  * 
@@ -274,31 +274,5 @@
 
  me.placeholderNode = placeholderNode ;
 
- {
-   me.fireNodeUnsizedEvent = buffer(() => {
-    
-      let {
-          unsizedNodes
-      } = me ;
 
-      if(unsizedNodes.size){
-
-         me.fireEvent('nodeunsized' , data(unsizedNodes.values()).nodes) ;
-      }
-   }) ;
-
-   me.fireNodeSizedEvent = buffer(() => {
-
-      let {
-         unsizedNodes
-      } = me ;
-
-      if(!unsizedNodes.size){
-
-         me.fireEvent('nodesized') ;
-      }
-
-   }) ;
- }
-
-me.layout = buffer(tryLayout) ;
+ me.layout = buffer(doLayout) ;
