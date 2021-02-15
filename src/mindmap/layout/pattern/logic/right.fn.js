@@ -104,6 +104,8 @@
      
  function layout(node , positionedRegions = []){
 
+    adjustX(node , getParentNode(node)) ;
+
     let childNodes = getChildNodes(node) ;
 
     for(let childNode of childNodes){
@@ -128,8 +130,6 @@
     
     }
 
-    adjustX(node , getParentNode(node)) ;
-
     add(positionedRegions , getSelfRegion(node) , sortPositionedRegions) ;
  }
 
@@ -138,6 +138,10 @@
    if(parentNode){
 
       setX(node , getSelfRegion(parentNode).right , false) ;
+   
+    }else{
+
+      setX(node , 0 , false) ;
    }
  }
 
