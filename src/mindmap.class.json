@@ -26,7 +26,6 @@
         },
         "destroy",
         "resize",
-        "expand",
         "collapse",
         "select",
         "deselect",
