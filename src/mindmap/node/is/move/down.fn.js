@@ -6,8 +6,6 @@
  * 
  * @import insertAfter from ..insert.after scoped
  * 
- * @import order from ..order scoped
- * 
  * @import getParentNode from ..node.parent scoped
  * 
  * @import data from layout.node.data.param scoped

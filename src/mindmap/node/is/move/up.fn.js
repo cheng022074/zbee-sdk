@@ -8,8 +8,6 @@
  * 
  * @import data from layout.node.data.param scoped
  * 
- * @import order from ..order scoped
- * 
  * @import getParentNode from ..node.parent scoped
  * 
  * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
