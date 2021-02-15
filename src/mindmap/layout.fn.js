@@ -25,6 +25,4 @@
  me.layoutData = layout(rootNode) ;
 
  refresh() ;
-
- delete me.layoutNodes ;
  
