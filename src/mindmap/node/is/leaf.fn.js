@@ -15,4 +15,3 @@ let {
 } = node ;
 
 return !children.length ;
-
