@@ -7,67 +7,39 @@
  * 
  * @import isLeafNode from .is.leaf scoped
  * 
- * @import getParentNode from .parent scoped
- * 
- * @import getData from ..data.node.data scoped
- * 
- * @import getX from .x scoped
- * 
- * @import getY from .y scoped
- * 
- * @import from from ..data.node.from scoped
- * 
- * @import getNodeData from .data scoped
+ * @import from from .from scoped
  * 
  * @param {mixed} node 节点
+ * 
+ * @param {array} [addFields] 附加字段信息
  * 
  * @return {object} 数据信息 
  * 
  */
 
- const addFields = {
-      root(node){
+const DATA_FIELDS = {
+    root(node){
 
-         return isRootNode(node) ;
-      },
+        return isRootNode(node) ;
+     },
 
-      hasParentNode(node){
+     leaf(node){
 
-         return !! getParentNode(node) ;
-      },
-
-      parentNode(node){
-
-         let parentNode = getParentNode(node) ;
-
-         if(parentNode){
-
-            return getNodeData(parentNode) ;
-         }
-      },
-
-      leaf(node){
-
-         return isLeafNode(node) ;
-      },
-
-      x(node){
-
-         return getX(node) ;
-      },
-
-      y(node){
-
-         return getY(node) ;
-      }
+        return isLeafNode(node) ;
+     }
  } ;
 
- function main(node){
+function main(node , fields = DATA_FIELDS){
 
-   return getData(from(node) , addFields);
-   
- }
+   node = from(node);
 
- 
+   if(node){
 
- 
+      return this.reader.data(node , {
+         ignoreFields:[
+            'children'
+         ],
+         fields
+      }) ;
+   }
+}

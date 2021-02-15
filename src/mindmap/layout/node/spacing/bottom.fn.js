@@ -5,6 +5,8 @@
  * 
  * @import is.function
  * 
+ * @import data from mindmap.node.data scoped
+ * 
  * @param {data.Record} node 脑图节点
  * 
  * @return {number} 间距值
@@ -20,7 +22,7 @@ let {
 
  if(isFunction(bottom)){
 
-    return bottom(node) ;
+    return bottom(data(node)) ;
  }
 
  return bottom ;
