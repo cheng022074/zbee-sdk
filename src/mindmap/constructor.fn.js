@@ -9,7 +9,7 @@
  * 
  * @import setHidden from .node.field.hidden scoped
  * 
- * @import setSelected from .selected scoped
+ * @import setSelected from .node.field.selected scoped
  * 
  * @import setIndicated from .indicated scoped
  * 
