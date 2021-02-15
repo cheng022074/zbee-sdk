@@ -7,9 +7,7 @@
  * 
  * @import createReader from data.reader.json
  * 
- * @import setHidden from .hidden scoped
- * 
- * @import afterSetHidden from .hidden.after scoped
+ * @import setHidden from .node.field.hidden scoped
  * 
  * @import setSelected from .selected scoped
  * 
@@ -194,10 +192,6 @@
             set(hidden){
 
                return setHidden(this , hidden) ;
-            },
-            afterSet(){
-
-               return afterSetHidden(this) ;
             },
             defaultValue:true
          },
