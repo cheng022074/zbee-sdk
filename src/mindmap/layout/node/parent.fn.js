@@ -19,7 +19,7 @@
  } = node,
  parentNode = nodes.get(parentNodeId);
 
- if(parentNode && !parentNode.hidden && layoutNodes.includes(parentNode)){
+ if(parentNode && layoutNodes.includes(parentNode)){
 
     return parentNode ;
  }

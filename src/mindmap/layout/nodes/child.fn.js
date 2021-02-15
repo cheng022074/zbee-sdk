@@ -35,7 +35,7 @@
 
    for(let childNode of children){
 
-      if(!childNode.hidden && layoutNodes.includes(childNode)){
+      if(layoutNodes.includes(childNode)){
 
          result.push(childNode) ;
       }
