@@ -11,4 +11,9 @@
  * 
  */
 
+ const {
+    min,
+    max
+ } = Math ;
+
 return min(region1.bottom , region2.bottom) > max(region1.top , region2.top) && min(region1.right , region2.right) > max(region1.left , region2.left) ;

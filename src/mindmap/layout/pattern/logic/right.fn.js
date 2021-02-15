@@ -52,7 +52,7 @@
       width,
       height,
       padding
-    } = me,
+    } = this,
     {
       left,
       right,

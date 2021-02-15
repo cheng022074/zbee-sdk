@@ -9,6 +9,8 @@
  * 
  * @import doAnchorY from ..y.anchor
  * 
+ * @import get from ..get
+ * 
  * @param {object} region 方位信息
  * 
  * @param {string} anchor 锚定位置
