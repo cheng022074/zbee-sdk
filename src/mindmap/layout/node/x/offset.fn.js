@@ -16,7 +16,7 @@
  */
 
 let {
-   x:oldValue = 0
+   x:oldValue
 } = node;
 
 node.x = oldValue + offsetX ;

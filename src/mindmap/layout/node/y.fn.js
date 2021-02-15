@@ -19,7 +19,7 @@
 
 let value = y + getTopSpacing(node),
 {
-   y:oldValue = 0
+   y:oldValue
 } = node;
 
 node.y = value ;

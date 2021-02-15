@@ -19,7 +19,7 @@
 
  let value = x + getLeftSpacing(node),
  {
-    x:oldValue = 0
+    x:oldValue
  } = node;
 
 node.x = value ;

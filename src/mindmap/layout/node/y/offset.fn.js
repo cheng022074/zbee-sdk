@@ -16,10 +16,10 @@
  */
 
 let {
-    x:oldValue = 0
+    y:oldValue
  } = node;
  
- node.x = oldValue + offsetY ;
+ node.y = oldValue + offsetY ;
  
  if(recursive){
  

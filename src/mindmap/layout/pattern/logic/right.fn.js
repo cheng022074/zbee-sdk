@@ -137,7 +137,7 @@
 
    if(parentNode){
 
-      setX(node , getSelfRegion(parentNode).right) ;
+      setX(node , getSelfRegion(parentNode).right , false) ;
    }
  }
 
