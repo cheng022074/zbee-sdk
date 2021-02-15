@@ -33,6 +33,8 @@
  * 
  * @import is.number
  * 
+ * @import is.string
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -61,11 +63,38 @@
  * 
  * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
  * 
+ * @param {mixed} [config.layout = 'logic.right'] 布局模式
+ * 
  * @param {function} [config.callback] 脑图内部回调
  * 
  */
 
  let me = this ;
+
+ {
+
+   let layoutConfig = {} ;
+
+   if(isString(layout)){
+
+      layout = {
+         pattern:layout
+      };
+   
+   }else if(!isObject(layout)){
+
+      layout = {} ;
+   }
+   
+   layoutConfig.pattern = include(`mindmap.layout.patteron.${layout.pattern || 'logic.right'}`) ;
+
+   layoutConfig.getRootNode = include(`mindmap.layout.node.root.${layout.getRootNode || 'normal'}`) ;
+
+   layoutConfig.getDescendantNodes = include(`mindmap.layout.nodes.descendant.${layout.getDescendantNodes || 'normal'}`) ;
+
+   me.layoutConfig = layoutConfig ;
+   
+ }
 
  me.api = getAPI() ;
 
