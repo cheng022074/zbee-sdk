@@ -3,9 +3,11 @@
  * 
  * 根据所提供的标识来获得脑图节点
  * 
- * @import is.defined
+ * @import is.string
  * 
- * @import from from ..data.node.from scoped
+ * @import isObject from is.object
+ * 
+ * @import from from .from scoped
  * 
  * @param {mixed} node 脑图节点标识
  * 
@@ -13,9 +15,24 @@
  * 
  */
 
- if(isDefined(node)){
+let {
+   nodes,
+   selectedNode
+} = this ;
 
-    return from(node) ;
- }
+if(isString(node)){
 
- return this.selectedNode ;
+   return nodes.get(node) ;
+
+}else if(isObject(node)){
+
+  let {
+      id
+  } = node ;
+
+  return from(id) ;
+
+}else if(!isDefined(node)){
+
+    return selectedNode ;
+}

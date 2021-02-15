@@ -9,18 +9,10 @@
  * 
  */
 
- let {
-   hidden
- } = node ;
 
- if(!hidden){
+let {
+  children
+} = node ;
 
-   let {
-      children
-   } = node ;
-  
-   return !children.length ;
- }
-
- return false ;
+return !children.length ;
 

@@ -17,12 +17,7 @@
 
 node = from(node) ;
 
-let me = this,
-{
-    hidden
-} = node;
-
-if(!hidden){
+if(node){
 
     let {
         expanded
