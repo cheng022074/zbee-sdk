@@ -11,7 +11,10 @@
  * 
  */
 
- let parentNode = getParentNode(node) ;
+ let parentNode = getParentNode(node),
+ {
+    layoutNodes
+ } = this;
 
  if(parentNode){
 
@@ -24,7 +27,7 @@
 
         let previousNode = children[i] ;
 
-        if(!previousNode.hidden){
+        if(layoutNodes.includes(previousNode)){
 
             return previousNode ;
         }
