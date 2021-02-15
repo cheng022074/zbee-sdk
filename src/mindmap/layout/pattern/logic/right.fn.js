@@ -99,6 +99,7 @@
         node,
         ...getDescendantNodes(node)
       ],
+      lines:[],
       size:{
         width:mindmapWidth,
         height:mindmapHeight
