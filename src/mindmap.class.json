@@ -15,7 +15,6 @@
         "load",
         "destroy",
         "resize",
-        "expand",
         "collapse",
         "select",
         "deselect",
@@ -24,6 +23,10 @@
         "move",
         "reset",
         "focus",
+        {
+            "name":"expandNode",
+            "impl":".mindmap.node.expand"
+        },
         {
             "name":"moveDown",
             "impl":".mindmap.move.down"
