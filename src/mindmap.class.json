@@ -6,11 +6,6 @@
         "mixin.observable"
     ],
     "constructor":true,
-    "properties":{
-        "selectedNodeRegion":{
-            "get":".mindmap.region.selected"
-        }
-    },
     "methods":[
         "load",
         "destroy",
