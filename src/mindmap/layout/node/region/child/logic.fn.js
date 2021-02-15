@@ -50,4 +50,18 @@ if(length){
         bottom,
         right:Math.max(...rights)
     } ;
+
 }
+
+let {
+    top,
+    right,
+    bottom
+} = getRegion(node) ;
+
+return {
+    top,
+    bottom,
+    left:right,
+    right
+} ;

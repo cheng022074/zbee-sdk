@@ -47,7 +47,7 @@
 
     layout(node) ;
 
-    let region = getRegion(region),
+    let region = getRegion(node),
     {
       width,
       height,
