@@ -20,8 +20,6 @@ me = this;
 
 level(node , hidden) ;
 
-size(node , hidden) ;
-
 if(hidden){
 
     node.selected = false ;

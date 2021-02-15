@@ -29,14 +29,14 @@ function main(data , readAsRoot){
     }) ;
   }
   
-  let node = reader.read(data , {
+  let rootNode = reader.read(data , {
     ...readConfig,
     multi:false
   });
 
-  if(node){
+  if(rootNode){
 
-      register_node.call(me , node) ;
+      register_node.call(me , rootNode) ;
 
       me.rootNode = rootNode ;
 

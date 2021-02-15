@@ -37,7 +37,7 @@
 
    let rootNode = getRootNode() ;
 
-   doBeforeLayout(me.layoutNodes = [
+   doBeforeLayout.call(me , me.layoutNodes = [
       rootNode,
       ...getDescendantNodes(rootNode)
    ] , () => {
@@ -65,7 +65,7 @@
 
     if(unsizedNodes.size){
 
-      me.fireEvent('nodeunsized' , getDataNodes(unsizedNodes) , sizes => {
+      this.fireEvent('nodeunsized' , getDataNodes(unsizedNodes) , sizes => {
 
          let ids = Object.keys(sizes) ;
 

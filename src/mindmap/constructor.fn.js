@@ -13,8 +13,6 @@
  * 
  * @import setIndicated from .indicated scoped
  * 
- * @import createVisibilityNodes from .nodes.visibility scoped
- * 
  * @import buffer from function.buffer
  * 
  * @import data from .data scoped
@@ -84,11 +82,11 @@
       layout = {} ;
    }
    
-   layoutConfig.pattern = include(`mindmap.layout.pattern.${layout.pattern || 'logic.right'}`) ;
+   layoutConfig.pattern = include(`mindmap.layout.pattern.${layout.pattern || 'logic.right'}`).bind(me) ;
 
-   layoutConfig.getRootNode = include(`mindmap.layout.node.root.${layout.getRootNode || 'normal'}`) ;
+   layoutConfig.getRootNode = include(`mindmap.layout.node.root.${layout.getRootNode || 'normal'}`).bind(me) ;
 
-   layoutConfig.getDescendantNodes = include(`mindmap.layout.nodes.descendant.${layout.getDescendantNodes || 'normal'}`) ;
+   layoutConfig.getDescendantNodes = include(`mindmap.layout.nodes.descendant.${layout.getDescendantNodes || 'normal'}`).bind(me) ;
 
    me.layoutConfig = layoutConfig ;
    
@@ -100,8 +98,6 @@
 
  me.callback = (...args) => callback.call(me , ...args) ;
 
- me.visibilityNodes = createVisibilityNodes() ;
- 
  me.unsizedNodes = new Map();
  
  me.leafNodes = new Map();
