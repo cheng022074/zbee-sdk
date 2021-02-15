@@ -64,10 +64,6 @@
             "impl":".mindmap.node.query"
         },
         {
-            "name":"getParentNode",
-            "impl":".mindmap.node.parent"
-        },
-        {
             "name":"getChildNodes",
             "impl":".mindmap.nodes.child"
         },
