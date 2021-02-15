@@ -3,9 +3,9 @@
  * 
  * 获得脑图节点的范围
  * 
- * @import self from .region.self scoped
+ * @import self from .self scoped
  * 
- * @import descendant from.region.descendant scoped
+ * @import descendant from .descendant.logic scoped
  * 
  * @import union from math.region.union
  * 
