@@ -27,6 +27,8 @@
 
    me.isLayouting = true ;
 
+   clear() ;
+
    let {
       pattern:layout,
       getRootNode,
@@ -39,8 +41,6 @@
       rootNode,
       ...getDescendantNodes(rootNode)
    ] , () => {
-
-      clear() ;
 
       me.layoutData = layout(rootNode) ;
 
