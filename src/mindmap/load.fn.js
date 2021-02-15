@@ -5,7 +5,7 @@
  * 
  * @import is.defined
  * 
- * @import expand from .expand scoped
+ * @import expand from .node.expand.deep scoped
  * 
  * @param {mixed} data 数据
  * 
@@ -43,6 +43,7 @@ function main(data , readAsRoot){
       rootNode.selected = true ;
 
       expand(rootNode , initVisibilityLevel) ;
+
   }
 }
 
