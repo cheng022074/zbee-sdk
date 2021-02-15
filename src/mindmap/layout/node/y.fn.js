@@ -11,7 +11,7 @@
  * 
  * @param {data.Record} node 脑图节点
  * 
- * @param {number} x 节点纵坐标
+ * @param {number} y 节点纵坐标
  * 
  * @param {boolean} [recursive = true] 是否递归设置纵坐标
  * 
