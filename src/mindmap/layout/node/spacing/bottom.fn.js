@@ -5,7 +5,7 @@
  * 
  * @import is.function
  * 
- * @import data from mindmap.node.data scoped
+ * @import data from ..data.param scoped
  * 
  * @param {data.Record} node 脑图节点
  * 
