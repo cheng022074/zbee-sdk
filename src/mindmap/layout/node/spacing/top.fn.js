@@ -14,11 +14,8 @@
  */
 
 let {
-    spacing = {}
- } = this.layoutConfig,
- {
-    top
- } = spacing;
+   top
+} = this.layoutConfig.nodeSpacing;
 
  if(isFunction(top)){
 
