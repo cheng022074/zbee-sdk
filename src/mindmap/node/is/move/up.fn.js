@@ -4,7 +4,7 @@
  * 
  * @import previous from mindmap.layout.node.sibling.previous scoped
  * 
- * @import data from layout.node.data.param scoped
+ * @import data from mindmap.layout.node.data.param scoped
  * 
  * @import getParentNode from ....parent scoped
  * 

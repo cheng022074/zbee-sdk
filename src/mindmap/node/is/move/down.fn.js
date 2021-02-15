@@ -6,7 +6,7 @@
  * 
  * @import getParentNode from ....parent scoped
  * 
- * @import data from layout.node.data.param scoped
+ * @import data from mindmap.layout.node.data.param scoped
  * 
  * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
  * 
@@ -21,7 +21,7 @@
       selectedNode
    } = me ;
 
-   return doMoveDown.call(me , next(selectedNode) , beforeMoveFn , isRealMove) ;
+   return doMoveDown.call(me , next(selectedNode) , beforeMoveFn) ;
  }
 
  function doMoveDown(node , beforeMoveFn){
