@@ -3,7 +3,7 @@
  * 
  * 向右移动选择节点
  * 
- * @import select from ..select scoped
+ * @import select from mindmap.node.select scoped
  * 
  */
 

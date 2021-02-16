@@ -3,9 +3,9 @@
  * 
  * 向左移动选择节点
  * 
- * @import getParentNode from ....layout.node.parent scoped
+ * @import getParentNode from mindmap.layout.node.parent scoped
  * 
- * @import select from ..select scoped
+ * @import select from mindmap.node.select scoped
  * 
  */
 

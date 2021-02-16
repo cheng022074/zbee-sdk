@@ -75,21 +75,6 @@
             "name":"insertAfter",
             "impl":".mindmap.insert.after"
         },{
-            "name":"selectLeftNode",
-            "impl":".mindmap.node.select.left"
-        },
-        {
-            "name":"selectRightNode",
-            "impl":".mindmap.node.select.right"
-        },
-        {
-            "name":"selectUpNode",
-            "impl":".mindmap.node.select.up"
-        },
-        {
-            "name":"selectDownNode",
-            "impl":".mindmap.node.select.down"
-        },{
             "name":"startRestructureNode",
             "impl":".mindmap.node.restructure.start"
         },{

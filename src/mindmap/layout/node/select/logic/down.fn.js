@@ -3,9 +3,9 @@
  * 
  * 向下移动选择节点
  * 
- * @import next from ....layout.node.sibling.next scoped
+ * @import next from mindmap.layout.node.sibling.next scoped
  * 
- * @import select from ..select scoped
+ * @import select from mindmap.node.select scoped
  * 
  */
 
