@@ -37,7 +37,7 @@
  * 
  * @import intersect from math.region.intersect
  * 
- * @import contains from math.region.contains
+ * @import contains from math.region.contains.x
  * 
  * @param {data.Record} node 布局节点
  * 
@@ -103,10 +103,7 @@
      
  function layout(node , positionedRegions = []){
 
-  let me = this,
-  {
-    nodeVerticalSeparationDistance
-  } = me;
+  let me = this;
 
   adjustX.call(me , node , getParentNode(node)) ;
 
@@ -123,7 +120,7 @@
 
   setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
 
-  node.y = getY(region) ;
+  setY(node , getY(region) , false) ;
 
   let previousSiblingNode = getPreviousSiblingNode(node) ;
 
@@ -135,20 +132,22 @@
 
     setY(node , bottom) ;
 
-    let offset = getDescendantRegion(node).top - bottom ;
+    /*let offset = getDescendantRegion(node).top - bottom ;
 
     if(offset < 0){
 
-      setOffsetY(node , -offset) ;
-    }
+      setOffsetY(node , -offset + nodeVerticalSeparationDistance) ;
+    
+    }else{
 
-    setOffsetY(node , nodeVerticalSeparationDistance) ;
+      setOffsetY(node , nodeVerticalSeparationDistance) ;
+    }*/
 
-    //adjustY(node , getDescendantRegion(node) , positionedRegions) ;
+    adjustY.call(me , node , getDescendantRegion(node) , positionedRegions) ;
   
   }
 
-  //add(positionedRegions , getChildRegion(node) , sortPositionedRegions) ;
+  add(positionedRegions , getChildRegion(node) , sortPositionedRegions) ;
  }
 
  function adjustX(node , parentNode){
@@ -169,24 +168,29 @@
 
  function adjustY(node , region , positionedRegions){
 
-   let {
-      top
-   } = region ;
+  let {
+    top
+  } = region,
+  {
+    nodeVerticalSeparationDistance
+  } = this;
 
-   for(let positionedRegion of positionedRegions){
+  for(let positionedRegion of positionedRegions){
 
-      let {
-         bottom
-      } = positionedRegion ;
+    let {
+        bottom
+    } = positionedRegion ;
 
-      if(top > bottom && (intersect(region , positionedRegion) || contains(region , positionedRegion) || contains(positionedRegion , region))){
+    if(intersect(region , positionedRegion)){
 
-         setOffsetY(node , top - bottom) ;
+        setOffsetY(node , bottom - top + nodeVerticalSeparationDistance) ;
 
-         break ;
-      }
-   }
- }
+        return ;
+    }
+  }
+
+  setOffsetY(node , nodeVerticalSeparationDistance) ;
+}
 
  function sortPositionedRegions({
     bottom:bottom1
