@@ -3,8 +3,6 @@
  * 
  * 布局
  * 
- * @import refresh from .refresh scoped
- * 
  * @import isUnsized from .node.is.unsized scoped
  * 
  * @import getData from .layout.node.data.param scoped
@@ -44,7 +42,7 @@
 
       me.layoutData = layout(rootNode) ;
 
-      refresh() ;
+      me.refresh() ;
 
       me.isLayouting = false ;
 
