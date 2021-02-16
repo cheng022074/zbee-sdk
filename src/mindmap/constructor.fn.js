@@ -127,10 +127,6 @@
 
  me.callback = (...args) => callback.call(me , ...args) ;
 
- me.unsizedNodes = new Map();
- 
- me.leafNodes = new Map();
-
  me.unpublishedNodes = new Set() ;
 
  me.nodeSeparationDistance = nodeSeparationDistance ;
