@@ -7,29 +7,64 @@
  * 
  * @import getAnchorXY from math.region.xy.anchor
  * 
+ * @import from from math.region.from
+ * 
  */
 
  function generateBottomAscRegions(regions){
 
-
+    return regions.sort(({
+        bottom:bottom1
+    } , {
+        bottom:bottom2
+    }) => bottom1 - bottom2) ;
  }
 
  function generateTopDescRegion(regions) {
      
+    return regions.sort(({
+        top:top1
+    } , {
+        top:top2
+    }) => top2 - top1) ;
  }
 
  function generateLeftDescRegion(regions){
 
-
+    return regions.sort(({
+        left:left1
+    } , {
+        left:left2
+    }) => left2 - left1) ;
  }
 
  function generateRightAscRegions(regions){
 
-    
+    return regions.sort(({
+        right:right1
+    } , {
+        right:right2
+    }) => right1 - right2) ;
  }
 
- function generateNodeMap(node) {
-     
+ function generateNodeMap(nodes) {
+  
+    let regionMap = new Map(),
+        nodeMap = new Map();
+
+    for(let node of nodes){
+
+        let region = from(node) ;
+
+        regionMap.set(region , node) ;
+
+        nodeMap.set(node , region) ;
+    }
+
+    return {
+        region:regionMap,
+        node:nodeMap
+    } ;
  }
 
  function getNode(nodeXY , regions , isMatch , getRegionXY){
