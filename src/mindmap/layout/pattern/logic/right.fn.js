@@ -84,7 +84,7 @@
 
       offsetY = top ;
 
-      setY(node , - getY(region)) ;
+      setOffsetY(node , - getY(region)) ;
     }
 
     return {
@@ -111,9 +111,10 @@
 
     }
 
-    let region = getSelfRegion(node) ;
+    let region = getSelfRegion(node),
+        childRegion = getChildRegion(node);
 
-    setAnchorY(region , 'center' , getHeight(getChildRegion(node)) / 2) ;
+    setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
 
     node.y = getY(region) ;
 
@@ -121,13 +122,13 @@
 
     if(previousSiblingNode){
 
-      setY(node , getSelfRegion(previousSiblingNode).bottom) ;
+      setY(node , getDescendantRegion(previousSiblingNode).bottom) ;
 
-      adjustY(node , getDescendantRegion(node) , positionedRegions) ;
+      //adjustY(node , getDescendantRegion(node) , positionedRegions) ;
     
     }
 
-    add(positionedRegions , getSelfRegion(node) , sortPositionedRegions) ;
+    //add(positionedRegions , getChildRegion(node) , sortPositionedRegions) ;
  }
 
  function adjustX(node , parentNode){
