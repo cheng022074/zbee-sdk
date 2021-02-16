@@ -30,5 +30,5 @@
       selectedNode
    } = this ;
 
-   return node && beforeMoveFn(data(getParentNode(node)) , data(selectedNode) , data(node)) ;
+   return !! (node && beforeMoveFn(data(getParentNode(node)) , data(selectedNode) , data(node))) ;
  }
