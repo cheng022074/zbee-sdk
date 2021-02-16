@@ -45,97 +45,121 @@
 
  function main(node){
 
-    layout(node) ;
+  let me = this ;
 
-    let region = getRegion(node),
-    {
-      width,
-      height,
-      padding
-    } = this,
-    {
-      left,
-      right,
-      top,
-      bottom
-    } = padding,
-    mindmapWidth = getWidth(region) + left + right,
-    mindmapHeight = getHeight(region) + top + bottom,
-    offsetX = left,
-    offsetY = 0;
+  layout.call(me , node) ;
 
-    if(width > mindmapWidth){
+  let region = getRegion(node),
+  {
+    width,
+    height,
+    padding
+  } = this,
+  {
+    left,
+    right,
+    top,
+    bottom
+  } = padding,
+  mindmapWidth = getWidth(region) + left + right,
+  mindmapHeight = getHeight(region) + top + bottom,
+  offsetX = left,
+  offsetY = 0;
 
-      mindmapWidth = width ;
-    
-    }
+  if(width > mindmapWidth){
 
-    if(height > mindmapHeight){
+    mindmapWidth = width ;
+  
+  }
 
-      let region = getSelfRegion(node) ;
+  if(height > mindmapHeight){
 
-      setAnchorY(region , 'center' , height / 2) ;
+    let region = getSelfRegion(node) ;
 
-      setY(node , getY(region)) ;
+    setAnchorY(region , 'center' , height / 2) ;
 
-      mindmapHeight = height ;
-    
-    }else{
+    setY(node , getY(region)) ;
 
-      offsetY = top ;
+    mindmapHeight = height ;
+  
+  }else{
 
-      setOffsetY(node , - getY(region)) ;
-    }
+    offsetY = top ;
 
-    return {
-      offset:{
-        x:offsetX,
-        y:offsetY
-      },
-      size:{
-        width:mindmapWidth,
-        height:mindmapHeight
-      } 
-    } ;
+    setOffsetY(node , - getY(region)) ;
+  }
+
+  return {
+    offset:{
+      x:offsetX,
+      y:offsetY
+    },
+    size:{
+      width:mindmapWidth,
+      height:mindmapHeight
+    } 
+  } ;
  }
      
  function layout(node , positionedRegions = []){
 
-    adjustX(node , getParentNode(node)) ;
+  let me = this,
+  {
+    nodeVerticalSeparationDistance
+  } = me;
 
-    let childNodes = getChildNodes(node) ;
+  adjustX.call(me , node , getParentNode(node)) ;
 
-    for(let childNode of childNodes){
+  let childNodes = getChildNodes(node) ;
 
-      layout(childNode , positionedRegions) ;
+  for(let childNode of childNodes){
 
+    layout.call(me , childNode , positionedRegions) ;
+
+  }
+
+  let region = getSelfRegion(node),
+      childRegion = getChildRegion(node);
+
+  setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
+
+  node.y = getY(region) ;
+
+  let previousSiblingNode = getPreviousSiblingNode(node) ;
+
+  if(previousSiblingNode){
+
+    let {
+      bottom
+    } = getDescendantRegion(previousSiblingNode) ;
+
+    setY(node , bottom) ;
+
+    let offset = getDescendantRegion(node).top - bottom ;
+
+    if(offset < 0){
+
+      setOffsetY(node , -offset) ;
     }
 
-    let region = getSelfRegion(node),
-        childRegion = getChildRegion(node);
+    setOffsetY(node , nodeVerticalSeparationDistance) ;
 
-    setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
+    //adjustY(node , getDescendantRegion(node) , positionedRegions) ;
+  
+  }
 
-    node.y = getY(region) ;
-
-    let previousSiblingNode = getPreviousSiblingNode(node) ;
-
-    if(previousSiblingNode){
-
-      setY(node , getDescendantRegion(previousSiblingNode).bottom) ;
-
-      //adjustY(node , getDescendantRegion(node) , positionedRegions) ;
-    
-    }
-
-    //add(positionedRegions , getChildRegion(node) , sortPositionedRegions) ;
+  //add(positionedRegions , getChildRegion(node) , sortPositionedRegions) ;
  }
 
  function adjustX(node , parentNode){
 
+  let {
+    nodeHorizontalSeparationDistance
+  } = this ;
+
    if(parentNode){
 
-      setX(node , getSelfRegion(parentNode).right , false) ;
+      setX(node , getSelfRegion(parentNode).right + nodeHorizontalSeparationDistance , false) ;
    
     }else{
 
