@@ -94,7 +94,10 @@
         }
     }
 
-    return matchNode ;
+    return {
+        node:matchNode,
+        distance:minDistance
+    } ;
 
  }
 
@@ -181,7 +184,7 @@
             nodeMap
         } = me ;
 
-        return getUpNode.call(me , getAnchorXY(nodeMap.get(node) , 't')) ;
+        return getUpNode.call(me , getAnchorXY(nodeMap.get(node) , 't')).node ;
 
     }
 
@@ -192,7 +195,7 @@
             nodeMap
         } = me ;
 
-        return getDownNode.call(me , getAnchorXY(nodeMap.get(node) , 'b')) ;
+        return getDownNode.call(me , getAnchorXY(nodeMap.get(node) , 'b')).node ;
     }
 
     getLeftNode(node){
@@ -202,7 +205,7 @@
             nodeMap
         } = me ;
 
-        return getLeftNode.call(me , getAnchorXY(nodeMap.get(node) , 'l')) ;
+        return getLeftNode.call(me , getAnchorXY(nodeMap.get(node) , 'l')).node ;
     }
 
     getRightNode(node){
@@ -212,7 +215,43 @@
             nodeMap
         } = me ;
 
-        return getRightNode.call(me , getAnchorXY(nodeMap.get(node) , 'r')) ;
+        return getRightNode.call(me , getAnchorXY(nodeMap.get(node) , 'r')).node ;
+    }
+
+    getNode(xy){
+
+        let me = this,
+        data = [{
+            ...getUpNode.call(me , xy),
+            direction:'up'
+        },{
+            ...getDownNode.call(me , xy),
+            direction:'down'
+        },{
+            ...getLeftNode.call(me , xy),
+            direction:'left'
+        }],
+        minDistance = Number.MAX_VALUE,
+        result;
+
+        for(let {
+            distance,
+            node,
+            direction
+        } of data){
+
+            if(minDistance > distance){
+
+                minDistance = distance ;
+
+                result = {
+                    direction,
+                    node
+                } ;
+            }
+        }
+
+        return result ;
     }
 
  }
