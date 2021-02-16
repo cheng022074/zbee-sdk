@@ -5,10 +5,6 @@
  * 
  * @import getName from browser.event.name.single
  * 
- * @import onMove from move.drag scoped
- * 
- * @import onEnd from .end scoped
- * 
  * @import un from browser.event.listener.global.remove
  * 
  * @param {Event} e 事件对象
