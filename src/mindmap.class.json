@@ -75,20 +75,20 @@
             "name":"insertAfter",
             "impl":".mindmap.insert.after"
         },{
-            "name":"left",
-            "impl":".mindmap.select.move.left"
+            "name":"selectLeftNode",
+            "impl":".mindmap.node.select.left"
         },
         {
-            "name":"right",
-            "impl":".mindmap.select.move.right"
+            "name":"selectRightNode",
+            "impl":".mindmap.node.select.right"
         },
         {
-            "name":"up",
-            "impl":".mindmap.select.move.up"
+            "name":"selectUpNode",
+            "impl":".mindmap.node.select.up"
         },
         {
-            "name":"down",
-            "impl":".mindmap.select.move.down"
+            "name":"selectDownNode",
+            "impl":".mindmap.node.select.down"
         },{
             "name":"startRestructureNode",
             "impl":".mindmap.node.restructure.start"

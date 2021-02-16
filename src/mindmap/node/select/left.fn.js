@@ -3,9 +3,9 @@
  * 
  * 向左移动选择节点
  * 
- * @import getParentNode from ....node.parent scoped
+ * @import getParentNode from ....layout.node.parent scoped
  * 
- * @import select from ....select scoped
+ * @import select from ..select scoped
  * 
  */
 
@@ -16,7 +16,7 @@
 
  if(node){
 
-   return await select(node.id) ;
+   return select(node) ;
  }
 
  return false ;
