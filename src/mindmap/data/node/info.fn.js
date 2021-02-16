@@ -175,18 +175,12 @@ function sync(oldId){
 
     let {
         nodes,
-        visibilityNodes,
-        unsizedNodes,
-        leafNodes
+        visibilityNodes
     } = this ;
 
     syncMap(nodes , oldId) ;
 
     syncMap(visibilityNodes , oldId) ;
-
-    syncMap(unsizedNodes , oldId) ;
-
-    syncMap(leafNodes , oldId) ;
 }
 
 function syncMap(map , id){

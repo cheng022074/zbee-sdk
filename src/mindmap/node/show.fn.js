@@ -26,7 +26,7 @@ let {
     expanded
 } = node ;
 
-if(expanded && !isLeaf(node)){
+if(expanded){
 
     let {
         children

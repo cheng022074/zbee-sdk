@@ -3,11 +3,9 @@
  * 
  * 显示节点
  * 
- * @import isLeaf from .is.leaf scoped
+ * @import getChildNodes from ..layout.nodes.child scoped
  * 
- * @import getLeafNodes from ..nodes.leaf scoped
- * 
- * @import show from .show scoped
+ * @import hide from .hide scoped
  * 
  * @param {data.Record} node 节点
  * 
@@ -22,27 +20,11 @@ let {
     return ;
  }
 
-let {
-    expanded
-} = node;
+ let childNodes = getChildNodes(node) ;
 
-if(expanded && !isLeaf(node)){
+ for(let childNode of childNodes){
 
-    let leafNodes,
-        length;
-
-    while(leafNodes = getLeafNodes(node),length = leafNodes.length){
-
-        if(length === 1 && leafNodes[0] === node){
-
-            break ;
-        }
-
-        for(let leafNode of leafNodes){
-
-            leafNode.hidden = true ;
-        }
-    }
-}
+    hidden(childNode) ;
+ }
 
 node.hidden = true ;

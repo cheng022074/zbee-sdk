@@ -11,9 +11,7 @@
  {
     rootNode,
     nodes,
-    visibilityNodes,
-    unsizedNodes,
-    leafNodes
+    visibilityNodes
  } = me,{
     children
  } = rootNode ;
@@ -28,10 +26,6 @@
  nodes.clear() ;
 
  visibilityNodes.clear() ;
-
- unsizedNodes.clear() ;
-
- leafNodes.clear() ;
 
 
 

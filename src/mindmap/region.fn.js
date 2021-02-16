@@ -28,7 +28,6 @@
  }
 
  let {
-   leafNodes,
    padding,
    width:mindmapWidth,
    height:mindmapHeight
