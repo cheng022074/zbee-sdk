@@ -9,6 +9,8 @@
  * 
  * @import from from .from scoped
  * 
+ * @import expand from .expand scoped
+ * 
  * @param {mixed} node 脑图节点
  * 
  * @return {Boolean} 如果成功选定节点则返回 true , 否则返回  false
