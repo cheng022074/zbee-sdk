@@ -132,17 +132,6 @@
 
     setY(node , bottom) ;
 
-    /*let offset = getDescendantRegion(node).top - bottom ;
-
-    if(offset < 0){
-
-      setOffsetY(node , -offset + nodeVerticalSeparationDistance) ;
-    
-    }else{
-
-      setOffsetY(node , nodeVerticalSeparationDistance) ;
-    }*/
-
     adjustY.call(me , node , getDescendantRegion(node) , positionedRegions) ;
   
   }
