@@ -63,11 +63,22 @@
  * 
  * @param {mixed} [config.layout = 'logic.right'] 布局模式
  * 
+ * @param {object} [config.api = {}] 附加 API
+ * 
  * @param {function} [config.callback] 脑图内部回调
  * 
  */
 
  let me = this ;
+
+ {
+   let methods = Object.keys(api) ;
+
+   for(let method of methods){
+
+      me[method] = include(api[method]) ;
+   }
+ }
 
  {
 
