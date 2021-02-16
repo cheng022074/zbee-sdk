@@ -30,7 +30,8 @@
    let {
       pattern:layout,
       getRootNode,
-      getDescendantNodes
+      getDescendantNodes,
+      createPositioner
    } = me.layoutConfig ;
 
    let rootNode = getRootNode() ;
@@ -41,6 +42,8 @@
    ] , () => {
 
       me.layoutData = layout(rootNode) ;
+
+      me.layoutPositioner = createPositioner(me.layoutNodes) ;
 
       me.refresh() ;
 

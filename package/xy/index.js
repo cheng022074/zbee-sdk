@@ -38822,7 +38822,7 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-    const var_current_scope_1613455282086 = new Map();
+    const var_current_scope_1613476897524 = new Map();
 
     return function() {
 
@@ -38830,9 +38830,9 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-        if (!var_current_scope_1613455282086.has(this)) {
+        if (!var_current_scope_1613476897524.has(this)) {
 
-            var_current_scope_1613455282086.set(this, (() => {
+            var_current_scope_1613476897524.set(this, (() => {
                 const isUnsized = include('src::mindmap.node.is.unsized').bind(this);
                 const getData = include('src::mindmap.layout.node.data.param').bind(this);
                 const clear = include('src::mindmap.layout.cache.clear').bind(this);
@@ -38869,7 +38869,8 @@ exports['src::mindmap.layout'] = (() => {
                     let {
                         pattern: layout,
                         getRootNode,
-                        getDescendantNodes
+                        getDescendantNodes,
+                        createPositioner
                     } = me.layoutConfig;
 
                     let rootNode = getRootNode();
@@ -38880,6 +38881,8 @@ exports['src::mindmap.layout'] = (() => {
                     ], () => {
 
                         me.layoutData = layout(rootNode);
+
+                        me.layoutPositioner = createPositioner(me.layoutNodes);
 
                         me.refresh();
 
@@ -38948,7 +38951,7 @@ exports['src::mindmap.layout'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613455282086.get(this);
+        const main = var_current_scope_1613476897524.get(this);
 
 
 
@@ -39586,11 +39589,11 @@ exports['src::mindmap.constructor'] = (() => {
 
     let createReader, buffer, isObject, isArray, emptyFn, isNumber, isString;
 
-    let var_init_locked_1613464882426;
+    let var_init_locked_1613476897494;
 
 
 
-    const var_current_scope_1613464882426 = new Map();
+    const var_current_scope_1613476897494 = new Map();
 
     return function({
         reader,
@@ -39613,7 +39616,7 @@ exports['src::mindmap.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1613464882426) {
+        if (!var_init_locked_1613476897494) {
 
             createReader = include('src::data.reader.json');
             buffer = include('src::function.buffer');
@@ -39623,15 +39626,15 @@ exports['src::mindmap.constructor'] = (() => {
             isNumber = include('src::is.number');
             isString = include('src::is.string');
 
-            var_init_locked_1613464882426 = true;
+            var_init_locked_1613476897494 = true;
         }
 
 
 
 
-        if (!var_current_scope_1613464882426.has(this)) {
+        if (!var_current_scope_1613476897494.has(this)) {
 
-            var_current_scope_1613464882426.set(this, (() => {
+            var_current_scope_1613476897494.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const setSelected = include('src::mindmap.node.field.selected').bind(this);
@@ -39756,6 +39759,8 @@ exports['src::mindmap.constructor'] = (() => {
 
                             layout = {};
                         }
+
+                        layoutConfig.createPositioner = include(`mindmap.layout.positioner.${layout.createPositioner || 'logic.right'}`).bind(me);
 
                         layoutConfig.pattern = include(`mindmap.layout.pattern.${layout.pattern || 'logic.right'}`).bind(me);
 
@@ -39961,7 +39966,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613464882426.get(this);
+        const main = var_current_scope_1613476897494.get(this);
 
 
 
@@ -44521,16 +44526,16 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
     let getHeight, getWidth, setAnchorY, getY, add, intersect, contains;
 
-    let var_init_locked_1613457878811;
+    let var_init_locked_1613476897542;
 
 
 
-    const var_current_scope_1613457878811 = new Map();
+    const var_current_scope_1613476897542 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1613457878811) {
+        if (!var_init_locked_1613476897542) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
@@ -44540,15 +44545,15 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             intersect = include('src::math.region.intersect');
             contains = include('src::math.region.contains.x');
 
-            var_init_locked_1613457878811 = true;
+            var_init_locked_1613476897542 = true;
         }
 
 
 
 
-        if (!var_current_scope_1613457878811.has(this)) {
+        if (!var_current_scope_1613476897542.has(this)) {
 
-            var_current_scope_1613457878811.set(this, (() => {
+            var_current_scope_1613476897542.set(this, (() => {
                 const setX = include('src::mindmap.layout.node.x').bind(this);
                 const setY = include('src::mindmap.layout.node.y').bind(this);
                 const setOffsetY = include('src::mindmap.layout.node.y.offset').bind(this);
@@ -44768,7 +44773,7 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613457878811.get(this);
+        const main = var_current_scope_1613476897542.get(this);
 
 
 
@@ -45431,6 +45436,325 @@ exports['src::mindmap.layout.node.region.logic'] = (() => {
 
 
         return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.right'] = (() => {
+
+    let getDistance, getAnchorXY, from;
+
+    let var_init_locked_1613477100237;
+
+    let var_class_1613477100237;
+
+
+
+    let var_global_main_1613477100237;
+
+    return function(nodes) {
+
+
+        if (!var_init_locked_1613477100237) {
+
+            getDistance = include('src::math.point.line.distance');
+            getAnchorXY = include('src::math.region.xy.anchor');
+            from = include('src::math.region.from');
+
+
+            /**
+             * 
+             * 右则逻辑图位置器实现
+             * 
+             * @import getDistance from math.point.line.distance
+             * 
+             * @import getAnchorXY from math.region.xy.anchor
+             * 
+             * @import from from math.region.from
+             * 
+             * @param {array} nodes 布局脑图节点集合
+             * 
+             */
+
+            function generateBottomAscRegions(regions) {
+
+                return regions.sort(({
+                    bottom: bottom1
+                }, {
+                    bottom: bottom2
+                }) => bottom1 - bottom2);
+            }
+
+            function generateTopDescRegion(regions) {
+
+                return regions.sort(({
+                    top: top1
+                }, {
+                    top: top2
+                }) => top2 - top1);
+            }
+
+            function generateLeftDescRegion(regions) {
+
+                return regions.sort(({
+                    left: left1
+                }, {
+                    left: left2
+                }) => left2 - left1);
+            }
+
+            function generateRightAscRegions(regions) {
+
+                return regions.sort(({
+                    right: right1
+                }, {
+                    right: right2
+                }) => right1 - right2);
+            }
+
+            function generateMap(nodes) {
+
+                let regionMap = new Map(),
+                    nodeMap = new Map();
+
+                for (let node of nodes) {
+
+                    let region = from(node);
+
+                    regionMap.set(region, node);
+
+                    nodeMap.set(node, region);
+                }
+
+                return {
+                    region: regionMap,
+                    node: nodeMap
+                };
+            }
+
+            function getNode(nodeXY, regions, isMatch, getRegionXY) {
+
+                let {
+                    regionMap
+                } = this,
+                minDistance = Number.MAX_VALUE,
+                    matchNode;
+
+                for (let region of regions) {
+
+                    if (isMatch(region, nodeXY)) {
+
+                        let distance = getDistance(getRegionXY(region), nodeXY);
+
+                        if (minDistance > distance) {
+
+                            minDistance = distance;
+
+                            matchNode = regionMap.get(region);
+                        }
+
+                    } else {
+
+                        break;
+                    }
+                }
+
+                return {
+                    node: matchNode,
+                    distance: minDistance
+                };
+
+            }
+
+            function getUpNode(nodeXY) {
+
+                let {
+                    bottomAscRegions
+                } = this;
+
+                return getNode(nodeXY, bottomAscRegions, ({
+                    bottom
+                }, {
+                    y
+                }) => bottom < y, region => getAnchorXY(region, 'b'));
+            }
+
+            function getLeftNode(nodeXY) {
+
+                let {
+                    rightAscRegions
+                } = this;
+
+                return getNode(nodeXY, rightAscRegions, ({
+                    right
+                }, {
+                    x
+                }) => right < x, region => getAnchorXY(region, 'r'));
+            }
+
+            function getDownNode(nodeXY) {
+
+                let {
+                    topDescRegions
+                } = this;
+
+                return getNode(nodeXY, topDescRegions, ({
+                    top
+                }, {
+                    y
+                }) => top > y, region => getAnchorXY(region, 't'));
+            }
+
+            function getRightNode(nodeXY) {
+
+                let {
+                    leftDescRegions
+                } = this;
+
+                return getNode(nodeXY, leftDescRegions, ({
+                    left
+                }, {
+                    x
+                }) => left > x, region => getAnchorXY(region, 'l'));
+            }
+
+            class main {
+
+                constructor(nodes) {
+
+                    let me = this,
+                        {
+                            region: regionMap,
+                            node: nodeMap
+                        } = generateMap(nodes),
+                        regions = Array.from(nodeMap.values());
+
+                    me.bottomAscRegions = generateBottomAscRegions(regions);
+
+                    me.topDescRegion = generateTopDescRegion(regions);
+
+                    me.leftDescRegions = generateLeftDescRegion(regions);
+
+                    me.rightAscRegions = generateRightAscRegions(regions);
+
+                    me.nodeMap = nodeMap;
+
+                    me.regionMap = regionMap;
+                }
+
+                getUpNode(node) {
+
+                    let me = this,
+                        {
+                            nodeMap
+                        } = me;
+
+                    return getUpNode.call(me, getAnchorXY(nodeMap.get(node), 't')).node;
+
+                }
+
+                getDownNode(node) {
+
+                    let me = this,
+                        {
+                            nodeMap
+                        } = me;
+
+                    return getDownNode.call(me, getAnchorXY(nodeMap.get(node), 'b')).node;
+                }
+
+                getLeftNode(node) {
+
+                    let me = this,
+                        {
+                            nodeMap
+                        } = me;
+
+                    return getLeftNode.call(me, getAnchorXY(nodeMap.get(node), 'l')).node;
+                }
+
+                getRightNode(node) {
+
+                    let me = this,
+                        {
+                            nodeMap
+                        } = me;
+
+                    return getRightNode.call(me, getAnchorXY(nodeMap.get(node), 'r')).node;
+                }
+
+                getNode(xy) {
+
+                    let me = this,
+                        data = [{
+                            ...getUpNode.call(me, xy),
+                            direction: 'up'
+                        }, {
+                            ...getDownNode.call(me, xy),
+                            direction: 'down'
+                        }, {
+                            ...getLeftNode.call(me, xy),
+                            direction: 'left'
+                        }],
+                        minDistance = Number.MAX_VALUE,
+                        result;
+
+                    for (let {
+                            distance,
+                            node,
+                            direction
+                        } of data) {
+
+                        if (minDistance > distance) {
+
+                            minDistance = distance;
+
+                            result = {
+                                direction,
+                                node
+                            };
+                        }
+                    }
+
+                    return result;
+                }
+
+            }
+
+            var_class_1613477100237 = class extends main {
+
+                static get __ZBEE_IS_CLASS__() {
+
+                    return true;
+                }
+
+
+                get __ZBEE_CLASS__() {
+
+                    return true;
+                }
+
+                get __ZBEE_CURRENT_CLASS__() {
+
+                    return var_class_1613477100237;
+                }
+
+                get __ZBEE_CLASS_NAME__() {
+
+                    return 'src::mindmap.layout.positioner.logic.right';
+                }
+
+            };
+
+            main = var_class_1613477100237;
+
+            var_global_main_1613477100237 = main;
+
+            var_init_locked_1613477100237 = true;
+        }
+
+
+        return new var_global_main_1613477100237(nodes);
     };
 
 })();

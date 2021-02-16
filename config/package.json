@@ -19,6 +19,7 @@
             "file.*",
             "mindmap",
             "mindmap.layout.pattern.logic.right",
+            "mindmap.layout.positioner.logic.right",
             "mindmap.layout.node.root.normal",
             "mindmap.layout.nodes.descendant.normal",
             "mindmap.layout.node.select.logic.down",

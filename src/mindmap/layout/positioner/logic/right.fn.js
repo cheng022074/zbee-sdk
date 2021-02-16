@@ -9,6 +9,8 @@
  * 
  * @import from from math.region.from
  * 
+ * @param {array} nodes 布局脑图节点集合
+ * 
  */
 
  function generateBottomAscRegions(regions){
@@ -47,7 +49,7 @@
     }) => right1 - right2) ;
  }
 
- function generateNodeMap(nodes) {
+ function generateMap(nodes) {
   
     let regionMap = new Map(),
         nodeMap = new Map();

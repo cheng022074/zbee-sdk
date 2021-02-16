@@ -94,6 +94,8 @@
 
       layout = {} ;
    }
+
+   layoutConfig.createPositioner = include(`mindmap.layout.positioner.${layout.createPositioner || 'logic.right'}`).bind(me) ;
    
    layoutConfig.pattern = include(`mindmap.layout.pattern.${layout.pattern || 'logic.right'}`).bind(me) ;
 
