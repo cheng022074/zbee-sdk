@@ -3,25 +3,32 @@
  * 
  * 收起节点
  * 
- * @import isLeaf from .is.leaf scoped
- * 
  * @import hide from .hide scoped
  * 
- * @param {data.Record} node 脑图节点
+ * @import select from .select scoped
+ * 
+ * @import from from .from scoped
+ * 
+ * @param {mixed} node 脑图节点
  * 
  * @return {boolean} 如果收起动作执行则返回 true , 否则返回 false
  * 
  */
 
+ node = from(node) ;
+
 let {
     expanded
 } = node;
 
-if(expanded && !isLeaf(node)){
+if(expanded){
 
     let {
         children
-    } = node ;
+    } = node,
+    {
+        selectedNode
+    } = this;
 
     for(let childNode of children){
 
@@ -29,6 +36,11 @@ if(expanded && !isLeaf(node)){
     }
 
     node.expanded = false ;
+
+    if(selectedNode.hidden){
+
+        select(node) ;
+    }
 
     return true ;
 }

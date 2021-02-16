@@ -10,7 +10,6 @@
         "load",
         "destroy",
         "resize",
-        "collapse",
         "deselect",
         "delete",
         "append",
@@ -20,6 +19,10 @@
         {
             "name":"selectNode",
             "impl":".mindmap.node.select"
+        },
+        {
+            "name":"collapseNode",
+            "impl":".mindmap.node.collapse"
         },
         {
             "name":"expandNode",
