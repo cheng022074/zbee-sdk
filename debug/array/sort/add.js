@@ -6,7 +6,7 @@
 
  let data = [] ;
 
- const sortFn = (a , b) => a - b ;
+ const sortFn = (a , b) => b - a ;
 
  add(data , 3 , sortFn) ;
 

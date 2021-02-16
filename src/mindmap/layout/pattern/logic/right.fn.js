@@ -197,6 +197,6 @@
     bottom:bottom2
  }){
 
-   return bottom1 - bottom2 ;
+   return bottom2 - bottom1 ;
  }
 
