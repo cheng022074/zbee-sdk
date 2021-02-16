@@ -3,7 +3,7 @@
  * 
  * 获取节点实际的数据信息
  * 
- * @param {mixed} node 节点
+ * @param {data.Record} node 节点
  * 
  * @param {object} fields 字段信息
  * 
@@ -11,9 +11,12 @@
  * 
  */
 
-return this.reader.data(node , {
-    ignoreFields:[
-    'children'
-    ],
-    fields
-}) ;
+ if(node){
+
+    return this.reader.data(node , {
+        ignoreFields:[
+        'children'
+        ],
+        fields
+    }) ;
+ }

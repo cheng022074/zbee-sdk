@@ -5,8 +5,6 @@
  * 
  * @import show from .show scoped
  * 
- * @import isLeaf from .is.leaf scoped
- * 
  * @import from from .from scoped
  * 
  * @param {mixed} node 节点

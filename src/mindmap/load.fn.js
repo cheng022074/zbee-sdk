@@ -7,6 +7,8 @@
  * 
  * @import expand from .node.expand.deep scoped
  * 
+ * @import select from .node.select scoped
+ * 
  * @param {mixed} data 数据
  * 
  * @param {mixed} [readAsRoot] 获得脑图节点根读取入口
@@ -40,9 +42,9 @@ function main(data , readAsRoot){
 
       me.rootNode = rootNode ;
 
-      rootNode.selected = true ;
-
       expand(rootNode , initVisibilityLevel) ;
+
+      select(rootNode) ;
 
   }
 }

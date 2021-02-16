@@ -3,13 +3,11 @@
  * 
  * 选定节点
  * 
- * @import data from .node.data scoped
+ * @import data from ..layout.node.data.param scoped
  * 
- * @import getParentNode from .node.parent scoped
+ * @import getParentNode from .parent scoped
  * 
- * @import expand from .node.expand scoped
- * 
- * @import from from .node.from scoped
+ * @import from from .from scoped
  * 
  * @param {mixed} node 脑图节点
  * 
@@ -21,11 +19,10 @@ node = from(node) ;
 
 let me = this,
 {
-  selectedNode,
-  restructuring
+  selectedNode
 } = me;
 
-if(!restructuring && node !== selectedNode){
+if(node !== selectedNode){
 
   if(node.hidden){
 
@@ -35,34 +32,28 @@ if(!restructuring && node !== selectedNode){
 
       while(parentNode = getParentNode(baseNode)){
 
-        parentNode.hidden = false ;
-
         parentNodes.unshift(parentNode) ;
 
-        baseNode = parentNode ; 
+        if(!parentNode.hidden){
+
+          break ;          
+        
+        }else{
+
+          baseNode = parentNode ; 
+        }
       }
 
       for(let parentNode of parentNodes){
 
         expand(parentNode) ;
 
-        let {
-          children
-        } = parentNode ;
-
-        for(let childNode of children){
-
-          childNode.hidden = false ;
-
-        }
       }
   }
 
   node.selected = true ;
 
   me.fireEvent('nodeselect' , data(node) , data(selectedNode)) ;
-
-  me.layout() ;
 
   return true ;
 

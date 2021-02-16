@@ -11,13 +11,16 @@
         "destroy",
         "resize",
         "collapse",
-        "select",
         "deselect",
         "delete",
         "append",
         "move",
         "reset",
         "focus",
+        {
+            "name":"selectNode",
+            "impl":".mindmap.node.select"
+        },
         {
             "name":"expandNode",
             "impl":".mindmap.node.expand"
