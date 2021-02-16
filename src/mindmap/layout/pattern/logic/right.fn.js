@@ -128,7 +128,7 @@
 
     let {
       bottom
-    } = getDescendantRegion(previousSiblingNode) ;
+    } = getSelfRegion(previousSiblingNode) ;
 
     setY(node , bottom) ;
 
@@ -147,7 +147,12 @@
   
   }
 
-  add(positionedRegions , getChildRegion(node) , sortPositionedRegions) ;
+  if(childNodes.length){
+    
+    add(positionedRegions , getChildRegion(node) , sortPositionedRegions) ;
+
+  }
+
  }
 
  function adjustX(node , parentNode){
