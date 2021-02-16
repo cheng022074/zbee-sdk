@@ -16,7 +16,10 @@
  let childNodes = getChildNodes(node),
     {
         length
-    } = childNodes;
+    } = childNodes,
+    {
+        nodeHorizontalSeparationDistance
+    } = this;
 
 if(length){
 
@@ -32,7 +35,7 @@ if(length){
         if(i === 0){
 
             top = region.top,
-            left = region.left ;
+            left = region.left - nodeHorizontalSeparationDistance;
         
         }
         

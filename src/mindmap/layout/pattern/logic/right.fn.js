@@ -9,8 +9,6 @@
  * 
  * @import setOffsetY from ....node.y.offset scoped
  * 
- * @import getPreviousSiblingNode from ....node.sibling.previous scoped
- * 
  * @import getParentNode from ....node.parent scoped
  * 
  * @import getChildNodes from ....nodes.child scoped
@@ -107,11 +105,38 @@
 
   adjustX.call(me , node , getParentNode(node)) ;
 
-  let childNodes = getChildNodes(node) ;
+  let childNodes = getChildNodes(node),
+  {
+    length
+  } = childNodes;
 
-  for(let childNode of childNodes){
+  for(let i = 0 ; i < length ; i ++){
+
+    let childNode = childNodes[i] ;
 
     layout.call(me , childNode , positionedRegions) ;
+    
+    let previousSiblingNode = childNodes[i - 1] ;
+
+    if(previousSiblingNode){
+
+      let {
+        bottom
+      } = getSelfRegion(previousSiblingNode) ;
+
+      setY(childNode , bottom) ;
+
+      adjustY.call(me , childNode , getDescendantRegion(childNode) , positionedRegions) ;
+    
+    }
+
+    let region = getChildRegion(childNode) ;
+
+    if(getWidth(region) !== 0){
+      
+      add(positionedRegions , region , sortPositionedRegions) ;
+
+    }
 
   }
 
@@ -121,26 +146,6 @@
   setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
 
   setY(node , getY(region) , false) ;
-
-  let previousSiblingNode = getPreviousSiblingNode(node) ;
-
-  if(previousSiblingNode){
-
-    let {
-      bottom
-    } = getSelfRegion(previousSiblingNode) ;
-
-    setY(node , bottom) ;
-
-    adjustY.call(me , node , getDescendantRegion(node) , positionedRegions) ;
-  
-  }
-
-  if(childNodes.length){
-    
-    add(positionedRegions , getChildRegion(node) , sortPositionedRegions) ;
-
-  }
 
  }
 
