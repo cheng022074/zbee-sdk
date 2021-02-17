@@ -31,6 +31,8 @@
  * 
  * @import is.string
  * 
+ * @import get from function.get
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -61,7 +63,7 @@
  * 
  * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
  * 
- * @param {mixed} [config.layout = 'logic.right'] 布局模式
+ * @param {mixed} [config.layout] 布局模式
  * 
  * @param {object} [config.api = {}] 附加 API
  * 
@@ -95,13 +97,20 @@
       layout = {} ;
    }
 
-   layoutConfig.createPositioner = include(`mindmap.layout.positioner.${layout.createPositioner || 'logic.right'}`).bind(me) ;
+   let {
+      createPositioner = 'mindmap.layout.positioner.logic.right',
+      pattern = 'mindmap.layout.pattern.logic.right',
+      getRootNode = 'mindmap.layout.range.root.normal',
+      getDescendantNodes = 'mindmap.layout.range.descendant.normal'
+   } = layout ;
+
+   layoutConfig.createPositioner = get(createPositioner , me) ;
    
-   layoutConfig.pattern = include(`mindmap.layout.pattern.${layout.pattern || 'logic.right'}`).bind(me) ;
+   layoutConfig.pattern = get(pattern , me) ;
 
-   layoutConfig.getRootNode = include(`mindmap.layout.node.root.${layout.getRootNode || 'normal'}`).bind(me) ;
+   layoutConfig.getRootNode = get(getRootNode , me) ;
 
-   layoutConfig.getDescendantNodes = include(`mindmap.layout.nodes.descendant.${layout.getDescendantNodes || 'normal'}`).bind(me) ;
+   layoutConfig.getDescendantNodes = get(getDescendantNodes , me) ;
 
    if(isNumber(nodeSpacing)){
 

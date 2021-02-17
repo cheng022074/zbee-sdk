@@ -3,8 +3,6 @@
  * 
  * 获得子孙节点
  * 
- * @import cache from mindmap.layout.cache scoped
- * 
  * @param {data.Record} node 脑图节点
  * 
  * @return {array} 子孙节点数组 
