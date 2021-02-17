@@ -13,6 +13,10 @@
  * 
  * @import generateRightRegions from .regions.right.right
  * 
+ * @import getLeftNodeAnchors from .anchors.right.left
+ * 
+ * @import getRightNodeAnchors from .anchors.right.right
+ * 
  * @param {array} nodes 布局脑图节点集合
  * 
  */
@@ -35,19 +39,35 @@
 
         let me = this,
         {
-            nodeMap
-        } = me ;
+            nodeMap,
+            rightRegions
+        } = me,
+        region = nodeMap.get(node);
 
-        return getLeftNode.call(me , getAnchorXY(nodeMap.get(node) , 'l')).node ;
+        return getNode.call(me , region , rightRegions , rightRegions.indexOf(region) + 1 , ({
+            right
+        } , {
+            left
+        }) => right < left , [
+            getLeftNodeAnchors
+        ]).node ;
     }
 
     applyRightNode(node){
 
         let me = this,
         {
-            nodeMap
-        } = me ;
+            nodeMap,
+            leftRegions
+        } = me,
+        region = nodeMap.get(node);
 
-        return getRightNode.call(me , getAnchorXY(nodeMap.get(node) , 'r')).node ;
+        return getNode.call(me , region , leftRegions , leftRegions.indexOf(region) + 1 , ({
+            left
+        } , {
+            right
+        }) => right < left , [
+            getRightNodeAnchors
+        ]).node ;
     }
  }
