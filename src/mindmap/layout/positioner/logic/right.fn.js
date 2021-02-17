@@ -90,9 +90,6 @@
                 matchNode = regionMap.get(region) ;
             }
 
-        }else{
-
-            break ;
         }
     }
 
@@ -113,7 +110,7 @@
         bottom
     } , {
         y
-    }) => bottom < y , region => getAnchorXY(region , 'b')) ;
+    }) => bottom < y , region => getAnchorXY(region , 'bl')) ;
  }
 
  function getLeftNode(nodeXY){
@@ -140,7 +137,7 @@
         top
     } , {
         y
-    }) => top > y , region => getAnchorXY(region , 't')) ;
+    }) => top > y , region => getAnchorXY(region , 'tl')) ;
  }
 
  function getRightNode(nodeXY){
@@ -220,7 +217,7 @@
             nodeMap
         } = me ;
 
-        return getUpNode.call(me , getAnchorXY(nodeMap.get(node) , 't')).node ;
+        return getUpNode.call(me , getAnchorXY(nodeMap.get(node) , 'tl')).node ;
 
     }
 
@@ -236,7 +233,7 @@
             nodeMap
         } = me ;
 
-        return getDownNode.call(me , getAnchorXY(nodeMap.get(node) , 'b')).node ;
+        return getDownNode.call(me , getAnchorXY(nodeMap.get(node) , 'bl')).node ;
     }
 
     getLeftNode(node){
