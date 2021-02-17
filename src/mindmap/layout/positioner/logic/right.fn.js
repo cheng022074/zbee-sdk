@@ -3,8 +3,6 @@
  * 
  * 右则逻辑图位置器实现
  * 
- * @import getDistance from math.point.line.distance
- * 
  * @import getAnchorXY from math.region.xy.anchor
  * 
  * @import getUpNodeAnchors from .anchors.up
@@ -12,6 +10,8 @@
  * @import init from .init
  * 
  * @import getCacheNode from .node.cache
+ * 
+ * @import getNode from .node
  * 
  * @param {array} nodes 布局脑图节点集合
  * 
@@ -33,61 +33,6 @@
     } , {
         right:right2
     }) => right1 - right2) ;
- }
-
- function getNode(region , originRegions , startIndex , isMatch , getPairAnchors){
-
-    let me = this,
-    {
-        regionMap
-    } = this,
-    {
-        length
-    } = originRegions,
-    result = [];
-
-    for(let i = startIndex ; i < length ; i ++){
-
-        let originRegion = originRegions[i] ;
-
-        if(isMatch(originRegion , region)){
-
-            let {
-                length
-            } = getPairAnchors;
-
-            for(let i = 0 ; i < length ; i ++){
-
-                let item = result[i],
-                {
-                    start,
-                    end,
-                    direction
-                } = getPairAnchors[i](originRegion , region),
-                distance = getDistance(getAnchorXY(originRegion , start) , getAnchorXY(region , end)) ;
-
-                if(!item || item.distance > distance){
-
-                    result[i] = {
-                        distance,
-                        node:regionMap.get(originRegion),
-                        direction
-                    } ;
-                }
-            }
-        }
-    }
-
-    if(result.length){
-
-        return result.sort(({
-            distance:distance1
-        } , {
-            distance:distance2
-        }) => distance1 - distance2)[0] ;
-    }
-
-    return {} ;
  }
 
  function getLeftNode(nodeXY){
