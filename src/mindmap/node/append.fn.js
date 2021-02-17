@@ -11,11 +11,17 @@
  * 
  * @import getChildOrders from .child.orders scoped
  * 
- * @param {data.Record} node 节点配置
+ * @import from from .from scoped
  * 
- * @param {data.Record} parentNode 节点
+ * @param {mixed} node 节点配置
+ * 
+ * @param {mixed} parentNode 节点
  * 
  */
+
+ node = from(node) ;
+
+ parentNode = from(parentNode) ;
 
 if((parentNode === node || getLastChildNode(parentNode) === node)){
 

@@ -17,15 +17,21 @@
  * 
  * @import getChildOrders from .child.orders scoped
  * 
- * @param {data.Record} insertNode 需要插入的节点
+ * @import from from .from scoped
  * 
- * @param {data.Record} baseNode 参照节点
+ * @param {mixed} insertNode 需要插入的节点
+ * 
+ * @param {mixed} baseNode 参照节点
  * 
  * @param {string} region 插入偏移位置
  * 
  * @return {boolea} 插入状态标识
  * 
  */
+
+ insertNode = from(insertNode) ;
+
+ baseNode = from(baseNode) ;
 
 if(!isRootNode(baseNode)){
 
