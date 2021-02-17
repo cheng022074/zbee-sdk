@@ -7,9 +7,4 @@
  * 
  */
 
- let {
-    focusNode,
-    rootNode
- } = this ;
-
- return focusNode || rootNode ;
+ return this.rootNode ;

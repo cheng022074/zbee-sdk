@@ -7,64 +7,48 @@
  * 
  * @import getParentNode from .parent scoped
  * 
- * @import data from .data scoped
+ * @import data from ..layout.node.data.param scoped
  * 
- * @import getDescendantNodes from ..nodes.relation.descendant scoped
+ * @import getDescendantNodes from ..nodes.descendant scoped
  * 
  * @import hide from .hide scoped
  * 
  * @import remove from .delete scoped
  * 
- * @param {data.Record} node 节点
+ * @param {mixed} node 节点
  * 
- * @param {boolean} [keepSelf = false] 删除时是否仅删除指节点的所有子节点，如果是则指定 true , 否则指定 false
- * 
+ * @return {boolean} 删除标识
  */
 
- let parentNode = getParentNode(node) ;
+node = from(node) ;
 
- if(!isRootNode(node) && parentNode){
+let parentNode = getParentNode(node) ;
 
-    if(keepSelf){
+if(!isRootNode(node)){
 
-        let {
-            children
-        } = node ;
+   hide(node) ;
 
-        children = Array.from(children) ;
+   let nodes = [
+       node,
+       ...getDescendantNodes(node)
+   ] ;
 
-        let deleteNodes = [] ;
+   for(let node of nodes){
 
-        for(let childNode of children){
+       node.parentNodeId = null ;
 
-            deleteNodes.push(...remove(childNode)) ;
-        }
-
-        return [] ;
-
-    }
+       node.children.length = 0 ;
+   }
 
     let {
         children
     } = parentNode;
 
-    hide(node) ;
+   children.splice(children.indexOf(node) , 1) ;
 
-    let descendantNodes = getDescendantNodes(node , false),
-        deleteNodes = [];
+   me.fireEvent('nodedelete' , data(node)) ;
 
-    for(let node of descendantNodes){
+   return true ;
+}
 
-        deleteNodes.push(data(node)) ;
-    }
-
-    deleteNodes.push(data(node)) ;
-
-    node.parentNodeId = null ;
-
-    children.splice(children.indexOf(node) , 1) ;
-
-    return deleteNodes ;
- }
-
- return [] ;
+return false ;
