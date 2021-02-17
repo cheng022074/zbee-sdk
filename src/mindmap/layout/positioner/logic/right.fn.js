@@ -157,6 +157,22 @@
     }) => left > x , region => getAnchorXY(region , 'l')) ;
  }
 
+ function getCacheNode(node , name){
+
+    let me = this,
+    {
+        cache
+    } = me,
+    map = cache[name];
+
+    if(!map.has(node)){
+
+        map.set(node , me[`apply${name}`](node)) ;
+    }
+
+    return map.get(node) ;
+ }
+
  const {
     from
  } = Array ;
@@ -183,9 +199,21 @@
         me.nodeMap = nodeMap ;
 
         me.regionMap = regionMap ;
+
+        me.cache = {
+            UpNode:new Map(),
+            DownNode:new Map(),
+            LeftNode:new Map(),
+            RightNode:new Map()
+        } ;
     }
 
     getUpNode(node){
+
+        return getCacheNode.call(this , node , 'UpNode') ;
+    }
+
+    applyUpNode(node){
 
         let me = this,
         {
@@ -198,6 +226,11 @@
 
     getDownNode(node){
 
+        return getCacheNode.call(this , node , 'DownNode') ;
+    }
+
+    applyDownNode(node){
+
         let me = this,
         {
             nodeMap
@@ -208,6 +241,11 @@
 
     getLeftNode(node){
 
+        return getCacheNode.call(this , node , 'LeftNode') ;
+    }
+
+    applyLeftNode(node){
+
         let me = this,
         {
             nodeMap
@@ -217,6 +255,11 @@
     }
 
     getRightNode(node){
+
+        return getCacheNode.call(this , node , 'RightNode') ;
+    }
+
+    applyRightNode(node){
 
         let me = this,
         {
