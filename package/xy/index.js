@@ -36196,31 +36196,28 @@ exports['src::file.write.json'] = (() => {
 
 exports['src::mindmap'] = (() => {
 
-    let mixin_1613462319708__1, extend, constructor, method_load, method_destroy, method_resize, method_deselect, method_delete, method_append, method_move, method_reset, method_focus, method_selectNode, method_collapseNode, method_expandNode, method_isNodeMoveDown, method_isNodeMoveUp, method_getNextSiblingNode, method_getPreviousSiblingNode, method_info, method_updateOrderByNodes, method_query, method_getParentNode, method_getChildNodes, method_text, method_insertBefore, method_insertAfter, method_startRestructureNode, method_restructureNode, method_endRestructureNode, isObject;
+    let mixin_1613569479755__1, extend, constructor, method_load, method_destroy, method_resize, method_deselect, method_reset, method_focus, method_selectNode, method_collapseNode, method_expandNode, method_isNodeMoveDown, method_isNodeMoveUp, method_getNextSiblingNode, method_getPreviousSiblingNode, method_info, method_query, method_getParentNode, method_getChildNodes, method_text, method_deleteNode, method_appendNode, method_insertNodeBefore, method_insertNodeAfter, method_startRestructureNode, method_restructureNode, method_endRestructureNode, isObject;
 
-    let var_init_locked_1613462319709;
+    let var_init_locked_1613569479756;
 
-    let var_class_1613462319709;
+    let var_class_1613569479756;
 
 
 
-    let var_global_main_1613462319709;
+    let var_global_main_1613569479756;
 
     return function(config) {
 
 
-        if (!var_init_locked_1613462319709) {
+        if (!var_init_locked_1613569479756) {
 
-            mixin_1613462319708__1 = include('src::mixin.observable');
+            mixin_1613569479755__1 = include('src::mixin.observable');
             extend = include('src::class.empty')();
             constructor = include('src::mindmap.constructor');
             method_load = include('src::mindmap.load');
             method_destroy = include('src::mindmap.destroy');
             method_resize = include('src::mindmap.resize');
             method_deselect = include('src::mindmap.deselect');
-            method_delete = include('src::mindmap.delete');
-            method_append = include('src::mindmap.append');
-            method_move = include('src::mindmap.move');
             method_reset = include('src::mindmap.reset');
             method_focus = include('src::mindmap.focus');
             method_selectNode = include('src::mindmap.node.select');
@@ -36231,13 +36228,14 @@ exports['src::mindmap'] = (() => {
             method_getNextSiblingNode = include('src::mindmap.node.sibling.next');
             method_getPreviousSiblingNode = include('src::mindmap.node.sibling.previous');
             method_info = include('src::mindmap.node.info');
-            method_updateOrderByNodes = include('src::mindmap.nodes.order');
             method_query = include('src::mindmap.node.query');
             method_getParentNode = include('src::mindmap.node.parent');
             method_getChildNodes = include('src::mindmap.nodes.child');
             method_text = include('src::mindmap.node.text');
-            method_insertBefore = include('src::mindmap.insert.before');
-            method_insertAfter = include('src::mindmap.insert.after');
+            method_deleteNode = include('src::mindmap.node.delete');
+            method_appendNode = include('src::mindmap.node.append');
+            method_insertNodeBefore = include('src::mindmap.node.insert.before');
+            method_insertNodeAfter = include('src::mindmap.node.insert.after');
             method_startRestructureNode = include('src::mindmap.node.restructure.start');
             method_restructureNode = include('src::mindmap.node.restructure');
             method_endRestructureNode = include('src::mindmap.node.restructure.end');
@@ -36278,21 +36276,6 @@ exports['src::mindmap'] = (() => {
                 deselect(...args) {
 
                     return method_deselect.apply(this, args);
-
-                }
-                delete(...args) {
-
-                    return method_delete.apply(this, args);
-
-                }
-                append(...args) {
-
-                    return method_append.apply(this, args);
-
-                }
-                move(...args) {
-
-                    return method_move.apply(this, args);
 
                 }
                 reset(...args) {
@@ -36345,11 +36328,6 @@ exports['src::mindmap'] = (() => {
                     return method_info.apply(this, args);
 
                 }
-                updateOrderByNodes(...args) {
-
-                    return method_updateOrderByNodes.apply(this, args);
-
-                }
                 query(...args) {
 
                     return method_query.apply(this, args);
@@ -36370,14 +36348,24 @@ exports['src::mindmap'] = (() => {
                     return method_text.apply(this, args);
 
                 }
-                insertBefore(...args) {
+                deleteNode(...args) {
 
-                    return method_insertBefore.apply(this, args);
+                    return method_deleteNode.apply(this, args);
 
                 }
-                insertAfter(...args) {
+                appendNode(...args) {
 
-                    return method_insertAfter.apply(this, args);
+                    return method_appendNode.apply(this, args);
+
+                }
+                insertNodeBefore(...args) {
+
+                    return method_insertNodeBefore.apply(this, args);
+
+                }
+                insertNodeAfter(...args) {
+
+                    return method_insertNodeAfter.apply(this, args);
 
                 }
                 startRestructureNode(...args) {
@@ -36400,7 +36388,7 @@ exports['src::mindmap'] = (() => {
 
             }
 
-            var_class_1613462319709 = class extends main {
+            var_class_1613569479756 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -36415,7 +36403,7 @@ exports['src::mindmap'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1613462319709;
+                    return var_class_1613569479756;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -36425,15 +36413,15 @@ exports['src::mindmap'] = (() => {
 
             };
 
-            main = var_class_1613462319709;
+            main = var_class_1613569479756;
 
-            var_global_main_1613462319709 = main;
+            var_global_main_1613569479756 = main;
 
-            var_init_locked_1613462319709 = true;
+            var_init_locked_1613569479756 = true;
         }
 
 
-        return new var_global_main_1613462319709(config);
+        return new var_global_main_1613569479756(config);
     };
 
 })();
@@ -36468,43 +36456,6 @@ exports['src::mindmap.node.is.visibility'] = (() => {
 
 
         return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.node.root'] = (() => {
-
-
-
-
-
-
-
-    function main() {
-
-
-        /**
-         * 
-         * 获得实际的根节点
-         * 
-         * @return {data.Record} 根节点 
-         * 
-         */
-
-        let {
-            focusNode,
-            rootNode
-        } = this;
-
-        return focusNode || rootNode;
-
-    }
-
-    return function() {
-
-
-
-        return main.call(this);
     };
 
 })();
@@ -36606,7 +36557,7 @@ exports['src::mindmap.node.is.root'] = (() => {
 
 
 
-    const var_current_scope_1613300300050 = new Map();
+    const var_current_scope_1613566322989 = new Map();
 
     return function(node) {
 
@@ -36614,10 +36565,9 @@ exports['src::mindmap.node.is.root'] = (() => {
 
 
 
-        if (!var_current_scope_1613300300050.has(this)) {
+        if (!var_current_scope_1613566322989.has(this)) {
 
-            var_current_scope_1613300300050.set(this, (() => {
-                const getRootNode = include('src::mindmap.node.root').bind(this);
+            var_current_scope_1613566322989.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
 
                 function main(node) {
@@ -36625,19 +36575,17 @@ exports['src::mindmap.node.is.root'] = (() => {
 
                     /**
                      * 
-                     * 判定指定节点是否为根节点
-                     * 
-                     * @import getRootNode from ..root scoped
+                     * 判断指定脑图节点是否为根节点
                      * 
                      * @import from from ..from scoped
                      * 
-                     * @param {mixed} node 节点
+                     * @param {data.Record} node 脑图节点
                      * 
-                     * @return {boolean} 如果为脑图根节点则返回 true , 否则返回 false 
+                     * @return {boolean} 如果为根节点则返回 true , 否则返回 false 
                      * 
                      */
 
-                    return from(node) === getRootNode();
+                    return from(node) === this.rootNode;
 
                 }
 
@@ -36646,7 +36594,7 @@ exports['src::mindmap.node.is.root'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613300300050.get(this);
+        const main = var_current_scope_1613566322989.get(this);
 
 
 
@@ -36701,72 +36649,311 @@ exports['src::mindmap.node.parent'] = (() => {
 
 })();
 
-exports['src::mindmap.nodes.relation.descendant'] = (() => {
-
-    let getDescendantNodes;
-
-    let var_init_locked_1608956299050;
+exports['src::mindmap.layout.node.data'] = (() => {
 
 
 
-    function main(node, isVisible) {
+
+
+
+
+    function main(node, fields) {
 
 
         /**
          * 
-         * 获取所有子孙节点
+         * 获取节点实际的数据信息
          * 
-         * @import getDescendantNodes from .descendant
+         * @param {data.Record} node 节点
          * 
-         * @param {data.Reocrd} node 节点
+         * @param {object} fields 字段信息
          * 
-         * @param {boolean} [isVisible = true] 是否只获取可见的节点
-         * 
-         * @return {array} 节点集合
+         * @return {object} 数据信息 
          * 
          */
 
-        let {
-            descendantNodes
-        } = node;
+        if (node) {
 
-        if (descendantNodes) {
-
-            return descendantNodes;
+            return this.reader.data(node, {
+                ignoreFields: [
+                    'children'
+                ],
+                fields
+            });
         }
-
-        let {
-            expanded,
-            children
-        } = node;
-
-        descendantNodes = node.descendantNodes = [];
-
-        if (expanded || !isVisible) {
-
-            for (let childNode of children) {
-
-                descendantNodes.push(childNode, ...getDescendantNodes(childNode, isVisible));
-            }
-
-        }
-
-        return descendantNodes;
 
     }
 
-    return function(node, isVisible = true) {
+    return function(node, fields) {
 
 
-        if (!var_init_locked_1608956299050) {
 
-            getDescendantNodes = include('src::mindmap.nodes.relation.descendant');
+        return main.call(this, node, fields);
+    };
 
-            var_init_locked_1608956299050 = true;
+})();
+
+exports['src::mindmap.layout.node.parent'] = (() => {
+
+
+
+
+
+
+
+    function main(node) {
+
+
+        /**
+         * 
+         * 获取父节点
+         * 
+         * @param {data.Record} node 脑图节点
+         * 
+         * @return {data.Record} 所获取的父节点
+         * 
+         */
+
+
+        let {
+            nodes,
+            layoutNodes
+        } = this, {
+            parentNodeId
+        } = node,
+        parentNode = nodes.get(parentNodeId);
+
+        if (parentNode && layoutNodes.includes(parentNode)) {
+
+            return parentNode;
         }
 
+    }
 
-        return main.call(this, node, isVisible);
+    return function(node) {
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.layout.node.is.root'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1613359840570 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1613359840570.has(this)) {
+
+            var_current_scope_1613359840570.set(this, (() => {
+                const getParentNode = include('src::mindmap.layout.node.parent').bind(this);
+
+                function main(node) {
+
+
+                    /**
+                     * 
+                     * 判断是否为根节点
+                     * 
+                     * @import getParentNode from ..parent scoped
+                     * 
+                     * @param {data.Record} node 脑图节点
+                     * 
+                     * @return {boolean} 如果为根节点则返回 true , 否则返回 false 
+                     * 
+                     */
+
+                    return !getParentNode(node);
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1613359840570.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.node.is.leaf'] = (() => {
+
+
+
+
+
+
+
+    function main(node) {
+
+
+        /**
+         * 
+         * 判断指定节点是否为叶子节点
+         * 
+         * @param {data.Record} node 节点
+         * 
+         * @return {boolean} 如果节点为叶子节点则返回 true , 否则 false
+         * 
+         */
+
+
+        let {
+            children
+        } = node;
+
+        return !children.length;
+
+    }
+
+    return function(node) {
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.layout.node.data.param'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1613395609741 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1613395609741.has(this)) {
+
+            var_current_scope_1613395609741.set(this, (() => {
+                const data = include('src::mindmap.layout.node.data').bind(this);
+                const isRootNode = include('src::mindmap.layout.node.is.root').bind(this);
+                const isLeafNode = include('src::mindmap.node.is.leaf').bind(this);
+
+                function main(node) {
+
+
+                    /**
+                     * 
+                     * 获取节点参数级数据信息
+                     * 
+                     * @import data from ..data scoped
+                     * 
+                     * @import isRootNode from ..is.root scoped
+                     * 
+                     * @import isLeafNode from mindmap.node.is.leaf scoped
+                     * 
+                     * @param {mixed} node 节点
+                     * 
+                     * @return {object} 数据信息 
+                     * 
+                     */
+
+                    return data(node, {
+
+                        root(node) {
+
+                            return isRootNode(node);
+                        },
+
+                        leaf(node) {
+
+                            return isLeafNode(node);
+                        }
+                    });
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1613395609741.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.nodes.descendant'] = (() => {
+
+
+
+
+
+
+
+
+    /**
+     * 
+     * 获得子孙节点
+     * 
+     * @param {data.Record} node 脑图节点
+     * 
+     * @return {array} 子孙节点数组 
+     * 
+     */
+
+    function main(node) {
+
+        return getDescendantNodes(node);
+    }
+
+    function getDescendantNodes({
+        expanded,
+        children
+    }) {
+
+        let result = [];
+
+        if (expanded) {
+
+            for (let childNode of children) {
+
+                result.push(childNode);
+
+                result.push(...getDescendantNodes(childNode));
+            }
+
+            return result;
+        }
+
+        return result;
+    }
+
+    return function(node) {
+
+
+
+        return main.call(this, node);
     };
 
 })();
@@ -36985,6 +37172,98 @@ exports['src::mindmap.node.hide'] = (() => {
 
 })();
 
+exports['src::mindmap.node.child.orders'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1613568804350 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1613568804350.has(this)) {
+
+            var_current_scope_1613568804350.set(this, (() => {
+                const data = include('src::mindmap.layout.node.data.param').bind(this);
+
+                function main(node) {
+
+
+                    /**
+                     * 
+                     * 将指定节点的子节点进行排序，如果排序信息有变化则抛出事件
+                     * 
+                     * @import data from ....layout.node.data.param scoped
+                     * 
+                     * @param {data.Record} node 节点
+                     * 
+                     * @return {array} 排序信息
+                     * 
+                     */
+
+                    let {
+                        children
+                    } = node,
+                    prevOrder = -Number.MAX_VALUE;
+
+                    for (let node of children) {
+
+                        let {
+                            order
+                        } = node;
+
+                        if (order <= prevOrder) {
+
+                            let {
+                                length
+                            } = children,
+                            orderNodes = [];
+
+                            for (let i = 0; i < length; i++) {
+
+                                let node = children[i];
+
+                                if (node.order !== i) {
+
+                                    node.order = i;
+
+                                    orderNodes.push(data(node));
+                                }
+                            }
+
+                            return orderNodes;
+                        }
+
+                        prevOrder = order;
+                    }
+
+                    return [];
+
+
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1613568804350.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
 exports['src::mindmap.node.delete'] = (() => {
 
 
@@ -36993,25 +37272,25 @@ exports['src::mindmap.node.delete'] = (() => {
 
 
 
-    const var_current_scope_1613308340408 = new Map();
+    const var_current_scope_1613568963852 = new Map();
 
-    return function(node, keepSelf = false) {
-
-
+    return function(node) {
 
 
 
-        if (!var_current_scope_1613308340408.has(this)) {
 
-            var_current_scope_1613308340408.set(this, (() => {
+
+        if (!var_current_scope_1613568963852.has(this)) {
+
+            var_current_scope_1613568963852.set(this, (() => {
                 const isRootNode = include('src::mindmap.node.is.root').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
-                const data = include('src::mindmap.node.data').bind(this);
-                const getDescendantNodes = include('src::mindmap.nodes.relation.descendant').bind(this);
+                const data = include('src::mindmap.layout.node.data.param').bind(this);
+                const getDescendantNodes = include('src::mindmap.nodes.descendant').bind(this);
                 const hide = include('src::mindmap.node.hide').bind(this);
-                const remove = include('src::mindmap.node.delete').bind(this);
+                const getChildOrders = include('src::mindmap.node.child.orders').bind(this);
 
-                function main(node, keepSelf) {
+                function main(node) {
 
 
                     /**
@@ -37022,67 +37301,51 @@ exports['src::mindmap.node.delete'] = (() => {
                      * 
                      * @import getParentNode from .parent scoped
                      * 
-                     * @import data from .data scoped
+                     * @import data from ..layout.node.data.param scoped
                      * 
-                     * @import getDescendantNodes from ..nodes.relation.descendant scoped
+                     * @import getDescendantNodes from ..nodes.descendant scoped
                      * 
                      * @import hide from .hide scoped
                      * 
-                     * @import remove from .delete scoped
+                     * @import getChildOrders from .child.orders scoped
                      * 
-                     * @param {data.Record} node 节点
+                     * @param {mixed} node 节点
                      * 
-                     * @param {boolean} [keepSelf = false] 删除时是否仅删除指节点的所有子节点，如果是则指定 true , 否则指定 false
-                     * 
+                     * @return {boolean} 删除标识
                      */
+
+                    node = from(node);
 
                     let parentNode = getParentNode(node);
 
-                    if (!isRootNode(node) && parentNode) {
+                    if (!isRootNode(node)) {
 
-                        if (keepSelf) {
+                        hide(node);
 
-                            let {
-                                children
-                            } = node;
+                        let nodes = [
+                            node,
+                            ...getDescendantNodes(node)
+                        ];
 
-                            children = Array.from(children);
+                        for (let node of nodes) {
 
-                            let deleteNodes = [];
+                            node.parentNodeId = null;
 
-                            for (let childNode of children) {
-
-                                deleteNodes.push(...remove(childNode));
-                            }
-
-                            return [];
-
+                            node.children.length = 0;
                         }
 
                         let {
                             children
                         } = parentNode;
 
-                        hide(node);
-
-                        let descendantNodes = getDescendantNodes(node, false),
-                            deleteNodes = [];
-
-                        for (let node of descendantNodes) {
-
-                            deleteNodes.push(data(node));
-                        }
-
-                        deleteNodes.push(data(node));
-
-                        node.parentNodeId = null;
-
                         children.splice(children.indexOf(node), 1);
 
-                        return deleteNodes;
+                        me.fireEvent('nodedelete', data(node), getChildOrders(parentNode));
+
+                        return true;
                     }
 
-                    return [];
+                    return false;
 
                 }
 
@@ -37091,11 +37354,11 @@ exports['src::mindmap.node.delete'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613308340408.get(this);
+        const main = var_current_scope_1613568963852.get(this);
 
 
 
-        return main.call(this, node, keepSelf);
+        return main.call(this, node);
     };
 
 })();
@@ -37723,275 +37986,6 @@ exports['src::function.buffer'] = (() => {
 
 })();
 
-exports['src::mindmap.data.node.parent'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1608956299071 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1608956299071.has(this)) {
-
-            var_current_scope_1608956299071.set(this, (() => {
-                const from = include('src::mindmap.data.node.from').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 获取指定节点的父节点引用
-                     * 
-                     * @import from from .from scoped
-                     * 
-                     * @param {mixed} node 节点
-                     * 
-                     * @return {data.Record} 父节点 
-                     * 
-                     */
-
-                    node = from(node);
-
-                    if (node) {
-
-                        let {
-                            parentNodeId
-                        } = node;
-
-                        if (parentNodeId) {
-
-                            return from(parentNodeId);
-                        }
-                    }
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956299071.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.node.is.leaf'] = (() => {
-
-
-
-
-
-
-
-    function main(node) {
-
-
-        /**
-         * 
-         * 判断指定节点是否为叶子节点
-         * 
-         * @param {data.Record} node 节点
-         * 
-         * @return {boolean} 如果节点为叶子节点则返回 true , 否则 false
-         * 
-         */
-
-
-        let {
-            children
-        } = node;
-
-        return !children.length;
-
-    }
-
-    return function(node) {
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.data'] = (() => {
-
-    let getRegionCenterXY, getRegionRightXY, getRegionLeftXY, from;
-
-    let var_init_locked_1613308340439;
-
-
-
-    const var_current_scope_1613308340439 = new Map();
-
-    return function(mindNodes, generateLines = false) {
-
-
-        if (!var_init_locked_1613308340439) {
-
-            getRegionCenterXY = include('src::math.region.xy.center');
-            getRegionRightXY = include('src::math.region.xy.right');
-            getRegionLeftXY = include('src::math.region.xy.left');
-            from = include('src::math.region.from');
-
-            var_init_locked_1613308340439 = true;
-        }
-
-
-
-
-        if (!var_current_scope_1613308340439.has(this)) {
-
-            var_current_scope_1613308340439.set(this, (() => {
-                const getParentNode = include('src::mindmap.data.node.parent').bind(this);
-                const isRootNode = include('src::mindmap.node.is.root').bind(this);
-                const isLeafNode = include('src::mindmap.node.is.leaf').bind(this);
-                const getNodeData = include('src::mindmap.node.data').bind(this);
-
-
-                /**
-                 * 
-                 * 输出脑图节点
-                 * 
-                 * @import getRegionCenterXY from math.region.xy.center
-                 * 
-                 * @import getRegionRightXY from math.region.xy.right
-                 * 
-                 * @import getRegionLeftXY from math.region.xy.left
-                 * 
-                 * @import from from math.region.from
-                 * 
-                 * @import getParentNode from .data.node.parent scoped
-                 * 
-                 * @import isRootNode from .node.is.root scoped
-                 * 
-                 * @import isLeafNode from .node.is.leaf scoped
-                 * 
-                 * @import getNodeData from .node.data scoped
-                 * 
-                 * @param {array} mindNodes 节点集合
-                 * 
-                 * @param {boolean} [generateLines = false] 生成连线信息 
-                 * 
-                 * @return {array} 处理后的脑图节点
-                 * 
-                 */
-
-                function get(node, data) {
-
-                    if (!data.has(node)) {
-
-                        let nodeData = getNodeData(node),
-                            region = from(nodeData);
-
-                        data.set(node, {
-                            data: nodeData,
-                            rightXY: getRegionRightXY(region),
-                            leftXY: getRegionLeftXY(region),
-                            centerXY: getRegionCenterXY(region)
-                        });
-                    }
-
-                    return data.get(node);
-                }
-
-                function getData(node, data) {
-
-                    return get(node, data).data;
-                }
-
-                function getRightXY(node, data) {
-
-                    return get(node, data).rightXY;
-                }
-
-                function getLeftXY(node, data) {
-
-                    return get(node, data).leftXY;
-                }
-
-                function getCenterXY(node, data) {
-
-                    return get(node, data).centerXY;
-                }
-
-                function main(mindNodes, generateLines) {
-
-                    let nodes = [],
-                        lines = [],
-                        selectedNode,
-                        data = new Map();
-
-                    mindNodes = Array.from(mindNodes);
-
-                    for (let mindNode of mindNodes) {
-
-                        if (generateLines) {
-
-                            let parentNode = getParentNode(mindNode);
-
-                            if (parentNode && mindNodes.includes(parentNode)) {
-
-                                let {
-                                    placeholder: indicated
-                                } = mindNode;
-
-                                lines.push({
-                                    indicated,
-                                    start: getData(parentNode, data),
-                                    startCenterXY: getCenterXY(parentNode, data),
-                                    startRightXY: getRightXY(parentNode, data),
-                                    end: getData(mindNode, data),
-                                    endLeftXY: getLeftXY(mindNode, data)
-                                });
-                            }
-                        }
-
-                        let node = getData(mindNode, data);
-
-                        nodes.push(node);
-
-                        if (mindNode.selected) {
-
-                            selectedNode = node;
-                        }
-                    }
-
-                    return {
-                        selectedNode,
-                        nodes,
-                        lines
-                    };
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613308340439.get(this);
-
-
-
-        return main.call(this, mindNodes, generateLines);
-    };
-
-})();
-
 exports['src::mindmap.node.is.unsized'] = (() => {
 
 
@@ -38018,221 +38012,6 @@ exports['src::mindmap.node.is.unsized'] = (() => {
     }
 
     return function(node) {
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.layout.node.data'] = (() => {
-
-
-
-
-
-
-
-    function main(node, fields) {
-
-
-        /**
-         * 
-         * 获取节点实际的数据信息
-         * 
-         * @param {data.Record} node 节点
-         * 
-         * @param {object} fields 字段信息
-         * 
-         * @return {object} 数据信息 
-         * 
-         */
-
-        if (node) {
-
-            return this.reader.data(node, {
-                ignoreFields: [
-                    'children'
-                ],
-                fields
-            });
-        }
-
-    }
-
-    return function(node, fields) {
-
-
-
-        return main.call(this, node, fields);
-    };
-
-})();
-
-exports['src::mindmap.layout.node.parent'] = (() => {
-
-
-
-
-
-
-
-    function main(node) {
-
-
-        /**
-         * 
-         * 获取父节点
-         * 
-         * @param {data.Record} node 脑图节点
-         * 
-         * @return {data.Record} 所获取的父节点
-         * 
-         */
-
-
-        let {
-            nodes,
-            layoutNodes
-        } = this, {
-            parentNodeId
-        } = node,
-        parentNode = nodes.get(parentNodeId);
-
-        if (parentNode && layoutNodes.includes(parentNode)) {
-
-            return parentNode;
-        }
-
-    }
-
-    return function(node) {
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.layout.node.is.root'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1613359840570 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1613359840570.has(this)) {
-
-            var_current_scope_1613359840570.set(this, (() => {
-                const getParentNode = include('src::mindmap.layout.node.parent').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 判断是否为根节点
-                     * 
-                     * @import getParentNode from ..parent scoped
-                     * 
-                     * @param {data.Record} node 脑图节点
-                     * 
-                     * @return {boolean} 如果为根节点则返回 true , 否则返回 false 
-                     * 
-                     */
-
-                    return !getParentNode(node);
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613359840570.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.layout.node.data.param'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1613395609741 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1613395609741.has(this)) {
-
-            var_current_scope_1613395609741.set(this, (() => {
-                const data = include('src::mindmap.layout.node.data').bind(this);
-                const isRootNode = include('src::mindmap.layout.node.is.root').bind(this);
-                const isLeafNode = include('src::mindmap.node.is.leaf').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 获取节点参数级数据信息
-                     * 
-                     * @import data from ..data scoped
-                     * 
-                     * @import isRootNode from ..is.root scoped
-                     * 
-                     * @import isLeafNode from mindmap.node.is.leaf scoped
-                     * 
-                     * @param {mixed} node 节点
-                     * 
-                     * @return {object} 数据信息 
-                     * 
-                     */
-
-                    return data(node, {
-
-                        root(node) {
-
-                            return isRootNode(node);
-                        },
-
-                        leaf(node) {
-
-                            return isLeafNode(node);
-                        }
-                    });
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613395609741.get(this);
 
 
 
@@ -39044,13 +38823,13 @@ exports['src::mindmap.refresh'] = (() => {
 
 exports['src::mindmap.constructor'] = (() => {
 
-    let createReader, buffer, isObject, isArray, emptyFn, isNumber, isString;
+    let createReader, buffer, isObject, isArray, emptyFn, isNumber, isString, get;
 
-    let var_init_locked_1613476897494;
+    let var_init_locked_1613569479813;
 
 
 
-    const var_current_scope_1613476897494 = new Map();
+    const var_current_scope_1613569479813 = new Map();
 
     return function({
         reader,
@@ -39067,13 +38846,13 @@ exports['src::mindmap.constructor'] = (() => {
         width = 0,
         height = 0,
         placeholderNodeData = {},
-        layout = 'logic.right',
+        layout,
         api = {},
         callback
     }) {
 
 
-        if (!var_init_locked_1613476897494) {
+        if (!var_init_locked_1613569479813) {
 
             createReader = include('src::data.reader.json');
             buffer = include('src::function.buffer');
@@ -39082,21 +38861,21 @@ exports['src::mindmap.constructor'] = (() => {
             emptyFn = include('src::function.empty')();
             isNumber = include('src::is.number');
             isString = include('src::is.string');
+            get = include('src::function.get');
 
-            var_init_locked_1613476897494 = true;
+            var_init_locked_1613569479813 = true;
         }
 
 
 
 
-        if (!var_current_scope_1613476897494.has(this)) {
+        if (!var_current_scope_1613569479813.has(this)) {
 
-            var_current_scope_1613476897494.set(this, (() => {
+            var_current_scope_1613569479813.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const setSelected = include('src::mindmap.node.field.selected').bind(this);
                 const setIndicated = include('src::mindmap.indicated').bind(this);
-                const data = include('src::mindmap.data').bind(this);
                 const doLayout = include('src::mindmap.layout').bind(this);
                 const doRefresh = include('src::mindmap.refresh').bind(this);
 
@@ -39137,8 +38916,6 @@ exports['src::mindmap.constructor'] = (() => {
                      * 
                      * @import buffer from function.buffer
                      * 
-                     * @import data from .data scoped
-                     * 
                      * @import doLayout from .layout scoped
                      * 
                      * @import doRefresh from .refresh scoped
@@ -39152,6 +38929,8 @@ exports['src::mindmap.constructor'] = (() => {
                      * @import is.number
                      * 
                      * @import is.string
+                     * 
+                     * @import get from function.get
                      * 
                      * @param {object} config 脑图配置
                      * 
@@ -39183,7 +38962,7 @@ exports['src::mindmap.constructor'] = (() => {
                      * 
                      * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
                      * 
-                     * @param {mixed} [config.layout = 'logic.right'] 布局模式
+                     * @param {mixed} [config.layout] 布局模式
                      * 
                      * @param {object} [config.api = {}] 附加 API
                      * 
@@ -39198,7 +38977,7 @@ exports['src::mindmap.constructor'] = (() => {
 
                         for (let method of methods) {
 
-                            me[method] = include(api[method]);
+                            me[method] = get(api[method], me);
                         }
                     }
 
@@ -39217,13 +38996,20 @@ exports['src::mindmap.constructor'] = (() => {
                             layout = {};
                         }
 
-                        layoutConfig.createPositioner = include(`mindmap.layout.positioner.${layout.createPositioner || 'logic.right'}`).bind(me);
+                        let {
+                            createPositioner = 'mindmap.layout.positioner.logic.right',
+                                pattern = 'mindmap.layout.pattern.logic.right',
+                                getRootNode = 'mindmap.node.root',
+                                getDescendantNodes = 'mindmap.nodes.descendant'
+                        } = layout;
 
-                        layoutConfig.pattern = include(`mindmap.layout.pattern.${layout.pattern || 'logic.right'}`).bind(me);
+                        layoutConfig.createPositioner = get(createPositioner, me);
 
-                        layoutConfig.getRootNode = include(`mindmap.layout.node.root.${layout.getRootNode || 'normal'}`).bind(me);
+                        layoutConfig.pattern = get(pattern, me);
 
-                        layoutConfig.getDescendantNodes = include(`mindmap.layout.nodes.descendant.${layout.getDescendantNodes || 'normal'}`).bind(me);
+                        layoutConfig.getRootNode = get(getRootNode, me);
+
+                        layoutConfig.getDescendantNodes = get(getDescendantNodes, me);
 
                         if (isNumber(nodeSpacing)) {
 
@@ -39423,7 +39209,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613476897494.get(this);
+        const main = var_current_scope_1613569479813.get(this);
 
 
 
@@ -40124,7 +39910,7 @@ exports['src::mindmap.deselect'] = (() => {
 
 })();
 
-exports['src::mindmap.order'] = (() => {
+exports['src::mindmap.node.root'] = (() => {
 
 
 
@@ -40132,1760 +39918,96 @@ exports['src::mindmap.order'] = (() => {
 
 
 
-    const var_current_scope_1613308340419 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1613308340419.has(this)) {
-
-            var_current_scope_1613308340419.set(this, (() => {
-                const data = include('src::mindmap.node.data').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 将指定节点的子节点进行排序，如果排序信息有变化则抛出事件
-                     * 
-                     * @import data from .node.data scoped
-                     * 
-                     * @param {data.Record} node 节点
-                     * 
-                     */
-
-                    let {
-                        children
-                    } = node,
-                    prevOrder = -Infinity;
-
-                    for (let node of children) {
-
-                        let {
-                            order
-                        } = node;
-
-                        if (order <= prevOrder) {
-
-                            let {
-                                length
-                            } = children,
-                            orderNodes = [];
-
-                            for (let i = 0; i < length; i++) {
-
-                                let node = children[i];
-
-                                if (node.order !== i) {
-
-                                    node.order = i;
-
-                                    orderNodes.push(data(node));
-                                }
-                            }
-
-                            this.fireEvent('nodeorderupdated', orderNodes);
-
-                            return true;
-                        }
-
-                        prevOrder = order;
-                    }
-
-                    return false;
-
-
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613308340419.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.delete'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1613308340464 = new Map();
-
-    return function(node, keepSelf, isSilentMode = false) {
-
-
-
-
-
-        if (!var_current_scope_1613308340464.has(this)) {
-
-            var_current_scope_1613308340464.set(this, (() => {
-                const isRootNode = include('src::mindmap.node.is.root').bind(this);
-                const getParentNode = include('src::mindmap.data.node.parent').bind(this);
-                const data = include('src::mindmap.node.data').bind(this);
-                const remove = include('src::mindmap.node.delete').bind(this);
-                const order = include('src::mindmap.order').bind(this);
-                const select = include('src::mindmap.select').bind(this);
-                const from = include('src::mindmap.node.from').bind(this);
-
-                function main(node, keepSelf, isSilentMode) {
-
-
-                    /**
-                     * 
-                     * 删除当前选中节点
-                     * 
-                     * @import isRootNode from .node.is.root scoped
-                     * 
-                     * @import getParentNode from .data.node.parent scoped
-                     * 
-                     * @import data from .node.data scoped
-                     * 
-                     * @import remove from .node.delete scoped
-                     * 
-                     * @import order from .order scoped
-                     * 
-                     * @import select from .select scoped
-                     * 
-                     * @import from from .node.from scoped
-                     * 
-                     * @param {string} [node] 节点编号
-                     * 
-                     * @param {boolean} [keepSelf] 删除时是否仅删除指节点的所有子节点，如果是则指定 true , 否则指定 false
-                     * 
-                     * @param {boolean} [isSilentMode = false] 是否静默模式
-                     * 
-                     */
-
-                    let me = this,
-                        {
-                            restructuring
-                        } = me;
-
-                    if (restructuring) {
-
-                        return false;
-                    }
-
-                    node = from(node);
-
-                    if (node && !isRootNode(node)) {
-
-                        let parentNode = getParentNode(node);
-
-                        if (node.selected === true && keepSelf !== true) {
-
-                            let {
-                                children
-                            } = parentNode, {
-                                length
-                            } = children,
-                            index = children.indexOf(node),
-                                nextSelectedNode;
-
-                            if (length - 1) {
-
-                                if (index + 1 <= length - 1) {
-
-                                    nextSelectedNode = children[index + 1];
-                                }
-
-                                if (index - 1 >= 0) {
-
-                                    nextSelectedNode = children[index - 1];
-                                }
-
-                            } else {
-
-                                nextSelectedNode = parentNode;
-                            }
-
-                            select(nextSelectedNode);
-                        }
-
-                        let deleteNodes = remove(node, keepSelf),
-                            {
-                                nodes
-                            } = this;
-
-                        for (let {
-                                id
-                            } of deleteNodes) {
-
-                            nodes.delete(id);
-                        }
-
-                        if (!isSilentMode) {
-
-                            order(parentNode);
-
-                            me.fireEvent('nodedelete', deleteNodes);
-                        }
-
-                        if (keepSelf === true) {
-
-                            me.layout();
-                        }
-                    }
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613308340464.get(this);
-
-
-
-        return main.call(this, node, keepSelf, isSilentMode);
-    };
-
-})();
-
-exports['src::mindmap.data.node.child.last'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1608956299287 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1608956299287.has(this)) {
-
-            var_current_scope_1608956299287.set(this, (() => {
-                const from = include('src::mindmap.data.node.from').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 获得最后一个子脑图节点
-                     * 
-                     * @import from from ..from scoped
-                     * 
-                     * @param {mixed} node 脑图节点
-                     * 
-                     * @return {data.Reocrd} 子脑图节点引用
-                     * 
-                     */
-
-                    let {
-                        children
-                    } = from(node), {
-                        length
-                    } = children;
-
-                    if (length) {
-
-                        return children[length - 1];
-                    }
-
-
-
-
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956299287.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.node.append'] = (() => {
-
-    let generate;
-
-    let var_init_locked_1613308340402;
-
-
-
-    const var_current_scope_1613308340402 = new Map();
-
-    return function(node, parentNode) {
-
-
-        if (!var_init_locked_1613308340402) {
-
-            generate = include('src::id.generate');
-
-            var_init_locked_1613308340402 = true;
-        }
-
-
-
-
-        if (!var_current_scope_1613308340402.has(this)) {
-
-            var_current_scope_1613308340402.set(this, (() => {
-                const create = include('src::mindmap.node.create').bind(this);
-                const show = include('src::mindmap.node.show').bind(this);
-                const from = include('src::mindmap.node.from').bind(this);
-                const getLastChildNode = include('src::mindmap.data.node.child.last').bind(this);
-
-                function main(node, parentNode) {
-
-
-                    /**
-                     * 
-                     * 添加子节点
-                     * 
-                     * @import generate from id.generate
-                     * 
-                     * @import create from .create scoped
-                     * 
-                     * @import show from .show scoped
-                     * 
-                     * @import from from .from scoped
-                     * 
-                     * @import getLastChildNode from ..data.node.child.last scoped
-                     * 
-                     * @param {mixed} node 节点配置
-                     * 
-                     * @param {mixed} parentNode 节点
-                     * 
-                     */
-
-                    parentNode = from(parentNode);
-
-                    let mindmapNode = from(node);
-
-                    if (mindmapNode && (parentNode === mindmapNode || getLastChildNode(parentNode) === mindmapNode)) {
-
-                        return;
-
-                    }
-
-                    let {
-                        children,
-                        hidden,
-                        expanded
-                    } = parentNode;
-
-                    node = create(node, parentNode);
-
-                    children.push(node);
-
-                    if (!hidden && expanded) {
-
-                        show(node);
-                    }
-
-                    return node;
-
-
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613308340402.get(this);
-
-
-
-        return main.call(this, node, parentNode);
-    };
-
-})();
-
-exports['src::mindmap.node.unpublished.register'] = (() => {
-
-
-
-
-
-
-
-    function main(node) {
+    function main() {
 
 
         /**
          * 
-         * 登记未发布的脑图节点
+         * 获得实际的根节点
          * 
-         * @param {data.Record} node 脑图节点
+         * @return {data.Record} 根节点 
          * 
          */
 
-        let me = this,
-            {
-                unpublishedNodes
-            } = me;
-
-        unpublishedNodes.add(node);
+        return this.rootNode;
 
     }
 
-    return function(node) {
+    return function() {
 
 
 
-        return main.call(this, node);
+        return main.call(this);
     };
 
 })();
 
-exports['src::mindmap.node.unpublished.unregister'] = (() => {
+exports['src::mindmap.nodes.relation.descendant'] = (() => {
+
+    let getDescendantNodes;
+
+    let var_init_locked_1613568804328;
 
 
 
-
-
-
-
-    function main(node) {
+    function main(node, isVisible) {
 
 
         /**
          * 
-         * 注销未发布的脑图节点
+         * 获取所有子孙节点
          * 
-         * @param {data.Record} node 脑图节点
+         * @import getDescendantNodes from .descendant
          * 
-         */
-
-        let me = this,
-            {
-                unpublishedNodes
-            } = me;
-
-        unpublishedNodes.delete(node);
-
-    }
-
-    return function(node) {
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.node.unpublished.is'] = (() => {
-
-
-
-
-
-
-
-    function main(node) {
-
-
-        /**
+         * @param {data.Reocrd} node 节点
          * 
-         * 指定节点是否为未发布脑图节点
+         * @param {boolean} [isVisible = true] 是否只获取可见的节点
          * 
-         * @param {data.Record} node 脑图节点
-         * 
-         * @return {boolean} 如果指定节点是未发布脑图节点则返回 true , 否则返回 false
+         * @return {array} 节点集合
          * 
          */
 
-        let me = this,
-            {
-                unpublishedNodes
-            } = me;
+        let {
+            descendantNodes
+        } = node;
 
-        return unpublishedNodes.has(node);
+        if (descendantNodes) {
+
+            return descendantNodes;
+        }
+
+        let {
+            expanded,
+            children
+        } = node;
+
+        descendantNodes = node.descendantNodes = [];
+
+        if (expanded || !isVisible) {
+
+            for (let childNode of children) {
+
+                descendantNodes.push(childNode, ...getDescendantNodes(childNode, isVisible));
+            }
+
+        }
+
+        return descendantNodes;
 
     }
 
-    return function(node) {
+    return function(node, isVisible = true) {
 
 
+        if (!var_init_locked_1613568804328) {
 
-        return main.call(this, node);
-    };
+            getDescendantNodes = include('src::mindmap.nodes.relation.descendant');
 
-})();
-
-exports['src::mindmap.data.node.info'] = (() => {
-
-    let equals, isObject, isString, isArray, copy, clone;
-
-    let var_init_locked_1613465726080;
-
-
-
-    const var_current_scope_1613465726080 = new Map();
-
-    return function(node, data, {
-        isSilentMode = false,
-        recursive = false
-    } = {}) {
-
-
-        if (!var_init_locked_1613465726080) {
-
-            equals = include('src::data.equals');
-            isObject = include('src::is.object.simple');
-            isString = include('src::is.string');
-            isArray = include('src::is.array');
-            copy = include('src::object.copy');
-            clone = include('src::data.clone');
-
-            var_init_locked_1613465726080 = true;
+            var_init_locked_1613568804328 = true;
         }
 
 
-
-
-        if (!var_current_scope_1613465726080.has(this)) {
-
-            var_current_scope_1613465726080.set(this, (() => {
-                const getData = include('src::mindmap.node.data').bind(this);
-                const unsized = include('src::mindmap.node.unsized.register').bind(this);
-                const from = include('src::mindmap.data.node.from').bind(this);
-
-
-                /**
-                 * 
-                 * 修改节点信息
-                 * 
-                 * @import equals from data.equals
-                 * 
-                 * @import getData from ....node.data scoped
-                 * 
-                 * @import unsized from ....node.unsized.register scoped
-                 * 
-                 * @import from from .from scoped
-                 * 
-                 * @import isObject from is.object.simple
-                 * 
-                 * @import is.string
-                 * 
-                 * @import is.array
-                 * 
-                 * @import copy from object.copy
-                 * 
-                 * @import clone from data.clone
-                 * 
-                 * @param {mixed} [node] 脑图节点
-                 * 
-                 * @param {object} [data] 修改节点信息
-                 * 
-                 * @param {object} [config = {}] 配置
-                 * 
-                 * @param {boolean} [config.isSilentMode = false] 是否静默模式
-                 * 
-                 * @param {boolean} [config.recursive = false] 是否递归，仅对于设置脑图节点属性时有效
-                 * 
-                 */
-
-                function main(node, data, {
-                    isSilentMode,
-                    recursive
-                }) {
-
-                    let me = this;
-
-                    node = from(node);
-
-                    if (node) {
-
-                        if (isObject(data)) {
-
-                            if (setNodeInfo.call(me, node, data, isSilentMode)) {
-
-                                if (!node.hidden) {
-
-                                    unsized(node, true);
-
-                                    me.layout();
-                                }
-
-                                if (recursive) {
-
-                                    let {
-                                        children
-                                    } = node;
-
-                                    for (let childNode of children) {
-
-                                        main.call(me, childNode, data, {
-                                            isSilentMode,
-                                            recursive
-                                        });
-                                    }
-                                }
-                            }
-
-                            return;
-
-                        } else if (isString(data)) {
-
-                            return node[data];
-
-                        } else if (isArray(data)) {
-
-                            return copy({}, node, data);
-                        }
-
-                        return getData(node);
-                    }
-                }
-
-                function setNodeInfo(node, data, isSilentMode) {
-
-                    let fields = Object.keys(data),
-                        me = this,
-                        {
-                            nodes
-                        } = me,
-                        isUpdated = false;
-
-                    for (let field of fields) {
-
-                        let value = data[field],
-                            oldValue = node[field];
-
-                        if (equals(oldValue, value)) {
-
-                            continue;
-                        }
-
-                        switch (field) {
-
-                            case 'parentNodeId':
-                            case 'x':
-                            case 'y':
-                            case 'width':
-                            case 'height':
-                            case 'hidden':
-                            case 'expanded':
-                            case 'selected':
-                            case 'placeholder':
-                            case 'restructuring':
-                            case 'indicated':
-                            case 'order':
-
-                                continue;
-
-                            case 'id':
-
-                            {
-
-                                let {
-                                    id,
-                                    children
-                                } = node;
-
-                                if (nodes.has(value)) {
-
-                                    console.error(`${value} - 脑图中已经存该节点`);
-
-                                    continue;
-                                }
-
-                                node.id = value;
-
-                                for (let childNode of children) {
-
-                                    childNode.parentNodeId = value;
-                                }
-
-                                sync.call(me, id, value);
-                            }
-
-                            break;
-
-                        default:
-
-                            let newValue = node[field] = clone(value),
-                                {
-                                    id
-                                } = node;
-
-                            if (!equals(newValue, oldValue) && !isSilentMode) {
-
-                                me.fireEvent(`node${field.toLowerCase()}change`, id, value, oldValue);
-
-                                me.fireEvent('nodechange', id, field, value, oldValue);
-                            }
-                        }
-
-                        isUpdated = true;
-                    }
-
-                    return isUpdated;
-                }
-
-                function sync(oldId) {
-
-                    let {
-                        nodes,
-                        visibilityNodes
-                    } = this;
-
-                    syncMap(nodes, oldId);
-
-                    syncMap(visibilityNodes, oldId);
-                }
-
-                function syncMap(map, id) {
-
-                    if (map.has(id)) {
-
-                        let node = map.get(id);
-
-                        map.delete(id);
-
-                        map.set(node.id, node);
-                    }
-                }
-
-
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613465726080.get(this);
-
-
-
-        return main.call(this, node, data, {
-            isSilentMode,
-            recursive
-        });
-    };
-
-})();
-
-exports['src::mindmap.node.info'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1613308340426 = new Map();
-
-    return function(data, node, config) {
-
-
-
-
-
-        if (!var_current_scope_1613308340426.has(this)) {
-
-            var_current_scope_1613308340426.set(this, (() => {
-                const from = include('src::mindmap.node.from').bind(this);
-                const info = include('src::mindmap.data.node.info').bind(this);
-
-                function main(data, node, config) {
-
-
-                    /**
-                     * 
-                     * 修改节点配置
-                     * 
-                     * @import from from .from scoped
-                     * 
-                     * @import info from ..data.node.info scoped
-                     * 
-                     * @param {mixed} [data] 节点配置
-                     * 
-                     * @param {mixed} [node] 节点编号
-                     * 
-                     * @param {object} [config] 配置
-                     * 
-                     * 
-                     */
-
-                    return info(from(node), data, config);
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613308340426.get(this);
-
-
-
-        return main.call(this, data, node, config);
-    };
-
-})();
-
-exports['src::mindmap.append'] = (() => {
-
-    let isFunction, isDefined;
-
-    let var_init_locked_1613308340398;
-
-
-
-    const var_current_scope_1613308340398 = new Map();
-
-    return async function(node = {}, parentNode, isSilentMode = false) {
-
-
-        if (!var_init_locked_1613308340398) {
-
-            isFunction = include('src::is.function');
-            isDefined = include('src::is.defined');
-
-            var_init_locked_1613308340398 = true;
-        }
-
-
-
-
-        if (!var_current_scope_1613308340398.has(this)) {
-
-            var_current_scope_1613308340398.set(this, (() => {
-                const append = include('src::mindmap.node.append').bind(this);
-                const expand = include('src::mindmap.node.expand').bind(this);
-                const select = include('src::mindmap.select').bind(this);
-                const data = include('src::mindmap.node.data').bind(this);
-                const order = include('src::mindmap.order').bind(this);
-                const from = include('src::mindmap.node.from').bind(this);
-                const register = include('src::mindmap.node.unpublished.register').bind(this);
-                const unregister = include('src::mindmap.node.unpublished.unregister').bind(this);
-                const isUnpublished = include('src::mindmap.node.unpublished.is').bind(this);
-                const setNodeInfo = include('src::mindmap.node.info').bind(this);
-
-                async function main(node, parentNode, isSilentMode) {
-
-
-                    /**
-                     * 
-                     * 在选定节点下添加一个子节点
-                     * 
-                     * @import append from .node.append scoped
-                     * 
-                     * @import expand from .node.expand scoped
-                     * 
-                     * @import select from .select scoped
-                     * 
-                     * @import data from .node.data scoped
-                     * 
-                     * @import order from .order scoped
-                     * 
-                     * @import from from .node.from scoped
-                     * 
-                     * @import is.function
-                     * 
-                     * @import register from .node.unpublished.register scoped
-                     * 
-                     * @import unregister from .node.unpublished.unregister scoped
-                     * 
-                     * @import isUnpublished from .node.unpublished.is scoped
-                     * 
-                     * @import setNodeInfo from .node.info scoped
-                     * 
-                     * @import is.defined
-                     * 
-                     * @param {object} [node = {}] 子节点配置信息
-                     * 
-                     * @param {mixed} [parentNode] 脑图父节点
-                     * 
-                     * @param {boolean} [isSilentMode = false] 是否静默模式
-                     * 
-                     */
-
-                    let me = this,
-                        {
-                            restructuring
-                        } = me;
-
-                    if (restructuring) {
-
-                        return;
-                    }
-
-                    parentNode = from(parentNode);
-
-                    let {
-                        expanded,
-                        selected
-                    } = parentNode;
-
-                    let nodeSelected,
-                        isNewNode = true;
-
-                    if (from(node)) {
-
-                        isNewNode = false;
-
-                        nodeSelected = node.selected;
-                    }
-
-                    node = append(node, parentNode);
-
-                    if (node) {
-
-                        if (nodeSelected) {
-
-                            node.selected = true;
-                        }
-
-                        if (isSilentMode === false) {
-
-                            if (selected && !expanded) {
-
-                                expand(parentNode);
-
-                            }
-
-                            me.fireEvent('nodeappend', data(node), data(parentNode), isNewNode, () => order(parentNode));
-
-                            if (!select(node)) {
-
-                                me.layout();
-                            }
-
-                        } else if (isFunction(isSilentMode)) {
-
-                            register(node);
-
-                            if (selected && !expanded) {
-
-                                expand(parentNode);
-
-                            }
-
-                            if (!select(node)) {
-
-                                me.layout();
-
-                            }
-
-                            await isSilentMode(data(node), isNewNode, id => {
-
-                                if (isDefined(id)) {
-
-                                    if (isUnpublished(node)) {
-
-                                        setNodeInfo({
-                                            id
-                                        }, node);
-
-                                        unregister(node);
-
-                                    }
-
-                                } else if (!isUnpublished(node)) {
-
-                                    return node.id;
-
-                                }
-
-                            });
-
-                            if (!isUnpublished(node)) {
-
-                                me.fireEvent('nodeappend', data(node), data(parentNode), isNewNode, () => order(parentNode));
-                            }
-
-                        } else {
-
-                            me.layout();
-
-                        }
-                    }
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613308340398.get(this);
-
-
-
-        return await main.call(this, node, parentNode, isSilentMode);
-    };
-
-})();
-
-exports['src::mindmap.node.query'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1608956299012 = new Map();
-
-    return function(id, isReturnData = false) {
-
-
-
-
-
-        if (!var_current_scope_1608956299012.has(this)) {
-
-            var_current_scope_1608956299012.set(this, (() => {
-                const data = include('src::mindmap.node.data').bind(this);
-
-                function main(id, isReturnData) {
-
-
-                    /**
-                     * 
-                     * 查询节点
-                     * 
-                     * @import data from .data scoped
-                     * 
-                     * @param {string} id 节点编号
-                     * 
-                     * @param {boolean} [isReturnData = false] 是否返回数据
-                     * 
-                     * @return {data.Record|object} 节点信息 
-                     * 
-                     */
-
-                    let {
-                        nodes
-                    } = this,
-                    node = nodes.get(id);
-
-                    if (node) {
-
-                        if (isReturnData) {
-
-                            return data(node);
-                        }
-
-                        return node;
-                    }
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956299012.get(this);
-
-
-
-        return main.call(this, id, isReturnData);
-    };
-
-})();
-
-exports['src::mindmap.data.node.is.root'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1608956298944 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1608956298944.has(this)) {
-
-            var_current_scope_1608956298944.set(this, (() => {
-                const from = include('src::mindmap.data.node.from').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 判断指定脑图节点是否为根节点
-                     * 
-                     * @import from from ..from scoped
-                     * 
-                     * @param {mixed} node 脑图节点
-                     * 
-                     * @return {boolean} 如果为根节点则返回 true , 否则返回 false 
-                     * 
-                     */
-
-                    return from(node) === this.rootNode;
-
-
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956298944.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.data.node.slibing.previous'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1608956299299 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1608956299299.has(this)) {
-
-            var_current_scope_1608956299299.set(this, (() => {
-                const from = include('src::mindmap.data.node.from').bind(this);
-                const getParentNode = include('src::mindmap.data.node.parent').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 获得脑图节点上兄弟节点
-                     * 
-                     * @import from from ..from scoped
-                     * 
-                     * @import getParentNode from ..parent scoped
-                     * 
-                     * @param {mixed} node 脑图节点
-                     * 
-                     * @return {data.Record} 兄弟脑图节点 
-                     * 
-                     */
-
-                    let parentNode = getParentNode(node);
-
-                    if (parentNode) {
-
-                        node = from(node);
-
-                        let {
-                            children
-                        } = parentNode;
-
-                        return children[children.indexOf(node) - 1];
-                    }
-
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956299299.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.data.node.slibing.next'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1608956299300 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1608956299300.has(this)) {
-
-            var_current_scope_1608956299300.set(this, (() => {
-                const from = include('src::mindmap.data.node.from').bind(this);
-                const getParentNode = include('src::mindmap.data.node.parent').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 获得脑图节点下兄弟节点
-                     * 
-                     * @import from from ..from scoped
-                     * 
-                     * @import getParentNode from ..parent scoped
-                     * 
-                     * @param {mixed} node 脑图节点
-                     * 
-                     * @return {data.Record} 兄弟脑图节点 
-                     * 
-                     */
-
-                    let parentNode = getParentNode(node);
-
-                    if (parentNode) {
-
-                        node = from(node);
-
-                        let {
-                            children
-                        } = parentNode;
-
-                        return children[children.indexOf(node) + 1];
-                    }
-
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956299300.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.node.insert'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1608956299296 = new Map();
-
-    return function(insertNode = {}, baseNode, region) {
-
-
-
-
-
-        if (!var_current_scope_1608956299296.has(this)) {
-
-            var_current_scope_1608956299296.set(this, (() => {
-                const create = include('src::mindmap.node.create').bind(this);
-                const isRootNode = include('src::mindmap.data.node.is.root').bind(this);
-                const getParentNode = include('src::mindmap.data.node.parent').bind(this);
-                const getPreviousNode = include('src::mindmap.data.node.slibing.previous').bind(this);
-                const getNextNode = include('src::mindmap.data.node.slibing.next').bind(this);
-                const show = include('src::mindmap.node.show').bind(this);
-                const from = include('src::mindmap.data.node.from').bind(this);
-
-                function main(insertNode, baseNode, region) {
-
-
-                    /**
-                     * 
-                     * 插入节点
-                     * 
-                     * @import create from .create scoped
-                     * 
-                     * @import isRootNode from ..data.node.is.root scoped
-                     * 
-                     * @import getParentNode from ..data.node.parent scoped
-                     * 
-                     * @import getPreviousNode from ..data.node.slibing.previous scoped
-                     * 
-                     * @import getNextNode from ..data.node.slibing.next scoped
-                     * 
-                     * @import show from .show scoped
-                     * 
-                     * @import from from ..data.node.from scoped
-                     * 
-                     * @param {mixed} [insertNode = {}] 需要插入的节点
-                     * 
-                     * @param {mixed} baseNode 参照节点
-                     * 
-                     * @param {number} region 插入偏移位置
-                     * 
-                     * @return {data.Record} 插入后的节点
-                     * 
-                     */
-
-                    if (!isRootNode(baseNode)) {
-
-                        baseNode = from(baseNode);
-
-                        let insertMindmapNode = from(insertNode);
-
-                        if (insertMindmapNode) {
-
-                            if (insertMindmapNode === baseNode) {
-
-                                return;
-                            }
-
-                            switch (region) {
-
-                                case 'before':
-
-                                    if (getPreviousNode(baseNode) === insertMindmapNode) {
-
-                                        return;
-                                    }
-
-                                    break;
-
-                                case 'after':
-
-                                    if (getNextNode(baseNode) === insertMindmapNode) {
-
-                                        return;
-                                    }
-                            }
-                        }
-
-                        let parentNode = getParentNode(baseNode),
-                            {
-                                children
-                            } = parentNode,
-                            {
-                                length
-                            } = children;
-
-                        insertNode = create(insertNode, parentNode);
-
-                        let index = children.indexOf(baseNode);
-
-                        if (region === 'after') {
-
-                            index++;
-                        }
-
-                        if (index > length - 1) {
-
-                            index = length;
-
-                        }
-
-                        children.splice(index, 0, insertNode);
-
-                        if (!baseNode.hidden) {
-
-                            show(insertNode);
-                        }
-
-                        return insertNode;
-                    }
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956299296.get(this);
-
-
-
-        return main.call(this, insertNode, baseNode, region);
-    };
-
-})();
-
-exports['src::mindmap.node.insert.before'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1608956299293 = new Map();
-
-    return function(insertNode, beforeNode) {
-
-
-
-
-
-        if (!var_current_scope_1608956299293.has(this)) {
-
-            var_current_scope_1608956299293.set(this, (() => {
-                const insert = include('src::mindmap.node.insert').bind(this);
-
-                function main(insertNode, beforeNode) {
-
-
-                    /**
-                     * 
-                     * 插入节点
-                     * 
-                     * @import insert from ..insert scoped
-                     * 
-                     * @param {data.Record} insertNode 需要插入的节点
-                     * 
-                     * @param {data.Record} beforeNode 参照节点
-                     * 
-                     * @return {data.Record} 插入后的节点
-                     * 
-                     */
-
-                    return insert(insertNode, beforeNode, 'before');
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956299293.get(this);
-
-
-
-        return main.call(this, insertNode, beforeNode);
-    };
-
-})();
-
-exports['src::mindmap.node.insert.after'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1608956299302 = new Map();
-
-    return function(insertNode, afterNode) {
-
-
-
-
-
-        if (!var_current_scope_1608956299302.has(this)) {
-
-            var_current_scope_1608956299302.set(this, (() => {
-                const insert = include('src::mindmap.node.insert').bind(this);
-
-                function main(insertNode, afterNode) {
-
-
-                    /**
-                     * 
-                     * 插入节点
-                     * 
-                     * @import insert from ..insert scoped
-                     * 
-                     * @param {data.Record} insertNode 需要插入的节点
-                     * 
-                     * @param {data.Record} afterNode 参照节点
-                     * 
-                     * @return {data.Record} 插入后的节点
-                     * 
-                     */
-
-                    return insert(insertNode, afterNode, 'after');
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956299302.get(this);
-
-
-
-        return main.call(this, insertNode, afterNode);
-    };
-
-})();
-
-exports['src::mindmap.node.sibling.previous'] = (() => {
-
-    let isString;
-
-    let var_init_locked_1608956299251;
-
-
-
-    const var_current_scope_1608956299251 = new Map();
-
-    return function(node) {
-
-
-        if (!var_init_locked_1608956299251) {
-
-            isString = include('src::is.string');
-
-            var_init_locked_1608956299251 = true;
-        }
-
-
-
-
-        if (!var_current_scope_1608956299251.has(this)) {
-
-            var_current_scope_1608956299251.set(this, (() => {
-                const getParentNode = include('src::mindmap.node.parent').bind(this);
-                const get = include('src::mindmap.node.get').bind(this);
-                const data = include('src::mindmap.node.data').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 返回节点的上兄弟节点
-                     * 
-                     * @import getParentNode from ..parent scoped
-                     * 
-                     * @import get from ..get scoped
-                     * 
-                     * @import is.string
-                     * 
-                     * @import data from ..data scoped
-                     * 
-                     * @param {data.Record} node 
-                     * 
-                     * @return {data.Record} 上兄弟节点 
-                     * 
-                     */
-
-                    let isData = false;
-
-                    if (isString(node)) {
-
-                        node = get(node);
-
-                        isData = true;
-                    }
-
-                    let {
-                        hidden
-                    } = node;
-
-                    if (!hidden) {
-
-                        let parentNode = getParentNode(node);
-
-                        if (parentNode) {
-
-                            let {
-                                children
-                            } = parentNode,
-                            index = children.indexOf(node);
-
-                            if (index !== 0) {
-
-                                let result = children[index - 1];
-
-                                if (isData) {
-
-                                    return data(result);
-                                }
-
-                                return result;
-                            }
-                        }
-                    }
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1608956299251.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.move'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1613308340521 = new Map();
-
-    return function(id, baseId, method) {
-
-
-
-
-
-        if (!var_current_scope_1613308340521.has(this)) {
-
-            var_current_scope_1613308340521.set(this, (() => {
-                const layout = include('src::mindmap.layout').bind(this);
-                const query = include('src::mindmap.node.query').bind(this);
-                const append = include('src::mindmap.node.append').bind(this);
-                const insertBefore = include('src::mindmap.node.insert.before').bind(this);
-                const insertAfter = include('src::mindmap.node.insert.after').bind(this);
-                const getParentNode = include('src::mindmap.node.parent').bind(this);
-                const getPreviousSibling = include('src::mindmap.node.sibling.previous').bind(this);
-                const order = include('src::mindmap.order').bind(this);
-
-                function main(id, baseId, method) {
-
-
-                    /**
-                     * 
-                     * 移动节点
-                     * 
-                     * @import layout from .layout scoped
-                     * 
-                     * @import query from .node.query scoped
-                     * 
-                     * @import append from .node.append scoped
-                     * 
-                     * @import insertBefore from .node.insert.before scoped
-                     * 
-                     * @import insertAfter from .node.insert.after scoped
-                     * 
-                     * @import getParentNode from .node.parent scoped
-                     * 
-                     * @import getPreviousSibling from .node.sibling.previous scoped
-                     * 
-                     * @import order from .order scoped
-                     * 
-                     * @param {string} id 需要移动的节点编号
-                     * 
-                     * @param {string} baseId 基准节点编号
-                     * 
-                     * @param {string} method 移动方式
-                     * 
-                     */
-
-                    let node = query(id),
-                        baseNode = query(baseId);
-
-                    if (node && baseNode) {
-
-                        let me = this,
-                            oldParentNode = getParentNode(node),
-                            oldPreviousSibling = getPreviousSibling(node);
-
-                        switch (method) {
-
-                            case 'append':
-
-                                append(node, baseNode);
-
-                                if (!baseNode.hidden && baseNode.expanded) {
-
-                                    layout();
-                                }
-
-                                break;
-
-                            case 'insertBefore':
-
-                                if (insertBefore(node, baseNode) && !baseNode.hidden) {
-
-                                    layout();
-                                }
-
-                                break;
-
-                            case 'insertAfter':
-
-                                if (insertAfter(node, baseNode) && !baseNode.hidden) {
-
-                                    layout();
-                                }
-                        }
-
-                        let parentNode = getParentNode(node);
-
-                        if (!(oldParentNode === parentNode && oldPreviousSibling === getPreviousSibling(node))) {
-
-                            me.fireEvent('nodemove', node, parentNode, oldParentNode);
-
-                            order(parentNode);
-                        }
-                    }
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613308340521.get(this);
-
-
-
-        return main.call(this, id, baseId, method);
+        return main.call(this, node, isVisible);
     };
 
 })();
@@ -42766,33 +40888,24 @@ exports['src::mindmap.node.is.move.up'] = (() => {
 
 exports['src::mindmap.node.sibling.next'] = (() => {
 
-    let isString;
-
-    let var_init_locked_1608956299245;
 
 
 
-    const var_current_scope_1608956299245 = new Map();
+
+
+
+    const var_current_scope_1613566323070 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1608956299245) {
-
-            isString = include('src::is.string');
-
-            var_init_locked_1608956299245 = true;
-        }
 
 
 
+        if (!var_current_scope_1613566323070.has(this)) {
 
-        if (!var_current_scope_1608956299245.has(this)) {
-
-            var_current_scope_1608956299245.set(this, (() => {
+            var_current_scope_1613566323070.set(this, (() => {
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
-                const get = include('src::mindmap.node.get').bind(this);
-                const data = include('src::mindmap.node.data').bind(this);
 
                 function main(node) {
 
@@ -42803,54 +40916,21 @@ exports['src::mindmap.node.sibling.next'] = (() => {
                      * 
                      * @import getParentNode from ..parent scoped
                      * 
-                     * @import get from ..get scoped
-                     * 
-                     * @import data from ..data scoped
-                     * 
-                     * @import is.string
-                     * 
-                     * @param {mixed} node 
+                     * @param {data.Record} node 
                      * 
                      * @return {data.Record} 下兄弟节点 
                      * 
                      */
 
-                    let isData = false;
+                    let parentNode = getParentNode(node);
 
-                    if (isString(node)) {
+                    if (parentNode) {
 
-                        node = get(node);
+                        let {
+                            children
+                        } = parentNode;
 
-                        isData = true;
-                    }
-
-                    let {
-                        hidden
-                    } = node;
-
-                    if (!hidden) {
-
-                        let parentNode = getParentNode(node);
-
-                        if (parentNode) {
-
-                            let {
-                                children
-                            } = parentNode,
-                            index = children.indexOf(node);
-
-                            if (index !== children.length - 1) {
-
-                                let result = children[index + 1];
-
-                                if (isData) {
-
-                                    return data(result);
-                                }
-
-                                return result;
-                            }
-                        }
+                        return children[children.indexOf(node) + 1];
                     }
 
                 }
@@ -42860,7 +40940,7 @@ exports['src::mindmap.node.sibling.next'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1608956299245.get(this);
+        const main = var_current_scope_1613566323070.get(this);
 
 
 
@@ -42869,7 +40949,7 @@ exports['src::mindmap.node.sibling.next'] = (() => {
 
 })();
 
-exports['src::mindmap.nodes.order'] = (() => {
+exports['src::mindmap.node.sibling.previous'] = (() => {
 
 
 
@@ -42877,40 +40957,440 @@ exports['src::mindmap.nodes.order'] = (() => {
 
 
 
-    function main(orders) {
+    const var_current_scope_1613566323059 = new Map();
+
+    return function(node) {
 
 
-        /**
-         * 
-         * 修改一组节点的排序序号
-         * 
-         * @param {object} orders 排序序号集合
-         * 
-         */
 
-        let me = this,
-            {
-                nodes
-            } = me,
-            ids = Object.keys(orders);
 
-        for (let id of ids) {
 
-            if (nodes.has(id)) {
+        if (!var_current_scope_1613566323059.has(this)) {
 
-                let node = nodes.get(id);
+            var_current_scope_1613566323059.set(this, (() => {
+                const getParentNode = include('src::mindmap.node.parent').bind(this);
 
-                node.order = orders[id];
-            }
+                function main(node) {
+
+
+                    /**
+                     * 
+                     * 返回节点的上兄弟节点
+                     * 
+                     * @import getParentNode from ..parent scoped
+                     * 
+                     * @param {data.Record} node 
+                     * 
+                     * @return {data.Record} 上兄弟节点 
+                     * 
+                     */
+
+                    let parentNode = getParentNode(node);
+
+                    if (parentNode) {
+
+                        let {
+                            children
+                        } = parentNode;
+
+                        return children[children.indexOf(node) - 1];
+                    }
+
+                }
+
+                return main;
+
+            })());
         }
 
-    }
-
-    return function(orders) {
+        const main = var_current_scope_1613566323059.get(this);
 
 
 
-        return main.call(this, orders);
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.data.node.info'] = (() => {
+
+    let equals, isObject, isString, isArray, copy, clone;
+
+    let var_init_locked_1613465726080;
+
+
+
+    const var_current_scope_1613465726080 = new Map();
+
+    return function(node, data, {
+        isSilentMode = false,
+        recursive = false
+    } = {}) {
+
+
+        if (!var_init_locked_1613465726080) {
+
+            equals = include('src::data.equals');
+            isObject = include('src::is.object.simple');
+            isString = include('src::is.string');
+            isArray = include('src::is.array');
+            copy = include('src::object.copy');
+            clone = include('src::data.clone');
+
+            var_init_locked_1613465726080 = true;
+        }
+
+
+
+
+        if (!var_current_scope_1613465726080.has(this)) {
+
+            var_current_scope_1613465726080.set(this, (() => {
+                const getData = include('src::mindmap.node.data').bind(this);
+                const unsized = include('src::mindmap.node.unsized.register').bind(this);
+                const from = include('src::mindmap.data.node.from').bind(this);
+
+
+                /**
+                 * 
+                 * 修改节点信息
+                 * 
+                 * @import equals from data.equals
+                 * 
+                 * @import getData from ....node.data scoped
+                 * 
+                 * @import unsized from ....node.unsized.register scoped
+                 * 
+                 * @import from from .from scoped
+                 * 
+                 * @import isObject from is.object.simple
+                 * 
+                 * @import is.string
+                 * 
+                 * @import is.array
+                 * 
+                 * @import copy from object.copy
+                 * 
+                 * @import clone from data.clone
+                 * 
+                 * @param {mixed} [node] 脑图节点
+                 * 
+                 * @param {object} [data] 修改节点信息
+                 * 
+                 * @param {object} [config = {}] 配置
+                 * 
+                 * @param {boolean} [config.isSilentMode = false] 是否静默模式
+                 * 
+                 * @param {boolean} [config.recursive = false] 是否递归，仅对于设置脑图节点属性时有效
+                 * 
+                 */
+
+                function main(node, data, {
+                    isSilentMode,
+                    recursive
+                }) {
+
+                    let me = this;
+
+                    node = from(node);
+
+                    if (node) {
+
+                        if (isObject(data)) {
+
+                            if (setNodeInfo.call(me, node, data, isSilentMode)) {
+
+                                if (!node.hidden) {
+
+                                    unsized(node, true);
+
+                                    me.layout();
+                                }
+
+                                if (recursive) {
+
+                                    let {
+                                        children
+                                    } = node;
+
+                                    for (let childNode of children) {
+
+                                        main.call(me, childNode, data, {
+                                            isSilentMode,
+                                            recursive
+                                        });
+                                    }
+                                }
+                            }
+
+                            return;
+
+                        } else if (isString(data)) {
+
+                            return node[data];
+
+                        } else if (isArray(data)) {
+
+                            return copy({}, node, data);
+                        }
+
+                        return getData(node);
+                    }
+                }
+
+                function setNodeInfo(node, data, isSilentMode) {
+
+                    let fields = Object.keys(data),
+                        me = this,
+                        {
+                            nodes
+                        } = me,
+                        isUpdated = false;
+
+                    for (let field of fields) {
+
+                        let value = data[field],
+                            oldValue = node[field];
+
+                        if (equals(oldValue, value)) {
+
+                            continue;
+                        }
+
+                        switch (field) {
+
+                            case 'parentNodeId':
+                            case 'x':
+                            case 'y':
+                            case 'width':
+                            case 'height':
+                            case 'hidden':
+                            case 'expanded':
+                            case 'selected':
+                            case 'placeholder':
+                            case 'restructuring':
+                            case 'indicated':
+                            case 'order':
+
+                                continue;
+
+                            case 'id':
+
+                            {
+
+                                let {
+                                    id,
+                                    children
+                                } = node;
+
+                                if (nodes.has(value)) {
+
+                                    console.error(`${value} - 脑图中已经存该节点`);
+
+                                    continue;
+                                }
+
+                                node.id = value;
+
+                                for (let childNode of children) {
+
+                                    childNode.parentNodeId = value;
+                                }
+
+                                sync.call(me, id, value);
+                            }
+
+                            break;
+
+                        default:
+
+                            let newValue = node[field] = clone(value),
+                                {
+                                    id
+                                } = node;
+
+                            if (!equals(newValue, oldValue) && !isSilentMode) {
+
+                                me.fireEvent(`node${field.toLowerCase()}change`, id, value, oldValue);
+
+                                me.fireEvent('nodechange', id, field, value, oldValue);
+                            }
+                        }
+
+                        isUpdated = true;
+                    }
+
+                    return isUpdated;
+                }
+
+                function sync(oldId) {
+
+                    let {
+                        nodes,
+                        visibilityNodes
+                    } = this;
+
+                    syncMap(nodes, oldId);
+
+                    syncMap(visibilityNodes, oldId);
+                }
+
+                function syncMap(map, id) {
+
+                    if (map.has(id)) {
+
+                        let node = map.get(id);
+
+                        map.delete(id);
+
+                        map.set(node.id, node);
+                    }
+                }
+
+
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1613465726080.get(this);
+
+
+
+        return main.call(this, node, data, {
+            isSilentMode,
+            recursive
+        });
+    };
+
+})();
+
+exports['src::mindmap.node.info'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1613308340426 = new Map();
+
+    return function(data, node, config) {
+
+
+
+
+
+        if (!var_current_scope_1613308340426.has(this)) {
+
+            var_current_scope_1613308340426.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+                const info = include('src::mindmap.data.node.info').bind(this);
+
+                function main(data, node, config) {
+
+
+                    /**
+                     * 
+                     * 修改节点配置
+                     * 
+                     * @import from from .from scoped
+                     * 
+                     * @import info from ..data.node.info scoped
+                     * 
+                     * @param {mixed} [data] 节点配置
+                     * 
+                     * @param {mixed} [node] 节点编号
+                     * 
+                     * @param {object} [config] 配置
+                     * 
+                     * 
+                     */
+
+                    return info(from(node), data, config);
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1613308340426.get(this);
+
+
+
+        return main.call(this, data, node, config);
+    };
+
+})();
+
+exports['src::mindmap.node.query'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1608956299012 = new Map();
+
+    return function(id, isReturnData = false) {
+
+
+
+
+
+        if (!var_current_scope_1608956299012.has(this)) {
+
+            var_current_scope_1608956299012.set(this, (() => {
+                const data = include('src::mindmap.node.data').bind(this);
+
+                function main(id, isReturnData) {
+
+
+                    /**
+                     * 
+                     * 查询节点
+                     * 
+                     * @import data from .data scoped
+                     * 
+                     * @param {string} id 节点编号
+                     * 
+                     * @param {boolean} [isReturnData = false] 是否返回数据
+                     * 
+                     * @return {data.Record|object} 节点信息 
+                     * 
+                     */
+
+                    let {
+                        nodes
+                    } = this,
+                    node = nodes.get(id);
+
+                    if (node) {
+
+                        if (isReturnData) {
+
+                            return data(node);
+                        }
+
+                        return node;
+                    }
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1608956299012.get(this);
+
+
+
+        return main.call(this, id, isReturnData);
     };
 
 })();
@@ -43046,335 +41526,124 @@ exports['src::mindmap.node.text'] = (() => {
 
 })();
 
-exports['src::mindmap.insert.before'] = (() => {
-
-    let isDefined, isFunction;
-
-    let var_init_locked_1613308340493;
+exports['src::mindmap.node.child.last'] = (() => {
 
 
 
-    const var_current_scope_1613308340493 = new Map();
-
-    return async function(node, beforeNode, isSilentMode = false) {
 
 
-        if (!var_init_locked_1613308340493) {
 
-            isDefined = include('src::is.defined');
-            isFunction = include('src::is.function');
 
-            var_init_locked_1613308340493 = true;
+    function main(node) {
+
+
+        /**
+         * 
+         * 获取第一个子节点
+         * 
+         * @param {data.Record} node 节点
+         * 
+         */
+
+        let {
+            children
+        } = node, {
+            length
+        } = children;
+
+        if (length) {
+
+            return children[length - 1];
         }
 
+    }
+
+    return function(node) {
 
 
 
-        if (!var_current_scope_1613308340493.has(this)) {
-
-            var_current_scope_1613308340493.set(this, (() => {
-                const insert = include('src::mindmap.node.insert.before').bind(this);
-                const select = include('src::mindmap.select').bind(this);
-                const data = include('src::mindmap.node.data').bind(this);
-                const order = include('src::mindmap.order').bind(this);
-                const getParentNode = include('src::mindmap.node.parent').bind(this);
-                const from = include('src::mindmap.node.from').bind(this);
-                const register = include('src::mindmap.node.unpublished.register').bind(this);
-                const unregister = include('src::mindmap.node.unpublished.unregister').bind(this);
-                const isUnpublished = include('src::mindmap.node.unpublished.is').bind(this);
-                const setNodeInfo = include('src::mindmap.node.info').bind(this);
-
-                async function main(node, beforeNode, isSilentMode) {
-
-
-                    /**
-                     * 
-                     * 在选定节点之前插入
-                     * 
-                     * @import insert from ..node.insert.before scoped
-                     * 
-                     * @import select from ..select scoped
-                     * 
-                     * @import data from ..node.data scoped
-                     * 
-                     * @import order from ..order scoped
-                     * 
-                     * @import getParentNode from ..node.parent scoped
-                     * 
-                     * @import from from ..node.from scoped
-                     * 
-                     * @import is.defined
-                     * 
-                     * @import is.function
-                     * 
-                     * @import register from ..node.unpublished.register scoped
-                     * 
-                     * @import unregister from ..node.unpublished.unregister scoped
-                     * 
-                     * @import isUnpublished from ..node.unpublished.is scoped
-                     * 
-                     * @import setNodeInfo from ..node.info scoped
-                     * 
-                     * @param {mixed} node 插入的节点配置
-                     * 
-                     * @param {mixed} [beforeNode] 参考脑图节点
-                     * 
-                     * @param {boolean} [isSilentMode = false] 是否静默模式
-                     * 
-                     */
-
-                    let me = this,
-                        {
-                            restructuring
-                        } = me;
-
-                    if (restructuring) {
-
-                        return;
-                    }
-
-                    let nodeSelected,
-                        isNewNode = true;
-
-                    if (isDefined(node) && from(node)) {
-
-                        isNewNode = false;
-
-                        nodeSelected = node.selected;
-                    }
-
-                    node = insert(node, from(beforeNode));
-
-                    if (node) {
-
-                        if (nodeSelected) {
-
-                            node.selected = true;
-                        }
-
-                        if (isSilentMode === false) {
-
-                            me.fireEvent('nodeinsertbefore', data(node), data(beforeNode), isNewNode, () => order(getParentNode(beforeNode)));
-
-                            if (!select(node)) {
-
-                                me.layout();
-                            }
-
-                        } else if (isFunction(isSilentMode)) {
-
-                            register(node);
-
-                            if (!select(node)) {
-
-                                me.layout();
-                            }
-
-                            await isSilentMode(data(node), isNewNode, id => {
-
-                                if (isDefined(id)) {
-
-                                    if (isUnpublished(node)) {
-
-                                        setNodeInfo({
-                                            id
-                                        }, node);
-
-                                        unregister(node);
-
-                                    }
-
-                                } else if (!isUnpublished(node)) {
-
-                                    return node.id;
-
-                                }
-
-                            });
-
-                            if (!isUnpublished(node)) {
-
-                                me.fireEvent('nodeinsertbefore', data(node), data(beforeNode), isNewNode, () => order(getParentNode(beforeNode)));
-                            }
-
-                        } else {
-
-                            me.layout();
-                        }
-                    }
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613308340493.get(this);
-
-
-
-        return await main.call(this, node, beforeNode, isSilentMode);
+        return main.call(this, node);
     };
 
 })();
 
-exports['src::mindmap.insert.after'] = (() => {
-
-    let isDefined, isFunction;
-
-    let var_init_locked_1613308340485;
-
-
-
-    const var_current_scope_1613308340485 = new Map();
-
-    return async function(node, afterNode, isSilentMode = false) {
-
-
-        if (!var_init_locked_1613308340485) {
-
-            isDefined = include('src::is.defined');
-            isFunction = include('src::is.function');
-
-            var_init_locked_1613308340485 = true;
-        }
+exports['src::mindmap.node.append'] = (() => {
 
 
 
 
-        if (!var_current_scope_1613308340485.has(this)) {
 
-            var_current_scope_1613308340485.set(this, (() => {
-                const insert = include('src::mindmap.node.insert.after').bind(this);
-                const order = include('src::mindmap.order').bind(this);
-                const data = include('src::mindmap.node.data').bind(this);
-                const getParentNode = include('src::mindmap.node.parent').bind(this);
-                const select = include('src::mindmap.select').bind(this);
+
+
+    const var_current_scope_1613568804339 = new Map();
+
+    return function(node, parentNode) {
+
+
+
+
+
+        if (!var_current_scope_1613568804339.has(this)) {
+
+            var_current_scope_1613568804339.set(this, (() => {
+                const data = include('src::mindmap.layout.node.data.param').bind(this);
+                const show = include('src::mindmap.node.show').bind(this);
+                const getLastChildNode = include('src::mindmap.node.child.last').bind(this);
+                const getChildOrders = include('src::mindmap.node.child.orders').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
-                const register = include('src::mindmap.node.unpublished.register').bind(this);
-                const unregister = include('src::mindmap.node.unpublished.unregister').bind(this);
-                const isUnpublished = include('src::mindmap.node.unpublished.is').bind(this);
-                const setNodeInfo = include('src::mindmap.node.info').bind(this);
 
-                async function main(node, afterNode, isSilentMode) {
+                function main(node, parentNode) {
 
 
                     /**
                      * 
-                     * 在选定节点之前插入
+                     * 添加子节点
                      * 
-                     * @import insert from ..node.insert.after scoped
+                     * @import data from ..layout.node.data.param scoped
                      * 
-                     * @import order from ..order scoped
+                     * @import show from .show scoped
                      * 
-                     * @import data from ..node.data scoped
+                     * @import getLastChildNode from .child.last scoped
                      * 
-                     * @import getParentNode from ..node.parent scoped
+                     * @import getChildOrders from .child.orders scoped
                      * 
-                     * @import select from ..select scoped
+                     * @import from from .from scoped
                      * 
-                     * @import from from ..node.from scoped
+                     * @param {mixed} node 节点配置
                      * 
-                     * @import is.defined
+                     * @param {mixed} parentNode 节点
                      * 
-                     * @import is.function
-                     * 
-                     * @import register from ..node.unpublished.register scoped
-                     * 
-                     * @import unregister from ..node.unpublished.unregister scoped
-                     * 
-                     * @import isUnpublished from ..node.unpublished.is scoped
-                     * 
-                     * @import setNodeInfo from ..node.info scoped
-                     * 
-                     * @param {mixed} node 插入的节点配置
-                     * 
-                     * @param {mixed} [afterNode] 参考脑图节点
-                     * 
-                     * @param {boolean} [isSilentMode = false] 是否静默模式
+                     * @return {boolean} 添加标识
                      * 
                      */
 
-                    let me = this,
-                        {
-                            restructuring
-                        } = me;
+                    node = from(node);
 
-                    if (restructuring) {
+                    parentNode = from(parentNode);
 
-                        return;
+                    if ((parentNode === node || getLastChildNode(parentNode) === node)) {
+
+                        return false;
+
                     }
 
-                    let nodeSelected,
-                        isNewNode = true;
+                    let {
+                        children,
+                        hidden,
+                        expanded
+                    } = parentNode;
 
-                    if (isDefined(node) && from(node)) {
+                    children.push(node);
 
-                        isNewNode = false;
+                    if (!hidden && expanded) {
 
-                        nodeSelected = node.selected;
+                        show(node);
                     }
 
-                    node = insert(node, from(afterNode));
+                    me.fireEvent('nodeappend', data(node), data(parentNode), getChildOrders(parentNode));
 
-                    if (node) {
+                    return true;
 
-                        if (nodeSelected) {
-
-                            node.selected = true;
-                        }
-
-                        if (!isSilentMode) {
-
-                            me.fireEvent('nodeinsertafter', data(node), data(afterNode), isNewNode, () => order(getParentNode(afterNode)));
-
-                            if (!select(node)) {
-
-                                me.layout();
-                            }
-
-                        } else if (isFunction(isSilentMode)) {
-
-                            register(node);
-
-                            if (!select(node)) {
-
-                                me.layout();
-                            }
-
-                            await isSilentMode(data(node), isNewNode, id => {
-
-                                if (isDefined(id)) {
-
-                                    if (isUnpublished(node)) {
-
-                                        setNodeInfo({
-                                            id
-                                        }, node);
-
-                                        unregister(node);
-
-                                    }
-
-                                } else if (!isUnpublished(node)) {
-
-                                    return node.id;
-
-                                }
-
-                            });
-
-                            if (!isUnpublished(node)) {
-
-                                me.fireEvent('nodeinsertafter', data(node), data(afterNode), isNewNode, () => order(getParentNode(afterNode)));
-                            }
-
-                        } else {
-
-                            me.layout();
-                        }
-                    }
 
 
                 }
@@ -43384,11 +41653,268 @@ exports['src::mindmap.insert.after'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613308340485.get(this);
+        const main = var_current_scope_1613568804339.get(this);
 
 
 
-        return await main.call(this, node, afterNode, isSilentMode);
+        return main.call(this, node, parentNode);
+    };
+
+})();
+
+exports['src::mindmap.node.insert'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1613568804362 = new Map();
+
+    return function(insertNode, baseNode, region) {
+
+
+
+
+
+        if (!var_current_scope_1613568804362.has(this)) {
+
+            var_current_scope_1613568804362.set(this, (() => {
+                const data = include('src::mindmap.layout.node.data.param').bind(this);
+                const isRootNode = include('src::mindmap.node.is.root').bind(this);
+                const getParentNode = include('src::mindmap.node.parent').bind(this);
+                const getPreviousNode = include('src::mindmap.node.slibing.previous').bind(this);
+                const getNextNode = include('src::mindmap.node.slibing.next').bind(this);
+                const show = include('src::mindmap.node.show').bind(this);
+                const getChildOrders = include('src::mindmap.node.child.orders').bind(this);
+                const from = include('src::mindmap.node.from').bind(this);
+
+                function main(insertNode, baseNode, region) {
+
+
+                    /**
+                     * 
+                     * 插入节点
+                     * 
+                     * @import data from ..layout.node.data.param scoped
+                     * 
+                     * @import isRootNode from .is.root scoped
+                     * 
+                     * @import getParentNode from .parent scoped
+                     * 
+                     * @import getPreviousNode from .slibing.previous scoped
+                     * 
+                     * @import getNextNode from .slibing.next scoped
+                     * 
+                     * @import show from .show scoped
+                     * 
+                     * @import getChildOrders from .child.orders scoped
+                     * 
+                     * @import from from .from scoped
+                     * 
+                     * @param {mixed} insertNode 需要插入的节点
+                     * 
+                     * @param {mixed} baseNode 参照节点
+                     * 
+                     * @param {string} region 插入偏移位置
+                     * 
+                     * @return {boolea} 插入状态标识
+                     * 
+                     */
+
+                    insertNode = from(insertNode);
+
+                    baseNode = from(baseNode);
+
+                    if (!isRootNode(baseNode)) {
+
+                        if (insertNode) {
+
+                            if (insertNode === baseNode) {
+
+                                return false;
+                            }
+
+                            switch (region) {
+
+                                case 'before':
+
+                                    if (getPreviousNode(baseNode) === insertNode) {
+
+                                        return false;
+                                    }
+
+                                    break;
+
+                                case 'after':
+
+                                    if (getNextNode(baseNode) === insertNode) {
+
+                                        return false;
+                                    }
+                            }
+                        }
+
+                        let parentNode = getParentNode(baseNode),
+                            {
+                                children
+                            } = parentNode,
+                            {
+                                length
+                            } = children;
+
+                        let index = children.indexOf(baseNode);
+
+                        if (region === 'after') {
+
+                            index++;
+                        }
+
+                        if (index > length - 1) {
+
+                            index = length;
+
+                        }
+
+                        children.splice(index, 0, insertNode);
+
+                        if (!baseNode.hidden) {
+
+                            show(insertNode);
+                        }
+
+                        me.fireEvent(`nodeinsert${region}`, data(node), data(baseNode), getChildOrders(parentNode));
+
+                        return true;
+                    }
+
+                    return false;
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1613568804362.get(this);
+
+
+
+        return main.call(this, insertNode, baseNode, region);
+    };
+
+})();
+
+exports['src::mindmap.node.insert.before'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1613566323036 = new Map();
+
+    return function(insertNode, beforeNode) {
+
+
+
+
+
+        if (!var_current_scope_1613566323036.has(this)) {
+
+            var_current_scope_1613566323036.set(this, (() => {
+                const insert = include('src::mindmap.node.insert').bind(this);
+
+                function main(insertNode, beforeNode) {
+
+
+                    /**
+                     * 
+                     * 插入节点
+                     * 
+                     * @import insert from ..insert scoped
+                     * 
+                     * @param {data.Record} insertNode 需要插入的节点
+                     * 
+                     * @param {data.Record} beforeNode 参照节点
+                     * 
+                     * @return {boolea} 插入状态标识
+                     * 
+                     */
+
+                    return insert(insertNode, beforeNode, 'before');
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1613566323036.get(this);
+
+
+
+        return main.call(this, insertNode, beforeNode);
+    };
+
+})();
+
+exports['src::mindmap.node.insert.after'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1613566323055 = new Map();
+
+    return function(insertNode, afterNode) {
+
+
+
+
+
+        if (!var_current_scope_1613566323055.has(this)) {
+
+            var_current_scope_1613566323055.set(this, (() => {
+                const insert = include('src::mindmap.node.insert').bind(this);
+
+                function main(insertNode, afterNode) {
+
+
+                    /**
+                     * 
+                     * 插入节点
+                     * 
+                     * @import insert from ..insert scoped
+                     * 
+                     * @param {data.Record} insertNode 需要插入的节点
+                     * 
+                     * @param {data.Record} afterNode 参照节点
+                     * 
+                     * @return {boolea} 插入状态标识
+                     * 
+                     */
+
+                    return insert(insertNode, afterNode, 'after');
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1613566323055.get(this);
+
+
+
+        return main.call(this, insertNode, afterNode);
     };
 
 })();
@@ -46030,112 +44556,6 @@ exports['src::mindmap.layout.positioner.logic.anchors.right.right'] = (() => {
 
 })();
 
-exports['src::mindmap.layout.node.root.normal'] = (() => {
-
-
-
-
-
-
-
-    function main() {
-
-        /**
-         * 
-         * 获得逻辑图根节点
-         * 
-         */
-
-        return this.rootNode;
-
-
-
-    }
-
-    return function() {
-
-
-
-        return main.call(this);
-    };
-
-})();
-
-exports['src::mindmap.layout.nodes.descendant.normal'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1613523902348 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1613523902348.has(this)) {
-
-            var_current_scope_1613523902348.set(this, (() => {
-                const cache = include('src::mindmap.layout.cache').bind(this);
-
-
-                /**
-                 * 
-                 * 获得子孙节点
-                 * 
-                 * @import cache from mindmap.layout.cache scoped
-                 * 
-                 * @param {data.Record} node 脑图节点
-                 * 
-                 * @return {array} 子孙节点数组 
-                 * 
-                 */
-
-                function main(node) {
-
-                    return getDescendantNodes(node);
-                }
-
-                function getDescendantNodes({
-                    expanded,
-                    children
-                }) {
-
-                    let result = [];
-
-                    if (expanded) {
-
-                        for (let childNode of children) {
-
-                            result.push(childNode);
-
-                            result.push(...getDescendantNodes(childNode));
-                        }
-
-                        return result;
-                    }
-
-                    return result;
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1613523902348.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
 exports['src::mindmap.layout.node.select.logic.down'] = (() => {
 
 
@@ -46553,313 +44973,6 @@ exports['src::function.create.before'] = (() => {
 
 
         return main.call(this, target, beforeFn);
-    };
-
-})();
-
-exports['src::function.executer.callback'] = (() => {
-
-    let get;
-
-    let var_init_locked_1608956299369;
-
-
-
-    function main(callback) {
-
-
-        /**
-         * 
-         * 添加回调函数
-         * 
-         * @import get from function.get
-         * 
-         * @param {string | function} callback 回调函数
-         * 
-         * @return {function.Executer} 函数执行器本身
-         * 
-         */
-
-        let me = this,
-            {
-                callbacks
-            } = me;
-
-        callbacks.push(get(callback));
-
-        return me;
-
-    }
-
-    return function(callback) {
-
-
-        if (!var_init_locked_1608956299369) {
-
-            get = include('src::function.get');
-
-            var_init_locked_1608956299369 = true;
-        }
-
-
-        return main.call(this, callback);
-    };
-
-})();
-
-exports['src::function.executer.constructor'] = (() => {
-
-    let get;
-
-    let var_init_locked_1608956299372;
-
-
-
-    function main(fn) {
-
-        /**
-         * 
-         * 构建函数执行器
-         * 
-         * @import get from function.get
-         * 
-         * @param {function |string} fn 执行函数
-         * 
-         */
-
-        let me = this;
-
-        me.target = get(fn);
-
-        me.callbacks = [];
-
-    }
-
-    return function(fn) {
-
-
-        if (!var_init_locked_1608956299372) {
-
-            get = include('src::function.get');
-
-            var_init_locked_1608956299372 = true;
-        }
-
-
-        return main.call(this, fn);
-    };
-
-})();
-
-exports['src::function.executer.execute'] = (() => {
-
-    let isDefined;
-
-    let var_init_locked_1608956299374;
-
-
-
-
-    /**
-     * 
-     * 执行函数，如果当前是正在执行状态，则拒绝执行
-     * 
-     * @import is.defined
-     * 
-     * @param {mixed} [...params] 执行函数参数 
-     * 
-     * @return {function.Executer} 函数执行器本身
-     * 
-     */
-
-    function main(...params) {
-
-        let me = this;
-
-        let {
-            target,
-            callbacks
-        } = me;
-
-        me.params = params;
-
-        me.isExecuting = true;
-
-        let result = target(...params);
-
-        if (result instanceof Promise) {
-
-            result.then(result => doCallback.call(me, callbacks, result));
-
-        } else {
-
-            doCallback.call(me, callbacks, result);
-
-        }
-
-        return me;
-
-    }
-
-    function doCallback(callbacks, result) {
-
-        for (let callback of callbacks) {
-
-            let itemResult = callback(result, params);
-
-            if (isDefined(itemResult)) {
-
-                result = itemResult;
-            }
-        }
-
-    }
-
-    return function(...params) {
-
-
-        if (!var_init_locked_1608956299374) {
-
-            isDefined = include('src::is.defined');
-
-            var_init_locked_1608956299374 = true;
-        }
-
-
-        return main.call(this, ...params);
-    };
-
-})();
-
-exports['src::function.executer.reexecute'] = (() => {
-
-
-
-
-
-
-
-    function main() {
-
-
-        /**
-         * 
-         * 重新执行函数
-         * 
-         * @return {function.Executer} 函数执行器本身
-         * 
-         */
-
-        let me = this,
-            {
-                params
-            } = me;
-
-        return me.execute(...params);
-
-    }
-
-    return function() {
-
-
-
-        return main.call(this);
-    };
-
-})();
-
-exports['src::function.executer'] = (() => {
-
-    let extend, constructor, method_callback, method_reexecute, method_execute, isObject;
-
-    let var_init_locked_1608956299378;
-
-    let var_class_1608956299378;
-
-
-
-    let var_global_main_1608956299378;
-
-    return function() {
-
-
-        if (!var_init_locked_1608956299378) {
-
-            extend = include('src::class.empty')();
-            constructor = include('src::function.executer.constructor');
-            method_callback = include('src::function.executer.callback');
-            method_reexecute = include('src::function.executer.reexecute');
-            method_execute = include('src::function.executer.execute');
-            isObject = include('src::is.object.simple');
-
-            class main {
-
-
-
-
-
-                constructor(...args) {
-
-
-
-                    constructor.apply(this, args);
-
-                }
-
-                callback(...args) {
-
-                    return method_callback.apply(this, args);
-
-                }
-                reexecute(...args) {
-
-                    return method_reexecute.apply(this, args);
-
-                }
-                execute(...args) {
-
-                    return method_execute.apply(this, args);
-
-                }
-
-
-
-            }
-
-            var_class_1608956299378 = class extends main {
-
-                static get __ZBEE_IS_CLASS__() {
-
-                    return true;
-                }
-
-
-                get __ZBEE_CLASS__() {
-
-                    return true;
-                }
-
-                get __ZBEE_CURRENT_CLASS__() {
-
-                    return var_class_1608956299378;
-                }
-
-                get __ZBEE_CLASS_NAME__() {
-
-                    return 'src::function.executer';
-                }
-
-            };
-
-            main = var_class_1608956299378;
-
-            var_global_main_1608956299378 = main;
-
-            var_init_locked_1608956299378 = true;
-        }
-
-
-        return new var_global_main_1608956299378();
     };
 
 })();
