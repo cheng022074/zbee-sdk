@@ -15,8 +15,6 @@
  * 
  * @import buffer from function.buffer
  * 
- * @import data from .data scoped
- * 
  * @import doLayout from .layout scoped
  * 
  * @import doRefresh from .refresh scoped
