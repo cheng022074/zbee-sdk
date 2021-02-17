@@ -1,16 +1,14 @@
 
 /**
  * 
- * 判定指定节点是否为根节点
- * 
- * @import getRootNode from ..root scoped
+ * 判断指定脑图节点是否为根节点
  * 
  * @import from from ..from scoped
  * 
- * @param {mixed} node 节点
+ * @param {data.Record} node 脑图节点
  * 
- * @return {boolean} 如果为脑图根节点则返回 true , 否则返回 false 
+ * @return {boolean} 如果为根节点则返回 true , 否则返回 false 
  * 
  */
 
- return from(node) === getRootNode() ;
+return from(node) === this.rootNode ;

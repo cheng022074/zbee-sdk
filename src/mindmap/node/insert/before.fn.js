@@ -9,7 +9,7 @@
  * 
  * @param {data.Record} beforeNode 参照节点
  * 
- * @return {data.Record} 插入后的节点
+ * @return {boolea} 插入状态标识
  * 
  */
 

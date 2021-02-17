@@ -5,57 +5,51 @@
  * 
  * @import create from .create scoped
  * 
- * @import isRootNode from ..data.node.is.root scoped
+ * @import isRootNode from .is.root scoped
  * 
- * @import getParentNode from ..data.node.parent scoped
+ * @import getParentNode from .parent scoped
  * 
- * @import getPreviousNode from ..data.node.slibing.previous scoped
+ * @import getPreviousNode from .slibing.previous scoped
  * 
- * @import getNextNode from ..data.node.slibing.next scoped
+ * @import getNextNode from .slibing.next scoped
  * 
  * @import show from .show scoped
  * 
- * @import from from ..data.node.from scoped
+ * @param {data.Record} insertNode 需要插入的节点
  * 
- * @param {mixed} [insertNode = {}] 需要插入的节点
+ * @param {data.Record} baseNode 参照节点
  * 
- * @param {mixed} baseNode 参照节点
+ * @param {string} region 插入偏移位置
  * 
- * @param {number} region 插入偏移位置
- * 
- * @return {data.Record} 插入后的节点
+ * @return {boolea} 插入状态标识
  * 
  */
 
 if(!isRootNode(baseNode)){
 
-    baseNode = from(baseNode) ;
+    if(insertNode){
 
-    let insertMindmapNode = from(insertNode) ;
+        if(insertNode === baseNode){
 
-    if(insertMindmapNode){
-
-        if(insertMindmapNode === baseNode){
-
-            return ;
+            return false;
         }
 
         switch(region){
 
             case 'before':
 
-                if(getPreviousNode(baseNode) === insertMindmapNode){
+                if(getPreviousNode(baseNode) === insertNode){
 
-                    return ;
+                    return false;
                 }
 
                 break;
 
             case 'after':
 
-                if(getNextNode(baseNode) === insertMindmapNode){
+                if(getNextNode(baseNode) === insertNode){
 
-                    return ;
+                    return false;
                 }
         }
     }
@@ -67,8 +61,6 @@ if(!isRootNode(baseNode)){
     {
         length
     } = children;
-
-    insertNode = create(insertNode , parentNode) ;
 
     let index = children.indexOf(baseNode) ;
 
@@ -90,5 +82,7 @@ if(!isRootNode(baseNode)){
         show(insertNode) ;
     }
 
-    return insertNode ;
+    return true ;
 }
+
+return false ;
