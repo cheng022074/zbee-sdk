@@ -10,7 +10,7 @@
  * 
  * @param {array} nodes 脑图节点集合
  * 
- * @param {array} 范围集合
+ * @return {array} 范围集合
  * 
  */
 
