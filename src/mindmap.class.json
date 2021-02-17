@@ -69,11 +69,11 @@
             "impl":".mindmap.node.text"
         },
         {
-            "name":"insertBefore",
-            "impl":".mindmap.insert.before"
+            "name":"insertNodeBefore",
+            "impl":".mindmap.node.insert.before"
         },{
-            "name":"insertAfter",
-            "impl":".mindmap.insert.after"
+            "name":"insertNodeAfter",
+            "impl":".mindmap.node.insert.after"
         },{
             "name":"startRestructureNode",
             "impl":".mindmap.node.restructure.start"
