@@ -98,8 +98,8 @@
    let {
       createPositioner = 'mindmap.layout.positioner.logic.right',
       pattern = 'mindmap.layout.pattern.logic.right',
-      getRootNode = 'mindmap.layout.range.root.normal',
-      getDescendantNodes = 'mindmap.layout.range.descendant.normal'
+      getRootNode = 'mindmap.node.root',
+      getDescendantNodes = 'mindmap.nodes.descendant'
    } = layout ;
 
    layoutConfig.createPositioner = get(createPositioner , me) ;
