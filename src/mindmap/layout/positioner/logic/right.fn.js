@@ -7,6 +7,8 @@
  * 
  * @import getUpNodeAnchors from .anchors.up
  * 
+ * @import getDownNodeAnchors from .anchors.down
+ * 
  * @import init from .init
  * 
  * @import getCacheNode from .node.cache
@@ -62,20 +64,6 @@
     }) => left > x , region => getAnchorXY(region , 'l')) ;
  }
 
-function getDownNode(nodeXY){
-
-    let me = this,
-    {
-        topDescRegions
-    } = me ;
-
-    return getNode.call(me , nodeXY , topDescRegions , ({
-        top
-    } , {
-        y
-    }) => top > y , region => getAnchorXY(region , 'tl')) ;
- }
-
  const {
     from
  } = Array;
@@ -125,26 +113,17 @@ function getDownNode(nodeXY){
         let me = this,
         {
             nodeMap,
-            regionMap,
             topRegions
         } = me,
-        region = nodeMap.get(node),
-        {
+        region = nodeMap.get(node);
+
+        return getNode.call(me , region , topRegions , topRegions.indexOf(region) + 1 , ({
+            top
+        } , {
             bottom
-        } = region,
-        {
-            length
-        } = topRegions;
-
-        for(let i = topRegions.indexOf(region) + 1 ; i < length ; i ++){
-
-            let topRegion = topRegions[i] ;
-
-            if(topRegion.top > bottom){
-
-                return regionMap.get(topRegion) ;
-            }
-        }
+        }) => bottom < top , [
+            getDownNodeAnchors
+        ]).node ;
     }
 
     getLeftNode(node){
