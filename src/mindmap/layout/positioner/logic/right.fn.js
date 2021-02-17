@@ -7,31 +7,15 @@
  * 
  * @import getAnchorXY from math.region.xy.anchor
  * 
- * @import fromRegion from math.region.from
- * 
  * @import getUpNodeAnchors from .anchors.up
+ * 
+ * @import init from .init
+ * 
+ * @import getCacheNode from .node.cache
  * 
  * @param {array} nodes 布局脑图节点集合
  * 
  */
-
- function generateBottomRegions(regions){
-
-    return from(regions).sort(({
-        bottom:bottom1
-    } , {
-        bottom:bottom2
-    }) => bottom2 - bottom1) ;
- }
-
- function generateTopRegions(regions) {
-     
-    return from(regions).sort(({
-        top:top1
-    } , {
-        top:top2
-    }) => top1 - top2) ;
- }
 
  function generateLeftDescRegions(regions){
 
@@ -49,26 +33,6 @@
     } , {
         right:right2
     }) => right1 - right2) ;
- }
-
- function generateMap(nodes) {
-  
-    let regionMap = new Map(),
-        nodeMap = new Map();
-
-    for(let node of nodes){
-
-        let region = fromRegion(node) ;
-
-        regionMap.set(region , node) ;
-
-        nodeMap.set(node , region) ;
-    }
-
-    return {
-        region:regionMap,
-        node:nodeMap
-    } ;
  }
 
  function getNode(region , originRegions , startIndex , isMatch , getPairAnchors){
@@ -167,22 +131,6 @@ function getDownNode(nodeXY){
     }) => top > y , region => getAnchorXY(region , 'tl')) ;
  }
 
- function getCacheNode(node , name){
-
-    let me = this,
-    {
-        cache
-    } = me,
-    map = cache[name];
-
-    if(!map.has(node)){
-
-        map.set(node , me[`apply${name}`](node)) ;
-    }
-
-    return map.get(node) ;
- }
-
  const {
     from
  } = Array,
@@ -195,30 +143,11 @@ function getDownNode(nodeXY){
     constructor(nodes){
 
         let me = this,
-            {
-                region:regionMap,
-                node:nodeMap
-            } = generateMap(nodes),
-            regions = from(nodeMap.values());
-
-        me.bottomRegions = generateBottomRegions(regions) ;
-
-        me.topRegions = generateTopRegions(regions) ;
+            regions = init.call(me , nodes);
 
         me.leftDescRegions = generateLeftDescRegions(regions) ;
 
         me.rightAscRegions = generateRightAscRegions(regions) ;
-
-        me.nodeMap = nodeMap ;
-
-        me.regionMap = regionMap ;
-
-        me.cache = {
-            UpNode:new Map(),
-            DownNode:new Map(),
-            LeftNode:new Map(),
-            RightNode:new Map()
-        } ;
     }
 
     getUpNode(node){
