@@ -9,6 +9,8 @@
  * 
  * @import fromRegion from math.region.from
  * 
+ * @import getUpNodeAnchors from .anchors.up
+ * 
  * @param {array} nodes 布局脑图节点集合
  * 
  */
@@ -137,20 +139,6 @@
     }) => right < x , region => getAnchorXY(region , 'r')) ;
  }
 
- function getDownNode(nodeXY){
-
-    let me = this,
-    {
-        topDescRegions
-    } = me ;
-
-    return getNode.call(me , nodeXY , topDescRegions , ({
-        top
-    } , {
-        y
-    }) => top > y , region => getAnchorXY(region , 'tl')) ;
- }
-
  function getRightNode(nodeXY){
 
     let me = this,
@@ -165,65 +153,19 @@
     }) => left > x , region => getAnchorXY(region , 'l')) ;
  }
 
- function getUpNode({
-    left:regionLeft,
-    right:regionRight
-} , {
-    left,
-    right
-}){
+function getDownNode(nodeXY){
 
-    let start,
-        end ;
+    let me = this,
+    {
+        topDescRegions
+    } = me ;
 
-    if(regionRight < left){
-
-        start = 'br' ;
-
-        end = 'tl' ;
-    
-    }else if(regionLeft > right){
-
-        start = 'bl' ;
-
-        end = 'tr' ;
-    
-    }else{
-
-        let result = [{
-            distance:abs(regionLeft - left),
-            start:'bl',
-            end:'tl'
-        },{
-            distance:abs(regionLeft - right),
-            start:'bl',
-            end:'tr'
-        },{
-            distance:abs(regionRight - left),
-            start:'br',
-            end:'tl'
-        },{
-            distance:abs(regionRight - right),
-            start:'br',
-            end:'tr'
-        }].sort(({
-            distance:distance1
-        } , {
-            distance:distance2
-        }) => distance1 - distance2)[0] ;
-
-        start = result.start ;
-
-        end = result.end ;
-    }
-
-    return {
-        start,
-        end,
-        direction:'up'
-    } ;
-
-}
+    return getNode.call(me , nodeXY , topDescRegions , ({
+        top
+    } , {
+        y
+    }) => top > y , region => getAnchorXY(region , 'tl')) ;
+ }
 
  function getCacheNode(node , name){
 
@@ -298,7 +240,7 @@
         } , {
             top
         }) => bottom < top , [
-            getUpNode
+            getUpNodeAnchors
         ]).node ;
     }
 
