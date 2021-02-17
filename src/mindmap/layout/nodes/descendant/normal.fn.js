@@ -5,8 +5,6 @@
  * 
  * @import cache from mindmap.layout.cache scoped
  * 
- * @import getChildNodes from ..child scoped
- * 
  * @param {data.Record} node 脑图节点
  * 
  * @return {array} 子孙节点数组 
