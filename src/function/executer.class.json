@@ -1,8 +1,0 @@
-{
-    "constructor":true,
-    "methods":[
-        "callback",
-        "reexecute",
-        "execute"
-    ]
-}
