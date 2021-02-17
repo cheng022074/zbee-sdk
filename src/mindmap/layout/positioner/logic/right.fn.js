@@ -22,7 +22,7 @@
     }) => bottom1 - bottom2) ;
  }
 
- function generateTopDescRegion(regions) {
+ function generateTopDescRegions(regions) {
      
     return regions.sort(({
         top:top1
@@ -31,7 +31,7 @@
     }) => top2 - top1) ;
  }
 
- function generateLeftDescRegion(regions){
+ function generateLeftDescRegions(regions){
 
     return regions.sort(({
         left:left1
@@ -174,9 +174,9 @@
 
         me.bottomAscRegions = generateBottomAscRegions(regions) ;
 
-        me.topDescRegions = generateTopDescRegion(from(regions)) ;
+        me.topDescRegions = generateTopDescRegions(from(regions)) ;
 
-        me.leftDescRegions = generateLeftDescRegion(from(regions)) ;
+        me.leftDescRegions = generateLeftDescRegions(from(regions)) ;
 
         me.rightAscRegions = generateRightAscRegions(from(regions)) ;
 
