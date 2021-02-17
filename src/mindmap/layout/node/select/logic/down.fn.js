@@ -14,7 +14,7 @@ let {
    layoutPositioner
  } = this ;
 
-let node = next(selectedNode) || layoutPositioner.getDownNode(selectedNode);
+let node = next(selectedNode) || layoutPositioner.getSelectDownNode(selectedNode);
 
 if(node){
 

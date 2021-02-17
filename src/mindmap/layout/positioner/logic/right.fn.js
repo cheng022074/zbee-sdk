@@ -35,7 +35,7 @@
         me.rightRegions = generateRightRegions(regions) ;
     }
 
-    applyLeftNode(node){
+    applySelectLeftNode(node){
 
         let me = this,
         {
@@ -53,7 +53,7 @@
         ]).node ;
     }
 
-    applyRightNode(node){
+    applySelectRightNode(node){
 
         let me = this,
         {

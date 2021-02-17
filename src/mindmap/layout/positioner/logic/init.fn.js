@@ -35,10 +35,12 @@ me.bottomRegions = generateBottomRegions(regions) ;
 me.topRegions = generateTopRegions(regions) ;
 
 me.cache = {
-    UpNode:new Map(),
-    DownNode:new Map(),
-    LeftNode:new Map(),
-    RightNode:new Map()
+    SelectUpNode:new Map(),
+    SelectDownNode:new Map(),
+    SelectLeftNode:new Map(),
+    SelectRightNode:new Map(),
+    MoveUpNode:new Map(),
+    MoveDownNode:new Map()
 } ;
 
 return regions ;

@@ -13,66 +13,98 @@
  * 
  * @import getNode from .logic.node
  * 
+ * @import isDescendantNode from mindmap.node.is.descendant
+ * 
  * @class
  * 
  */
 
+ function applyUpNode(node , isIgnoreNode){
+
+    let me = this,
+    {
+        nodeMap,
+        bottomRegions
+    } = me,
+    region = nodeMap.get(node);
+
+    return getNode.call(me , region , bottomRegions , bottomRegions.indexOf(region) + 1 , ({
+        bottom
+    } , {
+        top
+    }) => bottom < top , [
+        getUpNodeAnchors
+    ] , isIgnoreNode).node ;
+ }
+
+ function applyDownNode(node , isIgnoreNode){
+
+    let me = this,
+    {
+        nodeMap,
+        topRegions
+    } = me,
+    region = nodeMap.get(node);
+
+    return getNode.call(me , region , topRegions , topRegions.indexOf(region) + 1 , ({
+        top
+    } , {
+        bottom
+    }) => bottom < top , [
+        getDownNodeAnchors
+    ] , isIgnoreNode).node ;
+ }
+
  class main {
 
-    getUpNode(node){
+    getSelectUpNode(node){
 
-        return getCacheNode.call(this , node , 'UpNode') ;
+        return getCacheNode.call(this , node , 'SelectUpNode') ;
     }
 
-    applyUpNode(node){
+    getMoveUpNode(node){
+
+        return getCacheNode.call(this , node , 'MoveUpNode') ;
+    }
+
+    applySelectUpNode(node){
         
-        let me = this,
-        {
-            nodeMap,
-            bottomRegions
-        } = me,
-        region = nodeMap.get(node);
-
-        return getNode.call(me , region , bottomRegions , bottomRegions.indexOf(region) + 1 , ({
-            bottom
-        } , {
-            top
-        }) => bottom < top , [
-            getUpNodeAnchors
-        ]).node ;
+        return applyUpNode.call(this , node) ;
     }
 
-    getDownNode(node){
+    applyMoveUpNode(node){
 
-        return getCacheNode.call(this , node , 'DownNode') ;
+        return applyUpNode.call(this , node , originNode => isDescendantNode(node , originNode) || isDescendantNode(originNode , node)) ;
     }
 
-    applyDownNode(node){
+    getSelectDownNode(node){
 
-        let me = this,
-        {
-            nodeMap,
-            topRegions
-        } = me,
-        region = nodeMap.get(node);
-
-        return getNode.call(me , region , topRegions , topRegions.indexOf(region) + 1 , ({
-            top
-        } , {
-            bottom
-        }) => bottom < top , [
-            getDownNodeAnchors
-        ]).node ;
+        return getCacheNode.call(this , node , 'SelectDownNode') ;
     }
 
-    getLeftNode(node){
+    getMoveDownNode(node){
 
-        return getCacheNode.call(this , node , 'LeftNode') ;
+        return getCacheNode.call(this , node , 'MoveDownNode') ;
+    }
+
+    applySelectDownNode(node){
+
+        return applyDownNode.call(this , node) ;
+    }
+
+    applyMoveDownNode(node){
+
+        return applyDownNode.call(this , node , originNode => isDescendantNode(node , originNode) || isDescendantNode(originNode , node)) ;
+    }
+
+    getSelectLeftNode(node){
+
+        return getCacheNode.call(this , node , 'SelectLeftNode') ;
     }
 
     getRightNode(node){
 
-        return getCacheNode.call(this , node , 'RightNode') ;
+        return getCacheNode.call(this , node , 'SelectRightNode') ;
     }
 
  }
