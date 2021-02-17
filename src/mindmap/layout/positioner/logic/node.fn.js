@@ -14,7 +14,9 @@
  * 
  * @param {function} isMatch 判断是否可进行比较 
  * 
- * @param {array} getPairAnchors 获得锚定插件 
+ * @param {array} getPairAnchors 获得锚定插件
+ * 
+ * @param {function} [isIgnoreNode = () => false] 是否为忽略节点
  * 
  * @return {object} 匹配内容
  * 
@@ -35,9 +37,16 @@ for(let i = startIndex ; i < length ; i ++){
 
     if(isMatch(originRegion , region)){
 
+        let node = regionMap.get(originRegion);
+
+        if(isIgnoreNode(node)){
+
+            continue ;
+        }
+
         let {
             length
-        } = getPairAnchors;
+        } = getPairAnchors ;
 
         for(let i = 0 ; i < length ; i ++){
 
@@ -53,7 +62,7 @@ for(let i = startIndex ; i < length ; i ++){
 
                 result[i] = {
                     distance,
-                    node:regionMap.get(originRegion),
+                    node,
                     direction
                 } ;
             }
