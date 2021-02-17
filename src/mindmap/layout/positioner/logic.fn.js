@@ -5,13 +5,13 @@
  * 
  * @import getAnchorXY from math.region.xy.anchor
  * 
- * @import getUpNodeAnchors from .anchors.up
+ * @import getUpNodeAnchors from .logic.anchors.up
  * 
- * @import getDownNodeAnchors from .anchors.down
+ * @import getDownNodeAnchors from .logic.anchors.down
  * 
- * @import getCacheNode from .node.cache
+ * @import getCacheNode from .logic.node.cache
  * 
- * @import getNode from .node
+ * @import getNode from .logic.node
  * 
  * @class
  * 

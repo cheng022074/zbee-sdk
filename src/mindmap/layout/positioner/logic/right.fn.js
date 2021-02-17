@@ -9,38 +9,26 @@
  * 
  * @import Logic from ..logic value
  * 
+ * @import generateLeftRegions from .regions.right.left
+ * 
+ * @import generateRightRegions from .regions.right.right
+ * 
  * @param {array} nodes 布局脑图节点集合
  * 
  */
-
- function generateLeftDescRegions(regions){
-
-    return from(regions).sort(({
-        left:left1
-    } , {
-        left:left2
-    }) => left2 - left1) ;
- }
-
- function generateRightAscRegions(regions){
-
-    return from(regions).sort(({
-        right:right1
-    } , {
-        right:right2
-    }) => right1 - right2) ;
- }
 
  class main extends Logic{
 
     constructor(nodes){
 
+        super() ;
+
         let me = this,
             regions = init.call(me , nodes);
 
-        me.leftDescRegions = generateLeftDescRegions(regions) ;
+        me.leftRegions = generateLeftRegions(regions) ;
 
-        me.rightAscRegions = generateRightAscRegions(regions) ;
+        me.rightRegions = generateRightRegions(regions) ;
     }
 
     applyLeftNode(node){
