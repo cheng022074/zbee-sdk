@@ -32184,131 +32184,6 @@ exports['src::object.assign.if'] = (() => {
 
 })();
 
-exports['src::object.cache'] = (() => {
-
-    let isString, isArray, isDefined;
-
-    let var_init_locked_1608956298761;
-
-    let var_class_1608956298761;
-
-
-
-    let var_global_main_1608956298761;
-
-    return function() {
-
-
-        if (!var_init_locked_1608956298761) {
-
-            isString = include('src::is.string');
-            isArray = include('src::is.array');
-            isDefined = include('src::is.defined');
-
-
-            /**
-             * 
-             * 缓存
-             * 
-             * @import is.string
-             * 
-             * @import is.array
-             * 
-             * @import is.defined
-             * 
-             */
-
-            class main {
-
-                constructor(target) {
-
-                    let me = this;
-
-                    me.target = target;
-
-                    me.cache = {};
-                }
-
-                clear(names) {
-
-                    let {
-                        cache
-                    } = this;
-
-                    if (!isDefined(names)) {
-
-                        names = Object.keys(cache);
-
-                    } else if (isString(names)) {
-
-                        names = [
-                            names
-                        ];
-                    }
-
-                    if (isArray(names)) {
-
-                        for (let name of names) {
-
-                            delete cache[name];
-                        }
-                    }
-                }
-
-                get(name) {
-
-                    let {
-                        cache,
-                        target
-                    } = this;
-
-                    if (!cache.hasOwnProperty(name)) {
-
-                        return cache[name] = target[name];
-                    }
-
-                    return cache[name];
-                }
-            }
-
-            var_class_1608956298761 = class extends main {
-
-                static get __ZBEE_IS_CLASS__() {
-
-                    return true;
-                }
-
-
-                get __ZBEE_CLASS__() {
-
-                    return true;
-                }
-
-                get __ZBEE_CURRENT_CLASS__() {
-
-                    return var_class_1608956298761;
-                }
-
-                get __ZBEE_CLASS_NAME__() {
-
-                    return 'src::object.cache';
-                }
-
-            };
-
-            main = var_class_1608956298761;
-
-            var_global_main_1608956298761 = main;
-
-            var_init_locked_1608956298761 = true;
-        }
-
-
-        return new var_global_main_1608956298761();
-    };
-
-})();
-
 exports['src::object.contains'] = (() => {
 
     let getKeys;
@@ -32668,382 +32543,6 @@ exports['src::object.freeze'] = (() => {
 
 })();
 
-exports['src::object.map'] = (() => {
-
-    let createSet, remove;
-
-    let var_init_locked_1608956298781;
-
-    let var_class_1608956298781;
-
-
-
-    let var_global_main_1608956298781;
-
-    return function() {
-
-
-        if (!var_init_locked_1608956298781) {
-
-            createSet = include('src::object.set');
-            remove = include('src::array.remove.index');
-
-
-            /**
-             * 
-             * 对象数组
-             * 
-             * @import createSet from .set
-             * 
-             * @import remove from array.remove.index
-             * 
-             */
-
-            class main {
-
-                constructor() {
-
-                    let me = this;
-
-                    me.keys = createSet();
-
-                    me.values = [];
-                }
-
-                get size() {
-
-                    return this.keys.size;
-                }
-
-                set(key, value) {
-
-                    let me = this,
-                        {
-                            keys,
-                            values
-                        } = me,
-                        index = keys.indexOf(key);
-
-                    if (index !== -1) {
-
-                        values[index] = value;
-
-                    } else {
-
-                        keys.add(key);
-
-                        values.push(value);
-                    }
-                }
-
-                get(key) {
-
-                    let {
-                        keys,
-                        values
-                    } = this,
-                    index = keys.indexOf(key);
-
-                    if (index !== -1) {
-
-                        return values[index];
-                    }
-                }
-
-                delete(key) {
-
-                    let {
-                        keys,
-                        values
-                    } = this,
-                    index = keys.indexOf(key);
-
-                    if (index !== -1) {
-
-                        keys.deleteByIndex(index);
-
-                        remove(values, index);
-                    }
-                }
-
-                has(key) {
-
-                    return this.keys.has(key);
-                }
-
-                values() {
-
-                    return Array.from(this.values);
-                }
-
-                forEach(fn, scope) {
-
-                    let {
-                        keys,
-                        values
-                    } = this,
-                    len = values.length;
-
-                    for (let i = 0; i < len; i++) {
-
-                        fn.call(scope, values[i], keys.get(i));
-                    }
-                }
-            }
-
-            var_class_1608956298781 = class extends main {
-
-                static get __ZBEE_IS_CLASS__() {
-
-                    return true;
-                }
-
-
-                get __ZBEE_CLASS__() {
-
-                    return true;
-                }
-
-                get __ZBEE_CURRENT_CLASS__() {
-
-                    return var_class_1608956298781;
-                }
-
-                get __ZBEE_CLASS_NAME__() {
-
-                    return 'src::object.map';
-                }
-
-            };
-
-            main = var_class_1608956298781;
-
-            var_global_main_1608956298781 = main;
-
-            var_init_locked_1608956298781 = true;
-        }
-
-
-        return new var_global_main_1608956298781();
-    };
-
-})();
-
-exports['src::object.set'] = (() => {
-
-    let flat, remove, getKeys;
-
-    let var_init_locked_1608956298785;
-
-    let var_class_1608956298785;
-
-
-
-    let var_global_main_1608956298785;
-
-    return function() {
-
-
-        if (!var_init_locked_1608956298785) {
-
-            flat = include('src::object.flat');
-            remove = include('src::array.remove.index');
-            getKeys = include('src::object.keys');
-
-
-            /**
-             * 
-             * 实现一个对象 Set
-             * 
-             * @import flat from .flat
-             * 
-             * @import remove from array.remove.index
-             * 
-             * @import getKeys from object.keys
-             * 
-             */
-
-            const {
-                keys: getKeys
-            } = Object;
-
-            function find(value) {
-
-                let findValues = flat(value),
-                    findKeys = getKeys(findValues),
-                    findLen = findKeys.length;
-
-                let {
-                    data
-                } = this,
-                index = 0;
-
-                for (let {
-                        values: currentValues,
-                        keys: currentKeys,
-                        len: currentLen
-                    } of data) {
-
-                    if (findLen === currentLen) {
-
-                        let isMatch = true;
-
-                        for (let i = 0; i < findLen; i++) {
-
-                            let key = findKeys[i];
-
-                            if (!currentKeys.includes(key)) {
-
-                                isMatch = false;
-
-                                break;
-                            }
-
-                            if (findValues[key] !== currentValues[key]) {
-
-                                isMatch = false;
-
-                                break;
-                            }
-                        }
-
-                        if (isMatch) {
-
-                            return {
-                                index,
-                                value: data[index]
-                            };
-                        }
-
-                        index++;
-                    }
-                }
-
-                return {
-                    index: -1
-                };
-            }
-
-            class main {
-
-                constructor() {
-
-                    this.data = [];
-                }
-
-                add(value) {
-
-                    let me = this,
-                        {
-                            data
-                        } = me,
-                        index = me.indexOf(value);
-
-                    if (index === -1) {
-
-                        let insertValues = flat(value),
-                            insertKeys = getKeys(insertValues);
-
-                        data.push({
-                            keys: insertKeys,
-                            len: insertKeys.length,
-                            values: insertValues,
-                            value
-                        });
-                    }
-                }
-
-                indexOf(value) {
-
-                    let {
-                        index
-                    } = find.call(this, value);
-
-                    return index;
-                }
-
-                has(value) {
-
-                    return this.indexOf(value) !== -1;
-                }
-
-                get(index) {
-
-                    let {
-                        data
-                    } = this,
-                    item = data[index];
-
-                    if (item) {
-
-                        return item.value;
-                    }
-                }
-
-                get size() {
-
-                    return this.data.length;
-                }
-
-                delete(value) {
-
-                    let me = this,
-                        {
-                            data
-                        } = me;
-
-                    me.deleteByIndex(me.indexOf(value));
-                }
-
-                deleteByIndex(index) {
-
-                    let me = this,
-                        {
-                            data
-                        } = me;
-
-                    remove(data, index);
-                }
-            }
-
-            var_class_1608956298785 = class extends main {
-
-                static get __ZBEE_IS_CLASS__() {
-
-                    return true;
-                }
-
-
-                get __ZBEE_CLASS__() {
-
-                    return true;
-                }
-
-                get __ZBEE_CURRENT_CLASS__() {
-
-                    return var_class_1608956298785;
-                }
-
-                get __ZBEE_CLASS_NAME__() {
-
-                    return 'src::object.set';
-                }
-
-            };
-
-            main = var_class_1608956298785;
-
-            var_global_main_1608956298785 = main;
-
-            var_init_locked_1608956298785 = true;
-        }
-
-
-        return new var_global_main_1608956298785();
-    };
-
-})();
-
 exports['src::object.property.undefine'] = (() => {
 
     let innerName;
@@ -33137,51 +32636,6 @@ exports['src::object.proxy.fly'] = (() => {
 
 
         return main.call(this, target);
-    };
-
-})();
-
-exports['src::object.value.set.once'] = (() => {
-
-
-
-
-
-
-
-    function main(target, name, fn, scope) {
-
-        /**
-         * 
-         * 如果设置的对象属性值存在，则不调用赋值函数
-         * 
-         * @param {object} target 对象主体
-         * 
-         * @param {string} name 属性名称
-         * 
-         * @param {Function} fn 赋值函数引用
-         * 
-         * @param {mixed} scope 基于赋值函数的作用域引用
-         * 
-         * @return {mixed} 对象属性值
-         * 
-         */
-
-        if (!target.hasOwnProperty(name)) {
-
-            target[name] = fn.call(scope);
-
-        }
-
-        return target[name];
-
-    }
-
-    return function(target, name, fn, scope) {
-
-
-
-        return main.call(this, target, name, fn, scope);
     };
 
 })();
@@ -37057,31 +36511,32 @@ exports['src::mindmap.node.root'] = (() => {
 
 exports['src::mindmap.node.from'] = (() => {
 
-    let isString, isObject;
+    let isString, isObject, isDefined;
 
-    let var_init_locked_1613380890410;
+    let var_init_locked_1613542771251;
 
 
 
-    const var_current_scope_1613380890410 = new Map();
+    const var_current_scope_1613542771251 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1613380890410) {
+        if (!var_init_locked_1613542771251) {
 
             isString = include('src::is.string');
             isObject = include('src::is.object');
+            isDefined = include('src::is.defined');
 
-            var_init_locked_1613380890410 = true;
+            var_init_locked_1613542771251 = true;
         }
 
 
 
 
-        if (!var_current_scope_1613380890410.has(this)) {
+        if (!var_current_scope_1613542771251.has(this)) {
 
-            var_current_scope_1613380890410.set(this, (() => {
+            var_current_scope_1613542771251.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
 
                 function main(node) {
@@ -37096,6 +36551,8 @@ exports['src::mindmap.node.from'] = (() => {
                      * @import isObject from is.object
                      * 
                      * @import from from .from scoped
+                     * 
+                     * @import is.defined
                      * 
                      * @param {mixed} node 脑图节点标识
                      * 
@@ -37132,7 +36589,7 @@ exports['src::mindmap.node.from'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613380890410.get(this);
+        const main = var_current_scope_1613542771251.get(this);
 
 
 
@@ -45442,286 +44899,104 @@ exports['src::mindmap.layout.node.region.logic'] = (() => {
 
 exports['src::mindmap.layout.positioner.logic.right'] = (() => {
 
-    let getDistance, getAnchorXY, from;
+    let init, getNode, Logic, generateLeftRegions, generateRightRegions, getLeftNodeAnchors, getRightNodeAnchors;
 
-    let var_init_locked_1613477100237;
+    let var_init_locked_1613556861714;
 
-    let var_class_1613477100237;
+    let var_class_1613556861714;
 
 
 
-    let var_global_main_1613477100237;
+    let var_global_main_1613556861714;
 
     return function(nodes) {
 
 
-        if (!var_init_locked_1613477100237) {
+        if (!var_init_locked_1613556861714) {
 
-            getDistance = include('src::math.point.line.distance');
-            getAnchorXY = include('src::math.region.xy.anchor');
-            from = include('src::math.region.from');
+            init = include('src::mindmap.layout.positioner.logic.init');
+            getNode = include('src::mindmap.layout.positioner.logic.node');
+            Logic = include('src::mindmap.layout.positioner.logic')();
+            generateLeftRegions = include('src::mindmap.layout.positioner.logic.regions.right.left');
+            generateRightRegions = include('src::mindmap.layout.positioner.logic.regions.right.right');
+            getLeftNodeAnchors = include('src::mindmap.layout.positioner.logic.anchors.right.left');
+            getRightNodeAnchors = include('src::mindmap.layout.positioner.logic.anchors.right.right');
 
 
             /**
              * 
              * 右则逻辑图位置器实现
              * 
-             * @import getDistance from math.point.line.distance
+             * @import init from .init
              * 
-             * @import getAnchorXY from math.region.xy.anchor
+             * @import getNode from .node
              * 
-             * @import from from math.region.from
+             * @import Logic from ..logic value
+             * 
+             * @import generateLeftRegions from .regions.right.left
+             * 
+             * @import generateRightRegions from .regions.right.right
+             * 
+             * @import getLeftNodeAnchors from .anchors.right.left
+             * 
+             * @import getRightNodeAnchors from .anchors.right.right
              * 
              * @param {array} nodes 布局脑图节点集合
              * 
              */
 
-            function generateBottomAscRegions(regions) {
-
-                return regions.sort(({
-                    bottom: bottom1
-                }, {
-                    bottom: bottom2
-                }) => bottom1 - bottom2);
-            }
-
-            function generateTopDescRegion(regions) {
-
-                return regions.sort(({
-                    top: top1
-                }, {
-                    top: top2
-                }) => top2 - top1);
-            }
-
-            function generateLeftDescRegion(regions) {
-
-                return regions.sort(({
-                    left: left1
-                }, {
-                    left: left2
-                }) => left2 - left1);
-            }
-
-            function generateRightAscRegions(regions) {
-
-                return regions.sort(({
-                    right: right1
-                }, {
-                    right: right2
-                }) => right1 - right2);
-            }
-
-            function generateMap(nodes) {
-
-                let regionMap = new Map(),
-                    nodeMap = new Map();
-
-                for (let node of nodes) {
-
-                    let region = from(node);
-
-                    regionMap.set(region, node);
-
-                    nodeMap.set(node, region);
-                }
-
-                return {
-                    region: regionMap,
-                    node: nodeMap
-                };
-            }
-
-            function getNode(nodeXY, regions, isMatch, getRegionXY) {
-
-                let {
-                    regionMap
-                } = this,
-                minDistance = Number.MAX_VALUE,
-                    matchNode;
-
-                for (let region of regions) {
-
-                    if (isMatch(region, nodeXY)) {
-
-                        let distance = getDistance(getRegionXY(region), nodeXY);
-
-                        if (minDistance > distance) {
-
-                            minDistance = distance;
-
-                            matchNode = regionMap.get(region);
-                        }
-
-                    } else {
-
-                        break;
-                    }
-                }
-
-                return {
-                    node: matchNode,
-                    distance: minDistance
-                };
-
-            }
-
-            function getUpNode(nodeXY) {
-
-                let {
-                    bottomAscRegions
-                } = this;
-
-                return getNode(nodeXY, bottomAscRegions, ({
-                    bottom
-                }, {
-                    y
-                }) => bottom < y, region => getAnchorXY(region, 'b'));
-            }
-
-            function getLeftNode(nodeXY) {
-
-                let {
-                    rightAscRegions
-                } = this;
-
-                return getNode(nodeXY, rightAscRegions, ({
-                    right
-                }, {
-                    x
-                }) => right < x, region => getAnchorXY(region, 'r'));
-            }
-
-            function getDownNode(nodeXY) {
-
-                let {
-                    topDescRegions
-                } = this;
-
-                return getNode(nodeXY, topDescRegions, ({
-                    top
-                }, {
-                    y
-                }) => top > y, region => getAnchorXY(region, 't'));
-            }
-
-            function getRightNode(nodeXY) {
-
-                let {
-                    leftDescRegions
-                } = this;
-
-                return getNode(nodeXY, leftDescRegions, ({
-                    left
-                }, {
-                    x
-                }) => left > x, region => getAnchorXY(region, 'l'));
-            }
-
-            class main {
+            class main extends Logic {
 
                 constructor(nodes) {
 
+                    super();
+
                     let me = this,
-                        {
-                            region: regionMap,
-                            node: nodeMap
-                        } = generateMap(nodes),
-                        regions = Array.from(nodeMap.values());
+                        regions = init.call(me, nodes);
 
-                    me.bottomAscRegions = generateBottomAscRegions(regions);
+                    me.leftRegions = generateLeftRegions(regions);
 
-                    me.topDescRegion = generateTopDescRegion(regions);
-
-                    me.leftDescRegions = generateLeftDescRegion(regions);
-
-                    me.rightAscRegions = generateRightAscRegions(regions);
-
-                    me.nodeMap = nodeMap;
-
-                    me.regionMap = regionMap;
+                    me.rightRegions = generateRightRegions(regions);
                 }
 
-                getUpNode(node) {
+                applySelectLeftNode(node) {
 
                     let me = this,
                         {
-                            nodeMap
-                        } = me;
+                            nodeMap,
+                            rightRegions
+                        } = me,
+                        region = nodeMap.get(node);
 
-                    return getUpNode.call(me, getAnchorXY(nodeMap.get(node), 't')).node;
-
+                    return getNode.call(me, region, rightRegions, rightRegions.indexOf(region) + 1, ({
+                        right
+                    }, {
+                        left
+                    }) => right < left, [
+                        getLeftNodeAnchors
+                    ]).node;
                 }
 
-                getDownNode(node) {
+                applySelectRightNode(node) {
 
                     let me = this,
                         {
-                            nodeMap
-                        } = me;
+                            nodeMap,
+                            leftRegions
+                        } = me,
+                        region = nodeMap.get(node);
 
-                    return getDownNode.call(me, getAnchorXY(nodeMap.get(node), 'b')).node;
+                    return getNode.call(me, region, leftRegions, leftRegions.indexOf(region) + 1, ({
+                        left
+                    }, {
+                        right
+                    }) => right < left, [
+                        getRightNodeAnchors
+                    ]).node;
                 }
-
-                getLeftNode(node) {
-
-                    let me = this,
-                        {
-                            nodeMap
-                        } = me;
-
-                    return getLeftNode.call(me, getAnchorXY(nodeMap.get(node), 'l')).node;
-                }
-
-                getRightNode(node) {
-
-                    let me = this,
-                        {
-                            nodeMap
-                        } = me;
-
-                    return getRightNode.call(me, getAnchorXY(nodeMap.get(node), 'r')).node;
-                }
-
-                getNode(xy) {
-
-                    let me = this,
-                        data = [{
-                            ...getUpNode.call(me, xy),
-                            direction: 'up'
-                        }, {
-                            ...getDownNode.call(me, xy),
-                            direction: 'down'
-                        }, {
-                            ...getLeftNode.call(me, xy),
-                            direction: 'left'
-                        }],
-                        minDistance = Number.MAX_VALUE,
-                        result;
-
-                    for (let {
-                            distance,
-                            node,
-                            direction
-                        } of data) {
-
-                        if (minDistance > distance) {
-
-                            minDistance = distance;
-
-                            result = {
-                                direction,
-                                node
-                            };
-                        }
-                    }
-
-                    return result;
-                }
-
             }
 
-            var_class_1613477100237 = class extends main {
+            var_class_1613556861714 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -45736,7 +45011,7 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1613477100237;
+                    return var_class_1613556861714;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -45746,15 +45021,1011 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
 
             };
 
-            main = var_class_1613477100237;
+            main = var_class_1613556861714;
 
-            var_global_main_1613477100237 = main;
+            var_global_main_1613556861714 = main;
 
-            var_init_locked_1613477100237 = true;
+            var_init_locked_1613556861714 = true;
         }
 
 
-        return new var_global_main_1613477100237(nodes);
+        return new var_global_main_1613556861714(nodes);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.regions.bottom'] = (() => {
+
+
+
+
+
+
+
+    function main(regions) {
+
+        /**
+         * 
+         * 生成以底部逆序排序的范围集合
+         * 
+         * @param {array} regions 范围集合
+         * 
+         * @return {array} 排序后的范围集合
+         * 
+         */
+
+        return Array.from(regions).sort(({
+            bottom: bottom1
+        }, {
+            bottom: bottom2
+        }) => bottom2 - bottom1);
+
+    }
+
+    return function(regions) {
+
+
+
+        return main.call(this, regions);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.regions.top'] = (() => {
+
+
+
+
+
+
+
+    function main(regions) {
+
+        /**
+         * 
+         * 生成以顶部顺序排序的范围集合
+         * 
+         * @param {array} regions 范围集合
+         * 
+         * @return {array} 排序后的范围集合
+         * 
+         */
+
+        return Array.from(regions).sort(({
+            top: top1
+        }, {
+            top: top2
+        }) => top1 - top2);
+
+    }
+
+    return function(regions) {
+
+
+
+        return main.call(this, regions);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.init'] = (() => {
+
+    let from, generateBottomRegions, generateTopRegions;
+
+    let var_init_locked_1613556861749;
+
+
+
+    function main(nodes) {
+
+        /**
+         * 
+         * 初始化
+         * 
+         * @import from from math.region.from
+         * 
+         * @import generateBottomRegions from .regions.bottom
+         * 
+         * @import generateTopRegions from .regions.top
+         * 
+         * @param {array} nodes 脑图节点集合
+         * 
+         * @return {array} 范围集合
+         * 
+         */
+
+        let me = this,
+            regionMap = me.regionMap = new Map(),
+            nodeMap = me.nodeMap = new Map(),
+            regions = [];
+
+        for (let node of nodes) {
+
+            let region = from(node);
+
+            regions.push(region);
+
+            regionMap.set(region, node);
+
+            nodeMap.set(node, region);
+        }
+
+        me.bottomRegions = generateBottomRegions(regions);
+
+        me.topRegions = generateTopRegions(regions);
+
+        me.cache = {
+            SelectUpNode: new Map(),
+            SelectDownNode: new Map(),
+            SelectLeftNode: new Map(),
+            SelectRightNode: new Map(),
+            MoveUpNode: new Map(),
+            MoveDownNode: new Map()
+        };
+
+        return regions;
+
+    }
+
+    return function(nodes) {
+
+
+        if (!var_init_locked_1613556861749) {
+
+            from = include('src::math.region.from');
+            generateBottomRegions = include('src::mindmap.layout.positioner.logic.regions.bottom');
+            generateTopRegions = include('src::mindmap.layout.positioner.logic.regions.top');
+
+            var_init_locked_1613556861749 = true;
+        }
+
+
+        return main.call(this, nodes);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.node'] = (() => {
+
+    let getAnchorXY, getDistance;
+
+    let var_init_locked_1613555531839;
+
+
+
+    function main(region, originRegions, startIndex, isMatch, getPairAnchors, isIgnoreNode) {
+
+        /**
+         * 
+         * 获得节点
+         * 
+         * @import getAnchorXY from math.region.xy.anchor
+         * 
+         * @import getDistance from math.point.line.distance
+         * 
+         * @param {object} region 基准范围
+         * 
+         * @param {array} originRegions 比较范围集合
+         * 
+         * @param {number} startIndex 起始比较位置
+         * 
+         * @param {function} isMatch 判断是否可进行比较 
+         * 
+         * @param {array} getPairAnchors 获得锚定插件
+         * 
+         * @param {function} [isIgnoreNode = () => false] 是否为忽略节点
+         * 
+         * @return {object} 匹配内容
+         * 
+         */
+
+        let me = this,
+            {
+                regionMap
+            } = this,
+            {
+                length
+            } = originRegions,
+            result = [];
+
+        for (let i = startIndex; i < length; i++) {
+
+            let originRegion = originRegions[i];
+
+            if (isMatch(originRegion, region)) {
+
+                let node = regionMap.get(originRegion);
+
+                if (isIgnoreNode(node)) {
+
+                    continue;
+                }
+
+                let {
+                    length
+                } = getPairAnchors;
+
+                for (let i = 0; i < length; i++) {
+
+                    let item = result[i],
+                        {
+                            start,
+                            end,
+                            direction
+                        } = getPairAnchors[i](originRegion, region),
+                        distance = getDistance(getAnchorXY(originRegion, start), getAnchorXY(region, end));
+
+                    if (!item || item.distance > distance) {
+
+                        result[i] = {
+                            distance,
+                            node,
+                            direction
+                        };
+                    }
+                }
+            }
+        }
+
+        if (result.length) {
+
+            return result.sort(({
+                distance: distance1
+            }, {
+                distance: distance2
+            }) => distance1 - distance2)[0];
+        }
+
+        return {};
+
+    }
+
+    return function(region, originRegions, startIndex, isMatch, getPairAnchors, isIgnoreNode = () => false) {
+
+
+        if (!var_init_locked_1613555531839) {
+
+            getAnchorXY = include('src::math.region.xy.anchor');
+            getDistance = include('src::math.point.line.distance');
+
+            var_init_locked_1613555531839 = true;
+        }
+
+
+        return main.call(this, region, originRegions, startIndex, isMatch, getPairAnchors, isIgnoreNode);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.anchors.up'] = (() => {
+
+
+
+
+
+
+
+    function main(originRegion, region) {
+
+        /**
+         * 
+         * 获得向上的一对锚定值
+         * 
+         * @param {object} originRegion 比较范围
+         * 
+         * @param {object} region 基准范围
+         * 
+         * @return {object} 锚定值
+         * 
+         */
+
+        const {
+            abs
+        } = Math, {
+            left: regionLeft,
+            right: regionRight
+        } = originRegion, {
+            left,
+            right
+        } = region;
+
+        let start,
+            end;
+
+        if (regionRight < left) {
+
+            start = 'br';
+
+            end = 'tl';
+
+        } else if (regionLeft > right) {
+
+            start = 'bl';
+
+            end = 'tr';
+
+        } else {
+
+            let result = [{
+                distance: abs(regionLeft - left),
+                start: 'bl',
+                end: 'tl'
+            }, {
+                distance: abs(regionLeft - right),
+                start: 'bl',
+                end: 'tr'
+            }, {
+                distance: abs(regionRight - left),
+                start: 'br',
+                end: 'tl'
+            }, {
+                distance: abs(regionRight - right),
+                start: 'br',
+                end: 'tr'
+            }].sort(({
+                distance: distance1
+            }, {
+                distance: distance2
+            }) => distance1 - distance2)[0];
+
+            start = result.start;
+
+            end = result.end;
+        }
+
+        return {
+            start,
+            end,
+            direction: 'up'
+        };
+
+    }
+
+    return function(originRegion, region) {
+
+
+
+        return main.call(this, originRegion, region);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.anchors.down'] = (() => {
+
+
+
+
+
+
+
+    function main(originRegion, region) {
+
+        /**
+         * 
+         * 获得向下的一对锚定值
+         * 
+         * @param {object} originRegion 比较范围
+         * 
+         * @param {object} region 基准范围
+         * 
+         * @return {object} 锚定值
+         * 
+         */
+
+        const {
+            abs
+        } = Math, {
+            left: regionLeft,
+            right: regionRight
+        } = originRegion, {
+            left,
+            right
+        } = region;
+
+        let start,
+            end;
+
+        if (regionRight < left) {
+
+            start = 'tr';
+
+            end = 'bl';
+
+        } else if (regionLeft > right) {
+
+            start = 'tl';
+
+            end = 'br';
+
+        } else {
+
+            let result = [{
+                distance: abs(regionLeft - left),
+                start: 'tl',
+                end: 'bl'
+            }, {
+                distance: abs(regionLeft - right),
+                start: 'tl',
+                end: 'br'
+            }, {
+                distance: abs(regionRight - left),
+                start: 'tr',
+                end: 'bl'
+            }, {
+                distance: abs(regionRight - right),
+                start: 'tr',
+                end: 'br'
+            }].sort(({
+                distance: distance1
+            }, {
+                distance: distance2
+            }) => distance1 - distance2)[0];
+
+            start = result.start;
+
+            end = result.end;
+        }
+
+        return {
+            start,
+            end,
+            direction: 'down'
+        };
+
+    }
+
+    return function(originRegion, region) {
+
+
+
+        return main.call(this, originRegion, region);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.node.cache'] = (() => {
+
+
+
+
+
+
+
+    function main(node, name) {
+
+        /**
+         * 
+         * 缓存获得结果
+         * 
+         * @param {data.Record} node 脑图节点
+         * 
+         * @param {string} name 缓存名称
+         * 
+         * @return {data.Record} 返回缓存后的节点
+         * 
+         */
+        let me = this,
+            {
+                cache
+            } = me,
+            map = cache[name];
+
+        if (!map.has(node)) {
+
+            map.set(node, me[`apply${name}`](node));
+        }
+
+        return map.get(node);
+
+    }
+
+    return function(node, name) {
+
+
+
+        return main.call(this, node, name);
+    };
+
+})();
+
+exports['src::mindmap.node.is.descendant'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1613308340530 = new Map();
+
+    return function(ancestorNode, descendantNode) {
+
+
+
+
+
+        if (!var_current_scope_1613308340530.has(this)) {
+
+            var_current_scope_1613308340530.set(this, (() => {
+                const getParentNode = include('src::mindmap.node.parent').bind(this);
+
+                function main(ancestorNode, descendantNode) {
+
+
+                    /**
+                     * 
+                     * 判断一个脑图节点是否是另外一个脑图的子孙节点
+                     * 
+                     * @import getParentNode from ..parent scoped
+                     * 
+                     * @param {data.Record} ancestorNode 祖先节点
+                     * 
+                     * @param {data.Record} descendantNode 子孙节点
+                     * 
+                     * @return {boolean} 如果节点为叶子节点则返回 true , 否则 false
+                     * 
+                     */
+
+                    let baseNode = descendantNode,
+                        parentNode;
+
+                    while (parentNode = getParentNode(baseNode)) {
+
+                        if (parentNode === ancestorNode) {
+
+                            return true;
+                        }
+
+                        baseNode = parentNode;
+                    }
+
+                    return false;
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1613308340530.get(this);
+
+
+
+        return main.call(this, ancestorNode, descendantNode);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic'] = (() => {
+
+    let getAnchorXY, getUpNodeAnchors, getDownNodeAnchors, getCacheNode, getNode, isDescendantNode;
+
+    let var_init_locked_1613556861759;
+
+    let var_class_1613556861759;
+
+
+
+    let var_global_main_1613556861759;
+
+    return function() {
+
+
+        if (!var_init_locked_1613556861759) {
+
+            getAnchorXY = include('src::math.region.xy.anchor');
+            getUpNodeAnchors = include('src::mindmap.layout.positioner.logic.anchors.up');
+            getDownNodeAnchors = include('src::mindmap.layout.positioner.logic.anchors.down');
+            getCacheNode = include('src::mindmap.layout.positioner.logic.node.cache');
+            getNode = include('src::mindmap.layout.positioner.logic.node');
+            isDescendantNode = include('src::mindmap.node.is.descendant');
+
+
+            /**
+             * 
+             * 逻辑图位置器实现
+             * 
+             * @import getAnchorXY from math.region.xy.anchor
+             * 
+             * @import getUpNodeAnchors from .logic.anchors.up
+             * 
+             * @import getDownNodeAnchors from .logic.anchors.down
+             * 
+             * @import getCacheNode from .logic.node.cache
+             * 
+             * @import getNode from .logic.node
+             * 
+             * @import isDescendantNode from mindmap.node.is.descendant
+             * 
+             * @class
+             * 
+             */
+
+            function applyUpNode(node, isIgnoreNode) {
+
+                let me = this,
+                    {
+                        nodeMap,
+                        bottomRegions
+                    } = me,
+                    region = nodeMap.get(node);
+
+                return getNode.call(me, region, bottomRegions, bottomRegions.indexOf(region) + 1, ({
+                    bottom
+                }, {
+                    top
+                }) => bottom < top, [
+                    getUpNodeAnchors
+                ], isIgnoreNode).node;
+            }
+
+            function applyDownNode(node, isIgnoreNode) {
+
+                let me = this,
+                    {
+                        nodeMap,
+                        topRegions
+                    } = me,
+                    region = nodeMap.get(node);
+
+                return getNode.call(me, region, topRegions, topRegions.indexOf(region) + 1, ({
+                    top
+                }, {
+                    bottom
+                }) => bottom < top, [
+                    getDownNodeAnchors
+                ], isIgnoreNode).node;
+            }
+
+            class main {
+
+                getSelectUpNode(node) {
+
+                    return getCacheNode.call(this, node, 'SelectUpNode');
+                }
+
+                getMoveUpNode(node) {
+
+                    return getCacheNode.call(this, node, 'MoveUpNode');
+                }
+
+                applySelectUpNode(node) {
+
+                    return applyUpNode.call(this, node);
+                }
+
+                applyMoveUpNode(node) {
+
+                    return applyUpNode.call(this, node, originNode => isDescendantNode(node, originNode) || isDescendantNode(originNode, node));
+                }
+
+                getSelectDownNode(node) {
+
+                    return getCacheNode.call(this, node, 'SelectDownNode');
+                }
+
+                getMoveDownNode(node) {
+
+                    return getCacheNode.call(this, node, 'MoveDownNode');
+                }
+
+                applySelectDownNode(node) {
+
+                    return applyDownNode.call(this, node);
+                }
+
+                applyMoveDownNode(node) {
+
+                    return applyDownNode.call(this, node, originNode => isDescendantNode(node, originNode) || isDescendantNode(originNode, node));
+                }
+
+                getSelectLeftNode(node) {
+
+                    return getCacheNode.call(this, node, 'SelectLeftNode');
+                }
+
+                getRightNode(node) {
+
+                    return getCacheNode.call(this, node, 'SelectRightNode');
+                }
+
+            }
+
+            var_class_1613556861759 = class extends main {
+
+                static get __ZBEE_IS_CLASS__() {
+
+                    return true;
+                }
+
+
+                get __ZBEE_CLASS__() {
+
+                    return true;
+                }
+
+                get __ZBEE_CURRENT_CLASS__() {
+
+                    return var_class_1613556861759;
+                }
+
+                get __ZBEE_CLASS_NAME__() {
+
+                    return 'src::mindmap.layout.positioner.logic';
+                }
+
+            };
+
+            main = var_class_1613556861759;
+
+            var_global_main_1613556861759 = main;
+
+            var_init_locked_1613556861759 = true;
+        }
+
+
+        return var_global_main_1613556861759;
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.regions.right.left'] = (() => {
+
+
+
+
+
+
+
+    function main(regions) {
+
+        /**
+         * 
+         * 生成以左边顺序排序的范围集合
+         * 
+         * @param {array} regions 范围集合
+         * 
+         * @return {array} 排序后的范围集合
+         * 
+         */
+
+        return Array.from(regions).sort(({
+            left: left1
+        }, {
+            left: left2
+        }) => left1 - left2);
+
+    }
+
+    return function(regions) {
+
+
+
+        return main.call(this, regions);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.regions.right.right'] = (() => {
+
+
+
+
+
+
+
+    function main(regions) {
+
+        /**
+         * 
+         * 生成以右部逆序排序的范围集合
+         * 
+         * @param {array} regions 范围集合
+         * 
+         * @return {array} 排序后的范围集合
+         * 
+         */
+
+        return Array.from(regions).sort(({
+            right: right1
+        }, {
+            right: right2
+        }) => right2 - right1);
+
+    }
+
+    return function(regions) {
+
+
+
+        return main.call(this, regions);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.anchors.right.left'] = (() => {
+
+
+
+
+
+
+
+    function main(originRegion, region) {
+
+        /**
+         * 
+         * 获得向左的一对锚定值
+         * 
+         * @param {object} originRegion 比较范围
+         * 
+         * @param {object} region 基准范围
+         * 
+         * @return {object} 锚定值
+         * 
+         */
+
+        const {
+            abs
+        } = Math, {
+            top: regionTop,
+            bottom: regionBottom
+        } = originRegion, {
+            top,
+            bottom
+        } = region;
+
+        let start,
+            end;
+
+        if (regionBottom < top) {
+
+            start = 'br';
+
+            end = 'tl';
+
+        } else if (regionTop > bottom) {
+
+            start = 'tr';
+
+            end = 'bl';
+
+        } else {
+
+            let result = [{
+                distance: abs(regionTop - top),
+                start: 'tr',
+                end: 'tl'
+            }, {
+                distance: abs(regionTop - bottom),
+                start: 'tr',
+                end: 'bl'
+            }, {
+                distance: abs(regionBottom - top),
+                start: 'br',
+                end: 'tl'
+            }, {
+                distance: abs(regionBottom - bottom),
+                start: 'br',
+                end: 'bl'
+            }].sort(({
+                distance: distance1
+            }, {
+                distance: distance2
+            }) => distance1 - distance2)[0];
+
+            start = result.start;
+
+            end = result.end;
+        }
+
+        return {
+            start,
+            end,
+            direction: 'left'
+        };
+
+    }
+
+    return function(originRegion, region) {
+
+
+
+        return main.call(this, originRegion, region);
+    };
+
+})();
+
+exports['src::mindmap.layout.positioner.logic.anchors.right.right'] = (() => {
+
+
+
+
+
+
+
+    function main(originRegion, region) {
+
+        /**
+         * 
+         * 获得向右的一对锚定值
+         * 
+         * @param {object} originRegion 比较范围
+         * 
+         * @param {object} region 基准范围
+         * 
+         * @return {object} 锚定值
+         * 
+         */
+
+        const {
+            abs
+        } = Math, {
+            top: regionTop,
+            bottom: regionBottom
+        } = originRegion, {
+            top,
+            bottom
+        } = region;
+
+        let start,
+            end;
+
+        if (regionBottom < top) {
+
+            start = 'bl';
+
+            end = 'tr';
+
+        } else if (regionTop > bottom) {
+
+            start = 'tl';
+
+            end = 'br';
+
+        } else {
+
+            let result = [{
+                distance: abs(regionTop - top),
+                start: 'tl',
+                end: 'tr'
+            }, {
+                distance: abs(regionTop - bottom),
+                start: 'tl',
+                end: 'br'
+            }, {
+                distance: abs(regionBottom - top),
+                start: 'bl',
+                end: 'tr'
+            }, {
+                distance: abs(regionBottom - bottom),
+                start: 'bl',
+                end: 'br'
+            }].sort(({
+                distance: distance1
+            }, {
+                distance: distance2
+            }) => distance1 - distance2)[0];
+
+            start = result.start;
+
+            end = result.end;
+        }
+
+        return {
+            start,
+            end,
+            direction: 'right'
+        };
+
+    }
+
+    return function(originRegion, region) {
+
+
+
+        return main.call(this, originRegion, region);
     };
 
 })();
@@ -45798,7 +46069,7 @@ exports['src::mindmap.layout.nodes.descendant.normal'] = (() => {
 
 
 
-    const var_current_scope_1613382579862 = new Map();
+    const var_current_scope_1613523902348 = new Map();
 
     return function(node) {
 
@@ -45806,11 +46077,10 @@ exports['src::mindmap.layout.nodes.descendant.normal'] = (() => {
 
 
 
-        if (!var_current_scope_1613382579862.has(this)) {
+        if (!var_current_scope_1613523902348.has(this)) {
 
-            var_current_scope_1613382579862.set(this, (() => {
+            var_current_scope_1613523902348.set(this, (() => {
                 const cache = include('src::mindmap.layout.cache').bind(this);
-                const getChildNodes = include('src::mindmap.layout.nodes.child').bind(this);
 
 
                 /**
@@ -45818,8 +46088,6 @@ exports['src::mindmap.layout.nodes.descendant.normal'] = (() => {
                  * 获得子孙节点
                  * 
                  * @import cache from mindmap.layout.cache scoped
-                 * 
-                 * @import getChildNodes from ..child scoped
                  * 
                  * @param {data.Record} node 脑图节点
                  * 
@@ -45859,7 +46127,7 @@ exports['src::mindmap.layout.nodes.descendant.normal'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613382579862.get(this);
+        const main = var_current_scope_1613523902348.get(this);
 
 
 
@@ -45876,7 +46144,7 @@ exports['src::mindmap.layout.node.select.logic.down'] = (() => {
 
 
 
-    const var_current_scope_1613462840453 = new Map();
+    const var_current_scope_1613556861768 = new Map();
 
     return function() {
 
@@ -45884,9 +46152,9 @@ exports['src::mindmap.layout.node.select.logic.down'] = (() => {
 
 
 
-        if (!var_current_scope_1613462840453.has(this)) {
+        if (!var_current_scope_1613556861768.has(this)) {
 
-            var_current_scope_1613462840453.set(this, (() => {
+            var_current_scope_1613556861768.set(this, (() => {
                 const next = include('src::mindmap.layout.node.sibling.next').bind(this);
                 const select = include('src::mindmap.node.select').bind(this);
 
@@ -45903,7 +46171,12 @@ exports['src::mindmap.layout.node.select.logic.down'] = (() => {
                      * 
                      */
 
-                    let node = next(this.selectedNode);
+                    let {
+                        selectedNode,
+                        layoutPositioner
+                    } = this;
+
+                    let node = next(selectedNode) || layoutPositioner.getSelectDownNode(selectedNode);
 
                     if (node) {
 
@@ -45920,7 +46193,7 @@ exports['src::mindmap.layout.node.select.logic.down'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613462840453.get(this);
+        const main = var_current_scope_1613556861768.get(this);
 
 
 
@@ -45937,7 +46210,7 @@ exports['src::mindmap.layout.node.select.logic.up'] = (() => {
 
 
 
-    const var_current_scope_1613462840478 = new Map();
+    const var_current_scope_1613556861774 = new Map();
 
     return function() {
 
@@ -45945,9 +46218,9 @@ exports['src::mindmap.layout.node.select.logic.up'] = (() => {
 
 
 
-        if (!var_current_scope_1613462840478.has(this)) {
+        if (!var_current_scope_1613556861774.has(this)) {
 
-            var_current_scope_1613462840478.set(this, (() => {
+            var_current_scope_1613556861774.set(this, (() => {
                 const previous = include('src::mindmap.layout.node.sibling.previous').bind(this);
                 const select = include('src::mindmap.node.select').bind(this);
 
@@ -45964,7 +46237,12 @@ exports['src::mindmap.layout.node.select.logic.up'] = (() => {
                      * 
                      */
 
-                    let node = previous(this.selectedNode);
+                    let {
+                        selectedNode,
+                        layoutPositioner
+                    } = this;
+
+                    let node = previous(selectedNode) || layoutPositioner.getSelectUpNode(selectedNode);
 
                     if (node) {
 
@@ -45981,7 +46259,7 @@ exports['src::mindmap.layout.node.select.logic.up'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1613462840478.get(this);
+        const main = var_current_scope_1613556861774.get(this);
 
 
 
