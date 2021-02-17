@@ -78,7 +78,7 @@
 
    for(let method of methods){
 
-      me[method] = include(api[method]) ;
+      me[method] = get(api[method] , me) ;
    }
  }
 
