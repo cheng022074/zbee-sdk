@@ -15,6 +15,8 @@
  * 
  * @import show from .show scoped
  * 
+ * @import getChildOrders from .child.orders scoped
+ * 
  * @param {data.Record} insertNode 需要插入的节点
  * 
  * @param {data.Record} baseNode 参照节点
@@ -82,7 +84,7 @@ if(!isRootNode(baseNode)){
         show(insertNode) ;
     }
 
-    me.fireEvent(`nodeinsert${region}` , data(node) , data(baseNode)) ;
+    me.fireEvent(`nodeinsert${region}` , data(node) , data(baseNode) , getChildOrders(parentNode)) ;
 
     return true ;
 }

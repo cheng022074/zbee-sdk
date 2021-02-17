@@ -3,16 +3,18 @@
  * 
  * 将指定节点的子节点进行排序，如果排序信息有变化则抛出事件
  * 
- * @import data from .node.data scoped
+ * @import data from ....layout.node.data.param scoped
  * 
  * @param {data.Record} node 节点
+ * 
+ * @return {array} 排序信息
  * 
  */
 
  let {
     children
  } = node,
- prevOrder = - Infinity;
+ prevOrder = - Number.MAX_VALUE;
 
  for(let node of children){
 
@@ -39,13 +41,11 @@
             }
         }
 
-        this.fireEvent('nodeorderupdated' , orderNodes) ;
-
-        return true ;
+        return orderNodes ;
     }
 
     prevOrder = order ;
  }
 
- return false ;
+ return [] ;
 

@@ -48,10 +48,6 @@
             "impl":".mindmap.node.info"
         },
         {
-            "name":"updateOrderByNodes",
-            "impl":".mindmap.nodes.order"
-        },
-        {
             "name":"query",
             "impl":".mindmap.node.query"
         },
