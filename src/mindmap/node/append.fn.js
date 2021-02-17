@@ -17,6 +17,8 @@
  * 
  * @param {mixed} parentNode 节点
  * 
+ * @return {boolean} 添加标识
+ * 
  */
 
  node = from(node) ;
