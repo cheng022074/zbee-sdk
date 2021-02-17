@@ -7,7 +7,7 @@
  * 
  * @import getAnchorXY from math.region.xy.anchor
  * 
- * @import from from math.region.from
+ * @import fromRegion from math.region.from
  * 
  * @param {array} nodes 布局脑图节点集合
  * 
@@ -56,7 +56,7 @@
 
     for(let node of nodes){
 
-        let region = from(node) ;
+        let region = fromRegion(node) ;
 
         regionMap.set(region , node) ;
 
@@ -157,6 +157,10 @@
     }) => left > x , region => getAnchorXY(region , 'l')) ;
  }
 
+ const {
+    from
+ } = Array ;
+
  class main {
 
     constructor(nodes){
@@ -166,15 +170,15 @@
                 region:regionMap,
                 node:nodeMap
             } = generateMap(nodes),
-            regions = Array.from(nodeMap.values());
+            regions = from(nodeMap.values());
 
         me.bottomAscRegions = generateBottomAscRegions(regions) ;
 
-        me.topDescRegion = generateTopDescRegion(regions) ;
+        me.topDescRegions = generateTopDescRegion(from(regions)) ;
 
-        me.leftDescRegions = generateLeftDescRegion(regions) ;
+        me.leftDescRegions = generateLeftDescRegion(from(regions)) ;
 
-        me.rightAscRegions = generateRightAscRegions(regions) ;
+        me.rightAscRegions = generateRightAscRegions(from(regions)) ;
 
         me.nodeMap = nodeMap ;
 
