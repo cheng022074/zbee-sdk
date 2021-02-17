@@ -13,27 +13,27 @@
  * 
  */
 
- function generateBottomAscRegions(regions){
+ function generateBottomRegions(regions){
 
-    return regions.sort(({
+    return from(regions).sort(({
         bottom:bottom1
     } , {
         bottom:bottom2
-    }) => bottom1 - bottom2) ;
+    }) => bottom2 - bottom1) ;
  }
 
- function generateTopDescRegions(regions) {
+ function generateTopRegions(regions) {
      
-    return regions.sort(({
+    return from(regions).sort(({
         top:top1
     } , {
         top:top2
-    }) => top2 - top1) ;
+    }) => top1 - top2) ;
  }
 
  function generateLeftDescRegions(regions){
 
-    return regions.sort(({
+    return from(regions).sort(({
         left:left1
     } , {
         left:left2
@@ -42,7 +42,7 @@
 
  function generateRightAscRegions(regions){
 
-    return regions.sort(({
+    return from(regions).sort(({
         right:right1
     } , {
         right:right2
@@ -185,13 +185,13 @@
             } = generateMap(nodes),
             regions = from(nodeMap.values());
 
-        me.bottomAscRegions = generateBottomAscRegions(regions) ;
+        me.bottomRegions = generateBottomRegions(regions) ;
 
-        me.topDescRegions = generateTopDescRegions(from(regions)) ;
+        me.topRegions = generateTopRegions(regions) ;
 
-        me.leftDescRegions = generateLeftDescRegions(from(regions)) ;
+        me.leftDescRegions = generateLeftDescRegions(regions) ;
 
-        me.rightAscRegions = generateRightAscRegions(from(regions)) ;
+        me.rightAscRegions = generateRightAscRegions(regions) ;
 
         me.nodeMap = nodeMap ;
 
@@ -214,11 +214,27 @@
 
         let me = this,
         {
-            nodeMap
-        } = me ;
+            nodeMap,
+            regionMap,
+            bottomRegions
+        } = me,
+        region = nodeMap.get(node),
+        {
+            top
+        } = region,
+        {
+            length
+        } = bottomRegions;
 
-        return getUpNode.call(me , getAnchorXY(nodeMap.get(node) , 'tl')).node ;
+        for(let i = bottomRegions.indexOf(region) + 1 ; i < length ; i ++){
 
+            let bottomRegion = bottomRegions[i] ;
+
+            if(bottomRegion.bottom < top){
+
+                return regionMap.get(bottomRegion) ;
+            }
+        }
     }
 
     getDownNode(node){
@@ -230,10 +246,27 @@
 
         let me = this,
         {
-            nodeMap
-        } = me ;
+            nodeMap,
+            regionMap,
+            topRegions
+        } = me,
+        region = nodeMap.get(node),
+        {
+            bottom
+        } = region,
+        {
+            length
+        } = topRegions;
 
-        return getDownNode.call(me , getAnchorXY(nodeMap.get(node) , 'bl')).node ;
+        for(let i = topRegions.indexOf(region) + 1 ; i < length ; i ++){
+
+            let topRegion = topRegions[i] ;
+
+            if(topRegion.top > bottom){
+
+                return regionMap.get(topRegion) ;
+            }
+        }
     }
 
     getLeftNode(node){
