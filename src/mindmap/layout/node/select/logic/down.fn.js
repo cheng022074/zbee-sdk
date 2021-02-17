@@ -9,7 +9,12 @@
  * 
  */
 
-let node = next(this.selectedNode) ;
+let {
+   selectedNode,
+   layoutPositioner
+ } = this ;
+
+let node = next(selectedNode) || layoutPositioner.getDownNode(selectedNode);
 
 if(node){
 
