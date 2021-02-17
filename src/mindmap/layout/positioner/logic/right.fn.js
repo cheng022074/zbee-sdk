@@ -165,6 +165,66 @@
     }) => left > x , region => getAnchorXY(region , 'l')) ;
  }
 
+ function getUpNode({
+    left:regionLeft,
+    right:regionRight
+} , {
+    left,
+    right
+}){
+
+    let start,
+        end ;
+
+    if(regionRight < left){
+
+        start = 'br' ;
+
+        end = 'tl' ;
+    
+    }else if(regionLeft > right){
+
+        start = 'bl' ;
+
+        end = 'tr' ;
+    
+    }else{
+
+        let result = [{
+            distance:abs(regionLeft - left),
+            start:'bl',
+            end:'tl'
+        },{
+            distance:abs(regionLeft - right),
+            start:'bl',
+            end:'tr'
+        },{
+            distance:abs(regionRight - left),
+            start:'br',
+            end:'tl'
+        },{
+            distance:abs(regionRight - right),
+            start:'br',
+            end:'tr'
+        }].sort(({
+            distance:distance1
+        } , {
+            distance:distance2
+        }) => distance1 - distance2)[0] ;
+
+        start = result.start ;
+
+        end = result.end ;
+    }
+
+    return {
+        start,
+        end,
+        direction:'up'
+    } ;
+
+}
+
  function getCacheNode(node , name){
 
     let me = this,
@@ -226,7 +286,6 @@
 
     applyUpNode(node){
         
-
         let me = this,
         {
             nodeMap,
@@ -238,65 +297,9 @@
             bottom
         } , {
             top
-        }) => bottom < top , [({
-            left:regionLeft,
-            right:regionRight
-        } , {
-            left,
-            right
-        }) => {
-
-            let start,
-                end ;
-
-            if(regionRight < left){
-
-                start = 'br' ;
-
-                end = 'tl' ;
-            
-            }else if(regionLeft > right){
-
-                start = 'bl' ;
-
-                end = 'tr' ;
-            
-            }else{
-
-                let result = [{
-                    distance:abs(regionLeft - left),
-                    start:'bl',
-                    end:'tl'
-                },{
-                    distance:abs(regionLeft - right),
-                    start:'bl',
-                    end:'tr'
-                },{
-                    distance:abs(regionRight - left),
-                    start:'br',
-                    end:'tl'
-                },{
-                    distance:abs(regionRight - right),
-                    start:'br',
-                    end:'tr'
-                }].sort(({
-                    distance:distance1
-                } , {
-                    distance:distance2
-                }) => distance1 - distance2)[0] ;
-
-                start = result.start ;
-
-                end = result.end ;
-            }
-
-            return {
-                start,
-                end,
-                direction:'up'
-            } ;
-
-        }]).node ;
+        }) => bottom < top , [
+            getUpNode
+        ]).node ;
     }
 
     getDownNode(node){
