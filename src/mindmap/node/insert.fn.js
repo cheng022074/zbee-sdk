@@ -3,7 +3,7 @@
  * 
  * 插入节点
  * 
- * @import create from .create scoped
+ * @import data from ..layout.node.data.param scoped
  * 
  * @import isRootNode from .is.root scoped
  * 
@@ -81,6 +81,8 @@ if(!isRootNode(baseNode)){
 
         show(insertNode) ;
     }
+
+    me.fireEvent(`nodeinsert${region}` , data(node) , data(beforeNode)) ;
 
     return true ;
 }
