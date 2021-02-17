@@ -82,7 +82,7 @@ if(!isRootNode(baseNode)){
         show(insertNode) ;
     }
 
-    me.fireEvent(`nodeinsert${region}` , data(node) , data(beforeNode)) ;
+    me.fireEvent(`nodeinsert${region}` , data(node) , data(baseNode)) ;
 
     return true ;
 }
