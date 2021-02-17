@@ -9,9 +9,12 @@
 
  let {
     children
- } = node;
+ } = node,
+ {
+    length
+ } = children;
 
- if(children.length){
+ if(length){
 
-    return children[0] ; 
+    return children[length - 1] ; 
  }

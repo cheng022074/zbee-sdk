@@ -12,7 +12,6 @@
         "resize",
         "deselect",
         "delete",
-        "append",
         "move",
         "reset",
         "focus",
@@ -67,6 +66,10 @@
         {
             "name":"text",
             "impl":".mindmap.node.text"
+        },
+        {
+            "name":"appendNode",
+            "impl":".mindmap.node.append"
         },
         {
             "name":"insertNodeBefore",

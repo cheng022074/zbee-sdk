@@ -3,29 +3,21 @@
  * 
  * 添加子节点
  * 
- * @import generate from id.generate
- * 
- * @import create from .create scoped
+ * @import data from ..layout.node.data.param scoped
  * 
  * @import show from .show scoped
  * 
- * @import from from .from scoped
+ * @import getLastChildNode from .child.last scoped
  * 
- * @import getLastChildNode from ..data.node.child.last scoped
+ * @param {data.Record} node 节点配置
  * 
- * @param {mixed} node 节点配置
- * 
- * @param {mixed} parentNode 节点
+ * @param {data.Record} parentNode 节点
  * 
  */
 
-parentNode = from(parentNode) ;
+if((parentNode === node || getLastChildNode(parentNode) === node)){
 
-let mindmapNode = from(node) ;
-
-if(mindmapNode && (parentNode === mindmapNode || getLastChildNode(parentNode) === mindmapNode)){
-
-  return ;
+  return false;
 
 }
 
@@ -35,8 +27,6 @@ let {
     expanded
 } = parentNode;
 
-node = create(node , parentNode) ;
-
 children.push(node) ;
 
 if(!hidden && expanded){
@@ -44,5 +34,7 @@ if(!hidden && expanded){
   show(node) ;
 }
 
-return node ;
+me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+
+return true ;
 
