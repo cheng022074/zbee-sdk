@@ -105,11 +105,11 @@
 
  function getUpNode(nodeXY){
 
-    let {
+    let me = this,{
         bottomAscRegions
-    } = this ;
+    } = me ;
 
-    return getNode(nodeXY , bottomAscRegions , ({
+    return getNode.call(me , nodeXY , bottomAscRegions , ({
         bottom
     } , {
         y
@@ -118,11 +118,11 @@
 
  function getLeftNode(nodeXY){
 
-    let {
+    let me = this,{
         rightAscRegions
-    } = this ;
+    } = me ;
 
-    return getNode(nodeXY , rightAscRegions , ({
+    return getNode.call(me , nodeXY , rightAscRegions , ({
         right
     } , {
         x
@@ -131,11 +131,12 @@
 
  function getDownNode(nodeXY){
 
-    let {
+    let me = this,
+    {
         topDescRegions
-    } = this ;
+    } = me ;
 
-    return getNode(nodeXY , topDescRegions , ({
+    return getNode.call(me , nodeXY , topDescRegions , ({
         top
     } , {
         y
@@ -144,11 +145,12 @@
 
  function getRightNode(nodeXY){
 
-    let {
+    let me = this,
+    {
         leftDescRegions
-    } = this ;
+    } = me ;
 
-    return getNode(nodeXY , leftDescRegions , ({
+    return getNode.call(me , nodeXY , leftDescRegions , ({
         left
     } , {
         x
