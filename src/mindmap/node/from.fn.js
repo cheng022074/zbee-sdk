@@ -9,6 +9,8 @@
  * 
  * @import from from .from scoped
  * 
+ * @import is.defined
+ * 
  * @param {mixed} node 脑图节点标识
  * 
  * @return {data.Record} 脑图节点 

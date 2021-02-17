@@ -69,48 +69,59 @@
     } ;
  }
 
- function getNode(nodeXY , regions , isMatch , getRegionXY){
+ function getNode(region , originRegions , startIndex , isMatch , getPairAnchors){
 
-    let {
+    let me = this,
+    {
         regionMap
     } = this,
-    minDistance = Number.MAX_VALUE,
-    matchNode;
+    {
+        length
+    } = originRegions,
+    result = [];
 
-    for(let region of regions){
+    for(let i = startIndex ; i < length ; i ++){
 
-        if(isMatch(region , nodeXY)){
+        let originRegion = originRegions[i] ;
 
-            let distance = getDistance(getRegionXY(region) , nodeXY) ;
+        if(isMatch(originRegion , region)){
 
-            if(minDistance > distance){
+            let {
+                length
+            } = getPairAnchors;
 
-                minDistance = distance ;
+            for(let i = 0 ; i < length ; i ++){
 
-                matchNode = regionMap.get(region) ;
+                let item = result[i],
+                {
+                    start,
+                    end,
+                    direction
+                } = getPairAnchors[i](originRegion , region),
+                distance = getDistance(getAnchorXY(originRegion , start) , getAnchorXY(region , end)) ;
+
+                if(!item || item.distance > distance){
+
+                    result[i] = {
+                        distance,
+                        node:regionMap.get(originRegion),
+                        direction
+                    } ;
+                }
             }
-
         }
     }
 
-    return {
-        node:matchNode,
-        distance:minDistance
-    } ;
+    if(result.length){
 
- }
+        return result.sort(({
+            distance:distance1
+        } , {
+            distance:distance2
+        }) => distance1 - distance2)[0] ;
+    }
 
- function getUpNode(nodeXY){
-
-    let me = this,{
-        bottomAscRegions
-    } = me ;
-
-    return getNode.call(me , nodeXY , bottomAscRegions , ({
-        bottom
-    } , {
-        y
-    }) => bottom < y , region => getAnchorXY(region , 'bl')) ;
+    return {} ;
  }
 
  function getLeftNode(nodeXY){
@@ -172,7 +183,10 @@
 
  const {
     from
- } = Array ;
+ } = Array,
+ {
+    abs
+ } = Math;
 
  class main {
 
@@ -211,30 +225,78 @@
     }
 
     applyUpNode(node){
+        
 
         let me = this,
         {
             nodeMap,
-            regionMap,
             bottomRegions
         } = me,
-        region = nodeMap.get(node),
-        {
+        region = nodeMap.get(node);
+
+        return getNode.call(me , region , bottomRegions , bottomRegions.indexOf(region) + 1 , ({
+            bottom
+        } , {
             top
-        } = region,
-        {
-            length
-        } = bottomRegions;
+        }) => bottom < top , [({
+            left:regionLeft,
+            right:regionRight
+        } , {
+            left,
+            right
+        }) => {
 
-        for(let i = bottomRegions.indexOf(region) + 1 ; i < length ; i ++){
+            let start,
+                end ;
 
-            let bottomRegion = bottomRegions[i] ;
+            if(regionRight < left){
 
-            if(bottomRegion.bottom < top){
+                start = 'br' ;
 
-                return regionMap.get(bottomRegion) ;
+                end = 'tl' ;
+            
+            }else if(regionLeft > right){
+
+                start = 'bl' ;
+
+                end = 'tr' ;
+            
+            }else{
+
+                let result = [{
+                    distance:abs(regionLeft - left),
+                    start:'bl',
+                    end:'tl'
+                },{
+                    distance:abs(regionLeft - right),
+                    start:'bl',
+                    end:'tr'
+                },{
+                    distance:abs(regionRight - left),
+                    start:'br',
+                    end:'tl'
+                },{
+                    distance:abs(regionRight - right),
+                    start:'br',
+                    end:'tr'
+                }].sort(({
+                    distance:distance1
+                } , {
+                    distance:distance2
+                }) => distance1 - distance2)[0] ;
+
+                start = result.start ;
+
+                end = result.end ;
             }
-        }
+
+            return {
+                start,
+                end,
+                direction:'up'
+            } ;
+
+        }]).node ;
     }
 
     getDownNode(node){
