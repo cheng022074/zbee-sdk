@@ -78,10 +78,7 @@ function getDownNode(nodeXY){
 
  const {
     from
- } = Array,
- {
-    abs
- } = Math;
+ } = Array;
 
  class main {
 
@@ -182,38 +179,7 @@ function getDownNode(nodeXY){
 
     getNode(xy){
 
-        let me = this,
-        data = [{
-            ...getUpNode.call(me , xy),
-            direction:'up'
-        },{
-            ...getDownNode.call(me , xy),
-            direction:'down'
-        },{
-            ...getLeftNode.call(me , xy),
-            direction:'left'
-        }],
-        minDistance = Number.MAX_VALUE,
-        result;
-
-        for(let {
-            distance,
-            node,
-            direction
-        } of data){
-
-            if(minDistance > distance){
-
-                minDistance = distance ;
-
-                result = {
-                    direction,
-                    node
-                } ;
-            }
-        }
-
-        return result ;
+        
     }
 
  }
