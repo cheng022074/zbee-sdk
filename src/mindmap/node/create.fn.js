@@ -5,7 +5,7 @@
  * 
  * @import generate from .id.generate
  * 
- * @param {object} node 节点信息
+ * @param {object} [node = {}] 节点信息
  * 
  * @return {data.Record} 创建出来的新节点 
  * 
@@ -21,8 +21,9 @@ delete node.hidden ;
 delete node.level ;
 
 let options = {
-   id:generate(),
+   text:'',
    ...node,
+   id:generate(),
    children:[]
 } ;
 
