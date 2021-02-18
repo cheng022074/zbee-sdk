@@ -26,28 +26,12 @@
             "impl":".mindmap.node.expand"
         },
         {
-            "name":"getNextSiblingNode",
-            "impl":".mindmap.node.sibling.next"
-        },
-        {
-            "name":"getPreviousSiblingNode",
-            "impl":".mindmap.node.sibling.previous"
+            "name":"getNode",
+            "impl":".mindmap.node.from"
         },
         {
             "name":"info",
             "impl":".mindmap.node.info"
-        },
-        {
-            "name":"query",
-            "impl":".mindmap.node.query"
-        },
-        {
-            "name":"getParentNode",
-            "impl":".mindmap.node.parent"
-        },
-        {
-            "name":"getChildNodes",
-            "impl":".mindmap.nodes.child"
         },
         {
             "name":"text",
