@@ -126,7 +126,7 @@
 
       setY(childNode , bottom) ;
 
-      adjustY.call(me , childNode , getDescendantRegion(childNode) , positionedRegions) ;
+      adjustY.call(me , childNode , getRegion(childNode) , positionedRegions) ;
     
     }
 
