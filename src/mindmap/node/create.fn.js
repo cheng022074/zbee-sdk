@@ -3,7 +3,7 @@
  * 
  * 创建新节点
  * 
- * @import generate from id.generate
+ * @import generate from .id.generate
  * 
  * @import is from is.data.record
  * 
@@ -56,7 +56,7 @@ delete node.hidden ;
 delete node.level ;
 
 let options = {
-   id:generate('node-'),
+   id:generate(),
    ...node,
    children:[]
 } ;
