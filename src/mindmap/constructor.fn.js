@@ -204,10 +204,6 @@
  } = reader;
  
  reader = me.reader = createReader({
-         order:{
-            mode:'readwrite',
-            defaultValue:0
-         },
          ...readerFields,
          expanded:{
             mode:'readwrite',
