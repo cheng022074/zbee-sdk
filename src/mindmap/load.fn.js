@@ -62,19 +62,8 @@ function register_node(node){
 
   nodes.set(id , node) ;
 
-  children.sort(sortByOrder) ;
-
   for(let childNode of children){
 
     register_node.call(me , childNode) ;
   }
-}
-
-function sortByOrder({
-  order:order1
-} , {
-  order:order2
-}){
-
-  return order1 - order2 ;
 }
