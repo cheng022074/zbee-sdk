@@ -30,12 +30,8 @@
             "impl":".mindmap.node.from"
         },
         {
-            "name":"info",
-            "impl":".mindmap.node.info"
-        },
-        {
-            "name":"text",
-            "impl":".mindmap.node.text"
+            "name":"setNodeValue",
+            "impl":".mindmap.node.value.set"
         },
         {
             "name":"deleteNode",
