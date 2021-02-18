@@ -5,7 +5,7 @@
  * 
  * @import isUnsized from .node.is.unsized scoped
  * 
- * @import getData from .layout.node.data.param scoped
+ * @import getData from .node.data scoped
  * 
  * @import clear from .layout.cache.clear scoped
  * 

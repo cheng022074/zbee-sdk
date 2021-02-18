@@ -3,7 +3,7 @@
  * 
  * 插入节点
  * 
- * @import data from ..layout.node.data.param scoped
+ * @import data from .data scoped
  * 
  * @import isRootNode from .is.root scoped
  * 

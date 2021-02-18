@@ -3,7 +3,7 @@
  * 
  * 刷新
  * 
- * @import getData from .layout.node.data.draw scoped
+ * @import getData from .layout.node.data scoped
  * 
  * @import from from math.region.from
  * 

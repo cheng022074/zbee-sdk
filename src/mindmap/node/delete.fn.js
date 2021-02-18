@@ -7,7 +7,7 @@
  * 
  * @import getParentNode from .parent scoped
  * 
- * @import data from ..layout.node.data.param scoped
+ * @import data from .data scoped
  * 
  * @import getDescendantNodes from ..nodes.descendant scoped
  * 

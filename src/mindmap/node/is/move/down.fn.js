@@ -6,7 +6,7 @@
  * 
  * @import getParentNode from ....parent scoped
  * 
- * @import data from mindmap.layout.node.data.param scoped
+ * @import data from ....data scoped
  * 
  * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
  * 
