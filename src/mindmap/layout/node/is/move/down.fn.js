@@ -27,8 +27,11 @@
  function doMoveDown(node , beforeMoveFn){
 
    let {
-      selectedNode
+      selectedNode,
+      layoutPositioner
    } = this ;
+
+   node = node || layoutPositioner.getMoveDownNode(selectedNode) ;
 
    return !! (node && beforeMoveFn(data(getParentNode(node)) , data(selectedNode) , data(node))) ;
  }

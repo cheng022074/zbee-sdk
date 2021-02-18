@@ -43,7 +43,7 @@
 
       me.layoutData = layout(rootNode) ;
 
-      me.layoutPositioner = createPositioner(me.layoutNodes) ;
+      me.layoutPositioner = createPositioner(me , me.layoutNodes) ;
 
       me.refresh() ;
 

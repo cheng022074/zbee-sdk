@@ -57,6 +57,11 @@
 
  class main {
 
+    constructor(mindmap){
+
+        this.mindmap = mindmap;
+    }
+
     getSelectUpNode(node){
 
         return getCacheNode.call(this , node , 'SelectUpNode') ;
@@ -74,7 +79,12 @@
 
     applyMoveUpNode(node){
 
-        return applyUpNode.call(this , node , originNode => isDescendantNode(node , originNode)) ;
+        let me = this,
+        {
+            mindmap
+        } = me ;
+
+        return applyUpNode.call(me , node , originNode => isDescendantNode.call(mindmap , node , originNode)) ;
     }
 
     getSelectDownNode(node){
@@ -94,7 +104,12 @@
 
     applyMoveDownNode(node){
 
-        return applyDownNode.call(this , node , originNode => isDescendantNode(node , originNode)) ;
+        let me = this,
+        {
+            mindmap
+        } = me ;
+
+        return applyDownNode.call(me , node , originNode => isDescendantNode.call(mindmap , node , originNode)) ;
     }
 
     getSelectLeftNode(node){

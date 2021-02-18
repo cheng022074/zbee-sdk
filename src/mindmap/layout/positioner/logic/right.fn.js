@@ -17,15 +17,17 @@
  * 
  * @import getRightNodeAnchors from .anchors.right.right
  * 
+ * @param {Mindmap} mindmap 脑图对象
+ * 
  * @param {array} nodes 布局脑图节点集合
  * 
  */
 
  class main extends Logic{
 
-    constructor(nodes){
+    constructor(mindmap , nodes){
 
-        super() ;
+        super(mindmap) ;
 
         let me = this,
             regions = init.call(me , nodes);

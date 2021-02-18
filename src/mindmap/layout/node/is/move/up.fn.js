@@ -26,9 +26,12 @@
 
  function doMoveUp(node , beforeMoveFn){
 
-    let {
-       selectedNode
-    } = this ;
+   let {
+      selectedNode,
+      layoutPositioner
+   } = this ;
+
+   node = node || layoutPositioner.getMoveUpNode(selectedNode) ;
  
-    return !!(node && beforeMoveFn(data(getParentNode(node)) , data(selectedNode) , data(node))) ;
-  }
+   return !!(node && beforeMoveFn(data(getParentNode(node)) , data(selectedNode) , data(node))) ;
+}
