@@ -4,6 +4,8 @@
  * 
  * @import next from ..sibling.next scoped
  * 
+ * @import insertBefore from mindmap.node.insert.before scoped
+ * 
  * @import insertAfter from mindmap.node.insert.after scoped
  * 
  * @import data from mindmap.node.data scoped
@@ -17,11 +19,18 @@ let me = this,
     selectedNode,
     layoutPositioner
 } = me,
-node = next(selectedNode) || layoutPositioner.getMoveDownNode(selectedNode);
+node = next(selectedNode);
 
 if(node){
 
     return insertAfter(selectedNode , node) ;
+}
+
+node = layoutPositioner.getMoveDownNode(selectedNode) ;
+
+if(node){
+
+    return insertBefore(selectedNode , node) ;
 }
 
 return false ;
