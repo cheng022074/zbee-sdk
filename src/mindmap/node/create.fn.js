@@ -13,8 +13,6 @@
  * 
  * @import remove from array.remove
  * 
- * @import get from .get scoped
- * 
  * @import create from .create scoped
  * 
  * @import from from ..data.node.from scoped
@@ -46,10 +44,7 @@ if(is(node)){
    return node ;
 }
 
-let {
-   id
-} = node,
-existNode = get(id);
+let existNode = from(node);
 
 if(existNode){
 
