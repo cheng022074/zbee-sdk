@@ -8,23 +8,23 @@
  * 
  * @import data from mindmap.node.data scoped
  * 
- * @param {function} [beforeMoveFn = () => true] 拖曳的拦截函数 
+ * @param {function} [onBeforeNodeInsertBefore = () => true] 拖曳的拦截函数 
  * 
  * @return {boolean} 判断是否可以向下移动
  * 
  */
 
- function main(beforeMoveFn){
+ function main(onBeforeNodeInsertBefore){
 
    let me = this,
    {
       selectedNode
    } = me ;
 
-   return doMoveDown.call(me , next(selectedNode) , beforeMoveFn) ;
+   return doMoveDown.call(me , next(selectedNode) , onBeforeNodeInsertBefore) ;
  }
 
- function doMoveDown(node , beforeMoveFn){
+ function doMoveDown(node , onBeforeNodeInsertBefore){
 
    let {
       selectedNode,
@@ -33,5 +33,5 @@
 
    node = node || layoutPositioner.getMoveDownNode(selectedNode) ;
 
-   return !! (node && beforeMoveFn(data(getParentNode(node)) , data(selectedNode) , data(node))) ;
+   return !! (node && onBeforeNodeInsertBefore(data(getParentNode(node)) , data(selectedNode) , data(node))) ;
  }
