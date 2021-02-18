@@ -74,7 +74,7 @@
 
     applyMoveUpNode(node){
 
-        return applyUpNode.call(this , node , originNode => isDescendantNode(node , originNode) || isDescendantNode(originNode , node)) ;
+        return applyUpNode.call(this , node , originNode => isDescendantNode(node , originNode)) ;
     }
 
     getSelectDownNode(node){
@@ -94,7 +94,7 @@
 
     applyMoveDownNode(node){
 
-        return applyDownNode.call(this , node , originNode => isDescendantNode(node , originNode) || isDescendantNode(originNode , node)) ;
+        return applyDownNode.call(this , node , originNode => isDescendantNode(node , originNode)) ;
     }
 
     getSelectLeftNode(node){
