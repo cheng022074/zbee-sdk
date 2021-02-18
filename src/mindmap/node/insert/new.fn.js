@@ -7,6 +7,8 @@
  * 
  * @import insert from ..insert scoped
  * 
+ * @import select from ..select scoped
+ * 
  * @param {data.Record} baseNode 参照节点
  * 
  * @param {string} region 位置
@@ -15,4 +17,13 @@
  * 
  */
 
-return insert(create() , baseNode , region) ;
+ let insertNode = create() ;
+
+ if(insert(insertNode , baseNode , region)){
+
+    select(insertNode) ;
+
+    return true ;
+ }
+
+ return false ;
