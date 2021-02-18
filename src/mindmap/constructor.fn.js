@@ -39,8 +39,6 @@
  * 
  * @param {data.Reader} [config.readConfig = {}] 数据读取根路径设置
  * 
- * @param {boolean} [config.initVisibilityLevel = 2] 初始显示脑图节点层数
- * 
  * @param {function} [config.nodeSeparationDistance] 节点间隔距离
  * 
  * @param {number} [config.nodeVerticalSeparationDistance = 15] 节点垂直间隔距离
@@ -287,8 +285,6 @@
       } , readerAddFields.bind(me)) ;
 
  me.readConfig = readConfig ;
-
- me.initVisibilityLevel = initVisibilityLevel ;
 
  let placeholderNode = create(Object.assign({
    width:placeholderNodeWidth,

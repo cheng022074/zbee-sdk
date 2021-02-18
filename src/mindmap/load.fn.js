@@ -5,10 +5,6 @@
  * 
  * @import is.defined
  * 
- * @import expand from .node.expand.deep scoped
- * 
- * @import select from .node.select scoped
- * 
  * @param {mixed} data 数据
  * 
  * @param {mixed} [readAsRoot] 获得脑图节点根读取入口
@@ -20,8 +16,7 @@ function main(data , readAsRoot){
   let me = this,
   {
     reader,
-    readConfig,
-    initVisibilityLevel
+    readConfig
   } = me ;
   
   if(isDefined(readAsRoot)){
@@ -42,9 +37,7 @@ function main(data , readAsRoot){
 
       me.rootNode = rootNode ;
 
-      expand(rootNode , initVisibilityLevel) ;
-
-      select(rootNode) ;
+      return rootNode ;
 
   }
 }
