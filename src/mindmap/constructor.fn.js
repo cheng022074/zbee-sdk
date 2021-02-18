@@ -31,6 +31,8 @@
  * 
  * @import get from function.get
  * 
+ * @import generate from .node.id.generate
+ * 
  * @param {object} config 脑图配置
  * 
  * @param {data.Reader} config.reader 数据读取配置
@@ -64,8 +66,6 @@
  * @param {mixed} [config.layout] 布局模式
  * 
  * @param {object} [config.api = {}] 附加 API
- * 
- * @param {function} [config.callback] 脑图内部回调
  * 
  */
 
@@ -131,10 +131,6 @@
  }
 
  me.nodes = new Map() ;
-
- callback = callback || emptyFn ;
-
- me.callback = (...args) => callback.call(me , ...args) ;
 
  me.unpublishedNodes = new Set() ;
 
@@ -205,6 +201,16 @@
  
  reader = me.reader = createReader({
          ...readerFields,
+         id:{
+            convert(){
+
+               return generate() ;
+            }
+         },
+         parentNodeId: {
+            local:true,
+            mode:'readwrite'
+          },
          expanded:{
             mode:'readwrite',
             local:true,
