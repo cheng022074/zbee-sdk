@@ -13,25 +13,11 @@
  * @return {boolean} 判断是否可以向下移动
  * 
  */
+let me = this,
+{
+   selectedNode,
+   layoutPositioner
+} = me,
+node = previous(selectedNode) || layoutPositioner.getMoveUpNode(selectedNode) ;
 
- function main(onBeforeNodeInsertAfter){
-
-    let me = this,
-    {
-        selectedNode
-    } = me ;
-
-    return doMoveUp.call(me , previous(selectedNode) , onBeforeNodeInsertAfter) ;
- }
-
- function doMoveUp(node , onBeforeNodeInsertAfter){
-
-   let {
-      selectedNode,
-      layoutPositioner
-   } = this ;
-
-   node = node || layoutPositioner.getMoveUpNode(selectedNode) ;
- 
-   return !!(node && onBeforeNodeInsertAfter(data(getParentNode(node)) , data(selectedNode) , data(node))) ;
-}
+return !!(node && onBeforeNodeInsertAfter(data(getParentNode(node)) , data(selectedNode) , data(node))) ;

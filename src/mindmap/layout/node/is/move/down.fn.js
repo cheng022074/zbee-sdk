@@ -14,24 +14,11 @@
  * 
  */
 
- function main(onBeforeNodeInsertBefore){
+let me = this,
+{
+  selectedNode,
+  layoutPositioner
+} = me,
+node = next(selectedNode) || layoutPositioner.getMoveDownNode(selectedNode) ;
 
-   let me = this,
-   {
-      selectedNode
-   } = me ;
-
-   return doMoveDown.call(me , next(selectedNode) , onBeforeNodeInsertBefore) ;
- }
-
- function doMoveDown(node , onBeforeNodeInsertBefore){
-
-   let {
-      selectedNode,
-      layoutPositioner
-   } = this ;
-
-   node = node || layoutPositioner.getMoveDownNode(selectedNode) ;
-
-   return !! (node && onBeforeNodeInsertBefore(data(getParentNode(node)) , data(selectedNode) , data(node))) ;
- }
+return !! (node && onBeforeNodeInsertBefore(data(getParentNode(node)) , data(selectedNode) , data(node))) ;

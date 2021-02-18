@@ -90,7 +90,7 @@ if(!isRootNode(baseNode)){
         show(insertNode) ;
     }
 
-    me.fireEvent(`nodeinsert${region}` , data(node) , data(baseNode) , getChildOrders(parentNode)) ;
+    me.fireEvent(`nodeinsert${region}` , data(node) , data(baseNode) , data(parentNode) , getChildOrders(parentNode)) ;
 
     return true ;
 }
