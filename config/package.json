@@ -4,6 +4,7 @@
             "css":"xy"
         },
         "classes":[
+            "error",
             "array.*",
             "data.*",
             "is.*",
