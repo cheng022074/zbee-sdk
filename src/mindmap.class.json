@@ -26,14 +26,6 @@
             "impl":".mindmap.node.expand"
         },
         {
-            "name":"isNodeMoveDown",
-            "impl":".mindmap.node.is.move.down"
-        },
-        {
-            "name":"isNodeMoveUp",
-            "impl":".mindmap.node.is.move.up"
-        },
-        {
             "name":"getNextSiblingNode",
             "impl":".mindmap.node.sibling.next"
         },
