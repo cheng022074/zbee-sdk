@@ -20,7 +20,8 @@
 
  node = from(node) ;
 
-let newValue = node[field] = clone(value),
+let oldValue = node[field],
+    newValue = node[field] = clone(value),
 {
     id
 } = node ;
@@ -28,6 +29,8 @@ let newValue = node[field] = clone(value),
 if(!equals(newValue , oldValue)){
 
     node = data(node) ;
+
+    let me = this ;
 
     me.fireEvent(`node${field.toLowerCase()}change` , node , value , oldValue) ;
 
