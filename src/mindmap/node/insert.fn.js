@@ -9,9 +9,9 @@
  * 
  * @import getParentNode from .parent scoped
  * 
- * @import getPreviousNode from .slibing.previous scoped
+ * @import getPreviousNode from .sibling.previous scoped
  * 
- * @import getNextNode from .slibing.next scoped
+ * @import getNextNode from .sibling.next scoped
  * 
  * @import show from .show scoped
  * 
@@ -60,6 +60,17 @@ if(!isRootNode(baseNode)){
         }
     }
 
+    if(insertNode.parentNodeId){
+
+        let {
+            children
+        } = getParentNode(insertNode) ;
+
+        insertNode.parentNodeId = null ;
+
+        children.splice(children.indexOf(insertNode) , 1) ;
+    }
+
     let parentNode = getParentNode(baseNode),
     {
         children
@@ -83,12 +94,14 @@ if(!isRootNode(baseNode)){
 
     children.splice(index , 0 , insertNode) ;
 
+    insertNode.parentNodeId = parentNode.id ;
+
     if(!baseNode.hidden){
 
         show(insertNode) ;
     }
 
-    me.fireEvent(`nodeinsert${region}` , data(node) , data(baseNode) , data(parentNode)) ;
+    this.fireEvent(`nodeinsert${region}` , data(insertNode) , data(baseNode) , data(parentNode)) ;
 
     return true ;
 }
