@@ -38,9 +38,7 @@ me.cache = {
     SelectUpNode:new Map(),
     SelectDownNode:new Map(),
     SelectLeftNode:new Map(),
-    SelectRightNode:new Map(),
-    MoveUpNode:new Map(),
-    MoveDownNode:new Map()
+    SelectRightNode:new Map()
 } ;
 
 return regions ;

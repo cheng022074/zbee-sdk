@@ -67,17 +67,12 @@
         return getCacheNode.call(this , node , 'SelectUpNode') ;
     }
 
-    getMoveUpNode(node){
-
-        return getCacheNode.call(this , node , 'MoveUpNode') ;
-    }
-
     applySelectUpNode(node){
         
         return applyUpNode.call(this , node) ;
     }
 
-    applyMoveUpNode(node){
+    getMoveUpNode(node){
 
         let me = this,
         {
@@ -92,17 +87,12 @@
         return getCacheNode.call(this , node , 'SelectDownNode') ;
     }
 
-    getMoveDownNode(node){
-
-        return getCacheNode.call(this , node , 'MoveDownNode') ;
-    }
-
     applySelectDownNode(node){
 
         return applyDownNode.call(this , node) ;
     }
 
-    applyMoveDownNode(node){
+    getMoveDownNode(node){
 
         let me = this,
         {
