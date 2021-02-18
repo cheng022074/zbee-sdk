@@ -3,7 +3,7 @@
  * 
  * 获取节点参数级数据信息
  * 
- * @import data from ..data scoped
+ * @import data from mindmap.data scoped
  * 
  * @import isRootNode from .is.root scoped
  * 
