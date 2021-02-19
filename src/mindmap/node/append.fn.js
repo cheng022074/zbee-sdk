@@ -29,6 +29,19 @@ if((parentNode === node || getLastChildNode(parentNode) === node)){
 
 }
 
+if(node.parentNodeId){
+
+  let {
+      children
+  } = getParentNode(node) ;
+
+  node.parentNodeId = null ;
+
+  node.hidden = true ;
+
+  children.splice(children.indexOf(node) , 1) ;
+}
+
 let {
     children,
     hidden,
