@@ -38,8 +38,8 @@
             "impl":".mindmap.node.delete"
         },
         {
-            "name":"appendNode",
-            "impl":".mindmap.node.append"
+            "name":"appendNewNode",
+            "impl":".mindmap.node.append.new"
         },
         {
             "name":"insertNewNodeBefore",
