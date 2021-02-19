@@ -24,7 +24,7 @@ let {
 
  for(let childNode of childNodes){
 
-    hidden(childNode) ;
+   hide(childNode) ;
  }
 
 node.hidden = true ;
