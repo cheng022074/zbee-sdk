@@ -68,6 +68,8 @@ if(!isRootNode(baseNode)){
 
         insertNode.parentNodeId = null ;
 
+        insertNode.hidden = true ;
+
         children.splice(children.indexOf(insertNode) , 1) ;
     }
 
