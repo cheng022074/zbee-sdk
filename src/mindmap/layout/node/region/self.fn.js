@@ -28,9 +28,9 @@
 
  return {
      top,
-     bottom:top + height + getBottomSpacing(node),
+     bottom:y + height + getBottomSpacing(node),
      left,
-     right:left + width + getRightSpacing(node)
+     right:x + width + getRightSpacing(node)
  } ;
 
 

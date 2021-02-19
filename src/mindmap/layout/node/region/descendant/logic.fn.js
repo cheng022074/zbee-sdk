@@ -25,9 +25,31 @@
     let regions = getRegions(node),
         tops = [],
         bottoms = [],
-        rights = [];
+        rights = [],
+        lefts = [],
+        region = regions[0];
+
+    regions.pop() ;
+
+    if(regions.length === 0){
+
+        let {
+            top,
+            right,
+            bottom
+        } = region ;
+
+        return {
+            top,
+            bottom,
+            left:right,
+            right
+        } ;
+    }
 
     for(let region of regions){
+
+        lefts.push(region.left) ;
 
         tops.push(region.top) ;
 
@@ -37,7 +59,7 @@
     }
 
     return {
-        left:getSelfRegion(node).right,
+        left:min(...lefts),
         top:min(...tops),
         bottom:max(...bottoms),
         right:max(...rights)
