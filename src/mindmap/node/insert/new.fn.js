@@ -9,7 +9,7 @@
  * 
  * @import select from ..select scoped
  * 
- * @param {data.Record} baseNode 参照节点
+ * @param {mixed} baseNode 参照节点
  * 
  * @param {string} region 位置
  * 
