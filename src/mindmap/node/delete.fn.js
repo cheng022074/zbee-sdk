@@ -13,8 +13,6 @@
  * 
  * @import hide from .hide scoped
  * 
- * @import getChildOrders from .child.orders scoped
- * 
  * @param {mixed} node 节点
  * 
  * @return {boolean} 删除标识
@@ -46,7 +44,7 @@ if(!isRootNode(node)){
 
    children.splice(children.indexOf(node) , 1) ;
 
-   me.fireEvent('nodedelete' , data(node) , getChildOrders(parentNode)) ;
+   me.fireEvent('nodedelete' , data(node)) ;
 
    return true ;
 }

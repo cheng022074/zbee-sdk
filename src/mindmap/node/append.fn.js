@@ -9,8 +9,6 @@
  * 
  * @import getLastChildNode from .child.last scoped
  * 
- * @import getChildOrders from .child.orders scoped
- * 
  * @import from from .from scoped
  * 
  * @param {mixed} node 节点配置
@@ -44,7 +42,7 @@ if(!hidden && expanded){
   show(node) ;
 }
 
-me.fireEvent('nodeappend' , data(node) , data(parentNode) , getChildOrders(parentNode)) ;
+me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
 
 return true ;
 
