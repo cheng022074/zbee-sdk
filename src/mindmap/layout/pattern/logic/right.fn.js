@@ -175,7 +175,9 @@
 
  function adjustY(node , layoutedNodes , ignoreLayoutedNodes){
 
-  let region = getChildNodes(node).length ? getDescendantRegion(node) : getRegion(node),
+  let hasChildren = !!getChildNodes(node).length ;
+
+  let region = hasChildren ? getDescendantRegion(node) : getSelfRegion(node),
   {
     nodeVerticalSeparationDistance
   } = this;
@@ -188,14 +190,38 @@
 
     }
 
-    let layoutedRegion = getSelfRegion(layoutedNode) ;
+    let layoutedRegion = layoutedNode.children.length ? getDescendantRegion(layoutedNode) : getSelfRegion(layoutedNode) ;
 
     if(intersect(region , layoutedRegion)){
 
         setOffsetY(node , layoutedRegion.bottom - region.top + nodeVerticalSeparationDistance) ;
 
-        region = region = getChildNodes(node).length ? getDescendantRegion(node) : getRegion(node) ;
+        region = hasChildren ? getDescendantRegion(node) : getSelfRegion(node) ;
 
+    }
+  }
+
+  if(hasChildren){
+
+    let region = getSelfRegion(node) ;
+
+    for(let layoutedNode of layoutedNodes){
+
+      if(ignoreLayoutedNodes.includes(layoutedNode)){
+  
+        continue ;
+  
+      }
+  
+      let layoutedRegion = layoutedNode.children.length ? getDescendantRegion(layoutedNode) : getSelfRegion(layoutedNode) ;
+  
+      if(intersect(region , layoutedRegion)){
+  
+          setOffsetY(node , layoutedRegion.bottom - region.top + nodeVerticalSeparationDistance) ;
+  
+          region = hasChildren ? getDescendantRegion(node) : getSelfRegion(node) ;
+  
+      }
     }
   }
 
