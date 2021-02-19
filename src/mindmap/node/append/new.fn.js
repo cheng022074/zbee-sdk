@@ -17,9 +17,9 @@
 
 let node = create() ;
 
-if(insert(node , parentNode)){
+if(append(node , parentNode)){
 
-   select(insertNode) ;
+   select(node) ;
 
    return true ;
 }

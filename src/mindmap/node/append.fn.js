@@ -50,12 +50,14 @@ let {
 
 children.push(node) ;
 
+node.parentNodeId = parentNode.id ;
+
 if(!hidden && expanded){
 
   show(node) ;
 }
 
-me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+this.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
 
 return true ;
 
