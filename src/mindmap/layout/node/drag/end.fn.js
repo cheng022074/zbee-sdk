@@ -21,11 +21,18 @@ if(!draggingNode){
     return false ;
 }
 
+delete me.draggingNode ;
+
 { 
     let {
         placeholderNode
     } = me,
     parentNode = getParentNode(placeholderNode) ;
+
+    if(!parentNode){
+
+        return false ;
+    }
 
     insertBefore(draggingNode , placeholderNode) ;
 
@@ -44,7 +51,6 @@ if(!draggingNode){
 }
 
 {
-    delete me.draggingNode ;
 
     draggingNode.dragging = false ;
 
