@@ -40,7 +40,7 @@ parentNode = getParentNode(placeholderNode) ;
 
 if(!parentNode){
 
-    return false ;
+    return true ;
 }
 
 insertBefore(draggingNode , placeholderNode) ;
