@@ -9,6 +9,8 @@
  * 
  * @import getLastChildNode from .child.last scoped
  * 
+ * @import getParentNode from .parent scoped
+ * 
  * @import from from .from scoped
  * 
  * @param {mixed} node 节点配置
