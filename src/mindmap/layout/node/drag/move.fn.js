@@ -7,6 +7,10 @@
  * 
  * @import from from math.region.from
  * 
+ * @import insertBefore from mindmap.node.insert.before scoped
+ * 
+ * @import insertAfter from mindmap.node.insert.after scoped
+ * 
  * @param {object} xy 坐标
  * 
  * @param {number} xy.y 纵坐标
@@ -20,15 +24,18 @@
 if(node){
 
     let region = from(node),
-        centerY = getAnchorY(region , 'center');
+        centerY = getAnchorY(region , 'center'),
+        {
+            placeholderNode
+        } = me;
 
     if(y > centerY){
 
-        console.log(node.text , 'after') ;
+        return insertAfter(placeholderNode , node) ;
     
     }else{
 
-        console.log(node.text , 'before') ;
+        return insertBefore(placeholderNode , node) ;
     }
     
 }
