@@ -15,6 +15,16 @@
  * 
  */
 
+ let me = this,
+ {
+    draggingNode
+ } = me;
+
+ if(draggingNode){
+
+    return false;
+ }
+
  node = from(node) ;
 
  select(node) ;
@@ -23,8 +33,6 @@
 
     return false;
  }
-
- let me = this ;
 
  me.draggingNode = node ;
 
