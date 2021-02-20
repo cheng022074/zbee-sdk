@@ -263,7 +263,7 @@
             local:true,
             defaultValue:false
          },
-         restructuring:{
+         dragging:{
             mode:'readwrite',
             local:true,
             defaultValue:false
