@@ -44,15 +44,6 @@
         },{
             "name":"insertNewNodeAfter",
             "impl":".mindmap.node.insert.new.after"
-        },{
-            "name":"startRestructureNode",
-            "impl":".mindmap.node.restructure.start"
-        },{
-            "name":"restructureNode",
-            "impl":".mindmap.node.restructure"
-        },{
-            "name":"endRestructureNode",
-            "impl":".mindmap.node.restructure.end"
         }
     ]
 }
