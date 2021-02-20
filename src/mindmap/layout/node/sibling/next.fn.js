@@ -5,34 +5,44 @@
  * 
  * @import getParentNode from mindmap.node.parent scoped
  * 
+ * @import cache from mindmap.layout.cache scoped
+ * 
  * @param {data.Record} node 脑图节点
  * 
  * @return {data.Record} 兄弟节点引用 
  * 
  */
 
- let parentNode = getParentNode(node),
- {
-    layoutNodes
- } = this;
+ function main(node){
 
- if(parentNode){
+    return cache(node , 'getNextSiblingNode' , getPreviousSiblingNode) ;
+ }
 
-    let {
-        children
-    } = parentNode,
+ function getPreviousSiblingNode(node){
+
+    let parentNode = getParentNode(node),
     {
-        length
-    } = children,
-    index = children.indexOf(node) + 1;
+        layoutNodes
+    } = this;
 
-    for(let i = index ; i < length ; i ++){
+    if(parentNode){
 
-        let nextNode = children[i] ;
+        let {
+            children
+        } = parentNode,
+        {
+            length
+        } = children,
+        index = children.indexOf(node) + 1;
 
-        if(layoutNodes.includes(nextNode)){
+        for(let i = index ; i < length ; i ++){
 
-            return nextNode ;
+            let nextNode = children[i] ;
+
+            if(layoutNodes.includes(nextNode)){
+
+                return nextNode ;
+            }
         }
     }
  }

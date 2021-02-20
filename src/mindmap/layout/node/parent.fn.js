@@ -5,19 +5,29 @@
  * 
  * @import getParentNode from mindmap.node.parent scoped
  * 
+ * @import cache from mindmap.layout.cache scoped
+ * 
  * @param {data.Record} node 脑图节点
  * 
  * @return {data.Record} 所获取的父节点
  * 
  */
 
+ function main(){
 
- let {
-    layoutNodes
- } = this,
- parentNode = getParentNode(node);
+   return cache(node , 'getParentNode' , getParentNode) ;
+ 
+ }
 
- if(parentNode && layoutNodes.includes(parentNode)){
+ function getParentNode(node){
 
-    return parentNode ;
+   let {
+      layoutNodes
+   } = this,
+   parentNode = getParentNode(node);
+  
+   if(parentNode && layoutNodes.includes(parentNode)){
+  
+      return parentNode ;
+   }
  }
