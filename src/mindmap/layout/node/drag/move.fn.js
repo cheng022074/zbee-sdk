@@ -17,6 +17,8 @@
  * 
  * @param {number} xy.y 纵坐标
  * 
+ * @param {object} originXY 原始坐标
+ * 
  * @param {object} [node] 节点
  * 
  */
