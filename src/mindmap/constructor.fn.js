@@ -11,8 +11,6 @@
  * 
  * @import setSelected from .node.field.selected scoped
  * 
- * @import setIndicated from .indicated scoped
- * 
  * @import buffer from function.buffer
  * 
  * @import doLayout from .layout scoped
@@ -268,14 +266,10 @@
             local:true,
             defaultValue:false
          },
-         indicated:{
+         placeholderParent:{
             mode:'readwrite',
             local:true,
-            defaultValue:false,
-            set(indicated){
-
-               return setIndicated(this , indicated) ;
-            }
+            defaultValue:false
          },
          editing:{
             mode:'readwrite',
