@@ -5,6 +5,8 @@
  * 
  * @import getDescendantNodes from ....nodes.descendant scoped
  * 
+ * @import getParentNode from ....node.parent scoped
+ * 
  */
 
 let me = this,
@@ -17,16 +19,38 @@ if(!draggingNode){
     return false ;
 }
 
-delete me.draggingNode ;
+{
+    let {
+        placeholderNode
+    } = me,
+    parentNode = getParentNode(placeholderNode) ;
 
-draggingNode.dragging = false ;
+    if(parentNode){
 
-let nodes = getDescendantNodes(draggingNode) ;
+        let {
+            children
+        } = parentNode ;
 
-for(let node of nodes){
+        children.splice(children.indexOf(placeholderNode) , 1) ;
 
-   node.dragging = false ;
+        placeholderNode.hidden = false ;
 
+        placeholderNode.parentNodeId = null ;
+    }
+}
+
+{
+    delete me.draggingNode ;
+
+    draggingNode.dragging = false ;
+
+    let nodes = getDescendantNodes(draggingNode) ;
+
+    for(let node of nodes){
+
+        node.dragging = false ;
+
+    }
 }
 
 return true ;
