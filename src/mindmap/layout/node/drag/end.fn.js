@@ -21,46 +21,38 @@ if(!draggingNode){
     return false ;
 }
 
+draggingNode.dragging = false ;
+
+let nodes = getDescendantNodes(draggingNode) ;
+
+for(let node of nodes){
+
+    node.dragging = false ;
+
+}
+
 delete me.draggingNode ;
 
-{ 
-    let {
-        placeholderNode
-    } = me,
-    parentNode = getParentNode(placeholderNode) ;
+let {
+    placeholderNode
+} = me,
+parentNode = getParentNode(placeholderNode) ;
 
-    if(!parentNode){
+if(!parentNode){
 
-        return false ;
-    }
-
-    insertBefore(draggingNode , placeholderNode) ;
-
-    if(parentNode){
-
-        let {
-            children
-        } = parentNode ;
-
-        children.splice(children.indexOf(placeholderNode) , 1) ;
-
-        placeholderNode.hidden = false ;
-
-        placeholderNode.parentNodeId = null ;
-    }
+    return false ;
 }
 
-{
+insertBefore(draggingNode , placeholderNode) ;
 
-    draggingNode.dragging = false ;
+let {
+    children
+} = parentNode ;
 
-    let nodes = getDescendantNodes(draggingNode) ;
+children.splice(children.indexOf(placeholderNode) , 1) ;
 
-    for(let node of nodes){
+placeholderNode.hidden = false ;
 
-        node.dragging = false ;
-
-    }
-}
+placeholderNode.parentNodeId = null ;
 
 return true ;
