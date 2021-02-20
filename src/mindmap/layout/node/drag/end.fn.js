@@ -1,7 +1,7 @@
 
 /**
  * 
- * 开始重组节点
+ * 结束拖曳节点
  * 
  * @import getDescendantNodes from ....nodes.descendant scoped
  * 
