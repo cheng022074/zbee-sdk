@@ -10,9 +10,6 @@
         "load",
         "destroy",
         "resize",
-        "deselect",
-        "reset",
-        "focus",
         {
             "name":"selectNode",
             "impl":".mindmap.node.select"
