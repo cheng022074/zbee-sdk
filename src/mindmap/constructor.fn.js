@@ -134,20 +134,6 @@
 
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
 
- if(isObject(nodeHorizontalSeparationDistance)){
-
-   let {
-      max = 0,
-      min = 0
-   } = nodeHorizontalSeparationDistance ;
-
-   me.maxNodeHorizontalSeparationDistance = max ;
-
-   me.minNodeHorizontalSeparationDistance = min ;
-
-   nodeHorizontalSeparationDistance = 0 ;
- }
-
  me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
 
  if(nodeHorizontalLineBreakPointOffset > nodeHorizontalSeparationDistance){
