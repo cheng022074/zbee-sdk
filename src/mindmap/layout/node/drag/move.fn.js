@@ -34,7 +34,7 @@ if(node){
 
     node = fromNode(node) ;
 
-    if(node === draggingNode || node === draggingNode){
+    if(node === draggingNode || node === placeholderNode){
 
         return false ;
     }
