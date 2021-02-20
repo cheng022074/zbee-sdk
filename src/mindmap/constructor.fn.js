@@ -59,6 +59,8 @@
  * 
  * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
  * 
+ * @param {number} [config.dragNodeDiscernRadius = 30] 拖曳识别半径
+ * 
  * @param {mixed} [config.layout] 布局模式
  * 
  * @param {object} [config.api = {}] 附加 API
@@ -66,6 +68,8 @@
  */
 
  let me = this ;
+
+ me.dragNodeDiscernRadius = dragNodeDiscernRadius ;
 
  {
    let methods = Object.keys(api) ;
