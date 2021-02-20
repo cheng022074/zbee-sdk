@@ -57,7 +57,12 @@ let {
     top,
     right,
     bottom
-} = getRegion(node) ;
+} = getRegion(node),
+{
+    nodeHorizontalSeparationDistance
+} = me;
+
+right += nodeHorizontalSeparationDistance ;
 
 return {
     top,
