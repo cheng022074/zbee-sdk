@@ -60,7 +60,7 @@ let {
 } = getRegion(node),
 {
     nodeHorizontalSeparationDistance
-} = me;
+} = this;
 
 right += nodeHorizontalSeparationDistance ;
 

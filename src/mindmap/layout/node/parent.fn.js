@@ -13,13 +13,13 @@
  * 
  */
 
- function main(){
+ function main(node){
 
-   return cache(node , 'getParentNode' , getParentNode) ;
+   return cache(node , 'getParentNode' , getLayoutedParentNode) ;
  
  }
 
- function getParentNode(node){
+ function getLayoutedParentNode(node){
 
    let {
       layoutNodes
