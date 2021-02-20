@@ -131,32 +131,23 @@
 
     setX(childNode , right) ;
 
-    let previousNode = childNodes[i - 1] ;
+    let previousNode = childNodes[i - 1],
+        bottom;
 
     if(previousNode){
 
-      let {
-          bottom
-      } = getSelfRegion(previousNode) ;
-
-      setY(childNode , bottom) ;
+      bottom = getSelfRegion(previousNode).bottom ;
 
     }else{
 
-      setY(childNode , top) ;
+      bottom = top ;
     }
+
+    setY(childNode , bottom) ;
 
     layout.call(me , childNode , layoutedNodes) ;
 
-    if(previousNode){
-
-      let {
-          bottom
-      } = getSelfRegion(previousNode) ;
-
-      setY(childNode , bottom) ;
-
-    }
+    setY(childNode , bottom) ;
 
     adjustY.call(me , childNode , layoutedNodes , getDescendantNodes(childNode)) ;
 
@@ -173,14 +164,40 @@
 
  }
 
+ function getAdjustRegion(node , direction) {
+
+    let selfRegion = getSelfRegion(node),
+        descendantRegion = getDescendantRegion(node),
+        result;
+
+    switch(direction){
+
+        case 'top':
+
+          result = selfRegion[direction] <= descendantRegion[direction] ;
+
+          break ;
+
+        case 'bottom':
+
+          result = selfRegion[direction] >= descendantRegion[direction] ;
+    }
+
+    if(result){
+
+        return selfRegion ;
+    }
+
+    return descendantRegion ;
+ }
+
  function adjustY(node , layoutedNodes , ignoreLayoutedNodes){
 
-  let hasChildren = !!getChildNodes(node).length ;
-
-  let region = hasChildren ? getDescendantRegion(node) : getSelfRegion(node),
+  let region = getAdjustRegion(node , 'top'),
   {
     nodeVerticalSeparationDistance
-  } = this;
+  } = this,
+  isSetOffsetY = false;
 
   for(let layoutedNode of layoutedNodes){
 
@@ -190,41 +207,23 @@
 
     }
 
-    let layoutedRegion = layoutedNode.children.length ? getDescendantRegion(layoutedNode) : getSelfRegion(layoutedNode) ;
+    let layoutedRegion = getAdjustRegion(layoutedNode , 'bottom') ;
 
     if(intersect(region , layoutedRegion)){
 
         setOffsetY(node , layoutedRegion.bottom - region.top + nodeVerticalSeparationDistance) ;
 
-        region = hasChildren ? getDescendantRegion(node) : getSelfRegion(node) ;
+        region = getAdjustRegion(node , 'top') ;
+
+        isSetOffsetY = true ;
 
     }
   }
 
-  if(hasChildren){
+  if(!isSetOffsetY){
 
-    let region = getSelfRegion(node) ;
-
-    for(let layoutedNode of layoutedNodes){
-
-      if(ignoreLayoutedNodes.includes(layoutedNode)){
-  
-        continue ;
-  
-      }
-  
-      let layoutedRegion = layoutedNode.children.length ? getDescendantRegion(layoutedNode) : getSelfRegion(layoutedNode) ;
-  
-      if(intersect(region , layoutedRegion)){
-  
-          setOffsetY(node , layoutedRegion.bottom - region.top + nodeVerticalSeparationDistance) ;
-  
-          region = hasChildren ? getDescendantRegion(node) : getSelfRegion(node) ;
-  
-      }
-    }
+    setOffsetY(node , nodeVerticalSeparationDistance) ;
+    
   }
-
-  setOffsetY(node , nodeVerticalSeparationDistance) ;
 }
 
