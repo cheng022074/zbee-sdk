@@ -25,8 +25,6 @@ level(node , hidden) ;
 
 if(hidden){
 
-    node.selected = false ;
-
     if(node !== placeholderNode){
 
         node.width = false ;

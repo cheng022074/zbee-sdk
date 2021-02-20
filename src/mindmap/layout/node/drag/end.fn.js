@@ -7,6 +7,8 @@
  * 
  * @import getParentNode from ....node.parent scoped
  * 
+ * @import insertBefore from mindmap.node.insert.before scoped
+ * 
  */
 
 let me = this,
@@ -19,11 +21,13 @@ if(!draggingNode){
     return false ;
 }
 
-{
+{ 
     let {
         placeholderNode
     } = me,
     parentNode = getParentNode(placeholderNode) ;
+
+    insertBefore(draggingNode , placeholderNode) ;
 
     if(parentNode){
 
