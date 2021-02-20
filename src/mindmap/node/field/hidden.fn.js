@@ -16,7 +16,10 @@
 let {
     id
 } = node,
-me = this;
+me = this,
+{
+    placeholderNode
+} = me;
 
 level(node , hidden) ;
 
@@ -24,9 +27,12 @@ if(hidden){
 
     node.selected = false ;
 
-    node.width = false ;
+    if(node !== placeholderNode){
 
-    node.height = false ;
+        node.width = false ;
+
+        node.height = false ;
+    }
 }
 
 return hidden ;

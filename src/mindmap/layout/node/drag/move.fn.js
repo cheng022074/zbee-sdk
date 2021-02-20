@@ -7,6 +7,8 @@
  * 
  * @import from from math.region.from
  * 
+ * @import fromNode from mindmap.node.from scoped
+ * 
  * @import insertBefore from mindmap.node.insert.before scoped
  * 
  * @import insertAfter from mindmap.node.insert.after scoped
@@ -26,8 +28,16 @@ if(node){
     let region = from(node),
         centerY = getAnchorY(region , 'center'),
         {
-            placeholderNode
-        } = me;
+            placeholderNode,
+            draggingNode
+        } = this;
+
+    node = fromNode(node) ;
+
+    if(node === draggingNode || node === draggingNode){
+
+        return false ;
+    }
 
     if(y > centerY){
 
