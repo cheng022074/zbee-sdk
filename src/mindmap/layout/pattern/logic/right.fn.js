@@ -47,6 +47,10 @@
 
   let me = this ;
 
+  node.x = 0 ;
+
+  node.y = 0 ;
+
   layout.call(me , node) ;
 
   let region = getRegion(node),
@@ -61,8 +65,9 @@
     top,
     bottom
   } = padding,
+  regionHeight = getHeight(region),
   mindmapWidth = getWidth(region) + left + right,
-  mindmapHeight = getHeight(region) + top + bottom,
+  mindmapHeight = regionHeight + top + bottom,
   offsetX = left,
   offsetY = 0;
 
@@ -74,13 +79,19 @@
 
   if(height > mindmapHeight){
 
-    let region = getSelfRegion(node) ;
-
-    setAnchorY(region , 'center' , height / 2) ;
-
-    setY(node , getY(region)) ;
-
     mindmapHeight = height ;
+
+    let y = getY(region),
+        offsetY = (height - regionHeight) / 2;
+
+    if(y < 0){
+
+        setOffsetY(node , - y + offsetY) ;
+    
+    }else{
+
+        setOffsetY(node , offsetY) ;
+    }
   
   }else{
 
