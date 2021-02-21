@@ -9,6 +9,8 @@
  * 
  * @import isLeafNode from mindmap.node.is.leaf scoped
  * 
+ * @import getParentNode from mindmap.node.parent scoped
+ * 
  * @param {mixed} node 节点
  * 
  * @param {object} offset 坐标偏移值
@@ -22,6 +24,11 @@
    root(node){
 
       return isRootNode(node) ;
+   },
+
+   parent(node){
+
+      return !! getParentNode(node) ;
    },
 
    leaf(node){
