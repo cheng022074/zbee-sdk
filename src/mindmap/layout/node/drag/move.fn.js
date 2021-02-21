@@ -17,120 +17,47 @@
  * 
  * @import append from mindmap.node.append scoped
  * 
+ * @param {object} node 节点
+ * 
  * @param {object} xy 坐标
+ * 
+ * @param {number} xy.x 横坐标
  * 
  * @param {number} xy.y 纵坐标
  * 
- * @param {object} originXY 原始坐标
- * 
- * @param {object} [node] 节点
- * 
  */
 
- 
+let region = from(node),
+    {
+        right
+    } = region,
+    centerY = getAnchorY(region , 'center'),
+    {
+        placeholderNode,
+        draggingNode
+    } = this;
 
-if(node){
+node = fromNode(node) ;
 
-    let region = from(node),
-        centerY = getAnchorY(region , 'center'),
-        {
-            placeholderNode,
-            draggingNode
-        } = this;
+if(node === draggingNode || node === placeholderNode){
 
-    node = fromNode(node) ;
-
-    if(node === draggingNode || node === placeholderNode){
-
-        return false ;
-    }
-
-    if(y > centerY){
-
-        return insertAfter(placeholderNode , node) ;
-    
-    }else{
-
-        return insertBefore(placeholderNode , node) ;
-    }
-    
-}else{
-
-    let {
-        dragNodeDiscernRadius,
-        placeholderNode
-    } = this,
-    directions = [{
-        direction:'top',
-        property:'y',
-        offset:-dragNodeDiscernRadius
-    },{
-        direction:'bottom',
-        property:'y',
-        offset:dragNodeDiscernRadius
-    },{
-        direction:'left',
-        property:'x',
-        offset:-dragNodeDiscernRadius
-    }];
-
-    for(let {
-        direction,
-        property,
-        offset
-    } of directions){
-
-        let {
-            x,
-            y
-        } = originXY ;
-
-        switch(property){
-
-            case 'x':
-
-                x += offset ;
-
-                break ;
-
-            case 'y':
-
-                y += offset ;
-        }
-
-        let el = document.elementFromPoint(x , y),
-        {
-            id
-        } = el.dataset;
-
-        if(id){
-
-            let node = fromNode(id) ;
-
-            switch(direction){
-
-                case 'top':
-
-                    return insertAfter(placeholderNode , node) ;
-
-                case 'bottom':
-
-                    return insertBefore(placeholderNode , node) ;
-
-                case 'left':
-
-                    expand(node) ;
-
-                    return append(placeholderNode , node);
-
-                
-            }
-
-            break ;
-        }
-    }
-
-
+    return false ;
 }
 
+if(x > right){
 
+    if(expand(node)){
+
+        return true ;
+    }
+
+    return append(placeholderNode , node) ;
+    
+}else if(y > centerY){
+
+    return insertAfter(placeholderNode , node) ;
+
+}else{
+
+    return insertBefore(placeholderNode , node) ; 
+}
