@@ -15,7 +15,8 @@
 
    let me = this,
    {
-      isLayouting
+      isLayouting,
+      rootNode
    } = me;
 
    if(isLayouting){
@@ -34,7 +35,7 @@
       createPositioner
    } = me.layoutConfig ;
 
-   let rootNode = getRootNode() ;
+   rootNode = getRootNode() || rootNode;
 
    doBeforeLayout.call(me , me.layoutNodes = [
       rootNode,
