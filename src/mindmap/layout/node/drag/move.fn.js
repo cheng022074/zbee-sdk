@@ -46,10 +46,7 @@ if(node === draggingNode || node === placeholderNode){
 
 if(x > right){
 
-    if(expand(node)){
-
-        return true ;
-    }
+    expand(node) ;
 
     return append(placeholderNode , node) ;
     
