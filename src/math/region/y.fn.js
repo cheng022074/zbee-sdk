@@ -7,8 +7,10 @@
  * 
  * @param {object} region 范围
  * 
+ * @param {number} [y] 纵坐标
+ * 
  * @return {number} 纵坐标值
  * 
  */
 
- return getAnchorY(region , 'top') ;
+ return doAnchorY(region , 'top' , y) ;
