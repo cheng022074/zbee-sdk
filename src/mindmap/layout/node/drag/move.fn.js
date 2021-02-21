@@ -34,8 +34,11 @@ let region = from(node),
     centerY = getAnchorY(region , 'center'),
     {
         placeholderNode,
-        draggingNode
+        draggingNode,
+        dragNodeDiscernRadius
     } = this;
+
+right -= dragNodeDiscernRadius ;
 
 node = fromNode(node) ;
 
