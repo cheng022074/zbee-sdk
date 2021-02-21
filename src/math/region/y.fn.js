@@ -3,7 +3,7 @@
  * 
  * 获得范围的纵坐标
  * 
- * @import getAnchorY from .y.anchor
+ * @import doAnchorY from .y.anchor
  * 
  * @param {object} region 范围
  * 
