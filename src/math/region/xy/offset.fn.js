@@ -2,6 +2,8 @@
  * 
  * 偏移
  * 
+ * @import get from math.region.get
+ * 
  * @import setXY from ..xy
  * 
  * @import getXY from ..xy
@@ -11,6 +13,8 @@
  * @param {object} offsetXY 偏移量
  * 
  */
+
+ region = get(region) ;
 
  let {
     x,

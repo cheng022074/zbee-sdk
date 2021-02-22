@@ -31,11 +31,11 @@ if(!containsX(region , position)){
         right:positionRight
     } = position;
 
-    if(positionRight < left){
+    if(positionLeft < left){
 
         setX(region , 'left' , positionLeft) ;
 
-    }else if(positionLeft > right){
+    }else if(positionRight > right){
 
         setX(region , 'right' , positionRight) ;
     }

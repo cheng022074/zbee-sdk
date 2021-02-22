@@ -31,13 +31,13 @@ if(!containsY(region , position)){
         bottom:positionBototm
     } = position;
 
-    if(positionBototm < top){
+    if(positionTop < top){
 
         setY(region , 'top' , positionTop) ;
 
-    }else if(positionTop > bottom){
+    }else if(positionBototm > bottom){
 
-        setY(regon , 'bottom' , positionBototm) ;
+        setY(region , 'bottom' , positionBototm) ;
     }
 
 }
