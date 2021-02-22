@@ -35,9 +35,13 @@ if(!containsY(region , position)){
 
         setY(region , 'top' , positionTop) ;
 
+        return -1 ;
+
     }else if(positionBototm > bottom){
 
         setY(region , 'bottom' , positionBototm) ;
+
+        return 1 ;
     }
 
 }

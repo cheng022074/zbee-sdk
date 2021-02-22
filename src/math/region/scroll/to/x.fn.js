@@ -35,9 +35,13 @@ if(!containsX(region , position)){
 
         setX(region , 'left' , positionLeft) ;
 
+        return -1 ;
+
     }else if(positionRight > right){
 
         setX(region , 'right' , positionRight) ;
+
+        return 1 ;
     }
 
 }

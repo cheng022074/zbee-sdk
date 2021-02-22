@@ -14,7 +14,7 @@
  * 
  */
 
-scrollToX(region , position);
-
-scrollToY(region , position) ;
-
+ return {
+     x:scrollToX(region , position),
+     y:scrollToY(region , position)
+ } ;
