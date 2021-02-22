@@ -9,6 +9,10 @@
  * 
  * @import insertBefore from mindmap.node.insert.before scoped
  * 
+ * @import insertAfter from mindmap.node.insert.after scoped
+ * 
+ * @import append from mindmap.node.append scoped
+ * 
  */
 
 let me = this,
@@ -43,7 +47,29 @@ if(!parentNode){
     return true ;
 }
 
-insertBefore(draggingNode , placeholderNode) ;
+let {
+    dragOperation,
+    dragOperationNode
+} = me ;
+
+switch(dragOperation){
+
+    case 'append':
+
+        append(draggingNode , dragOperationNode) ;
+
+        break ;
+
+    case 'insertBefore':
+
+        insertBefore(draggingNode , dragOperationNode) ;
+
+        break ;
+
+    case 'insertAfter':
+
+        insertAfter(draggingNode , dragOperationNode) ;
+}
 
 let {
     children

@@ -38,11 +38,12 @@ let region = from(node),
         right
     } = region,
     centerY = getAnchorY(region , 'center'),
+    me = this,
     {
         placeholderNode,
         draggingNode,
         dragNodeDiscernRadius
-    } = this;
+    } = me;
 
 right -= dragNodeDiscernRadius ;
 
@@ -59,6 +60,10 @@ if(x > right){
 
     if(interceptors.onBeforeNodeAppend(getData(node) , getData(draggingNode)) !== false){
 
+        me.dragOperation = 'append' ;
+
+        me.dragOperationNode = node ;
+
         return append(placeholderNode , node) ;
     }
     
@@ -66,12 +71,20 @@ if(x > right){
 
     if(interceptors.onBeforeNodeInsertAfter(getData(getParentNode(node)) , getData(draggingNode) , getData(node)) !== false){
 
+        me.dragOperation = 'insertAfter' ;
+
+        me.dragOperationNode = node ;
+
         return insertAfter(placeholderNode , node) ;
     }
 
 }else{
 
     if(interceptors.onBeforeNodeInsertBefore(getData(getParentNode(node)) , getData(draggingNode) , getData(node)) !== false){
+
+        me.dragOperation = 'insertBefore' ;
+
+        me.dragOperationNode = node ;
 
         return insertBefore(placeholderNode , node) ;
     }
