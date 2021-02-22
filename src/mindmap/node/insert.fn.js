@@ -108,7 +108,7 @@ if(!isRootNode(baseNode)){
         placeholderNode
     } = me ;
 
-    if(insertNode !== placeholderNode){
+    if(insertNode !== placeholderNode && baseNode !== placeholderNode){
 
         me.fireEvent(`nodeinsert${region}` , data(insertNode) , data(baseNode) , data(parentNode)) ;
     }
