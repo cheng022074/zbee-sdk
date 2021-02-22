@@ -64,14 +64,14 @@ if(x > right){
     
 }else if(y > centerY){
 
-    if(interceptors.onBeforeNodeInsertAfter(getData(getParentNode(data)) , getData(draggingNode) , data(data)) !== false){
+    if(interceptors.onBeforeNodeInsertAfter(getData(getParentNode(node)) , getData(draggingNode) , getData(node)) !== false){
 
         return insertAfter(placeholderNode , node) ;
     }
 
 }else{
 
-    if(interceptors.onBeforeNodeInsertBefore(getData(getParentNode(data)) , getData(draggingNode) , data(data)) !== false){
+    if(interceptors.onBeforeNodeInsertBefore(getData(getParentNode(node)) , getData(draggingNode) , getData(node)) !== false){
 
         return insertBefore(placeholderNode , node) ;
     }
