@@ -59,7 +59,16 @@ if(!hidden && expanded){
   show(node) ;
 }
 
-this.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+let me = this,
+{
+  placeholderNode
+} = me;
+
+if(node !== placeholderNode){
+
+  me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+
+}
 
 return true ;
 

@@ -103,7 +103,15 @@ if(!isRootNode(baseNode)){
         show(insertNode) ;
     }
 
-    this.fireEvent(`nodeinsert${region}` , data(insertNode) , data(baseNode) , data(parentNode)) ;
+    let me = this,
+    {
+        placeholderNode
+    } = me ;
+
+    if(insertNode !== placeholderNode){
+
+        me.fireEvent(`nodeinsert${region}` , data(insertNode) , data(baseNode) , data(parentNode)) ;
+    }
 
     return true ;
 }
