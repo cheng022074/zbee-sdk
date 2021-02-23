@@ -44,13 +44,27 @@ parentNode = getParentNode(placeholderNode) ;
 
 if(!parentNode){
 
-    return true ;
+    return false ;
 }
+
+let {
+    children
+} = parentNode ;
+
+children.splice(children.indexOf(placeholderNode) , 1) ;
+
+placeholderNode.hidden = false ;
+
+placeholderNode.parentNodeId = null ;
 
 let {
     dragOperation,
     dragOperationNode
 } = me ;
+
+delete me.dragOperation ;
+
+delete me.dragOperationNode ;
 
 switch(dragOperation){
 
@@ -70,15 +84,5 @@ switch(dragOperation){
 
         insertAfter(draggingNode , dragOperationNode) ;
 }
-
-let {
-    children
-} = parentNode ;
-
-children.splice(children.indexOf(placeholderNode) , 1) ;
-
-placeholderNode.hidden = false ;
-
-placeholderNode.parentNodeId = null ;
 
 return true ;
