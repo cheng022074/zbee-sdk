@@ -17,8 +17,16 @@
 
 let me = this,
 {
-    draggingNode
+    draggingNode,
+    dragOperation,
+    dragOperationNode
 } = me ;
+
+delete me.draggingNode ;
+
+delete me.dragOperation ;
+
+delete me.dragOperationNode ;
 
 if(!draggingNode){
 
@@ -34,8 +42,6 @@ for(let node of nodes){
     node.dragging = false ;
 
 }
-
-delete me.draggingNode ;
 
 let {
     placeholderNode
@@ -56,15 +62,6 @@ children.splice(children.indexOf(placeholderNode) , 1) ;
 placeholderNode.hidden = false ;
 
 placeholderNode.parentNodeId = null ;
-
-let {
-    dragOperation,
-    dragOperationNode
-} = me ;
-
-delete me.dragOperation ;
-
-delete me.dragOperationNode ;
 
 switch(dragOperation){
 
