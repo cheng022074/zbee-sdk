@@ -47,10 +47,10 @@
     region = nodeMap.get(node);
 
     return getNode.call(me , region , topRegions , topRegions.indexOf(region) + 1 , ({
-        top
+        bottom:matchBottom
     } , {
         bottom
-    }) => bottom < top , [
+    }) => matchBottom > bottom , [
         getDownNodeAnchors
     ] , isIgnoreNode).node ;
  }
