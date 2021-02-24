@@ -16,16 +16,13 @@
 let {
     id
 } = node,
-me = this,
-{
-    placeholderNode
-} = me;
+me = this;
 
 level(node , hidden) ;
 
 if(hidden){
 
-    if(node !== placeholderNode){
+    if(!node.placeholder){
 
         node.width = false ;
 

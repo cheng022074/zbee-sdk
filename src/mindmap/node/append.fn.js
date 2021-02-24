@@ -59,14 +59,9 @@ if(!hidden && expanded){
   show(node) ;
 }
 
-let me = this,
-{
-  placeholderNode
-} = me;
+if(!node.placeholder && !parentNode.placeholder){
 
-if(node !== placeholderNode){
-
-  me.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+  this.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
 
 }
 

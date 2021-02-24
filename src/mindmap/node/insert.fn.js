@@ -103,14 +103,9 @@ if(!isRootNode(baseNode)){
         show(insertNode) ;
     }
 
-    let me = this,
-    {
-        placeholderNode
-    } = me ;
+    if(!insertNode.placeholder && !baseNode.placeholder){
 
-    if(insertNode !== placeholderNode && baseNode !== placeholderNode){
-
-        me.fireEvent(`nodeinsert${region}` , data(insertNode) , data(baseNode) , data(parentNode)) ;
+        this.fireEvent(`nodeinsert${region}` , data(insertNode) , data(baseNode) , data(parentNode)) ;
     }
 
     return true ;

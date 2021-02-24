@@ -29,14 +29,11 @@
     {
         nodes,
         selectedNode
-    } = getNodeDataset(layoutNodes , offset),
-    {
-        placeholderNode
-    } = me;
+    } = getNodeDataset(layoutNodes , offset);
 
     me.fireEvent('draw' , {
         nodes:getNodes(nodes),
-        lines:getLines(nodes , placeholderNode),
+        lines:getLines(nodes),
         selectedNode,
         selectedNodeRegion:getRegion(selectedNode),
         canvas:size
@@ -59,7 +56,7 @@
     return result ;
  }
 
- function getLines(nodes , placeholderNode){
+ function getLines(nodes){
 
     let layoutNodes = nodes.keys(),
         lines = [];
@@ -81,7 +78,7 @@
             } = nodes.get(layoutNode);
 
             lines.push({
-                indicated:layoutNode === placeholderNode,
+                indicated:layoutNode.placeholder,
                 start,
                 startCenterXY,
                 startRightXY,
