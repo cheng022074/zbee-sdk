@@ -56,39 +56,62 @@ if(node.dragging || node.placeholder){
     return false ;
 }
 
+let {
+    dragOperation:oldDragOperation,
+    dragOperationNode:oldDragOperationNode
+} = this,
+dragOperation,
+dragOperationNode;
+
 if(x > right || isRootNode(node)){
 
     expand(node) ;
 
     if(interceptors.onBeforeNodeAppend(getData(node) , getData(draggingNode)) !== false){
 
-        me.dragOperation = 'append' ;
+        dragOperation = 'append' ;
 
-        me.dragOperationNode = node ;
-
-        return append(placeholderNode , node) ;
+        dragOperationNode = node ;
     }
     
 }else if(y > centerY){
 
     if(interceptors.onBeforeNodeInsertAfter(getData(getParentNode(node)) , getData(draggingNode) , getData(node)) !== false){
 
-        me.dragOperation = 'insertAfter' ;
+        dragOperation = 'insertAfter' ;
 
-        me.dragOperationNode = node ;
-
-        return insertAfter(placeholderNode , node) ;
+        dragOperationNode = node ;
     }
 
 }else{
 
     if(interceptors.onBeforeNodeInsertBefore(getData(getParentNode(node)) , getData(draggingNode) , getData(node)) !== false){
 
-        me.dragOperation = 'insertBefore' ;
+        dragOperation = 'insertBefore' ;
 
-        me.dragOperationNode = node ;
+        dragOperationNode = node ;
+    }
+}
 
-        return insertBefore(placeholderNode , node) ;
+if(dragOperation && dragOperationNode && (oldDragOperation !== dragOperationNode || oldDragOperationNode !== dragOperationNode)){
+
+    me.dragOperation = dragOperation ;
+
+    me.dragOperationNode = dragOperationNode ;
+
+    switch(dragOperation){
+
+        case 'append':
+
+            return append(placeholderNode , dragOperationNode) ;
+
+        case 'insertBefore':
+
+            return insertAfter(placeholderNode , dragOperationNode) ;
+
+        case 'insertAfter':
+
+            return insertBefore(placeholderNode , dragOperationNode) ;
     }
 }
 
