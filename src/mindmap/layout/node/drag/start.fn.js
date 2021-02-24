@@ -27,12 +27,12 @@
 
  node = from(node) ;
 
- select(node) ;
-
  if(isRootNode(node)){
 
     return false;
  }
+
+ select(node) ;
 
  me.draggingNode = node ;
 
