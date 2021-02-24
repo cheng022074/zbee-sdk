@@ -39,10 +39,6 @@
  * 
  * @param {number} [config.nodeSpacing = 5] 节点间隔设置
  * 
- * @param {number} [config.placeholderNodeWidth = 60] 占位符宽度
- * 
- * @param {number} [config.placeholderNodeHeight = 20] 占位符高度
- * 
  * @param {number} [config.padding = 5] 脑图四周填充距离
  * 
  * @param {number} [config.width = 0] 脑图宽度
@@ -251,8 +247,6 @@
  me.readConfig = readConfig ;
 
  let placeholderNode = create(Object.assign({
-   width:placeholderNodeWidth,
-   height:placeholderNodeHeight,
    placeholder:true
  } , placeholderNodeData)) ;
 
