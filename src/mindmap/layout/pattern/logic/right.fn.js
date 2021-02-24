@@ -197,11 +197,11 @@
  function adjustY(node , layoutedNodes , ignoreLayoutedNodes){
 
   let  {
-    nodeVerticalSeparationDistance,
     layoutConfig
   } = this,
   {
-    childRegionCompensateLeft
+    childRegionCompensateLeft,
+    nodeVerticalSeparationDistance
   } = layoutConfig,
   regions = getAdjustRegions(node , childRegionCompensateLeft),
   isSetOffsetY = false;

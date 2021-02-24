@@ -37,10 +37,6 @@
  * 
  * @param {data.Reader} [config.readConfig = {}] 数据读取根路径设置
  * 
- * @param {number} [config.nodeVerticalSeparationDistance = 15] 节点垂直间隔距离
- * 
- * @param {number} [config.nodeHorizontalSeparationDistance = 0] 节点水平间隔距离
- * 
  * @param {number} [config.nodeSpacing = 5] 节点间隔设置
  * 
  * @param {number} [config.placeholderNodeWidth = 60] 占位符宽度
@@ -130,8 +126,6 @@
  }
 
  me.nodes = new Map() ;
-
- me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
 
  me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
 
