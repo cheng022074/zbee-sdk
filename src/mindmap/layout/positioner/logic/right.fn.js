@@ -65,10 +65,10 @@
         region = nodeMap.get(node);
 
         return getNode.call(me , region , leftRegions , leftRegions.indexOf(region) + 1 , ({
-            left
+            right:matchRight
         } , {
             right
-        }) => right < left , [
+        }) => matchRight > right , [
             getRightNodeAnchors
         ]).node ;
     }
