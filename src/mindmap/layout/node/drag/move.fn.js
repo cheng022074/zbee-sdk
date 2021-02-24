@@ -35,15 +35,23 @@
  * 
  */
 
+ let me = this,
+ {
+    draggingNode
+ } = me;
+
+ if(!draggingNode){
+
+    return false ;
+ }
+
 let region = from(node),
     {
         right
     } = region,
     centerY = getAnchorY(region , 'center'),
-    me = this,
     {
         placeholderNode,
-        draggingNode,
         dragNodeDiscernRadius
     } = me;
 
