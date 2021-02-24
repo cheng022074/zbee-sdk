@@ -37,13 +37,9 @@
  * 
  * @param {data.Reader} [config.readConfig = {}] 数据读取根路径设置
  * 
- * @param {function} [config.nodeSeparationDistance] 节点间隔距离
- * 
  * @param {number} [config.nodeVerticalSeparationDistance = 15] 节点垂直间隔距离
  * 
  * @param {number} [config.nodeHorizontalSeparationDistance = 0] 节点水平间隔距离
- * 
- * @param {number} [config.nodeHorizontalLineBreakPointOffset = 12.5] 脑图节点之间连线的折点的偏移位置
  * 
  * @param {number} [config.nodeSpacing = 5] 节点间隔设置
  * 
@@ -135,18 +131,9 @@
 
  me.nodes = new Map() ;
 
- me.nodeSeparationDistance = nodeSeparationDistance ;
-
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
 
  me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
-
- if(nodeHorizontalLineBreakPointOffset > nodeHorizontalSeparationDistance){
-
-   nodeHorizontalLineBreakPointOffset = nodeHorizontalSeparationDistance / 2;
- }
-
- me.nodeHorizontalLineBreakPointOffset = nodeHorizontalLineBreakPointOffset ;
 
  if(isNumber(padding)){
 
