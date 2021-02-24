@@ -175,13 +175,15 @@
 
  }
 
- function getAdjustRegions(node) {
+ function getAdjustRegions(node , childRegionCompensateLeft) {
 
     let selfRegion = getSelfRegion(node),
         descendantRegion = getDescendantRegion(node),
         regions = [];
 
     if(getWidth(descendantRegion) !== 0){
+
+      descendantRegion.left -= childRegionCompensateLeft ;
 
       regions.push(descendantRegion) ;
 
@@ -194,10 +196,14 @@
 
  function adjustY(node , layoutedNodes , ignoreLayoutedNodes){
 
-  let regions = getAdjustRegions(node),
-  {
-    nodeVerticalSeparationDistance
+  let  {
+    nodeVerticalSeparationDistance,
+    layoutConfig
   } = this,
+  {
+    childRegionCompensateLeft
+  } = layoutConfig,
+  regions = getAdjustRegions(node , childRegionCompensateLeft),
   isSetOffsetY = false;
 
   for(let layoutedNode of layoutedNodes){
@@ -208,7 +214,7 @@
 
     }
 
-    let layoutedRegions = getAdjustRegions(layoutedNode) ;
+    let layoutedRegions = getAdjustRegions(layoutedNode , childRegionCompensateLeft) ;
 
     for(let layoutedRegion of layoutedRegions){
 
@@ -218,7 +224,7 @@
 
             setOffsetY(node , layoutedRegion.bottom - region.top + nodeVerticalSeparationDistance) ;
 
-            regions = getAdjustRegions(node) ;
+            regions = getAdjustRegions(node , childRegionCompensateLeft) ;
 
             isSetOffsetY = true ;
 

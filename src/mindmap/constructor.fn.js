@@ -99,7 +99,8 @@
       createPositioner = 'mindmap.layout.positioner.logic.right',
       pattern = 'mindmap.layout.pattern.logic.right',
       getRootNode = 'mindmap.node.root',
-      getDescendantNodes = 'mindmap.nodes.descendant'
+      getDescendantNodes = 'mindmap.nodes.descendant',
+      ...options
    } = layout ;
 
    layoutConfig.createPositioner = get(createPositioner , me) ;
@@ -109,6 +110,8 @@
    layoutConfig.getRootNode = get(getRootNode , me) ;
 
    layoutConfig.getDescendantNodes = get(getDescendantNodes , me) ;
+
+   Object.assign(layoutConfig , options) ;
 
    if(isNumber(nodeSpacing)){
 
