@@ -132,8 +132,6 @@
 
  me.nodes = new Map() ;
 
- me.unpublishedNodes = new Set() ;
-
  me.nodeSeparationDistance = nodeSeparationDistance ;
 
  me.nodeVerticalSeparationDistance = nodeVerticalSeparationDistance ;
