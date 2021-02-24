@@ -49,7 +49,7 @@ right -= dragNodeDiscernRadius ;
 
 node = fromNode(node) ;
 
-if(node === draggingNode || node === placeholderNode){
+if(node.dragging || node.placeholder){
 
     return false ;
 }
