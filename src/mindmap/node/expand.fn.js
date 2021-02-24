@@ -18,10 +18,11 @@ node = from(node) ;
 if(node){
 
     let {
-        expanded
+        expanded,
+        children
     } = node;
 
-    if(!expanded){
+    if(!expanded && children.length){
 
         node.expanded = true ;
 
