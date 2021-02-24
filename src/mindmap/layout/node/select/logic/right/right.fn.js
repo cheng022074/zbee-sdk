@@ -9,12 +9,26 @@
 
 let me = this,
 {
+    selectedNode,
+    layoutPositioner
+} = me,
+{
     children
-} = me.selectedNode;
+} = selectedNode,
+node;
 
 if(children.length){
 
-    return select(children[0]) ;
+    node = children[0] ;
+
+}else{
+
+    node = layoutPositioner.getSelectRightNode(selectedNode) ;
+}
+
+if(node){
+
+    return select(node) ;
 }
 
  return false ;
