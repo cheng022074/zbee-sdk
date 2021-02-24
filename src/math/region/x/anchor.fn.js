@@ -40,7 +40,7 @@ if(isNumber(x)){
        
        case 'right':
    
-           region.left = y - width ;
+           region.left = x - width ;
    
            break ;
     }
