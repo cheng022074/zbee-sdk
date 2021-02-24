@@ -117,7 +117,7 @@
   let me = this,
   {
     nodeHorizontalSeparationDistance
-  } = me;
+  } = me.layoutConfig;
 
   if(isRootNode(node)){
 

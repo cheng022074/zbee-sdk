@@ -127,8 +127,6 @@
 
  me.nodes = new Map() ;
 
- me.nodeHorizontalSeparationDistance = nodeHorizontalSeparationDistance ;
-
  if(isNumber(padding)){
 
    me.padding = {
