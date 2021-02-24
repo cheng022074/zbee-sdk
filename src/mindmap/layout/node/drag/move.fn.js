@@ -65,8 +65,6 @@ dragOperationNode;
 
 if(x > right || isRootNode(node)){
 
-    expand(node) ;
-
     if(interceptors.onBeforeNodeAppend(getData(node) , getData(draggingNode)) !== false){
 
         dragOperation = 'append' ;
@@ -102,6 +100,8 @@ if(dragOperation && dragOperationNode && (oldDragOperation !== dragOperationNode
     switch(dragOperation){
 
         case 'append':
+
+            expand(node) ;
 
             return append(placeholderNode , dragOperationNode) ;
 
