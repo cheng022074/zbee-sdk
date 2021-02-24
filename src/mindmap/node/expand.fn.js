@@ -22,20 +22,24 @@ if(node){
         children
     } = node;
 
-    if(!expanded && children.length){
+    if(!expanded){
 
         node.expanded = true ;
 
-        let {
-            children
-        } = node ;
+        if(children.length){
 
-        for(let childNode of children){
+            let {
+                children
+            } = node ;
 
-            show(childNode) ;
+            for(let childNode of children){
+
+                show(childNode) ;
+            }
+
+            return true ;
         }
 
-        return true ;
     }
 }
 

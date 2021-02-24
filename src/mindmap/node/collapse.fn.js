@@ -25,21 +25,25 @@ if(expanded){
 
     let {
         children
-    } = node,
-    {
-        selectedNode
-    } = this;
-
-    for(let childNode of children){
-
-        hide(childNode) ;
-    }
+    } = node ;
 
     node.expanded = false ;
 
-    if(selectedNode.hidden){
+    if(children.length){
 
-        select(node) ;
+        let {
+            selectedNode
+        } = this;
+    
+        for(let childNode of children){
+    
+            hide(childNode) ;
+        }
+    
+        if(selectedNode.hidden){
+    
+            select(node) ;
+        }
     }
 
     return true ;
