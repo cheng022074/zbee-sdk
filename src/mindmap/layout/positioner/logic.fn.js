@@ -107,7 +107,7 @@
         return getCacheNode.call(this , node , 'SelectLeftNode') ;
     }
 
-    getRightNode(node){
+    getSelectRightNode(node){
 
         return getCacheNode.call(this , node , 'SelectRightNode') ;
     }
