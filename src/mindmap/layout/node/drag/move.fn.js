@@ -105,11 +105,11 @@ if(dragOperation && dragOperationNode && (oldDragOperation !== dragOperationNode
 
             return append(placeholderNode , dragOperationNode) ;
 
-        case 'insertBefore':
+        case 'insertAfter':
 
             return insertAfter(placeholderNode , dragOperationNode) ;
 
-        case 'insertAfter':
+        case 'insertBefore':
 
             return insertBefore(placeholderNode , dragOperationNode) ;
     }
