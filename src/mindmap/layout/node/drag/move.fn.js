@@ -21,6 +21,8 @@
  * 
  * @import getData from mindmap.node.data scoped
  * 
+ * @import isRootNode from ..is.root scoped
+ * 
  * @param {object} node 节点
  * 
  * @param {object} xy 坐标
@@ -54,7 +56,7 @@ if(node.dragging || node.placeholder){
     return false ;
 }
 
-if(x > right){
+if(x > right || isRootNode(node)){
 
     expand(node) ;
 
