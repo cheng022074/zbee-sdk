@@ -138,45 +138,45 @@ input, textarea, select {
 input, textarea {
   user-select: text; }
 
-.mb-container, .css-container {
+.hb-container, .css-container {
   position: relative;
   overflow: hidden; }
 
-.mb-component, .css-component {
+.hb-component, .css-component {
   position: relative; }
 
-.mb-layout-center, .css-layout-center {
+.hb-layout-center, .css-layout-center {
   display: flex;
   align-items: center;
   justify-content: center; }
 
-.mb-layout-fit-sized, .css-layout-fit-sized {
+.hb-layout-fit-sized, .css-layout-fit-sized {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0; }
 
-.mb-layout-fit-unsized, .css-layout-fit-unsized {
+.hb-layout-fit-unsized, .css-layout-fit-unsized {
   width: 100%;
   height: 100%; }
 
-.mb-layout-flex-1 {
+.hb-layout-flex-1 {
   flex: 1; }
 
-.mb-layout-flex-2 {
+.hb-layout-flex-2 {
   flex: 2; }
 
-.mb-layout-flex-3 {
+.hb-layout-flex-3 {
   flex: 3; }
 
-.mb-layout-horizontal, .css-layout-horizontal {
+.hb-layout-horizontal, .css-layout-horizontal {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start; }
 
-.mb-layout-vertical, .css-layout-vertical {
+.hb-layout-vertical, .css-layout-vertical {
   display: flex;
   flex-direction: column;
   align-items: stretch;

@@ -56,10 +56,10 @@
             "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-SDK\\node_modules\\zbee-sdk\\package\\xy"
         ]
     },
-    "manage-backend-template":{
+    "hb-admin-system-template":{
         "type":"webpack",
         "prefixes":{
-            "css":"mb"
+            "css":"hb"
         },
         "classes":[
             "css::reset.viewport",
@@ -78,8 +78,6 @@
             "browser.event.gesture.drag"
         ],
         "to":[
-            "C:\\Users\\DEV\\Documents\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template",
-            "C:\\Users\\nero.chen\\Desktop\\Code\\GITEE\\MANAGE-BACKEND-TEMPLATE\\node_modules\\zbee-sdk\\package\\manage-backend-template"
         ]
     }
 }
