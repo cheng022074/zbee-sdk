@@ -76,9 +76,12 @@
             "array.from",
             "string.split",
             "browser.event.gesture.vue",
-            "browser.event.gesture.drag"
+            "browser.event.gesture.drag",
+            "browser.selector.parent",
+            "array.from"
         ],
         "to":[
+            "C:\\Users\\DEV\\Documents\\Code\\HB\\HB-ADMIN-SYSTEM-TEMPLATE\\node_modules\\zbee-sdk\\package\\hb-admin-system-template"
         ]
     }
 }
