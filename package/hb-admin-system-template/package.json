@@ -1,7 +1,7 @@
 
 {
     "name": "hb_admin_system_template",
-    "version":"1.5.5",
+    "version":"1.6.0",
     
     "engines":{
   "node": ">= 10.1.0"
@@ -14,9 +14,14 @@
     "license": "ISC",
     
     
+    "module":"index.asm.js",
+    
     "main":"index.js",
     "files": [
+  "index.asm.js",
   "index.js",
+  "index.prd.js",
+  "index.dev.js",
   "index.css"
 ],
     "dependencies": {}

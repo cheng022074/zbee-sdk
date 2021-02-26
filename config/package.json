@@ -58,6 +58,7 @@
     },
     "hb-admin-system-template":{
         "type":"webpack",
+        "webpack":true,
         "prefixes":{
             "css":"hb"
         },
