@@ -75,6 +75,7 @@
             "is.object.simple",
             "array.from",
             "string.split",
+            "string.capitalize",
             "browser.event.gesture.vue",
             "browser.event.gesture.drag",
             "browser.selector.parent",

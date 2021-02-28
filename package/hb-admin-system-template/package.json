@@ -1,7 +1,7 @@
 
 {
     "name": "hb_admin_system_template",
-    "version":"1.6.0",
+    "version":"1.6.1",
     
     "engines":{
   "node": ">= 10.1.0"
