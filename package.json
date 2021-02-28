@@ -1,6 +1,6 @@
 {
   "name": "zbee-sdk",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cheng022074/zbee-sdk.git"
