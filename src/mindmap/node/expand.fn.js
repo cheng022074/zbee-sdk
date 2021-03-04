@@ -26,19 +26,16 @@ if(node){
 
         node.expanded = true ;
 
-        if(children.length){
+        let {
+            children
+        } = node ;
 
-            let {
-                children
-            } = node ;
+        for(let childNode of children){
 
-            for(let childNode of children){
-
-                show(childNode) ;
-            }
-
-            return true ;
+            show(childNode) ;
         }
+
+        return true ;
 
     }
 }

@@ -44,9 +44,9 @@ if(expanded){
     
             select(node) ;
         }
-
-        return true ;
     }
+
+    return true ;
 }
 
 return false ;
