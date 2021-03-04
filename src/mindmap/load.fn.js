@@ -5,58 +5,40 @@
  * 
  * @import is.defined
  * 
+ * @import register from .node.register scoped
+ * 
  * @param {mixed} data 数据
  * 
  * @param {mixed} [readAsRoot] 获得脑图节点根读取入口
  * 
  */
 
-function main(data , readAsRoot){
 
-  let me = this,
-  {
-    reader,
-    readConfig
-  } = me ;
-  
-  if(isDefined(readAsRoot)){
-  
-    readConfig = Object.assign({} , readConfig , {
-      root:readAsRoot
-    }) ;
-  }
-  
-  let rootNode = reader.read(data , {
-    ...readConfig,
-    multi:false
-  });
 
-  if(rootNode){
+let me = this,
+{
+  reader,
+  readConfig
+} = me ;
 
-      register_node.call(me , rootNode) ;
+if(isDefined(readAsRoot)){
 
-      me.rootNode = rootNode ;
-
-      return rootNode ;
-
-  }
+  readConfig = Object.assign({} , readConfig , {
+    root:readAsRoot
+  }) ;
 }
 
-function register_node(node){
+let rootNode = reader.read(data , {
+  ...readConfig,
+  multi:false
+});
 
-  let {
-      id,
-      children
-  } = node,
-  me = this,
-  {
-    nodes
-  } = me;
+if(rootNode){
 
-  nodes.set(id , node) ;
+    register(rootNode) ;
 
-  for(let childNode of children){
+    me.rootNode = rootNode ;
 
-    register_node.call(me , childNode) ;
-  }
+    return rootNode ;
+
 }

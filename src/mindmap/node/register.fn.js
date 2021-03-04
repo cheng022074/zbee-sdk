@@ -24,3 +24,5 @@ for(let childNode of children){
 
     childNode.parentNodeId = id ;
 }
+
+return node ;
