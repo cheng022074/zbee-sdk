@@ -39,6 +39,10 @@
             "impl":".mindmap.node.append.new"
         },
         {
+            "name":"appendNode",
+            "impl":".mindmap.node.append"
+        },
+        {
             "name":"insertNewNodeBefore",
             "impl":".mindmap.node.insert.new.before"
         },{
