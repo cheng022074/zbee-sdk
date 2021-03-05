@@ -39,6 +39,8 @@
  * 
  * @import contains from math.region.contains.x
  * 
+ * @import from from math.region.from
+ * 
  * @param {data.Record} node 布局节点
  * 
  */
@@ -166,12 +168,34 @@
   
   }
 
-  let region = getSelfRegion(node),
-      childRegion = getChildRegion(node);
+  {
 
-  setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
+    let {
+      length
+    } = childNodes ;
 
-  setY(node , getY(region) , false) ;
+    if(length){
+
+      let
+      region,
+      childRegion ;
+
+      if(length === 1){
+
+        region = from(node),
+        childRegion = from(childNodes[0]) ;
+
+      }else{
+
+        region = getSelfRegion(node),
+        childRegion = getChildRegion(node);
+      }
+
+      setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
+  
+      setY(node , getY(region) , false) ;
+    }
+  }
 
  }
 
