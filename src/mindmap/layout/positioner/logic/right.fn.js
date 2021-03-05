@@ -23,6 +23,10 @@
  * 
  */
 
+const {
+    from
+} = Array ;
+
  class main extends Logic{
 
     constructor(mindmap , nodes){
@@ -32,9 +36,17 @@
         let me = this,
             regions = init.call(me , nodes);
 
-        me.leftRegions = generateLeftRegions(regions) ;
+        let leftRegions = generateLeftRegions(regions) ;
 
-        me.rightRegions = generateRightRegions(regions) ;
+        me.leftAscRegions = leftRegions ;
+
+        me.leftDescRegions = from(leftRegions).reverse() ;
+
+        let rightRegions = generateRightRegions(regions);
+
+        me.rightAscRegions = rightRegions ;
+
+        me.rightDescRegions = from(rightRegions).reverse();
     }
 
     applySelectLeftNode(node){
@@ -60,11 +72,11 @@
         let me = this,
         {
             nodeMap,
-            leftRegions
+            rightAscRegions
         } = me,
         region = nodeMap.get(node);
 
-        return getNode.call(me , region , leftRegions , leftRegions.indexOf(region) + 1 , ({
+        return getNode.call(me , region , rightAscRegions , rightAscRegions.indexOf(region) + 1 , ({
             right:matchRight
         } , {
             right
