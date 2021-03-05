@@ -54,11 +54,11 @@ const {
         let me = this,
         {
             nodeMap,
-            rightRegions
+            leftDescRegions
         } = me,
         region = nodeMap.get(node);
 
-        return getNode.call(me , region , rightRegions , rightRegions.indexOf(region) + 1 , ({
+        return getNode.call(me , region , leftDescRegions , leftDescRegions.indexOf(region) + 1 , ({
             left:matchLeft
         } , {
             left
