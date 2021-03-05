@@ -30,9 +30,24 @@ for(let node of nodes){
     nodeMap.set(node , region) ;
 }
 
-me.bottomRegions = generateBottomRegions(regions) ;
 
-me.topRegions = generateTopRegions(regions) ;
+{
+    const {
+        from
+    } = Array ;
+    
+    let bottomRegions = generateBottomRegions(regions) ;
+    
+    me.bottomAscRegions = bottomRegions ;
+    
+    me.bottomDescRegions = from(bottomRegions).reverse() ;
+    
+    let topRegions = generateTopRegions(regions) ;
+
+    me.topAscRegions = topRegions ;
+
+    me.topDescRegions = from(topRegions).reverse() ;
+}
 
 me.cache = {
     SelectUpNode:new Map(),

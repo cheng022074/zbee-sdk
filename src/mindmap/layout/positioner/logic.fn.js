@@ -24,11 +24,11 @@
     let me = this,
     {
         nodeMap,
-        bottomRegions
+        topDescRegions
     } = me,
     region = nodeMap.get(node);
 
-    return getNode.call(me , region , bottomRegions , bottomRegions.indexOf(region) + 1 , ({
+    return getNode.call(me , region , topDescRegions , topDescRegions.indexOf(region) + 1 , ({
         top:matchTop
     } , {
         top
@@ -42,11 +42,11 @@
     let me = this,
     {
         nodeMap,
-        topRegions
+        bottomAscRegions
     } = me,
     region = nodeMap.get(node);
 
-    return getNode.call(me , region , topRegions , topRegions.indexOf(region) + 1 , ({
+    return getNode.call(me , region , bottomAscRegions , bottomAscRegions.indexOf(region) + 1 , ({
         bottom:matchBottom
     } , {
         bottom

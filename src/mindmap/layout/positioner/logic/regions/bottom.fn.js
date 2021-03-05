@@ -12,4 +12,4 @@ return Array.from(regions).sort(({
     bottom:bottom1
 } , {
     bottom:bottom2
-}) => bottom2 - bottom1) ;
+}) => bottom1 - bottom2) ;
