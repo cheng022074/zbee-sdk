@@ -37823,7 +37823,7 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
 
 
 
-    const var_current_scope_1614503282407 = new Map();
+    const var_current_scope_1614933466852 = new Map();
 
     return function(node) {
 
@@ -37831,9 +37831,9 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
 
 
 
-        if (!var_current_scope_1614503282407.has(this)) {
+        if (!var_current_scope_1614933466852.has(this)) {
 
-            var_current_scope_1614503282407.set(this, (() => {
+            var_current_scope_1614933466852.set(this, (() => {
                 const getLeftSpacing = include('src::mindmap.layout.node.spacing.left').bind(this);
                 const getRightSpacing = include('src::mindmap.layout.node.spacing.right').bind(this);
                 const getTopSpacing = include('src::mindmap.layout.node.spacing.top').bind(this);
@@ -37854,7 +37854,7 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
                      * 
                      * @import getBottomSpacing from ..spacing.bottom scoped
                      * 
-                     * @param {data.Record} node 脑图节点
+                     * @param {mixed} node 脑图节点
                      * 
                      * @return {object} 范围信息 
                      * 
@@ -37886,7 +37886,7 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503282407.get(this);
+        const main = var_current_scope_1614933466852.get(this);
 
 
 
@@ -40203,18 +40203,18 @@ exports['src::mindmap.node.insert.new.after'] = (() => {
 
 exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
-    let getHeight, getWidth, setAnchorY, getY, add, intersect, contains;
+    let getHeight, getWidth, setAnchorY, getY, add, intersect, contains, from;
 
-    let var_init_locked_1614503282865;
+    let var_init_locked_1614928688593;
 
 
 
-    const var_current_scope_1614503282865 = new Map();
+    const var_current_scope_1614928688593 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1614503282865) {
+        if (!var_init_locked_1614928688593) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
@@ -40223,16 +40223,17 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             add = include('src::array.add.sort');
             intersect = include('src::math.region.intersect');
             contains = include('src::math.region.contains.x');
+            from = include('src::math.region.from');
 
-            var_init_locked_1614503282865 = true;
+            var_init_locked_1614928688593 = true;
         }
 
 
 
 
-        if (!var_current_scope_1614503282865.has(this)) {
+        if (!var_current_scope_1614928688593.has(this)) {
 
-            var_current_scope_1614503282865.set(this, (() => {
+            var_current_scope_1614928688593.set(this, (() => {
                 const setX = include('src::mindmap.layout.node.x').bind(this);
                 const setY = include('src::mindmap.layout.node.y').bind(this);
                 const setOffsetY = include('src::mindmap.layout.node.y.offset').bind(this);
@@ -40285,6 +40286,8 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
                  * @import intersect from math.region.intersect
                  * 
                  * @import contains from math.region.contains.x
+                 * 
+                 * @import from from math.region.from
                  * 
                  * @param {data.Record} node 布局节点
                  * 
@@ -40413,12 +40416,34 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
                     }
 
-                    let region = getSelfRegion(node),
-                        childRegion = getChildRegion(node);
+                    {
 
-                    setAnchorY(region, 'center', getY(childRegion) + getHeight(childRegion) / 2);
+                        let {
+                            length
+                        } = childNodes;
 
-                    setY(node, getY(region), false);
+                        if (length) {
+
+                            let
+                                region,
+                                childRegion;
+
+                            if (length === 1) {
+
+                                region = from(node),
+                                    childRegion = from(childNodes[0]);
+
+                            } else {
+
+                                region = getSelfRegion(node),
+                                    childRegion = getChildRegion(node);
+                            }
+
+                            setAnchorY(region, 'center', getY(childRegion) + getHeight(childRegion) / 2);
+
+                            setY(node, getY(region), false);
+                        }
+                    }
 
                 }
 
@@ -40497,7 +40522,7 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503282865.get(this);
+        const main = var_current_scope_1614928688593.get(this);
 
 
 
@@ -41191,18 +41216,18 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
 
     let init, getNode, Logic, generateLeftRegions, generateRightRegions, getLeftNodeAnchors, getRightNodeAnchors;
 
-    let var_init_locked_1614503283037;
+    let var_init_locked_1614924973206;
 
-    let var_class_1614503283037;
+    let var_class_1614924973206;
 
 
 
-    let var_global_main_1614503283037;
+    let var_global_main_1614924973206;
 
     return function(mindmap, nodes) {
 
 
-        if (!var_init_locked_1614503283037) {
+        if (!var_init_locked_1614924973206) {
 
             init = include('src::mindmap.layout.positioner.logic.init');
             getNode = include('src::mindmap.layout.positioner.logic.node');
@@ -41237,6 +41262,10 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
              * 
              */
 
+            const {
+                from
+            } = Array;
+
             class main extends Logic {
 
                 constructor(mindmap, nodes) {
@@ -41246,9 +41275,17 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
                     let me = this,
                         regions = init.call(me, nodes);
 
-                    me.leftRegions = generateLeftRegions(regions);
+                    let leftRegions = generateLeftRegions(regions);
 
-                    me.rightRegions = generateRightRegions(regions);
+                    me.leftAscRegions = leftRegions;
+
+                    me.leftDescRegions = from(leftRegions).reverse();
+
+                    let rightRegions = generateRightRegions(regions);
+
+                    me.rightAscRegions = rightRegions;
+
+                    me.rightDescRegions = from(rightRegions).reverse();
                 }
 
                 applySelectLeftNode(node) {
@@ -41256,11 +41293,11 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
                     let me = this,
                         {
                             nodeMap,
-                            rightRegions
+                            leftDescRegions
                         } = me,
                         region = nodeMap.get(node);
 
-                    return getNode.call(me, region, rightRegions, rightRegions.indexOf(region) + 1, ({
+                    return getNode.call(me, region, leftDescRegions, leftDescRegions.indexOf(region) + 1, ({
                         left: matchLeft
                     }, {
                         left
@@ -41274,11 +41311,11 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
                     let me = this,
                         {
                             nodeMap,
-                            leftRegions
+                            rightAscRegions
                         } = me,
                         region = nodeMap.get(node);
 
-                    return getNode.call(me, region, leftRegions, leftRegions.indexOf(region) + 1, ({
+                    return getNode.call(me, region, rightAscRegions, rightAscRegions.indexOf(region) + 1, ({
                         right: matchRight
                     }, {
                         right
@@ -41288,7 +41325,7 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
                 }
             }
 
-            var_class_1614503283037 = class extends main {
+            var_class_1614924973206 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -41303,7 +41340,7 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1614503283037;
+                    return var_class_1614924973206;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -41313,15 +41350,15 @@ exports['src::mindmap.layout.positioner.logic.right'] = (() => {
 
             };
 
-            main = var_class_1614503283037;
+            main = var_class_1614924973206;
 
-            var_global_main_1614503283037 = main;
+            var_global_main_1614924973206 = main;
 
-            var_init_locked_1614503283037 = true;
+            var_init_locked_1614924973206 = true;
         }
 
 
-        return new var_global_main_1614503283037(mindmap, nodes);
+        return new var_global_main_1614924973206(mindmap, nodes);
     };
 
 })();
@@ -41350,7 +41387,7 @@ exports['src::mindmap.layout.positioner.logic.regions.bottom'] = (() => {
             bottom: bottom1
         }, {
             bottom: bottom2
-        }) => bottom2 - bottom1);
+        }) => bottom1 - bottom2);
 
     }
 
@@ -41404,7 +41441,7 @@ exports['src::mindmap.layout.positioner.logic.init'] = (() => {
 
     let from, generateBottomRegions, generateTopRegions;
 
-    let var_init_locked_1614503283055;
+    let var_init_locked_1614924973258;
 
 
 
@@ -41442,9 +41479,24 @@ exports['src::mindmap.layout.positioner.logic.init'] = (() => {
             nodeMap.set(node, region);
         }
 
-        me.bottomRegions = generateBottomRegions(regions);
 
-        me.topRegions = generateTopRegions(regions);
+        {
+            const {
+                from
+            } = Array;
+
+            let bottomRegions = generateBottomRegions(regions);
+
+            me.bottomAscRegions = bottomRegions;
+
+            me.bottomDescRegions = from(bottomRegions).reverse();
+
+            let topRegions = generateTopRegions(regions);
+
+            me.topAscRegions = topRegions;
+
+            me.topDescRegions = from(topRegions).reverse();
+        }
 
         me.cache = {
             SelectUpNode: new Map(),
@@ -41460,13 +41512,13 @@ exports['src::mindmap.layout.positioner.logic.init'] = (() => {
     return function(nodes) {
 
 
-        if (!var_init_locked_1614503283055) {
+        if (!var_init_locked_1614924973258) {
 
             from = include('src::math.region.from');
             generateBottomRegions = include('src::mindmap.layout.positioner.logic.regions.bottom');
             generateTopRegions = include('src::mindmap.layout.positioner.logic.regions.top');
 
-            var_init_locked_1614503283055 = true;
+            var_init_locked_1614924973258 = true;
         }
 
 
@@ -41891,18 +41943,18 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
 
     let getAnchorXY, getUpNodeAnchors, getDownNodeAnchors, getCacheNode, getNode, isDescendantNode;
 
-    let var_init_locked_1614503283139;
+    let var_init_locked_1614924973297;
 
-    let var_class_1614503283139;
+    let var_class_1614924973297;
 
 
 
-    let var_global_main_1614503283139;
+    let var_global_main_1614924973297;
 
     return function() {
 
 
-        if (!var_init_locked_1614503283139) {
+        if (!var_init_locked_1614924973297) {
 
             getAnchorXY = include('src::math.region.xy.anchor');
             getUpNodeAnchors = include('src::mindmap.layout.positioner.logic.anchors.up');
@@ -41937,11 +41989,11 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
                 let me = this,
                     {
                         nodeMap,
-                        bottomRegions
+                        topDescRegions
                     } = me,
                     region = nodeMap.get(node);
 
-                return getNode.call(me, region, bottomRegions, bottomRegions.indexOf(region) + 1, ({
+                return getNode.call(me, region, topDescRegions, topDescRegions.indexOf(region) + 1, ({
                     top: matchTop
                 }, {
                     top
@@ -41955,11 +42007,11 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
                 let me = this,
                     {
                         nodeMap,
-                        topRegions
+                        bottomAscRegions
                     } = me,
                     region = nodeMap.get(node);
 
-                return getNode.call(me, region, topRegions, topRegions.indexOf(region) + 1, ({
+                return getNode.call(me, region, bottomAscRegions, bottomAscRegions.indexOf(region) + 1, ({
                     bottom: matchBottom
                 }, {
                     bottom
@@ -42027,7 +42079,7 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
 
             }
 
-            var_class_1614503283139 = class extends main {
+            var_class_1614924973297 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -42042,7 +42094,7 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1614503283139;
+                    return var_class_1614924973297;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -42052,15 +42104,15 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
 
             };
 
-            main = var_class_1614503283139;
+            main = var_class_1614924973297;
 
-            var_global_main_1614503283139 = main;
+            var_global_main_1614924973297 = main;
 
-            var_init_locked_1614503283139 = true;
+            var_init_locked_1614924973297 = true;
         }
 
 
-        return var_global_main_1614503283139;
+        return var_global_main_1614924973297;
     };
 
 })();
@@ -42126,7 +42178,7 @@ exports['src::mindmap.layout.positioner.logic.regions.right.right'] = (() => {
             right: right1
         }, {
             right: right2
-        }) => right2 - right1);
+        }) => right1 - right2);
 
     }
 
