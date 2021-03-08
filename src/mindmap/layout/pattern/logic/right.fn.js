@@ -121,12 +121,6 @@
     nodeHorizontalSeparationDistance
   } = me.layoutConfig;
 
-  if(isRootNode(node)){
-
-    setX(node , 0 , false) ;
-
-  }
-
   let childNodes = getChildNodes(node),
   {
     length
