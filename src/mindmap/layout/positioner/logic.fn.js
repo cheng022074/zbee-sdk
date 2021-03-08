@@ -15,6 +15,8 @@
  * 
  * @import isDescendantNode from mindmap.node.is.descendant
  * 
+ * @import isRootNode from mindmap.node.is.root
+ * 
  * @class
  * 
  */
@@ -79,7 +81,12 @@
             mindmap
         } = me ;
 
-        return applyUpNode.call(me , node , originNode => isDescendantNode.call(mindmap , node , originNode)) ;
+        if(isRootNode.call(mindmap , node)){
+
+            return ;
+        }
+
+        return applyUpNode.call(me , node , originNode => isDescendantNode.call(mindmap , node , originNode) || isRootNode.call(mindmap , originNode)) ;
     }
 
     getSelectDownNode(node){
@@ -99,7 +106,12 @@
             mindmap
         } = me ;
 
-        return applyDownNode.call(me , node , originNode => isDescendantNode.call(mindmap , node , originNode)) ;
+        if(isRootNode.call(mindmap , node)){
+
+            return ;
+        }
+
+        return applyDownNode.call(me , node , originNode => isDescendantNode.call(mindmap , node , originNode) || isRootNode.call(mindmap , originNode)) ;
     }
 
     getSelectLeftNode(node){
