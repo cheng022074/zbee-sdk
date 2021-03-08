@@ -17,6 +17,13 @@
  
  }else{
 
+    if(node.levelRoot){
+
+        node.level = 0 ;
+
+        return ;
+    }
+
     let parentNode,
         noLevelNodes = [
             node
