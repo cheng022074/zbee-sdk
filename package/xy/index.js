@@ -36450,7 +36450,7 @@ exports['src::mindmap.node.field.hidden.level'] = (() => {
 
 
 
-    const var_current_scope_1614503282063 = new Map();
+    const var_current_scope_1615170183713 = new Map();
 
     return function(node, hidden) {
 
@@ -36458,9 +36458,9 @@ exports['src::mindmap.node.field.hidden.level'] = (() => {
 
 
 
-        if (!var_current_scope_1614503282063.has(this)) {
+        if (!var_current_scope_1615170183713.has(this)) {
 
-            var_current_scope_1614503282063.set(this, (() => {
+            var_current_scope_1615170183713.set(this, (() => {
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
 
                 function main(node, hidden) {
@@ -36484,15 +36484,24 @@ exports['src::mindmap.node.field.hidden.level'] = (() => {
 
                     } else {
 
+                        if (node.levelRoot) {
+
+                            node.level = 0;
+
+                            return;
+                        }
+
                         let parentNode,
                             noLevelNodes = [
                                 node
-                            ];
+                            ],
+                            startLevel = 0;
 
                         while (parentNode = getParentNode(node)) {
 
                             let {
-                                level
+                                level,
+                                levelRoot
                             } = parentNode;
 
                             if (level === -1) {
@@ -36501,12 +36510,12 @@ exports['src::mindmap.node.field.hidden.level'] = (() => {
 
                             } else {
 
-                                for (let noLevelNode of noLevelNodes) {
+                                startLevel = level + 1;
 
-                                    noLevelNode.level = ++level;
-                                }
+                                break;
+                            }
 
-                                noLevelNodes.length = 0;
+                            if (levelRoot === true) {
 
                                 break;
                             }
@@ -36514,11 +36523,9 @@ exports['src::mindmap.node.field.hidden.level'] = (() => {
 
                         if (noLevelNodes.length) {
 
-                            let level = 0;
-
                             for (let noLevelNode of noLevelNodes) {
 
-                                noLevelNode.level = level++;
+                                noLevelNode.level = startLevel++;
                             }
                         }
                     }
@@ -36530,7 +36537,7 @@ exports['src::mindmap.node.field.hidden.level'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503282063.get(this);
+        const main = var_current_scope_1615170183713.get(this);
 
 
 
@@ -37823,7 +37830,7 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
 
 
 
-    const var_current_scope_1614933466852 = new Map();
+    const var_current_scope_1615169905834 = new Map();
 
     return function(node) {
 
@@ -37831,9 +37838,9 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
 
 
 
-        if (!var_current_scope_1614933466852.has(this)) {
+        if (!var_current_scope_1615169905834.has(this)) {
 
-            var_current_scope_1614933466852.set(this, (() => {
+            var_current_scope_1615169905834.set(this, (() => {
                 const getLeftSpacing = include('src::mindmap.layout.node.spacing.left').bind(this);
                 const getRightSpacing = include('src::mindmap.layout.node.spacing.right').bind(this);
                 const getTopSpacing = include('src::mindmap.layout.node.spacing.top').bind(this);
@@ -37854,7 +37861,7 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
                      * 
                      * @import getBottomSpacing from ..spacing.bottom scoped
                      * 
-                     * @param {mixed} node 脑图节点
+                     * @param {data.Record} node 脑图节点
                      * 
                      * @return {object} 范围信息 
                      * 
@@ -37886,7 +37893,7 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614933466852.get(this);
+        const main = var_current_scope_1615169905834.get(this);
 
 
 
@@ -38069,11 +38076,11 @@ exports['src::mindmap.constructor'] = (() => {
 
     let createReader, buffer, isObject, isArray, emptyFn, isNumber, isString, get, generate;
 
-    let var_init_locked_1614503281960;
+    let var_init_locked_1615169905753;
 
 
 
-    const var_current_scope_1614503281960 = new Map();
+    const var_current_scope_1615169905753 = new Map();
 
     return function({
         reader,
@@ -38089,7 +38096,7 @@ exports['src::mindmap.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1614503281960) {
+        if (!var_init_locked_1615169905753) {
 
             createReader = include('src::data.reader.json');
             buffer = include('src::function.buffer');
@@ -38101,15 +38108,15 @@ exports['src::mindmap.constructor'] = (() => {
             get = include('src::function.get');
             generate = include('src::mindmap.node.id.generate');
 
-            var_init_locked_1614503281960 = true;
+            var_init_locked_1615169905753 = true;
         }
 
 
 
 
-        if (!var_current_scope_1614503281960.has(this)) {
+        if (!var_current_scope_1615169905753.has(this)) {
 
-            var_current_scope_1614503281960.set(this, (() => {
+            var_current_scope_1615169905753.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const setSelected = include('src::mindmap.node.field.selected').bind(this);
@@ -38323,6 +38330,11 @@ exports['src::mindmap.constructor'] = (() => {
                             },
                             defaultValue: true
                         },
+                        levelRoot: {
+                            mode: 'readwrite',
+                            local: true,
+                            defaultValue: false
+                        },
                         level: {
                             mode: 'readwrite',
                             local: true,
@@ -38400,7 +38412,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503281960.get(this);
+        const main = var_current_scope_1615169905753.get(this);
 
 
 
