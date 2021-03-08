@@ -41953,20 +41953,20 @@ exports['src::mindmap.node.is.descendant'] = (() => {
 
 exports['src::mindmap.layout.positioner.logic'] = (() => {
 
-    let getAnchorXY, getUpNodeAnchors, getDownNodeAnchors, getCacheNode, getNode, isDescendantNode;
+    let getAnchorXY, getUpNodeAnchors, getDownNodeAnchors, getCacheNode, getNode, isDescendantNode, isRootNode;
 
-    let var_init_locked_1614924973297;
+    let var_init_locked_1615182205184;
 
-    let var_class_1614924973297;
+    let var_class_1615182205184;
 
 
 
-    let var_global_main_1614924973297;
+    let var_global_main_1615182205184;
 
     return function() {
 
 
-        if (!var_init_locked_1614924973297) {
+        if (!var_init_locked_1615182205184) {
 
             getAnchorXY = include('src::math.region.xy.anchor');
             getUpNodeAnchors = include('src::mindmap.layout.positioner.logic.anchors.up');
@@ -41974,6 +41974,7 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
             getCacheNode = include('src::mindmap.layout.positioner.logic.node.cache');
             getNode = include('src::mindmap.layout.positioner.logic.node');
             isDescendantNode = include('src::mindmap.node.is.descendant');
+            isRootNode = include('src::mindmap.node.is.root');
 
 
             /**
@@ -41991,6 +41992,8 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
              * @import getNode from .logic.node
              * 
              * @import isDescendantNode from mindmap.node.is.descendant
+             * 
+             * @import isRootNode from mindmap.node.is.root
              * 
              * @class
              * 
@@ -42056,7 +42059,12 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
                             mindmap
                         } = me;
 
-                    return applyUpNode.call(me, node, originNode => isDescendantNode.call(mindmap, node, originNode));
+                    if (isRootNode.call(mindmap, node)) {
+
+                        return;
+                    }
+
+                    return applyUpNode.call(me, node, originNode => isDescendantNode.call(mindmap, node, originNode) || isRootNode.call(mindmap, originNode));
                 }
 
                 getSelectDownNode(node) {
@@ -42076,7 +42084,12 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
                             mindmap
                         } = me;
 
-                    return applyDownNode.call(me, node, originNode => isDescendantNode.call(mindmap, node, originNode));
+                    if (isRootNode.call(mindmap, node)) {
+
+                        return;
+                    }
+
+                    return applyDownNode.call(me, node, originNode => isDescendantNode.call(mindmap, node, originNode) || isRootNode.call(mindmap, originNode));
                 }
 
                 getSelectLeftNode(node) {
@@ -42091,7 +42104,7 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
 
             }
 
-            var_class_1614924973297 = class extends main {
+            var_class_1615182205184 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -42106,7 +42119,7 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1614924973297;
+                    return var_class_1615182205184;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -42116,15 +42129,15 @@ exports['src::mindmap.layout.positioner.logic'] = (() => {
 
             };
 
-            main = var_class_1614924973297;
+            main = var_class_1615182205184;
 
-            var_global_main_1614924973297 = main;
+            var_global_main_1615182205184 = main;
 
-            var_init_locked_1614924973297 = true;
+            var_init_locked_1615182205184 = true;
         }
 
 
-        return var_global_main_1614924973297;
+        return var_global_main_1615182205184;
     };
 
 })();
@@ -42467,22 +42480,28 @@ exports['src::mindmap.layout.node.is.move.up'] = (() => {
 
 
 
-    const var_current_scope_1614503283348 = new Map();
+    const var_current_scope_1615181501858 = new Map();
 
-    return function(onBeforeNodeInsertAfter = () => true) {
+    return function({
+        onBeforeNodeInsertBefore = () => true,
+        onBeforeNodeInsertAfter = () => true
+    } = {}) {
 
 
 
 
 
-        if (!var_current_scope_1614503283348.has(this)) {
+        if (!var_current_scope_1615181501858.has(this)) {
 
-            var_current_scope_1614503283348.set(this, (() => {
+            var_current_scope_1615181501858.set(this, (() => {
                 const previous = include('src::mindmap.layout.node.sibling.previous').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
 
-                function main(onBeforeNodeInsertAfter) {
+                function main({
+                    onBeforeNodeInsertBefore,
+                    onBeforeNodeInsertAfter
+                }) {
 
                     /**
                      * 
@@ -42494,7 +42513,11 @@ exports['src::mindmap.layout.node.is.move.up'] = (() => {
                      * 
                      * @import getParentNode from mindmap.node.parent scoped
                      * 
-                     * @param {function} [onBeforeNodeInsertAfter = () => true] 拖曳的拦截函数 
+                     * @param {object} [callbacks = {}] 回调信息
+                     * 
+                     * @param {function} [callbacks.onBeforeNodeInsertBefore = () => true] 拖曳的拦截函数 
+                     * 
+                     * @param {function} [callbacks.onBeforeNodeInsertAfter = () => true] 拖曳的拦截函数 
                      * 
                      * @return {boolean} 判断是否可以向下移动
                      * 
@@ -42504,9 +42527,21 @@ exports['src::mindmap.layout.node.is.move.up'] = (() => {
                             selectedNode,
                             layoutPositioner
                         } = me,
-                        node = previous(selectedNode) || layoutPositioner.getMoveUpNode(selectedNode);
+                        node = previous(selectedNode);
 
-                    return !!(node && onBeforeNodeInsertAfter(data(getParentNode(node)), data(selectedNode), data(node)));
+                    if (node) {
+
+                        return onBeforeNodeInsertBefore(data(getParentNode(node)), data(selectedNode), data(node));
+                    }
+
+                    node = layoutPositioner.getMoveUpNode(selectedNode);
+
+                    if (node) {
+
+                        return onBeforeNodeInsertAfter(data(getParentNode(node)), data(selectedNode), data(node));
+                    }
+
+                    return false;
 
                 }
 
@@ -42515,11 +42550,14 @@ exports['src::mindmap.layout.node.is.move.up'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503283348.get(this);
+        const main = var_current_scope_1615181501858.get(this);
 
 
 
-        return main.call(this, onBeforeNodeInsertAfter);
+        return main.call(this, {
+            onBeforeNodeInsertBefore,
+            onBeforeNodeInsertAfter
+        });
     };
 
 })();
@@ -42614,22 +42652,28 @@ exports['src::mindmap.layout.node.is.move.down'] = (() => {
 
 
 
-    const var_current_scope_1614503283382 = new Map();
+    const var_current_scope_1615181501878 = new Map();
 
-    return function(onBeforeNodeInsertBefore = () => true) {
+    return function({
+        onBeforeNodeInsertBefore = () => true,
+        onBeforeNodeInsertAfter = () => true
+    } = {}) {
 
 
 
 
 
-        if (!var_current_scope_1614503283382.has(this)) {
+        if (!var_current_scope_1615181501878.has(this)) {
 
-            var_current_scope_1614503283382.set(this, (() => {
+            var_current_scope_1615181501878.set(this, (() => {
                 const next = include('src::mindmap.layout.node.sibling.next').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
 
-                function main(onBeforeNodeInsertBefore) {
+                function main({
+                    onBeforeNodeInsertBefore,
+                    onBeforeNodeInsertAfter
+                }) {
 
                     /**
                      * 
@@ -42641,7 +42685,11 @@ exports['src::mindmap.layout.node.is.move.down'] = (() => {
                      * 
                      * @import data from mindmap.node.data scoped
                      * 
-                     * @param {function} [onBeforeNodeInsertBefore = () => true] 拖曳的拦截函数 
+                     * @param {object} [callbacks = {}] 回调信息
+                     * 
+                     * @param {function} [callbacks.onBeforeNodeInsertBefore = () => true] 拖曳的拦截函数 
+                     * 
+                     * @param {function} [callbacks.onBeforeNodeInsertAfter = () => true] 拖曳的拦截函数 
                      * 
                      * @return {boolean} 判断是否可以向下移动
                      * 
@@ -42652,9 +42700,21 @@ exports['src::mindmap.layout.node.is.move.down'] = (() => {
                             selectedNode,
                             layoutPositioner
                         } = me,
-                        node = next(selectedNode) || layoutPositioner.getMoveDownNode(selectedNode);
+                        node = next(selectedNode);
 
-                    return !!(node && onBeforeNodeInsertBefore(data(getParentNode(node)), data(selectedNode), data(node)));
+                    if (node) {
+
+                        return onBeforeNodeInsertAfter(data(getParentNode(node)), data(selectedNode), data(node));
+                    }
+
+                    node = layoutPositioner.getMoveDownNode(selectedNode);
+
+                    if (node) {
+
+                        return onBeforeNodeInsertBefore(data(getParentNode(node)), data(selectedNode), data(node));
+                    }
+
+                    return false;
 
                 }
 
@@ -42663,11 +42723,14 @@ exports['src::mindmap.layout.node.is.move.down'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503283382.get(this);
+        const main = var_current_scope_1615181501878.get(this);
 
 
 
-        return main.call(this, onBeforeNodeInsertBefore);
+        return main.call(this, {
+            onBeforeNodeInsertBefore,
+            onBeforeNodeInsertAfter
+        });
     };
 
 })();
