@@ -39012,7 +39012,7 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-    const var_current_scope_1614838516929 = new Map();
+    const var_current_scope_1615192583427 = new Map();
 
     return function(node) {
 
@@ -39020,9 +39020,9 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-        if (!var_current_scope_1614838516929.has(this)) {
+        if (!var_current_scope_1615192583427.has(this)) {
 
-            var_current_scope_1614838516929.set(this, (() => {
+            var_current_scope_1615192583427.set(this, (() => {
                 const show = include('src::mindmap.node.show').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
 
@@ -39048,25 +39048,26 @@ exports['src::mindmap.node.expand'] = (() => {
                     if (node) {
 
                         let {
-                            expanded,
-                            children
+                            expanded
                         } = node;
 
                         if (!expanded) {
-
-                            node.expanded = true;
 
                             let {
                                 children
                             } = node;
 
-                            for (let childNode of children) {
+                            if (children.length) {
 
-                                show(childNode);
+                                node.expanded = true;
+
+                                for (let childNode of children) {
+
+                                    show(childNode);
+                                }
+
+                                return true;
                             }
-
-                            return true;
-
                         }
                     }
 
@@ -39079,7 +39080,7 @@ exports['src::mindmap.node.expand'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614838516929.get(this);
+        const main = var_current_scope_1615192583427.get(this);
 
 
 
