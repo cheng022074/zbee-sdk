@@ -192,6 +192,11 @@
             },
             defaultValue:true
          },
+         levelRoot:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:false
+         },
          level:{
             mode:'readwrite',
             local:true,
