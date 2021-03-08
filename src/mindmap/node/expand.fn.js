@@ -18,25 +18,26 @@ node = from(node) ;
 if(node){
 
     let {
-        expanded,
-        children
+        expanded
     } = node;
 
     if(!expanded){
-
-        node.expanded = true ;
 
         let {
             children
         } = node ;
 
-        for(let childNode of children){
+        if(children.length){
 
-            show(childNode) ;
+            node.expanded = true ;
+
+            for(let childNode of children){
+    
+                show(childNode) ;
+            }
+
+            return true ;
         }
-
-        return true ;
-
     }
 }
 
