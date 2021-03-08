@@ -40218,16 +40218,16 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
     let getHeight, getWidth, setAnchorY, getY, add, intersect, contains, from;
 
-    let var_init_locked_1614928688593;
+    let var_init_locked_1615196532623;
 
 
 
-    const var_current_scope_1614928688593 = new Map();
+    const var_current_scope_1615196532623 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1614928688593) {
+        if (!var_init_locked_1615196532623) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
@@ -40238,15 +40238,15 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             contains = include('src::math.region.contains.x');
             from = include('src::math.region.from');
 
-            var_init_locked_1614928688593 = true;
+            var_init_locked_1615196532623 = true;
         }
 
 
 
 
-        if (!var_current_scope_1614928688593.has(this)) {
+        if (!var_current_scope_1615196532623.has(this)) {
 
-            var_current_scope_1614928688593.set(this, (() => {
+            var_current_scope_1615196532623.set(this, (() => {
                 const setX = include('src::mindmap.layout.node.x').bind(this);
                 const setY = include('src::mindmap.layout.node.y').bind(this);
                 const setOffsetY = include('src::mindmap.layout.node.y.offset').bind(this);
@@ -40381,12 +40381,6 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
                         {
                             nodeHorizontalSeparationDistance
                         } = me.layoutConfig;
-
-                    if (isRootNode(node)) {
-
-                        setX(node, 0, false);
-
-                    }
 
                     let childNodes = getChildNodes(node),
                         {
@@ -40535,7 +40529,7 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614928688593.get(this);
+        const main = var_current_scope_1615196532623.get(this);
 
 
 
