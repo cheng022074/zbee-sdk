@@ -141,7 +141,9 @@
 
       setY(childNode , top) ;
 
-      top += getHeight(getSelfRegion(childNode)) + nodeVerticalSeparationDistance ;
+      layout.call(me , childNode) ;
+
+      top += Math.max(getHeight(getSelfRegion(childNode)) , getHeight(getChildRegion(childNode))) + nodeVerticalSeparationDistance ;
     }
 
     /*let me = this,
