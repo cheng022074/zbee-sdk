@@ -138,6 +138,17 @@
 
     }
  }
+
+ function setNodeY(node , layoutedChildRegions , nodeVerticalSeparationDistance){
+
+  let findRegion = findLayoutedRegion(layoutedChildRegions , getSelfRegion(node));
+
+  if(findRegion){
+
+    setY(node , findRegion.bottom + nodeVerticalSeparationDistance) ;
+
+  }
+ }
      
  function layout(node , layoutedChildRegions = []){
 
@@ -180,26 +191,14 @@
 
           setY(childNode , previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance) ;
 
-          let findRegion = findLayoutedRegion(layoutedChildRegions , getSelfRegion(childNode));
-
-          if(findRegion){
-
-            setY(childNode , findRegion.bottom + nodeVerticalSeparationDistance) ;
-
-          }
+          setNodeY.call(me , childNode , layoutedChildRegions , nodeVerticalSeparationDistance) ;
         }
 
       }else{
 
         setY(childNode , top) ;
 
-        let findRegion = findLayoutedRegion(layoutedChildRegions , getSelfRegion(childNode));
-
-        if(findRegion){
-
-          setY(childNode , findRegion.bottom + nodeVerticalSeparationDistance) ;
-
-        }
+        setNodeY.call(me , childNode , layoutedChildRegions , nodeVerticalSeparationDistance) ;
       }
 
       layout.call(me , childNode , layoutedChildRegions) ;
@@ -209,19 +208,9 @@
         childrenHeight = getHeight(childRegion),
         nodeHeight = getHeight(nodeRegion);
 
-    if(childrenHeight > nodeHeight){
+    setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
 
-      setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
-    
-    }else if(childrenHeight < nodeHeight){
-
-      let offsetY = nodeRegion.top - childRegion.top + (nodeHeight - childrenHeight) / 2 ;
-
-      for(let childNode of childNodes){
-
-          setOffsetY(childNode , offsetY) ;
-      }
-    }
+    setNodeY.call(me , node , layoutedChildRegions , nodeVerticalSeparationDistance) ;
 
     layoutedChildRegions.push(getChildRegion(node)) ;
  }
