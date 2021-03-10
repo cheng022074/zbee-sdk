@@ -38783,7 +38783,7 @@ exports['src::mindmap.layout.nodes.child'] = (() => {
 
 
 
-    const var_current_scope_1614503282647 = new Map();
+    const var_current_scope_1615353021860 = new Map();
 
     return function(node) {
 
@@ -38791,9 +38791,9 @@ exports['src::mindmap.layout.nodes.child'] = (() => {
 
 
 
-        if (!var_current_scope_1614503282647.has(this)) {
+        if (!var_current_scope_1615353021860.has(this)) {
 
-            var_current_scope_1614503282647.set(this, (() => {
+            var_current_scope_1615353021860.set(this, (() => {
                 const cache = include('src::mindmap.layout.cache').bind(this);
 
 
@@ -38848,7 +38848,7 @@ exports['src::mindmap.layout.nodes.child'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503282647.get(this);
+        const main = var_current_scope_1615353021860.get(this);
 
 
 
@@ -40220,37 +40220,37 @@ exports['src::mindmap.node.insert.new.after'] = (() => {
 
 exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
-    let getHeight, getWidth, setAnchorY, getY, add, intersect, contains, from;
+    let getHeight, getWidth, setAnchorY, getAnchorY, getY, add, contains, from;
 
-    let var_init_locked_1615345657229;
+    let var_init_locked_1615369087872;
 
 
 
-    const var_current_scope_1615345657229 = new Map();
+    const var_current_scope_1615369087872 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1615345657229) {
+        if (!var_init_locked_1615369087872) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
             setAnchorY = include('src::math.region.y.anchor');
+            getAnchorY = include('src::math.region.y.anchor');
             getY = include('src::math.region.y');
             add = include('src::array.add.sort');
-            intersect = include('src::math.region.intersect');
             contains = include('src::math.region.contains.x');
             from = include('src::math.region.from');
 
-            var_init_locked_1615345657229 = true;
+            var_init_locked_1615369087872 = true;
         }
 
 
 
 
-        if (!var_current_scope_1615345657229.has(this)) {
+        if (!var_current_scope_1615369087872.has(this)) {
 
-            var_current_scope_1615345657229.set(this, (() => {
+            var_current_scope_1615369087872.set(this, (() => {
                 const setX = include('src::mindmap.layout.node.x').bind(this);
                 const setY = include('src::mindmap.layout.node.y').bind(this);
                 const setOffsetY = include('src::mindmap.layout.node.y.offset').bind(this);
@@ -40261,6 +40261,7 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
                 const getDescendantRegion = include('src::mindmap.layout.node.region.descendant.logic').bind(this);
                 const getSelfRegion = include('src::mindmap.layout.node.region.self').bind(this);
                 const getChildRegion = include('src::mindmap.layout.node.region.child.logic').bind(this);
+                const createLayoutedRegions = include('src::mindmap.layout.pattern.logic.regions.layouted').bind(this);
 
 
                 /**
@@ -40293,15 +40294,17 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
                  * 
                  * @import setAnchorY from math.region.y.anchor
                  * 
+                 * @import getAnchorY from math.region.y.anchor
+                 * 
                  * @import getY from math.region.y
                  * 
                  * @import add from array.add.sort
                  * 
-                 * @import intersect from math.region.intersect
-                 * 
                  * @import contains from math.region.contains.x
                  * 
                  * @import from from math.region.from
+                 * 
+                 * @import createLayoutedRegions from .regions.layouted scoped
                  * 
                  * @param {data.Record} node 布局节点
                  * 
@@ -40315,7 +40318,7 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
                     node.y = 0;
 
-                    layout.call(me, node);
+                    layout.call(me, node, createLayoutedRegions(me));
 
                     let region = getDescendantRegion(node, true),
                         {
@@ -40376,7 +40379,18 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
                     };
                 }
 
-                function layout(node) {
+                function setNodeY(node, layoutedChildRegions, nodeVerticalSeparationDistance) {
+
+                    let findRegion = findLayoutedRegion(layoutedChildRegions, getSelfRegion(node));
+
+                    if (findRegion) {
+
+                        setY(node, findRegion.bottom + nodeVerticalSeparationDistance);
+
+                    }
+                }
+
+                function layout(node, layoutedChildRegions) {
 
                     let me = this,
                         {
@@ -40388,11 +40402,11 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
                         {
                             length
                         } = childNodes,
-                        region = getSelfRegion(node),
+                        nodeRegion = getSelfRegion(node),
                         {
                             top,
                             right
-                        } = region;
+                        } = nodeRegion;
 
                     right += nodeHorizontalSeparationDistance;
 
@@ -40402,194 +40416,47 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
                         setX(childNode, right);
 
-                        setY(childNode, top);
+                        let previousSiblingNode = childNodes[i - 1];
 
-                        layout.call(me, childNode);
+                        if (previousSiblingNode) {
 
-                        top += getHeight(getChildRegion(childNode, true)) + nodeVerticalSeparationDistance;
-                    }
+                            let nodeRegion = getSelfRegion(childNode),
+                                previousSiblingNodeRegion = getSelfRegion(previousSiblingNode);
 
+                            if (getWidth(previousSiblingNodeRegion) >= getWidth(nodeRegion)) {
 
-                    let childRegion = getChildRegion(node);
+                                setY(childNode, previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance);
 
-                    let childrenHeight = getHeight(childRegion),
-                        nodeHeight = getHeight(region);
+                            } else {
 
-                    if (childrenHeight > nodeHeight) {
+                                setY(childNode, previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance);
 
-                        let offsetY = (childrenHeight - nodeHeight) / 2;
-
-                        setOffsetY(node, offsetY, false);
-
-                        {
-
-                            let targetNode = node,
-                                parentNode;
-
-                            while (parentNode = getParentNode(targetNode)) {
-
-                                setOffsetY(parentNode, offsetY, false);
-
-                                targetNode = parentNode;
+                                layoutedChildRegions.adjustNodeY(childNode);
                             }
+
+                        } else {
+
+                            setY(childNode, top);
+
+                            layoutedChildRegions.adjustNodeY(childNode);
                         }
 
-                    } else if (childrenHeight < nodeHeight) {
-
-                        let offsetY = (nodeHeight - childrenHeight) / 2;
-
-                        for (let childNode of childNodes) {
-
-                            setOffsetY(childNode, offsetY);
-                        }
-
+                        layout.call(me, childNode, layoutedChildRegions);
                     }
 
-                    /*let me = this,
-                    {
-                      nodeHorizontalSeparationDistance
-                    } = me.layoutConfig;
+                    let childRegion = getChildRegion(node),
+                        childrenHeight = getHeight(childRegion),
+                        nodeHeight = getHeight(nodeRegion);
 
-                    let childNodes = getChildNodes(node),
-                    {
-                      length
-                    } = childNodes,
-                    {
-                      top,
-                      right
-                    } = getSelfRegion(node);
+                    setY(node, childRegion.top + (childrenHeight - nodeHeight) / 2, false);
 
-                    right += nodeHorizontalSeparationDistance ;
+                    if (childrenHeight < nodeHeight) {
 
-                    for(let i = 0 ; i < length ; i ++){
-
-                      let childNode = childNodes[i] ;
-
-                      setX(childNode , right) ;
-
-                      let previousNode = childNodes[i - 1],
-                          bottom;
-
-                      if(previousNode){
-
-                        bottom = getSelfRegion(previousNode).bottom ;
-
-                      }else{
-
-                        bottom = top ;
-                      }
-
-                      setY(childNode , bottom) ;
-
-                      layout.call(me , childNode , layoutedNodes) ;
-
-                      setY(childNode , bottom) ;
-
-                      adjustY.call(me , childNode , layoutedNodes , getDescendantNodes(childNode)) ;
-
-                      layoutedNodes.push(childNode) ;
-                    
+                        layoutedChildRegions.adjustNodeY(node);
                     }
 
-                    {
-
-                      let {
-                        length
-                      } = childNodes ;
-
-                      if(length){
-
-                        let
-                        region,
-                        childRegion ;
-
-                        if(length === 1){
-
-                          region = from(node),
-                          childRegion = from(childNodes[0]) ;
-
-                        }else{
-
-                          region = getSelfRegion(node),
-                          childRegion = getChildRegion(node);
-                        }
-
-                        setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
-                    
-                        setY(node , getY(region) , false) ;
-                      }
-                    }*/
-
+                    layoutedChildRegions.add(node);
                 }
-
-                function getAdjustRegions(node, childRegionCompensateLeft) {
-
-                    let selfRegion = getSelfRegion(node),
-                        descendantRegion = getDescendantRegion(node),
-                        regions = [];
-
-                    if (getWidth(descendantRegion) !== 0) {
-
-                        descendantRegion.left -= childRegionCompensateLeft;
-
-                        regions.push(descendantRegion);
-
-                    }
-
-                    regions.push(selfRegion);
-
-                    return regions;
-                }
-
-                function adjustY(node, layoutedNodes, ignoreLayoutedNodes) {
-
-                    let {
-                        layoutConfig
-                    } = this, {
-                        childRegionCompensateLeft,
-                        nodeVerticalSeparationDistance
-                    } = layoutConfig,
-                    regions = getAdjustRegions(node, childRegionCompensateLeft),
-                        isSetOffsetY = false;
-
-                    for (let layoutedNode of layoutedNodes) {
-
-                        if (ignoreLayoutedNodes.includes(layoutedNode)) {
-
-                            continue;
-
-                        }
-
-                        let layoutedRegions = getAdjustRegions(layoutedNode, childRegionCompensateLeft);
-
-                        for (let layoutedRegion of layoutedRegions) {
-
-                            for (let region of regions) {
-
-                                if (intersect(region, layoutedRegion)) {
-
-                                    setOffsetY(node, layoutedRegion.bottom - region.top + nodeVerticalSeparationDistance);
-
-                                    regions = getAdjustRegions(node, childRegionCompensateLeft);
-
-                                    isSetOffsetY = true;
-
-                                    break;
-
-                                }
-                            }
-                        }
-
-
-                    }
-
-                    if (!isSetOffsetY) {
-
-                        setOffsetY(node, nodeVerticalSeparationDistance);
-
-                    }
-                }
-
 
 
                 return main;
@@ -40597,7 +40464,7 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1615345657229.get(this);
+        const main = var_current_scope_1615369087872.get(this);
 
 
 
@@ -41123,28 +40990,28 @@ exports['src::mindmap.layout.node.region.descendant.logic'] = (() => {
 
     let union;
 
-    let var_init_locked_1615345583140;
+    let var_init_locked_1615353021894;
 
 
 
-    const var_current_scope_1615345583140 = new Map();
+    const var_current_scope_1615353021894 = new Map();
 
     return function(node, withSelf = false) {
 
 
-        if (!var_init_locked_1615345583140) {
+        if (!var_init_locked_1615353021894) {
 
             union = include('src::math.region.union');
 
-            var_init_locked_1615345583140 = true;
+            var_init_locked_1615353021894 = true;
         }
 
 
 
 
-        if (!var_current_scope_1615345583140.has(this)) {
+        if (!var_current_scope_1615353021894.has(this)) {
 
-            var_current_scope_1615345583140.set(this, (() => {
+            var_current_scope_1615353021894.set(this, (() => {
                 const self = include('src::mindmap.layout.node.region.self').bind(this);
                 const getChildRegion = include('src::mindmap.layout.node.region.child.logic').bind(this);
                 const getSelfRegion = include('src::mindmap.layout.node.region.self').bind(this);
@@ -41178,7 +41045,7 @@ exports['src::mindmap.layout.node.region.descendant.logic'] = (() => {
                     min
                 } = Math;
 
-                function main(node) {
+                function main(node, withSelf) {
 
                     let regions = getRegions(node),
                         tops = [],
@@ -41259,11 +41126,170 @@ exports['src::mindmap.layout.node.region.descendant.logic'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1615345583140.get(this);
+        const main = var_current_scope_1615353021894.get(this);
 
 
 
         return main.call(this, node, withSelf);
+    };
+
+})();
+
+exports['src::mindmap.layout.pattern.logic.regions.layouted'] = (() => {
+
+    let intersect, getRegion, setOffsetY, getChildRegion, isNumber;
+
+    let var_init_locked_1615369513818;
+
+    let var_class_1615369513818;
+
+
+
+    let var_global_main_1615369513818;
+
+    return function(mindmap) {
+
+
+        if (!var_init_locked_1615369513818) {
+
+            intersect = include('src::math.region.intersect');
+            getRegion = include('src::mindmap.layout.node.region.self');
+            setOffsetY = include('src::mindmap.layout.node.y.offset');
+            getChildRegion = include('src::mindmap.layout.node.region.child.logic');
+            isNumber = include('src::is.number');
+
+            /**
+             * 
+             * 已布局范围集合
+             * 
+             * @import intersect from math.region.intersect
+             * 
+             * @import getRegion from ......node.region.self
+             * 
+             * @import setOffsetY from ......node.y.offset
+             * 
+             * @import getChildRegion from ......node.region.child.logic
+             * 
+             * @import is.number
+             * 
+             * @param {Mindmap} mindmap 脑图 SDK 实例
+             * 
+             */
+
+            class main {
+
+                constructor(mindmap) {
+
+                    let me = this;
+
+                    me.regions = [];
+
+                    me.mindmap = mindmap;
+                }
+
+                adjustNodeY(node, region) {
+
+                    let me = this,
+                        {
+                            mindmap
+                        } = me;
+
+                    region = region || getRegion.call(mindmap, node);
+
+                    let {
+                        nodeVerticalSeparationDistance
+                    } = me.mindmap.layoutConfig,
+                        findRegion = me.findBottomestIntersectRegion(region);
+
+                    if (findRegion) {
+
+                        setOffsetY.call(mindmap, node, findRegion.bottom + nodeVerticalSeparationDistance - region.top);
+                    }
+                }
+
+                findBottomestIntersectRegion(findRegion) {
+
+                    let findRegions = [],
+                        {
+                            regions
+                        } = this;
+
+                    for (let region of regions) {
+
+                        if (intersect(region, findRegion)) {
+
+                            findRegions.push(region);
+                        }
+                    }
+
+                    if (findRegions.length) {
+
+                        return findRegions.sort(({
+                            bottom: bottom1,
+                        }, {
+                            bottom: bottom2
+                        }) => bottom2 - bottom1)[0];
+
+                    }
+                }
+
+                add(node) {
+
+                    let me = this,
+                        {
+                            regions,
+                            mindmap
+                        } = me,
+                        {
+                            childRegionCompensateLeft
+                        } = mindmap.layoutConfig,
+                        region = getChildRegion.call(mindmap, node);
+
+                    if (isNumber(childRegionCompensateLeft)) {
+
+                        region.left -= childRegionCompensateLeft;
+                    }
+
+                    regions.push(region);
+                }
+            }
+
+
+
+            var_class_1615369513818 = class extends main {
+
+                static get __ZBEE_IS_CLASS__() {
+
+                    return true;
+                }
+
+
+                get __ZBEE_CLASS__() {
+
+                    return true;
+                }
+
+                get __ZBEE_CURRENT_CLASS__() {
+
+                    return var_class_1615369513818;
+                }
+
+                get __ZBEE_CLASS_NAME__() {
+
+                    return 'src::mindmap.layout.pattern.logic.regions.layouted';
+                }
+
+            };
+
+            main = var_class_1615369513818;
+
+            var_global_main_1615369513818 = main;
+
+            var_init_locked_1615369513818 = true;
+        }
+
+
+        return new var_global_main_1615369513818(mindmap);
     };
 
 })();
