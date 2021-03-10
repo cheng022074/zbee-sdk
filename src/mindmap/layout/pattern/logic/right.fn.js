@@ -114,11 +114,12 @@
   } ;
  }
      
- function layout(node , layoutedNodes = []){
+ function layout(node){
 
     let me = this,
     {
-      nodeHorizontalSeparationDistance
+      nodeHorizontalSeparationDistance,
+      nodeVerticalSeparationDistance
     } = me.layoutConfig;
 
     let childNodes = getChildNodes(node),
@@ -138,7 +139,9 @@
 
       setX(childNode , right) ;
 
-      childNode.y = 0 ;
+      setY(childNode , top) ;
+
+      top += getHeight(getSelfRegion(childNode)) + nodeVerticalSeparationDistance ;
     }
 
     /*let me = this,
