@@ -210,7 +210,10 @@
 
     setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
 
-    setNodeY.call(me , node , layoutedChildRegions , nodeVerticalSeparationDistance) ;
+    if(childrenHeight < nodeHeight){
+
+      setNodeY.call(me , node , layoutedChildRegions , nodeVerticalSeparationDistance) ;
+    }
 
     layoutedChildRegions.push(getChildRegion(node)) ;
  }
