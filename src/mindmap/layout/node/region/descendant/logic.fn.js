@@ -26,7 +26,7 @@
     min
  } = Math ;
 
- function main(node){
+ function main(node , withSelf){
 
     let regions = getRegions(node),
         tops = [],
