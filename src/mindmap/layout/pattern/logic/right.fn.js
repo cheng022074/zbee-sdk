@@ -126,10 +126,11 @@
     {
       length
     } = childNodes,
+    region = getSelfRegion(node),
     {
       top,
       right
-    } = getSelfRegion(node);
+    } = region;
 
     right += nodeHorizontalSeparationDistance ;
 
@@ -143,7 +144,28 @@
 
       layout.call(me , childNode) ;
 
-      top += Math.max(getHeight(getSelfRegion(childNode)) , getHeight(getChildRegion(childNode))) + nodeVerticalSeparationDistance ;
+      top += getHeight(getRegion(childNode)) + nodeVerticalSeparationDistance ;
+    }
+
+
+    let childRegion = getChildRegion(node) ;
+
+    let childrenHeight = getHeight(childRegion),
+        nodeHeight = getHeight(region) ;
+
+    if(childrenHeight > nodeHeight){
+
+      setOffsetY(node , (childrenHeight - nodeHeight) / 2 , false) ;
+    
+    }else if(childrenHeight < nodeHeight){
+
+      let offsetY = (nodeHeight - childrenHeight) / 2 ;
+
+      for(let childNode of childNodes){
+
+        setOffsetY(childNode , offsetY) ;
+      }
+
     }
 
     /*let me = this,
