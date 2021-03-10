@@ -23,8 +23,6 @@
  * 
  * @import getChildRegion from ....node.region.child.logic scoped
  * 
- * @import getRegion from ....node.region.logic scoped
- * 
  * @import getHeight from math.region.height
  * 
  * @import getWidth from math.region.width
@@ -55,7 +53,7 @@
 
   layout.call(me , node) ;
 
-  let region = getRegion(node),
+  let region = getDescendantRegion(node , true),
   {
     width,
     height,
@@ -144,7 +142,7 @@
 
       layout.call(me , childNode) ;
 
-      top += getHeight(getRegion(childNode)) + nodeVerticalSeparationDistance ;
+      top += getHeight(getDescendantRegion(childNode , true)) + nodeVerticalSeparationDistance ;
     }
 
 
@@ -155,7 +153,22 @@
 
     if(childrenHeight > nodeHeight){
 
-      setOffsetY(node , (childrenHeight - nodeHeight) / 2 , false) ;
+      let offsetY = (childrenHeight - nodeHeight) / 2 ;
+
+      setOffsetY(node , offsetY , false) ;
+
+      {
+
+          let targetNode = node,
+              parentNode;
+
+          while(parentNode = getParentNode(targetNode)){
+
+              setOffsetY(parentNode , offsetY , false) ;
+
+              targetNode = parentNode ;
+          }
+      }
     
     }else if(childrenHeight < nodeHeight){
 
