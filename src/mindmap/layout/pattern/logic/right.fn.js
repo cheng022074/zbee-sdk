@@ -35,13 +35,11 @@
  * 
  * @import add from array.add.sort
  * 
- * @import intersect from math.region.intersect
- * 
  * @import contains from math.region.contains.x
  * 
  * @import from from math.region.from
  * 
- * @import intersect from math.region.intersect
+ * @import createLayoutedRegions from .regions.layouted scoped
  * 
  * @param {data.Record} node 布局节点
  * 
@@ -49,13 +47,13 @@
 
  function main(node){
 
-  let me = this ;
+  let me = this;
 
   node.x = 0 ;
 
   node.y = 0 ;
 
-  layout.call(me , node) ;
+  layout.call(me , node , createLayoutedRegions(me)) ;
 
   let region = getDescendantRegion(node , true),
   {
@@ -115,42 +113,8 @@
     } 
   } ;
  }
-
- function findLayoutedRegion(layoutedChildRegions , nodeRegion){
-
-    let findRegions = [] ;
-
-    for(let layoutedChildRegion of layoutedChildRegions){
-
-        if(intersect(layoutedChildRegion , nodeRegion)){
-
-          findRegions.push(layoutedChildRegion) ;
-        }
-    }
-
-    if(findRegions.length){
-
-      return findRegions.sort(({
-        bottom:bottom1,
-      } , {
-        bottom:bottom2
-      }) => bottom2 - bottom1)[0];
-
-    }
- }
-
- function setNodeY(node , layoutedChildRegions , nodeVerticalSeparationDistance){
-
-  let findRegion = findLayoutedRegion(layoutedChildRegions , getSelfRegion(node));
-
-  if(findRegion){
-
-    setY(node , findRegion.bottom + nodeVerticalSeparationDistance) ;
-
-  }
- }
      
- function layout(node , layoutedChildRegions = []){
+ function layout(node , layoutedChildRegions){
 
     let me = this,
     {
@@ -191,14 +155,14 @@
 
           setY(childNode , previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance) ;
 
-          setNodeY.call(me , childNode , layoutedChildRegions , nodeVerticalSeparationDistance) ;
+          layoutedChildRegions.adjustNodeY(childNode) ;
         }
 
       }else{
 
         setY(childNode , top) ;
 
-        setNodeY.call(me , childNode , layoutedChildRegions , nodeVerticalSeparationDistance) ;
+        layoutedChildRegions.adjustNodeY(childNode) ;
       }
 
       layout.call(me , childNode , layoutedChildRegions) ;
@@ -208,12 +172,19 @@
         childrenHeight = getHeight(childRegion),
         nodeHeight = getHeight(nodeRegion);
 
-    setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
+    if(childRegion.top === nodeRegion.top){
 
-    if(childrenHeight < nodeHeight){
+      setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
 
-      setNodeY.call(me , node , layoutedChildRegions , nodeVerticalSeparationDistance) ;
+    }else{
+
+      setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
+
+      if(childrenHeight < nodeHeight){
+  
+        layoutedChildRegions.adjustNodeY(node) ;
+      }  
     }
 
-    layoutedChildRegions.push(getChildRegion(node)) ;
+    layoutedChildRegions.add(node) ;
  }
