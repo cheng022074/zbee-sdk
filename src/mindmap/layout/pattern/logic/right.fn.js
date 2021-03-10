@@ -41,6 +41,8 @@
  * 
  * @import from from math.region.from
  * 
+ * @import intersect from math.region.intersect
+ * 
  * @param {data.Record} node 布局节点
  * 
  */
@@ -113,8 +115,31 @@
     } 
   } ;
  }
+
+ function findLayoutedRegion(layoutedChildRegions , nodeRegion){
+
+    let findRegions = [] ;
+
+    for(let layoutedChildRegion of layoutedChildRegions){
+
+        if(intersect(layoutedChildRegion , nodeRegion)){
+
+          findRegions.push(layoutedChildRegion) ;
+        }
+    }
+
+    if(findRegions.length){
+
+      return findRegions.sort(({
+        bottom:bottom1,
+      } , {
+        bottom:bottom2
+      }) => bottom2 - bottom1)[0];
+
+    }
+ }
      
- function layout(node){
+ function layout(node , layoutedChildRegions = []){
 
     let me = this,
     {
@@ -140,11 +165,44 @@
 
       setX(childNode , right) ;
 
-      setY(childNode , top) ;
+      let previousSiblingNode = childNodes[i - 1] ;
 
-      layout.call(me , childNode) ;
+      if(previousSiblingNode){
 
-      top += getHeight(getDescendantRegion(childNode , true)) + nodeVerticalSeparationDistance ;
+        let nodeRegion = getSelfRegion(childNode),
+            previousSiblingNodeRegion = getSelfRegion(previousSiblingNode);
+
+        if(getWidth(previousSiblingNodeRegion) >= getWidth(nodeRegion)){
+
+          setY(childNode , previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance) ;
+        
+        }else{
+
+          setY(childNode , previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance) ;
+
+          let findRegion = findLayoutedRegion(layoutedChildRegions , getSelfRegion(childNode));
+
+          if(findRegion){
+
+            setY(childNode , findRegion.bottom + nodeVerticalSeparationDistance) ;
+
+          }
+        }
+
+      }else{
+
+        setY(childNode , top) ;
+
+        let findRegion = findLayoutedRegion(layoutedChildRegions , getSelfRegion(childNode));
+
+        if(findRegion){
+
+          setY(childNode , findRegion.bottom + nodeVerticalSeparationDistance) ;
+
+        }
+      }
+
+      layout.call(me , childNode , layoutedChildRegions) ;
     }
 
     let childRegion = getChildRegion(node),
@@ -157,9 +215,13 @@
     
     }else if(childrenHeight < nodeHeight){
 
+      let offsetY = nodeRegion.top - childRegion.top + (nodeHeight - childrenHeight) / 2 ;
+
       for(let childNode of childNodes){
 
-          setY(childNode , nodeRegion.top + (nodeHeight - childrenHeight) / 2) ;
+          setOffsetY(childNode , offsetY) ;
       }
     }
+
+    layoutedChildRegions.push(getChildRegion(node)) ;
  }
