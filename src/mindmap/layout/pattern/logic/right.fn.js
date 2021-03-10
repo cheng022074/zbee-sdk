@@ -116,80 +116,105 @@
      
  function layout(node , layoutedNodes = []){
 
-  let me = this,
-  {
-    nodeHorizontalSeparationDistance
-  } = me.layoutConfig;
+    let me = this,
+    {
+      nodeHorizontalSeparationDistance
+    } = me.layoutConfig;
 
-  let childNodes = getChildNodes(node),
-  {
-    length
-  } = childNodes,
-  {
-    top,
-    right
-  } = getSelfRegion(node);
+    let childNodes = getChildNodes(node),
+    {
+      length
+    } = childNodes,
+    {
+      top,
+      right
+    } = getSelfRegion(node);
 
-  right += nodeHorizontalSeparationDistance ;
+    right += nodeHorizontalSeparationDistance ;
 
-  for(let i = 0 ; i < length ; i ++){
+    for(let i = 0 ; i < length ; i ++){
 
-    let childNode = childNodes[i] ;
+      let childNode = childNodes[i] ;
 
-    setX(childNode , right) ;
+      setX(childNode , right) ;
 
-    let previousNode = childNodes[i - 1],
-        bottom;
-
-    if(previousNode){
-
-      bottom = getSelfRegion(previousNode).bottom ;
-
-    }else{
-
-      bottom = top ;
+      childNode.y = 0 ;
     }
 
-    setY(childNode , bottom) ;
+    /*let me = this,
+    {
+      nodeHorizontalSeparationDistance
+    } = me.layoutConfig;
 
-    layout.call(me , childNode , layoutedNodes) ;
-
-    setY(childNode , bottom) ;
-
-    adjustY.call(me , childNode , layoutedNodes , getDescendantNodes(childNode)) ;
-
-    layoutedNodes.push(childNode) ;
-  
-  }
-
-  {
-
-    let {
+    let childNodes = getChildNodes(node),
+    {
       length
-    } = childNodes ;
+    } = childNodes,
+    {
+      top,
+      right
+    } = getSelfRegion(node);
 
-    if(length){
+    right += nodeHorizontalSeparationDistance ;
 
-      let
-      region,
-      childRegion ;
+    for(let i = 0 ; i < length ; i ++){
 
-      if(length === 1){
+      let childNode = childNodes[i] ;
 
-        region = from(node),
-        childRegion = from(childNodes[0]) ;
+      setX(childNode , right) ;
+
+      let previousNode = childNodes[i - 1],
+          bottom;
+
+      if(previousNode){
+
+        bottom = getSelfRegion(previousNode).bottom ;
 
       }else{
 
-        region = getSelfRegion(node),
-        childRegion = getChildRegion(node);
+        bottom = top ;
       }
 
-      setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
-  
-      setY(node , getY(region) , false) ;
+      setY(childNode , bottom) ;
+
+      layout.call(me , childNode , layoutedNodes) ;
+
+      setY(childNode , bottom) ;
+
+      adjustY.call(me , childNode , layoutedNodes , getDescendantNodes(childNode)) ;
+
+      layoutedNodes.push(childNode) ;
+    
     }
-  }
+
+    {
+
+      let {
+        length
+      } = childNodes ;
+
+      if(length){
+
+        let
+        region,
+        childRegion ;
+
+        if(length === 1){
+
+          region = from(node),
+          childRegion = from(childNodes[0]) ;
+
+        }else{
+
+          region = getSelfRegion(node),
+          childRegion = getChildRegion(node);
+        }
+
+        setAnchorY(region , 'center' , getY(childRegion) + getHeight(childRegion) / 2) ;
+    
+        setY(node , getY(region) , false) ;
+      }
+    }*/
 
  }
 
