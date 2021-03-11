@@ -28,12 +28,15 @@
             nodeRegions
         } = me;
 
-    nodeRegions.forEach(registerRegion => {
+    nodeRegions.forEach(registerRegions => {
 
-        if(intersect(registerRegion , region)){
+       for(let registerRegion of registerRegions){
 
-            findRegions.push(registerRegion) ;
-        }
+            if(intersect(registerRegion , region)){
+
+                findRegions.push(registerRegion) ;
+            }
+       }
 
     }) ;
 
@@ -75,6 +78,11 @@ class main{
 
         if(findRegion){
 
+            if(node.id === 'node08'){
+
+                console.log('node-8' , findRegion) ;
+            }
+
             setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustRegion.top) ;
         }
     }
@@ -89,19 +97,23 @@ class main{
         {
             childRegionCompensateLeft
         } = mindmap.layoutConfig,
-        region = getChildRegion.call(mindmap , node) ;
+        childRegion = getChildRegion.call(mindmap , node),
+        regions = [];
 
-        if(getWidth(region) === 0){
+        if(getWidth(childRegion) !== 0){
 
-            return ;
+            if(isNumber(childRegionCompensateLeft)){
+
+                childRegion.left -= childRegionCompensateLeft ;
+            }
+    
+            regions.push({
+                ...childRegion,
+                node
+            }) ;
         }
 
-        if(isNumber(childRegionCompensateLeft)){
-
-            region.left -= childRegionCompensateLeft ;
-        }
-
-        nodeRegions.set(node , region) ;
+        nodeRegions.set(node , regions) ;
 
         if(isRecursive){
 
