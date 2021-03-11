@@ -172,18 +172,11 @@
         childrenHeight = getHeight(childRegion),
         nodeHeight = getHeight(nodeRegion);
 
-    if(childRegion.top === nodeRegion.top){
+    setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
 
-      setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
+    if(childrenHeight < nodeHeight){
 
-    }else{
-
-      setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
-
-      if(childrenHeight < nodeHeight){
-  
-        layoutedChildRegions.adjustNodeY(node) ;
-      }  
+      layoutedChildRegions.adjustNodeY(node) ;
     }
 
     layoutedChildRegions.add(node) ;
