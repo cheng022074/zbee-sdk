@@ -116,61 +116,85 @@
      
  function layout(node , layoutedChildRegions){
 
-    let me = this,
-    {
-      nodeHorizontalSeparationDistance,
-      nodeVerticalSeparationDistance
-    } = me.layoutConfig;
+  let me = this,
+  {
+    nodeHorizontalSeparationDistance,
+    nodeVerticalSeparationDistance
+  } = me.layoutConfig;
 
-    let childNodes = getChildNodes(node),
-    {
-      length
-    } = childNodes,
-    nodeRegion = getSelfRegion(node),
-    {
-      top,
-      right
-    } = nodeRegion;
+  let childNodes = getChildNodes(node),
+  {
+    length
+  } = childNodes,
+  nodeRegion = getSelfRegion(node),
+  {
+    top,
+    right
+  } = nodeRegion;
 
-    right += nodeHorizontalSeparationDistance ;
+  right += nodeHorizontalSeparationDistance ;
 
-    for(let i = 0 ; i < length ; i ++){
+  for(let i = 0 ; i < length ; i ++){
 
-      let childNode = childNodes[i] ;
+    let childNode = childNodes[i] ;
 
-      setX(childNode , right) ;
+    setX(childNode , right) ;
 
-      let previousSiblingNode = childNodes[i - 1];
+    let previousSiblingNode = childNodes[i - 1];
 
-      if(previousSiblingNode){
+    if(previousSiblingNode){
 
-        setY(childNode , getSelfRegion(previousSiblingNode).bottom + nodeVerticalSeparationDistance) ;
-        
-      }else{
+      setY(childNode , getSelfRegion(previousSiblingNode).bottom + nodeVerticalSeparationDistance) ;
+      
+    }else{
 
-        setY(childNode , top) ;
-      }
+      setY(childNode , top) ;
+    }
 
-      layout.call(me , childNode , layoutedChildRegions) ;
+    if(i === 0){
+
+      let {
+          y:oldY
+      } = childNode ;
+
+      layoutedChildRegions.adjustNodeYByExclusionPolicy(childNode , getDescendantRegion(childNode) , getDescendantNodes(childNode)) ;
+
+      if(oldY !== childNode.y)
+
+      console.log(oldY , childNode.y) ;
+
+     // layoutedChildRegions.adjustNodeYByExclusionPolicy(childNode , getDescendantRegion(childNode) , getDescendantNodes(childNode)) ;
+    }
+
+    layout.call(me , childNode , layoutedChildRegions) ;
+
+    if(i !== 0){
 
       layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getChildRegion(childNode) , childNodes.slice(0 , i)) ;
-
-      layoutedChildRegions.add(childNode , true) ;
     }
 
-    let childRegion = getChildRegion(node),
-        childrenHeight = getHeight(childRegion),
-        nodeHeight = getHeight(nodeRegion);
+    layoutedChildRegions.add(childNode , true) ;
+  }
 
-    if(childrenHeight !== nodeHeight){
+  let childRegion = getChildRegion(node),
+      childrenHeight = getHeight(childRegion),
+      nodeHeight = getHeight(nodeRegion);
 
-      let offsetY = nodeRegion.top - (childrenHeight - nodeHeight) / 2 - childRegion.top ;
-      
-      for(let childNode of childNodes){
+  if(childRegion.top !== nodeRegion.top){
 
-        setOffsetY(childNode , offsetY) ;
+      setY(node , childRegion.top , false) ;
 
-      }
+      nodeRegion = getSelfRegion(node) ;
+  }
+
+  if(childrenHeight !== nodeHeight){
+
+    let offsetY = nodeRegion.top - (childrenHeight - nodeHeight) / 2 - childRegion.top ;
+    
+    for(let childNode of childNodes){
+
+      setOffsetY(childNode , offsetY) ;
 
     }
- }
+  }
+}
