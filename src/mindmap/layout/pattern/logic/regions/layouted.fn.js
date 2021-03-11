@@ -20,7 +20,7 @@
  * 
  */
 
- function findBottomestIntersectRegion(region , nodes){
+function findBottomestIntersectRegionByExclusionPolicy(region , nodes){
 
     let findRegions = [],
         me = this,
@@ -56,6 +56,38 @@
     }
 }
 
+function findBottomestIntersectRegionByInclusionPolicy(region , nodes){
+
+    let findRegions = [],
+        me = this,
+        {
+            nodeRegions
+        } = me;
+
+    for(let node of nodes){
+
+        let registerRegions = nodeRegions.get(node) ;
+
+        for(let registerRegion of registerRegions){
+
+            if(intersect(registerRegion , region)){
+
+                findRegions.push(registerRegion) ;
+            }
+        }
+    }
+
+    if(findRegions.length){
+
+        return findRegions.sort(({
+            bottom:bottom1,
+        } , {
+            bottom:bottom2
+        }) => bottom2 - bottom1)[0];
+
+    }
+}
+
 class main{
 
     constructor(mindmap){
@@ -67,7 +99,7 @@ class main{
         me.mindmap = mindmap ;
     }
 
-    adjustNodeY(node , adjustRegion , adjustNodes = []){
+    adjustNodeYByInclusionPolicy(node , adjustRegion , adjustNodes = []){
 
         let me = this,
         {
@@ -79,7 +111,28 @@ class main{
         let {
             nodeVerticalSeparationDistance
         } = me.mindmap.layoutConfig,
-        findRegion = findBottomestIntersectRegion.call(me , adjustRegion , adjustNodes) ;
+        findRegion = findBottomestIntersectRegionByInclusionPolicy.call(me , adjustRegion , adjustNodes) ;
+
+        if(findRegion){
+
+            setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustRegion.top) ;
+            
+        }
+    }
+
+    adjustNodeYByExclusionPolicy(node , adjustRegion , adjustNodes = []){
+
+        let me = this,
+        {
+            mindmap
+        } = me;
+
+        adjustRegion = adjustRegion || getRegion.call(mindmap , node) ;
+
+        let {
+            nodeVerticalSeparationDistance
+        } = me.mindmap.layoutConfig,
+        findRegion = findBottomestIntersectRegionByExclusionPolicy.call(me , adjustRegion , adjustNodes) ;
 
         if(findRegion){
 

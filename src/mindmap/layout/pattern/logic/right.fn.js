@@ -140,20 +140,15 @@
 
       setX(childNode , right) ;
 
-      let previousSiblingNode = childNodes[i - 1] ;
+      let previousSiblingNode = childNodes[i - 1];
 
       if(previousSiblingNode){
 
-        let nodeRegion = getSelfRegion(childNode),
-            previousSiblingNodeRegion = getSelfRegion(previousSiblingNode);
-
-        setY(childNode , previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance) ;
+        setY(childNode , getSelfRegion(previousSiblingNode).bottom + nodeVerticalSeparationDistance) ;
         
       }else{
 
         setY(childNode , top) ;
-
-        layoutedChildRegions.adjustNodeY(childNode) ;
       }
 
       layout.call(me , childNode , layoutedChildRegions) ;
@@ -175,7 +170,7 @@
 
         }
 
-        layoutedChildRegions.adjustNodeY(node , getDescendantRegion(node) , getDescendantNodes(node)) ;
+        layoutedChildRegions.adjustNodeYByExclusionPolicy(node , getDescendantRegion(node) , getDescendantNodes(node)) ;
 
         layoutedChildRegions.add(node , true) ;
       
@@ -190,7 +185,7 @@
 
       if(childrenHeight < nodeHeight){
   
-        layoutedChildRegions.adjustNodeY(node) ;
+        layoutedChildRegions.adjustNodeYByExclusionPolicy(node) ;
       }
       
       layoutedChildRegions.add(node) ;
