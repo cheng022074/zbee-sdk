@@ -147,17 +147,8 @@
         let nodeRegion = getSelfRegion(childNode),
             previousSiblingNodeRegion = getSelfRegion(previousSiblingNode);
 
-        if(getWidth(previousSiblingNodeRegion) >= getWidth(nodeRegion)){
-
-          setY(childNode , previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance) ;
+        setY(childNode , previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance) ;
         
-        }else{
-
-          setY(childNode , previousSiblingNodeRegion.bottom + nodeVerticalSeparationDistance) ;
-
-          layoutedChildRegions.adjustNodeY(childNode) ;
-        }
-
       }else{
 
         setY(childNode , top) ;
