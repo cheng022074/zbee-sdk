@@ -182,11 +182,9 @@
 
           setOffsetY(childNode , offsetY) ;
 
-          layoutedChildRegions.add(childNode , true) ;
-
         }
 
-        layoutedChildRegions.adjustNodeY(node , getChildRegion(node) , childNodes) ;
+        layoutedChildRegions.adjustNodeY(node , getDescendantRegion(node) , getDescendantNodes(node)) ;
 
         layoutedChildRegions.add(node , true) ;
       

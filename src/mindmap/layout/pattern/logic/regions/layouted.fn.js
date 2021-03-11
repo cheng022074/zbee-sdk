@@ -83,7 +83,15 @@ class main{
 
         if(findRegion){
 
-            setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustRegion.top) ;
+            if(node.id === 'node-14'){
+
+
+            }else{
+
+                setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustRegion.top) ;
+            }
+
+            
         }
     }
 
