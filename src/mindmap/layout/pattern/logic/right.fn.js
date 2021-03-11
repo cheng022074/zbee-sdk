@@ -153,7 +153,7 @@
 
       layout.call(me , childNode , layoutedChildRegions) ;
 
-      layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getChildRegion(childNode) , childNodes.slice(0 , i)) ;
+      layoutedChildRegions.adjustNodeYByExclusionPolicy(childNode , getDescendantRegion(childNode) , getDescendantNodes(childNode)) ;
 
       layoutedChildRegions.add(childNode , true) ;
     }
