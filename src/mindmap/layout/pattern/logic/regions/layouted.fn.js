@@ -12,9 +12,47 @@
  * 
  * @import is.number
  * 
+ * @import getChildNodes from ......nodes.child scoped
+ * 
+ * @import isDescendantNode from mindmap.node.is.descendant
+ * 
  * @param {Mindmap} mindmap 脑图 SDK 实例
  * 
  */
+
+ function findBottomestIntersectRegion(node , region){
+
+    let findRegions = [],
+        me = this,
+        {
+            mindmap,
+            nodeRegions
+        } = me;
+
+    nodeRegions.forEach((registerRegion , registerNode) => {
+
+        if(isDescendantNode.call(mindmap , node , registerNode)){
+
+            return ;
+        }
+
+        if(intersect(registerRegion , region)){
+
+            findRegions.push(registerRegion) ;
+        }
+
+    }) ;
+
+    if(findRegions.length){
+
+        return findRegions.sort(({
+            bottom:bottom1,
+        } , {
+            bottom:bottom2
+        }) => bottom2 - bottom1)[0];
+
+    }
+}
 
 class main{
 
@@ -22,62 +60,37 @@ class main{
 
         let me = this ;
 
-        me.regions = [] ;
+        me.nodeRegions = new Map() ;
 
         me.mindmap = mindmap ;
     }
 
-    adjustNodeY(node , region){
+    adjustNodeY(node , adjustNode){
 
         let me = this,
         {
             mindmap
         } = me;
 
-        region = region || getRegion.call(mindmap , node) ;
+        adjustNode = adjustNode || node ;
 
         let {
             nodeVerticalSeparationDistance
         } = me.mindmap.layoutConfig,
-        findRegion = me.findBottomestIntersectRegion(region) ;
+        adjustNodeRegion = getRegion.call(mindmap , adjustNode),
+        findRegion = findBottomestIntersectRegion.call(me , adjustNode , adjustNodeRegion) ;
 
         if(findRegion){
 
-            setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - region.top) ;
+            setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustNodeRegion.top) ;
         }
     }
 
-    findBottomestIntersectRegion(findRegion){
-
-        let findRegions = [],
-            {
-                regions
-            } = this;
-
-        for(let region of regions){
-
-            if(intersect(region , findRegion)){
-
-                findRegions.push(region) ;
-            }
-        }
-
-        if(findRegions.length){
-
-            return findRegions.sort(({
-                bottom:bottom1,
-            } , {
-                bottom:bottom2
-            }) => bottom2 - bottom1)[0];
-
-        }
-    }
-
-    add(node){
+    add(node , isRecursive = false){
 
         let me = this,
         {
-            regions,
+            nodeRegions,
             mindmap
         } = me,
         {
@@ -90,7 +103,17 @@ class main{
             region.left -= childRegionCompensateLeft ;
         }
 
-        regions.push(region) ;
+        nodeRegions.set(node , region) ;
+
+        if(isRecursive){
+
+            let childNodes = getChildNodes(node) ;
+
+            for(let childNode of childNodes){
+
+                me.add(childNode , isRecursive) ;
+            }
+        }
     }
 }
 
