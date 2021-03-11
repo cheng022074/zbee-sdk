@@ -20,7 +20,7 @@
  * 
  */
 
- function findBottomestIntersectRegion(region){
+ function findBottomestIntersectRegion(region , nodes){
 
     let findRegions = [],
         me = this,
@@ -28,7 +28,12 @@
             nodeRegions
         } = me;
 
-    nodeRegions.forEach(registerRegions => {
+    nodeRegions.forEach((registerRegions , registerNode) => {
+
+        if(nodes.includes(registerNode)){
+
+            return ;
+        }
 
        for(let registerRegion of registerRegions){
 
@@ -62,7 +67,7 @@ class main{
         me.mindmap = mindmap ;
     }
 
-    adjustNodeY(node , adjustRegion){
+    adjustNodeY(node , adjustRegion , adjustNodes = []){
 
         let me = this,
         {
@@ -74,14 +79,9 @@ class main{
         let {
             nodeVerticalSeparationDistance
         } = me.mindmap.layoutConfig,
-        findRegion = findBottomestIntersectRegion.call(me , adjustRegion) ;
+        findRegion = findBottomestIntersectRegion.call(me , adjustRegion , adjustNodes) ;
 
         if(findRegion){
-
-            if(node.id === 'node08'){
-
-                console.log('node-8' , findRegion) ;
-            }
 
             setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustRegion.top) ;
         }
@@ -98,7 +98,10 @@ class main{
             childRegionCompensateLeft
         } = mindmap.layoutConfig,
         childRegion = getChildRegion.call(mindmap , node),
-        regions = [];
+        regions = [{
+            ...getRegion.call(mindmap , node),
+            node
+        }];
 
         if(getWidth(childRegion) !== 0){
 
@@ -111,6 +114,7 @@ class main{
                 ...childRegion,
                 node
             }) ;
+        
         }
 
         nodeRegions.set(node , regions) ;

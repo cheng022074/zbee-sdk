@@ -186,7 +186,7 @@
 
         }
 
-        layoutedChildRegions.adjustNodeY(node , getChildRegion(node)) ;
+        layoutedChildRegions.adjustNodeY(node , getChildRegion(node) , childNodes) ;
 
         layoutedChildRegions.add(node , true) ;
       
