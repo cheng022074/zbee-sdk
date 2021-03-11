@@ -12,7 +12,7 @@
  * 
  * @import is.number
  * 
- * @import getChildNodes from ......nodes.child scoped
+ * @import getChildNodes from ......nodes.child
  * 
  * @import getWidth from math.region.width
  * 
@@ -61,7 +61,8 @@ function findBottomestIntersectRegionByInclusionPolicy(region , nodes){
     let findRegions = [],
         me = this,
         {
-            nodeRegions
+            nodeRegions,
+            mindmap
         } = me;
 
     for(let node of nodes){
@@ -74,6 +75,13 @@ function findBottomestIntersectRegionByInclusionPolicy(region , nodes){
 
                 findRegions.push(registerRegion) ;
             }
+        }
+
+        let findRegion = findBottomestIntersectRegionByInclusionPolicy.call(me , region , getChildNodes.call(mindmap , node)) ;
+
+        if(findRegion){
+
+            findRegions.push(findRegion) ;            
         }
     }
 
@@ -175,7 +183,7 @@ class main{
 
         if(isRecursive){
 
-            let childNodes = getChildNodes(node) ;
+            let childNodes = getChildNodes.call(mindmap , node) ;
 
             for(let childNode of childNodes){
 

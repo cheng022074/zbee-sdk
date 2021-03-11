@@ -39,7 +39,7 @@
  * 
  * @import from from math.region.from
  * 
- * @import createLayoutedRegions from .regions.layouted scoped
+ * @import createLayoutedRegions from .regions.layouted
  * 
  * @param {data.Record} node 布局节点
  * 
@@ -153,7 +153,7 @@
 
       layout.call(me , childNode , layoutedChildRegions) ;
 
-      layoutedChildRegions.adjustNodeYByExclusionPolicy(childNode , getDescendantRegion(childNode) , getDescendantNodes(childNode)) ;
+      layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getDescendantRegion(childNode) , childNodes.slice(0 , i)) ;
 
       layoutedChildRegions.add(childNode , true) ;
     }
