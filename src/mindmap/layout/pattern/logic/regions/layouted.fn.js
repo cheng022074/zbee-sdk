@@ -14,27 +14,21 @@
  * 
  * @import getChildNodes from ......nodes.child scoped
  * 
- * @import isDescendantNode from mindmap.node.is.descendant
+ * @import getWidth from math.region.width
  * 
  * @param {Mindmap} mindmap 脑图 SDK 实例
  * 
  */
 
- function findBottomestIntersectRegion(node , region){
+ function findBottomestIntersectRegion(region){
 
     let findRegions = [],
         me = this,
         {
-            mindmap,
             nodeRegions
         } = me;
 
-    nodeRegions.forEach((registerRegion , registerNode) => {
-
-        if(isDescendantNode.call(mindmap , node , registerNode)){
-
-            return ;
-        }
+    nodeRegions.forEach(registerRegion => {
 
         if(intersect(registerRegion , region)){
 
@@ -65,24 +59,23 @@ class main{
         me.mindmap = mindmap ;
     }
 
-    adjustNodeY(node , adjustNode){
+    adjustNodeY(node , adjustRegion){
 
         let me = this,
         {
             mindmap
         } = me;
 
-        adjustNode = adjustNode || node ;
+        adjustRegion = adjustRegion || getRegion.call(mindmap , node) ;
 
         let {
             nodeVerticalSeparationDistance
         } = me.mindmap.layoutConfig,
-        adjustNodeRegion = getRegion.call(mindmap , adjustNode),
-        findRegion = findBottomestIntersectRegion.call(me , adjustNode , adjustNodeRegion) ;
+        findRegion = findBottomestIntersectRegion.call(me , adjustRegion) ;
 
         if(findRegion){
 
-            setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustNodeRegion.top) ;
+            setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustRegion.top) ;
         }
     }
 
@@ -97,6 +90,11 @@ class main{
             childRegionCompensateLeft
         } = mindmap.layoutConfig,
         region = getChildRegion.call(mindmap , node) ;
+
+        if(getWidth(region) === 0){
+
+            return ;
+        }
 
         if(isNumber(childRegionCompensateLeft)){
 

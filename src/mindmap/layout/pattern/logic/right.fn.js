@@ -172,12 +172,38 @@
         childrenHeight = getHeight(childRegion),
         nodeHeight = getHeight(nodeRegion);
 
-    setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
+    if(childRegion.top === nodeRegion.top){
 
-    if(childrenHeight < nodeHeight){
+      if(childrenHeight !== nodeHeight){
 
-      layoutedChildRegions.adjustNodeY(node) ;
+        let offsetY = nodeRegion.top - (childrenHeight - nodeHeight) / 2 - childRegion.top ;
+        
+        for(let childNode of childNodes){
+
+          setOffsetY(childNode , offsetY) ;
+
+        }
+
+        layoutedChildRegions.adjustNodeY(node , getChildRegion(node)) ;
+
+        layoutedChildRegions.add(node , true) ;
+      
+      }else{
+
+        layoutedChildRegions.add(node) ;
+      }
+
+    }else{
+
+      setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
+
+      if(childrenHeight < nodeHeight){
+  
+        layoutedChildRegions.adjustNodeY(node) ;
+      }
+      
+      layoutedChildRegions.add(node) ;
     }
 
-    layoutedChildRegions.add(node) ;
+    
  }
