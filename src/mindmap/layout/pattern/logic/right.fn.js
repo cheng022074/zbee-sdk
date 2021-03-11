@@ -161,7 +161,7 @@
 
           let region = getChildRegion(childNode) ;
 
-                      region.left -= 145 ;
+                      region.left -= 45 ;
 
           layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , region , adjustNodes) ;
 
@@ -173,7 +173,7 @@
 
                   let region = getChildRegion(descendantNode) ;
 
-                  region.left -= 145 ;
+                  region.left -= 45 ;
 
                   layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , region , adjustNodes) ;
               
