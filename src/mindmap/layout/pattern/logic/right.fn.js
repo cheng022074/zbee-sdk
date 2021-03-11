@@ -151,21 +151,6 @@
       setY(childNode , top) ;
     }
 
-    if(i === 0){
-
-      let {
-          y:oldY
-      } = childNode ;
-
-      layoutedChildRegions.adjustNodeYByExclusionPolicy(childNode , getDescendantRegion(childNode) , getDescendantNodes(childNode)) ;
-
-      if(oldY !== childNode.y)
-
-      console.log(oldY , childNode.y) ;
-
-     // layoutedChildRegions.adjustNodeYByExclusionPolicy(childNode , getDescendantRegion(childNode) , getDescendantNodes(childNode)) ;
-    }
-
     layout.call(me , childNode , layoutedChildRegions) ;
 
     if(i !== 0){
