@@ -152,44 +152,25 @@
       }
 
       layout.call(me , childNode , layoutedChildRegions) ;
+
+      layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getChildRegion(childNode) , childNodes.slice(0 , i)) ;
+
+      layoutedChildRegions.add(childNode , true) ;
     }
 
     let childRegion = getChildRegion(node),
         childrenHeight = getHeight(childRegion),
         nodeHeight = getHeight(nodeRegion);
 
-    if(childRegion.top === nodeRegion.top){
+    if(childrenHeight !== nodeHeight){
 
-      if(childrenHeight !== nodeHeight){
-
-        let offsetY = nodeRegion.top - (childrenHeight - nodeHeight) / 2 - childRegion.top ;
-        
-        for(let childNode of childNodes){
-
-          setOffsetY(childNode , offsetY) ;
-
-        }
-
-        layoutedChildRegions.adjustNodeYByExclusionPolicy(node , getDescendantRegion(node) , getDescendantNodes(node)) ;
-
-        layoutedChildRegions.add(node , true) ;
+      let offsetY = nodeRegion.top - (childrenHeight - nodeHeight) / 2 - childRegion.top ;
       
-      }else{
+      for(let childNode of childNodes){
 
-        layoutedChildRegions.add(node) ;
+        setOffsetY(childNode , offsetY) ;
+
       }
 
-    }else{
-
-      setY(node , childRegion.top + (childrenHeight - nodeHeight) / 2 , false) ;
-
-      if(childrenHeight < nodeHeight){
-  
-        layoutedChildRegions.adjustNodeYByExclusionPolicy(node) ;
-      }
-      
-      layoutedChildRegions.add(node) ;
     }
-
-    
  }
