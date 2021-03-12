@@ -23,6 +23,8 @@
  * 
  * @import getChildRegion from ....node.region.child.logic scoped
  * 
+ * @import getCompensateLeftRegion from ....node.region.child.logic.compensate.left scoped
+ * 
  * @import getHeight from math.region.height
  * 
  * @import getWidth from math.region.width
@@ -159,11 +161,7 @@
 
       if(getChildNodes(childNode).length){
 
-          let region = getChildRegion(childNode) ;
-
-          region.left -= 45 ;
-
-          layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , region , adjustNodes) ;
+          layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getCompensateLeftRegion(childNode) , adjustNodes) ;
 
           let descendantNodes = getDescendantNodes(childNode) ;
 
@@ -171,15 +169,11 @@
 
               if(getChildNodes(descendantNode).length){
 
-                  let region = getChildRegion(descendantNode) ;
-
-                  region.left -= 45 ;
-
-                  layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , region , adjustNodes) ;
+                layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getCompensateLeftRegion(descendantNode) , adjustNodes) ;
               
               }
           }
-      
+
       }else{
 
         layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getSelfRegion(childNode) , adjustNodes) ;

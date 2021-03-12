@@ -2,7 +2,7 @@
  * 
  * 增加向左补偿偏移的子范围
  * 
- * @import getRegion from ..logic scoped
+ * @import getRegion from ....logic scoped
  * 
  * @import getWidth from math.region.width
  * 
