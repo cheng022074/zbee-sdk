@@ -174,11 +174,10 @@
               }
           }
 
-      }else{
-
-        layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getSelfRegion(childNode) , adjustNodes) ;
-
       }
+
+      layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getSelfRegion(childNode) , adjustNodes) ;
+
     }
 
     layoutedChildRegions.add(childNode , true) ;
