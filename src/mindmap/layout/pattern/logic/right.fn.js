@@ -189,19 +189,49 @@
 
     layoutedChildRegions.add(childNode , true) ;
   }
+  
+  if(length){
 
-  let childRegion = getChildRegion(node),
-      childrenHeight = getHeight(childRegion),
+    let childrenHeight,
+        nodeHeight,
+        nodeTop,
+        childrenTop;
+
+    if(length === 1){
+
+      let nodeRegion = from(node),
+          childRegion = from(childNodes[0]);
+
+      nodeTop = nodeRegion.top ;
+
+      childrenTop = childRegion.top ;
+
+      childrenHeight = getHeight(childRegion);
+
       nodeHeight = getHeight(nodeRegion);
+       
+    }else{
 
-  if(childrenHeight !== nodeHeight){
+      let childRegion = getChildRegion(node) ;
 
-    let offsetY = nodeRegion.top - (childrenHeight - nodeHeight) / 2 - childRegion.top ;
-    
+      nodeTop = nodeRegion.top ;
+
+      childrenTop = childRegion.top ;
+
+      childrenHeight = getHeight(childRegion);
+
+      nodeHeight = getHeight(nodeRegion);
+    }
+
+    let offsetY = nodeTop - (childrenHeight - nodeHeight) / 2 - childrenTop ;
+  
     for(let childNode of childNodes){
 
       setOffsetY(childNode , offsetY) ;
 
     }
+
   }
+
+
 }
