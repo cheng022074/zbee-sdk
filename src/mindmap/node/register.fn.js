@@ -6,6 +6,8 @@
  * 
  * @param {data.Record} node 节点
  * 
+ * @return {data.Record} 处理完的节点对象
+ * 
  */
 
 let {
