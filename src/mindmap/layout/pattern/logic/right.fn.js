@@ -161,7 +161,7 @@
 
           let region = getChildRegion(childNode) ;
 
-                      region.left -= 45 ;
+          region.left -= 45 ;
 
           layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , region , adjustNodes) ;
 
@@ -180,11 +180,12 @@
               }
           }
       
-      }
-  }else{
+      }else{
 
-    layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getSelfRegion(childNode) , adjustNodes) ;
-}
+        layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getSelfRegion(childNode) , adjustNodes) ;
+
+      }
+    }
 
     layoutedChildRegions.add(childNode , true) ;
   }
