@@ -118,12 +118,15 @@ class main{
 
         let {
             nodeVerticalSeparationDistance
-        } = me.mindmap.layoutConfig,
-        findRegion = findBottomestIntersectRegionByInclusionPolicy.call(me , adjustRegion , adjustNodes) ;
+        } = me.mindmap.layoutConfig ;
+
+        adjustRegion.top -= nodeVerticalSeparationDistance ;
+
+        let findRegion = findBottomestIntersectRegionByInclusionPolicy.call(me , adjustRegion , adjustNodes) ;
 
         if(findRegion){
 
-            setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustRegion.top) ;
+            setOffsetY.call(mindmap , node , findRegion.bottom - adjustRegion.top) ;
             
         }
     }
