@@ -7,6 +7,8 @@
  * 
  * @import getDescendantNodes from ....nodes.descendant scoped
  * 
+ * @import select from ..select scoped
+ * 
  * @param {mixed} node 脑图节点
  * 
  * 
@@ -15,7 +17,8 @@
 node = from(node) ;
 
 let nodes = getDescendantNodes(node),
-    isCollapse = false;
+    isCollapse = false,
+    isSelectedNodeHidden = false;
 
 for(let node of nodes){
 
@@ -32,9 +35,21 @@ for(let node of nodes){
 
     node.expanded = false ;
 
+    if(node.selected){
+
+        isSelectedNodeHidden = true ;
+
+        node.selected = false ;
+    }
+
     node.hidden = true ;
 }
 
 node.expanded = false ;
+
+if(isSelectedNodeHidden){
+
+    return isCollapse || select(node) ;
+}
 
 return isCollapse ;
