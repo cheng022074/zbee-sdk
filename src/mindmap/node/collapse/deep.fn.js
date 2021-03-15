@@ -25,7 +25,8 @@ for(let node of nodes){
     let {
         children,
         expanded,
-        hidden
+        hidden,
+        selected
     } = node ;
 
     if(!hidden && children.length && expanded){
@@ -35,7 +36,7 @@ for(let node of nodes){
 
     node.expanded = false ;
 
-    if(node.selected){
+    if(selected){
 
         isSelectedNodeHidden = true ;
 
@@ -49,7 +50,9 @@ node.expanded = false ;
 
 if(isSelectedNodeHidden){
 
-    return isCollapse || select(node) ;
+    select(node) ;
+
+    return isCollapse ;
 }
 
 return isCollapse ;
