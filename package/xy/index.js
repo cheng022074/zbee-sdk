@@ -44163,7 +44163,7 @@ exports['src::mindmap.node.collapse.deep'] = (() => {
 
 
 
-    const var_current_scope_1615339392419 = new Map();
+    const var_current_scope_1615782749405 = new Map();
 
     return function(node) {
 
@@ -44171,11 +44171,12 @@ exports['src::mindmap.node.collapse.deep'] = (() => {
 
 
 
-        if (!var_current_scope_1615339392419.has(this)) {
+        if (!var_current_scope_1615782749405.has(this)) {
 
-            var_current_scope_1615339392419.set(this, (() => {
+            var_current_scope_1615782749405.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
                 const getDescendantNodes = include('src::mindmap.nodes.descendant').bind(this);
+                const select = include('src::mindmap.node.select').bind(this);
 
                 function main(node) {
 
@@ -44188,6 +44189,8 @@ exports['src::mindmap.node.collapse.deep'] = (() => {
                      * 
                      * @import getDescendantNodes from ....nodes.descendant scoped
                      * 
+                     * @import select from ..select scoped
+                     * 
                      * @param {mixed} node 脑图节点
                      * 
                      * 
@@ -44196,14 +44199,16 @@ exports['src::mindmap.node.collapse.deep'] = (() => {
                     node = from(node);
 
                     let nodes = getDescendantNodes(node),
-                        isCollapse = false;
+                        isCollapse = false,
+                        isSelectedNodeHidden = false;
 
                     for (let node of nodes) {
 
                         let {
                             children,
                             expanded,
-                            hidden
+                            hidden,
+                            selected
                         } = node;
 
                         if (!hidden && children.length && expanded) {
@@ -44213,10 +44218,24 @@ exports['src::mindmap.node.collapse.deep'] = (() => {
 
                         node.expanded = false;
 
+                        if (selected) {
+
+                            isSelectedNodeHidden = true;
+
+                            node.selected = false;
+                        }
+
                         node.hidden = true;
                     }
 
                     node.expanded = false;
+
+                    if (isSelectedNodeHidden) {
+
+                        select(node);
+
+                        return isCollapse;
+                    }
 
                     return isCollapse;
 
@@ -44227,7 +44246,7 @@ exports['src::mindmap.node.collapse.deep'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1615339392419.get(this);
+        const main = var_current_scope_1615782749405.get(this);
 
 
 
