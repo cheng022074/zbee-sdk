@@ -35,8 +35,6 @@
  * 
  * @import getY from math.region.y
  * 
- * @import add from array.add.sort
- * 
  * @import contains from math.region.contains.x
  * 
  * @import from from math.region.from
@@ -161,7 +159,7 @@
 
       if(getChildNodes(childNode).length){
 
-          layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getCompensateLeftRegion(childNode) , adjustNodes) ;
+          layoutedChildRegions.adjust(childNode , getCompensateLeftRegion(childNode) , getFindScopeNodes(adjustNodes)) ;
 
           let descendantNodes = getDescendantNodes(childNode) ;
 
@@ -169,14 +167,14 @@
 
               if(getChildNodes(descendantNode).length){
 
-                layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getCompensateLeftRegion(descendantNode) , adjustNodes) ;
+                layoutedChildRegions.adjust(childNode , getCompensateLeftRegion(descendantNode) , getFindScopeNodes(adjustNodes)) ;
               
               }
           }
 
       }
 
-      layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode , getSelfRegion(childNode) , adjustNodes) ;
+      layoutedChildRegions.adjust(childNode , getSelfRegion(childNode) , getFindScopeNodes(adjustNodes)) ;
 
     }
 
@@ -225,6 +223,16 @@
     }
 
   }
+}
 
+function getFindScopeNodes(nodes){
 
+  let scopeNodes = [] ;
+
+  for(let node of nodes){
+
+    scopeNodes.push(node , ...getDescendantNodes(node)) ;
+  }
+
+  return scopeNodes ;
 }

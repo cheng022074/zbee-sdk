@@ -12,63 +12,21 @@
  * 
  * @import is.number
  * 
- * @import getChildNodes from ......nodes.child
+ * @import getDescendantNodes from ......nodes.descendant
  * 
  * @import getWidth from math.region.width
  * 
- * @import add from array.add.sort
+ * @import add from array.sorted.add
  * 
- * @import is.number
- * 
- * @import remove from array.remove.index
+ * @import remove from array.remove
  * 
  * @param {Mindmap} mindmap 脑图 SDK 实例
  * 
  */
 
-function findBottomestIntersectRegionByInclusionPolicy(region , nodes){
-
-    let findRegions = [],
-        me = this,
-        {
-            nodeRegions,
-            mindmap
-        } = me;
-
-    for(let node of nodes){
-
-        let registerRegions = nodeRegions.get(node) ;
-
-        for(let registerRegion of registerRegions){
-
-            if(intersect(registerRegion , region)){
-
-                findRegions.push(registerRegion) ;
-            }
-        }
-
-        let findRegion = findBottomestIntersectRegionByInclusionPolicy.call(me , region , getChildNodes.call(mindmap , node)) ;
-
-        if(findRegion){
-
-            findRegions.push(findRegion) ;            
-        }
-    }
-
-    if(findRegions.length){
-
-        return findRegions.sort(({
-            bottom:bottom1,
-        } , {
-            bottom:bottom2
-        }) => bottom2 - bottom1)[0];
-
-    }
-}
-
 function RegionSearcherRegionSorted(region1 , region2){
 
-    return region1.bottom - region2.bottom ;
+    return region2.bottom - region1.bottom ;
 }
 
 function RegionSearcherAddRegion(id , region){
@@ -81,18 +39,24 @@ function RegionSearcherAddRegion(id , region){
     let {
         regionList,
         regionMap
-    } = this,
-    index = regionMap[id];
+    } = this;
 
-    if(isNumber(index)){
+    if(regionMap.has(id)){
 
-        remove(regionList , index) ;
+        remove(regionList , regionMap.get(id)) ;
     }
 
-    regionMap[id] = add(regionList , region , RegionSearcherRegionSorted) ;
+    add(regionList , region , RegionSearcherRegionSorted) ;
+
+    regionMap.set(id , region) ;
 }
 
-class RegionSearcher{
+const {
+    max,
+    min
+} = Math ;
+
+class MaxBottomRegionFinder{
 
     constructor(){
 
@@ -100,29 +64,56 @@ class RegionSearcher{
 
         me.regionList = [];
 
-        me.regionMap = {} ;
+        me.regionMap = new Map() ;
     }
 
-    add(node){
+    add(mindmap , node){
 
         let me = this,
-        {
-            mindmap
-        } = me,
         {
             id
         } = node;
 
-        RegionSearcherAddRegion.call(me , id , getRegion.call(mindmap , node)) ;
+        RegionSearcherAddRegion.call(me , id , {
+            ...getRegion.call(mindmap , node),
+            node
+        }) ;
 
-        RegionSearcherAddRegion.call(me , `${id}-children` , getChildRegion.call(mindmap , node)) ;            
+        RegionSearcherAddRegion.call(me , `${id}-children` , {
+            ...getChildRegion.call(mindmap , node),
+            node
+        }) ;            
     }
 
-    find({
-        bottom
-    }){
+    find(region , scopeNodes){
 
-        // 返回匹配的范围信息
+        let {
+            regionList
+        } = this,
+        {
+            top
+        } = region;
+
+        for(let {
+            node,
+            ...regionItem
+        } of regionList){
+
+            if(!scopeNodes.includes(node)){
+
+                continue ;
+            }
+
+            if(top > regionItem.bottom){
+
+                break ;
+            }
+
+            if(intersect(region , regionItem)){
+
+                return regionItem ;
+            }
+        }
     }
 }
 
@@ -132,72 +123,51 @@ class main{
 
         let me = this ;
 
-        me.nodeRegions = new Map() ;
+        me.finder = new MaxBottomRegionFinder() ;
 
         me.mindmap = mindmap ;
     }
 
-    adjustNodeYByInclusionPolicy(node , adjustRegion , adjustNodes = []){
+    adjust(node , adjustRegion , scopeNodes){
 
         let me = this,
         {
-            mindmap
+            mindmap,
+            finder
         } = me;
 
         adjustRegion = adjustRegion || getRegion.call(mindmap , node) ;
 
-        let {
-            nodeVerticalSeparationDistance
-        } = me.mindmap.layoutConfig ;
-
-        adjustRegion.top -= nodeVerticalSeparationDistance ;
-
-        let findRegion = findBottomestIntersectRegionByInclusionPolicy.call(me , adjustRegion , adjustNodes) ;
+        let findRegion = finder.find(adjustRegion , scopeNodes) ;
 
         if(findRegion){
 
-            setOffsetY.call(mindmap , node , findRegion.bottom - adjustRegion.top) ;
+            let {
+                nodeVerticalSeparationDistance
+            } = me.mindmap.layoutConfig ;
+
+            setOffsetY.call(mindmap , node , findRegion.bottom - adjustRegion.top + nodeVerticalSeparationDistance) ;
+
+            return true ;
             
         }
+
+        return false ;
     }
 
     add(node){
 
-        let me = this,
-        {
-            nodeRegions,
-            mindmap
-        } = me,
-        {
-            childRegionCompensateLeft
-        } = mindmap.layoutConfig,
-        childRegion = getChildRegion.call(mindmap , node),
-        regions = [{
-            ...getRegion.call(mindmap , node),
-            node
-        }];
+        let {
+            mindmap,
+            finder
+        } = this,
+        descendantNodes = getDescendantNodes.call(mindmap , node) ;
 
-        if(getWidth(childRegion) !== 0){
+        finder.add(mindmap , node) ;
 
-            if(isNumber(childRegionCompensateLeft)){
+        for(let descendantNode of descendantNodes){
 
-                childRegion.left -= childRegionCompensateLeft ;
-            }
-    
-            regions.push({
-                ...childRegion,
-                node
-            }) ;
-        
-        }
-
-        nodeRegions.set(node , regions) ;
-
-        let childNodes = getChildNodes.call(mindmap , node) ;
-
-        for(let childNode of childNodes){
-
-            me.add(childNode) ;
+            finder.add(mindmap , descendantNode) ;
         }
     }
 }
