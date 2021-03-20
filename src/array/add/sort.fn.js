@@ -20,11 +20,17 @@
     if(length === 0){
 
         data.push(item) ;
-    
-    }else{
 
-        data.splice(getInsertIndex(data , item , sortFn , 0 , data.length - 1) , 0 , item) ;
+        return 0 ;
+    
     }
+
+    let index = getInsertIndex(data , item , sortFn , 0 , data.length - 1) ;
+
+    data.splice(index , 0 , item) ;
+
+    return index ;
+    
  }
 
  function getInsertIndex(data , item , sortFn , start , end){
