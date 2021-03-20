@@ -20,42 +20,6 @@
  * 
  */
 
-function findBottomestIntersectRegionByExclusionPolicy(region , nodes){
-
-    let findRegions = [],
-        me = this,
-        {
-            nodeRegions
-        } = me;
-
-    nodeRegions.forEach((registerRegions , registerNode) => {
-
-        if(nodes.includes(registerNode)){
-
-            return ;
-        }
-
-       for(let registerRegion of registerRegions){
-
-            if(intersect(registerRegion , region)){
-
-                findRegions.push(registerRegion) ;
-            }
-       }
-
-    }) ;
-
-    if(findRegions.length){
-
-        return findRegions.sort(({
-            bottom:bottom1,
-        } , {
-            bottom:bottom2
-        }) => bottom2 - bottom1)[0];
-
-    }
-}
-
 function findBottomestIntersectRegionByInclusionPolicy(region , nodes){
 
     let findRegions = [],
