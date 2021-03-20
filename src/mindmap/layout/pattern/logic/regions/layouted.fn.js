@@ -8,13 +8,19 @@
  * 
  * @import setOffsetY from ......node.y.offset
  * 
- * @import getChildRegion from ......node.region.child.logic
+ * @import getChildRegion from ......node.region.child.logic.compensate.left
  * 
  * @import is.number
  * 
  * @import getChildNodes from ......nodes.child
  * 
  * @import getWidth from math.region.width
+ * 
+ * @import add from array.add.sort
+ * 
+ * @import is.number
+ * 
+ * @import remove from array.remove.index
  * 
  * @param {Mindmap} mindmap 脑图 SDK 实例
  * 
@@ -57,6 +63,66 @@ function findBottomestIntersectRegionByInclusionPolicy(region , nodes){
             bottom:bottom2
         }) => bottom2 - bottom1)[0];
 
+    }
+}
+
+function RegionSearcherRegionSorted(region1 , region2){
+
+    return region1.bottom - region2.bottom ;
+}
+
+function RegionSearcherAddRegion(id , region){
+
+    if(getWidth(region) === 0){
+
+        return ;
+    }
+
+    let {
+        regionList,
+        regionMap
+    } = this,
+    index = regionMap[id];
+
+    if(isNumber(index)){
+
+        remove(regionList , index) ;
+    }
+
+    regionMap[id] = add(regionList , region , RegionSearcherRegionSorted) ;
+}
+
+class RegionSearcher{
+
+    constructor(){
+
+        let me = this ;
+
+        me.regionList = [];
+
+        me.regionMap = {} ;
+    }
+
+    add(node){
+
+        let me = this,
+        {
+            mindmap
+        } = me,
+        {
+            id
+        } = node;
+
+        RegionSearcherAddRegion.call(me , id , getRegion.call(mindmap , node)) ;
+
+        RegionSearcherAddRegion.call(me , `${id}-children` , getChildRegion.call(mindmap , node)) ;            
+    }
+
+    find({
+        bottom
+    }){
+
+        // 返回匹配的范围信息
     }
 }
 
