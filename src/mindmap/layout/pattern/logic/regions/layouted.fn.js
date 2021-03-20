@@ -8,6 +8,8 @@
  * 
  * @import setOffsetY from ......node.y.offset
  * 
+ * @import setY from math.region.y
+ * 
  * @import getChildRegion from ......node.region.child.logic.compensate.left
  * 
  * @import is.number
@@ -54,7 +56,10 @@ function RegionSearcherAddRegion(id , region){
 const {
     max,
     min
-} = Math ;
+} = Math,
+{
+    assign
+} = Object;
 
 class MaxBottomRegionFinder{
 
@@ -85,11 +90,14 @@ class MaxBottomRegionFinder{
         }) ;            
     }
 
-    find(region , scopeNodes){
+    find(region , scopeNodes , nodeVerticalSeparationDistance){
 
-        let {
+        region = assign({} , region) ;
+
+        let me = this,
+        {
             regionList
-        } = this,
+        } = me,
         {
             top
         } = region;
@@ -111,7 +119,17 @@ class MaxBottomRegionFinder{
 
             if(intersect(region , regionItem)){
 
+                setY(region , regionItem.bottom + nodeVerticalSeparationDistance) ;
+
+                let findRegion = me.find(region , scopeNodes , nodeVerticalSeparationDistance) ;
+                
+                if(findRegion){
+
+                    return findRegion ;
+                }
+
                 return regionItem ;
+
             }
         }
     }
@@ -134,17 +152,16 @@ class main{
         {
             mindmap,
             finder
-        } = me;
+        } = me,
+        {
+            nodeVerticalSeparationDistance
+        } = me.mindmap.layoutConfig;
 
         adjustRegion = adjustRegion || getRegion.call(mindmap , node) ;
 
-        let findRegion = finder.find(adjustRegion , scopeNodes) ;
+        let findRegion = finder.find(adjustRegion , scopeNodes , nodeVerticalSeparationDistance) ;
 
         if(findRegion){
-
-            let {
-                nodeVerticalSeparationDistance
-            } = me.mindmap.layoutConfig ;
 
             setOffsetY.call(mindmap , node , findRegion.bottom - adjustRegion.top + nodeVerticalSeparationDistance) ;
 
