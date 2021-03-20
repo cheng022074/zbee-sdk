@@ -152,7 +152,7 @@ class main{
         }
     }
 
-    add(node , isRecursive = false){
+    add(node){
 
         let me = this,
         {
@@ -184,14 +184,11 @@ class main{
 
         nodeRegions.set(node , regions) ;
 
-        if(isRecursive){
+        let childNodes = getChildNodes.call(mindmap , node) ;
 
-            let childNodes = getChildNodes.call(mindmap , node) ;
+        for(let childNode of childNodes){
 
-            for(let childNode of childNodes){
-
-                me.add(childNode , isRecursive) ;
-            }
+            me.add(childNode) ;
         }
     }
 }

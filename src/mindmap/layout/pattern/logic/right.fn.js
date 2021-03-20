@@ -180,7 +180,7 @@
 
     }
 
-    layoutedChildRegions.add(childNode , true) ;
+    layoutedChildRegions.add(childNode) ;
   }
   
   if(length){
