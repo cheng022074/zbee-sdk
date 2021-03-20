@@ -131,27 +131,6 @@ class main{
         }
     }
 
-    adjustNodeYByExclusionPolicy(node , adjustRegion , adjustNodes = []){
-
-        let me = this,
-        {
-            mindmap
-        } = me;
-
-        adjustRegion = adjustRegion || getRegion.call(mindmap , node) ;
-
-        let {
-            nodeVerticalSeparationDistance
-        } = me.mindmap.layoutConfig,
-        findRegion = findBottomestIntersectRegionByExclusionPolicy.call(me , adjustRegion , adjustNodes) ;
-
-        if(findRegion){
-
-            setOffsetY.call(mindmap , node , findRegion.bottom + nodeVerticalSeparationDistance - adjustRegion.top) ;
-            
-        }
-    }
-
     add(node){
 
         let me = this,
