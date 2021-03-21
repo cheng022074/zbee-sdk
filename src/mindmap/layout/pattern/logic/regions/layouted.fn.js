@@ -54,10 +54,6 @@ function RegionSearcherAddRegion(id , region){
 }
 
 const {
-    max,
-    min
-} = Math,
-{
     assign
 } = Object;
 
@@ -90,7 +86,7 @@ class MaxBottomRegionFinder{
         }) ;            
     }
 
-    find(region , scopeNodes , nodeVerticalSeparationDistance){
+    find(region , scopeNodes){
 
         region = assign({} , region) ;
 
@@ -119,9 +115,9 @@ class MaxBottomRegionFinder{
 
             if(intersect(region , regionItem)){
 
-                setY(region , regionItem.bottom + nodeVerticalSeparationDistance) ;
+                setY(region , regionItem.bottom) ;
 
-                let findRegion = me.find(region , scopeNodes , nodeVerticalSeparationDistance) ;
+                let findRegion = me.find(region , scopeNodes) ;
                 
                 if(findRegion){
 
@@ -159,11 +155,13 @@ class main{
 
         adjustRegion = adjustRegion || getRegion.call(mindmap , node) ;
 
-        let findRegion = finder.find(adjustRegion , scopeNodes , nodeVerticalSeparationDistance) ;
+        adjustRegion.top -= nodeVerticalSeparationDistance ;
+
+        let findRegion = finder.find(adjustRegion , scopeNodes) ;
 
         if(findRegion){
 
-            setOffsetY.call(mindmap , node , findRegion.bottom - adjustRegion.top + nodeVerticalSeparationDistance) ;
+            setOffsetY.call(mindmap , node , findRegion.bottom - adjustRegion.top) ;
 
             return true ;
             
