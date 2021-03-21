@@ -1,11 +1,7 @@
 
 /**
  * 
- * 判断两个范围是否相交
- * 
- * @import horizontal from .intersect.horizontal
- * 
- * @import vertical from .intersect.vertical
+ * 判断两个范围是否水平相交
  * 
  * @param {object} region1 范围1
  * 
@@ -20,4 +16,4 @@
     max
  } = Math ;
 
-return vertical(region1 , region2) && horizontal(region1 , region2) ;
+return min(region1.right , region2.right) > max(region1.left , region2.left) ;

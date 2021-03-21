@@ -2,7 +2,7 @@
  * 
  * 已布局范围集合
  * 
- * @import intersect from math.region.intersect
+ * @import intersect from math.region.intersect.horizontal
  * 
  * @import getRegion from ......node.region.self
  * 
@@ -116,13 +116,6 @@ class MaxBottomRegionFinder{
             if(intersect(region , regionItem)){
 
                 setY(region , regionItem.bottom) ;
-
-                let findRegion = me.find(region , scopeNodes) ;
-                
-                if(findRegion){
-
-                    return findRegion ;
-                }
 
                 return regionItem ;
 
