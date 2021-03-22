@@ -10,8 +10,7 @@
  let me = this,
  {
     rootNode,
-    nodes,
-    visibilityNodes
+    nodes
  } = me,{
     children
  } = rootNode ;
@@ -24,8 +23,6 @@
  }
 
  nodes.clear() ;
-
- visibilityNodes.clear() ;
 
 
 
