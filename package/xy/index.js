@@ -34,91 +34,6 @@ exports['src::error'] = (() => {
 
 })();
 
-exports['src::array.add.sort'] = (() => {
-
-
-
-
-
-
-
-
-    /**
-     * 
-     * 以排序的形式添加数组项
-     * 
-     * @param {array} data 数组
-     * 
-     * @param {mixed} item 添加项
-     * 
-     * @param {function} sortFn 排序函数
-     * 
-     */
-
-    function main(data, item, sortFn) {
-
-        let {
-            length
-        } = data;
-
-        if (length === 0) {
-
-            data.push(item);
-
-        } else {
-
-            data.splice(getInsertIndex(data, item, sortFn, 0, data.length - 1), 0, item);
-        }
-    }
-
-    function getInsertIndex(data, item, sortFn, start, end) {
-
-        let index;
-
-        if (start === end) {
-
-            index = start;
-
-        } else {
-
-            index = start + Math.round((end - start) / 2);
-        }
-
-        let currentItem = data[index],
-            value = sortFn(currentItem, item);
-
-        if (value <= 0) {
-
-            start = index + 1;
-
-            if (start > end || sortFn(data[start], item) > 0) {
-
-                return index + 1;
-
-            }
-
-        } else if (value > 0) {
-
-            end = index - 1;
-
-            if (start > end) {
-
-                return index === 0 ? index : index - 1;
-            }
-        }
-
-        return getInsertIndex(data, item, sortFn, start, end);
-    }
-
-    return function(data, item, sortFn) {
-
-
-
-        return main.call(this, data, item, sortFn);
-    };
-
-})();
-
 exports['src::array.clear'] = (() => {
 
 
@@ -3205,6 +3120,97 @@ exports['src::array.remove'] = (() => {
 
 
         return main.call(this, data, ...items);
+    };
+
+})();
+
+exports['src::array.sorted.add'] = (() => {
+
+
+
+
+
+
+
+
+    /**
+     * 
+     * 以排序的形式添加数组项
+     * 
+     * @param {array} data 数组
+     * 
+     * @param {mixed} item 添加项
+     * 
+     * @param {function} sortFn 排序函数
+     * 
+     */
+
+    function main(data, item, sortFn) {
+
+        let {
+            length
+        } = data;
+
+        if (length === 0) {
+
+            data.push(item);
+
+            return 0;
+
+        }
+
+        let index = getInsertIndex(data, item, sortFn, 0, data.length - 1);
+
+        data.splice(index, 0, item);
+
+        return index;
+
+    }
+
+    function getInsertIndex(data, item, sortFn, start, end) {
+
+        let index;
+
+        if (start === end) {
+
+            index = start;
+
+        } else {
+
+            index = start + Math.round((end - start) / 2);
+        }
+
+        let currentItem = data[index],
+            value = sortFn(currentItem, item);
+
+        if (value <= 0) {
+
+            start = index + 1;
+
+            if (start > end || sortFn(data[start], item) > 0) {
+
+                return index + 1;
+
+            }
+
+        } else if (value > 0) {
+
+            end = index - 1;
+
+            if (start > end) {
+
+                return index === 0 ? index : index - 1;
+            }
+        }
+
+        return getInsertIndex(data, item, sortFn, start, end);
+    }
+
+    return function(data, item, sortFn) {
+
+
+
+        return main.call(this, data, item, sortFn);
     };
 
 })();
@@ -34469,7 +34475,7 @@ exports['src::math.region.height'] = (() => {
 
 })();
 
-exports['src::math.region.intersect'] = (() => {
+exports['src::math.region.intersect.horizontal'] = (() => {
 
 
 
@@ -34482,7 +34488,7 @@ exports['src::math.region.intersect'] = (() => {
 
         /**
          * 
-         * 判断两个范围是否相交
+         * 判断两个范围是否水平相交
          * 
          * @param {object} region1 范围1
          * 
@@ -34497,12 +34503,106 @@ exports['src::math.region.intersect'] = (() => {
             max
         } = Math;
 
-        return min(region1.bottom, region2.bottom) > max(region1.top, region2.top) && min(region1.right, region2.right) > max(region1.left, region2.left);
+        return min(region1.right, region2.right) > max(region1.left, region2.left);
 
     }
 
     return function(region1, region2) {
 
+
+
+        return main.call(this, region1, region2);
+    };
+
+})();
+
+exports['src::math.region.intersect.vertical'] = (() => {
+
+
+
+
+
+
+
+    function main(region1, region2) {
+
+
+        /**
+         * 
+         * 判断两个范围是否垂直相交
+         * 
+         * @param {object} region1 范围1
+         * 
+         * @param {object} region2 范围2
+         * 
+         * @return {boolean} 如果两者相交则返回 true , 否则返回 false
+         * 
+         */
+
+        const {
+            min,
+            max
+        } = Math;
+
+        return min(region1.bottom, region2.bottom) > max(region1.top, region2.top);
+
+    }
+
+    return function(region1, region2) {
+
+
+
+        return main.call(this, region1, region2);
+    };
+
+})();
+
+exports['src::math.region.intersect'] = (() => {
+
+    let horizontal, vertical;
+
+    let var_init_locked_1616376471271;
+
+
+
+    function main(region1, region2) {
+
+
+        /**
+         * 
+         * 判断两个范围是否相交
+         * 
+         * @import horizontal from .intersect.horizontal
+         * 
+         * @import vertical from .intersect.vertical
+         * 
+         * @param {object} region1 范围1
+         * 
+         * @param {object} region2 范围2
+         * 
+         * @return {boolean} 如果两者相交则返回 true , 否则返回 false
+         * 
+         */
+
+        const {
+            min,
+            max
+        } = Math;
+
+        return vertical(region1, region2) && horizontal(region1, region2);
+
+    }
+
+    return function(region1, region2) {
+
+
+        if (!var_init_locked_1616376471271) {
+
+            horizontal = include('src::math.region.intersect.horizontal');
+            vertical = include('src::math.region.intersect.vertical');
+
+            var_init_locked_1616376471271 = true;
+        }
 
 
         return main.call(this, region1, region2);
@@ -36131,27 +36231,28 @@ exports['src::file.write.json'] = (() => {
 
 exports['src::mindmap'] = (() => {
 
-    let mixin_1615339391713__1, extend, constructor, method_load, method_destroy, method_resize, method_selectNode, method_collapseNode, method_expandNode, method_getNode, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, isObject;
+    let mixin_1616392645943__1, extend, constructor, method_load, method_destroy, method_resize, method_findNodes, method_selectNode, method_collapseNode, method_expandNode, method_getNode, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, isObject;
 
-    let var_init_locked_1615339391714;
+    let var_init_locked_1616392645944;
 
-    let var_class_1615339391714;
+    let var_class_1616392645944;
 
 
 
-    let var_global_main_1615339391714;
+    let var_global_main_1616392645944;
 
     return function(config) {
 
 
-        if (!var_init_locked_1615339391714) {
+        if (!var_init_locked_1616392645944) {
 
-            mixin_1615339391713__1 = include('src::mixin.observable');
+            mixin_1616392645943__1 = include('src::mixin.observable');
             extend = include('src::class.empty')();
             constructor = include('src::mindmap.constructor');
             method_load = include('src::mindmap.load');
             method_destroy = include('src::mindmap.destroy');
             method_resize = include('src::mindmap.resize');
+            method_findNodes = include('src::mindmap.nodes.find');
             method_selectNode = include('src::mindmap.node.select');
             method_collapseNode = include('src::mindmap.node.collapse');
             method_expandNode = include('src::mindmap.node.expand');
@@ -36195,6 +36296,11 @@ exports['src::mindmap'] = (() => {
                 resize(...args) {
 
                     return method_resize.apply(this, args);
+
+                }
+                findNodes(...args) {
+
+                    return method_findNodes.apply(this, args);
 
                 }
                 selectNode(...args) {
@@ -36257,7 +36363,7 @@ exports['src::mindmap'] = (() => {
 
             }
 
-            var_class_1615339391714 = class extends main {
+            var_class_1616392645944 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -36272,7 +36378,7 @@ exports['src::mindmap'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1615339391714;
+                    return var_class_1616392645944;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -36282,15 +36388,15 @@ exports['src::mindmap'] = (() => {
 
             };
 
-            main = var_class_1615339391714;
+            main = var_class_1616392645944;
 
-            var_global_main_1615339391714 = main;
+            var_global_main_1616392645944 = main;
 
-            var_init_locked_1615339391714 = true;
+            var_init_locked_1616392645944 = true;
         }
 
 
-        return new var_global_main_1615339391714(config);
+        return new var_global_main_1616392645944(config);
     };
 
 })();
@@ -39330,7 +39436,7 @@ exports['src::mindmap.destroy'] = (() => {
 
 
 
-    const var_current_scope_1614503282538 = new Map();
+    const var_current_scope_1616392645997 = new Map();
 
     return function() {
 
@@ -39338,9 +39444,9 @@ exports['src::mindmap.destroy'] = (() => {
 
 
 
-        if (!var_current_scope_1614503282538.has(this)) {
+        if (!var_current_scope_1616392645997.has(this)) {
 
-            var_current_scope_1614503282538.set(this, (() => {
+            var_current_scope_1616392645997.set(this, (() => {
                 const remove = include('src::mindmap.node.delete').bind(this);
 
                 function main() {
@@ -39357,8 +39463,7 @@ exports['src::mindmap.destroy'] = (() => {
                     let me = this,
                         {
                             rootNode,
-                            nodes,
-                            visibilityNodes
+                            nodes
                         } = me,
                         {
                             children
@@ -39372,8 +39477,6 @@ exports['src::mindmap.destroy'] = (() => {
                     }
 
                     nodes.clear();
-
-                    visibilityNodes.clear();
 
 
 
@@ -39389,7 +39492,7 @@ exports['src::mindmap.destroy'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503282538.get(this);
+        const main = var_current_scope_1616392645997.get(this);
 
 
 
@@ -39466,6 +39569,102 @@ exports['src::mindmap.resize'] = (() => {
 
 
         return main.call(this, width, height);
+    };
+
+})();
+
+exports['src::mindmap.nodes.find'] = (() => {
+
+    let isString, isFunction, equals, get;
+
+    let var_init_locked_1616392646031;
+
+
+
+    const var_current_scope_1616392646031 = new Map();
+
+    return function(name, value) {
+
+
+        if (!var_init_locked_1616392646031) {
+
+            isString = include('src::is.string');
+            isFunction = include('src::is.function');
+            equals = include('src::data.equals');
+            get = include('src::object.value.get');
+
+            var_init_locked_1616392646031 = true;
+        }
+
+
+
+
+        if (!var_current_scope_1616392646031.has(this)) {
+
+            var_current_scope_1616392646031.set(this, (() => {
+                const data = include('src::mindmap.data').bind(this);
+
+                function main(name, value) {
+
+                    /**
+                     * 
+                     * 查找节点
+                     * 
+                     * @import is.string
+                     * 
+                     * @import is.function
+                     * 
+                     * @import equals from data.equals
+                     * 
+                     * @import get from object.value.get
+                     * 
+                     * @import data from ..data scoped
+                     * 
+                     * @param {mixed} name 节点属性值
+                     * 
+                     * @param {mixed} value 节点属性值
+                     * 
+                     */
+
+                    let {
+                        nodes
+                    } = this,
+                    findFn;
+
+                    if (isString(name)) {
+
+                        findFn = node => equals(get(node, name), value);
+
+                    } else if (isFunction(name)) {
+
+                        findFn = name;
+                    }
+
+                    let result = [];
+
+                    nodes.forEach(node => {
+
+                        if (findFn(node)) {
+
+                            result.push(data(node));
+                        }
+
+                    });
+
+                    return result;
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1616392646031.get(this);
+
+
+
+        return main.call(this, name, value);
     };
 
 })();
@@ -40222,38 +40421,37 @@ exports['src::mindmap.node.insert.new.after'] = (() => {
 
 exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
-    let getHeight, getWidth, setAnchorY, getAnchorY, getY, add, contains, from, createLayoutedRegions;
+    let getHeight, getWidth, setAnchorY, getAnchorY, getY, contains, from, createLayoutedRegions;
 
-    let var_init_locked_1616141967093;
+    let var_init_locked_1616240186050;
 
 
 
-    const var_current_scope_1616141967093 = new Map();
+    const var_current_scope_1616240186050 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1616141967093) {
+        if (!var_init_locked_1616240186050) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
             setAnchorY = include('src::math.region.y.anchor');
             getAnchorY = include('src::math.region.y.anchor');
             getY = include('src::math.region.y');
-            add = include('src::array.add.sort');
             contains = include('src::math.region.contains.x');
             from = include('src::math.region.from');
             createLayoutedRegions = include('src::mindmap.layout.pattern.logic.regions.layouted');
 
-            var_init_locked_1616141967093 = true;
+            var_init_locked_1616240186050 = true;
         }
 
 
 
 
-        if (!var_current_scope_1616141967093.has(this)) {
+        if (!var_current_scope_1616240186050.has(this)) {
 
-            var_current_scope_1616141967093.set(this, (() => {
+            var_current_scope_1616240186050.set(this, (() => {
                 const setX = include('src::mindmap.layout.node.x').bind(this);
                 const setY = include('src::mindmap.layout.node.y').bind(this);
                 const setOffsetY = include('src::mindmap.layout.node.y.offset').bind(this);
@@ -40302,8 +40500,6 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
                  * @import getAnchorY from math.region.y.anchor
                  * 
                  * @import getY from math.region.y
-                 * 
-                 * @import add from array.add.sort
                  * 
                  * @import contains from math.region.contains.x
                  * 
@@ -40429,7 +40625,7 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
                             if (getChildNodes(childNode).length) {
 
-                                layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode, getCompensateLeftRegion(childNode), adjustNodes);
+                                layoutedChildRegions.adjust(childNode, getCompensateLeftRegion(childNode), getFindScopeNodes(adjustNodes));
 
                                 let descendantNodes = getDescendantNodes(childNode);
 
@@ -40437,18 +40633,18 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
                                     if (getChildNodes(descendantNode).length) {
 
-                                        layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode, getCompensateLeftRegion(descendantNode), adjustNodes);
+                                        layoutedChildRegions.adjust(childNode, getCompensateLeftRegion(descendantNode), getFindScopeNodes(adjustNodes));
 
                                     }
                                 }
 
                             }
 
-                            layoutedChildRegions.adjustNodeYByInclusionPolicy(childNode, getSelfRegion(childNode), adjustNodes);
+                            layoutedChildRegions.adjust(childNode, getSelfRegion(childNode), getFindScopeNodes(adjustNodes));
 
                         }
 
-                        layoutedChildRegions.add(childNode, true);
+                        layoutedChildRegions.add(childNode);
                     }
 
                     if (length) {
@@ -40493,8 +40689,18 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
                         }
 
                     }
+                }
 
+                function getFindScopeNodes(nodes) {
 
+                    let scopeNodes = [];
+
+                    for (let node of nodes) {
+
+                        scopeNodes.push(node, ...getDescendantNodes(node));
+                    }
+
+                    return scopeNodes;
                 }
 
                 return main;
@@ -40502,7 +40708,7 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1616141967093.get(this);
+        const main = var_current_scope_1616240186050.get(this);
 
 
 
@@ -41251,124 +41457,155 @@ exports['src::mindmap.layout.node.region.child.logic.compensate.left'] = (() => 
 
 exports['src::mindmap.layout.pattern.logic.regions.layouted'] = (() => {
 
-    let intersect, getRegion, setOffsetY, getChildRegion, isNumber, getChildNodes, getWidth;
+    let intersect, getRegion, setOffsetY, setY, getChildRegion, isNumber, getDescendantNodes, getWidth, add, remove;
 
-    let var_init_locked_1616141967152;
+    let var_init_locked_1616376471345;
 
-    let var_class_1616141967152;
+    let var_class_1616376471345;
 
 
 
-    let var_global_main_1616141967152;
+    let var_global_main_1616376471345;
 
     return function(mindmap) {
 
 
-        if (!var_init_locked_1616141967152) {
+        if (!var_init_locked_1616376471345) {
 
-            intersect = include('src::math.region.intersect');
+            intersect = include('src::math.region.intersect.horizontal');
             getRegion = include('src::mindmap.layout.node.region.self');
             setOffsetY = include('src::mindmap.layout.node.y.offset');
-            getChildRegion = include('src::mindmap.layout.node.region.child.logic');
+            setY = include('src::math.region.y');
+            getChildRegion = include('src::mindmap.layout.node.region.child.logic.compensate.left');
             isNumber = include('src::is.number');
-            getChildNodes = include('src::mindmap.layout.nodes.child');
+            getDescendantNodes = include('src::mindmap.layout.nodes.descendant');
             getWidth = include('src::math.region.width');
+            add = include('src::array.sorted.add');
+            remove = include('src::array.remove');
 
             /**
              * 
              * 已布局范围集合
              * 
-             * @import intersect from math.region.intersect
+             * @import intersect from math.region.intersect.horizontal
              * 
              * @import getRegion from ......node.region.self
              * 
              * @import setOffsetY from ......node.y.offset
              * 
-             * @import getChildRegion from ......node.region.child.logic
+             * @import setY from math.region.y
+             * 
+             * @import getChildRegion from ......node.region.child.logic.compensate.left
              * 
              * @import is.number
              * 
-             * @import getChildNodes from ......nodes.child
+             * @import getDescendantNodes from ......nodes.descendant
              * 
              * @import getWidth from math.region.width
+             * 
+             * @import add from array.sorted.add
+             * 
+             * @import remove from array.remove
              * 
              * @param {Mindmap} mindmap 脑图 SDK 实例
              * 
              */
 
-            function findBottomestIntersectRegionByExclusionPolicy(region, nodes) {
+            function RegionSearcherRegionSorted(region1, region2) {
 
-                let findRegions = [],
-                    me = this,
-                    {
-                        nodeRegions
-                    } = me;
-
-                nodeRegions.forEach((registerRegions, registerNode) => {
-
-                    if (nodes.includes(registerNode)) {
-
-                        return;
-                    }
-
-                    for (let registerRegion of registerRegions) {
-
-                        if (intersect(registerRegion, region)) {
-
-                            findRegions.push(registerRegion);
-                        }
-                    }
-
-                });
-
-                if (findRegions.length) {
-
-                    return findRegions.sort(({
-                        bottom: bottom1,
-                    }, {
-                        bottom: bottom2
-                    }) => bottom2 - bottom1)[0];
-
-                }
+                return region2.bottom - region1.bottom;
             }
 
-            function findBottomestIntersectRegionByInclusionPolicy(region, nodes) {
+            function RegionSearcherAddRegion(id, region) {
 
-                let findRegions = [],
-                    me = this,
-                    {
-                        nodeRegions,
-                        mindmap
-                    } = me;
+                if (getWidth(region) === 0) {
 
-                for (let node of nodes) {
-
-                    let registerRegions = nodeRegions.get(node);
-
-                    for (let registerRegion of registerRegions) {
-
-                        if (intersect(registerRegion, region)) {
-
-                            findRegions.push(registerRegion);
-                        }
-                    }
-
-                    let findRegion = findBottomestIntersectRegionByInclusionPolicy.call(me, region, getChildNodes.call(mindmap, node));
-
-                    if (findRegion) {
-
-                        findRegions.push(findRegion);
-                    }
+                    return;
                 }
 
-                if (findRegions.length) {
+                let {
+                    regionList,
+                    regionMap
+                } = this;
 
-                    return findRegions.sort(({
-                        bottom: bottom1,
-                    }, {
-                        bottom: bottom2
-                    }) => bottom2 - bottom1)[0];
+                if (regionMap.has(id)) {
 
+                    remove(regionList, regionMap.get(id));
+                }
+
+                add(regionList, region, RegionSearcherRegionSorted);
+
+                regionMap.set(id, region);
+            }
+
+            const {
+                assign
+            } = Object;
+
+            class MaxBottomRegionFinder {
+
+                constructor() {
+
+                    let me = this;
+
+                    me.regionList = [];
+
+                    me.regionMap = new Map();
+                }
+
+                add(mindmap, node) {
+
+                    let me = this,
+                        {
+                            id
+                        } = node;
+
+                    RegionSearcherAddRegion.call(me, id, {
+                        ...getRegion.call(mindmap, node),
+                        node
+                    });
+
+                    RegionSearcherAddRegion.call(me, `${id}-children`, {
+                        ...getChildRegion.call(mindmap, node),
+                        node
+                    });
+                }
+
+                find(region, scopeNodes) {
+
+                    region = assign({}, region);
+
+                    let me = this,
+                        {
+                            regionList
+                        } = me,
+                        {
+                            top
+                        } = region;
+
+                    for (let {
+                            node,
+                            ...regionItem
+                        } of regionList) {
+
+                        if (!scopeNodes.includes(node)) {
+
+                            continue;
+                        }
+
+                        if (top > regionItem.bottom) {
+
+                            break;
+                        }
+
+                        if (intersect(region, regionItem)) {
+
+                            setY(region, regionItem.bottom);
+
+                            return regionItem;
+
+                        }
+                    }
                 }
             }
 
@@ -41378,103 +41615,59 @@ exports['src::mindmap.layout.pattern.logic.regions.layouted'] = (() => {
 
                     let me = this;
 
-                    me.nodeRegions = new Map();
+                    me.finder = new MaxBottomRegionFinder();
 
                     me.mindmap = mindmap;
                 }
 
-                adjustNodeYByInclusionPolicy(node, adjustRegion, adjustNodes = []) {
+                adjust(node, adjustRegion, scopeNodes) {
 
                     let me = this,
                         {
-                            mindmap
-                        } = me;
+                            mindmap,
+                            finder
+                        } = me,
+                        {
+                            nodeVerticalSeparationDistance
+                        } = me.mindmap.layoutConfig;
 
                     adjustRegion = adjustRegion || getRegion.call(mindmap, node);
 
-                    let {
-                        nodeVerticalSeparationDistance
-                    } = me.mindmap.layoutConfig;
-
                     adjustRegion.top -= nodeVerticalSeparationDistance;
 
-                    let findRegion = findBottomestIntersectRegionByInclusionPolicy.call(me, adjustRegion, adjustNodes);
+                    let findRegion = finder.find(adjustRegion, scopeNodes);
 
                     if (findRegion) {
 
                         setOffsetY.call(mindmap, node, findRegion.bottom - adjustRegion.top);
 
+                        return true;
+
                     }
+
+                    return false;
                 }
 
-                adjustNodeYByExclusionPolicy(node, adjustRegion, adjustNodes = []) {
-
-                    let me = this,
-                        {
-                            mindmap
-                        } = me;
-
-                    adjustRegion = adjustRegion || getRegion.call(mindmap, node);
+                add(node) {
 
                     let {
-                        nodeVerticalSeparationDistance
-                    } = me.mindmap.layoutConfig,
-                        findRegion = findBottomestIntersectRegionByExclusionPolicy.call(me, adjustRegion, adjustNodes);
+                        mindmap,
+                        finder
+                    } = this,
+                    descendantNodes = getDescendantNodes.call(mindmap, node);
 
-                    if (findRegion) {
+                    finder.add(mindmap, node);
 
-                        setOffsetY.call(mindmap, node, findRegion.bottom + nodeVerticalSeparationDistance - adjustRegion.top);
+                    for (let descendantNode of descendantNodes) {
 
-                    }
-                }
-
-                add(node, isRecursive = false) {
-
-                    let me = this,
-                        {
-                            nodeRegions,
-                            mindmap
-                        } = me,
-                        {
-                            childRegionCompensateLeft
-                        } = mindmap.layoutConfig,
-                        childRegion = getChildRegion.call(mindmap, node),
-                        regions = [{
-                            ...getRegion.call(mindmap, node),
-                            node
-                        }];
-
-                    if (getWidth(childRegion) !== 0) {
-
-                        if (isNumber(childRegionCompensateLeft)) {
-
-                            childRegion.left -= childRegionCompensateLeft;
-                        }
-
-                        regions.push({
-                            ...childRegion,
-                            node
-                        });
-
-                    }
-
-                    nodeRegions.set(node, regions);
-
-                    if (isRecursive) {
-
-                        let childNodes = getChildNodes.call(mindmap, node);
-
-                        for (let childNode of childNodes) {
-
-                            me.add(childNode, isRecursive);
-                        }
+                        finder.add(mindmap, descendantNode);
                     }
                 }
             }
 
 
 
-            var_class_1616141967152 = class extends main {
+            var_class_1616376471345 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -41489,7 +41682,7 @@ exports['src::mindmap.layout.pattern.logic.regions.layouted'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1616141967152;
+                    return var_class_1616376471345;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -41499,15 +41692,15 @@ exports['src::mindmap.layout.pattern.logic.regions.layouted'] = (() => {
 
             };
 
-            main = var_class_1616141967152;
+            main = var_class_1616376471345;
 
-            var_global_main_1616141967152 = main;
+            var_global_main_1616376471345 = main;
 
-            var_init_locked_1616141967152 = true;
+            var_init_locked_1616376471345 = true;
         }
 
 
-        return new var_global_main_1616141967152(mindmap);
+        return new var_global_main_1616376471345(mindmap);
     };
 
 })();
