@@ -11,6 +11,10 @@
         "destroy",
         "resize",
         {
+            "name":"findNodes",
+            "impl":".mindmap.nodes.find"
+        },
+        {
             "name":"selectNode",
             "impl":".mindmap.node.select"
         },
