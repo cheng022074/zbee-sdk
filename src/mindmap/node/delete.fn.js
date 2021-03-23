@@ -21,6 +21,8 @@
  * 
  * @import select from .select scoped
  * 
+ * @import fireChangeEvent from ..fire.event.change scoped
+ * 
  * @param {mixed} node 节点
  * 
  * @return {boolean} 删除标识
@@ -65,6 +67,8 @@ if(!isRootNode(node)){
    children.splice(children.indexOf(node) , 1) ;
 
    me.fireEvent('nodedelete' , data(node)) ;
+
+   fireChangeEvent() ;
 
    return true ;
 }
