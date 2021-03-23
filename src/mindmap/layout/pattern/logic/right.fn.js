@@ -132,7 +132,8 @@
   {
     top,
     right
-  } = nodeRegion;
+  } = nodeRegion,
+  scopeNodes = [] ;
 
   right += nodeHorizontalSeparationDistance ;
 
@@ -157,9 +158,7 @@
 
     if(i !== 0){
 
-      let adjustNodes = childNodes.slice(0 , i),
-          regions = getRegions(childNode),
-          scopeNodes = getFindScopeNodes(adjustNodes),
+      let regions = getRegions(childNode),
           adjustedRegions = [];
 
       for(let region of regions){
@@ -183,6 +182,8 @@
     }
 
     layoutedChildRegions.add(childNode) ;
+
+    addScopeNodes(scopeNodes , childNode) ;
   }
   
   if(length){
@@ -277,14 +278,7 @@ function getRegions(node){
   return result ;
 }
 
-function getFindScopeNodes(nodes){
+function addScopeNodes(scopeNodes , scopeNode){
 
-  let scopeNodes = [] ;
-
-  for(let node of nodes){
-
-    scopeNodes.push(node , ...getDescendantNodes(node)) ;
-  }
-
-  return scopeNodes ;
+  scopeNodes.push(scopeNode , ...getDescendantNodes(scopeNode)) ;
 }
