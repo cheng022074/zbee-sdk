@@ -11,6 +11,10 @@
         "destroy",
         "resize",
         {
+            "name":"fireChangeEvent",
+            "impl":".mindmap.fire.event.change"
+        },
+        {
             "name":"findNodes",
             "impl":".mindmap.nodes.find"
         },
