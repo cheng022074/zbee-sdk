@@ -155,27 +155,15 @@
 
     if(i !== 0){
 
-      let adjustNodes = childNodes.slice(0 , i) ;
+      let adjustNodes = childNodes.slice(0 , i),
+          regions = getRegions(childNode),
+          scopeNodes = getFindScopeNodes(adjustNodes);
 
-      if(getChildNodes(childNode).length){
+      for(let region of regions){
 
-          layoutedChildRegions.adjust(childNode , getCompensateLeftRegion(childNode) , getFindScopeNodes(adjustNodes)) ;
-
-          let descendantNodes = getDescendantNodes(childNode) ;
-
-          for(let descendantNode of descendantNodes){
-
-              if(getChildNodes(descendantNode).length){
-
-                layoutedChildRegions.adjust(childNode , getCompensateLeftRegion(descendantNode) , getFindScopeNodes(adjustNodes)) ;
-              
-              }
-          }
-
+        layoutedChildRegions.adjust(childNode , region , scopeNodes) ;
+      
       }
-
-      layoutedChildRegions.adjust(childNode , getSelfRegion(childNode) , getFindScopeNodes(adjustNodes)) ;
-
     }
 
     layoutedChildRegions.add(childNode) ;
@@ -223,6 +211,61 @@
     }
 
   }
+}
+
+function getRegions(node){
+
+  let nodes = getDescendantNodes(node) ;
+
+  nodes = [
+    node,
+    ...nodes
+  ] ;
+
+  let regions = {},
+      lefts = [];
+
+  for(let node of nodes){
+
+    let region = getCompensateLeftRegion(node) ;
+
+    if(getWidth(region) !== 0){
+
+      let {
+        left,
+        top
+      } = region ;
+
+      if(regions.hasOwnProperty(left)){
+
+        if(regions[left].top > top){
+
+          regions[left] = region ;
+
+        }
+
+      }else{
+
+        regions[left] = region ;
+
+        lefts.push(left) ;
+      
+      }
+    
+    }    
+  }
+
+  let result = [] ;
+
+  for(let left of lefts){
+
+    result.push(regions[left]) ;
+
+  }
+
+  result.push(getSelfRegion(node)) ;
+
+  return result ;
 }
 
 function getFindScopeNodes(nodes){
