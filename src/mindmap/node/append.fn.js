@@ -13,6 +13,8 @@
  * 
  * @import from from .from scoped
  * 
+ * @import fireChangeEvent from ..fire.event.change scoped
+ * 
  * @param {mixed} node 节点配置
  * 
  * @param {mixed} parentNode 节点
@@ -25,7 +27,7 @@
 
  parentNode = from(parentNode) ;
 
-if((parentNode === node || getLastChildNode(parentNode) === node)){
+if(parentNode === node || getLastChildNode(parentNode) === node || parentNode.placeholder){
 
   return false;
 
@@ -59,9 +61,11 @@ if(!hidden && expanded){
   show(node) ;
 }
 
-if(!node.placeholder && !parentNode.placeholder){
+if(!node.placeholder){
 
   this.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+
+  fireChangeEvent() ;
 
 }
 
