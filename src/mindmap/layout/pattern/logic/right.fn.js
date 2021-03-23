@@ -159,17 +159,23 @@
 
       let adjustNodes = childNodes.slice(0 , i),
           regions = getRegions(childNode),
-          scopeNodes = getFindScopeNodes(adjustNodes);
+          scopeNodes = getFindScopeNodes(adjustNodes),
+          adjustedRegions = [];
 
       for(let region of regions){
 
         let offset = layoutedChildRegions.adjust(childNode , region , scopeNodes) ;
 
+        adjustedRegions.push(region) ;
+
         if(offset !== false){
 
             for(let region of regions){
 
-              setRegionOffsetY(region , offset) ;
+              if(!adjustedRegions.includes(regions)){
+
+                setRegionOffsetY(region , offset) ;
+              }
             }
         }
       
@@ -232,8 +238,7 @@ function getRegions(node){
     ...nodes
   ] ;
 
-  let regions = {},
-      lefts = [];
+  let regions = {};
 
   for(let node of nodes){
 
@@ -258,20 +263,14 @@ function getRegions(node){
 
         regions[left] = region ;
 
-        lefts.push(left) ;
-      
       }
     
     }    
   }
 
-  let result = [] ;
-
-  for(let left of lefts){
-
-    result.push(regions[left]) ;
-
-  }
+  let result = [
+    ...Object.values(regions)
+  ] ;
 
   result.push(getSelfRegion(node)) ;
 
