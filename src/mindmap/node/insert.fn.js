@@ -17,6 +17,8 @@
  * 
  * @import from from .from scoped
  * 
+ * @import fireChangeEvent from ..fire.event.change scoped
+ * 
  * @param {mixed} insertNode 需要插入的节点
  * 
  * @param {mixed} baseNode 参照节点
@@ -31,7 +33,7 @@
 
  baseNode = from(baseNode) ;
 
-if(!isRootNode(baseNode)){
+if(!isRootNode(baseNode) && !baseNode.placeholder){
 
     if(insertNode){
 
@@ -103,9 +105,11 @@ if(!isRootNode(baseNode)){
         show(insertNode) ;
     }
 
-    if(!insertNode.placeholder && !baseNode.placeholder){
+    if(!insertNode.placeholder){
 
         this.fireEvent(`nodeinsert${region}` , data(insertNode) , data(baseNode) , data(parentNode)) ;
+
+        fireChangeEvent() ;
     }
 
     return true ;
