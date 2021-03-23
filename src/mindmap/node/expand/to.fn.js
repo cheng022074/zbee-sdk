@@ -25,12 +25,12 @@ if(hidden){
 
     while(parentNode = getParentNode(node)){
 
+        parentNodes.unshift(parentNode) ;
+
         if(!parentNode.hidden){
 
             break ;
         }
-
-        parentNodes.unshift(parentNode) ;
 
         node = parentNode ;
     }
