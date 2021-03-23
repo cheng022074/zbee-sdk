@@ -154,9 +154,11 @@ class main{
 
         if(findRegion){
 
-            setOffsetY.call(mindmap , node , findRegion.bottom - adjustRegion.top) ;
+            let offset = findRegion.bottom - adjustRegion.top ;
 
-            return true ;
+            setOffsetY.call(mindmap , node , offset) ;
+
+            return offset ;
             
         }
 

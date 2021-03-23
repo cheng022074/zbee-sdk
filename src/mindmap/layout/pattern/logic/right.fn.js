@@ -31,6 +31,8 @@
  * 
  * @import setAnchorY from math.region.y.anchor
  * 
+ * @import setRegionOffsetY from math.region.y.offset
+ * 
  * @import getAnchorY from math.region.y.anchor
  * 
  * @import getY from math.region.y
@@ -161,7 +163,15 @@
 
       for(let region of regions){
 
-        layoutedChildRegions.adjust(childNode , region , scopeNodes) ;
+        let offset = layoutedChildRegions.adjust(childNode , region , scopeNodes) ;
+
+        if(offset !== false){
+
+            for(let region of regions){
+
+              setRegionOffsetY(region , offset) ;
+            }
+        }
       
       }
     }
