@@ -14,11 +14,13 @@
  * 
  */
 
-node = from(node) ;
-
-let nodes = getDescendantNodes(node),
-    isCollapse = false,
-    isSelectedNodeHidden = false;
+let rootNode = from(node),
+nodes = [
+    rootNode,
+    ...getDescendantNodes(rootNode)
+],
+isCollapse = false,
+isSelectedNodeHidden = false;
 
 for(let node of nodes){
 
@@ -43,16 +45,15 @@ for(let node of nodes){
         node.selected = false ;
     }
 
-    node.hidden = true ;
-}
+    if(node !== rootNode){
 
-node.expanded = false ;
+        node.hidden = true ;
+    }
+}
 
 if(isSelectedNodeHidden){
 
     select(node) ;
-
-    return isCollapse ;
 }
 
 return isCollapse ;
