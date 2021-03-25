@@ -24,9 +24,9 @@
  * 
  */
 
- scope = scope || target ;
-
  if(isString(name)){
+
+    scope = scope || target ;
 
     if(fn){
 
@@ -63,6 +63,8 @@
         ...listeners
     } = name,
     names = Object.keys(listeners);
+
+    scope = scope || target ;
 
     for(let name of names){
 

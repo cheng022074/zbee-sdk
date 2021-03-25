@@ -34,9 +34,9 @@
  * 
  */
 
- scope = scope || target ;
-
  if(isString(name)){
+
+    scope = scope || target ;
 
     if(listeners.has(target , name , fn , scope)){
 
@@ -54,9 +54,7 @@
 
                 listenerFn(...args) ;
 
-                remove(target , name , fn , {
-                    scope
-                }) ;
+                remove(target , name , fn , scope) ;
             } ;
         
         }else{
@@ -79,6 +77,8 @@
         ...listeners
     } = name,
     names = Object.keys(listeners) ;
+
+    scope = scope || target ;
 
     for(let name of names){
 
