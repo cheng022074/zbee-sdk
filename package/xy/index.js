@@ -2315,7 +2315,7 @@ exports['src::event.listener.remove'] = (() => {
 
     let isString, isObject, isArray, remove, listeners, native;
 
-    let var_init_locked_1611566399618;
+    let var_init_locked_1616653052121;
 
 
 
@@ -2347,9 +2347,9 @@ exports['src::event.listener.remove'] = (() => {
          * 
          */
 
-        scope = scope || target;
-
         if (isString(name)) {
+
+            scope = scope || target;
 
             if (fn) {
 
@@ -2387,6 +2387,8 @@ exports['src::event.listener.remove'] = (() => {
             } = name,
             names = Object.keys(listeners);
 
+            scope = scope || target;
+
             for (let name of names) {
 
                 remove(target, name, listeners[name], scope);
@@ -2407,7 +2409,7 @@ exports['src::event.listener.remove'] = (() => {
     return function(target, name, fn, scope) {
 
 
-        if (!var_init_locked_1611566399618) {
+        if (!var_init_locked_1616653052121) {
 
             isString = include('src::is.string');
             isObject = include('src::is.object.simple');
@@ -2416,7 +2418,7 @@ exports['src::event.listener.remove'] = (() => {
             listeners = include('src::event.listeners')();
             native = include('src::event.listener.native.remove');
 
-            var_init_locked_1611566399618 = true;
+            var_init_locked_1616653052121 = true;
         }
 
 
@@ -2587,7 +2589,7 @@ exports['src::event.listener.add'] = (() => {
 
     let isString, isObject, add, remove, get, listeners, native, isArray;
 
-    let var_init_locked_1611566399565;
+    let var_init_locked_1616653052075;
 
 
 
@@ -2633,9 +2635,9 @@ exports['src::event.listener.add'] = (() => {
          * 
          */
 
-        scope = scope || target;
-
         if (isString(name)) {
+
+            scope = scope || target;
 
             if (listeners.has(target, name, fn, scope)) {
 
@@ -2653,9 +2655,7 @@ exports['src::event.listener.add'] = (() => {
 
                         listenerFn(...args);
 
-                        remove(target, name, fn, {
-                            scope
-                        });
+                        remove(target, name, fn, scope);
                     };
 
                 } else {
@@ -2678,6 +2678,8 @@ exports['src::event.listener.add'] = (() => {
                 ...listeners
             } = name,
             names = Object.keys(listeners);
+
+            scope = scope || target;
 
             for (let name of names) {
 
@@ -2719,7 +2721,7 @@ exports['src::event.listener.add'] = (() => {
     } = {}) {
 
 
-        if (!var_init_locked_1611566399565) {
+        if (!var_init_locked_1616653052075) {
 
             isString = include('src::is.string');
             isObject = include('src::is.object.simple');
@@ -2730,7 +2732,7 @@ exports['src::event.listener.add'] = (() => {
             native = include('src::event.listener.native.add');
             isArray = include('src::is.array');
 
-            var_init_locked_1611566399565 = true;
+            var_init_locked_1616653052075 = true;
         }
 
 
