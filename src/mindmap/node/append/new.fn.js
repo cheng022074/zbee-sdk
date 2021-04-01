@@ -9,9 +9,9 @@
  * 
  * @import select from ..select scoped
  * 
- * @param {object} [node = {}] 创建节点配置
- * 
  * @param {mixed} [parentNode] 参照节点
+ * 
+ * @param {object} [node = {}] 创建节点配置
  * 
  * @return {boolea} 添加状态标识
  * 

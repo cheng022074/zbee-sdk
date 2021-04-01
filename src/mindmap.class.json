@@ -64,6 +64,9 @@
         },{
             "name":"insertNewNodeAfter",
             "impl":".mindmap.node.insert.new.after"
+        },{
+            "name":"insertNewNodeFirst",
+            "impl":".mindmap.node.insert.new.first"
         }
     ]
 }

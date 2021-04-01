@@ -13,11 +13,13 @@
  * 
  * @param {string} region 位置
  * 
+ * @param {object} [node = {}] 创建节点配置
+ * 
  * @return {boolea} 插入状态标识
  * 
  */
 
- let insertNode = create() ;
+ let insertNode = create(node) ;
 
  if(insert(insertNode , baseNode , region)){
 
