@@ -56,6 +56,22 @@
             "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-SDK\\node_modules\\zbee-sdk\\package\\xy"
         ]
     },
+    "xy-ok-viewport":{
+        "type":"webpack",
+        "webpack":true,
+        "prefixes":{
+            "css":"xy"
+        },
+        "classes":[
+            "css::reset.viewport",
+            "css::container",
+            "css::component",
+            "css::layout.*"
+        ],
+        "to":[
+            "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-OK-VIEWPORT\\node_modules\\zbee-sdk\\package\\hb-admin-system-template"
+        ]
+    },
     "hb-admin-system-template":{
         "type":"webpack",
         "webpack":true,
