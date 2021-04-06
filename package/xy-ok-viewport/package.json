@@ -1,7 +1,7 @@
 
 {
     "name": "xy_ok_viewport",
-    "version":"1.6.2",
+    "version":"1.6.3",
     
     "engines":{
   "node": ">= 10.1.0"
