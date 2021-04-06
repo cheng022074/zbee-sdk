@@ -36276,22 +36276,22 @@ exports['src::file.write.json'] = (() => {
 
 exports['src::mindmap'] = (() => {
 
-    let mixin_1616479726939__1, extend, constructor, method_load, method_destroy, method_resize, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, isObject;
+    let mixin_1617258187138__1, extend, constructor, method_load, method_destroy, method_resize, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, method_insertNewNodeFirst, isObject;
 
-    let var_init_locked_1616479726939;
+    let var_init_locked_1617258187139;
 
-    let var_class_1616479726939;
+    let var_class_1617258187139;
 
 
 
-    let var_global_main_1616479726939;
+    let var_global_main_1617258187139;
 
     return function(config) {
 
 
-        if (!var_init_locked_1616479726939) {
+        if (!var_init_locked_1617258187139) {
 
-            mixin_1616479726939__1 = include('src::mixin.observable');
+            mixin_1617258187138__1 = include('src::mixin.observable');
             extend = include('src::class.empty')();
             constructor = include('src::mindmap.constructor');
             method_load = include('src::mindmap.load');
@@ -36311,6 +36311,7 @@ exports['src::mindmap'] = (() => {
             method_registerNode = include('src::mindmap.node.register');
             method_insertNewNodeBefore = include('src::mindmap.node.insert.new.before');
             method_insertNewNodeAfter = include('src::mindmap.node.insert.new.after');
+            method_insertNewNodeFirst = include('src::mindmap.node.insert.new.first');
             isObject = include('src::is.object.simple');
 
             class main extends mixins({
@@ -36415,12 +36416,17 @@ exports['src::mindmap'] = (() => {
                     return method_insertNewNodeAfter.apply(this, args);
 
                 }
+                insertNewNodeFirst(...args) {
+
+                    return method_insertNewNodeFirst.apply(this, args);
+
+                }
 
 
 
             }
 
-            var_class_1616479726939 = class extends main {
+            var_class_1617258187139 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -36435,7 +36441,7 @@ exports['src::mindmap'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1616479726939;
+                    return var_class_1617258187139;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -36445,15 +36451,15 @@ exports['src::mindmap'] = (() => {
 
             };
 
-            main = var_class_1616479726939;
+            main = var_class_1617258187139;
 
-            var_global_main_1616479726939 = main;
+            var_global_main_1617258187139 = main;
 
-            var_init_locked_1616479726939 = true;
+            var_init_locked_1617258187139 = true;
         }
 
 
-        return new var_global_main_1616479726939(config);
+        return new var_global_main_1617258187139(config);
     };
 
 })();
@@ -40201,22 +40207,22 @@ exports['src::mindmap.node.append.new'] = (() => {
 
 
 
-    const var_current_scope_1615339391962 = new Map();
+    const var_current_scope_1617257862486 = new Map();
 
-    return function(node = {}, parentNode) {
-
-
+    return function(parentNode, node = {}) {
 
 
 
-        if (!var_current_scope_1615339391962.has(this)) {
 
-            var_current_scope_1615339391962.set(this, (() => {
+
+        if (!var_current_scope_1617257862486.has(this)) {
+
+            var_current_scope_1617257862486.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const append = include('src::mindmap.node.append').bind(this);
                 const select = include('src::mindmap.node.select').bind(this);
 
-                function main(node, parentNode) {
+                function main(parentNode, node) {
 
 
                     /**
@@ -40229,9 +40235,9 @@ exports['src::mindmap.node.append.new'] = (() => {
                      * 
                      * @import select from ..select scoped
                      * 
-                     * @param {object} [node = {}] 创建节点配置
-                     * 
                      * @param {mixed} [parentNode] 参照节点
+                     * 
+                     * @param {object} [node = {}] 创建节点配置
                      * 
                      * @return {boolea} 添加状态标识
                      * 
@@ -40255,11 +40261,11 @@ exports['src::mindmap.node.append.new'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1615339391962.get(this);
+        const main = var_current_scope_1617257862486.get(this);
 
 
 
-        return main.call(this, node, parentNode);
+        return main.call(this, parentNode, node);
     };
 
 })();
@@ -40437,22 +40443,22 @@ exports['src::mindmap.node.insert.new'] = (() => {
 
 
 
-    const var_current_scope_1614503282814 = new Map();
+    const var_current_scope_1617257862520 = new Map();
 
-    return function(baseNode, region) {
-
-
+    return function(baseNode, region, node = {}) {
 
 
 
-        if (!var_current_scope_1614503282814.has(this)) {
 
-            var_current_scope_1614503282814.set(this, (() => {
+
+        if (!var_current_scope_1617257862520.has(this)) {
+
+            var_current_scope_1617257862520.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const insert = include('src::mindmap.node.insert').bind(this);
                 const select = include('src::mindmap.node.select').bind(this);
 
-                function main(baseNode, region) {
+                function main(baseNode, region, node) {
 
 
                     /**
@@ -40469,11 +40475,13 @@ exports['src::mindmap.node.insert.new'] = (() => {
                      * 
                      * @param {string} region 位置
                      * 
+                     * @param {object} [node = {}] 创建节点配置
+                     * 
                      * @return {boolea} 插入状态标识
                      * 
                      */
 
-                    let insertNode = create();
+                    let insertNode = create(node);
 
                     if (insert(insertNode, baseNode, region)) {
 
@@ -40491,11 +40499,11 @@ exports['src::mindmap.node.insert.new'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503282814.get(this);
+        const main = var_current_scope_1617257862520.get(this);
 
 
 
-        return main.call(this, baseNode, region);
+        return main.call(this, baseNode, region, node);
     };
 
 })();
@@ -40508,20 +40516,20 @@ exports['src::mindmap.node.insert.new.before'] = (() => {
 
 
 
-    const var_current_scope_1614503282800 = new Map();
+    const var_current_scope_1617257862502 = new Map();
 
-    return function(beforeNode) {
-
-
+    return function(beforeNode, node = {}) {
 
 
 
-        if (!var_current_scope_1614503282800.has(this)) {
 
-            var_current_scope_1614503282800.set(this, (() => {
+
+        if (!var_current_scope_1617257862502.has(this)) {
+
+            var_current_scope_1617257862502.set(this, (() => {
                 const insert = include('src::mindmap.node.insert.new').bind(this);
 
-                function main(beforeNode) {
+                function main(beforeNode, node) {
 
 
                     /**
@@ -40532,11 +40540,13 @@ exports['src::mindmap.node.insert.new.before'] = (() => {
                      * 
                      * @param {data.Record} beforeNode 参照节点
                      * 
+                     * @param {object} [node = {}] 创建节点配置
+                     * 
                      * @return {boolea} 插入状态标识
                      * 
                      */
 
-                    return insert(beforeNode, 'before');
+                    return insert(beforeNode, 'before', node);
 
                 }
 
@@ -40545,11 +40555,11 @@ exports['src::mindmap.node.insert.new.before'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503282800.get(this);
+        const main = var_current_scope_1617257862502.get(this);
 
 
 
-        return main.call(this, beforeNode);
+        return main.call(this, beforeNode, node);
     };
 
 })();
@@ -40562,20 +40572,20 @@ exports['src::mindmap.node.insert.new.after'] = (() => {
 
 
 
-    const var_current_scope_1614503282849 = new Map();
+    const var_current_scope_1617257862535 = new Map();
 
-    return function(afterNode) {
-
-
+    return function(afterNode, node = {}) {
 
 
 
-        if (!var_current_scope_1614503282849.has(this)) {
 
-            var_current_scope_1614503282849.set(this, (() => {
+
+        if (!var_current_scope_1617257862535.has(this)) {
+
+            var_current_scope_1617257862535.set(this, (() => {
                 const insert = include('src::mindmap.node.insert.new').bind(this);
 
-                function main(afterNode) {
+                function main(afterNode, node) {
 
 
                     /**
@@ -40586,11 +40596,13 @@ exports['src::mindmap.node.insert.new.after'] = (() => {
                      * 
                      * @param {data.Record} afterNode 参照节点
                      * 
+                     * @param {object} [node = {}] 创建节点配置
+                     * 
                      * @return {boolea} 插入状态标识
                      * 
                      */
 
-                    return insert(afterNode, 'after');
+                    return insert(afterNode, 'after', node);
 
                 }
 
@@ -40599,11 +40611,145 @@ exports['src::mindmap.node.insert.new.after'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1614503282849.get(this);
+        const main = var_current_scope_1617257862535.get(this);
 
 
 
-        return main.call(this, afterNode);
+        return main.call(this, afterNode, node);
+    };
+
+})();
+
+exports['src::mindmap.node.insert.before'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1614503283431 = new Map();
+
+    return function(insertNode, beforeNode) {
+
+
+
+
+
+        if (!var_current_scope_1614503283431.has(this)) {
+
+            var_current_scope_1614503283431.set(this, (() => {
+                const insert = include('src::mindmap.node.insert').bind(this);
+
+                function main(insertNode, beforeNode) {
+
+
+                    /**
+                     * 
+                     * 插入节点
+                     * 
+                     * @import insert from ..insert scoped
+                     * 
+                     * @param {data.Record} insertNode 需要插入的节点
+                     * 
+                     * @param {data.Record} beforeNode 参照节点
+                     * 
+                     * @return {boolea} 插入状态标识
+                     * 
+                     */
+
+                    return insert(insertNode, beforeNode, 'before');
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1614503283431.get(this);
+
+
+
+        return main.call(this, insertNode, beforeNode);
+    };
+
+})();
+
+exports['src::mindmap.node.insert.new.first'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1617257862556 = new Map();
+
+    return function(parentNode, node) {
+
+
+
+
+
+        if (!var_current_scope_1617257862556.has(this)) {
+
+            var_current_scope_1617257862556.set(this, (() => {
+                const append = include('src::mindmap.node.append.new').bind(this);
+                const insert = include('src::mindmap.node.insert.before').bind(this);
+                const from = include('src::mindmap.node.insert.from').bind(this);
+
+                function main(parentNode, node) {
+
+
+                    /**
+                     * 
+                     * 插入首个子节点
+                     * 
+                     * @import append from ....append.new scoped
+                     * 
+                     * @import insert from ..before scoped
+                     * 
+                     * @import from from ..from scoped
+                     * 
+                     * @param {mixed} parentNode 参照节点
+                     * 
+                     * @param {mixed} [node] 创建节点配置
+                     * 
+                     */
+
+                    parentNode = from(parentNode);
+
+                    let {
+                        children
+                    } = parentNode;
+
+                    if (children.length) {
+
+                        return insert(children[0], node);
+                    }
+
+                    return append(parentNode, node);
+
+
+
+
+
+
+
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1617257862556.get(this);
+
+
+
+        return main.call(this, parentNode, node);
     };
 
 })();
@@ -43613,62 +43759,6 @@ exports['src::mindmap.layout.node.move.up'] = (() => {
 
 
         return main.call(this);
-    };
-
-})();
-
-exports['src::mindmap.node.insert.before'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1614503283431 = new Map();
-
-    return function(insertNode, beforeNode) {
-
-
-
-
-
-        if (!var_current_scope_1614503283431.has(this)) {
-
-            var_current_scope_1614503283431.set(this, (() => {
-                const insert = include('src::mindmap.node.insert').bind(this);
-
-                function main(insertNode, beforeNode) {
-
-
-                    /**
-                     * 
-                     * 插入节点
-                     * 
-                     * @import insert from ..insert scoped
-                     * 
-                     * @param {data.Record} insertNode 需要插入的节点
-                     * 
-                     * @param {data.Record} beforeNode 参照节点
-                     * 
-                     * @return {boolea} 插入状态标识
-                     * 
-                     */
-
-                    return insert(insertNode, beforeNode, 'before');
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1614503283431.get(this);
-
-
-
-        return main.call(this, insertNode, beforeNode);
     };
 
 })();
