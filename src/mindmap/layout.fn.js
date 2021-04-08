@@ -3,6 +3,8 @@
  * 
  * 布局
  * 
+ * @import refresh from .refresh scoped
+ * 
  * @import isUnsized from .node.is.unsized scoped
  * 
  * @import getData from .node.data scoped
@@ -48,7 +50,7 @@
 
       me.layoutPositioner = createPositioner(me , me.layoutNodes) ;
 
-      me.refresh() ;
+      refresh() ;
 
       me.isLayouting = false ;
 
