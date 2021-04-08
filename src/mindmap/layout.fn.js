@@ -44,8 +44,6 @@
       ...getDescendantNodes(rootNode)
    ] , () => {
 
-      console.time('布局') ;
-
       me.layoutData = layout(rootNode) ;
 
       me.layoutPositioner = createPositioner(me , me.layoutNodes) ;
@@ -53,8 +51,6 @@
       refresh() ;
 
       me.isLayouting = false ;
-
-      console.timeEnd('布局') ;
 
    }) ;
  }
