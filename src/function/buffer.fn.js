@@ -18,7 +18,7 @@
 
 let bufferId ;
 
-return (...args) =>{
+return function(...args){
 
     if(bufferId){
 
@@ -26,6 +26,8 @@ return (...args) =>{
 
         bufferId = null ;
     }
+
+    scope = scope || this ;
 
     bufferId = setTimeout(() => {
 
