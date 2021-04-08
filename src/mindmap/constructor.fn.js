@@ -11,12 +11,6 @@
  * 
  * @import setSelected from .node.field.selected scoped
  * 
- * @import buffer from function.buffer
- * 
- * @import doLayout from .layout scoped
- * 
- * @import doRefresh from .refresh scoped
- * 
  * @import isObject from is.object.simple
  * 
  * @import is.array
@@ -261,8 +255,3 @@
  } , placeholderNodeData)) ;
 
  me.placeholderNode = placeholderNode ;
-
-
- me.layout = buffer(doLayout) ;
-
- me.refresh = buffer(doRefresh) ;

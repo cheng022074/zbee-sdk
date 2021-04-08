@@ -10,6 +10,8 @@
         "load",
         "destroy",
         "resize",
+        "layout",
+        "refresh",
         {
             "name":"fireChangeEvent",
             "impl":".mindmap.fire.event.change"
