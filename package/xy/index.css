@@ -189,8 +189,10 @@ input, textarea {
     left: 0; }
   .xy-mindmap > .nodes, .css-mindmap > .nodes {
     width: 100%; }
-    .xy-mindmap > .nodes > .node, .css-mindmap > .nodes > .node {
+    .xy-mindmap > .nodes > .node-wrapper, .xy-mindmap > .nodes > .node, .css-mindmap > .nodes > .node-wrapper, .css-mindmap > .nodes > .node {
       position: absolute;
       top: 0;
       left: 0;
       transform: translate3d(0, 0, 0); }
+    .xy-mindmap > .nodes > .node-wrapper > .node, .css-mindmap > .nodes > .node-wrapper > .node {
+      position: relative; }
