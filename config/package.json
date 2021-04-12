@@ -63,13 +63,12 @@
             "css":"xy"
         },
         "classes":[
-            "css::reset.viewport",
             "css::container",
             "css::component",
             "css::layout.*"
         ],
         "to":[
-            "C:\\Users\\DEV\\Documents\\Code\\XY\\XY-OK-VIEWPORT\\node_modules\\zbee-sdk\\package\\hb-admin-system-template"
+            "C:\\Users\\nero.chen\\Desktop\\Code\\XY\\XY-OK-VIEWPORT\\node_modules\\zbee-sdk\\package\\xy-ok-viewport"
         ]
     },
     "hb-admin-system-template":{
