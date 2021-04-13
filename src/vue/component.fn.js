@@ -53,7 +53,7 @@ if(isFunction(originData)){
 
     let me = this ;
 
-    return Object.assign(originData.call(me) || {} , innerData.call(me)) ;
+    return Object.assign(innerData.call(me) , originData.call(me) || {}) ;
 
    } ;
 
