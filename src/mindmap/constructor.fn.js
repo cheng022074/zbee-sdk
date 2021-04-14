@@ -31,7 +31,7 @@
  * 
  * @param {data.Reader} [config.readConfig = {}] 数据读取根路径设置
  * 
- * @param {number} [config.nodeSpacing = 5] 节点间隔设置
+ * @param {number} [config.nodeSpacing = 0] 节点间隔设置
  * 
  * @param {number} [config.padding = 5] 脑图四周填充距离
  * 
