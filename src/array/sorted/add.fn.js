@@ -3,6 +3,8 @@
  * 
  * 以排序的形式添加数组项
  * 
+ * @import is.number
+ * 
  * @param {array} data 数组
  * 
  * @param {mixed} item 添加项
@@ -49,13 +51,15 @@
     let currentItem = data[index],
         value = sortFn(currentItem , item);
 
+    value = isNumber(value) ? value : 0 ;
+
     if(value <= 0){
 
         start = index + 1;
 
-        if(start > end || sortFn(data[start] , item) > 0){
+        if(start > end || sortFn(data[start] , item) >= 0){
 
-            return index + 1;
+            return start;
         
         }
     
