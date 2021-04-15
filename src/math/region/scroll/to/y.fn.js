@@ -8,6 +8,8 @@
  * 
  * @import setY from ....y.anchor
  * 
+ * @import getHeight from ....height
+ * 
  * @param {mixed} region 范围
  * 
  * @param {mixed} position 位置
@@ -31,18 +33,33 @@ if(!containsY(region , position)){
         bottom:positionBototm
     } = position;
 
-    if(positionTop < top){
+    if(getHeight(position) > getHeight(region)){
 
-        setY(region , 'top' , positionTop) ;
+        if(positionBototm > bottom){
+    
+            setY(region , 'bottom' , positionBototm) ;
+    
+            return 1 ;
+        }
 
-        return -1 ;
 
-    }else if(positionBototm > bottom){
+    }else{
 
-        setY(region , 'bottom' , positionBototm) ;
+        if(positionTop < top){
 
-        return 1 ;
+            setY(region , 'top' , positionTop) ;
+    
+            return -1 ;
+    
+        }else if(positionBototm > bottom){
+    
+            setY(region , 'bottom' , positionBototm) ;
+    
+            return 1 ;
+        }
     }
+
+    
 
 }
 
