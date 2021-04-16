@@ -245,6 +245,7 @@
  me.readConfig = readConfig ;
 
  let placeholderNode = create(Object.assign({
+   type:'placeholder',
    placeholder:true
  } , placeholderNodeData)) ;
 
