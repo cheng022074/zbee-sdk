@@ -2,6 +2,8 @@
  * 
  * 包含偏移
  * 
+ * @import getHeight from ....height
+ * 
  * @import get from ....get
  * 
  * @import containsY from ....contains.y
@@ -20,7 +22,7 @@ region = get(region) ;
 
 position = get(position) ;
 
-if(!containsY(region , position)){
+if(getHeight(region) >= getHeight(position) && !containsY(region , position)){
 
     let {
         top,
