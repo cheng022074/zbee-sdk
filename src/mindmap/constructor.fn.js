@@ -156,8 +156,7 @@
 
  let mindmap = me,
  {
-    fields:readerFields,
-    addFields:readerAddFields = () => {}
+    fields:readerFields
  } = reader;
  
  reader = me.reader = createReader({
@@ -241,7 +240,7 @@
             local:true,
             defaultValue:false
          }
-      } , readerAddFields.bind(me)) ;
+      }) ;
 
  me.readConfig = readConfig ;
 
