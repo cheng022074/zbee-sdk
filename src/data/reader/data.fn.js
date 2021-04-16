@@ -39,12 +39,10 @@
     let me = this,
     {
         names
-    } = me,
-    addNames = getNames(me.getAddFields(record));
+    } = me;
 
     names = [
         ...names,
-        ...addNames,
         ...Object.keys(fields)
     ] ;
 

@@ -27,13 +27,11 @@
  * 
  * @param {mixed} data 原始数据
  * 
- * @param {function} [addFields = () => {}] 自定义数据记录
- * 
  * @return {object} 正式数据
  * 
  */
 
- function main(record , raw , raws , index , data , addFields){
+ function main(record , raw , raws , index , data){
 
     let me = this,
     {
@@ -46,15 +44,6 @@
     innerDefine(record , 'DATA_RECORD' , true) ;
 
     processFields(isConvert , record , fields , raw , raws , index , data) ;
-
-    let additionalFields = addFields(record) ;
-
-    if(isDefined(additionalFields)){
-
-        additionalFields = getFields.call(me , additionalFields) ;
-
-        processFields(isConvert , record , additionalFields , raw , raws , index , data) ;
-    }
     
     return record ;
  }
