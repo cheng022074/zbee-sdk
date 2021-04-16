@@ -16,21 +16,13 @@
 
 let me = this,
 {
-    selectedNode,
-    layoutPositioner
+    selectedNode
 } = me,
 node = previous(selectedNode);
 
 if(node){
 
     return insertBefore(selectedNode , node) ;
-}
-
-node = layoutPositioner.getMoveUpNode(selectedNode) ;
-
-if(node){
-
-    return insertAfter(selectedNode , node) ;
 }
 
 return false ;
