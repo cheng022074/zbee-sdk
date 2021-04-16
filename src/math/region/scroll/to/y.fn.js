@@ -22,7 +22,7 @@ region = get(region) ;
 
 position = get(position) ;
 
-if(getHeight(region) >= getHeight(position) && !containsY(region , position)){
+if(!containsY(region , position)){
 
     let {
         top,
@@ -33,19 +33,24 @@ if(getHeight(region) >= getHeight(position) && !containsY(region , position)){
         bottom:positionBototm
     } = position;
 
-    if(positionTop < top){
+    if(getHeight(region) >= getHeight(position)){
 
-        setY(region , 'top' , positionTop) ;
+        if(positionTop < top){
 
-        return -1 ;
+            setY(region , 'top' , positionTop) ;
+    
+            return -1 ;
+    
+        }
+    
+    }
 
-    }else if(positionBototm > bottom){
-
+    if(positionBototm > bottom){
+    
         setY(region , 'bottom' , positionBototm) ;
 
         return 1 ;
     }
-
 }
 
 return 0 ;
