@@ -19,21 +19,13 @@
  */
 let me = this,
 {
-   selectedNode,
-   layoutPositioner
+   selectedNode
 } = me,
 node = previous(selectedNode);
 
 if(node){
 
    return onBeforeNodeInsertBefore(data(getParentNode(node)) , data(selectedNode) , data(node)) ;
-}
-
-node = layoutPositioner.getMoveUpNode(selectedNode) ;
-
-if(node){
-
-   return onBeforeNodeInsertAfter(data(getParentNode(node)) , data(selectedNode) , data(node)) ;
 }
 
 return false ;
