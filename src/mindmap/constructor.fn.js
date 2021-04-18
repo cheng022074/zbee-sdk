@@ -39,8 +39,6 @@
  * 
  * @param {number} [config.height = 0] 脑图高度
  * 
- * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
- * 
  * @param {number} [config.dragNodeDiscernRadius = 10] 拖曳识别半径
  * 
  * @param {mixed} [config.layout] 布局模式
@@ -244,9 +242,9 @@
 
  me.readConfig = readConfig ;
 
- let placeholderNode = create(Object.assign({
+ let placeholderNode = create({
    type:'placeholder',
    placeholder:true
- } , placeholderNodeData)) ;
+ }) ;
 
  me.placeholderNode = placeholderNode ;
