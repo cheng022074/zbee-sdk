@@ -33,7 +33,11 @@
 
  baseNode = from(baseNode) ;
 
-if(!isRootNode(baseNode) && !baseNode.placeholder){
+ let {
+    placeholderNode
+ } = this ;
+
+if(!isRootNode(baseNode) && baseNode !== placeholderNode){
 
     if(insertNode){
 
@@ -105,7 +109,7 @@ if(!isRootNode(baseNode) && !baseNode.placeholder){
         show(insertNode) ;
     }
 
-    if(!insertNode.placeholder){
+    if(insertNode !== placeholderNode){
 
         this.fireEvent(`nodeinsert${region}` , data(insertNode) , data(baseNode) , data(parentNode)) ;
 

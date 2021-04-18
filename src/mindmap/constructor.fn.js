@@ -218,17 +218,7 @@
             },
             defaultValue:false
          },
-         placeholder:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
-         },
          dragging:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
-         },
-         placeholderParent:{
             mode:'readwrite',
             local:true,
             defaultValue:false
@@ -243,8 +233,7 @@
  me.readConfig = readConfig ;
 
  let placeholderNode = create({
-   type:'placeholder',
-   placeholder:true
+   type:'placeholder'
  }) ;
 
  me.placeholderNode = placeholderNode ;
