@@ -222,11 +222,6 @@
             mode:'readwrite',
             local:true,
             defaultValue:false
-         },
-         editing:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
          }
       }) ;
 
