@@ -7,6 +7,7 @@
     ],
     "constructor":true,
     "methods":[
+        "save",
         "load",
         "destroy",
         "resize",

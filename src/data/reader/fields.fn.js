@@ -148,7 +148,7 @@
 
                 if(isFunction(reader)){
 
-                    return me.read(data , data => reader(data , raw , raws , index)) ;
+                    return me.read(data , data => reader(raw , raws , index , data)) ;
                 
                 }else if(isString(reader)){
 
@@ -165,7 +165,7 @@
 
                     if(isFunction(root)){
 
-                        rootProperty = data => root(data , raw , raws , index) ;
+                        rootProperty = data => root(raw , raws , index , data) ;
                     
                     }else{
 
