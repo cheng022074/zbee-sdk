@@ -8,11 +8,7 @@
  * 
  * @import data from mindmap.node.data scoped
  * 
- * @param {object} [callbacks = {}] 回调信息
- * 
- * @param {function} [callbacks.onBeforeNodeInsertBefore = () => true] 拖曳的拦截函数 
- * 
- * @param {function} [callbacks.onBeforeNodeInsertAfter = () => true] 拖曳的拦截函数 
+ * @param {function} [onBeforeNodeInsertAfter = () => true] 拖曳的拦截函数 
  * 
  * @return {boolean} 判断是否可以向下移动
  * 
