@@ -23,7 +23,7 @@
  * 
  * @import get from function.get
  * 
- * @import generate from .node.id.generate
+ * @import generate from .node.id.generate scoped
  * 
  * @param {object} config 脑图配置
  * 
@@ -158,13 +158,13 @@
  } = reader;
  
  reader = me.reader = createReader({
-         ...readerFields,
          id:{
             convert(){
 
                return generate() ;
             }
          },
+         ...readerFields,
          parentNodeId: {
             local:true,
             mode:'readwrite'

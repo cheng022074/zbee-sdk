@@ -13,9 +13,4 @@ let me = this,
     generateNodeId
 } = me ;
 
-if(isFunction(generateNodeId)){
-
-    return generateNodeId.call(me) ;
-}
-
-return generate('node-') ;
+return generateNodeId.call(me) || generate('node-');

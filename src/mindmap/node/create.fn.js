@@ -3,7 +3,7 @@
  * 
  * 创建新节点
  * 
- * @import generate from .id.generate
+ * @import generate from .id.generate scoped
  * 
  * @param {object} [node = {}] 节点信息
  * 
