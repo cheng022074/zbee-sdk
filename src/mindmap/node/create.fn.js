@@ -21,7 +21,6 @@ delete node.hidden ;
 delete node.level ;
 
 let options = {
-   text:'',
    ...node,
    id:generate(),
    children:[]
