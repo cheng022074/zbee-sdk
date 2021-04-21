@@ -36479,9 +36479,9 @@ exports['src::mindmap'] = (() => {
 
 exports['src::mindmap.node.id.generate'] = (() => {
 
-    let generate;
+    let isFunction, generate;
 
-    let var_init_locked_1614503282003;
+    let var_init_locked_1618883974477;
 
 
 
@@ -36491,22 +36491,30 @@ exports['src::mindmap.node.id.generate'] = (() => {
          * 
          * 生成节点唯一编号
          * 
+         * @import is.function
+         * 
          * @import generate from id.generate
          * 
          */
 
-        return generate('node-');
+        let me = this,
+            {
+                generateNodeId
+            } = me;
+
+        return generateNodeId.call(me) || generate('node-');
 
     }
 
     return function() {
 
 
-        if (!var_init_locked_1614503282003) {
+        if (!var_init_locked_1618883974477) {
 
+            isFunction = include('src::is.function');
             generate = include('src::id.generate');
 
-            var_init_locked_1614503282003 = true;
+            var_init_locked_1618883974477 = true;
         }
 
 
@@ -36517,60 +36525,70 @@ exports['src::mindmap.node.id.generate'] = (() => {
 
 exports['src::mindmap.node.create'] = (() => {
 
-    let generate;
-
-    let var_init_locked_1614503281990;
 
 
 
-    function main(node) {
 
 
-        /**
-         * 
-         * 创建新节点
-         * 
-         * @import generate from .id.generate
-         * 
-         * @param {object} [node = {}] 节点信息
-         * 
-         * @return {data.Record} 创建出来的新节点 
-         * 
-         */
 
-        let {
-            reader,
-            nodes
-        } = this;
-
-        delete node.hidden;
-
-        delete node.level;
-
-        let options = {
-            text: '',
-            ...node,
-            id: generate(),
-            children: []
-        };
-
-        node = reader.create(options);
-
-        nodes.set(node.id, node);
-
-        return node;
-
-    }
+    const var_current_scope_1618885264020 = new Map();
 
     return function(node = {}) {
 
 
-        if (!var_init_locked_1614503281990) {
 
-            generate = include('src::mindmap.node.id.generate');
 
-            var_init_locked_1614503281990 = true;
+
+        if (!var_current_scope_1618885264020.has(this)) {
+
+            var_current_scope_1618885264020.set(this, (() => {
+                const generate = include('src::mindmap.node.id.generate').bind(this);
+
+                function main(node) {
+
+
+                    /**
+                     * 
+                     * 创建新节点
+                     * 
+                     * @import generate from .id.generate scoped
+                     * 
+                     * @param {object} [node = {}] 节点信息
+                     * 
+                     * @return {data.Record} 创建出来的新节点 
+                     * 
+                     */
+
+                    let {
+                        reader,
+                        nodes
+                    } = this;
+
+                    delete node.hidden;
+
+                    delete node.level;
+
+                    let options = {
+                        ...node,
+                        id: generate(),
+                        children: []
+                    };
+
+                    node = reader.create(options);
+
+                    nodes.set(node.id, node);
+
+                    return node;
+
+                }
+
+                return main;
+
+            })());
         }
+
+        const main = var_current_scope_1618885264020.get(this);
+
 
 
         return main.call(this, node);
@@ -36846,13 +36864,13 @@ exports['src::mindmap.node.field.selected'] = (() => {
 
 exports['src::mindmap.constructor'] = (() => {
 
-    let createReader, isObject, isArray, emptyFn, isNumber, isString, get, generate;
+    let createReader, isObject, isArray, emptyFn, isNumber, isString, get;
 
-    let var_init_locked_1618795634860;
+    let var_init_locked_1618884703699;
 
 
 
-    const var_current_scope_1618795634860 = new Map();
+    const var_current_scope_1618884703699 = new Map();
 
     return function({
         reader,
@@ -36867,7 +36885,7 @@ exports['src::mindmap.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1618795634860) {
+        if (!var_init_locked_1618884703699) {
 
             createReader = include('src::data.reader.json');
             isObject = include('src::is.object.simple');
@@ -36876,20 +36894,20 @@ exports['src::mindmap.constructor'] = (() => {
             isNumber = include('src::is.number');
             isString = include('src::is.string');
             get = include('src::function.get');
-            generate = include('src::mindmap.node.id.generate');
 
-            var_init_locked_1618795634860 = true;
+            var_init_locked_1618884703699 = true;
         }
 
 
 
 
-        if (!var_current_scope_1618795634860.has(this)) {
+        if (!var_current_scope_1618884703699.has(this)) {
 
-            var_current_scope_1618795634860.set(this, (() => {
+            var_current_scope_1618884703699.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const setSelected = include('src::mindmap.node.field.selected').bind(this);
+                const generate = include('src::mindmap.node.id.generate').bind(this);
 
                 function main({
                     reader,
@@ -36928,7 +36946,7 @@ exports['src::mindmap.constructor'] = (() => {
                      * 
                      * @import get from function.get
                      * 
-                     * @import generate from .node.id.generate
+                     * @import generate from .node.id.generate scoped
                      * 
                      * @param {object} config 脑图配置
                      * 
@@ -37063,13 +37081,13 @@ exports['src::mindmap.constructor'] = (() => {
                         } = reader;
 
                     reader = me.reader = createReader({
-                        ...readerFields,
                         id: {
                             convert() {
 
                                 return generate();
                             }
                         },
+                        ...readerFields,
                         parentNodeId: {
                             local: true,
                             mode: 'readwrite'
@@ -37145,7 +37163,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1618795634860.get(this);
+        const main = var_current_scope_1618884703699.get(this);
 
 
 
