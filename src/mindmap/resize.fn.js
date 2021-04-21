@@ -22,8 +22,6 @@ if(mindmapWidth !== width || mindmapHeight !== height){
 
     me.height = height;
 
-    delete me.region ;
-
     layout() ;
 
     return true ;
