@@ -39621,7 +39621,7 @@ exports['src::mindmap.resize'] = (() => {
 
 
 
-    const var_current_scope_1611566412988 = new Map();
+    const var_current_scope_1618987424465 = new Map();
 
     return function(width, height) {
 
@@ -39629,9 +39629,9 @@ exports['src::mindmap.resize'] = (() => {
 
 
 
-        if (!var_current_scope_1611566412988.has(this)) {
+        if (!var_current_scope_1618987424465.has(this)) {
 
-            var_current_scope_1611566412988.set(this, (() => {
+            var_current_scope_1618987424465.set(this, (() => {
                 const layout = include('src::mindmap.layout').bind(this);
 
                 function main(width, height) {
@@ -39660,8 +39660,6 @@ exports['src::mindmap.resize'] = (() => {
 
                         me.height = height;
 
-                        delete me.region;
-
                         layout();
 
                         return true;
@@ -39676,7 +39674,7 @@ exports['src::mindmap.resize'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1611566412988.get(this);
+        const main = var_current_scope_1618987424465.get(this);
 
 
 
