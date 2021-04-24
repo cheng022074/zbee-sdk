@@ -1,11 +1,11 @@
-.xy-container, .css-container {
+.hb-container, .css-container {
   position: relative;
   overflow: hidden; }
 
-.xy-component, .css-component {
+.hb-component, .css-component {
   position: relative; }
 
-.xy-layout-center, .css-layout-center {
+.hb-layout-center, .css-layout-center {
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -17,7 +17,7 @@
   left: 0;
   right: 0; }
 
-.xy-layout-fit-unsized, .css-layout-fit-unsized {
+.hb-layout-fit-unsized, .css-layout-fit-unsized {
   width: 100%;
   height: 100%; }
 
@@ -30,13 +30,13 @@
 .xy-layout-flex-3 {
   flex: 3; }
 
-.xy-layout-horizontal, .css-layout-horizontal {
+.hb-layout-horizontal, .css-layout-horizontal {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start; }
 
-.xy-layout-vertical, .css-layout-vertical {
+.hb-layout-vertical, .css-layout-vertical {
   display: flex;
   flex-direction: column;
   align-items: stretch;

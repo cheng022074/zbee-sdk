@@ -104,7 +104,7 @@
         "type":"webpack",
         "webpack":true,
         "prefixes":{
-            "css":"xy"
+            "css":"hb"
         },
         "classes":[
             "css::container",
