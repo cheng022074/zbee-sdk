@@ -99,5 +99,20 @@
         "to":[
             "C:\\Users\\DEV\\Documents\\Code\\HB\\HB-ADMIN-SYSTEM-TEMPLATE\\node_modules\\zbee-sdk\\package\\hb-admin-system-template"
         ]
+    },
+    "xy-ok-calendar":{
+        "type":"webpack",
+        "webpack":true,
+        "prefixes":{
+            "css":"xy"
+        },
+        "classes":[
+            "css::container",
+            "css::component",
+            "css::layout.*"
+        ],
+        "to":[
+            "../HB/HB-CALENDAR/zbee"
+        ]
     }
 }
