@@ -36,6 +36,12 @@
   align-items: stretch;
   justify-content: flex-start; }
 
+.xy-layout-vertical-center, .css-layout-vertical-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; }
+
 .xy-layout-vertical, .css-layout-vertical {
   display: flex;
   flex-direction: column;

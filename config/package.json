@@ -124,7 +124,8 @@
         "classes":[
             "css::container",
             "css::component",
-            "css::layout.*"
+            "css::layout.*",
+            "object.value.*"
         ],
         "to":[
             "../XY/XY-OK-APP/src/libraries/zbee"
