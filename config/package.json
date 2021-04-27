@@ -114,5 +114,20 @@
         "to":[
             "../HB/HB-CALENDAR/zbee"
         ]
+    },
+    "ok-app":{
+        "type":"webpack",
+        "webpack":true,
+        "prefixes":{
+            "css":"xy"
+        },
+        "classes":[
+            "css::container",
+            "css::component",
+            "css::layout.*"
+        ],
+        "to":[
+            "../XY/XY-OK-APP/src/libraries/zbee"
+        ]
     }
 }
