@@ -125,7 +125,9 @@
             "css::container",
             "css::component",
             "css::layout.*",
-            "object.value.*"
+            "object.value.*",
+            "is.string",
+            "is.number"
         ],
         "to":[
             "../XY/XY-OK-APP/src/libraries/zbee"
