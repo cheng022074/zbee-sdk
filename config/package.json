@@ -127,7 +127,8 @@
             "css::layout.*",
             "object.value.*",
             "is.string",
-            "is.number"
+            "is.number",
+            "array.remove"
         ],
         "to":[
             "../XY/XY-OK-APP/src/libraries/zbee"
