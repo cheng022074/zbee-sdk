@@ -115,8 +115,9 @@
             "../HB/HB-CALENDAR/zbee"
         ]
     },
-    "ok-app":{
+    "ok-web-app-bootstrap":{
         "type":"webpack",
+        "name":"zbee-sdk",
         "webpack":true,
         "prefixes":{
             "css":"xy"
@@ -131,7 +132,7 @@
             "array.remove"
         ],
         "to":[
-            "../XY/XY-OK-APP/src/libraries/zbee"
+            "../XY/XY-OK-WEB-APP/public/zbee-sdk/bootstrap"
         ]
     }
 }

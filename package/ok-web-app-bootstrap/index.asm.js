@@ -1,32 +1,10 @@
-/* eslint-disable */ (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["OkApp"] = factory();
-	else
-		root["OkApp"] = factory();
-})(self, function() {
-return /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ 695:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "include": () => /* binding */ include,
-/* harmony export */   "override": () => /* binding */ override
-/* harmony export */ });
 /* eslint-disable */
 
 const innerExports = {} ;
 
 
 
-const include = (() =>{
+export const include = (() =>{
 
     const nameRe = /^(\w+)\:{2}(.+?)$/,
           CODES = {};
@@ -147,7 +125,7 @@ const config = (() =>{
 
 })();
 
-const override = (() =>{
+export const override = (() =>{
 
     const nameRe = /^(\w+)\:{2}(.+?)$/ ;
 
@@ -191,7 +169,7 @@ innerExports['src::object.value.get'] = (() =>{
 
                     let split,isObject,isArray;
     
-                    let var_init_locked_1611566404583;
+                    let var_init_locked_1619531034528;
     
                     
 
@@ -276,13 +254,13 @@ if(isObject(data) || isArray(data)){
                     return function(data , key = '.'){
     
                         
-        if(!var_init_locked_1611566404583){
+        if(!var_init_locked_1619531034528){
 
             split = include('src::string.split');
 isObject = include('src::is.object');
 isArray = include('src::is.array');
 
-            var_init_locked_1611566404583 = true ;
+            var_init_locked_1619531034528 = true ;
         }
         
     
@@ -330,7 +308,7 @@ innerExports['src::is.array'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1611566398937;
+                    let var_init_locked_1619531034551;
     
                     
 
@@ -355,11 +333,11 @@ innerExports['src::is.array'] = (() =>{
                     return function(data){
     
                         
-        if(!var_init_locked_1611566398937){
+        if(!var_init_locked_1619531034551){
 
             isType = include('src::is.type');
 
-            var_init_locked_1611566398937 = true ;
+            var_init_locked_1619531034551 = true ;
         }
         
     
@@ -372,7 +350,7 @@ innerExports['src::is.empty'] = (() =>{
 
                     let isArray;
     
-                    let var_init_locked_1611566399118;
+                    let var_init_locked_1619531034548;
     
                     
 
@@ -399,11 +377,11 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
                     return function(data , allowEmptyString = false){
     
                         
-        if(!var_init_locked_1611566399118){
+        if(!var_init_locked_1619531034548){
 
             isArray = include('src::is.array');
 
-            var_init_locked_1611566399118 = true ;
+            var_init_locked_1619531034548 = true ;
         }
         
     
@@ -416,7 +394,7 @@ innerExports['src::string.split'] = (() =>{
 
                     let isEmpty;
     
-                    let var_init_locked_1611566404604;
+                    let var_init_locked_1619531034539;
     
                     
 
@@ -448,11 +426,11 @@ function main(target , splitRe){
                     return function(target , splitRe){
     
                         
-        if(!var_init_locked_1611566404604){
+        if(!var_init_locked_1619531034539){
 
             isEmpty = include('src::is.empty');
 
-            var_init_locked_1611566404604 = true ;
+            var_init_locked_1619531034539 = true ;
         }
         
     
@@ -465,7 +443,7 @@ innerExports['src::is.object'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1611566400702;
+                    let var_init_locked_1619531034556;
     
                     
 
@@ -490,11 +468,11 @@ return typeof data === 'object' ;
                     return function(data){
     
                         
-        if(!var_init_locked_1611566400702){
+        if(!var_init_locked_1619531034556){
 
             isType = include('src::is.type');
 
-            var_init_locked_1611566400702 = true ;
+            var_init_locked_1619531034556 = true ;
         }
         
     
@@ -507,7 +485,7 @@ innerExports['src::object.value.set'] = (() =>{
 
                     let isObject,split;
     
-                    let var_init_locked_1611566409493;
+                    let var_init_locked_1619531034560;
     
                     
 
@@ -562,12 +540,12 @@ function main(target , key , value){
                     return function(target , key , value){
     
                         
-        if(!var_init_locked_1611566409493){
+        if(!var_init_locked_1619531034560){
 
             isObject = include('src::is.object');
 split = include('src::string.split');
 
-            var_init_locked_1611566409493 = true ;
+            var_init_locked_1619531034560 = true ;
         }
         
     
@@ -580,7 +558,7 @@ innerExports['src::is.string'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1611566399143;
+                    let var_init_locked_1619531034564;
     
                     
 
@@ -605,11 +583,11 @@ return isType(data , 'string') ;
                     return function(data){
     
                         
-        if(!var_init_locked_1611566399143){
+        if(!var_init_locked_1619531034564){
 
             isType = include('src::is.type');
 
-            var_init_locked_1611566399143 = true ;
+            var_init_locked_1619531034564 = true ;
         }
         
     
@@ -622,7 +600,7 @@ innerExports['src::is.number'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1611566399304;
+                    let var_init_locked_1619531168934;
     
                     
 
@@ -647,11 +625,11 @@ return isType(data , 'number') && isFinite(data);
                     return function(data){
     
                         
-        if(!var_init_locked_1611566399304){
+        if(!var_init_locked_1619531168934){
 
             isType = include('src::is.type');
 
-            var_init_locked_1611566399304 = true ;
+            var_init_locked_1619531168934 = true ;
         }
         
     
@@ -660,72 +638,535 @@ return isType(data , 'number') && isFinite(data);
     
                 })();
 
+innerExports['src::array.remove'] = (() =>{
+
+                    let remove,indexOf;
+    
+                    let var_init_locked_1619817541397;
+    
+                    
+
+                    function main(data , ...items){
+
+        
+/**
+ * 
+ * 在数组中去除项目
+ * 
+ * @import remove from array.remove.index
+ * 
+ * @import indexOf from array.indexOf
+ * 
+ * @param {array} data 数组
+ * 
+ * @param {mixed} [...items] 项目
+ * 
+ */
+
+ for(let item of items){
+
+    remove(data , indexOf(data , item)) ;
+ }
+
+    }
+    
+                    return function(data , ...items){
+    
+                        
+        if(!var_init_locked_1619817541397){
+
+            remove = include('src::array.remove.index');
+indexOf = include('src::array.indexOf');
+
+            var_init_locked_1619817541397 = true ;
+        }
+        
+    
+                        return main.call(this , data , ...items) ;
+                    } ;
+    
+                })();
+
+innerExports['src::array.remove.index'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    function main(data , index){
+
+        
+/**
+ * 
+ * 根据数组下标删除对应项
+ * 
+ * @param {array} data 作用数组
+ * 
+ * @param {number} index 数组项的下标
+ * 
+ * @return {boolean} 如果删除成功则返回 true , 否则返回　false 
+ * 
+ */
+
+if(index >= 0 && index < data.length){
+
+    data.splice(index , 1) ;
+
+    return true ;
+}
+
+return false ;
+
+    }
+    
+                    return function(data , index){
+    
+                        
+    
+                        return main.call(this , data , index) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.object.simple'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为简单对象类型
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为简单对象类型则返回 true , 否则返回 false 
+ * 
+ */
+
+return data instanceof Object && data.constructor === Object;
+
+    }
+    
+                    return function(data){
+    
+                        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.boolean'] = (() =>{
+
+                    let isType;
+    
+                    let var_init_locked_1619817541443;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为布尔类型
+ * 
+ * @import is.type
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为布尔类型则返回 true , 否则返回 false 
+ * 
+ */
+
+return isType(data , 'boolean') ;
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1619817541443){
+
+            isType = include('src::is.type');
+
+            var_init_locked_1619817541443 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.date'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为日期类型
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为日期类型则返回 true , 否则返回 false 
+ * 
+ */
+
+
+ return Object.prototype.toString.call(data) === '[object Date]' ;
+
+    }
+    
+                    return function(data){
+    
+                        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.function'] = (() =>{
+
+                    let isType;
+    
+                    let var_init_locked_1619817541452;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为函数类型
+ * 
+ * @import is.type
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {mixed} 如果给定值为函数类型则返回 true , 否则返回 false
+ * 
+ */
+
+return isType(data , 'function') && !data.__ZBEE_IS_CLASS__;
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1619817541452){
+
+            isType = include('src::is.type');
+
+            var_init_locked_1619817541452 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::data.type'] = (() =>{
+
+                    let isObject,isArray,isString,isNumber,isBoolean,isDate,isFunction;
+    
+                    let var_init_locked_1619817541436;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 返回数据类型描述
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.array
+ * 
+ * @import is.string
+ * 
+ * @import is.number
+ * 
+ * @import is.boolean
+ * 
+ * @import is.date
+ * 
+ * @import is.string
+ * 
+ * @import is.function
+ * 
+ * @param {mixed} data 数据
+ * 
+ * @return {string} 数据类型描述 
+ * 
+ */
+
+ if(isObject(data)){
+
+    return 'object' ;
+ }
+
+ if(isArray(data)){
+
+    return 'array' ;
+ }
+
+ if(isString(data)){
+
+    return 'string' ;
+ }
+
+ if(isNumber(data)){
+
+   return 'number' ;
+ }
+
+ if(isBoolean(data)){
+
+   return 'boolean' ;
+ }
+
+ if(isDate(data)){
+
+  return 'date' ;
+  
+ }
+
+ if(isFunction(data)){
+
+   return 'function' ;
+ }
+
+ return 'other' ;
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1619817541436){
+
+            isObject = include('src::is.object.simple');
+isArray = include('src::is.array');
+isString = include('src::is.string');
+isNumber = include('src::is.number');
+isBoolean = include('src::is.boolean');
+isDate = include('src::is.date');
+isString = include('src::is.string');
+isFunction = include('src::is.function');
+
+            var_init_locked_1619817541436 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::data.equals'] = (() =>{
+
+                    let getType;
+    
+                    let var_init_locked_1619817541427;
+    
+                    
+
+                    /**
+ * 
+ * 匹配两个对象数据是否匹配
+ * 
+ * @import getType from data.type
+ * 
+ * @param {mixed} value1 第一个对象数据
+ * 
+ * @param {mixeds} value2 第二个对象数据
+ * 
+ * @return {boolean} 如果对象数据匹配则返回 true ， 否则返回 false
+ * 
+ */
+
+ function main(value1 , value2){
+
+    if(value1 === value2){
+
+        return true ;
+    }
+
+    let type1 = getType(value1),
+        type2 = getType(value2) ;
+
+    if(type1 === type2){
+
+        if(value1 === value2){
+
+            return true ;
+        }
+
+        switch(type1){
+
+            case 'object':
+
+                return object_equals(value1 , value2) ;
+
+            case 'array':
+
+                return array_equals(value1 , value2) ;
+
+            case 'date':
+
+                return date_equals(value1 , value2) ;
+        }
+    }
+
+    return false ;
+ }
+
+ const {
+    keys
+ } = Object ;
+
+ function object_equals(value1 , value2){
+
+    let names1 = keys(value1),
+        names2 = keys(value2);
+
+    if(names1.length !== names2.length){
+
+        return false ;
+    }
+
+    for(let name of names1){
+
+        if(!names2.includes(name)){
+
+            return false ;
+        }
+
+        if(!main(value1[name] , value2[name])){
+
+            return false ;
+        }
+    }
+
+    return true ;
+ }
+
+ function array_equals(value1 , value2){
+
+    if(value1.length !== value2.length){
+
+        return false ;
+
+    }
+
+    let len = value1.length ;
+
+    for(let i = 0 ; i < len ; i ++){
+
+        if(!main(value1[i] , value2[i])){
+
+            return false ;
+        }
+    }
+
+    return true ;
+ }
+
+ function date_equals(value1 , value2){
+
+    return value1.getTime() === value2.getTime() ;
+ }
+    
+                    return function(value1 , value2){
+    
+                        
+        if(!var_init_locked_1619817541427){
+
+            getType = include('src::data.type');
+
+            var_init_locked_1619817541427 = true ;
+        }
+        
+    
+                        return main.call(this , value1 , value2) ;
+                    } ;
+    
+                })();
+
+innerExports['src::array.indexOf'] = (() =>{
+
+                    let equals;
+    
+                    let var_init_locked_1619817541420;
+    
+                    
+
+                    function main(data , checkItem){
+
+        
+/**
+ * 
+ * 返回指定项目对应的下标
+ * 
+ * @import equals from data.equals
+ * 
+ * @param {mixed} data 数组
+ * 
+ * @param {mixed} checkItem 检测项
+ * 
+ * @return {Number} 数组下标
+ * 
+ */
+
+ let {
+     length
+ } = data ;
+
+for(let i = 0 ; i < length ; i ++){
+
+    if(equals(data[i] , checkItem)){
+
+        return i ;
+    }
+ }
+
+ return -1 ;
+
+    }
+    
+                    return function(data , checkItem){
+    
+                        
+        if(!var_init_locked_1619817541420){
+
+            equals = include('src::data.equals');
+
+            var_init_locked_1619817541420 = true ;
+        }
+        
+    
+                        return main.call(this , data , checkItem) ;
+                    } ;
+    
+                })();
 
 
 
 
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-/******/ 	// module exports must be returned from runtime so entry inlining is disabled
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(695);
-/******/ })()
-;
-});
