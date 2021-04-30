@@ -129,7 +129,8 @@
             "object.value.*",
             "is.string",
             "is.number",
-            "array.remove"
+            "array.remove",
+            "function.call"
         ],
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/bootstrap"

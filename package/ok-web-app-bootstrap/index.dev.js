@@ -1189,6 +1189,198 @@ for(let i = 0 ; i < length ; i ++){
     
                 })();
 
+innerExports['src::function.call'] = (() =>{
+
+                    let isFunction,isObject,isArray,get,call;
+    
+                    let var_init_locked_1619820728881;
+    
+                    
+
+                    function main(target , ...args){
+
+        
+/**
+ * 
+ * 执行函数
+ * 
+ * @import is.function
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.array
+ * 
+ * @import get from .get
+ * 
+ * @import call from .call
+ * 
+ * @param {mixed} target 函数或者函数描述
+ * 
+ * @param {array} [...args] 函数参数
+ * 
+ * @return {mixed} 函数的返回值
+ * 
+ */
+
+ if(isFunction(target)){
+
+    return target(...args) ;
+
+ }else if(isObject(target)){
+
+    let {
+        fn,
+        scope
+    } = target ;
+
+    get(fn , scope).apply(scope , args) ;
+
+ }else if(isArray(target)){
+
+    let targets = target ;
+
+    for(let target of targets){
+
+        call(target , ...args) ;
+    }
+ }
+
+    }
+    
+                    return function(target , ...args){
+    
+                        
+        if(!var_init_locked_1619820728881){
+
+            isFunction = include('src::is.function');
+isObject = include('src::is.object.simple');
+isArray = include('src::is.array');
+get = include('src::function.get');
+call = include('src::function.call');
+
+            var_init_locked_1619820728881 = true ;
+        }
+        
+    
+                        return main.call(this , target , ...args) ;
+                    } ;
+    
+                })();
+
+innerExports['src::function.empty'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    /**
+ * 
+ * 返回一个空函数
+ * 
+ * @scoped
+ * 
+ */
+
+const emptyFn = () =>{
+} ;
+
+function main(){
+
+    return emptyFn ;
+}
+    
+                    return function(){
+    
+                        
+    
+                        return main.call(this ) ;
+                    } ;
+    
+                })();
+
+innerExports['src::function.get'] = (() =>{
+
+                    let isString,isFunction,empty;
+    
+                    let var_init_locked_1619820728898;
+    
+                    
+
+                    function main(fn , scope){
+
+        /**
+ * 
+ * 获得一个函数引用
+ * 
+ * @import is.string
+ * 
+ * @import is.function
+ * 
+ * @import empty from function.empty
+ * 
+ * @param {string | function} fn 函数描述
+ * 
+ * @param {mixed} [scope] 函数作用域
+ * 
+ * @return {function} 函数引用本身 
+ * 
+ */
+
+if(isString(fn)){
+
+    if(scope && fn in scope){
+
+        fn = scope[fn] ;
+
+    }else{
+
+        try{
+
+            fn = include(fn) ;
+        
+        }catch(err){
+
+
+        }
+
+        
+    }
+}
+
+if(isFunction(fn)){
+
+    if(scope){
+
+        return fn.bind(scope) ;
+    }
+
+    return fn ;
+}
+
+return empty() ;
+
+    }
+    
+                    return function(fn , scope){
+    
+                        
+        if(!var_init_locked_1619820728898){
+
+            isString = include('src::is.string');
+isFunction = include('src::is.function');
+empty = include('src::function.empty');
+
+            var_init_locked_1619820728898 = true ;
+        }
+        
+    
+                        return main.call(this , fn , scope) ;
+                    } ;
+    
+                })();
+
 
 
 
