@@ -130,6 +130,7 @@
             "is.string",
             "is.number",
             "array.remove",
+            "array.from",
             "function.call"
         ],
         "to":[

@@ -1167,6 +1167,64 @@ for(let i = 0 ; i < length ; i ++){
     
                 })();
 
+innerExports['src::array.from'] = (() =>{
+
+                    let isEmpty,isString;
+    
+                    let var_init_locked_1619990541212;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 将非数组数据打包成数组数据
+ * 
+ * @import is.empty
+ * 
+ * @import is.string
+ * 
+ * @param {mixed} data 数据
+ * 
+ * @return {array} 数组数据
+ * 
+ */
+
+if(isEmpty(data)){
+
+    return [];
+}
+
+if (data && data.length !== undefined && !isString(data)) {
+
+    return Array.from(data);
+
+}
+
+return [
+    data
+];
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1619990541212){
+
+            isEmpty = include('src::is.empty');
+isString = include('src::is.string');
+
+            var_init_locked_1619990541212 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
 innerExports['src::function.call'] = (() =>{
 
                     let isFunction,isObject,isArray,get,call;
