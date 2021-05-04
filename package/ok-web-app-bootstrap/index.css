@@ -30,17 +30,23 @@
 .xy-layout-flex-3 {
   flex: 3; }
 
-.xy-layout-horizontal-center, .css-layout-horizontal-center {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start; }
-
 .xy-layout-horizontal, .css-layout-horizontal {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start; }
+  .xy-layout-horizontal.align-start, .css-layout-horizontal.align-start {
+    align-items: flex-start; }
+  .xy-layout-horizontal.align-end, .css-layout-horizontal.align-end {
+    align-items: flex-start; }
+  .xy-layout-horizontal.align-center, .css-layout-horizontal.align-center {
+    align-items: center; }
+  .xy-layout-horizontal.justify-end, .css-layout-horizontal.justify-end {
+    justify-content: flex-end; }
+  .xy-layout-horizontal.justify-center, .css-layout-horizontal.justify-center {
+    justify-content: center; }
+  .xy-layout-horizontal.justify-between, .css-layout-horizontal.justify-between {
+    justify-content: space-between; }
 
 .xy-layout-vertical-center, .css-layout-vertical-center {
   display: flex;
