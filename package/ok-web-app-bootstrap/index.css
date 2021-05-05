@@ -48,14 +48,21 @@
   .xy-layout-horizontal.justify-between, .css-layout-horizontal.justify-between {
     justify-content: space-between; }
 
-.xy-layout-vertical-center, .css-layout-vertical-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; }
-
 .xy-layout-vertical, .css-layout-vertical {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  justify-content: flex-start;
   justify-content: flex-start; }
+  .xy-layout-vertical.align-start, .css-layout-vertical.align-start {
+    align-items: flex-start; }
+  .xy-layout-vertical.align-end, .css-layout-vertical.align-end {
+    align-items: flex-start; }
+  .xy-layout-vertical.align-center, .css-layout-vertical.align-center {
+    align-items: center; }
+  .xy-layout-vertical.justify-end, .css-layout-vertical.justify-end {
+    justify-content: flex-end; }
+  .xy-layout-vertical.justify-center, .css-layout-vertical.justify-center {
+    justify-content: center; }
+  .xy-layout-vertical.justify-between, .css-layout-vertical.justify-between {
+    justify-content: space-between; }
