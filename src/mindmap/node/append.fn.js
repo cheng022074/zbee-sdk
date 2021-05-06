@@ -27,7 +27,11 @@
 
  parentNode = from(parentNode) ;
 
-if(parentNode === node || getLastChildNode(parentNode) === node || parentNode.placeholder){
+ let {
+   placeholderNode
+ } = this ;
+
+if(parentNode === node || getLastChildNode(parentNode) === node || parentNode === placeholderNode){
 
   return false;
 
@@ -61,7 +65,7 @@ if(!hidden && expanded){
   show(node) ;
 }
 
-if(!node.placeholder){
+if(node !== placeholderNode){
 
   this.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
 

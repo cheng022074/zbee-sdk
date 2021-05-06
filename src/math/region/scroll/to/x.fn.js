@@ -2,6 +2,8 @@
  * 
  * 包含偏移
  * 
+ * @import getWidth from ....width
+ * 
  * @import get from ....get
  * 
  * @import containsX from ....contains.x
@@ -31,19 +33,23 @@ if(!containsX(region , position)){
         right:positionRight
     } = position;
 
-    if(positionLeft < left){
+    if(getWidth(region) >= getWidth(position)){
 
-        setX(region , 'left' , positionLeft) ;
+        if(positionLeft < left){
 
-        return -1 ;
+            setX(region , 'left' , positionLeft) ;
+    
+            return -1 ;
+    
+        }
+    }
 
-    }else if(positionRight > right){
-
+    if(positionRight > right){
+    
         setX(region , 'right' , positionRight) ;
 
         return 1 ;
     }
-
 }
 
 return 0 ;

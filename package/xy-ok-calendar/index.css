@@ -1,0 +1,43 @@
+.hb-container, .css-container {
+  position: relative;
+  overflow: hidden; }
+
+.hb-component, .css-component {
+  position: relative; }
+
+.hb-layout-center, .css-layout-center {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.xy-layout-fit-sized, .css-layout-fit-sized {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
+.hb-layout-fit-unsized, .css-layout-fit-unsized {
+  width: 100%;
+  height: 100%; }
+
+.xy-layout-flex-1 {
+  flex: 1; }
+
+.xy-layout-flex-2 {
+  flex: 2; }
+
+.xy-layout-flex-3 {
+  flex: 3; }
+
+.hb-layout-horizontal, .css-layout-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start; }
+
+.hb-layout-vertical, .css-layout-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start; }

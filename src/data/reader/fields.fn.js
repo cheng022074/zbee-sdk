@@ -148,7 +148,7 @@
 
                 if(isFunction(reader)){
 
-                    return me.read(data , data => reader(data , raw , raws , index)) ;
+                    return me.read(data , data => reader(raw , raws , index , data)) ;
                 
                 }else if(isString(reader)){
 
@@ -159,14 +159,13 @@
                     let {
                         fields,
                         root,
-                        addFields,
                         ...options
                     } = reader,
                     rootProperty;
 
                     if(isFunction(root)){
 
-                        rootProperty = data => root(data , raw , raws , index) ;
+                        rootProperty = data => root(raw , raws , index , data) ;
                     
                     }else{
 
@@ -180,7 +179,7 @@
 
                     if(fields){
 
-                        return createReader(fields , addFields).read(data , readConfig) ;
+                        return createReader(fields).read(data , readConfig) ;
                     }
 
                     return me.read(data , readConfig) ;

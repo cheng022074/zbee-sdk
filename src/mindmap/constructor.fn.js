@@ -23,7 +23,7 @@
  * 
  * @import get from function.get
  * 
- * @import generate from .node.id.generate
+ * @import generate from .node.id.generate scoped
  * 
  * @param {object} config 脑图配置
  * 
@@ -38,8 +38,6 @@
  * @param {number} [config.width = 0] 脑图宽度
  * 
  * @param {number} [config.height = 0] 脑图高度
- * 
- * @param {object} [config.placeholderNodeData = {}] 占位脑图节点的其它配置
  * 
  * @param {number} [config.dragNodeDiscernRadius = 10] 拖曳识别半径
  * 
@@ -156,18 +154,17 @@
 
  let mindmap = me,
  {
-    fields:readerFields,
-    addFields:readerAddFields = () => {}
+    fields:readerFields
  } = reader;
  
  reader = me.reader = createReader({
-         ...readerFields,
          id:{
             convert(){
 
                return generate() ;
             }
          },
+         ...readerFields,
          parentNodeId: {
             local:true,
             mode:'readwrite'
@@ -185,11 +182,6 @@
                return setHidden(this , hidden) ;
             },
             defaultValue:true
-         },
-         levelRoot:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
          },
          level:{
             mode:'readwrite',
@@ -226,32 +218,17 @@
             },
             defaultValue:false
          },
-         placeholder:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
-         },
          dragging:{
             mode:'readwrite',
             local:true,
             defaultValue:false
-         },
-         placeholderParent:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
-         },
-         editing:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:false
          }
-      } , readerAddFields.bind(me)) ;
+      }) ;
 
  me.readConfig = readConfig ;
 
- let placeholderNode = create(Object.assign({
-   placeholder:true
- } , placeholderNodeData)) ;
+ let placeholderNode = create({
+   type:'placeholder'
+ }) ;
 
  me.placeholderNode = placeholderNode ;

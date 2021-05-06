@@ -2,13 +2,13 @@
  * 
  * 包含偏移
  * 
+ * @import getHeight from ....height
+ * 
  * @import get from ....get
  * 
  * @import containsY from ....contains.y
  * 
  * @import setY from ....y.anchor
- * 
- * @import getHeight from ....height
  * 
  * @param {mixed} region 范围
  * 
@@ -33,17 +33,7 @@ if(!containsY(region , position)){
         bottom:positionBototm
     } = position;
 
-    if(getHeight(position) > getHeight(region)){
-
-        if(positionBototm > bottom){
-    
-            setY(region , 'bottom' , positionBototm) ;
-    
-            return 1 ;
-        }
-
-
-    }else{
+    if(getHeight(region) >= getHeight(position)){
 
         if(positionTop < top){
 
@@ -51,16 +41,16 @@ if(!containsY(region , position)){
     
             return -1 ;
     
-        }else if(positionBototm > bottom){
-    
-            setY(region , 'bottom' , positionBototm) ;
-    
-            return 1 ;
         }
+    
     }
 
+    if(positionBototm > bottom){
     
+        setY(region , 'bottom' , positionBototm) ;
 
+        return 1 ;
+    }
 }
 
 return 0 ;

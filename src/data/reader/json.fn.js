@@ -8,8 +8,6 @@
  * 
  * @param {object} fields 字段配置
  * 
- * @param {function} addFields 附加字段配置
- * 
  */
 
  class main extends Reader{

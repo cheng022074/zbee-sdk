@@ -17,13 +17,6 @@
  
  }else{
 
-    if(node.levelRoot){
-
-        node.level = 0 ;
-
-        return ;
-    }
-
     let parentNode,
         noLevelNodes = [
             node
@@ -33,8 +26,7 @@
     while(parentNode = getParentNode(node)){
 
         let {
-            level,
-            levelRoot
+            level
         } = parentNode ;
 
         if(level === -1){
@@ -44,11 +36,6 @@
         }else{
 
             startLevel = level + 1 ;
-
-            break ;
-        }
-
-        if(levelRoot === true){
 
             break ;
         }

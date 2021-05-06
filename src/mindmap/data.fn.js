@@ -15,7 +15,7 @@
 
     return this.reader.data(node , {
         ignoreFields:[
-        'children'
+            'children'
         ],
         fields
     }) ;

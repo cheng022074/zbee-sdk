@@ -22,13 +22,11 @@
 
  class main {
 
-    constructor(fields = [] , addFields){
+    constructor(fields = []){
 
         let me = this ;
 
         fields = getFields.call(me , fields) ;
-
-        me.addFields = addFields ;
 
         let names = getNames(fields) ;
 
@@ -42,39 +40,10 @@
         return createData.call(this , record , options) ;
     }
 
-    getAddFieldNames(record){
-
-        let {
-            names
-        } = this.getAddFields(record) ;
-
-        return names ;
-    }
-
-    getAddFields(record){
-
-        let me = this,
-        {
-            addFields
-        } = me,
-        additionalFields = addFields(record);
-    
-        if(isDefined(additionalFields)){
-    
-            return getFields.call(me , additionalFields) ;
-        }
-    
-        return [] ;
-    }
 
     create(data){
 
-        let me = this,
-        {
-            addFields
-        } = me ;
-
-        return getRecord.call(me , undefined , data , undefined , undefined , undefined , addFields) ;
+        return getRecord.call(this , undefined , data) ;
     }
 
     read(data , root = '.'){
@@ -99,21 +68,18 @@
             multi
         } = config,
         me = this,
-        {
-            addFields
-        } = me,
         raws = getRaws.call(me , data , root),
         records = [],
         count = 0;
 
         if(multi === false && raws.length){
 
-            return getRecord.call(me , null , raws[0] , raws , count , data , addFields) ;
+            return getRecord.call(me , null , raws[0] , raws , count , data ) ;
         }
 
         for(let raw of raws){
 
-            records.push(getRecord.call(me , null , raw , raws , count ++ , data , addFields)) ;
+            records.push(getRecord.call(me , null , raw , raws , count ++ , data)) ;
         }
 
         return records ;

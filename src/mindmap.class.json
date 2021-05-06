@@ -7,6 +7,7 @@
     ],
     "constructor":true,
     "methods":[
+        "save",
         "load",
         "destroy",
         "resize",
@@ -66,6 +67,18 @@
         },{
             "name":"insertNewNodeAfter",
             "impl":".mindmap.node.insert.new.after"
+        },{
+            "name":"isMoveNodeUp",
+            "impl":"mindmap.node.is.move.up"
+        },{
+            "name":"isMoveNodeDown",
+            "impl":"mindmap.node.is.move.down"
+        },{
+            "name":"moveNodeUp",
+            "impl":"mindmap.node.move.up"
+        },{
+            "name":"moveNodeDown",
+            "impl":"mindmap.node.move.down"
         }
     ]
 }

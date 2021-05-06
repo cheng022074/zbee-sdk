@@ -2,5 +2,23 @@
     display:flex;
     flex-direction: row;
     align-items:stretch;
+    &.align-start{
+        align-items: flex-start;
+    }
+    &.align-end{
+        align-items: flex-start;
+    }
+    &.align-center{
+        align-items: center;
+    }
     justify-content: flex-start;
+    &.justify-end{
+        justify-content: flex-end;
+    }
+    &.justify-center{
+        justify-content: center;
+    }
+    &.justify-between{
+        justify-content: space-between;
+    }
 }

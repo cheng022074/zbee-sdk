@@ -78,7 +78,6 @@
             } = nodes.get(layoutNode);
 
             lines.push({
-                indicated:layoutNode.placeholder,
                 start,
                 startCenterXY,
                 startRightXY,
