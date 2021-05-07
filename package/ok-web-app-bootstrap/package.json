@@ -1,7 +1,7 @@
 
 {
     "name": "ok_web_app_bootstrap",
-    "version":"1.6.4",
+    "version":"1.7.0",
     
     "engines":{
   "node": ">= 10.1.0"
