@@ -136,5 +136,26 @@
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/bootstrap"
         ]
+    },
+    "ok-web-app-core":{
+        "type":"webpack",
+        "name":"zbee-sdk",
+        "webpack":true,
+        "prefixes":{
+            "css":"xy"
+        },
+        "classes":[
+            "css::container",
+            "css::component",
+            "css::layout.*",
+            "object.value.*",
+            "is.string",
+            "is.number",
+            "is.function",
+            "array.from"
+        ],
+        "to":[
+            "../XY/XY-OK-WEB-APP/public/zbee-sdk/core"
+        ]
     }
 }

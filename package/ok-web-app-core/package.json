@@ -1,0 +1,28 @@
+
+{
+    "name": "ok_web_app_core",
+    "version":"1.7.0",
+    
+    "engines":{
+  "node": ">= 10.1.0"
+},
+    
+    
+    "author": "nero chen",
+    
+    
+    "license": "ISC",
+    
+    
+    "module":"index.asm.js",
+    
+    "main":"index.js",
+    "files": [
+  "index.asm.js",
+  "index.js",
+  "index.prd.js",
+  "index.dev.js",
+  "index.css"
+],
+    "dependencies": {}
+}
