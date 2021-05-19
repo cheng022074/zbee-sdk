@@ -738,6 +738,493 @@ isString = include('src::is.string');
     
                 })();
 
+innerExports['src::array.remove'] = (() =>{
+
+                    let remove,indexOf;
+    
+                    let var_init_locked_1620353142865;
+    
+                    
+
+                    function main(data , ...items){
+
+        
+/**
+ * 
+ * 在数组中去除项目
+ * 
+ * @import remove from array.remove.index
+ * 
+ * @import indexOf from array.indexOf
+ * 
+ * @param {array} data 数组
+ * 
+ * @param {mixed} [...items] 项目
+ * 
+ */
+
+ for(let item of items){
+
+    remove(data , indexOf(data , item)) ;
+ }
+
+    }
+    
+                    return function(data , ...items){
+    
+                        
+        if(!var_init_locked_1620353142865){
+
+            remove = include('src::array.remove.index');
+indexOf = include('src::array.indexOf');
+
+            var_init_locked_1620353142865 = true ;
+        }
+        
+    
+                        return main.call(this , data , ...items) ;
+                    } ;
+    
+                })();
+
+innerExports['src::array.remove.index'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    function main(data , index){
+
+        
+/**
+ * 
+ * 根据数组下标删除对应项
+ * 
+ * @param {array} data 作用数组
+ * 
+ * @param {number} index 数组项的下标
+ * 
+ * @return {boolean} 如果删除成功则返回 true , 否则返回　false 
+ * 
+ */
+
+if(index >= 0 && index < data.length){
+
+    data.splice(index , 1) ;
+
+    return true ;
+}
+
+return false ;
+
+    }
+    
+                    return function(data , index){
+    
+                        
+    
+                        return main.call(this , data , index) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.object.simple'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为简单对象类型
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为简单对象类型则返回 true , 否则返回 false 
+ * 
+ */
+
+return data instanceof Object && data.constructor === Object;
+
+    }
+    
+                    return function(data){
+    
+                        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.boolean'] = (() =>{
+
+                    let isType;
+    
+                    let var_init_locked_1620353142938;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为布尔类型
+ * 
+ * @import is.type
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为布尔类型则返回 true , 否则返回 false 
+ * 
+ */
+
+return isType(data , 'boolean') ;
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1620353142938){
+
+            isType = include('src::is.type');
+
+            var_init_locked_1620353142938 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::is.date'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 判定数据是否为日期类型
+ * 
+ * @param {mixed} data 检验数据
+ * 
+ * @return {boolean} 如果给定值为日期类型则返回 true , 否则返回 false 
+ * 
+ */
+
+
+ return Object.prototype.toString.call(data) === '[object Date]' ;
+
+    }
+    
+                    return function(data){
+    
+                        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::data.type'] = (() =>{
+
+                    let isObject,isArray,isString,isNumber,isBoolean,isDate,isFunction;
+    
+                    let var_init_locked_1620353142913;
+    
+                    
+
+                    function main(data){
+
+        /**
+ * 
+ * 返回数据类型描述
+ * 
+ * @import isObject from is.object.simple
+ * 
+ * @import is.array
+ * 
+ * @import is.string
+ * 
+ * @import is.number
+ * 
+ * @import is.boolean
+ * 
+ * @import is.date
+ * 
+ * @import is.string
+ * 
+ * @import is.function
+ * 
+ * @param {mixed} data 数据
+ * 
+ * @return {string} 数据类型描述 
+ * 
+ */
+
+ if(isObject(data)){
+
+    return 'object' ;
+ }
+
+ if(isArray(data)){
+
+    return 'array' ;
+ }
+
+ if(isString(data)){
+
+    return 'string' ;
+ }
+
+ if(isNumber(data)){
+
+   return 'number' ;
+ }
+
+ if(isBoolean(data)){
+
+   return 'boolean' ;
+ }
+
+ if(isDate(data)){
+
+  return 'date' ;
+  
+ }
+
+ if(isFunction(data)){
+
+   return 'function' ;
+ }
+
+ return 'other' ;
+
+    }
+    
+                    return function(data){
+    
+                        
+        if(!var_init_locked_1620353142913){
+
+            isObject = include('src::is.object.simple');
+isArray = include('src::is.array');
+isString = include('src::is.string');
+isNumber = include('src::is.number');
+isBoolean = include('src::is.boolean');
+isDate = include('src::is.date');
+isString = include('src::is.string');
+isFunction = include('src::is.function');
+
+            var_init_locked_1620353142913 = true ;
+        }
+        
+    
+                        return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::data.equals'] = (() =>{
+
+                    let getType;
+    
+                    let var_init_locked_1620353142898;
+    
+                    
+
+                    /**
+ * 
+ * 匹配两个对象数据是否匹配
+ * 
+ * @import getType from data.type
+ * 
+ * @param {mixed} value1 第一个对象数据
+ * 
+ * @param {mixeds} value2 第二个对象数据
+ * 
+ * @return {boolean} 如果对象数据匹配则返回 true ， 否则返回 false
+ * 
+ */
+
+ function main(value1 , value2){
+
+    if(value1 === value2){
+
+        return true ;
+    }
+
+    let type1 = getType(value1),
+        type2 = getType(value2) ;
+
+    if(type1 === type2){
+
+        if(value1 === value2){
+
+            return true ;
+        }
+
+        switch(type1){
+
+            case 'object':
+
+                return object_equals(value1 , value2) ;
+
+            case 'array':
+
+                return array_equals(value1 , value2) ;
+
+            case 'date':
+
+                return date_equals(value1 , value2) ;
+        }
+    }
+
+    return false ;
+ }
+
+ const {
+    keys
+ } = Object ;
+
+ function object_equals(value1 , value2){
+
+    let names1 = keys(value1),
+        names2 = keys(value2);
+
+    if(names1.length !== names2.length){
+
+        return false ;
+    }
+
+    for(let name of names1){
+
+        if(!names2.includes(name)){
+
+            return false ;
+        }
+
+        if(!main(value1[name] , value2[name])){
+
+            return false ;
+        }
+    }
+
+    return true ;
+ }
+
+ function array_equals(value1 , value2){
+
+    if(value1.length !== value2.length){
+
+        return false ;
+
+    }
+
+    let len = value1.length ;
+
+    for(let i = 0 ; i < len ; i ++){
+
+        if(!main(value1[i] , value2[i])){
+
+            return false ;
+        }
+    }
+
+    return true ;
+ }
+
+ function date_equals(value1 , value2){
+
+    return value1.getTime() === value2.getTime() ;
+ }
+    
+                    return function(value1 , value2){
+    
+                        
+        if(!var_init_locked_1620353142898){
+
+            getType = include('src::data.type');
+
+            var_init_locked_1620353142898 = true ;
+        }
+        
+    
+                        return main.call(this , value1 , value2) ;
+                    } ;
+    
+                })();
+
+innerExports['src::array.indexOf'] = (() =>{
+
+                    let equals;
+    
+                    let var_init_locked_1620353142886;
+    
+                    
+
+                    function main(data , checkItem){
+
+        
+/**
+ * 
+ * 返回指定项目对应的下标
+ * 
+ * @import equals from data.equals
+ * 
+ * @param {mixed} data 数组
+ * 
+ * @param {mixed} checkItem 检测项
+ * 
+ * @return {Number} 数组下标
+ * 
+ */
+
+ let {
+     length
+ } = data ;
+
+for(let i = 0 ; i < length ; i ++){
+
+    if(equals(data[i] , checkItem)){
+
+        return i ;
+    }
+ }
+
+ return -1 ;
+
+    }
+    
+                    return function(data , checkItem){
+    
+                        
+        if(!var_init_locked_1620353142886){
+
+            equals = include('src::data.equals');
+
+            var_init_locked_1620353142886 = true ;
+        }
+        
+    
+                        return main.call(this , data , checkItem) ;
+                    } ;
+    
+                })();
+
 
 
 

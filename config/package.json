@@ -152,7 +152,8 @@
             "is.string",
             "is.number",
             "is.function",
-            "array.from"
+            "array.from",
+            "array.remove"
         ],
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/core"
