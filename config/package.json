@@ -131,7 +131,8 @@
             "is.number",
             "array.remove",
             "array.from",
-            "function.call"
+            "function.call",
+            "string.capitalize"
         ],
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/bootstrap"
@@ -153,7 +154,8 @@
             "is.number",
             "is.function",
             "array.from",
-            "array.remove"
+            "array.remove",
+            "string.capitalize"
         ],
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/core"
