@@ -129,7 +129,7 @@ if(!isRootNode(baseNode) && baseNode !== placeholderNode){
         
         }else{
 
-            let previousNode = getPreviousSiblingNode(node) ;
+            let previousNode = getPreviousNode(node) ;
 
             fireChangeEvent(operation , dataNode , dataParentNode.id ,  previousNode ? previousNode.id : undefined) ;
         }
