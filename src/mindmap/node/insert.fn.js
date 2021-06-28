@@ -66,7 +66,11 @@ if(!isRootNode(baseNode) && baseNode !== placeholderNode){
         }
     }
 
+    let isCreate = true ;
+
     if(insertNode.parentNodeId){
+
+        isCreate = false ;
 
         let {
             children
@@ -111,9 +115,24 @@ if(!isRootNode(baseNode) && baseNode !== placeholderNode){
 
     if(insertNode !== placeholderNode){
 
-        this.fireEvent(`nodeinsert${region}` , data(insertNode) , data(baseNode) , data(parentNode)) ;
+        let dataNode = data(insertNode),
+            dataBaseNode = data(baseNode),
+            dataParentNode = data(parentNode);
 
-        fireChangeEvent() ;
+        this.fireEvent(`nodeinsert${region}` , dataNode , dataBaseNode , dataParentNode) ;
+
+        let operation = isCreate ? 'create' : 'move' ;
+
+        if(region === 'after'){
+
+            fireChangeEvent(operation , dataNode , dataParentNode.id ,  dataBaseNode.id) ;
+        
+        }else{
+
+            let previousNode = getPreviousSiblingNode(node) ;
+
+            fireChangeEvent(operation , dataNode , dataParentNode.id ,  previousNode ? previousNode.id : undefined) ;
+        }
     }
 
     return true ;
