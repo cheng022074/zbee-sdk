@@ -66,9 +66,11 @@ if(!isRootNode(node)){
 
    children.splice(children.indexOf(node) , 1) ;
 
-   me.fireEvent('nodedelete' , data(node)) ;
+   let dataNode = data(node) ;
 
-   fireChangeEvent() ;
+   me.fireEvent('nodedelete' , dataNode) ;
+
+   fireChangeEvent('remove' , dataNode) ;
 
    return true ;
 }
