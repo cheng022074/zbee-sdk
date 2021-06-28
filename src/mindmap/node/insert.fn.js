@@ -77,7 +77,7 @@ if(!isRootNode(baseNode) && baseNode !== placeholderNode){
             parentNodeId
         } ;
 
-        let previousNode = getPreviousNode(node) ;
+        let previousNode = getPreviousNode(insertNode) ;
 
         if(previousNode){
 
