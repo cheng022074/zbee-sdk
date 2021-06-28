@@ -40,7 +40,7 @@ if(parentNode === node || getLastChildNode(parentNode) === node || parentNode ==
 
 }
 
-let oldPositionInfo = null,
+let oldPositionInfo,
 {
   parentNodeId
 } = node;
