@@ -66,11 +66,23 @@ if(!isRootNode(baseNode) && baseNode !== placeholderNode){
         }
     }
 
-    let isCreate = true ;
+    let oldPositionInfo,
+    {
+        parentNodeId
+    } = insertNode;
 
-    if(insertNode.parentNodeId){
+    if(parentNodeId){
 
-        isCreate = false ;
+        oldPositionInfo = {
+            parentNodeId
+        } ;
+
+        let previousNode = getPreviousNode(node) ;
+
+        if(previousNode){
+
+            oldPositionInfo.previousNodeId = previousNode.id ;
+        }
 
         let {
             children
@@ -121,18 +133,17 @@ if(!isRootNode(baseNode) && baseNode !== placeholderNode){
 
         this.fireEvent(`nodeinsert${region}` , dataNode , dataBaseNode , dataParentNode) ;
 
-        let operation = isCreate ? 'create' : 'move' ;
-
-        if(region === 'after'){
-
-            fireChangeEvent(operation , dataNode , dataParentNode.id ,  dataBaseNode.id) ;
-        
-        }else{
-
-            let previousNode = getPreviousNode(insertNode) ;
-
-            fireChangeEvent(operation , dataNode , dataParentNode.id ,  previousNode ? previousNode.id : undefined) ;
+        let previousNode = getPreviousNode(insertNode),
+            positionInfo = {
+                parentNodeId:dataParentNode.id
+            };
+    
+        if(previousNode){
+    
+            positionInfo.previousNodeId = previousNode.id ;
         }
+
+        fireChangeEvent(oldPositionInfo ? 'move' : 'create' , dataNode , positionInfo , oldPositionInfo) ;
     }
 
     return true ;

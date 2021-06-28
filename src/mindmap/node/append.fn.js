@@ -102,14 +102,7 @@ if(node !== placeholderNode){
     positionInfo.previousNodeId = previousNode.id ;
   }
 
-  if(oldPositionInfo){
-
-    fireChangeEvent('move' , dataNode , positionInfo , oldPositionInfo) ;
-
-  }else{
-
-    fireChangeEvent('create' , dataNode , positionInfo) ;
-  }
+  fireChangeEvent(oldPositionInfo ? 'move' : 'create' , dataNode , positionInfo , oldPositionInfo) ;
 }
 
 return true ;
