@@ -39,11 +39,11 @@ if(parentNode === node || getLastChildNode(parentNode) === node || parentNode ==
 
 }
 
-let isCreate = false ;
+let isCreate = true ;
 
 if(node.parentNodeId){
 
-  isCreate = true ;
+  isCreate = false ;
 
   let {
       children
@@ -79,7 +79,7 @@ if(node !== placeholderNode){
 
   this.fireEvent('nodeappend' , dataNode , dataParentNode) ;
 
-  let previousNode = getPreviousSiblingNode() ;
+  let previousNode = getPreviousSiblingNode(node) ;
 
   fireChangeEvent(isCreate ? 'create' : 'move' , dataNode , dataParentNode.id , previousNode ? previousNode.id : undefined) ;
 
