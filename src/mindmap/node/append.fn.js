@@ -15,6 +15,8 @@
  * 
  * @import fireChangeEvent from ..fire.event.change scoped
  * 
+ * @import getPreviousSiblingNode from .sibling.previous scoped
+ * 
  * @param {mixed} node 节点配置
  * 
  * @param {mixed} parentNode 节点
@@ -37,7 +39,11 @@ if(parentNode === node || getLastChildNode(parentNode) === node || parentNode ==
 
 }
 
+let isCreate = false ;
+
 if(node.parentNodeId){
+
+  isCreate = true ;
 
   let {
       children
@@ -67,9 +73,15 @@ if(!hidden && expanded){
 
 if(node !== placeholderNode){
 
-  this.fireEvent('nodeappend' , data(node) , data(parentNode)) ;
+  let
+    dataNode = data(node),
+    dataParentNode = data(parentNode) ; 
 
-  fireChangeEvent() ;
+  this.fireEvent('nodeappend' , dataNode , dataParentNode) ;
+
+  let previousNode = getPreviousSiblingNode() ;
+
+  fireChangeEvent(isCreate ? 'create' : 'move' , dataNode , dataParentNode.id , previousNode ? previousNode.id : undefined) ;
 
 }
 
