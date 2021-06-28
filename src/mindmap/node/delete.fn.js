@@ -28,51 +28,79 @@
  * @return {boolean} 删除标识
  */
 
-node = from(node) ;
+function main(node){
 
-let parentNode = getParentNode(node) ;
+    node = from(node) ;
 
-if(!isRootNode(node)){
+    let parentNode = getParentNode(node) ;
 
-   select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
+    if(!isRootNode(node)){
 
-   hide(node) ;
+        select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
 
-   let nodes = [
-       node,
-       ...getDescendantNodes(node)
-   ],
-   me = this,
-   {
-       nodes:originNodes
-   } = me;
+        let removeNodeTree = snapshot(node) ;
 
-   for(let node of nodes){
+        hide(node) ;
 
-       node.parentNodeId = null ;
+        let nodes = [
+            node,
+            ...getDescendantNodes(node)
+        ],
+        me = this,
+        {
+            nodes:originNodes
+        } = me;
 
-       node.children.length = 0 ;
+        for(let node of nodes){
 
-       node.hidden = false ;
+            node.parentNodeId = null ;
 
-       node.selected = false ;
+            node.children.length = 0 ;
 
-       originNodes.delete(node.id) ;
-   }
+            node.hidden = false ;
+
+            node.selected = false ;
+
+            originNodes.delete(node.id) ;
+        }
+
+        let {
+                children
+            } = parentNode;
+
+        children.splice(children.indexOf(node) , 1) ;
+
+        let dataNode = data(node) ;
+
+        me.fireEvent('nodedelete' , dataNode) ;
+
+        fireChangeEvent({
+            operation:'remove',
+            node:removeNodeTree
+        }) ;
+
+        return true ;
+    
+    }
+
+    return false ;
+}
+
+function snapshot(node){
 
     let {
         children
-    } = parentNode;
+    } = node,
+    dataChildNodes = [];
 
-   children.splice(children.indexOf(node) , 1) ;
+    for(let childNode of children){
 
-   let dataNode = data(node) ;
+        let dataChildNode = data(childNode) ;
 
-   me.fireEvent('nodedelete' , dataNode) ;
+        dataChildNode.children = snapshot(childNode) ;
 
-   fireChangeEvent('remove' , dataNode) ;
+        dataChildNodes.push(dataChildNode) ;
+    }
 
-   return true ;
+    return dataChildNodes ;
 }
-
-return false ;
