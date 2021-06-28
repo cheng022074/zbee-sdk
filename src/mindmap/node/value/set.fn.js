@@ -2,6 +2,8 @@
  * 
  * 设置或获取节点值
  * 
+ * @import fireChangeEvent from mindmap.fire.event.change scoped
+ * 
  * @import equals from data.equals
  * 
  * @import clone from data.clone
@@ -34,7 +36,13 @@ if(!equals(newValue , oldValue)){
 
     me.fireEvent(`node${field.toLowerCase()}change` , node , value , oldValue) ;
 
-    me.fireEvent('nodechange' , node , field , value , oldValue) ;
+    fireChangeEvent({
+        operation:'update',
+        node,
+        field,
+        value,
+        oldValue
+    }) ;
 
     return true ;
 }
