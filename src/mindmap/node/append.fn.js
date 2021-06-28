@@ -15,7 +15,7 @@
  * 
  * @import fireChangeEvent from ..fire.event.change scoped
  * 
- * @import getPreviousSiblingNode from .sibling.previous scoped
+ * @import getPreviousNode from .sibling.previous scoped
  * 
  * @param {mixed} node 节点配置
  * 
@@ -29,9 +29,10 @@
 
  parentNode = from(parentNode) ;
 
- let {
+ let me = this,
+ {
    placeholderNode
- } = this ;
+ } = me ;
 
 if(parentNode === node || getLastChildNode(parentNode) === node || parentNode === placeholderNode){
 
@@ -39,11 +40,23 @@ if(parentNode === node || getLastChildNode(parentNode) === node || parentNode ==
 
 }
 
-let isCreate = true ;
+let oldPositionInfo = null,
+{
+  parentNodeId
+} = node;
 
-if(node.parentNodeId){
+if(parentNodeId){
 
-  isCreate = false ;
+  oldPositionInfo = {
+    parentNodeId
+  } ;
+
+  let previousNode = getPreviousNode(node) ;
+
+  if(previousNode){
+
+    oldPositionInfo.previousNodeId = previousNode.id ;
+  }
 
   let {
       children
@@ -77,12 +90,26 @@ if(node !== placeholderNode){
     dataNode = data(node),
     dataParentNode = data(parentNode) ; 
 
-  this.fireEvent('nodeappend' , dataNode , dataParentNode) ;
+  me.fireEvent('nodeappend' , dataNode , dataParentNode) ;
 
-  let previousNode = getPreviousSiblingNode(node) ;
+  let previousNode = getPreviousNode(node),
+      positionInfo = {
+        parentNodeId:dataParentNode.id
+      };
 
-  fireChangeEvent(isCreate ? 'create' : 'move' , dataNode , dataParentNode.id , previousNode ? previousNode.id : undefined) ;
+  if(previousNode){
 
+    positionInfo.previousNodeId = previousNode.id ;
+  }
+
+  if(oldPositionInfo){
+
+    fireChangeEvent('move' , dataNode , positionInfo , oldPositionInfo) ;
+
+  }else{
+
+    fireChangeEvent('create' , dataNode , positionInfo) ;
+  }
 }
 
 return true ;
