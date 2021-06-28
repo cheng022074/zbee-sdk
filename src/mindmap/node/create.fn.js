@@ -14,15 +14,25 @@
 let {
    reader,
    nodes
-} = this ;
+} = this,
+{
+   fields
+} = reader;
 
-delete node.hidden ;
+for(let {
+   name,
+   local
+} of fields){
 
-delete node.level ;
+   if(local){
+
+      delete node[name] ;
+   }
+}
 
 let options = {
-   ...node,
    id:generate(),
+   ...node,
    children:[]
 } ;
 

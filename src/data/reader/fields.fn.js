@@ -127,7 +127,8 @@
         equals,
         get,
         defaultValue,
-        afterSet
+        afterSet,
+        local
     }  ;
 
     if(isString(type) && !isFunction(set)){
