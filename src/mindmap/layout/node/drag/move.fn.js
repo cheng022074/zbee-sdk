@@ -109,11 +109,13 @@ if(dragOperation && dragOperationNode && (oldDragOperation !== dragOperationNode
 
         case 'append':
 
-            let result = append(placeholderNode , dragOperationNode) ;
+            {
+                let result = append(placeholderNode , dragOperationNode) ;
 
-            expand(node) ;
+                expand(node) ;
 
-            return result ;
+                return result ;
+            }
 
         case 'insertAfter':
 
