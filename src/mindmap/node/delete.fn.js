@@ -101,16 +101,15 @@ function snapshot(node){
     let {
         children
     } = node,
-    dataChildNodes = [];
+    dataChildNodes = [],
+    dataNode = data(node);
 
     for(let childNode of children){
 
-        let dataChildNode = data(childNode) ;
-
-        dataChildNode.children = snapshot(childNode) ;
-
-        dataChildNodes.push(dataChildNode) ;
+        dataChildNodes.push(snapshot(childNode)) ;
     }
 
-    return dataChildNodes ;
+    dataNode.children = dataChildNodes ;
+
+    return dataNode ;
 }
