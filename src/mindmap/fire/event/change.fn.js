@@ -30,5 +30,5 @@ switch(operation){
 
     case 'remove':
 
-        me.fireEvent('remove' , operation , node) ;
+        me.fireEvent('change' , operation , node) ;
 }
