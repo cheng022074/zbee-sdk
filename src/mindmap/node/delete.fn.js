@@ -38,7 +38,16 @@ function main(node){
 
         select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
 
-        let removeNodeTree = snapshot(node) ;
+        let removeNodeTree = snapshot(node),
+            oldPositionInfo = {
+                parentNodeId:node.parentNodeId
+            },
+            previousNode = getPreviousNode(node);
+
+        if(previousNode){
+
+            oldPositionInfo.previousNodeId = previousNode.id ;
+        }
 
         hide(node) ;
 
@@ -76,7 +85,8 @@ function main(node){
 
         fireChangeEvent({
             operation:'remove',
-            node:removeNodeTree
+            node:removeNodeTree,
+            oldPositionInfo
         }) ;
 
         return true ;
