@@ -3,7 +3,7 @@
  * 
  * 插入节点
  * 
- * @import create from .create scoped
+ * @import create from ..create scoped
  * 
  * @import isRootNode from .is.root scoped
  * 

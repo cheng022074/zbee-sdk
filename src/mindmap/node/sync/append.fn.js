@@ -3,7 +3,7 @@
  * 
  * 添加子节点
  * 
- * @import create from .create scoped
+ * @import create from ..create scoped
  * 
  * @import show from .show scoped
  * 
