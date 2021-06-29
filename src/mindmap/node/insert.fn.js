@@ -5,19 +5,13 @@
  * 
  * @import data from .data scoped
  * 
- * @import isRootNode from .is.root scoped
- * 
- * @import getParentNode from .parent scoped
- * 
  * @import getPreviousNode from .sibling.previous scoped
- * 
- * @import getNextNode from .sibling.next scoped
- * 
- * @import show from .show scoped
  * 
  * @import from from .from scoped
  * 
- * @import fireChangeEvent from ..fire.event.change scoped
+ * @import fireChangeEvent from ..fire.event.change scoped、
+ * 
+ * @import insert from .sync.insert scoped
  * 
  * @param {mixed} insertNode 需要插入的节点
  * 
@@ -31,99 +25,31 @@
 
  insertNode = from(insertNode) ;
 
- baseNode = from(baseNode) ;
+ let oldPositionInfo,
+ {
+     parentNodeId
+ } = insertNode;
 
- let {
-    placeholderNode
- } = this ;
+ if(parentNodeId){
 
-if(!isRootNode(baseNode) && baseNode !== placeholderNode){
-
-    if(insertNode){
-
-        if(insertNode === baseNode){
-
-            return false;
-        }
-
-        switch(region){
-
-            case 'before':
-
-                if(getPreviousNode(baseNode) === insertNode){
-
-                    return false;
-                }
-
-                break;
-
-            case 'after':
-
-                if(getNextNode(baseNode) === insertNode){
-
-                    return false;
-                }
-        }
-    }
-
-    let oldPositionInfo,
-    {
+    oldPositionInfo = {
         parentNodeId
-    } = insertNode;
+    } ;
 
-    if(parentNodeId){
+    let previousNode = getPreviousNode(insertNode) ;
 
-        oldPositionInfo = {
-            parentNodeId
-        } ;
+    if(previousNode){
 
-        let previousNode = getPreviousNode(insertNode) ;
-
-        if(previousNode){
-
-            oldPositionInfo.previousNodeId = previousNode.id ;
-        }
-
-        let {
-            children
-        } = getParentNode(insertNode) ;
-
-        insertNode.parentNodeId = null ;
-
-        insertNode.hidden = true ;
-
-        children.splice(children.indexOf(insertNode) , 1) ;
+        oldPositionInfo.previousNodeId = previousNode.id ;
     }
+}
 
-    let parentNode = getParentNode(baseNode),
+if(insert(insertNode , baseNode , region)){
+
+    let me = this,
     {
-        children
-    } = parentNode,
-    {
-        length
-    } = children;
-
-    let index = children.indexOf(baseNode) ;
-
-    if(region === 'after'){
-
-        index ++ ;
-    }
-
-    if(index > length - 1){
-
-        index = length ;
-    
-    }
-
-    children.splice(index , 0 , insertNode) ;
-
-    insertNode.parentNodeId = parentNode.id ;
-
-    if(!baseNode.hidden){
-
-        show(insertNode) ;
-    }
+        placeholderNode
+    } = me ;
 
     if(insertNode !== placeholderNode){
 
