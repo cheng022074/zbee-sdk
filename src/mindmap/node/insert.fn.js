@@ -9,7 +9,9 @@
  * 
  * @import from from .from scoped
  * 
- * @import fireChangeEvent from ..fire.event.change scoped、
+ * @import fireChangeEvent from ..fire.event.change scoped
+ * 
+ * @import getParentNode from .parent scoped
  * 
  * @import insert from .sync.insert scoped
  * 
@@ -24,7 +26,7 @@
  */
 
  let insertNode = from(node),
-     ldPositionInfo ;
+    oldPositionInfo ;
 
 if(insertNode){
 
@@ -59,7 +61,7 @@ if(insertNode = insert(node , baseNode , region)){
 
         let dataNode = data(insertNode),
             dataBaseNode = data(baseNode),
-            dataParentNode = data(parentNode);
+            dataParentNode = data(getParentNode(insertNode));
 
         this.fireEvent(`nodeinsert${region}` , dataNode , dataBaseNode , dataParentNode) ;
 
