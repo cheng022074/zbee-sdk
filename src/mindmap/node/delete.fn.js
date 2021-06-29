@@ -20,12 +20,11 @@
 
 function main(node){
 
-    node = from(node) ;
-
-    let removeNodeTree,
+    let deletedNode = from(node),
+        removeNodeTree,
         oldPositionInfo ;
 
-    if(node){
+    if(deletedNode){
 
         removeNodeTree = snapshot(node),
         oldPositionInfo = {
@@ -37,9 +36,8 @@ function main(node){
 
             oldPositionInfo.previousNodeId = previousNode.id ;
         }
-    }
 
-    if(remove(node)){
+        remove(node);
 
         let dataNode = data(node) ;
 
@@ -52,7 +50,6 @@ function main(node){
         }) ;
 
         return true ;
-    
     }
 
     return false ;
