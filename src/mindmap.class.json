@@ -42,6 +42,19 @@
             "impl":".mindmap.node.from"
         },
         {
+            "name":"setNodeValueSync",
+            "impl":".mindmap.node.sync.value.set"
+        },{
+            "name":"appendNodeSync",
+            "impl":".mindmap.node.sync.append"
+        },{
+            "name":"insertNodeSync",
+            "impl":".mindmap.node.sync.insert"
+        },{
+            "name":"deleteNodeSync",
+            "impl":".mindmap.node.sync.delete"
+        },
+        {
             "name":"setNodeValue",
             "impl":".mindmap.node.value.set"
         },
