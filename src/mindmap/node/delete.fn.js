@@ -20,28 +20,25 @@
 
 function main(node){
 
-    let deletedNode = from(node),
-        removeNodeTree,
-        oldPositionInfo ;
+    let deletedNode = from(node) ;
 
     if(deletedNode){
 
-        removeNodeTree = snapshot(node),
+        let removeNodeTree = snapshot(deletedNode),
         oldPositionInfo = {
             parentNodeId:node.parentNodeId
-        },
-        previousNode = getPreviousNode(node);
+        },previousNode = getPreviousNode(deletedNode);
 
         if(previousNode){
 
             oldPositionInfo.previousNodeId = previousNode.id ;
         }
 
-        remove(node);
+        remove(deletedNode);
 
-        let dataNode = data(node) ;
+        let dataNode = data(deletedNode) ;
 
-        me.fireEvent('nodedelete' , dataNode) ;
+        this.fireEvent('nodedelete' , dataNode) ;
 
         fireChangeEvent({
             operation:'remove',

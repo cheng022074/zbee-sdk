@@ -38,10 +38,9 @@ if(node && !isRootNode(node)){
         node,
         ...getDescendantNodes(node)
     ],
-    me = this,
     {
         nodes:originNodes
-    } = me;
+    } = this;
 
     for(let node of nodes){
 
