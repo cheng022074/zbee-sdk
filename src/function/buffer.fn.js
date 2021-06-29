@@ -27,11 +27,11 @@ return function(...args){
         bufferId = null ;
     }
 
-    scope = scope || this ;
+    let currentScope = scope || this ;
 
     bufferId = setTimeout(() => {
 
-        get(fn , scope)(...args) ;
+        get(fn , currentScope)(...args) ;
 
         bufferId = null ;
 
