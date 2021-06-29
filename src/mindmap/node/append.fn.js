@@ -11,7 +11,7 @@
  * 
  * @import getPreviousNode from .sibling.previous scoped
  * 
- * @import append from .ds.append scoped
+ * @import append from .sync.append scoped
  * 
  * @param {mixed} node 节点配置
  * 
