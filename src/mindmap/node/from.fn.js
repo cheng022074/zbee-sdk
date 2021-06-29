@@ -32,7 +32,10 @@ if(isString(node)){
       id
   } = node ;
 
-  return from(id) ;
+  if(isString(id)){
+
+    return from(id) ;
+  }
 
 }else if(!isDefined(node)){
 
