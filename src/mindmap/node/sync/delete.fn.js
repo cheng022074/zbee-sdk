@@ -3,21 +3,21 @@
  * 
  * 删除节点
  * 
- * @import isRootNode from .is.root scoped
+ * @import isRootNode from ..is.root scoped
  * 
- * @import getParentNode from .parent scoped
+ * @import getParentNode from ..parent scoped
  * 
- * @import getPreviousNode from .sibling.previous scoped
+ * @import getPreviousNode from ..sibling.previous scoped
  * 
- * @import getNextNode from .sibling.next scoped
+ * @import getNextNode from ..sibling.next scoped
  * 
- * @import getDescendantNodes from ..nodes.descendant scoped
+ * @import getDescendantNodes from ....nodes.descendant scoped
  * 
- * @import hide from .hide scoped
+ * @import hide from ..hide scoped
  * 
- * @import from from .from scoped
+ * @import from from ..from scoped
  * 
- * @import select from .select scoped
+ * @import select from ..select scoped
  * 
  * @param {mixed} node 节点
  * 

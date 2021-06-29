@@ -6,7 +6,7 @@
  * 
  * @import clone from data.clone
  * 
- * @import from from ..from scoped
+ * @import from from ....from scoped
  * 
  * @param {string} field 字段名称
  * 

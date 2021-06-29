@@ -5,17 +5,17 @@
  * 
  * @import create from ..create scoped
  * 
- * @import isRootNode from .is.root scoped
+ * @import isRootNode from ..is.root scoped
  * 
- * @import getParentNode from .parent scoped
+ * @import getParentNode from ..parent scoped
  * 
- * @import getPreviousNode from .sibling.previous scoped
+ * @import getPreviousNode from ..sibling.previous scoped
  * 
- * @import getNextNode from .sibling.next scoped
+ * @import getNextNode from ..sibling.next scoped
  * 
- * @import show from .show scoped
+ * @import show from ..show scoped
  * 
- * @import from from .from scoped
+ * @import from from ..from scoped
  * 
  * @param {mixed} insertNode 需要插入的节点
  * 
