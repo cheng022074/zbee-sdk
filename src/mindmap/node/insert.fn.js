@@ -13,7 +13,7 @@
  * 
  * @import insert from .sync.insert scoped
  * 
- * @param {mixed} insertNode 需要插入的节点
+ * @param {mixed} node 需要插入的节点
  * 
  * @param {mixed} baseNode 参照节点
  * 
@@ -23,9 +23,8 @@
  * 
  */
 
- insertNode = from(insertNode) ;
-
- let oldPositionInfo ;
+ let insertNode = from(node),
+     ldPositionInfo ;
 
 if(insertNode){
 
@@ -49,7 +48,7 @@ if(insertNode){
 
 }
 
-if(insert(insertNode , baseNode , region)){
+if(insertNode = insert(node , baseNode , region)){
 
     let me = this,
     {
