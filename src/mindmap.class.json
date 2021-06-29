@@ -40,6 +40,12 @@
         {
             "name":"getNode",
             "impl":".mindmap.node.from"
+        },{
+            "name":"getParentNode",
+            "impl":".mindmap.node.parent"
+        },{
+            "name":"getPreviousNode",
+            "impl":".mindmap.node.sibling.previous"
         },
         {
             "name":"setNodeValueSync",
