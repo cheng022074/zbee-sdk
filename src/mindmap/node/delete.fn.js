@@ -22,15 +22,21 @@ function main(node){
 
     node = from(node) ;
 
-    let removeNodeTree = snapshot(node),
+    let removeNodeTree,
+        oldPositionInfo ;
+
+    if(node){
+
+        removeNodeTree = snapshot(node),
         oldPositionInfo = {
             parentNodeId:node.parentNodeId
         },
         previousNode = getPreviousNode(node);
 
-    if(previousNode){
+        if(previousNode){
 
-        oldPositionInfo.previousNodeId = previousNode.id ;
+            oldPositionInfo.previousNodeId = previousNode.id ;
+        }
     }
 
     if(remove(node)){
