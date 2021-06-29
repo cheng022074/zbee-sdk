@@ -4,13 +4,11 @@
  * 
  * @import fireChangeEvent from mindmap.fire.event.change scoped
  * 
- * @import equals from data.equals
- * 
- * @import clone from data.clone
- * 
  * @import from from ..from scoped
  * 
  * @import data from ..data scoped
+ * 
+ * @import setValue from ..sync.value.set scoped
  * 
  * @param {string} field 字段名称
  * 
@@ -20,17 +18,9 @@
  * 
  */
 
- node = from(node) ;
+if(setValue(field , value , node)){
 
-let oldValue = node[field],
-    newValue = node[field] = clone(value),
-{
-    id
-} = node ;
-
-if(!equals(newValue , oldValue)){
-
-    node = data(node) ;
+    node = data(from(node)) ;
 
     let me = this ;
 
