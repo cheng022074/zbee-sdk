@@ -40354,7 +40354,7 @@ exports['src::mindmap.node.sync.insert'] = (() => {
 
 
 
-    const var_current_scope_1624951419010 = new Map();
+    const var_current_scope_1624961242103 = new Map();
 
     return function(insertNode, baseNode, region) {
 
@@ -40362,9 +40362,9 @@ exports['src::mindmap.node.sync.insert'] = (() => {
 
 
 
-        if (!var_current_scope_1624951419010.has(this)) {
+        if (!var_current_scope_1624961242103.has(this)) {
 
-            var_current_scope_1624951419010.set(this, (() => {
+            var_current_scope_1624961242103.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const isRootNode = include('src::mindmap.node.is.root').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
@@ -40412,7 +40412,7 @@ exports['src::mindmap.node.sync.insert'] = (() => {
                         placeholderNode
                     } = this;
 
-                    if (!isRootNode(baseNode) && baseNode !== placeholderNode) {
+                    if (baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode) {
 
                         if (insertNode === baseNode) {
 
@@ -40493,7 +40493,7 @@ exports['src::mindmap.node.sync.insert'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1624951419010.get(this);
+        const main = var_current_scope_1624961242103.get(this);
 
 
 
