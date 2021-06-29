@@ -21,15 +21,14 @@
  * 
  */
 
-node = from(node) ;
+let appendNode = from(node),
+    oldPositionInfo ;
 
-let oldPositionInfo ;
-
-if(node){
+if(appendNode){
 
   let {
     parentNodeId
-  } = node;
+  } = appendNode;
   
   if(parentNodeId){
   
@@ -37,7 +36,7 @@ if(node){
       parentNodeId
     } ;
 
-    let previousNode = getPreviousNode(node) ;
+    let previousNode = getPreviousNode(appendNode) ;
 
     if(previousNode){
 
@@ -56,10 +55,10 @@ if(append(node , parentNode)){
     placeholderNode
   } = me ;
 
-  if(node !== placeholderNode){
+  if(appendNode !== placeholderNode){
 
     let
-      dataNode = data(node),
+      dataNode = data(appendNode),
       dataParentNode = data(parentNode) ; 
 
     me.fireEvent('nodeappend' , dataNode , dataParentNode) ;
