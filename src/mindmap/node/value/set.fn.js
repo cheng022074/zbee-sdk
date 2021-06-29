@@ -18,13 +18,15 @@
  * 
  */
 
+let updatedNode = from(node),
+    oldValue = updatedNode[field];
+
 if(setValue(field , value , node)){
 
-    node = data(from(node)) ;
+    let node = data(updatedNode),
+        me = this ;
 
-    let me = this ;
-
-    me.fireEvent(`node${field.toLowerCase()}change` , node , value , oldValue) ;
+    me.fireEvent(`node${field.toLowerCase()}change` , updatedNode , value , oldValue) ;
 
     fireChangeEvent({
         operation:'update',

@@ -23,7 +23,7 @@
     let oldValue = node[field],
         newValue = node[field] = clone(value);
 
-    return equals(newValue , oldValue) ;
+    return !equals(newValue , oldValue) ;
  }
 
 return false ;
