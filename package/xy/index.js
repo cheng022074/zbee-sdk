@@ -36254,22 +36254,22 @@ exports['src::file.write.json'] = (() => {
 
 exports['src::mindmap'] = (() => {
 
-    let mixin_1624951130351__1, extend, constructor, method_save, method_load, method_destroy, method_resize, method_layout, method_refresh, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_setNodeValueSync, method_appendNodeSync, method_insertNodeSync, method_deleteNodeSync, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, method_isMoveNodeUp, method_isMoveNodeDown, method_moveNodeUp, method_moveNodeDown, isObject;
+    let mixin_1624959942902__1, extend, constructor, method_save, method_load, method_destroy, method_resize, method_layout, method_refresh, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_getParentNode, method_getPreviousNode, method_setNodeValueSync, method_appendNodeSync, method_insertNodeSync, method_deleteNodeSync, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, method_isMoveNodeUp, method_isMoveNodeDown, method_moveNodeUp, method_moveNodeDown, isObject;
 
-    let var_init_locked_1624951130352;
+    let var_init_locked_1624959942903;
 
-    let var_class_1624951130352;
+    let var_class_1624959942903;
 
 
 
-    let var_global_main_1624951130352;
+    let var_global_main_1624959942903;
 
     return function(config) {
 
 
-        if (!var_init_locked_1624951130352) {
+        if (!var_init_locked_1624959942903) {
 
-            mixin_1624951130351__1 = include('src::mixin.observable');
+            mixin_1624959942902__1 = include('src::mixin.observable');
             extend = include('src::class.empty')();
             constructor = include('src::mindmap.constructor');
             method_save = include('src::mindmap.save');
@@ -36285,6 +36285,8 @@ exports['src::mindmap'] = (() => {
             method_expandToNode = include('src::mindmap.node.expand.to');
             method_expandNode = include('src::mindmap.node.expand');
             method_getNode = include('src::mindmap.node.from');
+            method_getParentNode = include('src::mindmap.node.parent');
+            method_getPreviousNode = include('src::mindmap.node.sibling.previous');
             method_setNodeValueSync = include('src::mindmap.node.sync.value.set');
             method_appendNodeSync = include('src::mindmap.node.sync.append');
             method_insertNodeSync = include('src::mindmap.node.sync.insert');
@@ -36384,6 +36386,16 @@ exports['src::mindmap'] = (() => {
                     return method_getNode.apply(this, args);
 
                 }
+                getParentNode(...args) {
+
+                    return method_getParentNode.apply(this, args);
+
+                }
+                getPreviousNode(...args) {
+
+                    return method_getPreviousNode.apply(this, args);
+
+                }
                 setNodeValueSync(...args) {
 
                     return method_setNodeValueSync.apply(this, args);
@@ -36464,7 +36476,7 @@ exports['src::mindmap'] = (() => {
 
             }
 
-            var_class_1624951130352 = class extends main {
+            var_class_1624959942903 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -36479,7 +36491,7 @@ exports['src::mindmap'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1624951130352;
+                    return var_class_1624959942903;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -36489,15 +36501,15 @@ exports['src::mindmap'] = (() => {
 
             };
 
-            main = var_class_1624951130352;
+            main = var_class_1624959942903;
 
-            var_global_main_1624951130352 = main;
+            var_global_main_1624959942903 = main;
 
-            var_init_locked_1624951130352 = true;
+            var_init_locked_1624959942903 = true;
         }
 
 
-        return new var_global_main_1624951130352(config);
+        return new var_global_main_1624959942903(config);
     };
 
 })();
