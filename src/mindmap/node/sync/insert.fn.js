@@ -3,6 +3,8 @@
  * 
  * 插入节点
  * 
+ * @import create from .create scoped
+ * 
  * @import isRootNode from .is.root scoped
  * 
  * @import getParentNode from .parent scoped
@@ -25,7 +27,7 @@
  * 
  */
 
- insertNode = from(insertNode) ;
+ insertNode = from(insertNode) || create(insertNode);
 
  baseNode = from(baseNode) ;
 

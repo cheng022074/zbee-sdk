@@ -25,23 +25,28 @@
 
  insertNode = from(insertNode) ;
 
- let oldPositionInfo,
- {
-     parentNodeId
- } = insertNode;
+ let oldPositionInfo ;
 
- if(parentNodeId){
+if(insertNode){
 
-    oldPositionInfo = {
+    let {
         parentNodeId
-    } ;
+    } = insertNode;
 
-    let previousNode = getPreviousNode(insertNode) ;
+    if(parentNodeId){
 
-    if(previousNode){
+        oldPositionInfo = {
+            parentNodeId
+        } ;
 
-        oldPositionInfo.previousNodeId = previousNode.id ;
+        let previousNode = getPreviousNode(insertNode) ;
+
+        if(previousNode){
+
+            oldPositionInfo.previousNodeId = previousNode.id ;
+        }
     }
+
 }
 
 if(insert(insertNode , baseNode , region)){
