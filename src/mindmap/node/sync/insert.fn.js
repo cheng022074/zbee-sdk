@@ -35,7 +35,7 @@
     placeholderNode
  } = this ;
 
-if(!isRootNode(baseNode) && baseNode !== placeholderNode){
+if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
 
     if(insertNode === baseNode){
 
