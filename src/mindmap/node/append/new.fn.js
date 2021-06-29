@@ -15,7 +15,7 @@
  * 
  */
 
-if(append(node , parentNode)){
+if(node = append(node , parentNode)){
 
    select(node) ;
 

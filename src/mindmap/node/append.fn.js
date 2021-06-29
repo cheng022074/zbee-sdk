@@ -46,7 +46,7 @@ if(appendNode){
 
 }
 
-if(append(node , parentNode)){
+if(appendNode = append(node , parentNode)){
 
   parentNode = from(parentNode) ;
 
@@ -81,7 +81,7 @@ if(append(node , parentNode)){
     }) ;
   }
 
-  return true ;
+  return appendNode ;
 
 }
 
