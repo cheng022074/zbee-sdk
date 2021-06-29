@@ -5,17 +5,13 @@
  * 
  * @import data from .data scoped
  * 
- * @import show from .show scoped
- * 
- * @import getLastChildNode from .child.last scoped
- * 
- * @import getParentNode from .parent scoped
- * 
  * @import from from .from scoped
  * 
  * @import fireChangeEvent from ..fire.event.change scoped
  * 
  * @import getPreviousNode from .sibling.previous scoped
+ * 
+ * @import append from .ds.append scoped
  * 
  * @param {mixed} node 节点配置
  * 
@@ -25,28 +21,15 @@
  * 
  */
 
- node = from(node) ;
-
- parentNode = from(parentNode) ;
-
- let me = this,
- {
-   placeholderNode
- } = me ;
-
-if(parentNode === node || getLastChildNode(parentNode) === node || parentNode === placeholderNode){
-
-  return false;
-
-}
+node = from(node) ;
 
 let oldPositionInfo,
 {
   parentNodeId
 } = node;
-
+ 
 if(parentNodeId){
-
+ 
   oldPositionInfo = {
     parentNodeId
   } ;
@@ -57,58 +40,46 @@ if(parentNodeId){
 
     oldPositionInfo.previousNodeId = previousNode.id ;
   }
-
-  let {
-      children
-  } = getParentNode(node) ;
-
-  node.parentNodeId = null ;
-
-  node.hidden = true ;
-
-  children.splice(children.indexOf(node) , 1) ;
 }
 
-let {
-    children,
-    hidden,
-    expanded
-} = parentNode;
+if(append(node , parentNode)){
 
-children.push(node) ;
+  parentNode = from(parentNode) ;
 
-node.parentNodeId = parentNode.id ;
+  let me = this,
+  {
+    placeholderNode
+  } = me ;
 
-if(!hidden && expanded){
+  if(node !== placeholderNode){
 
-  show(node) ;
-}
+    let
+      dataNode = data(node),
+      dataParentNode = data(parentNode) ; 
 
-if(node !== placeholderNode){
+    me.fireEvent('nodeappend' , dataNode , dataParentNode) ;
 
-  let
-    dataNode = data(node),
-    dataParentNode = data(parentNode) ; 
+    let previousNode = getPreviousNode(node),
+        positionInfo = {
+          parentNodeId:dataParentNode.id
+        };
 
-  me.fireEvent('nodeappend' , dataNode , dataParentNode) ;
+    if(previousNode){
 
-  let previousNode = getPreviousNode(node),
-      positionInfo = {
-        parentNodeId:dataParentNode.id
-      };
+      positionInfo.previousNodeId = previousNode.id ;
+    }
 
-  if(previousNode){
-
-    positionInfo.previousNodeId = previousNode.id ;
+    fireChangeEvent({
+      operation:oldPositionInfo ? 'move' : 'create',
+      node:dataNode,
+      positionInfo,
+      oldPositionInfo
+    }) ;
   }
 
-  fireChangeEvent({
-    operation:oldPositionInfo ? 'move' : 'create',
-    node:dataNode,
-    positionInfo,
-    oldPositionInfo
-  }) ;
+  return true ;
+
 }
 
-return true ;
+return false ;
 
