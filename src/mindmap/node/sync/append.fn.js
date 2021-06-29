@@ -3,6 +3,8 @@
  * 
  * 添加子节点
  * 
+ * @import create from .create scoped
+ * 
  * @import show from .show scoped
  * 
  * @import getLastChildNode from .child.last scoped
@@ -19,7 +21,7 @@
  * 
  */
 
- node = from(node) ;
+ node = from(node) || create(node);
 
  parentNode = from(parentNode) ;
 

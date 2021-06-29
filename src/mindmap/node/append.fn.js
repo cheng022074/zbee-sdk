@@ -23,23 +23,28 @@
 
 node = from(node) ;
 
-let oldPositionInfo,
-{
-  parentNodeId
-} = node;
- 
-if(parentNodeId){
- 
-  oldPositionInfo = {
+let oldPositionInfo ;
+
+if(node){
+
+  let {
     parentNodeId
-  } ;
+  } = node;
+  
+  if(parentNodeId){
+  
+    oldPositionInfo = {
+      parentNodeId
+    } ;
 
-  let previousNode = getPreviousNode(node) ;
+    let previousNode = getPreviousNode(node) ;
 
-  if(previousNode){
+    if(previousNode){
 
-    oldPositionInfo.previousNodeId = previousNode.id ;
+      oldPositionInfo.previousNodeId = previousNode.id ;
+    }
   }
+
 }
 
 if(append(node , parentNode)){

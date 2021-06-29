@@ -3,8 +3,6 @@
  * 
  * 添加新建节点
  * 
- * @import create from ..create scoped
- * 
  * @import append from ..append scoped
  * 
  * @import select from ..select scoped
@@ -16,8 +14,6 @@
  * @return {boolea} 添加状态标识
  * 
  */
-
-node = create(node) ;
 
 if(append(node , parentNode)){
 
