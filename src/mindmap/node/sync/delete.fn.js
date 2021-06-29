@@ -26,9 +26,9 @@
 
 node = from(node) ;
 
-let parentNode = getParentNode(node) ;
-
 if(node && !isRootNode(node)){
+
+    let parentNode = getParentNode(node) ;
 
     select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
 
