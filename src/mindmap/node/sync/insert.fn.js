@@ -23,7 +23,7 @@
  * 
  * @param {string} region 插入偏移位置
  * 
- * @return {boolea} 插入状态标识
+ * @return {data.Record} 如果插入成功则返回插入的节点引用，否则返回 false
  * 
  */
 
@@ -104,7 +104,7 @@ if(!isRootNode(baseNode) && baseNode !== placeholderNode){
         show(insertNode) ;
     }
 
-    return true ;
+    return insertNode ;
 }
 
 return false ;

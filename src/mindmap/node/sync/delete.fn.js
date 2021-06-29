@@ -21,7 +21,7 @@
  * 
  * @param {mixed} node 节点
  * 
- * @return {boolean} 删除标识
+ * @return {data.Record} 如果删除成功则返回删除的节点引用，否则返回 false
  */
 
 node = from(node) ;
@@ -62,7 +62,7 @@ if(node && !isRootNode(node)){
 
     children.splice(children.indexOf(node) , 1) ;
 
-    return true ;
+    return node ;
 
 }
 

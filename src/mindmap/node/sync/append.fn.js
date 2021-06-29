@@ -17,7 +17,7 @@
  * 
  * @param {mixed} parentNode 节点
  * 
- * @return {boolean} 添加子节点成功则返回 true , 否则返回 false
+ * @return {data.Record} 如果添加成功则返回添加的节点引用，否则返回 false
  * 
  */
 
@@ -64,5 +64,5 @@ if(!hidden && expanded){
   show(node) ;
 }
 
-return true ;
+return node ;
 
