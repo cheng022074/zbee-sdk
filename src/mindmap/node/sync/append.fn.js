@@ -30,7 +30,7 @@
    placeholderNode
  } = me ;
 
-if(parentNode === node || getLastChildNode(parentNode) === node || parentNode === placeholderNode){
+if(!parentNode || parentNode === node || getLastChildNode(parentNode) === node || parentNode === placeholderNode){
 
   return false;
 
