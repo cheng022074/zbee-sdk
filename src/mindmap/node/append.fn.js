@@ -63,7 +63,7 @@ if(appendNode = append(node , parentNode)){
 
     me.fireEvent('nodeappend' , dataNode , dataParentNode) ;
 
-    let previousNode = getPreviousNode(node),
+    let previousNode = getPreviousNode(appendNode),
         positionInfo = {
           parentNodeId:dataParentNode.id
         };
