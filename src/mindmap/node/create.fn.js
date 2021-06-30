@@ -5,11 +5,20 @@
  * 
  * @import generate from .id.generate scoped
  * 
+ * @import is.string
+ * 
  * @param {object} [node = {}] 节点信息
  * 
  * @return {data.Record} 创建出来的新节点 
  * 
  */
+
+if(isString(node)){
+
+   node = {
+      id:node
+   } ;
+}
 
 let {
    reader,
