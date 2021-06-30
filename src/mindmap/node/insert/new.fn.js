@@ -19,11 +19,9 @@
  * 
  */
 
- let insertNode = create(node) ;
+ if(node = insert(node , baseNode , region)){
 
- if(insert(insertNode , baseNode , region)){
-
-    select(insertNode) ;
+    select(node) ;
 
     return true ;
  }

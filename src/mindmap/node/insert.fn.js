@@ -83,7 +83,7 @@ if(insertNode = insert(node , baseNode , region)){
         }) ;
     }
 
-    return true ;
+    return insertNode ;
 }
 
 return false ;
