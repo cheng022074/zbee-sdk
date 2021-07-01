@@ -40260,7 +40260,7 @@ exports['src::mindmap.node.sync.append'] = (() => {
 
 
 
-    const var_current_scope_1625025660945 = new Map();
+    const var_current_scope_1625117355214 = new Map();
 
     return function(node, parentNode) {
 
@@ -40268,14 +40268,18 @@ exports['src::mindmap.node.sync.append'] = (() => {
 
 
 
-        if (!var_current_scope_1625025660945.has(this)) {
+        if (!var_current_scope_1625117355214.has(this)) {
 
-            var_current_scope_1625025660945.set(this, (() => {
+            var_current_scope_1625117355214.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const show = include('src::mindmap.node.show').bind(this);
                 const getLastChildNode = include('src::mindmap.node.child.last').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
+                const getPreviousNode = include('src::mindmap.node.sibling.previous').bind(this);
+                const getNextNode = include('src::mindmap.node.sibling.next').bind(this);
+                const hide = include('src::mindmap.node.hide').bind(this);
+                const select = include('src::mindmap.node.select').bind(this);
 
                 function main(node, parentNode) {
 
@@ -40293,6 +40297,14 @@ exports['src::mindmap.node.sync.append'] = (() => {
                      * @import getParentNode from ..parent scoped
                      * 
                      * @import from from ..from scoped
+                     * 
+                     * @import getPreviousNode from ..sibling.previous scoped
+                     * 
+                     * @import getNextNode from ..sibling.next scoped
+                     * 
+                     * @import hide from ..hide scoped
+                     * 
+                     * @import select from ..select scoped
                      * 
                      * @param {mixed} node 节点配置
                      * 
@@ -40319,13 +40331,19 @@ exports['src::mindmap.node.sync.append'] = (() => {
 
                     if (node.parentNodeId) {
 
-                        let {
-                            children
-                        } = getParentNode(node);
+                        let parentNode = getParentNode(node),
+                            {
+                                children
+                            } = parentNode;
+
+                        if (node.selected) {
+
+                            select(getPreviousNode(node) || getNextNode(node) || parentNode);
+                        }
+
+                        hide(node);
 
                         node.parentNodeId = null;
-
-                        node.hidden = true;
 
                         children.splice(children.indexOf(node), 1);
                     }
@@ -40356,7 +40374,7 @@ exports['src::mindmap.node.sync.append'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1625025660945.get(this);
+        const main = var_current_scope_1625117355214.get(this);
 
 
 
@@ -40373,7 +40391,7 @@ exports['src::mindmap.node.sync.insert'] = (() => {
 
 
 
-    const var_current_scope_1624961242103 = new Map();
+    const var_current_scope_1625117871464 = new Map();
 
     return function(insertNode, baseNode, region) {
 
@@ -40381,9 +40399,9 @@ exports['src::mindmap.node.sync.insert'] = (() => {
 
 
 
-        if (!var_current_scope_1624961242103.has(this)) {
+        if (!var_current_scope_1625117871464.has(this)) {
 
-            var_current_scope_1624961242103.set(this, (() => {
+            var_current_scope_1625117871464.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const isRootNode = include('src::mindmap.node.is.root').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
@@ -40391,6 +40409,8 @@ exports['src::mindmap.node.sync.insert'] = (() => {
                 const getNextNode = include('src::mindmap.node.sibling.next').bind(this);
                 const show = include('src::mindmap.node.show').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
+                const hide = include('src::mindmap.node.hide').bind(this);
+                const select = include('src::mindmap.node.select').bind(this);
 
                 function main(insertNode, baseNode, region) {
 
@@ -40412,6 +40432,10 @@ exports['src::mindmap.node.sync.insert'] = (() => {
                      * @import show from ..show scoped
                      * 
                      * @import from from ..from scoped
+                     * 
+                     * @import hide from ..hide scoped
+                     * 
+                     * @import select from ..select scoped
                      * 
                      * @param {mixed} insertNode 需要插入的节点
                      * 
@@ -40459,13 +40483,19 @@ exports['src::mindmap.node.sync.insert'] = (() => {
 
                         if (insertNode.parentNodeId) {
 
-                            let {
-                                children
-                            } = getParentNode(insertNode);
+                            let parentNode = getParentNode(insertNode),
+                                {
+                                    children
+                                } = parentNode;
+
+                            if (insertNode.selected) {
+
+                                select(getPreviousNode(insertNode) || getNextNode(insertNode) || parentNode);
+                            }
+
+                            hide(insertNode);
 
                             insertNode.parentNodeId = null;
-
-                            insertNode.hidden = true;
 
                             children.splice(children.indexOf(insertNode), 1);
                         }
@@ -40512,7 +40542,7 @@ exports['src::mindmap.node.sync.insert'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1624961242103.get(this);
+        const main = var_current_scope_1625117871464.get(this);
 
 
 
