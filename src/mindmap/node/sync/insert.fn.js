@@ -72,12 +72,15 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
             children
         } = parentNode ;
 
-        if(insertNode.selected){
+        if(baseNode.hidden){
 
-            select(getPreviousNode(insertNode) || getNextNode(insertNode) || parentNode) ;
+            if(insertNode.selected){
+
+                select(getPreviousNode(insertNode) || getNextNode(insertNode) || parentNode) ;
+            }
+    
+            hide(insertNode) ;
         }
-
-        hide(insertNode) ;
 
         insertNode.parentNodeId = null ;
 

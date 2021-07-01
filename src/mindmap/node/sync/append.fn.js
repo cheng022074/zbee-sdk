@@ -51,12 +51,15 @@ if(node.parentNodeId){
       children
   } = parentNode ;
 
-  if(node.selected){
+  if(parentNode.hidden){
 
-      select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
+    if(node.selected){
+
+        select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
+    }
+
+    hide(node) ;
   }
-
-  hide(node) ;
 
   node.parentNodeId = null ;
 
