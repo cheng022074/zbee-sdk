@@ -13,6 +13,14 @@
  * 
  * @import from from ..from scoped
  * 
+ * @import getPreviousNode from ..sibling.previous scoped
+ * 
+ * @import getNextNode from ..sibling.next scoped
+ * 
+ * @import hide from ..hide scoped
+ * 
+ * @import select from ..select scoped
+ * 
  * @param {mixed} node 节点配置
  * 
  * @param {mixed} parentNode 节点
@@ -38,13 +46,19 @@ if(!parentNode || parentNode === node || getLastChildNode(parentNode) === node |
 
 if(node.parentNodeId){
 
-  let {
+  let parentNode = getParentNode(node),
+  {
       children
-  } = getParentNode(node) ;
+  } = parentNode ;
+
+  if(node.selected){
+
+      select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
+  }
+
+  hide(node) ;
 
   node.parentNodeId = null ;
-
-  node.hidden = true ;
 
   children.splice(children.indexOf(node) , 1) ;
 }

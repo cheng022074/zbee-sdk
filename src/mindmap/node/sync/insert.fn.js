@@ -17,6 +17,10 @@
  * 
  * @import from from ..from scoped
  * 
+ * @import hide from ..hide scoped
+ * 
+ * @import select from ..select scoped
+ * 
  * @param {mixed} insertNode 需要插入的节点
  * 
  * @param {mixed} baseNode 参照节点
@@ -63,13 +67,19 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
 
     if(insertNode.parentNodeId){
 
-        let {
+        let parentNode = getParentNode(insertNode),
+        {
             children
-        } = getParentNode(insertNode) ;
+        } = parentNode ;
+
+        if(node.selected){
+
+            select(getPreviousNode(insertNode) || getNextNode(insertNode) || parentNode) ;
+        }
+
+        hide(insertNode) ;
 
         insertNode.parentNodeId = null ;
-
-        insertNode.hidden = true ;
 
         children.splice(children.indexOf(insertNode) , 1) ;
     }
