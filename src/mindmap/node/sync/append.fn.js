@@ -44,7 +44,10 @@ if(!parentNode || parentNode === node || getLastChildNode(parentNode) === node |
 
 }
 
-let isSelected = false ;
+let {
+  selectedNode,
+  rootNode
+} = me;
 
 if(node.parentNodeId){
 
@@ -55,12 +58,7 @@ if(node.parentNodeId){
 
   node.parentNodeId = null ;
 
-  if(node.selected){
-
-    node.selected = false ;
-
-    isSelected = true ;
-  }
+  node.selected = false ;
 
   hide(node) ;
 
@@ -82,9 +80,16 @@ if(!hidden && expanded){
   show(node) ;
 }
 
-if(isSelected){
+selectedNode = from(selectedNode) ;
 
-  select(node) ;
+if(selectedNode.hidden){
+
+  select(rootNode) ;
+
+}else{
+
+  selectedNode.selected = true ;
+
 }
 
 return node ;

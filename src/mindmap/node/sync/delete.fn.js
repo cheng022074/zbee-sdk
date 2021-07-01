@@ -28,12 +28,14 @@ node = from(node) ;
 
 if(node && !isRootNode(node)){
 
-    let parentNode = getParentNode(node) ;
-
-    if(node.selected){
-
-        select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
-    }
+    let parentNode = getParentNode(node),
+    {
+        rootNode,
+        selectedNode
+    } = this,
+    selectedNodeParentNode = getParentNode(selectedNode),
+    selectedNodePreviousNode = getPreviousNode(node),
+    selectedNodeNextNode = getNextNode(node);
 
     hide(node) ;
 
@@ -63,6 +65,21 @@ if(node && !isRootNode(node)){
     } = parentNode;
 
     children.splice(children.indexOf(node) , 1) ;
+
+    if(!from(selectedNode)){
+
+        selectedNodeParentNode = from(selectedNodeParentNode) ;
+
+        if(selectedNodeParentNode){
+
+            select(selectedNodePreviousNode || selectedNodeNextNode || selectedNodeParentNode) ;
+        
+        }else{
+
+            select(rootNode) ;
+        }
+    
+    }
 
     return node ;
 

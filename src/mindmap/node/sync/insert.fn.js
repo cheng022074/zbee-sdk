@@ -35,9 +35,10 @@
 
  baseNode = from(baseNode) ;
 
- let {
+ let me = this,
+ {
     placeholderNode
- } = this ;
+ } = me ;
 
 if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
 
@@ -65,7 +66,10 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
             }
     }
 
-    let isSelected = false ;
+    let {
+        selectedNode,
+        rootNode
+    } = me;
 
     if(insertNode.parentNodeId){
 
@@ -74,12 +78,7 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
             children
         } = parentNode ;
 
-        if(insertNode.selected){
-
-            isSelected = true ;
-
-            insertNode.selected = false ;
-        }
+        insertNode.selected = false ;
 
         hide(insertNode) ;
 
@@ -118,9 +117,16 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
         show(insertNode) ;
     }
 
-    if(isSelected){
+    selectedNode = from(selectedNode) ;
 
-        select(insertNode) ;
+    if(selectedNode.hidden){
+
+        select(rootNode) ;
+
+    }else{
+
+        selectedNode.selected = true ;
+
     }
 
     return insertNode ;
