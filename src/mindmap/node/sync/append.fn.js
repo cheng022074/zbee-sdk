@@ -46,16 +46,16 @@ if(!parentNode || parentNode === node || getLastChildNode(parentNode) === node |
 
 if(node.parentNodeId){
 
-  let parentNode = getParentNode(node),
+  let originParentNode = getParentNode(node),
   {
       children
-  } = parentNode ;
+  } = originParentNode ;
 
   if(parentNode.hidden){
 
     if(node.selected){
 
-        select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
+        select(getPreviousNode(node) || getNextNode(node) || originParentNode) ;
     }
 
     hide(node) ;
