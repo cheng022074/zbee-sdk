@@ -72,7 +72,7 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
             children
         } = parentNode ;
 
-        if(node.selected){
+        if(insertNode.selected){
 
             select(getPreviousNode(insertNode) || getNextNode(insertNode) || parentNode) ;
         }
