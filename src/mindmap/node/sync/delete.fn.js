@@ -30,12 +30,12 @@ if(node && !isRootNode(node)){
 
     let parentNode = getParentNode(node) ;
 
-    if(!node.hidden){
+    if(node.selected){
 
         select(getPreviousNode(node) || getNextNode(node) || parentNode) ;
-
-        hide(node) ;
     }
+
+    hide(node) ;
 
     let nodes = [
         node,
