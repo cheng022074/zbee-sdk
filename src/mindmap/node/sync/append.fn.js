@@ -44,6 +44,8 @@ if(!parentNode || parentNode === node || getLastChildNode(parentNode) === node |
 
 }
 
+let isSelected = false ;
+
 if(node.parentNodeId){
 
   let originParentNode = getParentNode(node),
@@ -51,17 +53,16 @@ if(node.parentNodeId){
       children
   } = originParentNode ;
 
-  if(parentNode.hidden){
+  node.parentNodeId = null ;
 
-    if(node.selected){
+  if(node.selected){
 
-        select(getPreviousNode(node) || getNextNode(node) || originParentNode) ;
-    }
+    node.selected = false ;
 
-    hide(node) ;
+    isSelected = true ;
   }
 
-  node.parentNodeId = null ;
+  hide(node) ;
 
   children.splice(children.indexOf(node) , 1) ;
 }
@@ -79,6 +80,11 @@ node.parentNodeId = parentNode.id ;
 if(!hidden && expanded){
 
   show(node) ;
+}
+
+if(isSelected){
+
+  select(node) ;
 }
 
 return node ;

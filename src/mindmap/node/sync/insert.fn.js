@@ -65,6 +65,8 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
             }
     }
 
+    let isSelected = false ;
+
     if(insertNode.parentNodeId){
 
         let parentNode = getParentNode(insertNode),
@@ -72,15 +74,14 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
             children
         } = parentNode ;
 
-        if(baseNode.hidden){
+        if(insertNode.selected){
 
-            if(insertNode.selected){
+            isSelected = true ;
 
-                select(getPreviousNode(insertNode) || getNextNode(insertNode) || parentNode) ;
-            }
-    
-            hide(insertNode) ;
+            insertNode.selected = false ;
         }
+
+        hide(insertNode) ;
 
         insertNode.parentNodeId = null ;
 
@@ -115,6 +116,11 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
     if(!baseNode.hidden){
 
         show(insertNode) ;
+    }
+
+    if(isSelected){
+
+        select(insertNode) ;
     }
 
     return insertNode ;
