@@ -40071,7 +40071,7 @@ exports['src::mindmap.node.expand.to'] = (() => {
 
 
 
-    const var_current_scope_1621936469007 = new Map();
+    const var_current_scope_1625211857721 = new Map();
 
     return function(node) {
 
@@ -40079,9 +40079,9 @@ exports['src::mindmap.node.expand.to'] = (() => {
 
 
 
-        if (!var_current_scope_1621936469007.has(this)) {
+        if (!var_current_scope_1625211857721.has(this)) {
 
-            var_current_scope_1621936469007.set(this, (() => {
+            var_current_scope_1625211857721.set(this, (() => {
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
                 const expand = include('src::mindmap.node.expand').bind(this);
@@ -40104,33 +40104,36 @@ exports['src::mindmap.node.expand.to'] = (() => {
 
                     node = from(node);
 
-                    let {
-                        hidden
-                    } = node;
+                    if (node) {
 
-                    if (hidden) {
+                        let {
+                            hidden
+                        } = node;
 
-                        let parentNode,
-                            parentNodes = [];
+                        if (hidden) {
 
-                        while (parentNode = getParentNode(node)) {
+                            let parentNode,
+                                parentNodes = [];
 
-                            parentNodes.unshift(parentNode);
+                            while (parentNode = getParentNode(node)) {
 
-                            if (!parentNode.hidden) {
+                                parentNodes.unshift(parentNode);
 
-                                break;
+                                if (!parentNode.hidden) {
+
+                                    break;
+                                }
+
+                                node = parentNode;
                             }
 
-                            node = parentNode;
+                            for (let parentNode of parentNodes) {
+
+                                expand(parentNode);
+                            }
+
+                            return true;
                         }
-
-                        for (let parentNode of parentNodes) {
-
-                            expand(parentNode);
-                        }
-
-                        return true;
                     }
 
                     return false;
@@ -40142,7 +40145,7 @@ exports['src::mindmap.node.expand.to'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936469007.get(this);
+        const main = var_current_scope_1625211857721.get(this);
 
 
 
