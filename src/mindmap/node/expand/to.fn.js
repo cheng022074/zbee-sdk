@@ -14,33 +14,36 @@
 
 node = from(node) ;
 
-let {
-    hidden
-} = node ;
+if(node){
 
-if(hidden){
+    let {
+        hidden
+    } = node ;
 
-    let parentNode,
-        parentNodes = [];
+    if(hidden){
 
-    while(parentNode = getParentNode(node)){
+        let parentNode,
+            parentNodes = [];
 
-        parentNodes.unshift(parentNode) ;
+        while(parentNode = getParentNode(node)){
 
-        if(!parentNode.hidden){
+            parentNodes.unshift(parentNode) ;
 
-            break ;
+            if(!parentNode.hidden){
+
+                break ;
+            }
+
+            node = parentNode ;
         }
 
-        node = parentNode ;
+        for(let parentNode of parentNodes){
+
+            expand(parentNode) ;
+        }
+
+        return true ;
     }
-
-    for(let parentNode of parentNodes){
-
-        expand(parentNode) ;
-    }
-
-    return true ;
 }
 
 return false ;
