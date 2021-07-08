@@ -200,6 +200,13 @@ input, textarea {
   .xy-layout-vertical.justify-between, .css-layout-vertical.justify-between {
     justify-content: space-between; }
 
+.xy-container, .css-container {
+  position: relative;
+  overflow: hidden; }
+
+.xy-component, .css-component {
+  position: relative; }
+
 .xy-layout-fit-unsized, .css-layout-fit-unsized, .xy-mindmap, .css-mindmap {
   width: 100%;
   height: 100%; }

@@ -48,6 +48,8 @@
             "vue.component",
             "css::reset.viewport",
             "css::layout.*",
+            "css::container",
+            "css::component",
             "css::mindmap"
         ],
         "to":[

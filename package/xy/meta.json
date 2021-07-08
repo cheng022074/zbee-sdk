@@ -8098,6 +8098,26 @@
     "folder": "css",
     "name": "layout.vertical"
   },
+  "css::container": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::container()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "prefix => `.${prefix}-container,.css-container{\n    &{\r\n    position: relative;\r\n    overflow: hidden;\r\n}\r\n}`",
+    "folder": "css",
+    "name": "container"
+  },
+  "css::component": {
+    "meta": "code.meta.scss",
+    "signature": "<void> css::component()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "prefix => `.${prefix}-component,.css-component{\n    &{\r\n    position: relative;\r\n}\r\n}`",
+    "folder": "css",
+    "name": "component"
+  },
   "css::mindmap": {
     "meta": "code.meta.scss",
     "signature": "<void> css::mindmap()",
