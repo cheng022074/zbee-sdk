@@ -55,4 +55,4 @@ me.nativeEvent = nativeEvent ;
 
 enabled(e) ;
 
-me.timer = setTimeout(() => disabled() , maxDuration) ;
+me.timer = setTimeout(() => disabled(e) , maxDuration) ;

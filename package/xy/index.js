@@ -29590,11 +29590,11 @@ exports['src::browser.event.gesture.tap.disabled'] = (() => {
 
     let getName, un;
 
-    let var_init_locked_1621936466003;
+    let var_init_locked_1625795782113;
 
 
 
-    function main() {
+    function main(e) {
 
 
         /**
@@ -29604,6 +29604,8 @@ exports['src::browser.event.gesture.tap.disabled'] = (() => {
          * @import getName from browser.event.name.single
          * 
          * @import un from browser.event.listener.global.remove
+         * 
+         * @param {Event} e 事件对象
          * 
          */
 
@@ -29619,9 +29621,9 @@ exports['src::browser.event.gesture.tap.disabled'] = (() => {
             clearTimeout(timer);
         }
 
-        un(getName('move'), onMove);
+        un(getName('move', e), onMove);
 
-        un(getName('end'), onEnd);
+        un(getName('end', e), onEnd);
 
         delete me.timer;
 
@@ -29633,19 +29635,19 @@ exports['src::browser.event.gesture.tap.disabled'] = (() => {
 
     }
 
-    return function() {
+    return function(e) {
 
 
-        if (!var_init_locked_1621936466003) {
+        if (!var_init_locked_1625795782113) {
 
             getName = include('src::browser.event.name.single');
             un = include('src::browser.event.listener.global.remove');
 
-            var_init_locked_1621936466003 = true;
+            var_init_locked_1625795782113 = true;
         }
 
 
-        return main.call(this);
+        return main.call(this, e);
     };
 
 })();
@@ -30275,33 +30277,33 @@ exports['src::browser.event.gesture.tap.enabled'] = (() => {
 
     let getName, on;
 
-    let var_init_locked_1621936466118;
+    let var_init_locked_1625795782140;
 
 
 
-    const var_current_scope_1621936466118 = new Map();
+    const var_current_scope_1625795782140 = new Map();
 
-    return function() {
+    return function(e) {
 
 
-        if (!var_init_locked_1621936466118) {
+        if (!var_init_locked_1625795782140) {
 
             getName = include('src::browser.event.name.single');
             on = include('src::browser.event.listener.global.add');
 
-            var_init_locked_1621936466118 = true;
+            var_init_locked_1625795782140 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936466118.has(this)) {
+        if (!var_current_scope_1625795782140.has(this)) {
 
-            var_current_scope_1621936466118.set(this, (() => {
+            var_current_scope_1625795782140.set(this, (() => {
                 const onMove = include('src::browser.event.gesture.tap.move').bind(this);
                 const onEnd = include('src::browser.event.gesture.tap.end').bind(this);
 
-                function main() {
+                function main(e) {
 
 
                     /**
@@ -30316,13 +30318,15 @@ exports['src::browser.event.gesture.tap.enabled'] = (() => {
                      * 
                      * @import on from browser.event.listener.global.add
                      * 
+                     * @param {Event} e 事件对象
+                     * 
                      */
 
                     let me = this;
 
-                    on(getName('move'), me.onMove = onMove);
+                    on(getName('move', e), me.onMove = onMove);
 
-                    on(getName('end'), me.onEnd = onEnd);
+                    on(getName('end', e), me.onEnd = onEnd);
 
 
 
@@ -30333,11 +30337,11 @@ exports['src::browser.event.gesture.tap.enabled'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936466118.get(this);
+        const main = var_current_scope_1625795782140.get(this);
 
 
 
-        return main.call(this);
+        return main.call(this, e);
     };
 
 })();
@@ -30346,31 +30350,31 @@ exports['src::browser.event.gesture.tap.move'] = (() => {
 
     let getEvent, getDistance, getScale, moveDistance;
 
-    let var_init_locked_1621936466133;
+    let var_init_locked_1625795782155;
 
 
 
-    const var_current_scope_1621936466133 = new Map();
+    const var_current_scope_1625795782155 = new Map();
 
     return function(e) {
 
 
-        if (!var_init_locked_1621936466133) {
+        if (!var_init_locked_1625795782155) {
 
             getEvent = include('src::browser.event.single');
             getDistance = include('src::math.point.line.distance');
             getScale = include('src::browser.scale');
             moveDistance = config('event.tap', 'moveDistance');
 
-            var_init_locked_1621936466133 = true;
+            var_init_locked_1625795782155 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936466133.has(this)) {
+        if (!var_current_scope_1625795782155.has(this)) {
 
-            var_current_scope_1621936466133.set(this, (() => {
+            var_current_scope_1625795782155.set(this, (() => {
                 const disabled = include('src::browser.event.gesture.tap.disabled').bind(this);
 
                 function main(e) {
@@ -30411,7 +30415,7 @@ exports['src::browser.event.gesture.tap.move'] = (() => {
 
                         dispatch('tapcancel');
 
-                        disabled();
+                        disabled(e);
                     }
 
                 }
@@ -30421,7 +30425,7 @@ exports['src::browser.event.gesture.tap.move'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936466133.get(this);
+        const main = var_current_scope_1625795782155.get(this);
 
 
 
@@ -30434,29 +30438,29 @@ exports['src::browser.event.gesture.tap.end'] = (() => {
 
     let getEvent, stop;
 
-    let var_init_locked_1621936466149;
+    let var_init_locked_1625795782165;
 
 
 
-    const var_current_scope_1621936466149 = new Map();
+    const var_current_scope_1625795782165 = new Map();
 
     return function(e) {
 
 
-        if (!var_init_locked_1621936466149) {
+        if (!var_init_locked_1625795782165) {
 
             getEvent = include('src::browser.event.single');
             stop = include('src::browser.event.stop');
 
-            var_init_locked_1621936466149 = true;
+            var_init_locked_1625795782165 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936466149.has(this)) {
+        if (!var_current_scope_1625795782165.has(this)) {
 
-            var_current_scope_1621936466149.set(this, (() => {
+            var_current_scope_1625795782165.set(this, (() => {
                 const disabled = include('src::browser.event.gesture.tap.disabled').bind(this);
 
                 function main(e) {
@@ -30485,7 +30489,7 @@ exports['src::browser.event.gesture.tap.end'] = (() => {
                         nativeEvent
                     });
 
-                    disabled();
+                    disabled(e);
 
 
 
@@ -30496,7 +30500,7 @@ exports['src::browser.event.gesture.tap.end'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936466149.get(this);
+        const main = var_current_scope_1625795782165.get(this);
 
 
 
@@ -30550,16 +30554,16 @@ exports['src::browser.event.gesture.tap'] = (() => {
 
     let getEvent, getTouchEvents, browserEventGestureTapEvent, stop, maxDuration;
 
-    let var_init_locked_1621936466182;
+    let var_init_locked_1625796182606;
 
 
 
-    const var_current_scope_1621936466182 = new Map();
+    const var_current_scope_1625796182606 = new Map();
 
     return function(e) {
 
 
-        if (!var_init_locked_1621936466182) {
+        if (!var_init_locked_1625796182606) {
 
             getEvent = include('src::browser.event.single');
             getTouchEvents = include('src::browser.event.touches');
@@ -30567,15 +30571,15 @@ exports['src::browser.event.gesture.tap'] = (() => {
             stop = include('src::browser.event.stop');
             maxDuration = config('event.tap', 'maxDuration');
 
-            var_init_locked_1621936466182 = true;
+            var_init_locked_1625796182606 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936466182.has(this)) {
+        if (!var_current_scope_1625796182606.has(this)) {
 
-            var_current_scope_1621936466182.set(this, (() => {
+            var_current_scope_1625796182606.set(this, (() => {
                 const enabled = include('src::browser.event.gesture.tap.enabled').bind(this);
                 const disabled = include('src::browser.event.gesture.tap.disabled').bind(this);
 
@@ -30606,7 +30610,7 @@ exports['src::browser.event.gesture.tap'] = (() => {
 
                     if (getTouchEvents(e, 'start')) {
 
-                        disabled();
+                        disabled(e);
 
                         return;
 
@@ -30636,9 +30640,9 @@ exports['src::browser.event.gesture.tap'] = (() => {
 
                     me.nativeEvent = nativeEvent;
 
-                    enabled();
+                    enabled(e);
 
-                    me.timer = setTimeout(() => disabled(), maxDuration);
+                    me.timer = setTimeout(() => disabled(e), maxDuration);
 
 
                 }
@@ -30648,7 +30652,7 @@ exports['src::browser.event.gesture.tap'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936466182.get(this);
+        const main = var_current_scope_1625796182606.get(this);
 
 
 
