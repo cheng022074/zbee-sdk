@@ -30856,9 +30856,9 @@ exports['src::browser.event.init.listeners'] = (() => {
 
     let prevent, stop;
 
-    let var_init_locked_1621936466236;
+    let var_init_locked_1625800918506;
 
-    let var_once_value_1621936466236;
+    let var_once_value_1625800918506;
 
     function main() {
 
@@ -30935,22 +30935,22 @@ exports['src::browser.event.init.listeners'] = (() => {
     return function() {
 
 
-        if (!var_init_locked_1621936466236) {
+        if (!var_init_locked_1625800918506) {
 
             prevent = include('src::browser.event.prevent');
             stop = include('src::browser.event.stop');
 
-            var_init_locked_1621936466236 = true;
+            var_init_locked_1625800918506 = true;
         }
 
 
 
-        if (var_once_value_1621936466236) {
+        if (var_once_value_1625800918506) {
 
-            return var_once_value_1621936466236;
+            return var_once_value_1625800918506;
 
         }
-        return var_once_value_1621936466236 = main.call(this);
+        return var_once_value_1625800918506 = main.call(this);
 
     };
 
