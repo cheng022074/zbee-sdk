@@ -34,5 +34,5 @@ if(Math.round(getDistance({
 
     dispatch('tapcancel') ;
 
-    disabled() ;
+    disabled(e) ;
 }

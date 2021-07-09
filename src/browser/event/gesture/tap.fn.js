@@ -23,7 +23,7 @@
 
 if(getTouchEvents(e , 'start')){
 
-   disabled() ;
+   disabled(e) ;
 
    return ;
 
@@ -53,6 +53,6 @@ me.startPoint = {
 
 me.nativeEvent = nativeEvent ;
 
-enabled() ;
+enabled(e) ;
 
 me.timer = setTimeout(() => disabled() , maxDuration) ;
