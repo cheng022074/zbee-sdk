@@ -215,16 +215,23 @@ input, textarea {
   position: relative;
   overflow: hidden;
   touch-action: none; }
-  .xy-mindmap > .nodes, .xy-mindmap > .lines, .css-mindmap > .nodes, .css-mindmap > .lines {
+  .xy-mindmap > .inner, .css-mindmap > .inner {
     position: absolute;
     top: 0;
     left: 0; }
-  .xy-mindmap > .nodes, .css-mindmap > .nodes {
-    width: 100%; }
-    .xy-mindmap > .nodes > .node-wrapper, .xy-mindmap > .nodes > .node, .css-mindmap > .nodes > .node-wrapper, .css-mindmap > .nodes > .node {
+    .xy-mindmap > .inner > .nodes, .xy-mindmap > .inner > .lines, .css-mindmap > .inner > .nodes, .css-mindmap > .inner > .lines {
       position: absolute;
       top: 0;
-      left: 0;
-      transform: translate3d(0, 0, 0); }
-    .xy-mindmap > .nodes > .node-wrapper > .node, .css-mindmap > .nodes > .node-wrapper > .node {
-      position: relative; }
+      left: 0; }
+    .xy-mindmap > .inner > .lines, .css-mindmap > .inner > .lines {
+      width: 100%;
+      height: 100%; }
+    .xy-mindmap > .inner > .nodes, .css-mindmap > .inner > .nodes {
+      width: 100%; }
+      .xy-mindmap > .inner > .nodes > .node-wrapper, .xy-mindmap > .inner > .nodes > .node, .css-mindmap > .inner > .nodes > .node-wrapper, .css-mindmap > .inner > .nodes > .node {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate3d(0, 0, 0); }
+      .xy-mindmap > .inner > .nodes > .node-wrapper > .node, .css-mindmap > .inner > .nodes > .node-wrapper > .node {
+        position: relative; }
