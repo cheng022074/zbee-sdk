@@ -17,14 +17,17 @@
 
    let me = this,
    {
-      isLayouting,
-      rootNode
+      isLayouting
    } = me;
 
    if(isLayouting){
 
+      me.isNeedAgainLayout = true ;
+
       return ;
    }
+
+   delete me.isNeedAgainLayout ;
 
    me.isLayouting = true ;
 
@@ -32,17 +35,10 @@
 
    let {
       pattern:layout,
-      getRootNode,
-      getDescendantNodes,
       createPositioner
    } = me.layoutConfig ;
 
-   rootNode = getRootNode() || rootNode;
-
-   doBeforeLayout.call(me , me.layoutNodes = [
-      rootNode,
-      ...getDescendantNodes(rootNode)
-   ] , () => {
+   doBeforeLayout.call(me , rootNode => {
 
       me.layoutData = layout(rootNode) ;
 
@@ -55,7 +51,24 @@
    }) ;
  }
 
- function doBeforeLayout(layoutNodes , callback){
+ function doBeforeLayout(callback){
+
+   let me = this,
+   {
+      rootNode,
+      layoutConfig
+   } = me,
+   {
+      getRootNode,
+      getDescendantNodes
+   } = layoutConfig ;
+
+   rootNode = getRootNode() || rootNode;
+
+   let layoutNodes = me.layoutNodes = [
+      rootNode,
+      ...getDescendantNodes(rootNode)
+   ] ;
 
    let unsizedNodes = new Map() ;
 
@@ -86,13 +99,20 @@
             node.height = height ;
          }
 
-         callback() ;
+         if(me.isNeedAgainLayout){
+
+            doBeforeLayout(callback) ;
+
+         }else{
+
+            callback(rootNode) ;
+         }
 
       }) ;
 
     }else{
 
-      callback() ;
+      callback(rootNode) ;
     }
  }
 
