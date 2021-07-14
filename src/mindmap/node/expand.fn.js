@@ -7,6 +7,10 @@
  * 
  * @import from from .from scoped
  * 
+ * @import append from .append scoped
+ * 
+ * @import register from .register scoped
+ * 
  * @param {mixed} node 节点
  * 
  * @return {boolean} 如果正确展开则返回 true , 否则返回 false
@@ -18,10 +22,26 @@ node = from(node) ;
 if(node){
 
     let {
-        expanded
+        expanded,
+        loaded,
+        loadChildrenData
     } = node;
 
     if(!expanded){
+
+        let {
+            reader
+        } = this ;
+
+        if(!loaded){
+
+            let childNodes = await loadChildrenData(reader) ;
+
+            for(let childNode of childNodes){
+
+                append(register(childNode) , node) ;
+            }
+        }
 
         let {
             children

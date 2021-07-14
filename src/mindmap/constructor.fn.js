@@ -164,6 +164,15 @@
                return generate() ;
             }
          },
+         loaded:{
+            defaultValue:true
+         },
+         loadChildrenData:{
+            defaultValue(){
+
+               return []
+            }
+         },
          ...readerFields,
          parentNodeId: {
             local:true,
