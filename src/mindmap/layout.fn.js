@@ -27,8 +27,6 @@
       return ;
    }
 
-   delete me.isNeedAgainLayout ;
-
    me.isLayouting = true ;
 
    clear() ;
@@ -82,7 +80,7 @@
 
     if(unsizedNodes.size){
 
-      this.fireEvent('nodeunsized' , getDataNodes(unsizedNodes) , sizes => {
+      me.fireEvent('nodeunsized' , getDataNodes(unsizedNodes) , sizes => {
 
          let ids = Object.keys(sizes) ;
 
@@ -100,6 +98,8 @@
          }
 
          if(me.isNeedAgainLayout){
+
+            delete me.isNeedAgainLayout ;
 
             doBeforeLayout(callback) ;
 
