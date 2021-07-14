@@ -39908,7 +39908,7 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-    const var_current_scope_1626238609366 = new Map();
+    const var_current_scope_1626256027474 = new Map();
 
     return function() {
 
@@ -39916,9 +39916,9 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-        if (!var_current_scope_1626238609366.has(this)) {
+        if (!var_current_scope_1626256027474.has(this)) {
 
-            var_current_scope_1626238609366.set(this, (() => {
+            var_current_scope_1626256027474.set(this, (() => {
                 const refresh = include('src::mindmap.refresh').bind(this);
                 const isUnsized = include('src::mindmap.node.is.unsized').bind(this);
                 const getData = include('src::mindmap.node.data').bind(this);
@@ -39952,8 +39952,6 @@ exports['src::mindmap.layout'] = (() => {
 
                         return;
                     }
-
-                    delete me.isNeedAgainLayout;
 
                     me.isLayouting = true;
 
@@ -40008,7 +40006,7 @@ exports['src::mindmap.layout'] = (() => {
 
                     if (unsizedNodes.size) {
 
-                        this.fireEvent('nodeunsized', getDataNodes(unsizedNodes), sizes => {
+                        me.fireEvent('nodeunsized', getDataNodes(unsizedNodes), sizes => {
 
                             let ids = Object.keys(sizes);
 
@@ -40026,6 +40024,8 @@ exports['src::mindmap.layout'] = (() => {
                             }
 
                             if (me.isNeedAgainLayout) {
+
+                                delete me.isNeedAgainLayout;
 
                                 doBeforeLayout(callback);
 
@@ -40061,7 +40061,7 @@ exports['src::mindmap.layout'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626238609366.get(this);
+        const main = var_current_scope_1626256027474.get(this);
 
 
 
@@ -45121,7 +45121,7 @@ exports['src::mindmap.node.expand.deep'] = (() => {
 
 
 
-    const var_current_scope_1621936469852 = new Map();
+    const var_current_scope_1626256778886 = new Map();
 
     return function(node, level = 1) {
 
@@ -45129,9 +45129,9 @@ exports['src::mindmap.node.expand.deep'] = (() => {
 
 
 
-        if (!var_current_scope_1621936469852.has(this)) {
+        if (!var_current_scope_1626256778886.has(this)) {
 
-            var_current_scope_1621936469852.set(this, (() => {
+            var_current_scope_1626256778886.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
                 const expand = include('src::mindmap.node.expand').bind(this);
 
@@ -45157,7 +45157,7 @@ exports['src::mindmap.node.expand.deep'] = (() => {
                     return doDeepExpand(from(node), 0, level);
                 }
 
-                function doDeepExpand(node, level, maxLevel) {
+                async function doDeepExpand(node, level, maxLevel) {
 
                     node.hidden = false;
 
@@ -45167,7 +45167,7 @@ exports['src::mindmap.node.expand.deep'] = (() => {
 
                         let isExpand = false;
 
-                        if (expand(node)) {
+                        if (await expand(node)) {
 
                             isExpand = true;
                         }
@@ -45178,7 +45178,7 @@ exports['src::mindmap.node.expand.deep'] = (() => {
 
                         for (let childNode of children) {
 
-                            if (doDeepExpand(childNode, level, maxLevel)) {
+                            if (await doDeepExpand(childNode, level, maxLevel)) {
 
                                 isExpand = true;
                             }
@@ -45198,7 +45198,7 @@ exports['src::mindmap.node.expand.deep'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936469852.get(this);
+        const main = var_current_scope_1626256778886.get(this);
 
 
 

@@ -20,7 +20,7 @@ function main(node , level){
     return doDeepExpand(from(node) , 0 , level) ;
 }
 
-function doDeepExpand(node , level , maxLevel){
+async function doDeepExpand(node , level , maxLevel){
 
     node.hidden = false ;
 
@@ -30,7 +30,7 @@ function doDeepExpand(node , level , maxLevel){
 
         let isExpand = false ;
 
-        if(expand(node)){
+        if(await expand(node)){
 
             isExpand = true ;
         }
@@ -41,7 +41,7 @@ function doDeepExpand(node , level , maxLevel){
 
         for(let childNode of children){
 
-            if(doDeepExpand(childNode , level , maxLevel)){
+            if(await doDeepExpand(childNode , level , maxLevel)){
 
                 isExpand = true ;
             }
