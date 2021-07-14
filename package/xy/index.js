@@ -36932,11 +36932,11 @@ exports['src::mindmap.constructor'] = (() => {
 
     let createReader, isObject, isArray, emptyFn, isNumber, isString, get;
 
-    let var_init_locked_1626241733323;
+    let var_init_locked_1626243680402;
 
 
 
-    const var_current_scope_1626241733323 = new Map();
+    const var_current_scope_1626243680402 = new Map();
 
     return function({
         reader,
@@ -36951,7 +36951,7 @@ exports['src::mindmap.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1626241733323) {
+        if (!var_init_locked_1626243680402) {
 
             createReader = include('src::data.reader.json');
             isObject = include('src::is.object.simple');
@@ -36961,15 +36961,15 @@ exports['src::mindmap.constructor'] = (() => {
             isString = include('src::is.string');
             get = include('src::function.get');
 
-            var_init_locked_1626241733323 = true;
+            var_init_locked_1626243680402 = true;
         }
 
 
 
 
-        if (!var_current_scope_1626241733323.has(this)) {
+        if (!var_current_scope_1626243680402.has(this)) {
 
-            var_current_scope_1626241733323.set(this, (() => {
+            var_current_scope_1626243680402.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const setSelected = include('src::mindmap.node.field.selected').bind(this);
@@ -37154,12 +37154,13 @@ exports['src::mindmap.constructor'] = (() => {
                             }
                         },
                         loaded: {
-                            defaultValue: true
+                            defaultValue: true,
+                            mode: 'readwrite'
                         },
                         loadChildrenData: {
                             defaultValue() {
 
-                                return []
+                                return () => [];
                             }
                         },
                         ...readerFields,
@@ -37238,7 +37239,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626241733323.get(this);
+        const main = var_current_scope_1626243680402.get(this);
 
 
 
@@ -37841,8 +37842,16 @@ exports['src::mindmap.node.is.leaf'] = (() => {
 
 
         let {
-            children
+            children,
+            loaded
         } = node;
+
+        if (!loaded) {
+
+            console.log('强制');
+
+            return false;
+        }
 
         return !children.length;
 
@@ -38645,7 +38654,7 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-    const var_current_scope_1626241733383 = new Map();
+    const var_current_scope_1626245010754 = new Map();
 
     return async function(node) {
 
@@ -38653,9 +38662,9 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-        if (!var_current_scope_1626241733383.has(this)) {
+        if (!var_current_scope_1626245010754.has(this)) {
 
-            var_current_scope_1626241733383.set(this, (() => {
+            var_current_scope_1626245010754.set(this, (() => {
                 const show = include('src::mindmap.node.show').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
                 const append = include('src::mindmap.node.append').bind(this);
@@ -38694,9 +38703,10 @@ exports['src::mindmap.node.expand'] = (() => {
 
                         if (!expanded) {
 
-                            let {
-                                reader
-                            } = this;
+                            let me = this,
+                                {
+                                    reader
+                                } = me;
 
                             if (!loaded) {
 
@@ -38706,6 +38716,8 @@ exports['src::mindmap.node.expand'] = (() => {
 
                                     append(register(childNode), node);
                                 }
+
+                                node.loaded = true;
                             }
 
                             let {
@@ -38722,6 +38734,12 @@ exports['src::mindmap.node.expand'] = (() => {
                                 }
 
                                 return true;
+
+                            } else if (!loaded) {
+
+                                node.expanded = true;
+
+                                return true;
                             }
                         }
                     }
@@ -38735,7 +38753,7 @@ exports['src::mindmap.node.expand'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626241733383.get(this);
+        const main = var_current_scope_1626245010754.get(this);
 
 
 

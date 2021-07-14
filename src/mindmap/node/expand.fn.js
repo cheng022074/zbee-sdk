@@ -29,9 +29,10 @@ if(node){
 
     if(!expanded){
 
-        let {
+        let me = this,
+        {
             reader
-        } = this ;
+        } = me ;
 
         if(!loaded){
 
@@ -41,6 +42,8 @@ if(node){
 
                 append(register(childNode) , node) ;
             }
+
+            node.loaded = true ;
         }
 
         let {
@@ -55,6 +58,12 @@ if(node){
     
                 show(childNode) ;
             }
+
+            return true ;
+        
+        }else if(!loaded){
+
+            node.expanded = true ;
 
             return true ;
         }

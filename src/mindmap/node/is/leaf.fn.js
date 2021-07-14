@@ -11,7 +11,15 @@
 
 
 let {
-  children
+  children,
+  loaded
 } = node ;
 
-return !children.length ;
+if(!loaded){
+
+  console.log('强制') ;
+
+  return false ;
+}
+
+return !children.length;

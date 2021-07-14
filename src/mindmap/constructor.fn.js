@@ -165,12 +165,13 @@
             }
          },
          loaded:{
-            defaultValue:true
+            defaultValue:true,
+            mode:'readwrite'
          },
          loadChildrenData:{
             defaultValue(){
 
-               return []
+               return ()=> [] ;
             }
          },
          ...readerFields,
