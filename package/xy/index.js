@@ -39665,7 +39665,7 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-    const var_current_scope_1621936468788 = new Map();
+    const var_current_scope_1626238609366 = new Map();
 
     return function() {
 
@@ -39673,9 +39673,9 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-        if (!var_current_scope_1621936468788.has(this)) {
+        if (!var_current_scope_1626238609366.has(this)) {
 
-            var_current_scope_1621936468788.set(this, (() => {
+            var_current_scope_1626238609366.set(this, (() => {
                 const refresh = include('src::mindmap.refresh').bind(this);
                 const isUnsized = include('src::mindmap.node.is.unsized').bind(this);
                 const getData = include('src::mindmap.node.data').bind(this);
@@ -39700,14 +39700,17 @@ exports['src::mindmap.layout'] = (() => {
 
                     let me = this,
                         {
-                            isLayouting,
-                            rootNode
+                            isLayouting
                         } = me;
 
                     if (isLayouting) {
 
+                        me.isNeedAgainLayout = true;
+
                         return;
                     }
+
+                    delete me.isNeedAgainLayout;
 
                     me.isLayouting = true;
 
@@ -39715,17 +39718,10 @@ exports['src::mindmap.layout'] = (() => {
 
                     let {
                         pattern: layout,
-                        getRootNode,
-                        getDescendantNodes,
                         createPositioner
                     } = me.layoutConfig;
 
-                    rootNode = getRootNode() || rootNode;
-
-                    doBeforeLayout.call(me, me.layoutNodes = [
-                        rootNode,
-                        ...getDescendantNodes(rootNode)
-                    ], () => {
+                    doBeforeLayout.call(me, rootNode => {
 
                         me.layoutData = layout(rootNode);
 
@@ -39738,7 +39734,24 @@ exports['src::mindmap.layout'] = (() => {
                     });
                 }
 
-                function doBeforeLayout(layoutNodes, callback) {
+                function doBeforeLayout(callback) {
+
+                    let me = this,
+                        {
+                            rootNode,
+                            layoutConfig
+                        } = me,
+                        {
+                            getRootNode,
+                            getDescendantNodes
+                        } = layoutConfig;
+
+                    rootNode = getRootNode() || rootNode;
+
+                    let layoutNodes = me.layoutNodes = [
+                        rootNode,
+                        ...getDescendantNodes(rootNode)
+                    ];
 
                     let unsizedNodes = new Map();
 
@@ -39769,13 +39782,20 @@ exports['src::mindmap.layout'] = (() => {
                                 node.height = height;
                             }
 
-                            callback();
+                            if (me.isNeedAgainLayout) {
+
+                                doBeforeLayout(callback);
+
+                            } else {
+
+                                callback(rootNode);
+                            }
 
                         });
 
                     } else {
 
-                        callback();
+                        callback(rootNode);
                     }
                 }
 
@@ -39798,7 +39818,7 @@ exports['src::mindmap.layout'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936468788.get(this);
+        const main = var_current_scope_1626238609366.get(this);
 
 
 
