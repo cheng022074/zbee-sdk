@@ -7,7 +7,9 @@
  * 
  * @import from from .from scoped
  * 
- * @import append from .append scoped
+ * @import append from .sync.append scoped
+ * 
+ * @import remove from .sync.delete scoped
  * 
  * @import register from .register scoped
  * 
@@ -36,7 +38,14 @@ if(node){
 
         if(!loaded){
 
-            let childNodes = await loadChildrenData(reader) ;
+            let childNodes = Array.from(node.children) ;
+
+            for(let childNode of childNodes){
+
+                remove(childNode) ;
+            }
+
+            childNodes = await loadChildrenData(reader) ;
 
             for(let childNode of childNodes){
 

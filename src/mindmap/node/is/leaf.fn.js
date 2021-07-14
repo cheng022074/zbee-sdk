@@ -17,8 +17,6 @@ let {
 
 if(!loaded){
 
-  console.log('强制') ;
-
   return false ;
 }
 

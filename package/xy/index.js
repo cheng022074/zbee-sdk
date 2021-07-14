@@ -37848,8 +37848,6 @@ exports['src::mindmap.node.is.leaf'] = (() => {
 
         if (!loaded) {
 
-            console.log('强制');
-
             return false;
         }
 
@@ -38512,140 +38510,6 @@ exports['src::mindmap.node.sync.append'] = (() => {
 
 })();
 
-exports['src::mindmap.node.append'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1625025660974 = new Map();
-
-    return function(node, parentNode) {
-
-
-
-
-
-        if (!var_current_scope_1625025660974.has(this)) {
-
-            var_current_scope_1625025660974.set(this, (() => {
-                const data = include('src::mindmap.node.data').bind(this);
-                const from = include('src::mindmap.node.from').bind(this);
-                const fireChangeEvent = include('src::mindmap.fire.event.change').bind(this);
-                const getPreviousNode = include('src::mindmap.node.sibling.previous').bind(this);
-                const append = include('src::mindmap.node.sync.append').bind(this);
-
-                function main(node, parentNode) {
-
-
-                    /**
-                     * 
-                     * 添加子节点
-                     * 
-                     * @import data from .data scoped
-                     * 
-                     * @import from from .from scoped
-                     * 
-                     * @import fireChangeEvent from ..fire.event.change scoped
-                     * 
-                     * @import getPreviousNode from .sibling.previous scoped
-                     * 
-                     * @import append from .sync.append scoped
-                     * 
-                     * @param {mixed} node 节点配置
-                     * 
-                     * @param {mixed} parentNode 节点
-                     * 
-                     * @return {boolean} 添加标识
-                     * 
-                     */
-
-                    let appendNode = from(node),
-                        oldPositionInfo;
-
-                    if (appendNode) {
-
-                        let {
-                            parentNodeId
-                        } = appendNode;
-
-                        if (parentNodeId) {
-
-                            oldPositionInfo = {
-                                parentNodeId
-                            };
-
-                            let previousNode = getPreviousNode(appendNode);
-
-                            if (previousNode) {
-
-                                oldPositionInfo.previousNodeId = previousNode.id;
-                            }
-                        }
-
-                    }
-
-                    if (appendNode = append(node, parentNode)) {
-
-                        parentNode = from(parentNode);
-
-                        let me = this,
-                            {
-                                placeholderNode
-                            } = me;
-
-                        if (appendNode !== placeholderNode) {
-
-                            let
-                                dataNode = data(appendNode),
-                                dataParentNode = data(parentNode);
-
-                            me.fireEvent('nodeappend', dataNode, dataParentNode);
-
-                            let previousNode = getPreviousNode(appendNode),
-                                positionInfo = {
-                                    parentNodeId: dataParentNode.id
-                                };
-
-                            if (previousNode) {
-
-                                positionInfo.previousNodeId = previousNode.id;
-                            }
-
-                            fireChangeEvent({
-                                operation: oldPositionInfo ? 'move' : 'create',
-                                node: dataNode,
-                                positionInfo,
-                                oldPositionInfo
-                            });
-                        }
-
-                        return appendNode;
-
-                    }
-
-                    return false;
-
-
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1625025660974.get(this);
-
-
-
-        return main.call(this, node, parentNode);
-    };
-
-})();
-
 exports['src::mindmap.node.expand'] = (() => {
 
 
@@ -38654,7 +38518,7 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-    const var_current_scope_1626245010754 = new Map();
+    const var_current_scope_1626249919944 = new Map();
 
     return async function(node) {
 
@@ -38662,12 +38526,13 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-        if (!var_current_scope_1626245010754.has(this)) {
+        if (!var_current_scope_1626249919944.has(this)) {
 
-            var_current_scope_1626245010754.set(this, (() => {
+            var_current_scope_1626249919944.set(this, (() => {
                 const show = include('src::mindmap.node.show').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
-                const append = include('src::mindmap.node.append').bind(this);
+                const append = include('src::mindmap.node.sync.append').bind(this);
+                const remove = include('src::mindmap.node.sync.delete').bind(this);
                 const register = include('src::mindmap.node.register').bind(this);
 
                 async function main(node) {
@@ -38681,7 +38546,9 @@ exports['src::mindmap.node.expand'] = (() => {
                      * 
                      * @import from from .from scoped
                      * 
-                     * @import append from .append scoped
+                     * @import append from .sync.append scoped
+                     * 
+                     * @import remove from .sync.delete scoped
                      * 
                      * @import register from .register scoped
                      * 
@@ -38710,7 +38577,14 @@ exports['src::mindmap.node.expand'] = (() => {
 
                             if (!loaded) {
 
-                                let childNodes = await loadChildrenData(reader);
+                                let childNodes = Array.from(node.children);
+
+                                for (let childNode of childNodes) {
+
+                                    remove(childNode);
+                                }
+
+                                childNodes = await loadChildrenData(reader);
 
                                 for (let childNode of childNodes) {
 
@@ -38753,7 +38627,7 @@ exports['src::mindmap.node.expand'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626245010754.get(this);
+        const main = var_current_scope_1626249919944.get(this);
 
 
 
@@ -40888,6 +40762,140 @@ exports['src::mindmap.node.value.set'] = (() => {
 
 
         return main.call(this, field, value, node);
+    };
+
+})();
+
+exports['src::mindmap.node.append'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1625025660974 = new Map();
+
+    return function(node, parentNode) {
+
+
+
+
+
+        if (!var_current_scope_1625025660974.has(this)) {
+
+            var_current_scope_1625025660974.set(this, (() => {
+                const data = include('src::mindmap.node.data').bind(this);
+                const from = include('src::mindmap.node.from').bind(this);
+                const fireChangeEvent = include('src::mindmap.fire.event.change').bind(this);
+                const getPreviousNode = include('src::mindmap.node.sibling.previous').bind(this);
+                const append = include('src::mindmap.node.sync.append').bind(this);
+
+                function main(node, parentNode) {
+
+
+                    /**
+                     * 
+                     * 添加子节点
+                     * 
+                     * @import data from .data scoped
+                     * 
+                     * @import from from .from scoped
+                     * 
+                     * @import fireChangeEvent from ..fire.event.change scoped
+                     * 
+                     * @import getPreviousNode from .sibling.previous scoped
+                     * 
+                     * @import append from .sync.append scoped
+                     * 
+                     * @param {mixed} node 节点配置
+                     * 
+                     * @param {mixed} parentNode 节点
+                     * 
+                     * @return {boolean} 添加标识
+                     * 
+                     */
+
+                    let appendNode = from(node),
+                        oldPositionInfo;
+
+                    if (appendNode) {
+
+                        let {
+                            parentNodeId
+                        } = appendNode;
+
+                        if (parentNodeId) {
+
+                            oldPositionInfo = {
+                                parentNodeId
+                            };
+
+                            let previousNode = getPreviousNode(appendNode);
+
+                            if (previousNode) {
+
+                                oldPositionInfo.previousNodeId = previousNode.id;
+                            }
+                        }
+
+                    }
+
+                    if (appendNode = append(node, parentNode)) {
+
+                        parentNode = from(parentNode);
+
+                        let me = this,
+                            {
+                                placeholderNode
+                            } = me;
+
+                        if (appendNode !== placeholderNode) {
+
+                            let
+                                dataNode = data(appendNode),
+                                dataParentNode = data(parentNode);
+
+                            me.fireEvent('nodeappend', dataNode, dataParentNode);
+
+                            let previousNode = getPreviousNode(appendNode),
+                                positionInfo = {
+                                    parentNodeId: dataParentNode.id
+                                };
+
+                            if (previousNode) {
+
+                                positionInfo.previousNodeId = previousNode.id;
+                            }
+
+                            fireChangeEvent({
+                                operation: oldPositionInfo ? 'move' : 'create',
+                                node: dataNode,
+                                positionInfo,
+                                oldPositionInfo
+                            });
+                        }
+
+                        return appendNode;
+
+                    }
+
+                    return false;
+
+
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1625025660974.get(this);
+
+
+
+        return main.call(this, node, parentNode);
     };
 
 })();
