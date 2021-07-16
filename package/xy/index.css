@@ -217,6 +217,7 @@ input, textarea {
   touch-action: none; }
   .xy-mindmap > .inner, .css-mindmap > .inner {
     position: absolute;
+    transform-origin: left top;
     top: 0;
     left: 0; }
     .xy-mindmap > .inner > .nodes, .xy-mindmap > .inner > .lines, .css-mindmap > .inner > .nodes, .css-mindmap > .inner > .lines {
