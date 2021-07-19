@@ -13,6 +13,3 @@
  */
 
 return !! remove(node) ;
-
-
-
