@@ -22,8 +22,6 @@
 
    if(isLayouting){
 
-      me.isNeedAgainLayout = true ;
-
       return ;
    }
 
@@ -70,17 +68,11 @@
 
    let unsizedNodes = new Map() ;
 
-    for(let layoutNode of layoutNodes){
-
-      if(isUnsized(layoutNode)){
-
-         unsizedNodes.set(layoutNode.id , layoutNode) ;
-      }
-    }
+   initUnsizedNodes(unsizedNodes , layoutNodes) ;
 
     if(unsizedNodes.size){
 
-      me.fireEvent('nodeunsized' , getDataNodes(unsizedNodes) , sizes => {
+      let onNodeUnsized = sizes => {
 
          let ids = Object.keys(sizes) ;
 
@@ -97,23 +89,38 @@
             node.height = height ;
          }
 
-         if(me.isNeedAgainLayout){
+         initUnsizedNodes(unsizedNodes , layoutNodes) ;
 
-            delete me.isNeedAgainLayout ;
+         if(unsizedNodes.size){
 
-            doBeforeLayout(callback) ;
+            me.fireEvent('nodeunsized' , getDataNodes(unsizedNodes) , onNodeUnsized) ;
 
          }else{
 
             callback(rootNode) ;
          }
+      } ;
 
-      }) ;
+      me.fireEvent('nodeunsized' , getDataNodes(unsizedNodes) , onNodeUnsized) ;
 
-    }else{
+   }else{
 
       callback(rootNode) ;
-    }
+   }
+ }
+
+ function initUnsizedNodes(unsizedNodes , layoutNodes){
+
+   unsizedNodes.clear() ;
+
+   for(let layoutNode of layoutNodes){
+
+      if(isUnsized(layoutNode)){
+
+         unsizedNodes.set(layoutNode.id , layoutNode) ;
+      }
+   }
+
  }
 
  function getDataNodes(nodes){
