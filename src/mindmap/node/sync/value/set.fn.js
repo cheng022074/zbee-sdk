@@ -1,29 +1,24 @@
 /**
  * 
- * 设置或获取节点值
+ * 同步脑图节点信息修改
  * 
- * @import equals from data.equals
+ * @import setNodeValue from ....api.value.set scoped
  * 
- * @import clone from data.clone
+ * @param {mixed} node 节点
  * 
- * @import from from ....from scoped
- * 
- * @param {string} field 字段名称
- * 
- * @param {mixed} value 字段值
- * 
- * @param {mixed} [node] 节点
+ * @param {object} values 同步的节点值
  * 
  */
 
- node = from(node) ;
+let names = Object.keys(values),
+    isUpdated = false;
 
- if(node){
+for(let name of names){
 
-    let oldValue = node[field],
-        newValue = node[field] = clone(value);
+    if(setNodeValue(node , name , values[name])){
 
-    return !equals(newValue , oldValue) ;
- }
+        isUpdated = true ;
+    }
+}
 
-return false ;
+return isUpdated ;
