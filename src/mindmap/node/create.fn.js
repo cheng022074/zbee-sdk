@@ -18,6 +18,10 @@ if(isString(node)){
    node = {
       id:node
    } ;
+
+}else{
+   
+   node = Object.assign(node) ;
 }
 
 let {
