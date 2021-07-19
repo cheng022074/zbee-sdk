@@ -13,7 +13,7 @@
  * 
  * @import getParentNode from .parent scoped
  * 
- * @import insert from .sync.insert scoped
+ * @import insert from .api.insert scoped
  * 
  * @param {mixed} node 需要插入的节点
  * 
