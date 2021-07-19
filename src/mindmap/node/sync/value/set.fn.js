@@ -4,6 +4,8 @@
  * 
  * @import setNodeValue from ....api.value.set scoped
  * 
+ * @import from from ....from scoped
+ * 
  * @param {object} values 同步的节点值
  * 
  * @param {mixed} node 节点
@@ -21,4 +23,4 @@ for(let name of names){
     }
 }
 
-return isUpdated ;
+return isUpdated && !format(node).hidden;
