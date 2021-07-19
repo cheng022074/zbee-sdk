@@ -17,10 +17,10 @@ let names = Object.keys(values),
 
 for(let name of names){
 
-    if(setNodeValue(node , name , values[name])){
+    if(setNodeValue(name , values[name] , node)){
 
         isUpdated = true ;
     }
 }
 
-return isUpdated && !format(node).hidden;
+return isUpdated && !from(node).hidden;
