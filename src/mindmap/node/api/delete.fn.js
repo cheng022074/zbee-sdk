@@ -33,9 +33,8 @@
          rootNode,
          selectedNode
      } = this,
-     selectedNodeParentNode = getParentNode(node),
-     selectedNodePreviousNode = getPreviousNode(node),
-     selectedNodeNextNode = getNextNode(node);
+     previousNode = getPreviousNode(node),
+     nextNode = getNextNode(node);
  
      hide(node) ;
  
@@ -66,17 +65,17 @@
  
      if(!from(selectedNode)){
 
-        if(selectedNodePreviousNode && !selectedNodePreviousNode.hidden){
+        if(previousNode && !previousNode.hidden){
 
-            select(selectedNodePreviousNode) ;
+            select(previousNode) ;
         
-        }else if(selectedNodeNextNode && !selectedNodeNextNode.hidden){
+        }else if(nextNode && !nextNode.hidden){
 
-            select(selectedNodeNextNode) ;
+            select(nextNode) ;
         
-        }else if(selectedNodeParentNode && !selectedNodeParentNode.hidden){
+        }else if(parentNode && !parentNode.hidden){
 
-            select(selectedNodeParentNode) ;
+            select(parentNode) ;
         
         }else{
 
