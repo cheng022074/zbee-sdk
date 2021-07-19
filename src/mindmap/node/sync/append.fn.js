@@ -15,8 +15,14 @@
  * 
  */
 
-let appendedNode = from(node) ;
+let appendedNode = from(node),
+    hidden = true;
+
+if(appendedNode){
+
+    hidden = appendedNode.hidden ;
+}
 
 node = append(node , parentNode) ;
 
-return (appendedNode && !appendedNode.hidden) || (node && !from(node).hidden) ;
+return node && (!hidden || !from(node).hidden) ;

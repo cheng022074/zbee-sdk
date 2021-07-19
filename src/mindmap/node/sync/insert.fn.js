@@ -17,6 +17,14 @@
  * 
  */
 
+ let insertedNode = from(node),
+     hidden = true;
+
+if(insertedNode){
+
+    hidden = insertedNode.hidden ;
+}
+
 node = insert(node , baseNode , region) ;
 
-return node && !from(node).hidden ;
+return node && (!hidden || !from(node).hidden) ;
