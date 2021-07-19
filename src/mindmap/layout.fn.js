@@ -3,7 +3,7 @@
  * 
  * 布局
  * 
- * @import refresh from .refresh scoped
+ * @import refresh from .layout.refresh scoped
  * 
  * @import isUnsized from .node.is.unsized scoped
  * 
