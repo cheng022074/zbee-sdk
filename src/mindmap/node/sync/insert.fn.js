@@ -17,6 +17,6 @@
  * 
  */
 
-node = insert(node ,baseNode , region) ;
+node = insert(node , baseNode , region) ;
 
-return node && !node.hidden ;
+return node && !from(node).hidden ;

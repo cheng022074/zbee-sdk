@@ -17,4 +17,4 @@
 
 node = append(node , parentNode) ;
 
-return node && !node.hidden ;
+return node && !from(node).hidden ;
