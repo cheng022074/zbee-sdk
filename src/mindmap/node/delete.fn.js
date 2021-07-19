@@ -11,7 +11,7 @@
  * 
  * @import fireChangeEvent from ..fire.event.change scoped
  * 
- * @import remove from .sync.delete scoped
+ * @import remove from .api.delete scoped
  * 
  * @param {mixed} node 节点
  * 
