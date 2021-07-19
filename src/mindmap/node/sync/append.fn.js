@@ -7,6 +7,8 @@
  * 
  * @import from from ..from scoped
  * 
+ * @import isLeafNode from ..is.leaf scoped
+ * 
  * @param {mixed} node 节点配置
  * 
  * @param {mixed} parentNode 节点
@@ -16,13 +18,21 @@
  */
 
 let appendedNode = from(node),
-    hidden = true;
+    hidden = true,
+    isParentLeafNode = false;
 
 if(appendedNode){
 
     hidden = appendedNode.hidden ;
 }
 
+parentNode = from(parentNode) ;
+
+if(parentNode){
+
+    isParentLeafNode = true ;
+}
+
 node = append(node , parentNode) ;
 
-return node && (!hidden || !from(node).hidden) ;
+return node && (!hidden || !from(node).hidden || isParentLeafNode) ;
