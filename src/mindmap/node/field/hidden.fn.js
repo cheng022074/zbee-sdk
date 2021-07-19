@@ -29,6 +29,8 @@ if(hidden){
         node.width = false ;
 
         node.height = false ;
+
+        node.selected = false ;
     }
 }
 

@@ -58,8 +58,6 @@ if(node.parentNodeId){
 
   node.parentNodeId = null ;
 
-  node.selected = false ;
-
   hide(node) ;
 
   children.splice(children.indexOf(node) , 1) ;

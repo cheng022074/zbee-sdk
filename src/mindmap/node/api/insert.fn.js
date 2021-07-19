@@ -78,8 +78,6 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
             children
         } = parentNode ;
 
-        insertNode.selected = false ;
-
         hide(insertNode) ;
 
         insertNode.parentNodeId = null ;

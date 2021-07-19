@@ -33,7 +33,7 @@
          rootNode,
          selectedNode
      } = this,
-     selectedNodeParentNode = getParentNode(selectedNode),
+     selectedNodeParentNode = getParentNode(node),
      selectedNodePreviousNode = getPreviousNode(node),
      selectedNodeNextNode = getNextNode(node);
  
@@ -55,8 +55,6 @@
  
          node.hidden = false ;
  
-         node.selected = false ;
- 
          originNodes.delete(node.id) ;
      }
  
@@ -67,17 +65,23 @@
      children.splice(children.indexOf(node) , 1) ;
  
      if(!from(selectedNode)){
- 
-         selectedNodeParentNode = from(selectedNodeParentNode) ;
- 
-         if(selectedNodeParentNode){
- 
-             select(selectedNodePreviousNode || selectedNodeNextNode || selectedNodeParentNode) ;
-         
-         }else{
- 
-             select(rootNode) ;
-         }
+
+        if(selectedNodePreviousNode && !selectedNodePreviousNode.hidden){
+
+            select(selectedNodePreviousNode) ;
+        
+        }else if(selectedNodeNextNode && !selectedNodeNextNode.hidden){
+
+            select(selectedNodeNextNode) ;
+        
+        }else if(selectedNodeParentNode && !selectedNodeParentNode.hidden){
+
+            select(selectedNodeParentNode) ;
+        
+        }else{
+
+            select(rootNode) ;
+        }
      
      }
  
