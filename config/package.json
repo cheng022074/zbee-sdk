@@ -37,6 +37,7 @@
             "mindmap.layout.node.select.logic.right.right",
             "mindmap.node.expand.deep",
             "mindmap.node.collapse.deep",
+            "mindmap.node.size.reset",
             "function.*",
             "id.generate",
             "calendar.month.view",

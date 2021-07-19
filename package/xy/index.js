@@ -36811,7 +36811,7 @@ exports['src::mindmap.node.field.hidden'] = (() => {
 
 
 
-    const var_current_scope_1621936468366 = new Map();
+    const var_current_scope_1626681642982 = new Map();
 
     return function(node, hidden) {
 
@@ -36819,9 +36819,9 @@ exports['src::mindmap.node.field.hidden'] = (() => {
 
 
 
-        if (!var_current_scope_1621936468366.has(this)) {
+        if (!var_current_scope_1626681642982.has(this)) {
 
-            var_current_scope_1621936468366.set(this, (() => {
+            var_current_scope_1626681642982.set(this, (() => {
                 const level = include('src::mindmap.node.field.hidden.level').bind(this);
 
                 function main(node, hidden) {
@@ -36856,6 +36856,8 @@ exports['src::mindmap.node.field.hidden'] = (() => {
                             node.width = false;
 
                             node.height = false;
+
+                            node.selected = false;
                         }
                     }
 
@@ -36868,7 +36870,7 @@ exports['src::mindmap.node.field.hidden'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936468366.get(this);
+        const main = var_current_scope_1626681642982.get(this);
 
 
 
@@ -38377,7 +38379,7 @@ exports['src::mindmap.node.api.append'] = (() => {
 
 
 
-    const var_current_scope_1626677628984 = new Map();
+    const var_current_scope_1626681643042 = new Map();
 
     return function(node, parentNode) {
 
@@ -38385,9 +38387,9 @@ exports['src::mindmap.node.api.append'] = (() => {
 
 
 
-        if (!var_current_scope_1626677628984.has(this)) {
+        if (!var_current_scope_1626681643042.has(this)) {
 
-            var_current_scope_1626677628984.set(this, (() => {
+            var_current_scope_1626681643042.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const show = include('src::mindmap.node.show').bind(this);
                 const getLastChildNode = include('src::mindmap.node.child.last').bind(this);
@@ -38460,8 +38462,6 @@ exports['src::mindmap.node.api.append'] = (() => {
 
                         node.parentNodeId = null;
 
-                        node.selected = false;
-
                         hide(node);
 
                         children.splice(children.indexOf(node), 1);
@@ -38503,7 +38503,7 @@ exports['src::mindmap.node.api.append'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626677628984.get(this);
+        const main = var_current_scope_1626681643042.get(this);
 
 
 
@@ -38520,7 +38520,7 @@ exports['src::mindmap.node.sync.append'] = (() => {
 
 
 
-    const var_current_scope_1626679976808 = new Map();
+    const var_current_scope_1626682812859 = new Map();
 
     return function(node, parentNode) {
 
@@ -38528,11 +38528,12 @@ exports['src::mindmap.node.sync.append'] = (() => {
 
 
 
-        if (!var_current_scope_1626679976808.has(this)) {
+        if (!var_current_scope_1626682812859.has(this)) {
 
-            var_current_scope_1626679976808.set(this, (() => {
+            var_current_scope_1626682812859.set(this, (() => {
                 const append = include('src::mindmap.node.api.append').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
+                const isLeafNode = include('src::mindmap.node.is.leaf').bind(this);
 
                 function main(node, parentNode) {
 
@@ -38545,6 +38546,8 @@ exports['src::mindmap.node.sync.append'] = (() => {
                      * 
                      * @import from from ..from scoped
                      * 
+                     * @import isLeafNode from ..is.leaf scoped
+                     * 
                      * @param {mixed} node 节点配置
                      * 
                      * @param {mixed} parentNode 节点
@@ -38554,16 +38557,24 @@ exports['src::mindmap.node.sync.append'] = (() => {
                      */
 
                     let appendedNode = from(node),
-                        hidden = true;
+                        hidden = true,
+                        isParentLeafNode = false;
 
                     if (appendedNode) {
 
                         hidden = appendedNode.hidden;
                     }
 
+                    parentNode = from(parentNode);
+
+                    if (parentNode) {
+
+                        isParentLeafNode = true;
+                    }
+
                     node = append(node, parentNode);
 
-                    return node && (!hidden || !from(node).hidden);
+                    return node && (!hidden || !from(node).hidden || isParentLeafNode);
 
                 }
 
@@ -38572,7 +38583,7 @@ exports['src::mindmap.node.sync.append'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626679976808.get(this);
+        const main = var_current_scope_1626682812859.get(this);
 
 
 
@@ -38890,7 +38901,7 @@ exports['src::mindmap.node.api.delete'] = (() => {
 
 
 
-    const var_current_scope_1626677628960 = new Map();
+    const var_current_scope_1626682812831 = new Map();
 
     return function(node) {
 
@@ -38898,9 +38909,9 @@ exports['src::mindmap.node.api.delete'] = (() => {
 
 
 
-        if (!var_current_scope_1626677628960.has(this)) {
+        if (!var_current_scope_1626682812831.has(this)) {
 
-            var_current_scope_1626677628960.set(this, (() => {
+            var_current_scope_1626682812831.set(this, (() => {
                 const isRootNode = include('src::mindmap.node.is.root').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
                 const getPreviousNode = include('src::mindmap.node.sibling.previous').bind(this);
@@ -38947,9 +38958,8 @@ exports['src::mindmap.node.api.delete'] = (() => {
                                 rootNode,
                                 selectedNode
                             } = this,
-                            selectedNodeParentNode = getParentNode(selectedNode),
-                            selectedNodePreviousNode = getPreviousNode(node),
-                            selectedNodeNextNode = getNextNode(node);
+                            previousNode = getPreviousNode(node),
+                            nextNode = getNextNode(node);
 
                         hide(node);
 
@@ -38969,8 +38979,6 @@ exports['src::mindmap.node.api.delete'] = (() => {
 
                             node.hidden = false;
 
-                            node.selected = false;
-
                             originNodes.delete(node.id);
                         }
 
@@ -38982,11 +38990,17 @@ exports['src::mindmap.node.api.delete'] = (() => {
 
                         if (!from(selectedNode)) {
 
-                            selectedNodeParentNode = from(selectedNodeParentNode);
+                            if (previousNode && !previousNode.hidden) {
 
-                            if (selectedNodeParentNode) {
+                                select(previousNode);
 
-                                select(selectedNodePreviousNode || selectedNodeNextNode || selectedNodeParentNode);
+                            } else if (nextNode && !nextNode.hidden) {
+
+                                select(nextNode);
+
+                            } else if (parentNode && !parentNode.hidden) {
+
+                                select(parentNode);
 
                             } else {
 
@@ -39008,7 +39022,7 @@ exports['src::mindmap.node.api.delete'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626677628960.get(this);
+        const main = var_current_scope_1626682812831.get(this);
 
 
 
@@ -40788,7 +40802,7 @@ exports['src::mindmap.node.api.insert'] = (() => {
 
 
 
-    const var_current_scope_1626677629139 = new Map();
+    const var_current_scope_1626681643064 = new Map();
 
     return function(insertNode, baseNode, region) {
 
@@ -40796,9 +40810,9 @@ exports['src::mindmap.node.api.insert'] = (() => {
 
 
 
-        if (!var_current_scope_1626677629139.has(this)) {
+        if (!var_current_scope_1626681643064.has(this)) {
 
-            var_current_scope_1626677629139.set(this, (() => {
+            var_current_scope_1626681643064.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const isRootNode = include('src::mindmap.node.is.root').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
@@ -40891,8 +40905,6 @@ exports['src::mindmap.node.api.insert'] = (() => {
                                     children
                                 } = parentNode;
 
-                            insertNode.selected = false;
-
                             hide(insertNode);
 
                             insertNode.parentNodeId = null;
@@ -40954,7 +40966,7 @@ exports['src::mindmap.node.api.insert'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626677629139.get(this);
+        const main = var_current_scope_1626681643064.get(this);
 
 
 
@@ -40971,7 +40983,7 @@ exports['src::mindmap.node.sync.insert'] = (() => {
 
 
 
-    const var_current_scope_1626679976846 = new Map();
+    const var_current_scope_1626682812875 = new Map();
 
     return function(node, baseNode, region) {
 
@@ -40979,9 +40991,9 @@ exports['src::mindmap.node.sync.insert'] = (() => {
 
 
 
-        if (!var_current_scope_1626679976846.has(this)) {
+        if (!var_current_scope_1626682812875.has(this)) {
 
-            var_current_scope_1626679976846.set(this, (() => {
+            var_current_scope_1626682812875.set(this, (() => {
                 const insert = include('src::mindmap.node.api.insert').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
 
@@ -41026,7 +41038,7 @@ exports['src::mindmap.node.sync.insert'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626679976846.get(this);
+        const main = var_current_scope_1626682812875.get(this);
 
 
 
@@ -45684,6 +45696,61 @@ exports['src::mindmap.node.collapse.deep'] = (() => {
         }
 
         const main = var_current_scope_1621936469868.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.node.size.reset'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1626686250608 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1626686250608.has(this)) {
+
+            var_current_scope_1626686250608.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+
+                function main(node) {
+
+                    /**
+                     * 
+                     * 清除节点尺寸
+                     * 
+                     * @import from from ..from scoped
+                     * 
+                     * @param {mixed} node 节点
+                     * 
+                     */
+
+                    node = from(node);
+
+                    node.width = false;
+
+                    node.height = false;
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1626686250608.get(this);
 
 
 
