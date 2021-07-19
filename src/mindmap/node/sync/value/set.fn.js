@@ -4,9 +4,9 @@
  * 
  * @import setNodeValue from ....api.value.set scoped
  * 
- * @param {mixed} node 节点
- * 
  * @param {object} values 同步的节点值
+ * 
+ * @param {mixed} node 节点
  * 
  */
 
