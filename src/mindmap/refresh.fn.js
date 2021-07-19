@@ -13,6 +13,10 @@
  * 
  * @import getParentNode from .layout.node.parent scoped
  * 
+ * @import layout from .layout scoped
+ * 
+ * @import isUnsized from .node.is.unsized scoped
+ * 
  */
 
  function main(){
@@ -21,15 +25,26 @@
     {
         layoutNodes,
         layoutData
-    } = me,
-    {
+    } = me;
+
+    for(let layoutNode of layoutNodes){
+
+        if(isUnsized(layoutNode)){
+
+            layout() ;
+
+            return ;
+        }
+    }
+
+    let {
         size,
         offset
     } = layoutData,
     {
         nodes,
         selectedNode
-    } = getNodeDataset(layoutNodes , offset);
+    } = getNodeDataset(layoutNodes , offset) ;
 
     me.fireEvent('draw' , {
         nodes:getNodes(nodes),
