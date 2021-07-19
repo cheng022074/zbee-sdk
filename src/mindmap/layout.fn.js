@@ -34,9 +34,11 @@
       createPositioner
    } = me.layoutConfig ;
 
-   doBeforeLayout.call(me , rootNode => {
+   doBeforeLayout.call(me , (rootNode , layoutNodes) => {
 
       me.layoutData = layout(rootNode) ;
+
+      me.layoutNodes = layoutNodes ;
 
       me.layoutPositioner = createPositioner(me , me.layoutNodes) ;
 
@@ -61,7 +63,7 @@
 
    rootNode = getRootNode() || rootNode;
 
-   let layoutNodes = me.layoutNodes = [
+   let layoutNodes = [
       rootNode,
       ...getDescendantNodes(rootNode)
    ] ;
@@ -97,7 +99,7 @@
 
          }else{
 
-            callback(rootNode) ;
+            callback(rootNode , layoutNodes) ;
          }
       } ;
 
@@ -105,7 +107,7 @@
 
    }else{
 
-      callback(rootNode) ;
+      callback(rootNode , layoutNodes) ;
    }
  }
 
