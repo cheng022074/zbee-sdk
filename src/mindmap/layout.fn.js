@@ -36,9 +36,9 @@
 
    doBeforeLayout.call(me , (rootNode , layoutNodes) => {
 
-      me.layoutData = layout(rootNode) ;
-
       me.layoutNodes = layoutNodes ;
+
+      me.layoutData = layout(rootNode) ;
 
       me.layoutPositioner = createPositioner(me , me.layoutNodes) ;
 
