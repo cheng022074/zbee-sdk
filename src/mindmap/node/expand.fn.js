@@ -7,9 +7,9 @@
  * 
  * @import from from .from scoped
  * 
- * @import append from .sync.append scoped
+ * @import append from .api.append scoped
  * 
- * @import remove from .sync.delete scoped
+ * @import remove from .api.delete scoped
  * 
  * @import register from .register scoped
  * 
