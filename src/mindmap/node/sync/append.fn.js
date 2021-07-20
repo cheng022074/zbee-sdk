@@ -18,21 +18,24 @@
  */
 
 let appendedNode = from(node),
-    hidden = true,
-    isParentLeafNode = false;
+    appendedNodeInfo = {},
+    parentNodeInfo = {};
 
 if(appendedNode){
 
-    hidden = appendedNode.hidden ;
+    appendedNodeInfo.hidden = appendedNode.hidden ;
 }
 
 parentNode = from(parentNode) ;
 
 if(parentNode){
 
-    isParentLeafNode = true ;
+    parentNodeInfo.hidden = parentNode.hidden ;
+
+    parentNodeInfo.leaf = isLeafNode(parentNode) ;
+
 }
 
 node = append(node , parentNode) ;
 
-return node && (!hidden || !from(node).hidden || isParentLeafNode) ;
+return node && (!hidden || !node.hidden || (!parentNodeInfo.hidden && parentNodeInfo.leaf)) ;
