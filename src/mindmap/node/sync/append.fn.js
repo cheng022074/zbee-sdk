@@ -5,6 +5,10 @@
  * 
  * @import append from ..api.append scoped
  * 
+ * @import from from ..from scoped
+ * 
+ * @import getParentNode from ..parent scoped
+ * 
  * @param {mixed} node 节点配置
  * 
  * @param {mixed} parentNode 节点
@@ -13,4 +17,34 @@
  * 
  */
 
-return !!append(node , parentNode) ;
+let appendedNode = from(node),
+    isLayout = false;
+
+parentNode = from(parentNode) ;
+
+if(
+    appendedNode &&
+    (
+        !appendedNode.hidden ||
+        !getParentNode(appendedNode).hidden
+    )){
+
+    isLayout = true ;
+}
+
+if(parentNode){
+
+    if(!parentNode.hidden){
+
+        isLayout = true ;
+    }
+
+    node = append(node , parentNode) ;
+
+    if(node && !node.hidden){
+
+        isLayout = true ;
+    }
+}
+
+return isLayout ;
