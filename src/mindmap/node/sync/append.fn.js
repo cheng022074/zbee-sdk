@@ -27,7 +27,8 @@ if(
     (
         !appendedNode.hidden ||
         !getParentNode(appendedNode).hidden
-    )){
+    )
+){
 
     isLayout = true ;
 }
