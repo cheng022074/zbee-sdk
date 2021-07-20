@@ -38,4 +38,8 @@ if(parentNode){
 
 node = append(node , parentNode) ;
 
-return node && (!hidden || !node.hidden || (!parentNodeInfo.hidden && parentNodeInfo.leaf)) ;
+return node && (
+    !appendedNodeInfo.hidden ||
+    !node.hidden ||
+    (!parentNodeInfo.hidden && parentNodeInfo.leaf)
+) ;
