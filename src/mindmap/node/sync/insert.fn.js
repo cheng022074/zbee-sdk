@@ -5,8 +5,6 @@
  * 
  * @import insert from ..api.insert scoped
  * 
- * @import from from ..from scoped
- * 
  * @param {mixed} node 需要插入的节点
  * 
  * @param {mixed} baseNode 参照节点
@@ -17,14 +15,4 @@
  * 
  */
 
- let insertedNode = from(node),
-     hidden = true;
-
-if(insertedNode){
-
-    hidden = insertedNode.hidden ;
-}
-
-node = insert(node , baseNode , region) ;
-
-return node && (!hidden || !from(node).hidden) ;
+return !! insert(node , baseNode , region) ;
