@@ -38512,174 +38512,6 @@ exports['src::mindmap.node.api.append'] = (() => {
 
 })();
 
-exports['src::mindmap.node.sync.append'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1626747855300 = new Map();
-
-    return function(node, parentNode) {
-
-
-
-
-
-        if (!var_current_scope_1626747855300.has(this)) {
-
-            var_current_scope_1626747855300.set(this, (() => {
-                const append = include('src::mindmap.node.api.append').bind(this);
-                const from = include('src::mindmap.node.from').bind(this);
-                const getParentNode = include('src::mindmap.node.parent').bind(this);
-
-                function main(node, parentNode) {
-
-
-                    /**
-                     * 
-                     * 同步添加子节点
-                     * 
-                     * @import append from ..api.append scoped
-                     * 
-                     * @import from from ..from scoped
-                     * 
-                     * @import getParentNode from ..parent scoped
-                     * 
-                     * @param {mixed} node 节点配置
-                     * 
-                     * @param {mixed} parentNode 节点
-                     * 
-                     * @return {boolean} 如果同步添加子节点成功则返回 true , 否则返回 false
-                     * 
-                     */
-
-                    let appendedNode = from(node),
-                        isLayout = false;
-
-                    parentNode = from(parentNode);
-
-                    if (
-                        appendedNode &&
-                        (
-                            !appendedNode.hidden ||
-                            !getParentNode(appendedNode).hidden
-                        )
-                    ) {
-
-                        isLayout = true;
-                    }
-
-                    if (parentNode) {
-
-                        if (!parentNode.hidden) {
-
-                            isLayout = true;
-                        }
-
-                        node = append(node, parentNode);
-
-                        if (node && !node.hidden) {
-
-                            isLayout = true;
-                        }
-                    }
-
-                    return isLayout;
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1626747855300.get(this);
-
-
-
-        return main.call(this, node, parentNode);
-    };
-
-})();
-
-exports['src::mindmap.node.sync.delete'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1626747855325 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1626747855325.has(this)) {
-
-            var_current_scope_1626747855325.set(this, (() => {
-                const remove = include('src::mindmap.node.api.delete').bind(this);
-                const from = include('src::mindmap.node.from').bind(this);
-                const getParentNode = include('src::mindmap.node.parent').bind(this);
-
-                function main(node) {
-
-
-                    /**
-                     * 
-                     * 删除节点同步
-                     * 
-                     * @import remove from ..api.delete scoped
-                     * 
-                     * @import from from ..from scoped
-                     * 
-                     * @import getParentNode from ..parent scoped
-                     * 
-                     * @param {mixed} node 节点
-                     * 
-                     * @return {boolean} 如果同步删除节点成功则返回 true , 否则返回 false
-                     * 
-                     */
-
-                    let deletedNode = from(node),
-                        isLayout = false;
-
-                    if (deletedNode) {
-
-                        if (!getParentNode(deletedNode).hidden) {
-
-                            isLayout = true;
-                        }
-
-                        remove(node);
-                    }
-
-                    return isLayout;
-
-
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1626747855325.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
 exports['src::mindmap.node.expand'] = (() => {
 
 
@@ -38688,7 +38520,7 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-    const var_current_scope_1626249919944 = new Map();
+    const var_current_scope_1626749152035 = new Map();
 
     return async function(node) {
 
@@ -38696,13 +38528,13 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-        if (!var_current_scope_1626249919944.has(this)) {
+        if (!var_current_scope_1626749152035.has(this)) {
 
-            var_current_scope_1626249919944.set(this, (() => {
+            var_current_scope_1626749152035.set(this, (() => {
                 const show = include('src::mindmap.node.show').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
-                const append = include('src::mindmap.node.sync.append').bind(this);
-                const remove = include('src::mindmap.node.sync.delete').bind(this);
+                const append = include('src::mindmap.node.api.append').bind(this);
+                const remove = include('src::mindmap.node.api.delete').bind(this);
                 const register = include('src::mindmap.node.register').bind(this);
 
                 async function main(node) {
@@ -38716,9 +38548,9 @@ exports['src::mindmap.node.expand'] = (() => {
                      * 
                      * @import from from .from scoped
                      * 
-                     * @import append from .sync.append scoped
+                     * @import append from .api.append scoped
                      * 
-                     * @import remove from .sync.delete scoped
+                     * @import remove from .api.delete scoped
                      * 
                      * @import register from .register scoped
                      * 
@@ -38797,7 +38629,7 @@ exports['src::mindmap.node.expand'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626249919944.get(this);
+        const main = var_current_scope_1626749152035.get(this);
 
 
 
@@ -40077,7 +39909,7 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-    const var_current_scope_1626677909296 = new Map();
+    const var_current_scope_1626748907627 = new Map();
 
     return function() {
 
@@ -40085,9 +39917,9 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-        if (!var_current_scope_1626677909296.has(this)) {
+        if (!var_current_scope_1626748907627.has(this)) {
 
-            var_current_scope_1626677909296.set(this, (() => {
+            var_current_scope_1626748907627.set(this, (() => {
                 const refresh = include('src::mindmap.layout.refresh').bind(this);
                 const isUnsized = include('src::mindmap.node.is.unsized').bind(this);
                 const getData = include('src::mindmap.node.data').bind(this);
@@ -40239,7 +40071,7 @@ exports['src::mindmap.layout'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626677909296.get(this);
+        const main = var_current_scope_1626748907627.get(this);
 
 
 
@@ -40814,6 +40646,99 @@ exports['src::mindmap.node.sync.value.set'] = (() => {
 
 })();
 
+exports['src::mindmap.node.sync.append'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1626749248293 = new Map();
+
+    return function(node, parentNode) {
+
+
+
+
+
+        if (!var_current_scope_1626749248293.has(this)) {
+
+            var_current_scope_1626749248293.set(this, (() => {
+                const append = include('src::mindmap.node.api.append').bind(this);
+                const from = include('src::mindmap.node.from').bind(this);
+                const getParentNode = include('src::mindmap.node.parent').bind(this);
+
+                function main(node, parentNode) {
+
+
+                    /**
+                     * 
+                     * 同步添加子节点
+                     * 
+                     * @import append from ..api.append scoped
+                     * 
+                     * @import from from ..from scoped
+                     * 
+                     * @import getParentNode from ..parent scoped
+                     * 
+                     * @param {mixed} node 节点配置
+                     * 
+                     * @param {mixed} parentNode 节点
+                     * 
+                     * @return {boolean} 如果同步添加子节点成功则返回 true , 否则返回 false
+                     * 
+                     */
+
+                    let appendedNode = from(node),
+                        isLayout = false;
+
+                    parentNode = from(parentNode);
+
+                    if (
+                        appendedNode &&
+                        (
+                            !appendedNode.hidden ||
+                            !getParentNode(appendedNode).hidden
+                        )
+                    ) {
+
+                        isLayout = true;
+                    }
+
+                    if (parentNode) {
+
+                        if (!parentNode.hidden) {
+
+                            isLayout = true;
+                        }
+
+                        node = append(node, parentNode);
+
+                        if (node && !node.hidden) {
+
+                            isLayout = true;
+                        }
+                    }
+
+                    return isLayout;
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1626749248293.get(this);
+
+
+
+        return main.call(this, node, parentNode);
+    };
+
+})();
+
 exports['src::mindmap.node.api.insert'] = (() => {
 
 
@@ -41082,6 +41007,81 @@ exports['src::mindmap.node.sync.insert'] = (() => {
 
 
         return main.call(this, node, baseNode, region);
+    };
+
+})();
+
+exports['src::mindmap.node.sync.delete'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1626747855325 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1626747855325.has(this)) {
+
+            var_current_scope_1626747855325.set(this, (() => {
+                const remove = include('src::mindmap.node.api.delete').bind(this);
+                const from = include('src::mindmap.node.from').bind(this);
+                const getParentNode = include('src::mindmap.node.parent').bind(this);
+
+                function main(node) {
+
+
+                    /**
+                     * 
+                     * 删除节点同步
+                     * 
+                     * @import remove from ..api.delete scoped
+                     * 
+                     * @import from from ..from scoped
+                     * 
+                     * @import getParentNode from ..parent scoped
+                     * 
+                     * @param {mixed} node 节点
+                     * 
+                     * @return {boolean} 如果同步删除节点成功则返回 true , 否则返回 false
+                     * 
+                     */
+
+                    let deletedNode = from(node),
+                        isLayout = false;
+
+                    if (deletedNode) {
+
+                        if (!getParentNode(deletedNode).hidden) {
+
+                            isLayout = true;
+                        }
+
+                        remove(node);
+                    }
+
+                    return isLayout;
+
+
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1626747855325.get(this);
+
+
+
+        return main.call(this, node);
     };
 
 })();
