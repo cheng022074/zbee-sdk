@@ -38,7 +38,7 @@
   .xy-layout-horizontal.align-start, .css-layout-horizontal.align-start {
     align-items: flex-start; }
   .xy-layout-horizontal.align-end, .css-layout-horizontal.align-end {
-    align-items: flex-start; }
+    align-items: flex-end; }
   .xy-layout-horizontal.align-center, .css-layout-horizontal.align-center {
     align-items: center; }
   .xy-layout-horizontal.justify-end, .css-layout-horizontal.justify-end {
@@ -55,7 +55,7 @@
   justify-content: flex-start;
   justify-content: flex-start; }
   .xy-layout-vertical.align-start, .css-layout-vertical.align-start {
-    align-items: flex-start; }
+    align-items: flex-end; }
   .xy-layout-vertical.align-end, .css-layout-vertical.align-end {
     align-items: flex-start; }
   .xy-layout-vertical.align-center, .css-layout-vertical.align-center {
