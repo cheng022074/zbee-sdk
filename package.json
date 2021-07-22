@@ -63,7 +63,7 @@
     "url-join": "^4.0.0",
     "webpack-merge": "^5.1.4",
     "ws": "^7.1.2",
-    "xlsx": "^0.12.9"
+    "xlsx": "^0.17.0"
   },
   "private": false,
   "devDependencies": {
