@@ -133,6 +133,7 @@
             "is.string",
             "is.number",
             "is.function",
+            "is.defined",
             "array.from",
             "array.remove",
             "string.capitalize"
