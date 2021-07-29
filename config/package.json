@@ -136,7 +136,9 @@
             "is.defined",
             "array.from",
             "array.remove",
-            "string.capitalize"
+            "string.capitalize",
+            "os.name",
+            "environment.name"
         ],
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/core"
