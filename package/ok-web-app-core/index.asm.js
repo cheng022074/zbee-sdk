@@ -169,7 +169,7 @@ innerExports['src::object.value.get'] = (() =>{
 
                     let split,isObject,isArray;
     
-                    let var_init_locked_1620353142771;
+                    let var_init_locked_1620301624399;
     
                     
 
@@ -254,13 +254,13 @@ if(isObject(data) || isArray(data)){
                     return function(data , key = '.'){
     
                         
-        if(!var_init_locked_1620353142771){
+        if(!var_init_locked_1620301624399){
 
             split = include('src::string.split');
 isObject = include('src::is.object');
 isArray = include('src::is.array');
 
-            var_init_locked_1620353142771 = true ;
+            var_init_locked_1620301624399 = true ;
         }
         
     
@@ -308,7 +308,7 @@ innerExports['src::is.array'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620353142813;
+                    let var_init_locked_1620301624417;
     
                     
 
@@ -333,11 +333,11 @@ innerExports['src::is.array'] = (() =>{
                     return function(data){
     
                         
-        if(!var_init_locked_1620353142813){
+        if(!var_init_locked_1620301624417){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620353142813 = true ;
+            var_init_locked_1620301624417 = true ;
         }
         
     
@@ -350,7 +350,7 @@ innerExports['src::is.empty'] = (() =>{
 
                     let isArray;
     
-                    let var_init_locked_1620353142802;
+                    let var_init_locked_1620301624414;
     
                     
 
@@ -377,11 +377,11 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
                     return function(data , allowEmptyString = false){
     
                         
-        if(!var_init_locked_1620353142802){
+        if(!var_init_locked_1620301624414){
 
             isArray = include('src::is.array');
 
-            var_init_locked_1620353142802 = true ;
+            var_init_locked_1620301624414 = true ;
         }
         
     
@@ -394,7 +394,7 @@ innerExports['src::string.split'] = (() =>{
 
                     let isEmpty;
     
-                    let var_init_locked_1620353142788;
+                    let var_init_locked_1620301624409;
     
                     
 
@@ -426,11 +426,11 @@ function main(target , splitRe){
                     return function(target , splitRe){
     
                         
-        if(!var_init_locked_1620353142788){
+        if(!var_init_locked_1620301624409){
 
             isEmpty = include('src::is.empty');
 
-            var_init_locked_1620353142788 = true ;
+            var_init_locked_1620301624409 = true ;
         }
         
     
@@ -443,7 +443,7 @@ innerExports['src::is.object'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620353142828;
+                    let var_init_locked_1620301624423;
     
                     
 
@@ -468,11 +468,11 @@ return typeof data === 'object' ;
                     return function(data){
     
                         
-        if(!var_init_locked_1620353142828){
+        if(!var_init_locked_1620301624423){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620353142828 = true ;
+            var_init_locked_1620301624423 = true ;
         }
         
     
@@ -485,7 +485,7 @@ innerExports['src::object.value.set'] = (() =>{
 
                     let isObject,split;
     
-                    let var_init_locked_1620353142839;
+                    let var_init_locked_1620301624427;
     
                     
 
@@ -540,12 +540,12 @@ function main(target , key , value){
                     return function(target , key , value){
     
                         
-        if(!var_init_locked_1620353142839){
+        if(!var_init_locked_1620301624427){
 
             isObject = include('src::is.object');
 split = include('src::string.split');
 
-            var_init_locked_1620353142839 = true ;
+            var_init_locked_1620301624427 = true ;
         }
         
     
@@ -558,7 +558,7 @@ innerExports['src::is.string'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620353142850;
+                    let var_init_locked_1620301624431;
     
                     
 
@@ -583,11 +583,11 @@ return isType(data , 'string') ;
                     return function(data){
     
                         
-        if(!var_init_locked_1620353142850){
+        if(!var_init_locked_1620301624431){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620353142850 = true ;
+            var_init_locked_1620301624431 = true ;
         }
         
     
@@ -600,7 +600,7 @@ innerExports['src::is.number'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620353142857;
+                    let var_init_locked_1620301624434;
     
                     
 
@@ -625,11 +625,11 @@ return isType(data , 'number') && isFinite(data);
                     return function(data){
     
                         
-        if(!var_init_locked_1620353142857){
+        if(!var_init_locked_1620301624434){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620353142857 = true ;
+            var_init_locked_1620301624434 = true ;
         }
         
     
@@ -642,7 +642,7 @@ innerExports['src::is.function'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620353142954;
+                    let var_init_locked_1620301624477;
     
                     
 
@@ -667,11 +667,11 @@ return isType(data , 'function') && !data.__ZBEE_IS_CLASS__;
                     return function(data){
     
                         
-        if(!var_init_locked_1620353142954){
+        if(!var_init_locked_1620301624477){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620353142954 = true ;
+            var_init_locked_1620301624477 = true ;
         }
         
     
@@ -717,7 +717,7 @@ innerExports['src::array.from'] = (() =>{
 
                     let isEmpty,isString;
     
-                    let var_init_locked_1620353142965;
+                    let var_init_locked_1620301624482;
     
                     
 
@@ -757,12 +757,12 @@ return [
                     return function(data){
     
                         
-        if(!var_init_locked_1620353142965){
+        if(!var_init_locked_1620301624482){
 
             isEmpty = include('src::is.empty');
 isString = include('src::is.string');
 
-            var_init_locked_1620353142965 = true ;
+            var_init_locked_1620301624482 = true ;
         }
         
     
@@ -775,7 +775,7 @@ innerExports['src::array.remove'] = (() =>{
 
                     let remove,indexOf;
     
-                    let var_init_locked_1620353142865;
+                    let var_init_locked_1620301624438;
     
                     
 
@@ -806,12 +806,12 @@ innerExports['src::array.remove'] = (() =>{
                     return function(data , ...items){
     
                         
-        if(!var_init_locked_1620353142865){
+        if(!var_init_locked_1620301624438){
 
             remove = include('src::array.remove.index');
 indexOf = include('src::array.indexOf');
 
-            var_init_locked_1620353142865 = true ;
+            var_init_locked_1620301624438 = true ;
         }
         
     
@@ -900,7 +900,7 @@ innerExports['src::is.boolean'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620353142938;
+                    let var_init_locked_1620301624471;
     
                     
 
@@ -925,11 +925,11 @@ return isType(data , 'boolean') ;
                     return function(data){
     
                         
-        if(!var_init_locked_1620353142938){
+        if(!var_init_locked_1620301624471){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620353142938 = true ;
+            var_init_locked_1620301624471 = true ;
         }
         
     
@@ -976,7 +976,7 @@ innerExports['src::data.type'] = (() =>{
 
                     let isObject,isArray,isString,isNumber,isBoolean,isDate,isFunction;
     
-                    let var_init_locked_1620353142913;
+                    let var_init_locked_1620301624462;
     
                     
 
@@ -1051,7 +1051,7 @@ innerExports['src::data.type'] = (() =>{
                     return function(data){
     
                         
-        if(!var_init_locked_1620353142913){
+        if(!var_init_locked_1620301624462){
 
             isObject = include('src::is.object.simple');
 isArray = include('src::is.array');
@@ -1062,7 +1062,7 @@ isDate = include('src::is.date');
 isString = include('src::is.string');
 isFunction = include('src::is.function');
 
-            var_init_locked_1620353142913 = true ;
+            var_init_locked_1620301624462 = true ;
         }
         
     
@@ -1075,7 +1075,7 @@ innerExports['src::data.equals'] = (() =>{
 
                     let getType;
     
-                    let var_init_locked_1620353142898;
+                    let var_init_locked_1620301624453;
     
                     
 
@@ -1188,11 +1188,11 @@ innerExports['src::data.equals'] = (() =>{
                     return function(value1 , value2){
     
                         
-        if(!var_init_locked_1620353142898){
+        if(!var_init_locked_1620301624453){
 
             getType = include('src::data.type');
 
-            var_init_locked_1620353142898 = true ;
+            var_init_locked_1620301624453 = true ;
         }
         
     
@@ -1205,7 +1205,7 @@ innerExports['src::array.indexOf'] = (() =>{
 
                     let equals;
     
-                    let var_init_locked_1620353142886;
+                    let var_init_locked_1620301624447;
     
                     
 
@@ -1245,11 +1245,11 @@ for(let i = 0 ; i < length ; i ++){
                     return function(data , checkItem){
     
                         
-        if(!var_init_locked_1620353142886){
+        if(!var_init_locked_1620301624447){
 
             equals = include('src::data.equals');
 
-            var_init_locked_1620353142886 = true ;
+            var_init_locked_1620301624447 = true ;
         }
         
     
@@ -1289,6 +1289,147 @@ innerExports['src::string.capitalize'] = (() =>{
                         
     
                         return main.call(this , data) ;
+                    } ;
+    
+                })();
+
+innerExports['src::os.name'] = (() =>{
+
+                    
+    
+                    
+    
+                    let var_once_value_1626179830146;
+
+                    function main(){
+
+        /**
+ * 
+ * 返回当前操作系统的名称
+ * 
+ * @once
+ * 
+ * @return {string} 操作系统的名称
+ * 
+ */
+
+const NAMES = {
+    iphone: 'iOS',
+    android:'Android',
+    mac: 'MacOS',
+    win: 'Windows',
+    linux: 'Linux',
+    other: 'Other'
+};
+
+let userAgent = navigator.userAgent.toLowerCase(),
+    name = NAMES[(userAgent.match(/mac|win|linux/) || ['other'])[0]];
+
+switch(name){
+
+    case 'MacOS':
+    case 'Linux':
+
+        {
+
+            let name = NAMES[(userAgent.match(/iphone|android/) || ['other'])[0]] ;
+
+            if(name !== 'Other'){
+
+                return name ;
+            }
+        }
+}
+
+return name ;
+
+    }
+    
+                    return function(){
+    
+                        
+    
+                        
+        if(var_once_value_1626179830146){
+
+            return var_once_value_1626179830146 ;
+
+        }
+        return var_once_value_1626179830146 = main.call(this ) ;
+        
+                    } ;
+    
+                })();
+
+innerExports['src::environment.name'] = (() =>{
+
+                    
+    
+                    
+    
+                    let var_once_value_1626179829389;
+
+                    function main(){
+
+        
+/**
+ * 
+ * 检测当前环境，返回值有 browser、zbee、node
+ * 
+ * @return {string} 环境名称 
+ * 
+ * @once
+ * 
+ */
+
+const {
+    toString
+} = Object.prototype,
+BROWSER_NAMES = {
+    micromessenger: 'weixin-browser',
+    ue4:'ue4-browser',
+    unity: 'unity-browser',
+    electron:'electron-browser',
+    browser:'browser'
+};
+
+if(typeof window === 'object' && toString.call(window) === '[object Window]' && typeof document === 'object' && toString.call(document) === '[object HTMLDocument]'){
+    
+    return BROWSER_NAMES[(navigator.userAgent.toLowerCase().match(/micromessenger|ue4|unity|electron/) || ['browser'])[0]];
+
+}else if(typeof process === 'object' && typeof global === 'object' && typeof require === 'function'){
+
+    try{
+
+        let [
+            path
+        ] = process.argv ;
+
+        return /electron\.exe$/.test(path) ;
+
+    }catch(err){
+
+    }
+
+    return 'node' ;
+}
+
+return 'other' ;
+
+    }
+    
+                    return function(){
+    
+                        
+    
+                        
+        if(var_once_value_1626179829389){
+
+            return var_once_value_1626179829389 ;
+
+        }
+        return var_once_value_1626179829389 = main.call(this ) ;
+        
                     } ;
     
                 })();
