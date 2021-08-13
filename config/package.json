@@ -138,7 +138,8 @@
             "array.remove",
             "string.capitalize",
             "os.name",
-            "environment.name"
+            "environment.name",
+            "function.get"
         ],
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/core"
