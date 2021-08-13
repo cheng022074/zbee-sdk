@@ -191,7 +191,7 @@ innerExports['src::object.value.get'] = (() =>{
 
                     let split,isObject,isArray;
     
-                    let var_init_locked_1620301624399;
+                    let var_init_locked_1620353142771;
     
                     
 
@@ -276,13 +276,13 @@ if(isObject(data) || isArray(data)){
                     return function(data , key = '.'){
     
                         
-        if(!var_init_locked_1620301624399){
+        if(!var_init_locked_1620353142771){
 
             split = include('src::string.split');
 isObject = include('src::is.object');
 isArray = include('src::is.array');
 
-            var_init_locked_1620301624399 = true ;
+            var_init_locked_1620353142771 = true ;
         }
         
     
@@ -330,7 +330,7 @@ innerExports['src::is.array'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620301624417;
+                    let var_init_locked_1620353142813;
     
                     
 
@@ -355,11 +355,11 @@ innerExports['src::is.array'] = (() =>{
                     return function(data){
     
                         
-        if(!var_init_locked_1620301624417){
+        if(!var_init_locked_1620353142813){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620301624417 = true ;
+            var_init_locked_1620353142813 = true ;
         }
         
     
@@ -372,7 +372,7 @@ innerExports['src::is.empty'] = (() =>{
 
                     let isArray;
     
-                    let var_init_locked_1620301624414;
+                    let var_init_locked_1620353142802;
     
                     
 
@@ -399,11 +399,11 @@ return (data == null) || (!allowEmptyString ? data === '' : false) || (isArray(d
                     return function(data , allowEmptyString = false){
     
                         
-        if(!var_init_locked_1620301624414){
+        if(!var_init_locked_1620353142802){
 
             isArray = include('src::is.array');
 
-            var_init_locked_1620301624414 = true ;
+            var_init_locked_1620353142802 = true ;
         }
         
     
@@ -416,7 +416,7 @@ innerExports['src::string.split'] = (() =>{
 
                     let isEmpty;
     
-                    let var_init_locked_1620301624409;
+                    let var_init_locked_1620353142788;
     
                     
 
@@ -448,11 +448,11 @@ function main(target , splitRe){
                     return function(target , splitRe){
     
                         
-        if(!var_init_locked_1620301624409){
+        if(!var_init_locked_1620353142788){
 
             isEmpty = include('src::is.empty');
 
-            var_init_locked_1620301624409 = true ;
+            var_init_locked_1620353142788 = true ;
         }
         
     
@@ -465,7 +465,7 @@ innerExports['src::is.object'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620301624423;
+                    let var_init_locked_1620353142828;
     
                     
 
@@ -490,11 +490,11 @@ return typeof data === 'object' ;
                     return function(data){
     
                         
-        if(!var_init_locked_1620301624423){
+        if(!var_init_locked_1620353142828){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620301624423 = true ;
+            var_init_locked_1620353142828 = true ;
         }
         
     
@@ -507,7 +507,7 @@ innerExports['src::object.value.set'] = (() =>{
 
                     let isObject,split;
     
-                    let var_init_locked_1620301624427;
+                    let var_init_locked_1620353142839;
     
                     
 
@@ -562,12 +562,12 @@ function main(target , key , value){
                     return function(target , key , value){
     
                         
-        if(!var_init_locked_1620301624427){
+        if(!var_init_locked_1620353142839){
 
             isObject = include('src::is.object');
 split = include('src::string.split');
 
-            var_init_locked_1620301624427 = true ;
+            var_init_locked_1620353142839 = true ;
         }
         
     
@@ -580,7 +580,7 @@ innerExports['src::is.string'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620301624431;
+                    let var_init_locked_1620353142850;
     
                     
 
@@ -605,11 +605,11 @@ return isType(data , 'string') ;
                     return function(data){
     
                         
-        if(!var_init_locked_1620301624431){
+        if(!var_init_locked_1620353142850){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620301624431 = true ;
+            var_init_locked_1620353142850 = true ;
         }
         
     
@@ -622,7 +622,7 @@ innerExports['src::is.number'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620301624434;
+                    let var_init_locked_1620353142857;
     
                     
 
@@ -647,11 +647,11 @@ return isType(data , 'number') && isFinite(data);
                     return function(data){
     
                         
-        if(!var_init_locked_1620301624434){
+        if(!var_init_locked_1620353142857){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620301624434 = true ;
+            var_init_locked_1620353142857 = true ;
         }
         
     
@@ -664,7 +664,7 @@ innerExports['src::is.function'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620301624477;
+                    let var_init_locked_1620353142954;
     
                     
 
@@ -689,11 +689,11 @@ return isType(data , 'function') && !data.__ZBEE_IS_CLASS__;
                     return function(data){
     
                         
-        if(!var_init_locked_1620301624477){
+        if(!var_init_locked_1620353142954){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620301624477 = true ;
+            var_init_locked_1620353142954 = true ;
         }
         
     
@@ -739,7 +739,7 @@ innerExports['src::array.from'] = (() =>{
 
                     let isEmpty,isString;
     
-                    let var_init_locked_1620301624482;
+                    let var_init_locked_1620353142965;
     
                     
 
@@ -779,12 +779,12 @@ return [
                     return function(data){
     
                         
-        if(!var_init_locked_1620301624482){
+        if(!var_init_locked_1620353142965){
 
             isEmpty = include('src::is.empty');
 isString = include('src::is.string');
 
-            var_init_locked_1620301624482 = true ;
+            var_init_locked_1620353142965 = true ;
         }
         
     
@@ -797,7 +797,7 @@ innerExports['src::array.remove'] = (() =>{
 
                     let remove,indexOf;
     
-                    let var_init_locked_1620301624438;
+                    let var_init_locked_1620353142865;
     
                     
 
@@ -828,12 +828,12 @@ innerExports['src::array.remove'] = (() =>{
                     return function(data , ...items){
     
                         
-        if(!var_init_locked_1620301624438){
+        if(!var_init_locked_1620353142865){
 
             remove = include('src::array.remove.index');
 indexOf = include('src::array.indexOf');
 
-            var_init_locked_1620301624438 = true ;
+            var_init_locked_1620353142865 = true ;
         }
         
     
@@ -922,7 +922,7 @@ innerExports['src::is.boolean'] = (() =>{
 
                     let isType;
     
-                    let var_init_locked_1620301624471;
+                    let var_init_locked_1620353142938;
     
                     
 
@@ -947,11 +947,11 @@ return isType(data , 'boolean') ;
                     return function(data){
     
                         
-        if(!var_init_locked_1620301624471){
+        if(!var_init_locked_1620353142938){
 
             isType = include('src::is.type');
 
-            var_init_locked_1620301624471 = true ;
+            var_init_locked_1620353142938 = true ;
         }
         
     
@@ -998,7 +998,7 @@ innerExports['src::data.type'] = (() =>{
 
                     let isObject,isArray,isString,isNumber,isBoolean,isDate,isFunction;
     
-                    let var_init_locked_1620301624462;
+                    let var_init_locked_1620353142913;
     
                     
 
@@ -1073,7 +1073,7 @@ innerExports['src::data.type'] = (() =>{
                     return function(data){
     
                         
-        if(!var_init_locked_1620301624462){
+        if(!var_init_locked_1620353142913){
 
             isObject = include('src::is.object.simple');
 isArray = include('src::is.array');
@@ -1084,7 +1084,7 @@ isDate = include('src::is.date');
 isString = include('src::is.string');
 isFunction = include('src::is.function');
 
-            var_init_locked_1620301624462 = true ;
+            var_init_locked_1620353142913 = true ;
         }
         
     
@@ -1097,7 +1097,7 @@ innerExports['src::data.equals'] = (() =>{
 
                     let getType;
     
-                    let var_init_locked_1620301624453;
+                    let var_init_locked_1620353142898;
     
                     
 
@@ -1210,11 +1210,11 @@ innerExports['src::data.equals'] = (() =>{
                     return function(value1 , value2){
     
                         
-        if(!var_init_locked_1620301624453){
+        if(!var_init_locked_1620353142898){
 
             getType = include('src::data.type');
 
-            var_init_locked_1620301624453 = true ;
+            var_init_locked_1620353142898 = true ;
         }
         
     
@@ -1227,7 +1227,7 @@ innerExports['src::array.indexOf'] = (() =>{
 
                     let equals;
     
-                    let var_init_locked_1620301624447;
+                    let var_init_locked_1620353142886;
     
                     
 
@@ -1267,11 +1267,11 @@ for(let i = 0 ; i < length ; i ++){
                     return function(data , checkItem){
     
                         
-        if(!var_init_locked_1620301624447){
+        if(!var_init_locked_1620353142886){
 
             equals = include('src::data.equals');
 
-            var_init_locked_1620301624447 = true ;
+            var_init_locked_1620353142886 = true ;
         }
         
     
@@ -1321,7 +1321,7 @@ innerExports['src::os.name'] = (() =>{
     
                     
     
-                    let var_once_value_1626179830146;
+                    let var_once_value_1621936464050;
 
                     function main(){
 
@@ -1372,12 +1372,12 @@ return name ;
                         
     
                         
-        if(var_once_value_1626179830146){
+        if(var_once_value_1621936464050){
 
-            return var_once_value_1626179830146 ;
+            return var_once_value_1621936464050 ;
 
         }
-        return var_once_value_1626179830146 = main.call(this ) ;
+        return var_once_value_1621936464050 = main.call(this ) ;
         
                     } ;
     
@@ -1389,7 +1389,7 @@ innerExports['src::environment.name'] = (() =>{
     
                     
     
-                    let var_once_value_1626179829389;
+                    let var_once_value_1621936460102;
 
                     function main(){
 
@@ -1445,13 +1445,127 @@ return 'other' ;
                         
     
                         
-        if(var_once_value_1626179829389){
+        if(var_once_value_1621936460102){
 
-            return var_once_value_1626179829389 ;
+            return var_once_value_1621936460102 ;
 
         }
-        return var_once_value_1626179829389 = main.call(this ) ;
+        return var_once_value_1621936460102 = main.call(this ) ;
         
+                    } ;
+    
+                })();
+
+innerExports['src::function.get'] = (() =>{
+
+                    let isString,isFunction,empty;
+    
+                    let var_init_locked_1620353142986;
+    
+                    
+
+                    function main(fn , scope){
+
+        /**
+ * 
+ * 获得一个函数引用
+ * 
+ * @import is.string
+ * 
+ * @import is.function
+ * 
+ * @import empty from function.empty
+ * 
+ * @param {string | function} fn 函数描述
+ * 
+ * @param {mixed} [scope] 函数作用域
+ * 
+ * @return {function} 函数引用本身 
+ * 
+ */
+
+if(isString(fn)){
+
+    if(scope && fn in scope){
+
+        fn = scope[fn] ;
+
+    }else{
+
+        try{
+
+            fn = include(fn) ;
+        
+        }catch(err){
+
+
+        }
+
+        
+    }
+}
+
+if(isFunction(fn)){
+
+    if(scope){
+
+        return fn.bind(scope) ;
+    }
+
+    return fn ;
+}
+
+return empty() ;
+
+    }
+    
+                    return function(fn , scope){
+    
+                        
+        if(!var_init_locked_1620353142986){
+
+            isString = include('src::is.string');
+isFunction = include('src::is.function');
+empty = include('src::function.empty');
+
+            var_init_locked_1620353142986 = true ;
+        }
+        
+    
+                        return main.call(this , fn , scope) ;
+                    } ;
+    
+                })();
+
+innerExports['src::function.empty'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    /**
+ * 
+ * 返回一个空函数
+ * 
+ * @scoped
+ * 
+ */
+
+const emptyFn = () =>{
+} ;
+
+function main(){
+
+    return emptyFn ;
+}
+    
+                    return function(){
+    
+                        
+    
+                        return main.call(this ) ;
                     } ;
     
                 })();
