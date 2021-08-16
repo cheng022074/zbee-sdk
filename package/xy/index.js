@@ -44822,11 +44822,11 @@ exports['src::mindmap.layout.node.drag.move'] = (() => {
 
     let getAnchorY, from;
 
-    let var_init_locked_1624846725859;
+    let var_init_locked_1629102584012;
 
 
 
-    const var_current_scope_1624846725859 = new Map();
+    const var_current_scope_1629102584012 = new Map();
 
     return function(node, {
         x,
@@ -44834,20 +44834,20 @@ exports['src::mindmap.layout.node.drag.move'] = (() => {
     }, interceptors = {}) {
 
 
-        if (!var_init_locked_1624846725859) {
+        if (!var_init_locked_1629102584012) {
 
             getAnchorY = include('src::math.region.y.anchor');
             from = include('src::math.region.from');
 
-            var_init_locked_1624846725859 = true;
+            var_init_locked_1629102584012 = true;
         }
 
 
 
 
-        if (!var_current_scope_1624846725859.has(this)) {
+        if (!var_current_scope_1629102584012.has(this)) {
 
-            var_current_scope_1624846725859.set(this, (() => {
+            var_current_scope_1629102584012.set(this, (() => {
                 const fromNode = include('src::mindmap.node.from').bind(this);
                 const insertBefore = include('src::mindmap.node.insert.before').bind(this);
                 const insertAfter = include('src::mindmap.node.insert.after').bind(this);
@@ -44973,13 +44973,7 @@ exports['src::mindmap.layout.node.drag.move'] = (() => {
 
                             case 'append':
 
-                            {
-                                let result = append(placeholderNode, dragOperationNode);
-
-                                expand(node);
-
-                                return result;
-                            }
+                                return append(placeholderNode, dragOperationNode);
 
                             case 'insertAfter':
 
@@ -45001,7 +44995,7 @@ exports['src::mindmap.layout.node.drag.move'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1624846725859.get(this);
+        const main = var_current_scope_1629102584012.get(this);
 
 
 
