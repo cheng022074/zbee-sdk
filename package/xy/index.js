@@ -39200,7 +39200,7 @@ exports['src::mindmap.layout.node.data'] = (() => {
 
 
 
-    const var_current_scope_1621936468826 = new Map();
+    const var_current_scope_1629091243503 = new Map();
 
     return function(node, offset) {
 
@@ -39208,9 +39208,9 @@ exports['src::mindmap.layout.node.data'] = (() => {
 
 
 
-        if (!var_current_scope_1621936468826.has(this)) {
+        if (!var_current_scope_1629091243503.has(this)) {
 
-            var_current_scope_1621936468826.set(this, (() => {
+            var_current_scope_1629091243503.set(this, (() => {
                 const data = include('src::mindmap.data').bind(this);
                 const isRootNode = include('src::mindmap.layout.node.is.root').bind(this);
                 const isLeafNode = include('src::mindmap.node.is.leaf').bind(this);
@@ -39275,7 +39275,7 @@ exports['src::mindmap.layout.node.data'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936468826.get(this);
+        const main = var_current_scope_1629091243503.get(this);
 
 
 
@@ -39576,28 +39576,28 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
 
     let isObject;
 
-    let var_init_locked_1621936468871;
+    let var_init_locked_1629090560646;
 
 
 
-    const var_current_scope_1621936468871 = new Map();
+    const var_current_scope_1629090560646 = new Map();
 
     return function(node, size) {
 
 
-        if (!var_init_locked_1621936468871) {
+        if (!var_init_locked_1629090560646) {
 
             isObject = include('src::is.object.simple');
 
-            var_init_locked_1621936468871 = true;
+            var_init_locked_1629090560646 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936468871.has(this)) {
+        if (!var_current_scope_1629090560646.has(this)) {
 
-            var_current_scope_1621936468871.set(this, (() => {
+            var_current_scope_1629090560646.set(this, (() => {
                 const getLeftSpacing = include('src::mindmap.layout.node.spacing.left').bind(this);
                 const getRightSpacing = include('src::mindmap.layout.node.spacing.right').bind(this);
                 const getTopSpacing = include('src::mindmap.layout.node.spacing.top').bind(this);
@@ -39663,7 +39663,7 @@ exports['src::mindmap.layout.node.region.self'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936468871.get(this);
+        const main = var_current_scope_1629090560646.get(this);
 
 
 
@@ -39676,29 +39676,29 @@ exports['src::mindmap.layout.refresh'] = (() => {
 
     let from, getAnchorXY;
 
-    let var_init_locked_1626677629030;
+    let var_init_locked_1629090888309;
 
 
 
-    const var_current_scope_1626677629030 = new Map();
+    const var_current_scope_1629090888309 = new Map();
 
     return function() {
 
 
-        if (!var_init_locked_1626677629030) {
+        if (!var_init_locked_1629090888309) {
 
             from = include('src::math.region.from');
             getAnchorXY = include('src::math.region.xy.anchor');
 
-            var_init_locked_1626677629030 = true;
+            var_init_locked_1629090888309 = true;
         }
 
 
 
 
-        if (!var_current_scope_1626677629030.has(this)) {
+        if (!var_current_scope_1629090888309.has(this)) {
 
-            var_current_scope_1626677629030.set(this, (() => {
+            var_current_scope_1629090888309.set(this, (() => {
                 const getData = include('src::mindmap.layout.node.data').bind(this);
                 const getRegion = include('src::mindmap.layout.node.region.self').bind(this);
                 const getParentNode = include('src::mindmap.layout.node.parent').bind(this);
@@ -39828,7 +39828,7 @@ exports['src::mindmap.layout.refresh'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626677629030.get(this);
+        const main = var_current_scope_1629090888309.get(this);
 
 
 
