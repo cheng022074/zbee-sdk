@@ -164,6 +164,15 @@
                return generate() ;
             }
          },
+
+         document:{
+
+            get(){
+
+               return me ;
+            }
+         },
+
          loaded:{
             defaultValue:true,
             mode:'readwrite'
