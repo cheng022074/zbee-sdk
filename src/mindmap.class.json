@@ -44,6 +44,9 @@
             "name":"getParentNode",
             "impl":".mindmap.node.parent"
         },{
+            "name":"getDescendantNodes",
+            "impl":".mindmap.nodes.descendant"
+        },{
             "name":"getPreviousNode",
             "impl":".mindmap.node.sibling.previous"
         },
