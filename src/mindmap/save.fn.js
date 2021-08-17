@@ -2,8 +2,6 @@
  * 
  * 保存脑图
  * 
- * @import getDescendantNodes from .nodes.descendant scoped
- * 
  * @param {array} [fields = []] 需要保存的节点字段名称集合
  * 
  * @return {object} 脑图节点信息
