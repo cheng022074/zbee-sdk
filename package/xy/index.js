@@ -37399,45 +37399,65 @@ exports['src::mindmap.nodes.descendant'] = (() => {
 
 
 
-
-    /**
-     * 
-     * 获得子孙节点
-     * 
-     * @param {data.Record} node 脑图节点
-     * 
-     * @return {array} 子孙节点数组 
-     * 
-     */
-
-    function main(node) {
-
-        return getDescendantNodes(node);
-    }
-
-    function getDescendantNodes({
-        expanded,
-        children
-    }) {
-
-        let result = [];
-
-        if (expanded) {
-
-            for (let childNode of children) {
-
-                result.push(childNode);
-
-                result.push(...getDescendantNodes(childNode));
-            }
-
-            return result;
-        }
-
-        return result;
-    }
+    const var_current_scope_1629183849255 = new Map();
 
     return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1629183849255.has(this)) {
+
+            var_current_scope_1629183849255.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+
+
+                /**
+                 * 
+                 * 获得子孙节点
+                 * 
+                 * @import from from ..node.from scoped
+                 * 
+                 * @param {mixed} node 脑图节点
+                 * 
+                 * @return {array} 子孙节点数组 
+                 * 
+                 */
+
+                function main(node) {
+
+                    return getDescendantNodes(from(node));
+                }
+
+                function getDescendantNodes({
+                    expanded,
+                    children
+                }) {
+
+                    let result = [];
+
+                    if (expanded) {
+
+                        for (let childNode of children) {
+
+                            result.push(childNode);
+
+                            result.push(...getDescendantNodes(childNode));
+                        }
+
+                        return result;
+                    }
+
+                    return result;
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1629183849255.get(this);
 
 
 
