@@ -13,6 +13,8 @@
  * 
  * @import insertAfter from mindmap.node.insert.after scoped
  * 
+ * @import expand from mindmap.node.expand scoped
+ * 
  * @import append from mindmap.node.append scoped
  * 
  * @import getParentNode from ..parent scoped
@@ -107,8 +109,14 @@ if(dragOperation && dragOperationNode && (oldDragOperation !== dragOperationNode
 
         case 'append':
 
-            return append(placeholderNode , dragOperationNode) ;
-            
+            {
+                let result = append(placeholderNode , dragOperationNode) ;
+
+                expand(node) ;
+
+                return result ;
+            }
+
         case 'insertAfter':
 
             return insertAfter(placeholderNode , dragOperationNode) ;
