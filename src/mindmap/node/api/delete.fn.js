@@ -40,7 +40,7 @@
  
      let nodes = [
          node,
-         ...getDescendantNodes(node)
+         ...getDescendantNodes(node , false)
      ],
      {
          nodes:originNodes
