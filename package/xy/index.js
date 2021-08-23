@@ -44830,11 +44830,11 @@ exports['src::mindmap.layout.node.drag.move'] = (() => {
 
     let getAnchorY, from;
 
-    let var_init_locked_1629168205477;
+    let var_init_locked_1629695894395;
 
 
 
-    const var_current_scope_1629168205477 = new Map();
+    const var_current_scope_1629695894395 = new Map();
 
     return function(node, {
         x,
@@ -44842,20 +44842,20 @@ exports['src::mindmap.layout.node.drag.move'] = (() => {
     }, interceptors = {}) {
 
 
-        if (!var_init_locked_1629168205477) {
+        if (!var_init_locked_1629695894395) {
 
             getAnchorY = include('src::math.region.y.anchor');
             from = include('src::math.region.from');
 
-            var_init_locked_1629168205477 = true;
+            var_init_locked_1629695894395 = true;
         }
 
 
 
 
-        if (!var_current_scope_1629168205477.has(this)) {
+        if (!var_current_scope_1629695894395.has(this)) {
 
-            var_current_scope_1629168205477.set(this, (() => {
+            var_current_scope_1629695894395.set(this, (() => {
                 const fromNode = include('src::mindmap.node.from').bind(this);
                 const insertBefore = include('src::mindmap.node.insert.before').bind(this);
                 const insertAfter = include('src::mindmap.node.insert.after').bind(this);
@@ -44984,7 +44984,10 @@ exports['src::mindmap.layout.node.drag.move'] = (() => {
                             {
                                 let result = append(placeholderNode, dragOperationNode);
 
-                                expand(node);
+                                if (!node.expanded && node.children.length === 1) {
+
+                                    expand(node);
+                                }
 
                                 return result;
                             }
@@ -45009,7 +45012,7 @@ exports['src::mindmap.layout.node.drag.move'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1629168205477.get(this);
+        const main = var_current_scope_1629695894395.get(this);
 
 
 
