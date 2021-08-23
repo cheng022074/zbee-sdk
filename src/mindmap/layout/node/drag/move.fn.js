@@ -112,7 +112,10 @@ if(dragOperation && dragOperationNode && (oldDragOperation !== dragOperationNode
             {
                 let result = append(placeholderNode , dragOperationNode) ;
 
-                expand(node) ;
+                if(!node.expanded && node.children.length === 1){
+
+                    expand(node) ;
+                }
 
                 return result ;
             }
