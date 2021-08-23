@@ -229,10 +229,9 @@ input, textarea {
       height: 100%; }
     .xy-mindmap > .inner > .nodes, .css-mindmap > .inner > .nodes {
       width: 100%; }
-      .xy-mindmap > .inner > .nodes > .node-wrapper, .xy-mindmap > .inner > .nodes > .node, .css-mindmap > .inner > .nodes > .node-wrapper, .css-mindmap > .inner > .nodes > .node {
+      .xy-mindmap > .inner > .nodes > .node-wrapper, .css-mindmap > .inner > .nodes > .node-wrapper {
         position: absolute;
         top: 0;
-        left: 0;
-        transform: translate3d(0, 0, 0); }
-      .xy-mindmap > .inner > .nodes > .node-wrapper > .node, .css-mindmap > .inner > .nodes > .node-wrapper > .node {
-        position: relative; }
+        left: 0; }
+        .xy-mindmap > .inner > .nodes > .node-wrapper > .node, .css-mindmap > .inner > .nodes > .node-wrapper > .node {
+          position: relative; }
