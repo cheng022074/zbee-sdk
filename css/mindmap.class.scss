@@ -21,13 +21,10 @@
         }
         > .nodes{
             width: 100%;
-            > .node-wrapper , > .node {
+            > .node-wrapper , > .node-dragger{
                 position: absolute;
                 top: 0;
                 left: 0;
-                transform: translate3d(0, 0, 0);
-            }
-            > .node-wrapper{
                 > .node{
                     position:relative;
                 }
