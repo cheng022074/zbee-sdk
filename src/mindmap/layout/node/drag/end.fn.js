@@ -59,7 +59,7 @@ let {
 
 children.splice(children.indexOf(placeholderNode) , 1) ;
 
-placeholderNode.hidden = false ;
+placeholderNode.hidden = true ;
 
 placeholderNode.parentNodeId = null ;
 

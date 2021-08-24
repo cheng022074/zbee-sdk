@@ -45032,7 +45032,7 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
 
 
 
-    const var_current_scope_1621936469720 = new Map();
+    const var_current_scope_1629769803092 = new Map();
 
     return function() {
 
@@ -45040,9 +45040,9 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
 
 
 
-        if (!var_current_scope_1621936469720.has(this)) {
+        if (!var_current_scope_1629769803092.has(this)) {
 
-            var_current_scope_1621936469720.set(this, (() => {
+            var_current_scope_1629769803092.set(this, (() => {
                 const getDescendantNodes = include('src::mindmap.layout.nodes.descendant').bind(this);
                 const getParentNode = include('src::mindmap.layout.node.parent').bind(this);
                 const insertBefore = include('src::mindmap.node.insert.before').bind(this);
@@ -45112,7 +45112,7 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
 
                     children.splice(children.indexOf(placeholderNode), 1);
 
-                    placeholderNode.hidden = false;
+                    placeholderNode.hidden = true;
 
                     placeholderNode.parentNodeId = null;
 
@@ -45144,7 +45144,7 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936469720.get(this);
+        const main = var_current_scope_1629769803092.get(this);
 
 
 
