@@ -1570,6 +1570,101 @@ function main(){
     
                 })();
 
+innerExports['src::browser.selector.parent'] = (() =>{
+
+                    let is;
+    
+                    let var_init_locked_1621936465140;
+    
+                    
+
+                    function main(el , selector){
+
+        
+/**
+ * 
+ * 判断元素及其元素父祖级元素是否匹配选择器
+ * 
+ * @import is from .is
+ * 
+ * @param {HTMLElement} el 元素
+ * 
+ * @param {string} selector 选择器
+ * 
+ * @return {boolean} 如果匹配则返回 true , 否则返回 false 
+ * 
+ */
+
+ while(el){
+
+    if(is(el , selector)){
+
+        return el ;
+    }
+
+    el = el.parentElement ;
+ }
+
+    }
+    
+                    return function(el , selector){
+    
+                        
+        if(!var_init_locked_1621936465140){
+
+            is = include('src::browser.selector.is');
+
+            var_init_locked_1621936465140 = true ;
+        }
+        
+    
+                        return main.call(this , el , selector) ;
+                    } ;
+    
+                })();
+
+innerExports['src::browser.selector.is'] = (() =>{
+
+                    
+    
+                    
+    
+                    
+
+                    function main(el , selector){
+
+        
+/**
+ * 
+ * 判断元素是否匹配选择器
+ * 
+ * @param {HTMLElement} el 元素
+ * 
+ * @param {string} selector 选择器字符串
+ * 
+ * @return {boolean} 如果元素匹配选择器则返回 true , 否则返回 false 
+ * 
+ */
+
+ let {
+    ownerDocument
+ } = el ;
+
+ let els = Array.from(ownerDocument.querySelectorAll(selector)) ;
+
+ return els.includes(el) ;
+
+    }
+    
+                    return function(el , selector){
+    
+                        
+    
+                        return main.call(this , el , selector) ;
+                    } ;
+    
+                })();
+
 
 
 

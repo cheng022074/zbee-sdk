@@ -139,7 +139,8 @@
             "string.capitalize",
             "os.name",
             "environment.name",
-            "function.get"
+            "function.get",
+            "browser.selector.parent"
         ],
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/core"
