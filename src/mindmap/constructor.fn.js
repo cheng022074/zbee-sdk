@@ -173,6 +173,10 @@
             }
          },
 
+         deletable:{
+            defaultValue:true
+         },
+
          loaded:{
             defaultValue:true,
             mode:'readwrite'
