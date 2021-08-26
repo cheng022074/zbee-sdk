@@ -22,7 +22,7 @@ function main(node){
 
     let deletedNode = from(node) ;
 
-    if(deletedNode && deletedNode.deletable){
+    if(deletedNode){
 
         let removeNodeTree = snapshot(deletedNode),
         oldPositionInfo = {
