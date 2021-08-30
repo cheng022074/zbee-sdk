@@ -140,7 +140,9 @@
             "os.name",
             "environment.name",
             "function.get",
-            "browser.selector.parent"
+            "browser.selector.parent",
+            "browser.event.gesture.tap",
+            "browser.event.gesture.vue"
         ],
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/core"
