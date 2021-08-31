@@ -10,6 +10,7 @@
 
 const NAMES = {
     iphone: 'iOS',
+    ipad:'iOS',
     android:'Android',
     mac: 'MacOS',
     win: 'Windows',
@@ -27,7 +28,7 @@ switch(name){
 
         {
 
-            let name = NAMES[(userAgent.match(/iphone|android/) || ['other'])[0]] ;
+            let name = NAMES[(userAgent.match(/ipad|iphone|android/) || ['other'])[0]] ;
 
             if(name !== 'Other'){
 
