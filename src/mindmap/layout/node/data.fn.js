@@ -11,6 +11,8 @@
  * 
  * @import getParentNode from mindmap.node.parent scoped
  * 
+ * @import getTopSpacing from .spacing.top scoped
+ * 
  * @param {mixed} node 节点
  * 
  * @param {object} offset 坐标偏移值
@@ -44,6 +46,11 @@
    y(node){
 
       return node.y + offset.y ;
+   },
+
+   wrapperY(node){
+
+      return node.y + offset.y - getTopSpacing(node) ;
    }
 
  }) ;
