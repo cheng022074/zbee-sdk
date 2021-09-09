@@ -39955,7 +39955,7 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-    const var_current_scope_1626748907627 = new Map();
+    const var_current_scope_1631155947329 = new Map();
 
     return function() {
 
@@ -39963,9 +39963,9 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-        if (!var_current_scope_1626748907627.has(this)) {
+        if (!var_current_scope_1631155947329.has(this)) {
 
-            var_current_scope_1626748907627.set(this, (() => {
+            var_current_scope_1631155947329.set(this, (() => {
                 const refresh = include('src::mindmap.layout.refresh').bind(this);
                 const isUnsized = include('src::mindmap.node.is.unsized').bind(this);
                 const getData = include('src::mindmap.node.data').bind(this);
@@ -39995,10 +39995,14 @@ exports['src::mindmap.layout'] = (() => {
 
                     if (isLayouting) {
 
+                        me.layoutCount++;
+
                         return;
                     }
 
                     me.isLayouting = true;
+
+                    me.layoutCount = 0;
 
                     clear();
 
@@ -40049,6 +40053,15 @@ exports['src::mindmap.layout'] = (() => {
 
                         let onNodeUnsized = sizes => {
 
+                            if (me.layoutCount !== 0) {
+
+                                me.layoutCount = 0;
+
+                                doBeforeLayout.call(me, callback);
+
+                                return;
+                            }
+
                             let ids = Object.keys(sizes);
 
                             for (let id of ids) {
@@ -40064,16 +40077,7 @@ exports['src::mindmap.layout'] = (() => {
                                 node.height = height;
                             }
 
-                            initUnsizedNodes(unsizedNodes, layoutNodes);
-
-                            if (unsizedNodes.size) {
-
-                                me.fireEvent('nodeunsized', getDataNodes(unsizedNodes), onNodeUnsized);
-
-                            } else {
-
-                                callback(rootNode, layoutNodes);
-                            }
+                            callback(rootNode, layoutNodes);
                         };
 
                         me.fireEvent('nodeunsized', getDataNodes(unsizedNodes), onNodeUnsized);
@@ -40117,7 +40121,7 @@ exports['src::mindmap.layout'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1626748907627.get(this);
+        const main = var_current_scope_1631155947329.get(this);
 
 
 
