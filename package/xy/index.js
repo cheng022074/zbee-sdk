@@ -41395,21 +41395,21 @@ exports['src::mindmap.node.append.new'] = (() => {
 
 
 
-    const var_current_scope_1624953640850 = new Map();
+    const var_current_scope_1631177352567 = new Map();
 
-    return function(node = {}, parentNode) {
-
-
+    return function(node = {}, parentNode, isSelectNode = true) {
 
 
 
-        if (!var_current_scope_1624953640850.has(this)) {
 
-            var_current_scope_1624953640850.set(this, (() => {
+
+        if (!var_current_scope_1631177352567.has(this)) {
+
+            var_current_scope_1631177352567.set(this, (() => {
                 const append = include('src::mindmap.node.append').bind(this);
                 const select = include('src::mindmap.node.select').bind(this);
 
-                function main(node, parentNode) {
+                function main(node, parentNode, isSelectNode) {
 
 
                     /**
@@ -41424,13 +41424,18 @@ exports['src::mindmap.node.append.new'] = (() => {
                      * 
                      * @param {mixed} [parentNode] 参照节点
                      * 
+                     * @param {boolean} [isSelectNode = true] 是否选定添加节点
+                     * 
                      * @return {boolea} 添加状态标识
                      * 
                      */
 
                     if (node = append(node, parentNode)) {
 
-                        select(node);
+                        if (isSelectNode) {
+
+                            select(node);
+                        }
 
                         return true;
                     }
@@ -41444,11 +41449,11 @@ exports['src::mindmap.node.append.new'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1624953640850.get(this);
+        const main = var_current_scope_1631177352567.get(this);
 
 
 
-        return main.call(this, node, parentNode);
+        return main.call(this, node, parentNode, isSelectNode);
     };
 
 })();
