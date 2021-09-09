@@ -22,10 +22,14 @@
 
    if(isLayouting){
 
+      me.layoutCount ++ ;
+
       return ;
    }
 
    me.isLayouting = true ;
+
+   me.layoutCount = 0 ;
 
    clear() ;
 
@@ -76,6 +80,15 @@
 
       let onNodeUnsized = sizes => {
 
+         if(me.layoutCount !== 0){
+
+            me.layoutCount = 0 ;
+
+            doBeforeLayout.call(me , callback) ;
+
+            return  ;
+         }
+
          let ids = Object.keys(sizes) ;
 
          for(let id of ids){
@@ -91,16 +104,7 @@
             node.height = height ;
          }
 
-         initUnsizedNodes(unsizedNodes , layoutNodes) ;
-
-         if(unsizedNodes.size){
-
-            me.fireEvent('nodeunsized' , getDataNodes(unsizedNodes) , onNodeUnsized) ;
-
-         }else{
-
-            callback(rootNode , layoutNodes) ;
-         }
+         callback(rootNode , layoutNodes) ;
       } ;
 
       me.fireEvent('nodeunsized' , getDataNodes(unsizedNodes) , onNodeUnsized) ;
