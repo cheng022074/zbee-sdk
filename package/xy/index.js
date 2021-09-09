@@ -37538,28 +37538,28 @@ exports['src::mindmap.load'] = (() => {
 
     let isDefined;
 
-    let var_init_locked_1621936468458;
+    let var_init_locked_1631169788442;
 
 
 
-    const var_current_scope_1621936468458 = new Map();
+    const var_current_scope_1631169788442 = new Map();
 
     return function(data, readAsRoot) {
 
 
-        if (!var_init_locked_1621936468458) {
+        if (!var_init_locked_1631169788442) {
 
             isDefined = include('src::is.defined');
 
-            var_init_locked_1621936468458 = true;
+            var_init_locked_1631169788442 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936468458.has(this)) {
+        if (!var_current_scope_1631169788442.has(this)) {
 
-            var_current_scope_1621936468458.set(this, (() => {
+            var_current_scope_1631169788442.set(this, (() => {
                 const register = include('src::mindmap.node.register').bind(this);
 
                 function main(data, readAsRoot) {
@@ -37605,6 +37605,8 @@ exports['src::mindmap.load'] = (() => {
 
                         me.rootNode = rootNode;
 
+                        rootNode.expanded = true;
+
                         return rootNode;
 
                     }
@@ -37616,7 +37618,7 @@ exports['src::mindmap.load'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936468458.get(this);
+        const main = var_current_scope_1631169788442.get(this);
 
 
 
