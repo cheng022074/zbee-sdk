@@ -28,7 +28,7 @@ if(node && !node.hidden){
 
     selectNode(previousSiblingNodes) ||
     selectNode(nextSiblingNodes) ||
-    selectNode(previousSiblingNodes) ;
+    selectNode(ancestorNodes) ;
 
 }
 
