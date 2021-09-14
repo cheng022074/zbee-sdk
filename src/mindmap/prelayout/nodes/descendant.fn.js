@@ -5,8 +5,6 @@
  * 
  * @import from from mindmap.node.from scoped
  * 
- * @import getChildNodes from .child scoped
- * 
  * @param {mixed} node 脑图节点
  * 
  * @return {array} 子孙节点数组 
