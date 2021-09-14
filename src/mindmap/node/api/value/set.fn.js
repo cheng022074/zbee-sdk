@@ -8,6 +8,12 @@
  * 
  * @import from from ....from scoped
  * 
+ * @import isObject from is.object.simple
+ * 
+ * @import adjustSelectedBefore from .adjust.selected.before scoped
+ * 
+ * @import adjustSelectedAfter from .adjust.selected.after scoped
+ * 
  * @param {string} field 字段名称
  * 
  * @param {mixed} value 字段值
@@ -16,14 +22,44 @@
  * 
  */
 
- node = from(node) ;
+function main(node , field , value){
 
- if(node){
+    node = from(node) ;
+
+    if(node){
+
+        let isUpdated = false,
+            adjustInfo = adjustSelectedBefore();
+
+        if(isObject(field)){
+
+            let names = field ;
+
+            for(let name of names){
+
+                if(setNodeValue(node , name , value)){
+
+                    isUpdated = true ;
+                }
+            }
+        
+        }else{
+
+            isUpdated = setNodeValue(node , field , value) ;
+        }
+
+        adjustSelectedAfter(adjustInfo) ;
+
+        return isUpdated ;
+    }
+
+    return false ;
+}
+
+function setNodeValue(node , field , value){
 
     let oldValue = node[field],
         newValue = node[field] = clone(value);
 
     return !equals(newValue , oldValue) ;
- }
-
-return false ;
+}
