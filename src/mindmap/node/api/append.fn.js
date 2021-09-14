@@ -13,13 +13,11 @@
  * 
  * @import from from ..from scoped
  * 
- * @import getPreviousNode from ..sibling.previous scoped
- * 
- * @import getNextNode from ..sibling.next scoped
- * 
  * @import hide from ..hide scoped
  * 
- * @import select from ..select scoped
+ * @import adjustSelectedBefore from .adjust.selected.before scoped
+ * 
+ * @import adjustSelectedAfter from .adjust.selected.after scoped
  * 
  * @param {mixed} node 节点配置
  * 
@@ -45,9 +43,10 @@ if(!parentNode || parentNode === node || getLastChildNode(parentNode) === node |
 }
 
 let {
-  selectedNode,
   rootNode
 } = me;
+
+let adjustInfo = adjustSelectedBefore() ;
 
 if(node.parentNodeId){
 
@@ -78,16 +77,6 @@ if(!hidden && expanded){
   show(node) ;
 }
 
-selectedNode = from(selectedNode) ;
-
-if(selectedNode.hidden){
-
-  select(rootNode) ;
-
-}else{
-
-  selectedNode.selected = true ;
-
-}
+adjustSelectedAfter(adjustInfo) ;
 
 return node ;
