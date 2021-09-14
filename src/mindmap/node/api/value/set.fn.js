@@ -22,7 +22,7 @@
  * 
  */
 
-function main(node , field , value){
+function main(field , value , node){
 
     node = from(node) ;
 
@@ -33,11 +33,11 @@ function main(node , field , value){
 
         if(isObject(field)){
 
-            let names = field ;
+            let names = Object.keys(field) ;
 
             for(let name of names){
 
-                if(setNodeValue(node , name , value)){
+                if(setNodeValue(node , name , field[name])){
 
                     isUpdated = true ;
                 }

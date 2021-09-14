@@ -12,15 +12,4 @@
  * 
  */
 
-let names = Object.keys(values),
-    isUpdated = false;
-
-for(let name of names){
-
-    if(setNodeValue(name , values[name] , node)){
-
-        isUpdated = true ;
-    }
-}
-
-return isUpdated && !from(node).hidden;
+return setNodeValue(name , values , node) && !from(node).hidden;
