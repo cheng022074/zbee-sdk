@@ -26,7 +26,7 @@ function main(node){
 
         result.push(childNode) ;
 
-        result.push(...getDescendantNodes(childNode , isExpanded)) ;
+        result.push(...getDescendantNodes(childNode)) ;
     }
 
     return result ;
