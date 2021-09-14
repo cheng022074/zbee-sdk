@@ -7,34 +7,26 @@
  * 
  * @param {mixed} node 脑图节点
  * 
- * @param {boolean} [isExpanded = true] 仅遍历展开的节点
- * 
  * @return {array} 子孙节点数组 
  * 
  */
 
-function main(node , isExpanded){
+function main(node){
 
-    return getDescendantNodes(from(node) , isExpanded) ;
- }
+    return getDescendantNodes(from(node)) ;
+}
 
  function getDescendantNodes({
-     expanded,
      children
- } , isExpanded){
+ }){
 
     let result = [] ;
 
-    if(isExpanded && expanded || !isExpanded){
+    for(let childNode of children){
 
-        for(let childNode of children){
+        result.push(childNode) ;
 
-            result.push(childNode) ;
-
-            result.push(...getDescendantNodes(childNode , isExpanded)) ;
-        }
-
-        return result ;
+        result.push(...getDescendantNodes(childNode , isExpanded)) ;
     }
 
     return result ;
