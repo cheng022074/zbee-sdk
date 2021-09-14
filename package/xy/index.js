@@ -40874,30 +40874,30 @@ exports['src::mindmap.node.api.value.set'] = (() => {
 
     let equals, clone, isObject;
 
-    let var_init_locked_1631605573675;
+    let var_init_locked_1631607519740;
 
 
 
-    const var_current_scope_1631605573675 = new Map();
+    const var_current_scope_1631607519740 = new Map();
 
     return function(field, value, node) {
 
 
-        if (!var_init_locked_1631605573675) {
+        if (!var_init_locked_1631607519740) {
 
             equals = include('src::data.equals');
             clone = include('src::data.clone');
             isObject = include('src::is.object.simple');
 
-            var_init_locked_1631605573675 = true;
+            var_init_locked_1631607519740 = true;
         }
 
 
 
 
-        if (!var_current_scope_1631605573675.has(this)) {
+        if (!var_current_scope_1631607519740.has(this)) {
 
-            var_current_scope_1631605573675.set(this, (() => {
+            var_current_scope_1631607519740.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
                 const adjustSelectedBefore = include('src::mindmap.node.api.adjust.selected.before').bind(this);
                 const adjustSelectedAfter = include('src::mindmap.node.api.adjust.selected.after').bind(this);
@@ -40933,7 +40933,10 @@ exports['src::mindmap.node.api.value.set'] = (() => {
                     if (node) {
 
                         let isUpdated = false,
-                            adjustInfo = adjustSelectedBefore();
+                            adjustInfo = adjustSelectedBefore(),
+                            {
+                                hidden: oldHidden
+                            } = node;
 
                         if (isObject(field)) {
 
@@ -40954,6 +40957,19 @@ exports['src::mindmap.node.api.value.set'] = (() => {
 
                         adjustSelectedAfter(adjustInfo);
 
+                        let {
+                            hidden
+                        } = node;
+
+                        if (hidden !== oldHidden) {
+
+                            return true;
+
+                        } else if (hidden) {
+
+                            return false;
+                        }
+
                         return isUpdated;
                     }
 
@@ -40973,7 +40989,7 @@ exports['src::mindmap.node.api.value.set'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631605573675.get(this);
+        const main = var_current_scope_1631607519740.get(this);
 
 
 
@@ -40990,7 +41006,7 @@ exports['src::mindmap.node.sync.value.set'] = (() => {
 
 
 
-    const var_current_scope_1631605407706 = new Map();
+    const var_current_scope_1631607519715 = new Map();
 
     return function(values, node) {
 
@@ -40998,9 +41014,9 @@ exports['src::mindmap.node.sync.value.set'] = (() => {
 
 
 
-        if (!var_current_scope_1631605407706.has(this)) {
+        if (!var_current_scope_1631607519715.has(this)) {
 
-            var_current_scope_1631605407706.set(this, (() => {
+            var_current_scope_1631607519715.set(this, (() => {
                 const setNodeValue = include('src::mindmap.node.api.value.set').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
 
@@ -41020,7 +41036,7 @@ exports['src::mindmap.node.sync.value.set'] = (() => {
                      * 
                      */
 
-                    return setNodeValue(name, values, node) && !from(node).hidden;
+                    return setNodeValue(values, null, node);
 
                 }
 
@@ -41029,7 +41045,7 @@ exports['src::mindmap.node.sync.value.set'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631605407706.get(this);
+        const main = var_current_scope_1631607519715.get(this);
 
 
 
