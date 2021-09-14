@@ -10,9 +10,9 @@
  * 
  * @import isObject from is.object.simple
  * 
- * @import adjustSelectedBefore from .adjust.selected.before scoped
+ * @import adjustSelectedBefore from ..adjust.selected.before scoped
  * 
- * @import adjustSelectedAfter from .adjust.selected.after scoped
+ * @import adjustSelectedAfter from ..adjust.selected.after scoped
  * 
  * @param {string} field 字段名称
  * 
