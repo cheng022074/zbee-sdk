@@ -14,7 +14,7 @@
 
 let {
     selectedNode:node
-} = me ;
+} = this ;
 
 return {
     node,
