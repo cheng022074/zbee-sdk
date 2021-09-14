@@ -79,7 +79,7 @@
       createPositioner = 'mindmap.layout.positioner.logic.right',
       pattern = 'mindmap.layout.pattern.logic.right',
       getRootNode = 'mindmap.node.root',
-      getDescendantNodes = 'mindmap.nodes.descendant',
+      getDescendantNodes = 'mindmap.prelayout.nodes.descendant',
       ...options
    } = layout ;
 
