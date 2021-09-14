@@ -42,10 +42,6 @@ if(!parentNode || parentNode === node || getLastChildNode(parentNode) === node |
 
 }
 
-let {
-  rootNode
-} = me;
-
 let adjustInfo = adjustSelectedBefore() ;
 
 if(node.parentNodeId){
