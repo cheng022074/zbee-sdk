@@ -7,17 +7,15 @@
  * 
  * @import getParentNode from ..parent scoped
  * 
- * @import getPreviousNode from ..sibling.previous scoped
- * 
- * @import getNextNode from ..sibling.next scoped
- * 
  * @import getDescendantNodes from ....nodes.descendant scoped
  * 
  * @import hide from ..hide scoped
  * 
  * @import from from ..from scoped
  * 
- * @import select from ..select scoped
+ * @import adjustSelectedBefore from .adjust.selected.before scoped
+ * 
+ * @import adjustSelectedAfter from .adjust.selected.after scoped
  * 
  * @param {mixed} node 节点
  * 
@@ -29,12 +27,7 @@
  if(node && !isRootNode(node)){
  
      let parentNode = getParentNode(node),
-     {
-         rootNode,
-         selectedNode
-     } = this,
-     previousNode = getPreviousNode(node),
-     nextNode = getNextNode(node);
+         adjustInfo = adjustSelectedBefore();
  
      hide(node) ;
  
@@ -62,27 +55,8 @@
      } = parentNode;
  
      children.splice(children.indexOf(node) , 1) ;
- 
-     if(!from(selectedNode)){
 
-        if(previousNode && !previousNode.hidden){
-
-            select(previousNode) ;
-        
-        }else if(nextNode && !nextNode.hidden){
-
-            select(nextNode) ;
-        
-        }else if(parentNode && !parentNode.hidden){
-
-            select(parentNode) ;
-        
-        }else{
-
-            select(rootNode) ;
-        }
-     
-     }
+     adjustSelectedAfter(adjustInfo) ;
  
      return node ;
  
