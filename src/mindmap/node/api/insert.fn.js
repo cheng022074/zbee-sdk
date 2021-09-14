@@ -19,7 +19,9 @@
  * 
  * @import hide from ..hide scoped
  * 
- * @import select from ..select scoped
+ * @import adjustSelectedBefore from .adjust.selected.before scoped
+ * 
+ * @import adjustSelectedAfter from .adjust.selected.after scoped
  * 
  * @param {mixed} insertNode 需要插入的节点
  * 
@@ -66,10 +68,7 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
             }
     }
 
-    let {
-        selectedNode,
-        rootNode
-    } = me;
+    let adjustInfo = adjustSelectedBefore();
 
     if(insertNode.parentNodeId){
 
@@ -115,17 +114,7 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
         show(insertNode) ;
     }
 
-    selectedNode = from(selectedNode) ;
-
-    if(selectedNode.hidden){
-
-        select(rootNode) ;
-
-    }else{
-
-        selectedNode.selected = true ;
-
-    }
+    adjustSelectedAfter(adjustInfo) ;
 
     return insertNode ;
 }
