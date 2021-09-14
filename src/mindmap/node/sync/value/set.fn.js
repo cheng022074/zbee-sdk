@@ -12,4 +12,4 @@
  * 
  */
 
-return setNodeValue(name , values , node) && !from(node).hidden;
+return setNodeValue(values , null , node) && !from(node).hidden;
