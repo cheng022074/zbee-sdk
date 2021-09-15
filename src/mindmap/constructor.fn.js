@@ -9,6 +9,8 @@
  * 
  * @import setHidden from .node.field.hidden scoped
  * 
+ * @import getHidden from .node.field.hidden.get scoped
+ * 
  * @import setSelected from .node.field.selected scoped
  * 
  * @import isObject from is.object.simple
@@ -173,6 +175,10 @@
             }
          },
 
+         visibility:{
+            defaultValue:true
+         },
+
          loaded:{
             defaultValue:true,
             mode:'readwrite'
@@ -199,6 +205,10 @@
             set(hidden){
 
                return setHidden(this , hidden) ;
+            },
+            get(hidden){
+
+               return getHidden(this , hidden) ;
             },
             defaultValue:true
          },

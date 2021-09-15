@@ -20,7 +20,10 @@ if(expanded){
 
     for(let childNode of children){
 
-        result.push(childNode) ;
+        if(!childNode.hidden){
+
+            result.push(childNode) ;
+        }
     }
 
     return result ;

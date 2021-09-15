@@ -27,9 +27,12 @@
 
         for(let childNode of children){
 
-            result.push(childNode) ;
+            if(!childNode.hidden){
 
-            result.push(...getDescendantNodes(childNode)) ;
+                result.push(childNode) ;
+
+                result.push(...getDescendantNodes(childNode)) ;
+            }
         }
 
         return result ;
