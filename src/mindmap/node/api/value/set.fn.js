@@ -29,10 +29,7 @@ function main(field , value , node){
     if(node){
 
         let isUpdated = false,
-            adjustInfo = adjustSelectedBefore(),
-            {
-                hidden:oldHidden
-            } = node;
+            adjustInfo = adjustSelectedBefore();
 
         if(isObject(field)){
 
