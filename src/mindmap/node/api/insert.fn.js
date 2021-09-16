@@ -109,7 +109,13 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
 
     insertNode.parentNodeId = parentNode.id ;
 
-    if(!parentNode.hidden){
+    let {
+        hidden,
+        visibility,
+        expanded
+    } = parentNode;
+
+    if((!hidden || !visibility) && expanded){
 
         show(insertNode) ;
     }

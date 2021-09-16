@@ -61,6 +61,7 @@ if(node.parentNodeId){
 let {
     children,
     hidden,
+    visibility,
     expanded
 } = parentNode;
 
@@ -68,7 +69,7 @@ children.push(node) ;
 
 node.parentNodeId = parentNode.id ;
 
-if(!hidden && expanded){
+if((!hidden || !visibility) && expanded){
 
   show(node) ;
 }
