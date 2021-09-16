@@ -6795,6 +6795,28 @@
     "folder": "src",
     "name": "mindmap.layout.node.is.root"
   },
+  "src::mindmap.nodes.child": {
+    "meta": "code.meta.script.function",
+    "signature": "<array> src::mindmap.nodes.child(<data.Record> node)",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    \n    \n                    \n    \n                    \n\n                    function main(node){\n\n        \r\n/**\r\n * \r\n * 返回子节点集合\r\n * \r\n * @param {data.Record} node 节点\r\n * \r\n * @return {array} 节点信息集合\r\n * \r\n */\r\n\r\n let {\r\n    children\r\n } = node ;\r\n\r\n return Array.from(children) ;\n\n    }\n    \n                    return function(node){\n    \n                        \n    \n                        return main.call(this , node) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "mindmap.nodes.child"
+  },
+  "src::mindmap.layout.node.is.leaf": {
+    "meta": "code.meta.script.function",
+    "signature": "<boolean> src::mindmap.layout.node.is.leaf(<data.Record> node)",
+    "standard": true,
+    "importNames": [
+      "src::mindmap.nodes.child"
+    ],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    \n    \n                    \n \n                    \n\n                    const var_current_scope_1631761103699 = new Map();\n    \n                    return function(node){\n    \n                        \n    \n                        \n        \n        if(!var_current_scope_1631761103699.has(this)){\n\n            var_current_scope_1631761103699.set(this , (() => {\n                const getChildNodes = include('src::mindmap.nodes.child').bind(this);\n\n                function main(node){\n\n        /**\r\n * \r\n * 判断节点是否为叶子节点\r\n * \r\n * @import getChildNodes from mindmap.nodes.child scoped\r\n * \r\n * @param {data.Record} node 脑图节点\r\n * \r\n * @return {boolean} 如果为叶子节点则返回 true , 否则返回 false \r\n * \r\n */\r\n\r\nlet {\r\n    loaded\r\n} = node ;\r\n\r\nif(!loaded){\r\n\r\n    return false ;\r\n}\r\n\r\nreturn !getChildNodes(node).find(({\r\n    visibility\r\n}) => visibility);\r\n\n\n    }\n\n                return main ;\n\n            })());\n        }\n\n        const main = var_current_scope_1631761103699.get(this) ;\n\n        \n    \n                        return main.call(this , node) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "mindmap.layout.node.is.leaf"
+  },
   "src::mindmap.layout.node.spacing.top": {
     "meta": "code.meta.script.function",
     "signature": "<number> src::mindmap.layout.node.spacing.top(<data.Record> node)",
@@ -6815,12 +6837,12 @@
     "importNames": [
       "src::mindmap.data",
       "src::mindmap.layout.node.is.root",
-      "src::mindmap.node.is.leaf",
+      "src::mindmap.layout.node.is.leaf",
       "src::mindmap.node.parent",
       "src::mindmap.layout.node.spacing.top"
     ],
     "dependentModules": {},
-    "data": "(() =>{\n\n                    \n    \n                    \n \n                    \n\n                    const var_current_scope_1631611915462 = new Map();\n    \n                    return function(node , offset){\n    \n                        \n    \n                        \n        \n        if(!var_current_scope_1631611915462.has(this)){\n\n            var_current_scope_1631611915462.set(this , (() => {\n                const data = include('src::mindmap.data').bind(this);\nconst isRootNode = include('src::mindmap.layout.node.is.root').bind(this);\nconst isLeafNode = include('src::mindmap.node.is.leaf').bind(this);\nconst getParentNode = include('src::mindmap.node.parent').bind(this);\nconst getTopSpacing = include('src::mindmap.layout.node.spacing.top').bind(this);\n\n                function main(node , offset){\n\n        \r\n/**\r\n * \r\n * 获取节点参数级数据信息\r\n * \r\n * @import data from mindmap.data scoped\r\n * \r\n * @import isRootNode from .is.root scoped\r\n * \r\n * @import isLeafNode from mindmap.node.is.leaf scoped\r\n * \r\n * @import getParentNode from mindmap.node.parent scoped\r\n * \r\n * @import getTopSpacing from .spacing.top scoped\r\n * \r\n * @param {mixed} node 节点\r\n * \r\n * @param {object} offset 坐标偏移值\r\n * \r\n * @return {object} 数据信息 \r\n * \r\n */\r\n\r\n return data(node , {\r\n\r\n   root(node){\r\n\r\n      return isRootNode(node) ;\r\n   },\r\n\r\n   parent(node){\r\n\r\n      return !! getParentNode(node) ;\r\n   },\r\n\r\n   leaf(node){\r\n\r\n      return isLeafNode(node) ;\r\n   },\r\n\r\n   x(node){\r\n\r\n      return node.x + offset.x ;\r\n   },\r\n\r\n   y(node){\r\n\r\n      return node.y + offset.y ;\r\n   },\r\n\r\n   wrapperY(node){\r\n\r\n      return node.y + offset.y - getTopSpacing(node) ;\r\n   }\r\n\r\n }) ;\n\n    }\n\n                return main ;\n\n            })());\n        }\n\n        const main = var_current_scope_1631611915462.get(this) ;\n\n        \n    \n                        return main.call(this , node , offset) ;\n                    } ;\n    \n                })()",
+    "data": "(() =>{\n\n                    \n    \n                    \n \n                    \n\n                    const var_current_scope_1631759994026 = new Map();\n    \n                    return function(node , offset){\n    \n                        \n    \n                        \n        \n        if(!var_current_scope_1631759994026.has(this)){\n\n            var_current_scope_1631759994026.set(this , (() => {\n                const data = include('src::mindmap.data').bind(this);\nconst isRootNode = include('src::mindmap.layout.node.is.root').bind(this);\nconst isLeafNode = include('src::mindmap.layout.node.is.leaf').bind(this);\nconst getParentNode = include('src::mindmap.node.parent').bind(this);\nconst getTopSpacing = include('src::mindmap.layout.node.spacing.top').bind(this);\n\n                function main(node , offset){\n\n        \r\n/**\r\n * \r\n * 获取节点参数级数据信息\r\n * \r\n * @import data from mindmap.data scoped\r\n * \r\n * @import isRootNode from .is.root scoped\r\n * \r\n * @import isLeafNode from .is.leaf scoped\r\n * \r\n * @import getParentNode from mindmap.node.parent scoped\r\n * \r\n * @import getTopSpacing from .spacing.top scoped\r\n * \r\n * @param {mixed} node 节点\r\n * \r\n * @param {object} offset 坐标偏移值\r\n * \r\n * @return {object} 数据信息 \r\n * \r\n */\r\n\r\n return data(node , {\r\n\r\n   root(node){\r\n\r\n      return isRootNode(node) ;\r\n   },\r\n\r\n   parent(node){\r\n\r\n      return !! getParentNode(node) ;\r\n   },\r\n\r\n   leaf(node){\r\n\r\n      return isLeafNode(node) ;\r\n   },\r\n\r\n   x(node){\r\n\r\n      return node.x + offset.x ;\r\n   },\r\n\r\n   y(node){\r\n\r\n      return node.y + offset.y ;\r\n   },\r\n\r\n   wrapperY(node){\r\n\r\n      return node.y + offset.y - getTopSpacing(node) ;\r\n   }\r\n\r\n }) ;\n\n    }\n\n                return main ;\n\n            })());\n        }\n\n        const main = var_current_scope_1631759994026.get(this) ;\n\n        \n    \n                        return main.call(this , node , offset) ;\n                    } ;\n    \n                })()",
     "folder": "src",
     "name": "mindmap.layout.node.data"
   },
@@ -7610,16 +7632,6 @@
     "data": "(() =>{\n\n                    \n    \n                    \n    \n                    \n\n                    function main(){\n\n        \r\n/**\r\n * \r\n * 获得实际的根节点\r\n * \r\n * @return {data.Record} 根节点 \r\n * \r\n */\r\n\r\n return this.rootNode ;\n\n    }\n    \n                    return function(){\n    \n                        \n    \n                        return main.call(this ) ;\n                    } ;\n    \n                })()",
     "folder": "src",
     "name": "mindmap.node.root"
-  },
-  "src::mindmap.nodes.child": {
-    "meta": "code.meta.script.function",
-    "signature": "<array> src::mindmap.nodes.child(<data.Record> node)",
-    "standard": true,
-    "importNames": [],
-    "dependentModules": {},
-    "data": "(() =>{\n\n                    \n    \n                    \n    \n                    \n\n                    function main(node){\n\n        \r\n/**\r\n * \r\n * 返回子节点集合\r\n * \r\n * @param {data.Record} node 节点\r\n * \r\n * @return {array} 节点信息集合\r\n * \r\n */\r\n\r\n let {\r\n    children\r\n } = node ;\r\n\r\n return Array.from(children) ;\n\n    }\n    \n                    return function(node){\n    \n                        \n    \n                        return main.call(this , node) ;\n                    } ;\n    \n                })()",
-    "folder": "src",
-    "name": "mindmap.nodes.child"
   },
   "src::mindmap.layout.node.drag.start": {
     "meta": "code.meta.script.function",

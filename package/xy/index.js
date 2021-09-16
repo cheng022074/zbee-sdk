@@ -39605,6 +39605,109 @@ exports['src::mindmap.layout.node.is.root'] = (() => {
 
 })();
 
+exports['src::mindmap.nodes.child'] = (() => {
+
+
+
+
+
+
+
+    function main(node) {
+
+
+        /**
+         * 
+         * 返回子节点集合
+         * 
+         * @param {data.Record} node 节点
+         * 
+         * @return {array} 节点信息集合
+         * 
+         */
+
+        let {
+            children
+        } = node;
+
+        return Array.from(children);
+
+    }
+
+    return function(node) {
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.layout.node.is.leaf'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1631761103699 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1631761103699.has(this)) {
+
+            var_current_scope_1631761103699.set(this, (() => {
+                const getChildNodes = include('src::mindmap.nodes.child').bind(this);
+
+                function main(node) {
+
+                    /**
+                     * 
+                     * 判断节点是否为叶子节点
+                     * 
+                     * @import getChildNodes from mindmap.nodes.child scoped
+                     * 
+                     * @param {data.Record} node 脑图节点
+                     * 
+                     * @return {boolean} 如果为叶子节点则返回 true , 否则返回 false 
+                     * 
+                     */
+
+                    let {
+                        loaded
+                    } = node;
+
+                    if (!loaded) {
+
+                        return false;
+                    }
+
+                    return !getChildNodes(node).find(({
+                        visibility
+                    }) => visibility);
+
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1631761103699.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
 exports['src::mindmap.layout.node.spacing.top'] = (() => {
 
     let isFunction;
@@ -39685,7 +39788,7 @@ exports['src::mindmap.layout.node.data'] = (() => {
 
 
 
-    const var_current_scope_1631611915462 = new Map();
+    const var_current_scope_1631759994026 = new Map();
 
     return function(node, offset) {
 
@@ -39693,12 +39796,12 @@ exports['src::mindmap.layout.node.data'] = (() => {
 
 
 
-        if (!var_current_scope_1631611915462.has(this)) {
+        if (!var_current_scope_1631759994026.has(this)) {
 
-            var_current_scope_1631611915462.set(this, (() => {
+            var_current_scope_1631759994026.set(this, (() => {
                 const data = include('src::mindmap.data').bind(this);
                 const isRootNode = include('src::mindmap.layout.node.is.root').bind(this);
-                const isLeafNode = include('src::mindmap.node.is.leaf').bind(this);
+                const isLeafNode = include('src::mindmap.layout.node.is.leaf').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
                 const getTopSpacing = include('src::mindmap.layout.node.spacing.top').bind(this);
 
@@ -39713,7 +39816,7 @@ exports['src::mindmap.layout.node.data'] = (() => {
                      * 
                      * @import isRootNode from .is.root scoped
                      * 
-                     * @import isLeafNode from mindmap.node.is.leaf scoped
+                     * @import isLeafNode from .is.leaf scoped
                      * 
                      * @import getParentNode from mindmap.node.parent scoped
                      * 
@@ -39768,7 +39871,7 @@ exports['src::mindmap.layout.node.data'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915462.get(this);
+        const main = var_current_scope_1631759994026.get(this);
 
 
 
@@ -45099,44 +45202,6 @@ exports['src::mindmap.node.root'] = (() => {
 
 
         return main.call(this);
-    };
-
-})();
-
-exports['src::mindmap.nodes.child'] = (() => {
-
-
-
-
-
-
-
-    function main(node) {
-
-
-        /**
-         * 
-         * 返回子节点集合
-         * 
-         * @param {data.Record} node 节点
-         * 
-         * @return {array} 节点信息集合
-         * 
-         */
-
-        let {
-            children
-        } = node;
-
-        return Array.from(children);
-
-    }
-
-    return function(node) {
-
-
-
-        return main.call(this, node);
     };
 
 })();
