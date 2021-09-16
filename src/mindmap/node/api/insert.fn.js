@@ -109,7 +109,7 @@ if(baseNode && !isRootNode(baseNode) && baseNode !== placeholderNode){
 
     insertNode.parentNodeId = parentNode.id ;
 
-    if(!baseNode.hidden){
+    if(!parentNode.hidden){
 
         show(insertNode) ;
     }
