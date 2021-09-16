@@ -41199,7 +41199,7 @@ exports['src::mindmap.node.api.insert'] = (() => {
 
 
 
-    const var_current_scope_1631611915619 = new Map();
+    const var_current_scope_1631757606149 = new Map();
 
     return function(insertNode, baseNode, region) {
 
@@ -41207,9 +41207,9 @@ exports['src::mindmap.node.api.insert'] = (() => {
 
 
 
-        if (!var_current_scope_1631611915619.has(this)) {
+        if (!var_current_scope_1631757606149.has(this)) {
 
-            var_current_scope_1631611915619.set(this, (() => {
+            var_current_scope_1631757606149.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const isRootNode = include('src::mindmap.node.is.root').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
@@ -41334,7 +41334,7 @@ exports['src::mindmap.node.api.insert'] = (() => {
 
                         insertNode.parentNodeId = parentNode.id;
 
-                        if (!baseNode.hidden) {
+                        if (!parentNode.hidden) {
 
                             show(insertNode);
                         }
@@ -41353,7 +41353,7 @@ exports['src::mindmap.node.api.insert'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915619.get(this);
+        const main = var_current_scope_1631757606149.get(this);
 
 
 
