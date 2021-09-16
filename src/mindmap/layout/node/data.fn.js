@@ -7,7 +7,7 @@
  * 
  * @import isRootNode from .is.root scoped
  * 
- * @import isLeafNode from mindmap.node.is.leaf scoped
+ * @import isLeafNode from .is.leaf scoped
  * 
  * @import getParentNode from mindmap.node.parent scoped
  * 
