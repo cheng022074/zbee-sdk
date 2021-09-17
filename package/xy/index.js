@@ -36930,7 +36930,7 @@ exports['src::mindmap.node.field.hidden'] = (() => {
 
 
 
-    const var_current_scope_1631611915207 = new Map();
+    const var_current_scope_1631844989599 = new Map();
 
     return function(node, hidden) {
 
@@ -36938,9 +36938,9 @@ exports['src::mindmap.node.field.hidden'] = (() => {
 
 
 
-        if (!var_current_scope_1631611915207.has(this)) {
+        if (!var_current_scope_1631844989599.has(this)) {
 
-            var_current_scope_1631611915207.set(this, (() => {
+            var_current_scope_1631844989599.set(this, (() => {
                 const level = include('src::mindmap.node.field.hidden.level').bind(this);
 
                 function main(node, hidden) {
@@ -36972,10 +36972,6 @@ exports['src::mindmap.node.field.hidden'] = (() => {
 
                         if (node !== placeholderNode) {
 
-                            node.width = false;
-
-                            node.height = false;
-
                             node.selected = false;
                         }
                     }
@@ -36989,7 +36985,7 @@ exports['src::mindmap.node.field.hidden'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915207.get(this);
+        const main = var_current_scope_1631844989599.get(this);
 
 
 
@@ -38855,7 +38851,7 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-    const var_current_scope_1631611915383 = new Map();
+    const var_current_scope_1631846307684 = new Map();
 
     return async function(node) {
 
@@ -38863,9 +38859,9 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-        if (!var_current_scope_1631611915383.has(this)) {
+        if (!var_current_scope_1631846307684.has(this)) {
 
-            var_current_scope_1631611915383.set(this, (() => {
+            var_current_scope_1631846307684.set(this, (() => {
                 const show = include('src::mindmap.node.show').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
                 const append = include('src::mindmap.node.api.append').bind(this);
@@ -38901,11 +38897,12 @@ exports['src::mindmap.node.expand'] = (() => {
 
                         let {
                             expanded,
+                            hidden,
                             loaded,
                             loadChildrenData
                         } = node;
 
-                        if (!expanded) {
+                        if (!hidden && !expanded) {
 
                             let me = this,
                                 {
@@ -38964,7 +38961,7 @@ exports['src::mindmap.node.expand'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915383.get(this);
+        const main = var_current_scope_1631846307684.get(this);
 
 
 
@@ -40426,6 +40423,61 @@ exports['src::mindmap.layout.cache.clear'] = (() => {
 
 })();
 
+exports['src::mindmap.node.size.reset'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1631611915817 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1631611915817.has(this)) {
+
+            var_current_scope_1631611915817.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+
+                function main(node) {
+
+                    /**
+                     * 
+                     * 清除节点尺寸
+                     * 
+                     * @import from from ..from scoped
+                     * 
+                     * @param {mixed} node 节点
+                     * 
+                     */
+
+                    node = from(node);
+
+                    node.width = false;
+
+                    node.height = false;
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1631611915817.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
 exports['src::mindmap.layout'] = (() => {
 
 
@@ -40434,7 +40486,7 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-    const var_current_scope_1631611915417 = new Map();
+    const var_current_scope_1631844989635 = new Map();
 
     return function() {
 
@@ -40442,13 +40494,14 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-        if (!var_current_scope_1631611915417.has(this)) {
+        if (!var_current_scope_1631844989635.has(this)) {
 
-            var_current_scope_1631611915417.set(this, (() => {
+            var_current_scope_1631844989635.set(this, (() => {
                 const refresh = include('src::mindmap.layout.refresh').bind(this);
                 const isUnsized = include('src::mindmap.node.is.unsized').bind(this);
                 const getData = include('src::mindmap.node.data').bind(this);
                 const clear = include('src::mindmap.layout.cache.clear').bind(this);
+                const reset = include('src::mindmap.node.size.reset').bind(this);
 
 
                 /**
@@ -40462,6 +40515,8 @@ exports['src::mindmap.layout'] = (() => {
                  * @import getData from .node.data scoped
                  * 
                  * @import clear from .layout.cache.clear scoped
+                 * 
+                 * @import reset from .node.size.reset scoped
                  * 
                  */
 
@@ -40517,6 +40572,8 @@ exports['src::mindmap.layout'] = (() => {
                             getDescendantNodes
                         } = layoutConfig;
 
+                    initHiddenNodes.call(me);
+
                     rootNode = getRootNode() || rootNode;
 
                     let layoutNodes = [
@@ -40567,6 +40624,22 @@ exports['src::mindmap.layout'] = (() => {
                     }
                 }
 
+                function initHiddenNodes() {
+
+                    let {
+                        nodes
+                    } = this;
+
+                    nodes.forEach(node => {
+
+                        if (node.hidden) {
+
+                            reset(node);
+                        }
+
+                    });
+                }
+
                 function initUnsizedNodes(unsizedNodes, layoutNodes) {
 
                     unsizedNodes.clear();
@@ -40600,7 +40673,7 @@ exports['src::mindmap.layout'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915417.get(this);
+        const main = var_current_scope_1631844989635.get(this);
 
 
 
@@ -46386,61 +46459,6 @@ exports['src::mindmap.node.collapse.deep'] = (() => {
         }
 
         const main = var_current_scope_1621936469868.get(this);
-
-
-
-        return main.call(this, node);
-    };
-
-})();
-
-exports['src::mindmap.node.size.reset'] = (() => {
-
-
-
-
-
-
-
-    const var_current_scope_1631611915817 = new Map();
-
-    return function(node) {
-
-
-
-
-
-        if (!var_current_scope_1631611915817.has(this)) {
-
-            var_current_scope_1631611915817.set(this, (() => {
-                const from = include('src::mindmap.node.from').bind(this);
-
-                function main(node) {
-
-                    /**
-                     * 
-                     * 清除节点尺寸
-                     * 
-                     * @import from from ..from scoped
-                     * 
-                     * @param {mixed} node 节点
-                     * 
-                     */
-
-                    node = from(node);
-
-                    node.width = false;
-
-                    node.height = false;
-
-                }
-
-                return main;
-
-            })());
-        }
-
-        const main = var_current_scope_1631611915817.get(this);
 
 
 

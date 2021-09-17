@@ -25,11 +25,12 @@ if(node){
 
     let {
         expanded,
+        hidden,
         loaded,
         loadChildrenData
     } = node;
 
-    if(!expanded){
+    if(!hidden && !expanded){
 
         let me = this,
         {
