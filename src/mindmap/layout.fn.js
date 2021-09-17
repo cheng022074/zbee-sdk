@@ -11,6 +11,8 @@
  * 
  * @import clear from .layout.cache.clear scoped
  * 
+ * @import reset from .node.size.reset scoped
+ * 
  */
 
  function main(){
@@ -65,6 +67,8 @@
       getDescendantNodes
    } = layoutConfig ;
 
+   initHiddenNodes.call(me) ;
+
    rootNode = getRootNode() || rootNode;
 
    let layoutNodes = [
@@ -113,6 +117,22 @@
 
       callback(rootNode , layoutNodes) ;
    }
+ }
+
+ function initHiddenNodes(){
+
+   let {
+      nodes
+   } = this ;
+
+   nodes.forEach(node => {
+
+      if(node.hidden){
+
+         reset(node) ;
+      }
+
+   }) ;
  }
 
  function initUnsizedNodes(unsizedNodes , layoutNodes){
