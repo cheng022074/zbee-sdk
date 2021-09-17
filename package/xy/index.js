@@ -38851,7 +38851,7 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-    const var_current_scope_1631846307684 = new Map();
+    const var_current_scope_1631848645352 = new Map();
 
     return async function(node) {
 
@@ -38859,9 +38859,9 @@ exports['src::mindmap.node.expand'] = (() => {
 
 
 
-        if (!var_current_scope_1631846307684.has(this)) {
+        if (!var_current_scope_1631848645352.has(this)) {
 
-            var_current_scope_1631846307684.set(this, (() => {
+            var_current_scope_1631848645352.set(this, (() => {
                 const show = include('src::mindmap.node.show').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
                 const append = include('src::mindmap.node.api.append').bind(this);
@@ -38961,7 +38961,7 @@ exports['src::mindmap.node.expand'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631846307684.get(this);
+        const main = var_current_scope_1631848645352.get(this);
 
 
 
@@ -45584,7 +45584,7 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
 
 
 
-    const var_current_scope_1631611915747 = new Map();
+    const var_current_scope_1631848645415 = new Map();
 
     return function() {
 
@@ -45592,14 +45592,15 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
 
 
 
-        if (!var_current_scope_1631611915747.has(this)) {
+        if (!var_current_scope_1631848645415.has(this)) {
 
-            var_current_scope_1631611915747.set(this, (() => {
+            var_current_scope_1631848645415.set(this, (() => {
                 const getDescendantNodes = include('src::mindmap.layout.nodes.descendant').bind(this);
                 const getParentNode = include('src::mindmap.layout.node.parent').bind(this);
                 const insertBefore = include('src::mindmap.node.insert.before').bind(this);
                 const insertAfter = include('src::mindmap.node.insert.after').bind(this);
                 const append = include('src::mindmap.node.append').bind(this);
+                const reset = include('src::mindmap.node.size.reset').bind(this);
 
                 function main() {
 
@@ -45617,6 +45618,8 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
                      * @import insertAfter from mindmap.node.insert.after scoped
                      * 
                      * @import append from mindmap.node.append scoped
+                     * 
+                     * @import reset from mindmap.node.size.reset scoped
                      * 
                      */
 
@@ -45668,6 +45671,8 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
 
                     placeholderNode.parentNodeId = null;
 
+                    reset(draggingNode);
+
                     switch (dragOperation) {
 
                         case 'append':
@@ -45696,7 +45701,7 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915747.get(this);
+        const main = var_current_scope_1631848645415.get(this);
 
 
 

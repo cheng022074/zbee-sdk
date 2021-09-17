@@ -13,6 +13,8 @@
  * 
  * @import append from mindmap.node.append scoped
  * 
+ * @import reset from mindmap.node.size.reset scoped
+ * 
  */
 
 let me = this,
@@ -62,6 +64,8 @@ children.splice(children.indexOf(placeholderNode) , 1) ;
 placeholderNode.hidden = true ;
 
 placeholderNode.parentNodeId = null ;
+
+reset(draggingNode) ;
 
 switch(dragOperation){
 
