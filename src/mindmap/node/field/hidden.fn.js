@@ -26,10 +26,6 @@ if(hidden){
 
     if(node !== placeholderNode){
 
-        node.width = false ;
-
-        node.height = false ;
-
         node.selected = false ;
     }
 }
