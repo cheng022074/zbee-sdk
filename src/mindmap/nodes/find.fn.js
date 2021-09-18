@@ -12,9 +12,13 @@
  * 
  * @import data from ..data scoped
  * 
+ * @import from from ..node.from scoped
+ * 
  * @param {mixed} name 节点属性值
  * 
- * @param {mixed} value 节点属性值
+ * @param {mixed} [value] 节点属性值
+ * 
+ * @param {mixed} [scopeNode] 节点数据
  * 
  */
 
@@ -27,20 +31,40 @@ if(isString(name)){
 
     findFn = node => equals(get(node , name) , value) ;
 
+    if(scopeNode){
+
+        scopeNode = from(scopeNode) ;
+    }
+
 }else if(isFunction(name)){
 
     findFn = name ;
+
+    if(value){
+
+        scopeNode = from(scopeNode) ;
+    }
 }
+
 
 let result = [] ;
 
-nodes.forEach(node => {
+if(findFn){
 
-    if(findFn(node)){
+    if(scopeNode){
 
-        result.push(data(node)) ;
+        nodes = node.children ;
     }
 
-}) ;
+    nodes.forEach(node => {
+
+        if(findFn(node)){
+    
+            result.push(data(node)) ;
+        }
+    
+    }) ;    
+
+}
 
 return result ;
