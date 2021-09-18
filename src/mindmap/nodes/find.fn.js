@@ -53,7 +53,7 @@ if(findFn){
 
     if(scopeNode){
 
-        nodes = node.children ;
+        nodes = scopeNode.children ;
     }
 
     nodes.forEach(node => {

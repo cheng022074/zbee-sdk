@@ -40827,34 +40827,35 @@ exports['src::mindmap.nodes.find'] = (() => {
 
     let isString, isFunction, equals, get;
 
-    let var_init_locked_1621936468974;
+    let var_init_locked_1631945732975;
 
 
 
-    const var_current_scope_1621936468974 = new Map();
+    const var_current_scope_1631945732975 = new Map();
 
-    return function(name, value) {
+    return function(name, value, scopeNode) {
 
 
-        if (!var_init_locked_1621936468974) {
+        if (!var_init_locked_1631945732975) {
 
             isString = include('src::is.string');
             isFunction = include('src::is.function');
             equals = include('src::data.equals');
             get = include('src::object.value.get');
 
-            var_init_locked_1621936468974 = true;
+            var_init_locked_1631945732975 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936468974.has(this)) {
+        if (!var_current_scope_1631945732975.has(this)) {
 
-            var_current_scope_1621936468974.set(this, (() => {
+            var_current_scope_1631945732975.set(this, (() => {
                 const data = include('src::mindmap.data').bind(this);
+                const from = include('src::mindmap.node.from').bind(this);
 
-                function main(name, value) {
+                function main(name, value, scopeNode) {
 
                     /**
                      * 
@@ -40870,9 +40871,13 @@ exports['src::mindmap.nodes.find'] = (() => {
                      * 
                      * @import data from ..data scoped
                      * 
+                     * @import from from ..node.from scoped
+                     * 
                      * @param {mixed} name 节点属性值
                      * 
-                     * @param {mixed} value 节点属性值
+                     * @param {mixed} [value] 节点属性值
+                     * 
+                     * @param {mixed} [scopeNode] 节点数据
                      * 
                      */
 
@@ -40885,21 +40890,41 @@ exports['src::mindmap.nodes.find'] = (() => {
 
                         findFn = node => equals(get(node, name), value);
 
+                        if (scopeNode) {
+
+                            scopeNode = from(scopeNode);
+                        }
+
                     } else if (isFunction(name)) {
 
                         findFn = name;
+
+                        if (value) {
+
+                            scopeNode = from(scopeNode);
+                        }
                     }
+
 
                     let result = [];
 
-                    nodes.forEach(node => {
+                    if (findFn) {
 
-                        if (findFn(node)) {
+                        if (scopeNode) {
 
-                            result.push(data(node));
+                            nodes = scopeNode.children;
                         }
 
-                    });
+                        nodes.forEach(node => {
+
+                            if (findFn(node)) {
+
+                                result.push(data(node));
+                            }
+
+                        });
+
+                    }
 
                     return result;
 
@@ -40910,11 +40935,11 @@ exports['src::mindmap.nodes.find'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936468974.get(this);
+        const main = var_current_scope_1631945732975.get(this);
 
 
 
-        return main.call(this, name, value);
+        return main.call(this, name, value, scopeNode);
     };
 
 })();
