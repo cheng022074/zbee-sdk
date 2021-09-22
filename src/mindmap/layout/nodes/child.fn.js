@@ -19,14 +19,8 @@
  function getChildNodes(node){
 
    let {
-      children,
-      expanded
+      children
    } = node;
-
-   if(!expanded){
-
-      return [] ;
-   }
 
    let result = [],
    {
