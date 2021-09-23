@@ -39414,7 +39414,7 @@ exports['src::mindmap.destroy'] = (() => {
 
 
 
-    const var_current_scope_1621936468491 = new Map();
+    const var_current_scope_1632364039415 = new Map();
 
     return function() {
 
@@ -39422,9 +39422,9 @@ exports['src::mindmap.destroy'] = (() => {
 
 
 
-        if (!var_current_scope_1621936468491.has(this)) {
+        if (!var_current_scope_1632364039415.has(this)) {
 
-            var_current_scope_1621936468491.set(this, (() => {
+            var_current_scope_1632364039415.set(this, (() => {
                 const remove = include('src::mindmap.node.delete').bind(this);
 
                 function main() {
@@ -39470,7 +39470,7 @@ exports['src::mindmap.destroy'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936468491.get(this);
+        const main = var_current_scope_1632364039415.get(this);
 
 
 
@@ -46513,6 +46513,60 @@ exports['src::mindmap.node.collapse.deep'] = (() => {
 
 
         return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.nodes.size.reset'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1632364560752 = new Map();
+
+    return function() {
+
+
+
+
+
+        if (!var_current_scope_1632364560752.has(this)) {
+
+            var_current_scope_1632364560752.set(this, (() => {
+                const reset = include('src::mindmap.node.size.reset').bind(this);
+
+                function main() {
+
+                    /**
+                     * 
+                     * 清除脑图所有节点尺寸
+                     * 
+                     * @import reset from ....node.size.reset scoped
+                     * 
+                     * 
+                     */
+
+                    let {
+                        nodes
+                    } = this;
+
+                    nodes.forEach(reset);
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1632364560752.get(this);
+
+
+
+        return main.call(this);
     };
 
 })();

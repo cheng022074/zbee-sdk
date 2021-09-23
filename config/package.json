@@ -40,6 +40,7 @@
             "mindmap.node.expand.deep",
             "mindmap.node.collapse.deep",
             "mindmap.node.size.reset",
+            "mindmap.nodes.size.reset",
             "function.*",
             "id.generate",
             "calendar.month.view",
