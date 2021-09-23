@@ -7792,6 +7792,18 @@
     "folder": "src",
     "name": "mindmap.prelayout.nodes.descendant"
   },
+  "src::mindmap.prelayout.nodes.descendant.visibility": {
+    "meta": "code.meta.script.function",
+    "signature": "<array> src::mindmap.prelayout.nodes.descendant.visibility(<mixed> node)",
+    "standard": true,
+    "importNames": [
+      "src::mindmap.node.from"
+    ],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    \n    \n                    \n \n                    \n\n                    const var_current_scope_1632373813886 = new Map();\n    \n                    return function(node){\n    \n                        \n    \n                        \n        \n        if(!var_current_scope_1632373813886.has(this)){\n\n            var_current_scope_1632373813886.set(this , (() => {\n                const from = include('src::mindmap.node.from').bind(this);\n\n                \r\n/**\r\n * \r\n * 获得子孙节点\r\n * \r\n * @import from from mindmap.node.from scoped\r\n * \r\n * @param {mixed} node 脑图节点\r\n * \r\n * @return {array} 子孙节点数组 \r\n * \r\n */\r\n\r\n function main(node){\r\n\r\n    return getDescendantNodes(from(node)) ;\r\n }\r\n\r\n function getDescendantNodes({\r\n     expanded,\r\n     children\r\n }){\r\n\r\n    let result = [] ;\r\n\r\n    if(expanded){\r\n\r\n        for(let childNode of children){\r\n\r\n            if(childNode.visibility){\r\n\r\n                result.push(childNode) ;\r\n\r\n                result.push(...getDescendantNodes(childNode)) ;\r\n            }\r\n        }\r\n\r\n        return result ;\r\n    }\r\n\r\n    return result ;\r\n }\n\n                return main ;\n\n            })());\n        }\n\n        const main = var_current_scope_1632373813886.get(this) ;\n\n        \n    \n                        return main.call(this , node) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "mindmap.prelayout.nodes.descendant.visibility"
+  },
   "src::mindmap.prelayout.nodes.child": {
     "meta": "code.meta.script.function",
     "signature": "<array> src::mindmap.prelayout.nodes.child(<data.Record> node)",

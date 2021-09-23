@@ -46268,6 +46268,84 @@ exports['src::mindmap.prelayout.nodes.descendant'] = (() => {
 
 })();
 
+exports['src::mindmap.prelayout.nodes.descendant.visibility'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1632373813886 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1632373813886.has(this)) {
+
+            var_current_scope_1632373813886.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+
+
+                /**
+                 * 
+                 * 获得子孙节点
+                 * 
+                 * @import from from mindmap.node.from scoped
+                 * 
+                 * @param {mixed} node 脑图节点
+                 * 
+                 * @return {array} 子孙节点数组 
+                 * 
+                 */
+
+                function main(node) {
+
+                    return getDescendantNodes(from(node));
+                }
+
+                function getDescendantNodes({
+                    expanded,
+                    children
+                }) {
+
+                    let result = [];
+
+                    if (expanded) {
+
+                        for (let childNode of children) {
+
+                            if (childNode.visibility) {
+
+                                result.push(childNode);
+
+                                result.push(...getDescendantNodes(childNode));
+                            }
+                        }
+
+                        return result;
+                    }
+
+                    return result;
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1632373813886.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
 exports['src::mindmap.prelayout.nodes.child'] = (() => {
 
 
