@@ -17,25 +17,19 @@
  }
 
  function getDescendantNodes({
-     expanded,
      children
  }){
 
     let result = [] ;
 
-    if(expanded){
+    for(let childNode of children){
 
-        for(let childNode of children){
+        if(childNode.visibility){
 
-            if(childNode.visibility){
+            result.push(childNode) ;
 
-                result.push(childNode) ;
-
-                result.push(...getDescendantNodes(childNode)) ;
-            }
+            result.push(...getDescendantNodes(childNode)) ;
         }
-
-        return result ;
     }
 
     return result ;
