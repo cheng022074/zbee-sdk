@@ -64,7 +64,8 @@
    } = me,
    {
       getRootNode,
-      getDescendantNodes
+      getDescendantNodes,
+      resetAllNodeSize
    } = layoutConfig ;
 
    initHiddenNodes.call(me) ;
@@ -75,6 +76,14 @@
       rootNode,
       ...getDescendantNodes(rootNode)
    ] ;
+
+   if(resetAllNodeSize === true){
+
+      for(let layoutNode of layoutNodes){
+
+         reset(layoutNode) ;
+      }
+   }
 
    let unsizedNodes = new Map() ;
 

@@ -40506,7 +40506,7 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-    const var_current_scope_1631844989635 = new Map();
+    const var_current_scope_1632379063948 = new Map();
 
     return function() {
 
@@ -40514,9 +40514,9 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-        if (!var_current_scope_1631844989635.has(this)) {
+        if (!var_current_scope_1632379063948.has(this)) {
 
-            var_current_scope_1631844989635.set(this, (() => {
+            var_current_scope_1632379063948.set(this, (() => {
                 const refresh = include('src::mindmap.layout.refresh').bind(this);
                 const isUnsized = include('src::mindmap.node.is.unsized').bind(this);
                 const getData = include('src::mindmap.node.data').bind(this);
@@ -40589,7 +40589,8 @@ exports['src::mindmap.layout'] = (() => {
                         } = me,
                         {
                             getRootNode,
-                            getDescendantNodes
+                            getDescendantNodes,
+                            resetAllNodeSize
                         } = layoutConfig;
 
                     initHiddenNodes.call(me);
@@ -40600,6 +40601,14 @@ exports['src::mindmap.layout'] = (() => {
                         rootNode,
                         ...getDescendantNodes(rootNode)
                     ];
+
+                    if (resetAllNodeSize === true) {
+
+                        for (let layoutNode of layoutNodes) {
+
+                            reset(layoutNode);
+                        }
+                    }
 
                     let unsizedNodes = new Map();
 
@@ -40693,7 +40702,7 @@ exports['src::mindmap.layout'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631844989635.get(this);
+        const main = var_current_scope_1632379063948.get(this);
 
 
 
@@ -46198,7 +46207,7 @@ exports['src::mindmap.prelayout.nodes.descendant'] = (() => {
 
 
 
-    const var_current_scope_1631686261279 = new Map();
+    const var_current_scope_1632378410095 = new Map();
 
     return function(node) {
 
@@ -46206,9 +46215,9 @@ exports['src::mindmap.prelayout.nodes.descendant'] = (() => {
 
 
 
-        if (!var_current_scope_1631686261279.has(this)) {
+        if (!var_current_scope_1632378410095.has(this)) {
 
-            var_current_scope_1631686261279.set(this, (() => {
+            var_current_scope_1632378410095.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
 
 
@@ -46259,7 +46268,7 @@ exports['src::mindmap.prelayout.nodes.descendant'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631686261279.get(this);
+        const main = var_current_scope_1632378410095.get(this);
 
 
 
@@ -46276,7 +46285,7 @@ exports['src::mindmap.prelayout.nodes.descendant.visibility'] = (() => {
 
 
 
-    const var_current_scope_1632373813886 = new Map();
+    const var_current_scope_1632378410115 = new Map();
 
     return function(node) {
 
@@ -46284,9 +46293,9 @@ exports['src::mindmap.prelayout.nodes.descendant.visibility'] = (() => {
 
 
 
-        if (!var_current_scope_1632373813886.has(this)) {
+        if (!var_current_scope_1632378410115.has(this)) {
 
-            var_current_scope_1632373813886.set(this, (() => {
+            var_current_scope_1632378410115.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
 
 
@@ -46308,25 +46317,19 @@ exports['src::mindmap.prelayout.nodes.descendant.visibility'] = (() => {
                 }
 
                 function getDescendantNodes({
-                    expanded,
                     children
                 }) {
 
                     let result = [];
 
-                    if (expanded) {
+                    for (let childNode of children) {
 
-                        for (let childNode of children) {
+                        if (childNode.visibility) {
 
-                            if (childNode.visibility) {
+                            result.push(childNode);
 
-                                result.push(childNode);
-
-                                result.push(...getDescendantNodes(childNode));
-                            }
+                            result.push(...getDescendantNodes(childNode));
                         }
-
-                        return result;
                     }
 
                     return result;
@@ -46337,7 +46340,7 @@ exports['src::mindmap.prelayout.nodes.descendant.visibility'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1632373813886.get(this);
+        const main = var_current_scope_1632378410115.get(this);
 
 
 
