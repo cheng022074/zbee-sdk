@@ -19,6 +19,11 @@
 
 node = from(node) ;
 
+if(!node){
+
+  return false ;
+}
+
 let me = this,
 {
   selectedNode
