@@ -42,6 +42,11 @@ if(node){
             expand(parentNode) ;
         }
 
+        if(node.hidden){
+
+            return false ;
+        }
+
         return true ;
     }
 }
