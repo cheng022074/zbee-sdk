@@ -56,6 +56,11 @@ if(node !== selectedNode){
         expand(parentNode) ;
 
       }
+
+      if(node.hidden){
+
+        return false ;
+      }
   }
 
   node.selected = true ;

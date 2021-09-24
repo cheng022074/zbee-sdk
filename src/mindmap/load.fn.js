@@ -39,6 +39,8 @@ if(rootNode){
 
     me.rootNode = rootNode ;
 
+    rootNode.hidden = false ;
+
     rootNode.expanded = true ;
 
     return rootNode ;
