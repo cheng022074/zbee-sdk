@@ -37469,7 +37469,7 @@ exports['src::mindmap.save'] = (() => {
      * 
      */
 
-    function main() {
+    function main(fields) {
 
         let {
             rootNode

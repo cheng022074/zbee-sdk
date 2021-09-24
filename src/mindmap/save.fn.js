@@ -8,7 +8,7 @@
  * 
  */
 
-function main(){
+function main(fields){
 
     let {
         rootNode
