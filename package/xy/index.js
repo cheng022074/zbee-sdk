@@ -26934,30 +26934,30 @@ exports['src::browser.event.gesture.drag.move.drag'] = (() => {
 
     let prevent, getEvent, getTouchEvents;
 
-    let var_init_locked_1621936465403;
+    let var_init_locked_1632649665859;
 
 
 
-    const var_current_scope_1621936465403 = new Map();
+    const var_current_scope_1632649665859 = new Map();
 
     return function(e) {
 
 
-        if (!var_init_locked_1621936465403) {
+        if (!var_init_locked_1632649665859) {
 
             prevent = include('src::browser.event.prevent');
             getEvent = include('src::browser.event.single');
             getTouchEvents = include('src::browser.event.touches');
 
-            var_init_locked_1621936465403 = true;
+            var_init_locked_1632649665859 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936465403.has(this)) {
+        if (!var_current_scope_1632649665859.has(this)) {
 
-            var_current_scope_1621936465403.set(this, (() => {
+            var_current_scope_1632649665859.set(this, (() => {
                 const updateInfo = include('src::browser.event.gesture.drag.info.update').bind(this);
                 const disabled = include('src::browser.event.gesture.drag.disabled').bind(this);
 
@@ -27012,6 +27012,18 @@ exports['src::browser.event.gesture.drag.move.drag'] = (() => {
                         y
                     };
 
+                    if (!me.startPoint) {
+
+                        disabled(e);
+
+                        dispatch('drag', {
+                            info: me.info,
+                            nativeEvent
+                        });
+
+                        return;
+                    }
+
                     updateInfo('x', true);
 
                     updateInfo('y', true);
@@ -27034,7 +27046,7 @@ exports['src::browser.event.gesture.drag.move.drag'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936465403.get(this);
+        const main = var_current_scope_1632649665859.get(this);
 
 
 
