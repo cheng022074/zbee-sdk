@@ -171,7 +171,14 @@
 
             get(){
 
-               return me ;
+               return {
+
+                  getParentNode(node){
+
+                     return me.getParentNode(node) ;
+                  }
+
+               } ;
             }
          },
 
