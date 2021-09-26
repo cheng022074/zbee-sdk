@@ -36,13 +36,6 @@ let me = this,
     timer
 } = me;
 
-if(!startPoint){
-
-    disabled(e) ;
-
-    return ;
-}
-
 if(timer){
 
     return ;

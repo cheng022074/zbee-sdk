@@ -34,15 +34,6 @@ me.lastPoint = {
     y
 } ;
 
-if(!me.startPoint){
-
-    disabled(e) ;
-
-    dispatch('dragend', info);
-
-    return ;
-}
-
 updateInfo('x');
 
 updateInfo('y');
