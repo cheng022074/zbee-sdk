@@ -34,6 +34,15 @@ me.lastPoint = {
     y
 } ;
 
+if(!me.startPoint){
+
+    disabled(e) ;
+
+    dispatch('dragend', info);
+
+    return ;
+}
+
 updateInfo('x');
 
 updateInfo('y');
@@ -43,8 +52,6 @@ info.time = Date.now();
 onAxisEnd('x', info);
 
 onAxisEnd('y', info);
-
-dispatch('dragend', info);
 
 disabled(e) ;
 

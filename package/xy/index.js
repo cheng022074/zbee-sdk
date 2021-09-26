@@ -27086,29 +27086,29 @@ exports['src::browser.event.gesture.drag.end'] = (() => {
 
     let prevent, getEvent;
 
-    let var_init_locked_1621936465429;
+    let var_init_locked_1632648779893;
 
 
 
-    const var_current_scope_1621936465429 = new Map();
+    const var_current_scope_1632648779893 = new Map();
 
     return function(e) {
 
 
-        if (!var_init_locked_1621936465429) {
+        if (!var_init_locked_1632648779893) {
 
             prevent = include('src::browser.event.prevent');
             getEvent = include('src::browser.event.single');
 
-            var_init_locked_1621936465429 = true;
+            var_init_locked_1632648779893 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936465429.has(this)) {
+        if (!var_current_scope_1632648779893.has(this)) {
 
-            var_current_scope_1621936465429.set(this, (() => {
+            var_current_scope_1632648779893.set(this, (() => {
                 const updateInfo = include('src::browser.event.gesture.drag.info.update').bind(this);
                 const onAxisEnd = include('src::browser.event.gesture.drag.end.axis').bind(this);
                 const disabled = include('src::browser.event.gesture.drag.disabled').bind(this);
@@ -27151,6 +27151,15 @@ exports['src::browser.event.gesture.drag.end'] = (() => {
                         y
                     };
 
+                    if (!me.startPoint) {
+
+                        disabled(e);
+
+                        dispatch('dragend', info);
+
+                        return;
+                    }
+
                     updateInfo('x');
 
                     updateInfo('y');
@@ -27160,8 +27169,6 @@ exports['src::browser.event.gesture.drag.end'] = (() => {
                     onAxisEnd('x', info);
 
                     onAxisEnd('y', info);
-
-                    dispatch('dragend', info);
 
                     disabled(e);
 
@@ -27174,7 +27181,7 @@ exports['src::browser.event.gesture.drag.end'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936465429.get(this);
+        const main = var_current_scope_1632648779893.get(this);
 
 
 
