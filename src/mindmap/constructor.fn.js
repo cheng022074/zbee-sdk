@@ -176,6 +176,11 @@
                   getParentNode(node){
 
                      return me.getParentNode(node) ;
+                  },
+
+                  getChildNodes(node){
+
+                     return me.getChildNodes(node) ;
                   }
 
                } ;
