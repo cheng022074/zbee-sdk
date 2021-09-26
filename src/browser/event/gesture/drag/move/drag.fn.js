@@ -47,6 +47,18 @@ me.lastPoint = {
     y
 } ;
 
+if(!me.startPoint){
+
+    disabled(e) ;
+
+    dispatch('drag' , {
+        info:me.info,
+        nativeEvent
+    }) ;
+
+    return ;
+}
+
 updateInfo('x' , true);
 
 updateInfo('y' , true);
