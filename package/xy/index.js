@@ -37103,11 +37103,11 @@ exports['src::mindmap.constructor'] = (() => {
 
     let createReader, isObject, isArray, emptyFn, isNumber, isString, get;
 
-    let var_init_locked_1632531229350;
+    let var_init_locked_1632694713440;
 
 
 
-    const var_current_scope_1632531229350 = new Map();
+    const var_current_scope_1632694713440 = new Map();
 
     return function({
         reader,
@@ -37122,7 +37122,7 @@ exports['src::mindmap.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1632531229350) {
+        if (!var_init_locked_1632694713440) {
 
             createReader = include('src::data.reader.json');
             isObject = include('src::is.object.simple');
@@ -37132,15 +37132,15 @@ exports['src::mindmap.constructor'] = (() => {
             isString = include('src::is.string');
             get = include('src::function.get');
 
-            var_init_locked_1632531229350 = true;
+            var_init_locked_1632694713440 = true;
         }
 
 
 
 
-        if (!var_current_scope_1632531229350.has(this)) {
+        if (!var_current_scope_1632694713440.has(this)) {
 
-            var_current_scope_1632531229350.set(this, (() => {
+            var_current_scope_1632694713440.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const getHidden = include('src::mindmap.node.field.hidden.get').bind(this);
@@ -37332,7 +37332,14 @@ exports['src::mindmap.constructor'] = (() => {
 
                             get() {
 
-                                return me;
+                                return {
+
+                                    getParentNode(node) {
+
+                                        return me.getParentNode(node);
+                                    }
+
+                                };
                             }
                         },
 
@@ -37430,7 +37437,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1632531229350.get(this);
+        const main = var_current_scope_1632694713440.get(this);
 
 
 
@@ -39095,7 +39102,7 @@ exports['src::mindmap.node.api.adjust.selected.after'] = (() => {
 
 
 
-    const var_current_scope_1632531229429 = new Map();
+    const var_current_scope_1632693876489 = new Map();
 
     return function({
         node,
@@ -39108,9 +39115,9 @@ exports['src::mindmap.node.api.adjust.selected.after'] = (() => {
 
 
 
-        if (!var_current_scope_1632531229429.has(this)) {
+        if (!var_current_scope_1632693876489.has(this)) {
 
-            var_current_scope_1632531229429.set(this, (() => {
+            var_current_scope_1632693876489.set(this, (() => {
                 const select = include('src::mindmap.node.select').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
 
@@ -39179,7 +39186,7 @@ exports['src::mindmap.node.api.adjust.selected.after'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1632531229429.get(this);
+        const main = var_current_scope_1632693876489.get(this);
 
 
 
