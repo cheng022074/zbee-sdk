@@ -44,5 +44,7 @@ onAxisEnd('x', info);
 
 onAxisEnd('y', info);
 
+dispatch('dragend', info);
+
 disabled(e) ;
 
