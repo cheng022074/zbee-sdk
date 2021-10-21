@@ -32,9 +32,20 @@ function getBottomNearestNodePositionInfoByPoint(point){
 
 }
 
-function getNearestNodePositionInfo(...nodePositionInfos){
+function getNearestNodePositionInfo(...nodePositionInfoList){
 
+   nodePositionInfoList = nodePositionInfoList
+      .filter(nodePositionInfo => !! nodePositionInfo)
+      .sort(({
+         distance:distance1
+      } , {
+         distance:distance2
+      }) => distance1 - distance2);
 
+   if(nodePositionInfoList.length){
+
+      return nodePositionInfoList[0] ;
+   }
 }
 
 function getNodePositionInfo(node , point){
