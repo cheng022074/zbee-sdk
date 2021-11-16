@@ -63,7 +63,7 @@
   
     }else{
   
-      
+      offsetY = top ;
     }
   
     return {
