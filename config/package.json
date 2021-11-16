@@ -20,6 +20,7 @@
             "file.*",
             "mindmap",
             "mindmap.layout.pattern.logic.right",
+            "mindmap.layout.pattern.absolutely",
             "mindmap.layout.positioner.logic.right",
             "mindmap.node.root",
             "mindmap.nodes.descendant",
