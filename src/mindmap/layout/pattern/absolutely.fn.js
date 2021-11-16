@@ -1,29 +1,7 @@
 
 /**
  * 
- * 向右逻辑图算法实现
- * 
- * @import setX from ....node.x scoped
- * 
- * @import setY from ....node.y scoped
- * 
- * @import setOffsetY from ....node.y.offset scoped
- * 
- * @import isRootNode from ....node.is.root scoped
- * 
- * @import getParentNode from ....node.parent scoped
- * 
- * @import getChildNodes from ....nodes.child scoped
- * 
- * @import getDescendantNodes from ....nodes.descendant scoped
- * 
- * @import getDescendantRegion from ....node.region.descendant.logic scoped
- * 
- * @import getSelfRegion from ....node.region.self scoped
- * 
- * @import getChildRegion from ....node.region.child.logic scoped
- * 
- * @import getCompensateLeftRegion from ....node.region.child.logic.compensate.left scoped
+ * 绝对定位布局实现
  * 
  * @import getHeight from math.region.height
  * 
@@ -40,8 +18,6 @@
  * @import contains from math.region.contains.x
  * 
  * @import from from math.region.from
- * 
- * @import createLayoutedRegions from .regions.layouted
  * 
  * @param {data.Record} node 布局节点
  * 
@@ -84,25 +60,10 @@
   
     if(height > mindmapHeight){
   
-      mindmapHeight = height ;
   
-      let y = getY(region),
-          offsetY = (height - regionHeight) / 2;
-  
-      if(y < 0){
-  
-          setOffsetY(node , - y + offsetY) ;
-      
-      }else{
-  
-          setOffsetY(node , offsetY) ;
-      }
-    
     }else{
   
-      offsetY = top ;
-  
-      setOffsetY(node , - getY(region)) ;
+      
     }
   
     return {
