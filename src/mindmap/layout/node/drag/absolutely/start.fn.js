@@ -9,6 +9,8 @@
  * 
  * @param {mixed} node 节点
  * 
+ * @param {object} xy 起始坐标
+ * 
  */
 
  let me = this,
@@ -21,13 +23,13 @@
     return false;
  }
 
- console.log('绝对布局' , '开始拖曳节点') ;
-
  node = from(node) ;
 
  select(node) ;
 
  me.draggingNode = node ;
+
+ me.draggingOffsetXY = xy ;
 
  node.dragging = true ;
 

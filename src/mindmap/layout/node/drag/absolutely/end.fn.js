@@ -12,7 +12,7 @@
  
  delete me.draggingNode ;
 
- console.log('绝对布局' , '结束拖曳节点') ;
+ delete me.draggingOffsetXY ;
 
  draggingNode.dragging = false ;
  
