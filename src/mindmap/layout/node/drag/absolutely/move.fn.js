@@ -20,8 +20,21 @@ let {
     draggingOffsetXY
 } = this ;
 
-draggingNode.x = x - draggingOffsetXY.x;
+x -= draggingOffsetXY.x
 
-draggingNode.y = y - draggingOffsetXY.y;
+x -= x % 10 ;
 
-return true ;
+y -= draggingOffsetXY.y
+
+y -= y % 10 ;
+
+let {
+    x:oldX,
+    y:oldY
+} = draggingNode ;
+
+draggingNode.x = x;
+
+draggingNode.y = y;
+
+return oldX !== x  || oldY !== y;
