@@ -45916,21 +45916,21 @@ exports['src::mindmap.layout.node.drag.absolutely.start'] = (() => {
 
 
 
-    const var_current_scope_1637117417719 = new Map();
+    const var_current_scope_1637134622391 = new Map();
 
-    return function(node) {
-
-
+    return function(node, xy) {
 
 
 
-        if (!var_current_scope_1637117417719.has(this)) {
 
-            var_current_scope_1637117417719.set(this, (() => {
+
+        if (!var_current_scope_1637134622391.has(this)) {
+
+            var_current_scope_1637134622391.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
                 const select = include('src::mindmap.node.select').bind(this);
 
-                function main(node) {
+                function main(node, xy) {
 
 
                     /**
@@ -45942,6 +45942,8 @@ exports['src::mindmap.layout.node.drag.absolutely.start'] = (() => {
                      * @import select from mindmap.node.select scoped
                      * 
                      * @param {mixed} node 节点
+                     * 
+                     * @param {object} xy 起始坐标
                      * 
                      */
 
@@ -45955,13 +45957,13 @@ exports['src::mindmap.layout.node.drag.absolutely.start'] = (() => {
                         return false;
                     }
 
-                    console.log('绝对布局', '开始拖曳节点');
-
                     node = from(node);
 
                     select(node);
 
                     me.draggingNode = node;
+
+                    me.draggingOffsetXY = xy;
 
                     node.dragging = true;
 
@@ -45974,11 +45976,11 @@ exports['src::mindmap.layout.node.drag.absolutely.start'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637117417719.get(this);
+        const main = var_current_scope_1637134622391.get(this);
 
 
 
-        return main.call(this, node);
+        return main.call(this, node, xy);
     };
 
 })();
@@ -45991,37 +45993,80 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
 
 
 
-    function main(node, {
-        x,
-        y
-    }) {
-
-
-        /**
-         * 
-         * 拖曳节点
-         * 
-         * @param {object} node 节点
-         * 
-         * @param {object} xy 坐标
-         * 
-         * @param {number} xy.x 横坐标
-         * 
-         * @param {number} xy.y 纵坐标
-         * 
-         */
-
-        console.log('绝对布局', '拖曳节点', x, y);
-
-        return true;
-
-
-    }
+    const var_current_scope_1637142900181 = new Map();
 
     return function(node, {
         x,
         y
     }) {
+
+
+
+
+
+        if (!var_current_scope_1637142900181.has(this)) {
+
+            var_current_scope_1637142900181.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+
+                function main(node, {
+                    x,
+                    y
+                }) {
+
+
+                    /**
+                     * 
+                     * 拖曳节点
+                     * 
+                     * @import from from mindmap.node.from scoped
+                     * 
+                     * @param {object} node 节点
+                     * 
+                     * @param {object} xy 坐标
+                     * 
+                     * @param {number} xy.x 横坐标
+                     * 
+                     * @param {number} xy.y 纵坐标
+                     * 
+                     */
+
+                    let {
+                        draggingNode,
+                        draggingOffsetXY,
+                        layoutConfig
+                    } = this, {
+                        nodeVerticalSeparationDistance
+                    } = layoutConfig;
+
+                    x -= draggingOffsetXY.x
+
+                    x -= x % nodeVerticalSeparationDistance;
+
+                    y -= draggingOffsetXY.y
+
+                    y -= y % nodeVerticalSeparationDistance;
+
+                    let {
+                        x: oldX,
+                        y: oldY
+                    } = draggingNode;
+
+                    draggingNode.x = x;
+
+                    draggingNode.y = y;
+
+                    return oldX !== x || oldY !== y;
+
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1637142900181.get(this);
 
 
 
@@ -46057,7 +46102,7 @@ exports['src::mindmap.layout.node.drag.absolutely.end'] = (() => {
 
         delete me.draggingNode;
 
-        console.log('绝对布局', '结束拖曳节点');
+        delete me.draggingOffsetXY;
 
         draggingNode.dragging = false;
 

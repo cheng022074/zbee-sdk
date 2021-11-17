@@ -17,16 +17,20 @@
 
 let {
     draggingNode,
-    draggingOffsetXY
-} = this ;
+    draggingOffsetXY,
+    layoutConfig
+} = this,
+{
+    nodeVerticalSeparationDistance
+} = layoutConfig;
 
 x -= draggingOffsetXY.x
 
-x -= x % 10 ;
+x -= x % nodeVerticalSeparationDistance ;
 
 y -= draggingOffsetXY.y
 
-y -= y % 10 ;
+y -= y % nodeVerticalSeparationDistance ;
 
 let {
     x:oldX,
