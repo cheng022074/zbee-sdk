@@ -3,7 +3,9 @@
  * 
  * 开始拖曳节点
  * 
- *  @import select from mindmap.node.select scoped
+ * @import from from mindmap.node.from scoped
+ * 
+ * @import select from mindmap.node.select scoped
  * 
  * @param {mixed} node 节点
  * 

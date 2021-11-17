@@ -13,6 +13,6 @@
  * 
  */
 
-console.log('绝对布局' , '拖曳节点') ;
+console.log('绝对布局' , '拖曳节点' , x , y) ;
 
 return true ;
