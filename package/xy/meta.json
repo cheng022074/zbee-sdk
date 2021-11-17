@@ -7721,6 +7721,39 @@
     "folder": "src",
     "name": "mindmap.layout.node.drag.end"
   },
+  "src::mindmap.layout.node.drag.absolutely.start": {
+    "meta": "code.meta.script.function",
+    "signature": "<void> src::mindmap.layout.node.drag.absolutely.start(<mixed> node)",
+    "standard": true,
+    "importNames": [
+      "src::mindmap.node.from",
+      "src::mindmap.node.select"
+    ],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    \n    \n                    \n \n                    \n\n                    const var_current_scope_1637117417719 = new Map();\n    \n                    return function(node){\n    \n                        \n    \n                        \n        \n        if(!var_current_scope_1637117417719.has(this)){\n\n            var_current_scope_1637117417719.set(this , (() => {\n                const from = include('src::mindmap.node.from').bind(this);\nconst select = include('src::mindmap.node.select').bind(this);\n\n                function main(node){\n\n        \r\n/**\r\n * \r\n * 开始拖曳节点\r\n * \r\n * @import from from mindmap.node.from scoped\r\n * \r\n * @import select from mindmap.node.select scoped\r\n * \r\n * @param {mixed} node 节点\r\n * \r\n */\r\n\r\n let me = this,\r\n {\r\n    draggingNode\r\n } = me;\r\n\r\n if(draggingNode){\r\n\r\n    return false;\r\n }\r\n\r\n console.log('绝对布局' , '开始拖曳节点') ;\r\n\r\n node = from(node) ;\r\n\r\n select(node) ;\r\n\r\n me.draggingNode = node ;\r\n\r\n node.dragging = true ;\r\n\r\n return true ;\n\n    }\n\n                return main ;\n\n            })());\n        }\n\n        const main = var_current_scope_1637117417719.get(this) ;\n\n        \n    \n                        return main.call(this , node) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "mindmap.layout.node.drag.absolutely.start"
+  },
+  "src::mindmap.layout.node.drag.absolutely.move": {
+    "meta": "code.meta.script.function",
+    "signature": "<void> src::mindmap.layout.node.drag.absolutely.move(<object> node , {<number> x , <number> y})",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    \n    \n                    \n    \n                    \n\n                    function main(node , {x , y}){\n\n        \r\n/**\r\n * \r\n * 拖曳节点\r\n * \r\n * @param {object} node 节点\r\n * \r\n * @param {object} xy 坐标\r\n * \r\n * @param {number} xy.x 横坐标\r\n * \r\n * @param {number} xy.y 纵坐标\r\n * \r\n */\r\n\r\nconsole.log('绝对布局' , '拖曳节点' , x , y) ;\r\n\r\nreturn true ;\r\n\n\n    }\n    \n                    return function(node , {x , y}){\n    \n                        \n    \n                        return main.call(this , node , {x , y}) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "mindmap.layout.node.drag.absolutely.move"
+  },
+  "src::mindmap.layout.node.drag.absolutely.end": {
+    "meta": "code.meta.script.function",
+    "signature": "<void> src::mindmap.layout.node.drag.absolutely.end()",
+    "standard": true,
+    "importNames": [],
+    "dependentModules": {},
+    "data": "(() =>{\n\n                    \n    \n                    \n    \n                    \n\n                    function main(){\n\n        \r\n/**\r\n * \r\n * 结束拖曳节点\r\n * \r\n */\r\n\r\n let me = this,\r\n {\r\n    draggingNode\r\n } = me;\r\n \r\n delete me.draggingNode ;\r\n\r\n console.log('绝对布局' , '结束拖曳节点') ;\r\n\r\n draggingNode.dragging = false ;\r\n \r\n return true ;\n\n    }\n    \n                    return function(){\n    \n                        \n    \n                        return main.call(this ) ;\n                    } ;\n    \n                })()",
+    "folder": "src",
+    "name": "mindmap.layout.node.drag.absolutely.end"
+  },
   "src::mindmap.layout.node.select.logic.down": {
     "meta": "code.meta.script.function",
     "signature": "<void> src::mindmap.layout.node.select.logic.down()",

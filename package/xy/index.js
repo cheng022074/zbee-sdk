@@ -45908,6 +45908,172 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
 
 })();
 
+exports['src::mindmap.layout.node.drag.absolutely.start'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1637117417719 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1637117417719.has(this)) {
+
+            var_current_scope_1637117417719.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+                const select = include('src::mindmap.node.select').bind(this);
+
+                function main(node) {
+
+
+                    /**
+                     * 
+                     * 开始拖曳节点
+                     * 
+                     * @import from from mindmap.node.from scoped
+                     * 
+                     * @import select from mindmap.node.select scoped
+                     * 
+                     * @param {mixed} node 节点
+                     * 
+                     */
+
+                    let me = this,
+                        {
+                            draggingNode
+                        } = me;
+
+                    if (draggingNode) {
+
+                        return false;
+                    }
+
+                    console.log('绝对布局', '开始拖曳节点');
+
+                    node = from(node);
+
+                    select(node);
+
+                    me.draggingNode = node;
+
+                    node.dragging = true;
+
+                    return true;
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1637117417719.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
+
+
+
+
+
+
+
+    function main(node, {
+        x,
+        y
+    }) {
+
+
+        /**
+         * 
+         * 拖曳节点
+         * 
+         * @param {object} node 节点
+         * 
+         * @param {object} xy 坐标
+         * 
+         * @param {number} xy.x 横坐标
+         * 
+         * @param {number} xy.y 纵坐标
+         * 
+         */
+
+        console.log('绝对布局', '拖曳节点', x, y);
+
+        return true;
+
+
+    }
+
+    return function(node, {
+        x,
+        y
+    }) {
+
+
+
+        return main.call(this, node, {
+            x,
+            y
+        });
+    };
+
+})();
+
+exports['src::mindmap.layout.node.drag.absolutely.end'] = (() => {
+
+
+
+
+
+
+
+    function main() {
+
+
+        /**
+         * 
+         * 结束拖曳节点
+         * 
+         */
+
+        let me = this,
+            {
+                draggingNode
+            } = me;
+
+        delete me.draggingNode;
+
+        console.log('绝对布局', '结束拖曳节点');
+
+        draggingNode.dragging = false;
+
+        return true;
+
+    }
+
+    return function() {
+
+
+
+        return main.call(this);
+    };
+
+})();
+
 exports['src::mindmap.layout.node.select.logic.down'] = (() => {
 
 
