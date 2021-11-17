@@ -19,6 +19,8 @@
     return false;
  }
 
+ console.log('绝对布局' , '开始拖曳节点') ;
+
  node = from(node) ;
 
  select(node) ;
