@@ -37105,11 +37105,11 @@ exports['src::mindmap.constructor'] = (() => {
 
     let createReader, isObject, isArray, emptyFn, isNumber, isString, get;
 
-    let var_init_locked_1637633210290;
+    let var_init_locked_1637654291555;
 
 
 
-    const var_current_scope_1637633210290 = new Map();
+    const var_current_scope_1637654291555 = new Map();
 
     return function({
         reader,
@@ -37124,7 +37124,7 @@ exports['src::mindmap.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1637633210290) {
+        if (!var_init_locked_1637654291555) {
 
             createReader = include('src::data.reader.json');
             isObject = include('src::is.object.simple');
@@ -37134,15 +37134,15 @@ exports['src::mindmap.constructor'] = (() => {
             isString = include('src::is.string');
             get = include('src::function.get');
 
-            var_init_locked_1637633210290 = true;
+            var_init_locked_1637654291555 = true;
         }
 
 
 
 
-        if (!var_current_scope_1637633210290.has(this)) {
+        if (!var_current_scope_1637654291555.has(this)) {
 
-            var_current_scope_1637633210290.set(this, (() => {
+            var_current_scope_1637654291555.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const getHidden = include('src::mindmap.node.field.hidden.get').bind(this);
@@ -37251,6 +37251,8 @@ exports['src::mindmap.constructor'] = (() => {
                         layoutConfig.createPositioner = get(createPositioner, me);
 
                         layoutConfig.pattern = get(pattern, me);
+
+                        layoutConfig.patternName = pattern;
 
                         layoutConfig.getRootNode = get(getRootNode, me);
 
@@ -37444,7 +37446,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637633210290.get(this);
+        const main = var_current_scope_1637654291555.get(this);
 
 
 
@@ -39830,7 +39832,7 @@ exports['src::mindmap.layout.node.data'] = (() => {
 
 
 
-    const var_current_scope_1631759994026 = new Map();
+    const var_current_scope_1637654291607 = new Map();
 
     return function(node, offset) {
 
@@ -39838,9 +39840,9 @@ exports['src::mindmap.layout.node.data'] = (() => {
 
 
 
-        if (!var_current_scope_1631759994026.has(this)) {
+        if (!var_current_scope_1637654291607.has(this)) {
 
-            var_current_scope_1631759994026.set(this, (() => {
+            var_current_scope_1637654291607.set(this, (() => {
                 const data = include('src::mindmap.data').bind(this);
                 const isRootNode = include('src::mindmap.layout.node.is.root').bind(this);
                 const isLeafNode = include('src::mindmap.layout.node.is.leaf').bind(this);
@@ -39872,6 +39874,10 @@ exports['src::mindmap.layout.node.data'] = (() => {
                      * 
                      */
 
+                    let {
+                        patternName
+                    } = this.layoutConfig;
+
                     return data(node, {
 
                         root(node) {
@@ -39891,15 +39897,30 @@ exports['src::mindmap.layout.node.data'] = (() => {
 
                         x(node) {
 
+                            if (patternName === 'mindmap.layout.pattern.absolutely') {
+
+                                return Math.max(node.x, offset.x);
+                            }
+
                             return node.x + offset.x;
                         },
 
                         y(node) {
 
+                            if (patternName === 'mindmap.layout.pattern.absolutely') {
+
+                                return Math.max(node.y, offset.y);
+                            }
+
                             return node.y + offset.y;
                         },
 
                         wrapperY(node) {
+
+                            if (patternName === 'mindmap.layout.pattern.absolutely') {
+
+                                return Math.max(node.y, offset.y) - getTopSpacing(node);
+                            }
 
                             return node.y + offset.y - getTopSpacing(node);
                         }
@@ -39913,7 +39934,7 @@ exports['src::mindmap.layout.node.data'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631759994026.get(this);
+        const main = var_current_scope_1637654291607.get(this);
 
 
 
@@ -44160,29 +44181,29 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
 
     let getHeight, getWidth;
 
-    let var_init_locked_1637636278349;
+    let var_init_locked_1637654291630;
 
 
 
-    const var_current_scope_1637636278349 = new Map();
+    const var_current_scope_1637654291630 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1637636278349) {
+        if (!var_init_locked_1637654291630) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
 
-            var_init_locked_1637636278349 = true;
+            var_init_locked_1637654291630 = true;
         }
 
 
 
 
-        if (!var_current_scope_1637636278349.has(this)) {
+        if (!var_current_scope_1637654291630.has(this)) {
 
-            var_current_scope_1637636278349.set(this, (() => {
+            var_current_scope_1637654291630.set(this, (() => {
                 const from = include('src::mindmap.layout.node.region.self').bind(this);
 
 
@@ -44256,7 +44277,7 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637636278349.get(this);
+        const main = var_current_scope_1637654291630.get(this);
 
 
 
@@ -45987,7 +46008,7 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
 
 
 
-    const var_current_scope_1637636278402 = new Map();
+    const var_current_scope_1637653384544 = new Map();
 
     return function(node, {
         x,
@@ -45998,10 +46019,12 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
 
 
 
-        if (!var_current_scope_1637636278402.has(this)) {
+        if (!var_current_scope_1637653384544.has(this)) {
 
-            var_current_scope_1637636278402.set(this, (() => {
+            var_current_scope_1637653384544.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
+                const setX = include('src::mindmap.layout.node.x').bind(this);
+                const setY = include('src::mindmap.layout.node.y').bind(this);
 
                 function main(node, {
                     x,
@@ -46014,6 +46037,10 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
                      * 拖曳节点
                      * 
                      * @import from from mindmap.node.from scoped
+                     * 
+                     * @import setX from ....x scoped
+                     * 
+                     * @import setY from ....y scoped
                      * 
                      * @param {object} node 节点
                      * 
@@ -46046,11 +46073,11 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
                         y: oldY
                     } = draggingNode;
 
-                    draggingNode.x = Math.max(x, 0);
+                    setX(draggingNode, Math.max(x, 0), false);
 
-                    draggingNode.y = Math.max(y, 0);
+                    setY(draggingNode, Math.max(y, 0), false);
 
-                    return oldX !== x || oldY !== y;
+                    return oldX !== draggingNode.x || oldY !== draggingNode.y;
 
 
                 }
@@ -46060,7 +46087,7 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637636278402.get(this);
+        const main = var_current_scope_1637653384544.get(this);
 
 
 
