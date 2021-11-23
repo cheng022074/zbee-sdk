@@ -44158,112 +44158,106 @@ exports['src::mindmap.layout.pattern.logic.regions.layouted'] = (() => {
 
 exports['src::mindmap.layout.pattern.absolutely'] = (() => {
 
-    let getHeight, getWidth, setAnchorY, setRegionOffsetY, getAnchorY, getY, contains, from;
+    let getHeight, getWidth;
 
-    let var_init_locked_1637044778349;
-
-
+    let var_init_locked_1637636278349;
 
 
-    /**
-     * 
-     * 绝对定位布局实现
-     * 
-     * @import getHeight from math.region.height
-     * 
-     * @import getWidth from math.region.width
-     * 
-     * @import setAnchorY from math.region.y.anchor
-     * 
-     * @import setRegionOffsetY from math.region.y.offset
-     * 
-     * @import getAnchorY from math.region.y.anchor
-     * 
-     * @import getY from math.region.y
-     * 
-     * @import contains from math.region.contains.x
-     * 
-     * @import from from math.region.from
-     * 
-     * @param {data.Record} node 布局节点
-     * 
-     */
 
-    function main(node) {
-
-        let me = this;
-
-        layout.call(me, node);
-
-        let {
-            width,
-            height,
-            padding
-        } = this,
-        region = {
-                top: 0,
-                bottom: height,
-                left: 0,
-                right: width
-            }, {
-                left,
-                right,
-                top,
-                bottom
-            } = padding,
-            regionHeight = getHeight(region),
-            mindmapWidth = getWidth(region) + left + right,
-            mindmapHeight = regionHeight + top + bottom,
-            offsetX = left,
-            offsetY = 0;
-
-        if (width > mindmapWidth) {
-
-            mindmapWidth = width;
-
-        }
-
-        if (height > mindmapHeight) {
-
-
-        } else {
-
-            offsetY = top;
-        }
-
-        return {
-            offset: {
-                x: offsetX,
-                y: offsetY
-            },
-            size: {
-                width: mindmapWidth,
-                height: mindmapHeight
-            }
-        };
-    }
-
-    function layout() {
-
-
-    }
+    const var_current_scope_1637636278349 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1637044778349) {
+        if (!var_init_locked_1637636278349) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
-            setAnchorY = include('src::math.region.y.anchor');
-            setRegionOffsetY = include('src::math.region.y.offset');
-            getAnchorY = include('src::math.region.y.anchor');
-            getY = include('src::math.region.y');
-            contains = include('src::math.region.contains.x');
-            from = include('src::math.region.from');
 
-            var_init_locked_1637044778349 = true;
+            var_init_locked_1637636278349 = true;
         }
+
+
+
+
+        if (!var_current_scope_1637636278349.has(this)) {
+
+            var_current_scope_1637636278349.set(this, (() => {
+                const from = include('src::mindmap.layout.node.region.self').bind(this);
+
+
+                /**
+                 * 
+                 * 绝对定位布局实现
+                 * 
+                 * @import getHeight from math.region.height
+                 * 
+                 * @import getWidth from math.region.width
+                 * 
+                 * @import from from ..node.region.self scoped
+                 * 
+                 * @param {data.Record} node 布局节点
+                 * 
+                 */
+
+                function main(node) {
+
+                    let me = this;
+
+                    let {
+                        width,
+                        height,
+                        padding
+                    } = this,
+                    region = layout.call(me, node), {
+                            left,
+                            right,
+                            top,
+                            bottom
+                        } = padding,
+                        regionHeight = getHeight(region),
+                        mindmapWidth = getWidth(region) + left + right,
+                        mindmapHeight = regionHeight + top + bottom;
+
+                    return {
+                        offset: {
+                            x: left,
+                            y: top
+                        },
+                        size: {
+                            width: Math.max(width, mindmapWidth),
+                            height: Math.max(height, mindmapHeight)
+                        }
+                    };
+                }
+
+                function layout({
+                    children
+                }) {
+
+                    let regions = children.map(node => from(node)),
+                        right = Math.max(...regions.map(({
+                            right
+                        }) => right)),
+                        bottom = Math.max(...regions.map(({
+                            bottom
+                        }) => bottom));
+
+                    return {
+                        top: 0,
+                        left: 0,
+                        right,
+                        bottom
+                    }
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1637636278349.get(this);
+
 
 
         return main.call(this, node);
@@ -45993,7 +45987,7 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
 
 
 
-    const var_current_scope_1637142900181 = new Map();
+    const var_current_scope_1637636278402 = new Map();
 
     return function(node, {
         x,
@@ -46004,9 +45998,9 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
 
 
 
-        if (!var_current_scope_1637142900181.has(this)) {
+        if (!var_current_scope_1637636278402.has(this)) {
 
-            var_current_scope_1637142900181.set(this, (() => {
+            var_current_scope_1637636278402.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
 
                 function main(node, {
@@ -46052,9 +46046,9 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
                         y: oldY
                     } = draggingNode;
 
-                    draggingNode.x = x;
+                    draggingNode.x = Math.max(x, 0);
 
-                    draggingNode.y = y;
+                    draggingNode.y = Math.max(y, 0);
 
                     return oldX !== x || oldY !== y;
 
@@ -46066,7 +46060,7 @@ exports['src::mindmap.layout.node.drag.absolutely.move'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637142900181.get(this);
+        const main = var_current_scope_1637636278402.get(this);
 
 
 
