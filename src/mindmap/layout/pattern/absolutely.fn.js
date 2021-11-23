@@ -7,17 +7,7 @@
  * 
  * @import getWidth from math.region.width
  * 
- * @import setAnchorY from math.region.y.anchor
- * 
- * @import setRegionOffsetY from math.region.y.offset
- * 
- * @import getAnchorY from math.region.y.anchor
- * 
- * @import getY from math.region.y
- * 
- * @import contains from math.region.contains.x
- * 
- * @import from from math.region.from
+ * @import from from ..region.self scoped
  * 
  * @param {data.Record} node 布局节点
  * 
@@ -78,7 +68,9 @@
     } ;
 }
 
-function layout(){
+function layout({
+  children
+}){
 
-
+  console.log('layout') ;
 }
