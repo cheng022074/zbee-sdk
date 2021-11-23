@@ -201,6 +201,16 @@
                return ()=> [] ;
             }
          },
+         x:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:0
+         },
+         y:{
+            mode:'readwrite',
+            local:true,
+            defaultValue:0
+         },
          ...readerFields,
          parentNodeId: {
             local:true,
@@ -238,16 +248,6 @@
             mode:'readwrite',
             local:true,
             defaultValue:false
-         },
-         x:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:0
-         },
-         y:{
-            mode:'readwrite',
-            local:true,
-            defaultValue:0
          },
          selected:{
             mode:'readwrite',

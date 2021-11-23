@@ -37105,11 +37105,11 @@ exports['src::mindmap.constructor'] = (() => {
 
     let createReader, isObject, isArray, emptyFn, isNumber, isString, get;
 
-    let var_init_locked_1632708733629;
+    let var_init_locked_1637633210290;
 
 
 
-    const var_current_scope_1632708733629 = new Map();
+    const var_current_scope_1637633210290 = new Map();
 
     return function({
         reader,
@@ -37124,7 +37124,7 @@ exports['src::mindmap.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1632708733629) {
+        if (!var_init_locked_1637633210290) {
 
             createReader = include('src::data.reader.json');
             isObject = include('src::is.object.simple');
@@ -37134,15 +37134,15 @@ exports['src::mindmap.constructor'] = (() => {
             isString = include('src::is.string');
             get = include('src::function.get');
 
-            var_init_locked_1632708733629 = true;
+            var_init_locked_1637633210290 = true;
         }
 
 
 
 
-        if (!var_current_scope_1632708733629.has(this)) {
+        if (!var_current_scope_1637633210290.has(this)) {
 
-            var_current_scope_1632708733629.set(this, (() => {
+            var_current_scope_1637633210290.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const getHidden = include('src::mindmap.node.field.hidden.get').bind(this);
@@ -37364,6 +37364,16 @@ exports['src::mindmap.constructor'] = (() => {
                                 return () => [];
                             }
                         },
+                        x: {
+                            mode: 'readwrite',
+                            local: true,
+                            defaultValue: 0
+                        },
+                        y: {
+                            mode: 'readwrite',
+                            local: true,
+                            defaultValue: 0
+                        },
                         ...readerFields,
                         parentNodeId: {
                             local: true,
@@ -37402,16 +37412,6 @@ exports['src::mindmap.constructor'] = (() => {
                             local: true,
                             defaultValue: false
                         },
-                        x: {
-                            mode: 'readwrite',
-                            local: true,
-                            defaultValue: 0
-                        },
-                        y: {
-                            mode: 'readwrite',
-                            local: true,
-                            defaultValue: 0
-                        },
                         selected: {
                             mode: 'readwrite',
                             local: true,
@@ -37444,7 +37444,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1632708733629.get(this);
+        const main = var_current_scope_1637633210290.get(this);
 
 
 
