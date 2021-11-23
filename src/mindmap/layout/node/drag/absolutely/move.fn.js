@@ -37,8 +37,8 @@ let {
     y:oldY
 } = draggingNode ;
 
-draggingNode.x = x;
+draggingNode.x = Math.max(x , 0);
 
-draggingNode.y = y;
+draggingNode.y = Math.max(y , 0);
 
 return oldX !== x  || oldY !== y;
