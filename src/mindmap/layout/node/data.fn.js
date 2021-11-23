@@ -21,6 +21,10 @@
  * 
  */
 
+let {
+   patternName
+} = this.layoutConfig ;
+
  return data(node , {
 
    root(node){
@@ -40,15 +44,30 @@
 
    x(node){
 
+      if(patternName === 'mindmap.layout.pattern.absolutely'){
+
+         return Math.max(node.x , offset.x) ;
+      }
+
       return node.x + offset.x ;
    },
 
    y(node){
 
+      if(patternName === 'mindmap.layout.pattern.absolutely'){
+
+         return Math.max(node.y , offset.y) ;
+      }
+
       return node.y + offset.y ;
    },
 
    wrapperY(node){
+
+      if(patternName === 'mindmap.layout.pattern.absolutely'){
+
+         return Math.max(node.y , offset.y) - getTopSpacing(node) ;
+      }
 
       return node.y + offset.y - getTopSpacing(node) ;
    }

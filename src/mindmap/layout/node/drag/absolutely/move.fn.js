@@ -5,6 +5,10 @@
  * 
  * @import from from mindmap.node.from scoped
  * 
+ * @import setX from ....x scoped
+ * 
+ * @import setY from ....y scoped
+ * 
  * @param {object} node 节点
  * 
  * @param {object} xy 坐标
@@ -37,8 +41,8 @@ let {
     y:oldY
 } = draggingNode ;
 
-draggingNode.x = Math.max(x , 0);
+setX(draggingNode , Math.max(x , 0) , false) ;
 
-draggingNode.y = Math.max(y , 0);
+setY(draggingNode , Math.max(y , 0) , false) ;
 
-return oldX !== x  || oldY !== y;
+return oldX !== draggingNode.x  || oldY !== draggingNode.y;

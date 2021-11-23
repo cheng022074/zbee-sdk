@@ -89,6 +89,8 @@
    
    layoutConfig.pattern = get(pattern , me) ;
 
+   layoutConfig.patternName = pattern ;
+
    layoutConfig.getRootNode = get(getRootNode , me) ;
 
    layoutConfig.getDescendantNodes = get(getDescendantNodes , me) ;
