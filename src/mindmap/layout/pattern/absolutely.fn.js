@@ -49,6 +49,17 @@ function layout({
   children
 }){
 
+  if(children.length === 0){
+    
+    return {
+      top:0,
+      left:0,
+      right:0,
+      bottom:0
+    } ;
+
+  }
+
   let regions = children.map(node => from(node)),
       right = Math.max(...regions.map(({
         right

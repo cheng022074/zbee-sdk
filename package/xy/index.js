@@ -44181,29 +44181,29 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
 
     let getHeight, getWidth;
 
-    let var_init_locked_1637654291630;
+    let var_init_locked_1637736774887;
 
 
 
-    const var_current_scope_1637654291630 = new Map();
+    const var_current_scope_1637736774887 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1637654291630) {
+        if (!var_init_locked_1637736774887) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
 
-            var_init_locked_1637654291630 = true;
+            var_init_locked_1637736774887 = true;
         }
 
 
 
 
-        if (!var_current_scope_1637654291630.has(this)) {
+        if (!var_current_scope_1637736774887.has(this)) {
 
-            var_current_scope_1637654291630.set(this, (() => {
+            var_current_scope_1637736774887.set(this, (() => {
                 const from = include('src::mindmap.layout.node.region.self').bind(this);
 
 
@@ -44256,6 +44256,17 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
                     children
                 }) {
 
+                    if (children.length === 0) {
+
+                        return {
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0
+                        };
+
+                    }
+
                     let regions = children.map(node => from(node)),
                         right = Math.max(...regions.map(({
                             right
@@ -44277,7 +44288,7 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637654291630.get(this);
+        const main = var_current_scope_1637736774887.get(this);
 
 
 
