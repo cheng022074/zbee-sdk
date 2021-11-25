@@ -29941,12 +29941,12 @@ exports['config::event.tap.double'] = (() => {
 
     let get;
 
-    let var_init_locked_1621936466083;
+    let var_init_locked_1637816249200;
 
 
 
     const config = {
-        "maxDuration": 200,
+        "maxDuration": 400,
         "tapDistance": 200
     };
 
@@ -29960,11 +29960,11 @@ exports['config::event.tap.double'] = (() => {
     return function(key) {
 
 
-        if (!var_init_locked_1621936466083) {
+        if (!var_init_locked_1637816249200) {
 
             get = include('src::object.value.get');
 
-            var_init_locked_1621936466083 = true;
+            var_init_locked_1637816249200 = true;
         }
 
 
@@ -29977,16 +29977,16 @@ exports['src::browser.event.gesture.tap.double.end'] = (() => {
 
     let getTouchEvents, getEvent, getDistance, getScale, stop, maxDuration, tapDistance;
 
-    let var_init_locked_1621936466070;
+    let var_init_locked_1637816249167;
 
 
 
-    const var_current_scope_1621936466070 = new Map();
+    const var_current_scope_1637816249167 = new Map();
 
     return function(e) {
 
 
-        if (!var_init_locked_1621936466070) {
+        if (!var_init_locked_1637816249167) {
 
             getTouchEvents = include('src::browser.event.touches');
             getEvent = include('src::browser.event.single');
@@ -29996,15 +29996,15 @@ exports['src::browser.event.gesture.tap.double.end'] = (() => {
             maxDuration = config('event.tap.double', 'maxDuration');
             tapDistance = config('event.tap.double', 'tapDistance');
 
-            var_init_locked_1621936466070 = true;
+            var_init_locked_1637816249167 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936466070.has(this)) {
+        if (!var_current_scope_1637816249167.has(this)) {
 
-            var_current_scope_1621936466070.set(this, (() => {
+            var_current_scope_1637816249167.set(this, (() => {
                 const disabled = include('src::browser.event.gesture.tap.double.disabled').bind(this);
 
                 function main(e) {
@@ -30128,7 +30128,7 @@ exports['src::browser.event.gesture.tap.double.end'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936466070.get(this);
+        const main = var_current_scope_1637816249167.get(this);
 
 
 
