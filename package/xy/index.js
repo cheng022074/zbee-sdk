@@ -40263,29 +40263,29 @@ exports['src::mindmap.layout.refresh'] = (() => {
 
     let from, getAnchorXY;
 
-    let var_init_locked_1637893312413;
+    let var_init_locked_1637896504434;
 
 
 
-    const var_current_scope_1637893312413 = new Map();
+    const var_current_scope_1637896504434 = new Map();
 
     return function() {
 
 
-        if (!var_init_locked_1637893312413) {
+        if (!var_init_locked_1637896504434) {
 
             from = include('src::math.region.from');
             getAnchorXY = include('src::math.region.xy.anchor');
 
-            var_init_locked_1637893312413 = true;
+            var_init_locked_1637896504434 = true;
         }
 
 
 
 
-        if (!var_current_scope_1637893312413.has(this)) {
+        if (!var_current_scope_1637896504434.has(this)) {
 
-            var_current_scope_1637893312413.set(this, (() => {
+            var_current_scope_1637896504434.set(this, (() => {
                 const getData = include('src::mindmap.layout.node.data').bind(this);
                 const getRegion = include('src::mindmap.layout.node.region.self').bind(this);
                 const getParentNode = include('src::mindmap.layout.node.parent').bind(this);
@@ -40368,7 +40368,9 @@ exports['src::mindmap.layout.refresh'] = (() => {
                             data,
                             centerXY: getAnchorXY(region, 'c'),
                             rightXY: getAnchorXY(region, 'r'),
-                            leftXY: getAnchorXY(region, 'l')
+                            leftXY: getAnchorXY(region, 'l'),
+                            topXY: getAnchorXY(region, 't'),
+                            bottomXY: getAnchorXY(region, 'b')
                         })
                     }
 
@@ -40383,7 +40385,7 @@ exports['src::mindmap.layout.refresh'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637893312413.get(this);
+        const main = var_current_scope_1637896504434.get(this);
 
 
 
