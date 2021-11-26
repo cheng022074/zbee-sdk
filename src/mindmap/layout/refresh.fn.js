@@ -76,7 +76,9 @@
             data,
             centerXY:getAnchorXY(region , 'c'),
             rightXY:getAnchorXY(region , 'r'),
-            leftXY:getAnchorXY(region , 'l')
+            leftXY:getAnchorXY(region , 'l'),
+            topXY:getAnchorXY(region , 't'),
+            bottomXY:getAnchorXY(region , 'b')
         })
     }
 
