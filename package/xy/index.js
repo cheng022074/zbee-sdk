@@ -40263,29 +40263,29 @@ exports['src::mindmap.layout.refresh'] = (() => {
 
     let from, getAnchorXY;
 
-    let var_init_locked_1631611915436;
+    let var_init_locked_1637893312413;
 
 
 
-    const var_current_scope_1631611915436 = new Map();
+    const var_current_scope_1637893312413 = new Map();
 
     return function() {
 
 
-        if (!var_init_locked_1631611915436) {
+        if (!var_init_locked_1637893312413) {
 
             from = include('src::math.region.from');
             getAnchorXY = include('src::math.region.xy.anchor');
 
-            var_init_locked_1631611915436 = true;
+            var_init_locked_1637893312413 = true;
         }
 
 
 
 
-        if (!var_current_scope_1631611915436.has(this)) {
+        if (!var_current_scope_1637893312413.has(this)) {
 
-            var_current_scope_1631611915436.set(this, (() => {
+            var_current_scope_1637893312413.set(this, (() => {
                 const getData = include('src::mindmap.layout.node.data').bind(this);
                 const getRegion = include('src::mindmap.layout.node.region.self').bind(this);
                 const getParentNode = include('src::mindmap.layout.node.parent').bind(this);
@@ -40316,7 +40316,8 @@ exports['src::mindmap.layout.refresh'] = (() => {
                         } = me,
                         {
                             size,
-                            offset
+                            offset,
+                            getLines
                         } = layoutData,
                         {
                             nodes,
@@ -40346,39 +40347,6 @@ exports['src::mindmap.layout.refresh'] = (() => {
                     }
 
                     return result;
-                }
-
-                function getLines(nodes) {
-
-                    let layoutNodes = nodes.keys(),
-                        lines = [];
-
-                    for (let layoutNode of layoutNodes) {
-
-                        let parentNode = getParentNode(layoutNode);
-
-                        if (parentNode) {
-
-                            let {
-                                data: start,
-                                centerXY: startCenterXY,
-                                rightXY: startRightXY
-                            } = nodes.get(parentNode), {
-                                data: end,
-                                leftXY: endLeftXY
-                            } = nodes.get(layoutNode);
-
-                            lines.push({
-                                start,
-                                startCenterXY,
-                                startRightXY,
-                                end,
-                                endLeftXY
-                            });
-                        }
-                    }
-
-                    return lines;
                 }
 
                 function getNodeDataset(nodes, offset) {
@@ -40415,7 +40383,7 @@ exports['src::mindmap.layout.refresh'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915436.get(this);
+        const main = var_current_scope_1637893312413.get(this);
 
 
 
@@ -42846,16 +42814,16 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
 
     let getHeight, getWidth, setAnchorY, setRegionOffsetY, getAnchorY, getY, contains, from, createLayoutedRegions;
 
-    let var_init_locked_1621936469259;
+    let var_init_locked_1637893312451;
 
 
 
-    const var_current_scope_1621936469259 = new Map();
+    const var_current_scope_1637893312451 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1621936469259) {
+        if (!var_init_locked_1637893312451) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
@@ -42867,15 +42835,15 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             from = include('src::math.region.from');
             createLayoutedRegions = include('src::mindmap.layout.pattern.logic.regions.layouted');
 
-            var_init_locked_1621936469259 = true;
+            var_init_locked_1637893312451 = true;
         }
 
 
 
 
-        if (!var_current_scope_1621936469259.has(this)) {
+        if (!var_current_scope_1637893312451.has(this)) {
 
-            var_current_scope_1621936469259.set(this, (() => {
+            var_current_scope_1637893312451.set(this, (() => {
                 const setX = include('src::mindmap.layout.node.x').bind(this);
                 const setY = include('src::mindmap.layout.node.y').bind(this);
                 const setOffsetY = include('src::mindmap.layout.node.y.offset').bind(this);
@@ -43002,8 +42970,42 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
                         size: {
                             width: mindmapWidth,
                             height: mindmapHeight
-                        }
+                        },
+                        getLines
                     };
+                }
+
+                function getLines(nodes) {
+
+                    let layoutNodes = nodes.keys(),
+                        lines = [];
+
+                    for (let layoutNode of layoutNodes) {
+
+                        let parentNode = getParentNode(layoutNode);
+
+                        if (parentNode) {
+
+                            let {
+                                data: start,
+                                centerXY: startCenterXY,
+                                rightXY: startRightXY
+                            } = nodes.get(parentNode), {
+                                data: end,
+                                leftXY: endLeftXY
+                            } = nodes.get(layoutNode);
+
+                            lines.push({
+                                start,
+                                startCenterXY,
+                                startRightXY,
+                                end,
+                                endLeftXY
+                            });
+                        }
+                    }
+
+                    return lines;
                 }
 
                 function layout(node, layoutedChildRegions) {
@@ -43178,7 +43180,7 @@ exports['src::mindmap.layout.pattern.logic.right'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936469259.get(this);
+        const main = var_current_scope_1637893312451.get(this);
 
 
 
@@ -44181,30 +44183,31 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
 
     let getHeight, getWidth;
 
-    let var_init_locked_1637736774887;
+    let var_init_locked_1637894402081;
 
 
 
-    const var_current_scope_1637736774887 = new Map();
+    const var_current_scope_1637894402081 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1637736774887) {
+        if (!var_init_locked_1637894402081) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
 
-            var_init_locked_1637736774887 = true;
+            var_init_locked_1637894402081 = true;
         }
 
 
 
 
-        if (!var_current_scope_1637736774887.has(this)) {
+        if (!var_current_scope_1637894402081.has(this)) {
 
-            var_current_scope_1637736774887.set(this, (() => {
+            var_current_scope_1637894402081.set(this, (() => {
                 const from = include('src::mindmap.layout.node.region.self').bind(this);
+                const fromNode = include('src::mindmap.node.from').bind(this);
 
 
                 /**
@@ -44216,6 +44219,8 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
                  * @import getWidth from math.region.width
                  * 
                  * @import from from ..node.region.self scoped
+                 * 
+                 * @import fromNode from mindmap.node.from scoped
                  * 
                  * @param {data.Record} node 布局节点
                  * 
@@ -44248,6 +44253,34 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
                         size: {
                             width: Math.max(width, mindmapWidth),
                             height: Math.max(height, mindmapHeight)
+                        },
+                        getLines(nodes) {
+
+                            let layoutNodes = nodes.keys(),
+                                lines = [];
+
+                            for (let layoutNode of layoutNodes) {
+
+                                if (layoutNode.lineTo) {
+
+                                    let {
+                                        data: start,
+                                        centerXY: startCenterXY
+                                    } = nodes.get(layoutNode), {
+                                        data: end,
+                                        centerXY: endCenterXY
+                                    } = nodes.get(fromNode(layoutNode.lineTo));
+
+                                    lines.push({
+                                        start,
+                                        startCenterXY,
+                                        end,
+                                        endCenterXY
+                                    });
+                                }
+                            }
+
+                            return lines;
                         }
                     };
                 }
@@ -44288,7 +44321,7 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637736774887.get(this);
+        const main = var_current_scope_1637894402081.get(this);
 
 
 

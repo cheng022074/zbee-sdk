@@ -24,7 +24,8 @@
     } = me,
     {
         size,
-        offset
+        offset,
+        getLines
     } = layoutData,
     {
         nodes,
@@ -54,40 +55,6 @@
     }
 
     return result ;
- }
-
- function getLines(nodes){
-
-    let layoutNodes = nodes.keys(),
-        lines = [];
-
-    for(let layoutNode of layoutNodes){
-
-        let parentNode = getParentNode(layoutNode) ;
-
-        if(parentNode){
-
-            let {
-                data:start,
-                centerXY:startCenterXY,
-                rightXY:startRightXY
-            } = nodes.get(parentNode),
-            {
-                data:end,
-                leftXY:endLeftXY
-            } = nodes.get(layoutNode);
-
-            lines.push({
-                start,
-                startCenterXY,
-                startRightXY,
-                end,
-                endLeftXY
-            }) ;
-        }
-    }
-
-    return lines ;
  }
 
  function getNodeDataset(nodes , offset){

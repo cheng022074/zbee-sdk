@@ -9,6 +9,8 @@
  * 
  * @import from from ..node.region.self scoped
  * 
+ * @import fromNode from mindmap.node.from scoped
+ * 
  * @param {data.Record} node 布局节点
  * 
  */
@@ -41,6 +43,35 @@
       size:{
         width:Math.max(width , mindmapWidth),
         height:Math.max(height , mindmapHeight)
+      },
+      getLines(nodes){
+
+        let layoutNodes= nodes.keys(),
+            lines = [];
+
+        for(let layoutNode of layoutNodes){
+
+            if(layoutNode.lineTo){
+
+              let {
+                data:start,
+                centerXY:startCenterXY
+              } = nodes.get(layoutNode),
+              {
+                data:end,
+                centerXY:endCenterXY
+              } = nodes.get(fromNode(layoutNode.lineTo));
+
+              lines.push({
+                  start,
+                  startCenterXY,
+                  end,
+                  endCenterXY
+              }) ;
+            }
+        }
+
+        return lines ;
       } 
     } ;
 }
