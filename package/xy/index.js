@@ -45977,7 +45977,7 @@ exports['src::mindmap.layout.node.drag.absolutely.start'] = (() => {
 
 
 
-    const var_current_scope_1637134622391 = new Map();
+    const var_current_scope_1638176358738 = new Map();
 
     return function(node, xy) {
 
@@ -45985,9 +45985,9 @@ exports['src::mindmap.layout.node.drag.absolutely.start'] = (() => {
 
 
 
-        if (!var_current_scope_1637134622391.has(this)) {
+        if (!var_current_scope_1638176358738.has(this)) {
 
-            var_current_scope_1637134622391.set(this, (() => {
+            var_current_scope_1638176358738.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
                 const select = include('src::mindmap.node.select').bind(this);
 
@@ -46020,8 +46020,6 @@ exports['src::mindmap.layout.node.drag.absolutely.start'] = (() => {
 
                     node = from(node);
 
-                    select(node);
-
                     me.draggingNode = node;
 
                     me.draggingOffsetXY = xy;
@@ -46037,7 +46035,7 @@ exports['src::mindmap.layout.node.drag.absolutely.start'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637134622391.get(this);
+        const main = var_current_scope_1638176358738.get(this);
 
 
 

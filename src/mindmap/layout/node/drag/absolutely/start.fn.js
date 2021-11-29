@@ -25,8 +25,6 @@
 
  node = from(node) ;
 
- select(node) ;
-
  me.draggingNode = node ;
 
  me.draggingOffsetXY = xy ;
