@@ -44203,30 +44203,30 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
 
     let getHeight, getWidth, getLineDistance;
 
-    let var_init_locked_1639027668612;
+    let var_init_locked_1639038090617;
 
 
 
-    const var_current_scope_1639027668612 = new Map();
+    const var_current_scope_1639038090617 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1639027668612) {
+        if (!var_init_locked_1639038090617) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
             getLineDistance = include('src::math.point.line.distance');
 
-            var_init_locked_1639027668612 = true;
+            var_init_locked_1639038090617 = true;
         }
 
 
 
 
-        if (!var_current_scope_1639027668612.has(this)) {
+        if (!var_current_scope_1639038090617.has(this)) {
 
-            var_current_scope_1639027668612.set(this, (() => {
+            var_current_scope_1639038090617.set(this, (() => {
                 const from = include('src::mindmap.layout.node.region.self').bind(this);
                 const fromNode = include('src::mindmap.node.from').bind(this);
 
@@ -44286,58 +44286,61 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
 
                                 if (layoutNode.lineTo) {
 
-                                    let startNode = nodes.get(layoutNode),
-                                        {
-                                            rightXY: startRightXY,
-                                            leftXY: startLeftXY,
-                                            topXY: startTopXY,
-                                            bottomXY: startBottomXY
-                                        } = startNode,
-                                        endNode = nodes.get(fromNode(layoutNode.lineTo)),
-                                        {
-                                            rightXY: endRightXY,
-                                            leftXY: endLeftXY,
-                                            topXY: endTopXY,
-                                            bottomXY: endBottomXY
-                                        } = endNode,
-                                        minDistance = {};
+                                    let endNode = nodes.get(fromNode(layoutNode.lineTo));
 
-                                    if (startRightXY.x < endLeftXY.x) {
+                                    if (endNode) {
 
-                                        doDistance(minDistance, startRightXY, endLeftXY);
+                                        let startNode = nodes.get(layoutNode),
+                                            {
+                                                rightXY: startRightXY,
+                                                leftXY: startLeftXY,
+                                                topXY: startTopXY,
+                                                bottomXY: startBottomXY
+                                            } = startNode,
+                                            {
+                                                rightXY: endRightXY,
+                                                leftXY: endLeftXY,
+                                                topXY: endTopXY,
+                                                bottomXY: endBottomXY
+                                            } = endNode,
+                                            minDistance = {};
+
+                                        if (startRightXY.x < endLeftXY.x) {
+
+                                            doDistance(minDistance, startRightXY, endLeftXY);
+                                        }
+
+                                        if (startLeftXY.x > endRightXY.x) {
+
+                                            doDistance(minDistance, startLeftXY, endRightXY);
+                                        }
+
+                                        if (startBottomXY.y < endTopXY.y) {
+
+                                            doDistance(minDistance, startBottomXY, endTopXY);
+                                        }
+
+                                        if (startTopXY.y > endBottomXY.y) {
+
+                                            doDistance(minDistance, startTopXY, endBottomXY);
+
+                                        }
+
+                                        let {
+                                            start,
+                                            end
+                                        } = minDistance;
+
+                                        if (start && end) {
+
+                                            lines.push({
+                                                start: startNode,
+                                                startXY: start,
+                                                end: endNode,
+                                                endXY: end
+                                            });
+                                        }
                                     }
-
-                                    if (startLeftXY.x > endRightXY.x) {
-
-                                        doDistance(minDistance, startLeftXY, endRightXY);
-                                    }
-
-                                    if (startBottomXY.y < endTopXY.y) {
-
-                                        doDistance(minDistance, startBottomXY, endTopXY);
-                                    }
-
-                                    if (startTopXY.y > endBottomXY.y) {
-
-                                        doDistance(minDistance, startTopXY, endBottomXY);
-
-                                    }
-
-                                    let {
-                                        start,
-                                        end
-                                    } = minDistance;
-
-                                    if (start && end) {
-
-                                        lines.push({
-                                            start: startNode,
-                                            startXY: start,
-                                            end: endNode,
-                                            endXY: end
-                                        });
-                                    }
-
 
                                 }
                             }
@@ -44409,7 +44412,7 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1639027668612.get(this);
+        const main = var_current_scope_1639038090617.get(this);
 
 
 
