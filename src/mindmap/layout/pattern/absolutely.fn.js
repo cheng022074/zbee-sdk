@@ -62,7 +62,7 @@
                     topXY:startTopXY,
                     bottomXY:startBottomXY
                   } = startNode,
-                  endNode = nodes.get(layoutNode),
+                  endNode = nodes.get(fromNode(layoutNode.lineTo)),
                   {
                     rightXY:endRightXY,
                     leftXY:endLeftXY,
@@ -81,14 +81,14 @@
                 doDistance(minDistance , startLeftXY , endRightXY) ;
               }
 
-              if(startBottomXY.y < endBottomXY.y){
+              if(startBottomXY.y < endTopXY.y){
 
-                doDistance(minDistance , startBottomXY , endBottomXY) ;
+                doDistance(minDistance , startBottomXY , endTopXY) ;
               }
 
-              if(startTopXY.y > endTopXY.y){
+              if(startTopXY.y > endBottomXY.y){
 
-                doDistance(minDistance , startTopXY , endTopXY) ;
+                doDistance(minDistance , startTopXY , endBottomXY) ;
               
               }
 
@@ -97,12 +97,17 @@
                 end
               } = minDistance ;
 
-              lines.push({
+              if(start && end){
+
+                lines.push({
                   start:startNode,
                   startXY:start,
                   end:endNode,
                   endXY:end
-              }) ;
+                }) ;
+              }
+
+              
             }
         }
 
