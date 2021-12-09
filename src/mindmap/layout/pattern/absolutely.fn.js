@@ -11,6 +11,8 @@
  * 
  * @import fromNode from mindmap.node.from scoped
  * 
+ * @import getLineDistance from math.point.line.distance
+ * 
  * @param {data.Record} node 布局节点
  * 
  */
@@ -53,20 +55,53 @@
 
             if(layoutNode.lineTo){
 
+              let startNode = nodes.get(layoutNode),
+                  {
+                    rightXY:startRightXY,
+                    leftXY:startLeftXY,
+                    topXY:startTopXY,
+                    bottomXY:startBottomXY
+                  } = startNode,
+                  endNode = nodes.get(layoutNode),
+                  {
+                    rightXY:endRightXY,
+                    leftXY:endLeftXY,
+                    topXY:endTopXY,
+                    bottomXY:endBottomXY
+                  } = endNode,
+                  minDistance = {};
+
+              if(startRightXY.x < endLeftXY.x){
+
+                doDistance(minDistance , startRightXY , endLeftXY) ;
+              }
+
+              if(startLeftXY.x > endRightXY.x){
+
+                doDistance(minDistance , startLeftXY , endRightXY) ;
+              }
+
+              if(startBottomXY.y < endBottomXY.y){
+
+                doDistance(minDistance , startBottomXY , endBottomXY) ;
+              }
+
+              if(startTopXY.y > endTopXY.y){
+
+                doDistance(minDistance , startTopXY , endTopXY) ;
+              
+              }
+
               let {
-                data:start,
-                centerXY:startCenterXY
-              } = nodes.get(layoutNode),
-              {
-                data:end,
-                centerXY:endCenterXY
-              } = nodes.get(fromNode(layoutNode.lineTo));
+                start,
+                end
+              } = minDistance ;
 
               lines.push({
-                  start,
-                  startCenterXY,
-                  end,
-                  endCenterXY
+                  start:startNode,
+                  startXY:start,
+                  end:endNode,
+                  endXY:end
               }) ;
             }
         }
@@ -74,6 +109,32 @@
         return lines ;
       } 
     } ;
+}
+
+function doDistance(distance , start , end){
+
+    if(Object.keys(distance).length){
+
+      let {
+        value:oldValue
+      } = distance,
+      value = getLineDistance(start , end);
+
+      if(oldValue > value){
+
+        distance.value = value,
+        distance.start = start,
+        distance.end = end;
+
+      }
+
+    }else{
+
+      distance.value = getLineDistance(start , end),
+      distance.start = start,
+      distance.end = end ;
+
+    }
 }
 
 function layout({
