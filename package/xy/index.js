@@ -23357,7 +23357,7 @@ exports['src::browser.canvas.draw.line'] = (() => {
 
     let doBegin, doEnd;
 
-    let var_init_locked_1621936464682;
+    let var_init_locked_1639029998634;
 
 
 
@@ -23366,6 +23366,7 @@ exports['src::browser.canvas.draw.line'] = (() => {
         lineDash,
         independent,
         clip,
+        arrow,
         ...styles
     }) {
 
@@ -23390,6 +23391,8 @@ exports['src::browser.canvas.draw.line'] = (() => {
          * 
          * @param {boolean} [config.clip = false] 是否为剪切路径
          * 
+         * @param {boolean} [config.arrow = false] 是否画箭头
+         * 
          * @param {object} [...config.styles] 画线样式
          * 
          */
@@ -23406,6 +23409,19 @@ exports['src::browser.canvas.draw.line'] = (() => {
 
             context.lineTo(...points.slice(2));
 
+            if (arrow) {
+
+                let headlen = 10,
+                    angle = Math.atan2(points[3] - points[1], points[2] - points[0]);
+
+                context.lineTo(points[2] - headlen * Math.cos(angle - Math.PI / 6), points[3] - headlen * Math.sin(angle - Math.PI / 6));
+
+                context.moveTo(...points.slice(2));
+
+                context.lineTo(points[2] - headlen * Math.cos(angle + Math.PI / 6), points[3] - headlen * Math.sin(angle + Math.PI / 6));
+
+            }
+
             doEnd(context, clip);
         }
 
@@ -23416,16 +23432,17 @@ exports['src::browser.canvas.draw.line'] = (() => {
         lineDash = [],
         independent = true,
         clip = false,
+        arrow = false,
         ...styles
     } = {}) {
 
 
-        if (!var_init_locked_1621936464682) {
+        if (!var_init_locked_1639029998634) {
 
             doBegin = include('src::browser.canvas.begin');
             doEnd = include('src::browser.canvas.end');
 
-            var_init_locked_1621936464682 = true;
+            var_init_locked_1639029998634 = true;
         }
 
 
@@ -23434,6 +23451,7 @@ exports['src::browser.canvas.draw.line'] = (() => {
             lineDash,
             independent,
             clip,
+            arrow,
             ...styles
         });
     };
