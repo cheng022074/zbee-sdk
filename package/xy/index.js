@@ -44183,31 +44183,32 @@ exports['src::mindmap.layout.pattern.logic.regions.layouted'] = (() => {
 
 exports['src::mindmap.layout.pattern.absolutely'] = (() => {
 
-    let getHeight, getWidth;
+    let getHeight, getWidth, getLineDistance;
 
-    let var_init_locked_1637894402081;
+    let var_init_locked_1639027668612;
 
 
 
-    const var_current_scope_1637894402081 = new Map();
+    const var_current_scope_1639027668612 = new Map();
 
     return function(node) {
 
 
-        if (!var_init_locked_1637894402081) {
+        if (!var_init_locked_1639027668612) {
 
             getHeight = include('src::math.region.height');
             getWidth = include('src::math.region.width');
+            getLineDistance = include('src::math.point.line.distance');
 
-            var_init_locked_1637894402081 = true;
+            var_init_locked_1639027668612 = true;
         }
 
 
 
 
-        if (!var_current_scope_1637894402081.has(this)) {
+        if (!var_current_scope_1639027668612.has(this)) {
 
-            var_current_scope_1637894402081.set(this, (() => {
+            var_current_scope_1639027668612.set(this, (() => {
                 const from = include('src::mindmap.layout.node.region.self').bind(this);
                 const fromNode = include('src::mindmap.node.from').bind(this);
 
@@ -44223,6 +44224,8 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
                  * @import from from ..node.region.self scoped
                  * 
                  * @import fromNode from mindmap.node.from scoped
+                 * 
+                 * @import getLineDistance from math.point.line.distance
                  * 
                  * @param {data.Record} node 布局节点
                  * 
@@ -44265,26 +44268,91 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
 
                                 if (layoutNode.lineTo) {
 
-                                    let {
-                                        data: start,
-                                        centerXY: startCenterXY
-                                    } = nodes.get(layoutNode), {
-                                        data: end,
-                                        centerXY: endCenterXY
-                                    } = nodes.get(fromNode(layoutNode.lineTo));
+                                    let startNode = nodes.get(layoutNode),
+                                        {
+                                            rightXY: startRightXY,
+                                            leftXY: startLeftXY,
+                                            topXY: startTopXY,
+                                            bottomXY: startBottomXY
+                                        } = startNode,
+                                        endNode = nodes.get(fromNode(layoutNode.lineTo)),
+                                        {
+                                            rightXY: endRightXY,
+                                            leftXY: endLeftXY,
+                                            topXY: endTopXY,
+                                            bottomXY: endBottomXY
+                                        } = endNode,
+                                        minDistance = {};
 
-                                    lines.push({
+                                    if (startRightXY.x < endLeftXY.x) {
+
+                                        doDistance(minDistance, startRightXY, endLeftXY);
+                                    }
+
+                                    if (startLeftXY.x > endRightXY.x) {
+
+                                        doDistance(minDistance, startLeftXY, endRightXY);
+                                    }
+
+                                    if (startBottomXY.y < endTopXY.y) {
+
+                                        doDistance(minDistance, startBottomXY, endTopXY);
+                                    }
+
+                                    if (startTopXY.y > endBottomXY.y) {
+
+                                        doDistance(minDistance, startTopXY, endBottomXY);
+
+                                    }
+
+                                    let {
                                         start,
-                                        startCenterXY,
-                                        end,
-                                        endCenterXY
-                                    });
+                                        end
+                                    } = minDistance;
+
+                                    if (start && end) {
+
+                                        lines.push({
+                                            start: startNode,
+                                            startXY: start,
+                                            end: endNode,
+                                            endXY: end
+                                        });
+                                    }
+
+
                                 }
                             }
 
                             return lines;
                         }
                     };
+                }
+
+                function doDistance(distance, start, end) {
+
+                    if (Object.keys(distance).length) {
+
+                        let {
+                            value: oldValue
+                        } = distance,
+                        value = getLineDistance(start, end);
+
+                        if (oldValue > value) {
+
+                            distance.value = value,
+                                distance.start = start,
+                                distance.end = end;
+
+                        }
+
+                    } else {
+
+                        distance.value = getLineDistance(start, end),
+                            distance.start = start,
+                            distance.end = end;
+
+                    }
                 }
 
                 function layout({
@@ -44323,7 +44391,7 @@ exports['src::mindmap.layout.pattern.absolutely'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637894402081.get(this);
+        const main = var_current_scope_1639027668612.get(this);
 
 
 
