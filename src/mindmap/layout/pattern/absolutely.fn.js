@@ -55,14 +55,17 @@
 
             if(layoutNode.lineTo){
 
-              let startNode = nodes.get(layoutNode),
+              let endNode = nodes.get(fromNode(layoutNode.lineTo)) ;
+
+              if(endNode){
+
+                let startNode = nodes.get(layoutNode),
                   {
                     rightXY:startRightXY,
                     leftXY:startLeftXY,
                     topXY:startTopXY,
                     bottomXY:startBottomXY
                   } = startNode,
-                  endNode = nodes.get(fromNode(layoutNode.lineTo)),
                   {
                     rightXY:endRightXY,
                     leftXY:endLeftXY,
@@ -71,42 +74,42 @@
                   } = endNode,
                   minDistance = {};
 
-              if(startRightXY.x < endLeftXY.x){
+                if(startRightXY.x < endLeftXY.x){
 
-                doDistance(minDistance , startRightXY , endLeftXY) ;
+                  doDistance(minDistance , startRightXY , endLeftXY) ;
+                }
+
+                if(startLeftXY.x > endRightXY.x){
+
+                  doDistance(minDistance , startLeftXY , endRightXY) ;
+                }
+
+                if(startBottomXY.y < endTopXY.y){
+
+                  doDistance(minDistance , startBottomXY , endTopXY) ;
+                }
+
+                if(startTopXY.y > endBottomXY.y){
+
+                  doDistance(minDistance , startTopXY , endBottomXY) ;
+                
+                }
+
+                let {
+                  start,
+                  end
+                } = minDistance ;
+
+                if(start && end){
+
+                  lines.push({
+                    start:startNode,
+                    startXY:start,
+                    end:endNode,
+                    endXY:end
+                  }) ;
+                }
               }
-
-              if(startLeftXY.x > endRightXY.x){
-
-                doDistance(minDistance , startLeftXY , endRightXY) ;
-              }
-
-              if(startBottomXY.y < endTopXY.y){
-
-                doDistance(minDistance , startBottomXY , endTopXY) ;
-              }
-
-              if(startTopXY.y > endBottomXY.y){
-
-                doDistance(minDistance , startTopXY , endBottomXY) ;
-              
-              }
-
-              let {
-                start,
-                end
-              } = minDistance ;
-
-              if(start && end){
-
-                lines.push({
-                  start:startNode,
-                  startXY:start,
-                  end:endNode,
-                  endXY:end
-                }) ;
-              }
-
               
             }
         }
