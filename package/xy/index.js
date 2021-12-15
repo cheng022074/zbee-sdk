@@ -42445,26 +42445,29 @@ exports['src::mindmap.node.is.move.up'] = (() => {
 
 
 
-    const var_current_scope_1621936469157 = new Map();
+    const var_current_scope_1639557894069 = new Map();
 
-    return function(onBeforeNodeInsertBefore = () => true) {
-
-
+    return function(baseNode, onBeforeNodeInsertBefore = () => true) {
 
 
 
-        if (!var_current_scope_1621936469157.has(this)) {
 
-            var_current_scope_1621936469157.set(this, (() => {
+
+        if (!var_current_scope_1639557894069.has(this)) {
+
+            var_current_scope_1639557894069.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
                 const previous = include('src::mindmap.node.sibling.previous').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
                 const getParentNode = include('src::mindmap.node.parent').bind(this);
 
-                function main(onBeforeNodeInsertBefore) {
+                function main(baseNode, onBeforeNodeInsertBefore) {
 
                     /**
                      * 
                      * 选中节点向上移动
+                     * 
+                     * @import from from ....from scoped
                      * 
                      * @import previous from ....sibling.previous scoped
                      * 
@@ -42472,20 +42475,22 @@ exports['src::mindmap.node.is.move.up'] = (() => {
                      * 
                      * @import getParentNode from mindmap.node.parent scoped
                      * 
+                     * @param {mixed} [baseNode] 参照节点
+                     * 
                      * @param {function} [onBeforeNodeInsertBefore = () => true] 拖曳的拦截函数 
                      * 
                      * @return {boolean} 判断是否可以向下移动
                      * 
                      */
-                    let me = this,
-                        {
-                            selectedNode
-                        } = me,
-                        node = previous(selectedNode);
+                    let me = this;
+
+                    baseNode = from(baseNode);
+
+                    let node = previous(baseNode);
 
                     if (node) {
 
-                        return onBeforeNodeInsertBefore(data(getParentNode(node)), data(selectedNode), data(node));
+                        return onBeforeNodeInsertBefore(data(getParentNode(node)), data(baseNode), data(node));
                     }
 
                     return false;
@@ -42497,11 +42502,11 @@ exports['src::mindmap.node.is.move.up'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936469157.get(this);
+        const main = var_current_scope_1639557894069.get(this);
 
 
 
-        return main.call(this, onBeforeNodeInsertBefore);
+        return main.call(this, baseNode, onBeforeNodeInsertBefore);
     };
 
 })();
@@ -42696,27 +42701,30 @@ exports['src::mindmap.node.move.up'] = (() => {
 
 
 
-    const var_current_scope_1621936469190 = new Map();
+    const var_current_scope_1639558239661 = new Map();
 
-    return function() {
-
-
+    return function(baseNode) {
 
 
 
-        if (!var_current_scope_1621936469190.has(this)) {
 
-            var_current_scope_1621936469190.set(this, (() => {
+
+        if (!var_current_scope_1639558239661.has(this)) {
+
+            var_current_scope_1639558239661.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
                 const previous = include('src::mindmap.node.sibling.previous').bind(this);
                 const insertBefore = include('src::mindmap.node.insert.before').bind(this);
                 const insertAfter = include('src::mindmap.node.insert.after').bind(this);
                 const data = include('src::mindmap.node.data').bind(this);
 
-                function main() {
+                function main(baseNode) {
 
                     /**
                      * 
                      * 选中节点向上移动
+                     * 
+                     * @import from from ..from scoped
                      * 
                      * @import previous from ..sibling.previous scoped
                      * 
@@ -42726,19 +42734,21 @@ exports['src::mindmap.node.move.up'] = (() => {
                      * 
                      * @import data from mindmap.node.data scoped
                      * 
+                     * @param {mixed} [baseNode] 参照节点
+                     * 
                      * @return {boolean} 移动状态
                      * 
                      */
 
-                    let me = this,
-                        {
-                            selectedNode
-                        } = me,
-                        node = previous(selectedNode);
+                    let me = this;
+
+                    baseNode = from(baseNode);
+
+                    let node = previous(baseNode);
 
                     if (node) {
 
-                        return insertBefore(selectedNode, node);
+                        return insertBefore(baseNode, node);
                     }
 
                     return false;
@@ -42750,11 +42760,11 @@ exports['src::mindmap.node.move.up'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1621936469190.get(this);
+        const main = var_current_scope_1639558239661.get(this);
 
 
 
-        return main.call(this);
+        return main.call(this, baseNode);
     };
 
 })();
