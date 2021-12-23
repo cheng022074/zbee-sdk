@@ -22,6 +22,8 @@
       isLayouting
    } = me;
 
+   me.fireEvent('beforelayout') ;
+
    if(isLayouting){
 
       me.layoutCount ++ ;
