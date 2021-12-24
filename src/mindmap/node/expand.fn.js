@@ -23,7 +23,8 @@ node = from(node) ;
 
 if(node){
 
-    let {
+    let me = this,
+    {
         expanded,
         hidden,
         loaded,
@@ -34,8 +35,7 @@ if(node){
 
     if(!hidden && !expanded){
 
-        let me = this,
-        {
+        let {
             reader
         } = me ;
 

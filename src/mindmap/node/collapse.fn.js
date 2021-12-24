@@ -29,8 +29,6 @@ if(expanded){
 
     if(children.length){
 
-        node.expanded = false ;
-
         let {
             selectedNode
         } = this;
@@ -44,9 +42,11 @@ if(expanded){
     
             select(node) ;
         }
-
-        return true ;
     }
+
+    node.expanded = false ;
+    
+    return true ;
 }
 
 return false ;
