@@ -30,6 +30,8 @@ if(node){
         loadChildrenData
     } = node;
 
+    me.fireEvent('beforelayout') ;
+
     if(!hidden && !expanded){
 
         let me = this,
@@ -52,8 +54,6 @@ if(node){
 
                 append(register(childNode) , node) ;
             }
-
-            node.loaded = true ;
         }
 
         let {
