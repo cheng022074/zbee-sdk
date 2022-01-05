@@ -36599,28 +36599,28 @@ exports['src::mindmap.node.create'] = (() => {
 
     let isString;
 
-    let var_init_locked_1631611915185;
+    let var_init_locked_1641367685429;
 
 
 
-    const var_current_scope_1631611915185 = new Map();
+    const var_current_scope_1641367685429 = new Map();
 
     return function(node = {}) {
 
 
-        if (!var_init_locked_1631611915185) {
+        if (!var_init_locked_1641367685429) {
 
             isString = include('src::is.string');
 
-            var_init_locked_1631611915185 = true;
+            var_init_locked_1641367685429 = true;
         }
 
 
 
 
-        if (!var_current_scope_1631611915185.has(this)) {
+        if (!var_current_scope_1641367685429.has(this)) {
 
-            var_current_scope_1631611915185.set(this, (() => {
+            var_current_scope_1641367685429.set(this, (() => {
                 const generate = include('src::mindmap.node.id.generate').bind(this);
 
                 function main(node) {
@@ -36671,6 +36671,7 @@ exports['src::mindmap.node.create'] = (() => {
 
                     let options = {
                         id: generate(),
+                        dataId: generate(),
                         ...node,
                         children: []
                     };
@@ -36688,7 +36689,7 @@ exports['src::mindmap.node.create'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915185.get(this);
+        const main = var_current_scope_1641367685429.get(this);
 
 
 

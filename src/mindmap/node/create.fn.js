@@ -45,6 +45,7 @@ for(let {
 
 let options = {
    id:generate(),
+   dataId:generate(),
    ...node,
    children:[]
 } ;
