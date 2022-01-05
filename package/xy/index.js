@@ -36599,28 +36599,28 @@ exports['src::mindmap.node.create'] = (() => {
 
     let isString;
 
-    let var_init_locked_1641367685429;
+    let var_init_locked_1641372667635;
 
 
 
-    const var_current_scope_1641367685429 = new Map();
+    const var_current_scope_1641372667635 = new Map();
 
     return function(node = {}) {
 
 
-        if (!var_init_locked_1641367685429) {
+        if (!var_init_locked_1641372667635) {
 
             isString = include('src::is.string');
 
-            var_init_locked_1641367685429 = true;
+            var_init_locked_1641372667635 = true;
         }
 
 
 
 
-        if (!var_current_scope_1641367685429.has(this)) {
+        if (!var_current_scope_1641372667635.has(this)) {
 
-            var_current_scope_1641367685429.set(this, (() => {
+            var_current_scope_1641372667635.set(this, (() => {
                 const generate = include('src::mindmap.node.id.generate').bind(this);
 
                 function main(node) {
@@ -36669,12 +36669,13 @@ exports['src::mindmap.node.create'] = (() => {
                         }
                     }
 
-                    let options = {
-                        id: generate(),
-                        dataId: generate(),
-                        ...node,
-                        children: []
-                    };
+                    let id = generate(),
+                        options = {
+                            id,
+                            dataId: id,
+                            ...node,
+                            children: []
+                        };
 
                     node = reader.create(options);
 
@@ -36689,7 +36690,7 @@ exports['src::mindmap.node.create'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1641367685429.get(this);
+        const main = var_current_scope_1641372667635.get(this);
 
 
 

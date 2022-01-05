@@ -43,12 +43,13 @@ for(let {
    }
 }
 
-let options = {
-   id:generate(),
-   dataId:generate(),
-   ...node,
-   children:[]
-} ;
+let id = generate(),
+    options = {
+      id,
+      dataId:id,
+      ...node,
+      children:[]
+   } ;
 
 node = reader.create(options) ;
 
