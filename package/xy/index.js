@@ -39134,7 +39134,7 @@ exports['src::mindmap.node.api.adjust.selected.after'] = (() => {
 
 
 
-    const var_current_scope_1642492862224 = new Map();
+    const var_current_scope_1642499924850 = new Map();
 
     return function(options) {
 
@@ -39142,9 +39142,9 @@ exports['src::mindmap.node.api.adjust.selected.after'] = (() => {
 
 
 
-        if (!var_current_scope_1642492862224.has(this)) {
+        if (!var_current_scope_1642499924850.has(this)) {
 
-            var_current_scope_1642492862224.set(this, (() => {
+            var_current_scope_1642499924850.set(this, (() => {
                 const select = include('src::mindmap.node.select').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
 
@@ -39162,7 +39162,7 @@ exports['src::mindmap.node.api.adjust.selected.after'] = (() => {
 
                 function main(config) {
 
-                    if (this.selectedNode) {
+                    if (config) {
 
                         let {
                             node,
@@ -39209,7 +39209,7 @@ exports['src::mindmap.node.api.adjust.selected.after'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1642492862224.get(this);
+        const main = var_current_scope_1642499924850.get(this);
 
 
 
