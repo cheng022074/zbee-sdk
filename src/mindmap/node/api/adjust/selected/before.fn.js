@@ -16,10 +16,13 @@ let {
     selectedNode:node
 } = this ;
 
-return {
-    node,
-    ancestorNodes:getAncestorNodes(node),
-    nextSiblingNodes:getNextSiblingNodes(node),
-    previousSiblingNodes:getPreviousSiblingNodes(node)
-} ;
+if(node){
+
+    return {
+        node,
+        ancestorNodes:getAncestorNodes(node),
+        nextSiblingNodes:getNextSiblingNodes(node),
+        previousSiblingNodes:getPreviousSiblingNodes(node)
+    } ;
+}
 

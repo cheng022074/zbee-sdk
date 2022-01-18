@@ -8,28 +8,33 @@
  * 
  * @param {object} options 节点配置
  * 
- * @param {object} options.node 原选定节点
- * 
- * @param {array} options.ancestorNodes 原选定节点的祖先节点集合
- * 
- * @param {array} options.nextSiblingNodes 原选定节点的上兄弟节点集合
- * 
- * @param {array} options.previousSiblingNodes 原选定节点的下兄弟节点集合
- * 
  */
 
-node = from(node) ;
+function main(config){
 
-if(node && !node.hidden){
+    if(this.selectedNode){
 
-    node.selected = true ;
+        let {
+            node,
+            ancestorNodes,
+            nextSiblingNodes,
+            previousSiblingNodes
+        } = config ;
 
-}else{
+        node = from(node) ;
 
-    selectNode(previousSiblingNodes) ||
-    selectNode(nextSiblingNodes) ||
-    selectNode(ancestorNodes) ;
+        if(node && !node.hidden){
 
+            node.selected = true ;
+
+        }else{
+
+            selectNode(previousSiblingNodes) ||
+            selectNode(nextSiblingNodes) ||
+            selectNode(ancestorNodes) ;
+
+        }
+    }
 }
 
 function selectNode(nodes){

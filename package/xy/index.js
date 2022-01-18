@@ -38572,7 +38572,7 @@ exports['src::mindmap.node.api.adjust.selected.before'] = (() => {
 
 
 
-    const var_current_scope_1631611915330 = new Map();
+    const var_current_scope_1642492756102 = new Map();
 
     return function() {
 
@@ -38580,9 +38580,9 @@ exports['src::mindmap.node.api.adjust.selected.before'] = (() => {
 
 
 
-        if (!var_current_scope_1631611915330.has(this)) {
+        if (!var_current_scope_1642492756102.has(this)) {
 
-            var_current_scope_1631611915330.set(this, (() => {
+            var_current_scope_1642492756102.set(this, (() => {
                 const getAncestorNodes = include('src::mindmap.nodes.ancestor').bind(this);
                 const getNextSiblingNodes = include('src::mindmap.nodes.sibling.next').bind(this);
                 const getPreviousSiblingNodes = include('src::mindmap.nodes.sibling.previous').bind(this);
@@ -38607,12 +38607,15 @@ exports['src::mindmap.node.api.adjust.selected.before'] = (() => {
                         selectedNode: node
                     } = this;
 
-                    return {
-                        node,
-                        ancestorNodes: getAncestorNodes(node),
-                        nextSiblingNodes: getNextSiblingNodes(node),
-                        previousSiblingNodes: getPreviousSiblingNodes(node)
-                    };
+                    if (node) {
+
+                        return {
+                            node,
+                            ancestorNodes: getAncestorNodes(node),
+                            nextSiblingNodes: getNextSiblingNodes(node),
+                            previousSiblingNodes: getPreviousSiblingNodes(node)
+                        };
+                    }
 
 
 
@@ -38623,7 +38626,7 @@ exports['src::mindmap.node.api.adjust.selected.before'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915330.get(this);
+        const main = var_current_scope_1642492756102.get(this);
 
 
 
@@ -39131,83 +39134,74 @@ exports['src::mindmap.node.api.adjust.selected.after'] = (() => {
 
 
 
-    const var_current_scope_1631611915359 = new Map();
+    const var_current_scope_1642492862224 = new Map();
 
-    return function({
-        node,
-        ancestorNodes,
-        nextSiblingNodes,
-        previousSiblingNodes
-    }) {
+    return function(options) {
 
 
 
 
 
-        if (!var_current_scope_1631611915359.has(this)) {
+        if (!var_current_scope_1642492862224.has(this)) {
 
-            var_current_scope_1631611915359.set(this, (() => {
+            var_current_scope_1642492862224.set(this, (() => {
                 const select = include('src::mindmap.node.select').bind(this);
                 const from = include('src::mindmap.node.from').bind(this);
 
-                function main({
-                    node,
-                    ancestorNodes,
-                    nextSiblingNodes,
-                    previousSiblingNodes
-                }) {
+                /**
+                 * 
+                 * 重置选中节点
+                 * 
+                 * @import select from mindmap.node.select scoped
+                 * 
+                 * @import from from mindmap.node.from scoped
+                 * 
+                 * @param {object} options 节点配置
+                 * 
+                 */
 
-                    /**
-                     * 
-                     * 重置选中节点
-                     * 
-                     * @import select from mindmap.node.select scoped
-                     * 
-                     * @import from from mindmap.node.from scoped
-                     * 
-                     * @param {object} options 节点配置
-                     * 
-                     * @param {object} options.node 原选定节点
-                     * 
-                     * @param {array} options.ancestorNodes 原选定节点的祖先节点集合
-                     * 
-                     * @param {array} options.nextSiblingNodes 原选定节点的上兄弟节点集合
-                     * 
-                     * @param {array} options.previousSiblingNodes 原选定节点的下兄弟节点集合
-                     * 
-                     */
+                function main(config) {
 
-                    node = from(node);
+                    if (this.selectedNode) {
 
-                    if (node && !node.hidden) {
+                        let {
+                            node,
+                            ancestorNodes,
+                            nextSiblingNodes,
+                            previousSiblingNodes
+                        } = config;
 
-                        node.selected = true;
+                        node = from(node);
 
-                    } else {
+                        if (node && !node.hidden) {
 
-                        selectNode(previousSiblingNodes) ||
-                            selectNode(nextSiblingNodes) ||
-                            selectNode(ancestorNodes);
+                            node.selected = true;
 
-                    }
+                        } else {
 
-                    function selectNode(nodes) {
+                            selectNode(previousSiblingNodes) ||
+                                selectNode(nextSiblingNodes) ||
+                                selectNode(ancestorNodes);
 
-                        for (let node of nodes) {
-
-                            node = from(node);
-
-                            if (node && !node.hidden) {
-
-                                select(node);
-
-                                return true;
-                            }
                         }
+                    }
+                }
 
-                        return false;
+                function selectNode(nodes) {
+
+                    for (let node of nodes) {
+
+                        node = from(node);
+
+                        if (node && !node.hidden) {
+
+                            select(node);
+
+                            return true;
+                        }
                     }
 
+                    return false;
                 }
 
                 return main;
@@ -39215,16 +39209,11 @@ exports['src::mindmap.node.api.adjust.selected.after'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915359.get(this);
+        const main = var_current_scope_1642492862224.get(this);
 
 
 
-        return main.call(this, {
-            node,
-            ancestorNodes,
-            nextSiblingNodes,
-            previousSiblingNodes
-        });
+        return main.call(this, options);
     };
 
 })();
