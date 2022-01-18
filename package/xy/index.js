@@ -40283,32 +40283,33 @@ exports['src::mindmap.layout.refresh'] = (() => {
 
     let from, getAnchorXY;
 
-    let var_init_locked_1637896504434;
+    let var_init_locked_1642473287133;
 
 
 
-    const var_current_scope_1637896504434 = new Map();
+    const var_current_scope_1642473287133 = new Map();
 
     return function() {
 
 
-        if (!var_init_locked_1637896504434) {
+        if (!var_init_locked_1642473287133) {
 
             from = include('src::math.region.from');
             getAnchorXY = include('src::math.region.xy.anchor');
 
-            var_init_locked_1637896504434 = true;
+            var_init_locked_1642473287133 = true;
         }
 
 
 
 
-        if (!var_current_scope_1637896504434.has(this)) {
+        if (!var_current_scope_1642473287133.has(this)) {
 
-            var_current_scope_1637896504434.set(this, (() => {
+            var_current_scope_1642473287133.set(this, (() => {
                 const getData = include('src::mindmap.layout.node.data').bind(this);
                 const getRegion = include('src::mindmap.layout.node.region.self').bind(this);
                 const getParentNode = include('src::mindmap.layout.node.parent').bind(this);
+                const getDescendantNodes = include('src::mindmap.nodes.descendant').bind(this);
 
 
                 /**
@@ -40325,6 +40326,8 @@ exports['src::mindmap.layout.refresh'] = (() => {
                  * 
                  * @import getParentNode from .node.parent scoped
                  * 
+                 * @import getDescendantNodes from ..nodes.descendant scoped
+                 * 
                  */
 
                 function main() {
@@ -40332,25 +40335,42 @@ exports['src::mindmap.layout.refresh'] = (() => {
                     let me = this,
                         {
                             layoutNodes,
-                            layoutData
-                        } = me,
-                        {
+                            layoutData,
+                            rootNode
+                        } = me;
+
+                    if (layoutNodes && layoutData) {
+
+                        let {
                             size,
                             offset,
                             getLines
-                        } = layoutData,
-                        {
+                        } = layoutData, {
                             nodes,
                             selectedNode
                         } = getNodeDataset(layoutNodes, offset);
 
-                    me.fireEvent('draw', {
-                        nodes: getNodes(nodes),
-                        lines: getLines(nodes),
-                        selectedNode,
-                        selectedNodeRegion: getRegion(selectedNode),
-                        canvas: size
-                    });
+                        me.fireEvent('draw', {
+                            nodes: getNodes(nodes),
+                            lines: getLines(nodes),
+                            selectedNode,
+                            selectedNodeRegion: getRegion(selectedNode),
+                            canvas: size
+                        });
+
+                    } else {
+
+                        let nodes = getDescendantNodes(rootNode);
+
+                        me.fireEvent('draw', {
+                            nodes: [
+                                rootNode,
+                                ...nodes
+                            ].map(node => getData(node))
+                        });
+                    }
+
+
                 }
 
                 function getNodes(nodes) {
@@ -40405,7 +40425,7 @@ exports['src::mindmap.layout.refresh'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1637896504434.get(this);
+        const main = var_current_scope_1642473287133.get(this);
 
 
 
@@ -40826,7 +40846,7 @@ exports['src::mindmap.refresh'] = (() => {
 
 
 
-    const var_current_scope_1631611915477 = new Map();
+    const var_current_scope_1642472805710 = new Map();
 
     return function() {
 
@@ -40834,9 +40854,9 @@ exports['src::mindmap.refresh'] = (() => {
 
 
 
-        if (!var_current_scope_1631611915477.has(this)) {
+        if (!var_current_scope_1642472805710.has(this)) {
 
-            var_current_scope_1631611915477.set(this, (() => {
+            var_current_scope_1642472805710.set(this, (() => {
                 const refresh = include('src::mindmap.layout.refresh').bind(this);
                 const layout = include('src::mindmap.layout').bind(this);
                 const isUnsized = include('src::mindmap.node.is.unsized').bind(this);
@@ -40858,7 +40878,7 @@ exports['src::mindmap.refresh'] = (() => {
 
                     let me = this,
                         {
-                            layoutNodes
+                            layoutNodes = []
                         } = me;
 
                     for (let layoutNode of layoutNodes) {
@@ -40880,7 +40900,7 @@ exports['src::mindmap.refresh'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631611915477.get(this);
+        const main = var_current_scope_1642472805710.get(this);
 
 
 

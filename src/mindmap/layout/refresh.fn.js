@@ -13,6 +13,8 @@
  * 
  * @import getParentNode from .node.parent scoped
  * 
+ * @import getDescendantNodes from ..nodes.descendant scoped
+ * 
  */
 
  function main(){
@@ -20,25 +22,44 @@
     let me = this,
     {
         layoutNodes,
-        layoutData
-    } = me,
-    {
-        size,
-        offset,
-        getLines
-    } = layoutData,
-    {
-        nodes,
-        selectedNode
-    } = getNodeDataset(layoutNodes , offset) ;
+        layoutData,
+        rootNode
+    } = me;
 
-    me.fireEvent('draw' , {
-        nodes:getNodes(nodes),
-        lines:getLines(nodes),
-        selectedNode,
-        selectedNodeRegion:getRegion(selectedNode),
-        canvas:size
-    }) ;
+    if(layoutNodes && layoutData){
+
+        let 
+        {
+            size,
+            offset,
+            getLines
+        } = layoutData,
+        {
+            nodes,
+            selectedNode
+        } = getNodeDataset(layoutNodes , offset) ;
+    
+        me.fireEvent('draw' , {
+            nodes:getNodes(nodes),
+            lines:getLines(nodes),
+            selectedNode,
+            selectedNodeRegion:getRegion(selectedNode),
+            canvas:size
+        }) ;
+    
+    }else{
+
+        let nodes = getDescendantNodes(rootNode) ;
+
+        me.fireEvent('draw' , {
+            nodes:[
+                rootNode,
+                ...nodes
+            ].map(node => getData(node))
+        }) ;
+    }
+
+    
  }
 
  function getNodes(nodes){

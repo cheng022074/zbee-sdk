@@ -13,7 +13,7 @@
 
  let me = this,
  {
-     layoutNodes
+     layoutNodes = []
  } = me;
 
  for(let layoutNode of layoutNodes){
