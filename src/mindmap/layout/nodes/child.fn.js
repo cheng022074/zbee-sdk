@@ -29,7 +29,7 @@
 
    for(let childNode of children){
 
-      if(layoutNodes.includes(childNode)){
+      if(layoutNodes && layoutNodes.includes(childNode) || !layoutNodes){
 
          result.push(childNode) ;
       }

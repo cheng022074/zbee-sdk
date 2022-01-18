@@ -38,7 +38,7 @@ if(expanded){
             hide(childNode) ;
         }
     
-        if(selectedNode.hidden){
+        if(selectedNode && selectedNode.hidden){
     
             select(node) ;
         }
