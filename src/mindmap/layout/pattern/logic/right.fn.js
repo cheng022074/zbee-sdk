@@ -136,7 +136,15 @@
           {
               data:end,
               leftXY:endLeftXY
-          } = nodes.get(layoutNode);
+          } = nodes.get(layoutNode) ;
+
+          if(end.type === 'text'){
+
+            endLeftXY = {
+              x:end.x,
+              y:end.y + end.height
+            };
+          }
 
           lines.push({
               start,
