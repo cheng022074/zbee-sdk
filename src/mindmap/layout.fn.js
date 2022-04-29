@@ -67,7 +67,8 @@
    {
       getRootNode,
       getDescendantNodes,
-      resetAllNodeSize
+      resetAllNodeSize,
+      patternName
    } = layoutConfig ;
 
    initHiddenNodes.call(me) ;
@@ -117,6 +118,22 @@
             node.width = width ;
 
             node.height = height ;
+
+            let {
+               x,
+               y
+            } = node ;
+
+            if(x < 0 && y < 0){
+
+               let mindmapWidth = -x,
+                   mindmapHeight = -y;
+
+               node.x = (mindmapWidth - width) / 2 ;
+               
+               node.y = (mindmapHeight - height) / 2 ;
+            }
+
          }
 
          callback(rootNode , layoutNodes) ;

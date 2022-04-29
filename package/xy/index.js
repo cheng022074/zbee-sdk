@@ -40550,7 +40550,7 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-    const var_current_scope_1651133804007 = new Map();
+    const var_current_scope_1651220142399 = new Map();
 
     return function() {
 
@@ -40558,9 +40558,9 @@ exports['src::mindmap.layout'] = (() => {
 
 
 
-        if (!var_current_scope_1651133804007.has(this)) {
+        if (!var_current_scope_1651220142399.has(this)) {
 
-            var_current_scope_1651133804007.set(this, (() => {
+            var_current_scope_1651220142399.set(this, (() => {
                 const refresh = include('src::mindmap.layout.refresh').bind(this);
                 const isUnsized = include('src::mindmap.node.is.unsized').bind(this);
                 const getData = include('src::mindmap.node.data').bind(this);
@@ -40636,7 +40636,8 @@ exports['src::mindmap.layout'] = (() => {
                         {
                             getRootNode,
                             getDescendantNodes,
-                            resetAllNodeSize
+                            resetAllNodeSize,
+                            patternName
                         } = layoutConfig;
 
                     initHiddenNodes.call(me);
@@ -40686,6 +40687,22 @@ exports['src::mindmap.layout'] = (() => {
                                 node.width = width;
 
                                 node.height = height;
+
+                                let {
+                                    x,
+                                    y
+                                } = node;
+
+                                if (x < 0 && y < 0) {
+
+                                    let mindmapWidth = -x,
+                                        mindmapHeight = -y;
+
+                                    node.x = (mindmapWidth - width) / 2;
+
+                                    node.y = (mindmapHeight - height) / 2;
+                                }
+
                             }
 
                             callback(rootNode, layoutNodes);
@@ -40748,7 +40765,7 @@ exports['src::mindmap.layout'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1651133804007.get(this);
+        const main = var_current_scope_1651220142399.get(this);
 
 
 
