@@ -151,7 +151,8 @@
             "browser.selector.parent",
             "browser.event.gesture.tap",
             "browser.event.gesture.vue",
-            "browser.element.xy"
+            "browser.element.xy",
+            "function.call"
         ],
         "to":[
             "../XY/XY-OK-WEB-APP/public/zbee-sdk/core"
