@@ -3,13 +3,24 @@
  * 
  * 开启选择模式
  * 
- * @import from from .from scoped
+ * @import from from mindmap.node.from scoped
+ * 
+ * @import getDescendantNodes from mindmap.nodes.descendant scoped
  * 
  * @param {mixed} node 节点
  * 
- */
+ */  
 
- from(node).checkSelectionMode = true ;
+ node = from(node) ;
 
- return true ;
+ if(!node.checkSelectionMode){
+
+    node.checkSelectionMode = true ;
+
+    getDescendantNodes(node).forEach(node => node.checkSelectionMode = true) ;
+
+    return true ;
+ }
+
+ return false ;
 
