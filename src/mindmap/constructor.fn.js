@@ -193,6 +193,16 @@
             defaultValue:true
          },
 
+         multiSelectionMode:{
+            defaultValue:false,
+            mode:'readwrite'
+         },
+
+         checked:{
+            defaultValue:false,
+            mode:'readwrite'
+         },
+
          loaded:{
             defaultValue:true,
             mode:'readwrite'
