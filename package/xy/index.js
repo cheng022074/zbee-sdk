@@ -36277,22 +36277,22 @@ exports['src::file.write.json'] = (() => {
 
 exports['src::mindmap'] = (() => {
 
-    let mixin_1651133803630__1, extend, constructor, method_save, method_load, method_destroy, method_resize, method_layout, method_refresh, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_getParentNode, method_getDescendantNodes, method_getChildNodes, method_getPreviousNode, method_setNodeValueSync, method_appendNodeSync, method_insertNodeSync, method_deleteNodeSync, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, method_isMoveNodeUp, method_isMoveNodeDown, method_moveNodeUp, method_moveNodeDown, isObject;
+    let mixin_1657611893030__1, extend, constructor, method_save, method_load, method_destroy, method_resize, method_layout, method_refresh, method_enableNodeCheckSelectionMode, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_getParentNode, method_getDescendantNodes, method_getChildNodes, method_getPreviousNode, method_setNodeValueSync, method_appendNodeSync, method_insertNodeSync, method_deleteNodeSync, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, method_isMoveNodeUp, method_isMoveNodeDown, method_moveNodeUp, method_moveNodeDown, isObject;
 
-    let var_init_locked_1651133803630;
+    let var_init_locked_1657611893031;
 
-    let var_class_1651133803630;
+    let var_class_1657611893031;
 
 
 
-    let var_global_main_1651133803630;
+    let var_global_main_1657611893031;
 
     return function(config) {
 
 
-        if (!var_init_locked_1651133803630) {
+        if (!var_init_locked_1657611893031) {
 
-            mixin_1651133803630__1 = include('src::mixin.observable');
+            mixin_1657611893030__1 = include('src::mixin.observable');
             extend = include('src::class.empty')();
             constructor = include('src::mindmap.constructor');
             method_save = include('src::mindmap.save');
@@ -36301,6 +36301,7 @@ exports['src::mindmap'] = (() => {
             method_resize = include('src::mindmap.resize');
             method_layout = include('src::mindmap.layout');
             method_refresh = include('src::mindmap.refresh');
+            method_enableNodeCheckSelectionMode = include('src::mindmap.node.selectionMode.check.enable');
             method_fireChangeEvent = include('src::mindmap.fire.event.change');
             method_findNodes = include('src::mindmap.nodes.find');
             method_selectNode = include('src::mindmap.node.select');
@@ -36374,6 +36375,11 @@ exports['src::mindmap'] = (() => {
                 refresh(...args) {
 
                     return method_refresh.apply(this, args);
+
+                }
+                enableNodeCheckSelectionMode(...args) {
+
+                    return method_enableNodeCheckSelectionMode.apply(this, args);
 
                 }
                 fireChangeEvent(...args) {
@@ -36511,7 +36517,7 @@ exports['src::mindmap'] = (() => {
 
             }
 
-            var_class_1651133803630 = class extends main {
+            var_class_1657611893031 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -36526,7 +36532,7 @@ exports['src::mindmap'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1651133803630;
+                    return var_class_1657611893031;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -36536,15 +36542,15 @@ exports['src::mindmap'] = (() => {
 
             };
 
-            main = var_class_1651133803630;
+            main = var_class_1657611893031;
 
-            var_global_main_1651133803630 = main;
+            var_global_main_1657611893031 = main;
 
-            var_init_locked_1651133803630 = true;
+            var_init_locked_1657611893031 = true;
         }
 
 
-        return new var_global_main_1651133803630(config);
+        return new var_global_main_1657611893031(config);
     };
 
 })();
@@ -37125,11 +37131,11 @@ exports['src::mindmap.constructor'] = (() => {
 
     let createReader, isObject, isArray, emptyFn, isNumber, isString, get;
 
-    let var_init_locked_1651133803674;
+    let var_init_locked_1657611893082;
 
 
 
-    const var_current_scope_1651133803674 = new Map();
+    const var_current_scope_1657611893082 = new Map();
 
     return function({
         reader,
@@ -37144,7 +37150,7 @@ exports['src::mindmap.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1651133803674) {
+        if (!var_init_locked_1657611893082) {
 
             createReader = include('src::data.reader.json');
             isObject = include('src::is.object.simple');
@@ -37154,15 +37160,15 @@ exports['src::mindmap.constructor'] = (() => {
             isString = include('src::is.string');
             get = include('src::function.get');
 
-            var_init_locked_1651133803674 = true;
+            var_init_locked_1657611893082 = true;
         }
 
 
 
 
-        if (!var_current_scope_1651133803674.has(this)) {
+        if (!var_current_scope_1657611893082.has(this)) {
 
-            var_current_scope_1651133803674.set(this, (() => {
+            var_current_scope_1657611893082.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const getHidden = include('src::mindmap.node.field.hidden.get').bind(this);
@@ -37376,6 +37382,16 @@ exports['src::mindmap.constructor'] = (() => {
                             defaultValue: true
                         },
 
+                        checkSelectionMode: {
+                            defaultValue: false,
+                            mode: 'readwrite'
+                        },
+
+                        checked: {
+                            defaultValue: false,
+                            mode: 'readwrite'
+                        },
+
                         loaded: {
                             defaultValue: true,
                             mode: 'readwrite'
@@ -37466,7 +37482,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1651133803674.get(this);
+        const main = var_current_scope_1657611893082.get(this);
 
 
 
@@ -40911,6 +40927,74 @@ exports['src::mindmap.refresh'] = (() => {
 
 
         return main.call(this);
+    };
+
+})();
+
+exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1657617200887 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1657617200887.has(this)) {
+
+            var_current_scope_1657617200887.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+                const getDescendantNodes = include('src::mindmap.nodes.descendant').bind(this);
+
+                function main(node) {
+
+
+                    /**
+                     * 
+                     * 开启选择模式
+                     * 
+                     * @import from from mindmap.node.from scoped
+                     * 
+                     * @import getDescendantNodes from mindmap.nodes.descendant scoped
+                     * 
+                     * @param {mixed} node 节点
+                     * 
+                     */
+
+                    node = from(node);
+
+                    if (!node.checkSelectionMode) {
+
+                        node.checkSelectionMode = true;
+
+                        getDescendantNodes(node).forEach(node => node.checkSelectionMode = true);
+
+                        return true;
+                    }
+
+                    return false;
+
+
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1657617200887.get(this);
+
+
+
+        return main.call(this, node);
     };
 
 })();
