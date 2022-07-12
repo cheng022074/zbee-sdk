@@ -193,7 +193,7 @@
             defaultValue:true
          },
 
-         multiSelectionMode:{
+         checkSelectionMode:{
             defaultValue:false,
             mode:'readwrite'
          },
