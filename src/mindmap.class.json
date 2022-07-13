@@ -14,6 +14,13 @@
         "layout",
         "refresh",
         {
+            "name":"checkNode",
+            "impl":".mindmap.node.check"
+        },{
+            "name":"uncheckNode",
+            "impl":".mindmap.node.uncheck"
+        },
+        {
             "name":"enableNodeCheckSelectionMode",
             "impl":".mindmap.node.selectionMode.check.enable"
         },
