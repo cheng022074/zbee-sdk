@@ -36277,22 +36277,22 @@ exports['src::file.write.json'] = (() => {
 
 exports['src::mindmap'] = (() => {
 
-    let mixin_1657611893030__1, extend, constructor, method_save, method_load, method_destroy, method_resize, method_layout, method_refresh, method_enableNodeCheckSelectionMode, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_getParentNode, method_getDescendantNodes, method_getChildNodes, method_getPreviousNode, method_setNodeValueSync, method_appendNodeSync, method_insertNodeSync, method_deleteNodeSync, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, method_isMoveNodeUp, method_isMoveNodeDown, method_moveNodeUp, method_moveNodeDown, isObject;
+    let mixin_1657681855153__1, extend, constructor, method_save, method_load, method_destroy, method_resize, method_layout, method_refresh, method_disableAllNodeCheckSelectionModes, method_checkNode, method_uncheckNode, method_enableNodeCheckSelectionMode, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_getParentNode, method_getDescendantNodes, method_getChildNodes, method_getPreviousNode, method_setNodeValueSync, method_appendNodeSync, method_insertNodeSync, method_deleteNodeSync, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, method_isMoveNodeUp, method_isMoveNodeDown, method_moveNodeUp, method_moveNodeDown, isObject;
 
-    let var_init_locked_1657611893031;
+    let var_init_locked_1657681855154;
 
-    let var_class_1657611893031;
+    let var_class_1657681855154;
 
 
 
-    let var_global_main_1657611893031;
+    let var_global_main_1657681855154;
 
     return function(config) {
 
 
-        if (!var_init_locked_1657611893031) {
+        if (!var_init_locked_1657681855154) {
 
-            mixin_1657611893030__1 = include('src::mixin.observable');
+            mixin_1657681855153__1 = include('src::mixin.observable');
             extend = include('src::class.empty')();
             constructor = include('src::mindmap.constructor');
             method_save = include('src::mindmap.save');
@@ -36301,6 +36301,9 @@ exports['src::mindmap'] = (() => {
             method_resize = include('src::mindmap.resize');
             method_layout = include('src::mindmap.layout');
             method_refresh = include('src::mindmap.refresh');
+            method_disableAllNodeCheckSelectionModes = include('src::mindmap.nodes.selectionMode.check.disable');
+            method_checkNode = include('src::mindmap.node.check');
+            method_uncheckNode = include('src::mindmap.node.uncheck');
             method_enableNodeCheckSelectionMode = include('src::mindmap.node.selectionMode.check.enable');
             method_fireChangeEvent = include('src::mindmap.fire.event.change');
             method_findNodes = include('src::mindmap.nodes.find');
@@ -36375,6 +36378,21 @@ exports['src::mindmap'] = (() => {
                 refresh(...args) {
 
                     return method_refresh.apply(this, args);
+
+                }
+                disableAllNodeCheckSelectionModes(...args) {
+
+                    return method_disableAllNodeCheckSelectionModes.apply(this, args);
+
+                }
+                checkNode(...args) {
+
+                    return method_checkNode.apply(this, args);
+
+                }
+                uncheckNode(...args) {
+
+                    return method_uncheckNode.apply(this, args);
 
                 }
                 enableNodeCheckSelectionMode(...args) {
@@ -36517,7 +36535,7 @@ exports['src::mindmap'] = (() => {
 
             }
 
-            var_class_1657611893031 = class extends main {
+            var_class_1657681855154 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -36532,7 +36550,7 @@ exports['src::mindmap'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1657611893031;
+                    return var_class_1657681855154;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -36542,15 +36560,15 @@ exports['src::mindmap'] = (() => {
 
             };
 
-            main = var_class_1657611893031;
+            main = var_class_1657681855154;
 
-            var_global_main_1657611893031 = main;
+            var_global_main_1657681855154 = main;
 
-            var_init_locked_1657611893031 = true;
+            var_init_locked_1657681855154 = true;
         }
 
 
-        return new var_global_main_1657611893031(config);
+        return new var_global_main_1657681855154(config);
     };
 
 })();
@@ -40931,6 +40949,217 @@ exports['src::mindmap.refresh'] = (() => {
 
 })();
 
+exports['src::mindmap.node.root'] = (() => {
+
+
+
+
+
+
+
+    function main() {
+
+
+        /**
+         * 
+         * 获得实际的根节点
+         * 
+         * @return {data.Record} 根节点 
+         * 
+         */
+
+        return this.rootNode;
+
+    }
+
+    return function() {
+
+
+
+        return main.call(this);
+    };
+
+})();
+
+exports['src::mindmap.nodes.selectionMode.check.disable'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1657681855189 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1657681855189.has(this)) {
+
+            var_current_scope_1657681855189.set(this, (() => {
+                const getDescendantNodes = include('src::mindmap.nodes.descendant').bind(this);
+                const getRootNode = include('src::mindmap.node.root').bind(this);
+
+                function main(node) {
+
+
+                    /**
+                     * 
+                     * 关闭所有节点选择模式
+                     * 
+                     * @import getDescendantNodes from mindmap.nodes.descendant scoped
+                     * 
+                     * @import getRootNode from mindmap.node.root scoped
+                     * 
+                     * @param {mixed} node 节点
+                     * 
+                     */
+
+                    let rootNode = getRootNode(),
+                        isChange = false;
+
+                    [
+                        rootNode,
+                        ...getDescendantNodes(rootNode)
+                    ].forEach(node => {
+
+                        if (node.checkSelectionMode) {
+
+                            node.checkSelectionMode = false;
+
+                            node.checked = false;
+
+                            isChange = true;
+                        }
+
+                    });
+
+                    return isChange;
+
+
+
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1657681855189.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.node.check'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1657680884015 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1657680884015.has(this)) {
+
+            var_current_scope_1657680884015.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+
+                function main(node) {
+
+                    /**
+                     * 
+                     * 勾选节点
+                     * 
+                     * @import from from .from scoped
+                     * 
+                     * @param {object} node 节点
+                     * 
+                     */
+
+                    from(node).checked = true;
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1657680884015.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
+exports['src::mindmap.node.uncheck'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1657680884030 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1657680884030.has(this)) {
+
+            var_current_scope_1657680884030.set(this, (() => {
+                const from = include('src::mindmap.node.from').bind(this);
+
+                function main(node) {
+
+                    /**
+                     * 
+                     * 取消勾选节点
+                     * 
+                     * @import from from .from scoped
+                     * 
+                     * @param {object} node 节点
+                     * 
+                     */
+
+                    from(node).checked = false;
+
+                }
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1657680884030.get(this);
+
+
+
+        return main.call(this, node);
+    };
+
+})();
+
 exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
 
 
@@ -40939,7 +41168,7 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
 
 
 
-    const var_current_scope_1657676385594 = new Map();
+    const var_current_scope_1657678294308 = new Map();
 
     return function(node) {
 
@@ -40947,9 +41176,9 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
 
 
 
-        if (!var_current_scope_1657676385594.has(this)) {
+        if (!var_current_scope_1657678294308.has(this)) {
 
-            var_current_scope_1657676385594.set(this, (() => {
+            var_current_scope_1657678294308.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
                 const getDescendantNodes = include('src::mindmap.nodes.descendant').bind(this);
 
@@ -40974,6 +41203,8 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
 
                         node.checkSelectionMode = true;
 
+                        node.checked = true;
+
                         getDescendantNodes(node).forEach(node => {
 
                             node.checkSelectionMode = true;
@@ -40996,7 +41227,7 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1657676385594.get(this);
+        const main = var_current_scope_1657678294308.get(this);
 
 
 
@@ -45743,38 +45974,6 @@ exports['src::mindmap.layout.positioner.logic.anchors.right.right'] = (() => {
 
 
         return main.call(this, originRegion, region);
-    };
-
-})();
-
-exports['src::mindmap.node.root'] = (() => {
-
-
-
-
-
-
-
-    function main() {
-
-
-        /**
-         * 
-         * 获得实际的根节点
-         * 
-         * @return {data.Record} 根节点 
-         * 
-         */
-
-        return this.rootNode;
-
-    }
-
-    return function() {
-
-
-
-        return main.call(this);
     };
 
 })();
