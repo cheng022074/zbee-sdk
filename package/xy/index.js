@@ -36277,22 +36277,22 @@ exports['src::file.write.json'] = (() => {
 
 exports['src::mindmap'] = (() => {
 
-    let mixin_1657681855153__1, extend, constructor, method_save, method_load, method_destroy, method_resize, method_layout, method_refresh, method_disableAllNodeCheckSelectionModes, method_checkNode, method_uncheckNode, method_enableNodeCheckSelectionMode, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_getParentNode, method_getDescendantNodes, method_getChildNodes, method_getPreviousNode, method_setNodeValueSync, method_appendNodeSync, method_insertNodeSync, method_deleteNodeSync, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, method_isMoveNodeUp, method_isMoveNodeDown, method_moveNodeUp, method_moveNodeDown, isObject;
+    let mixin_1657694206772__1, extend, constructor, method_save, method_load, method_destroy, method_resize, method_layout, method_refresh, method_getCheckedNodes, method_disableAllNodeCheckSelectionModes, method_checkNode, method_uncheckNode, method_enableNodeCheckSelectionMode, method_fireChangeEvent, method_findNodes, method_selectNode, method_collapseNode, method_expandToNode, method_expandNode, method_getNode, method_getParentNode, method_getDescendantNodes, method_getChildNodes, method_getPreviousNode, method_setNodeValueSync, method_appendNodeSync, method_insertNodeSync, method_deleteNodeSync, method_setNodeValue, method_deleteNode, method_appendNewNode, method_appendNode, method_registerNode, method_insertNewNodeBefore, method_insertNewNodeAfter, method_isMoveNodeUp, method_isMoveNodeDown, method_moveNodeUp, method_moveNodeDown, isObject;
 
-    let var_init_locked_1657681855154;
+    let var_init_locked_1657694206773;
 
-    let var_class_1657681855154;
+    let var_class_1657694206773;
 
 
 
-    let var_global_main_1657681855154;
+    let var_global_main_1657694206773;
 
     return function(config) {
 
 
-        if (!var_init_locked_1657681855154) {
+        if (!var_init_locked_1657694206773) {
 
-            mixin_1657681855153__1 = include('src::mixin.observable');
+            mixin_1657694206772__1 = include('src::mixin.observable');
             extend = include('src::class.empty')();
             constructor = include('src::mindmap.constructor');
             method_save = include('src::mindmap.save');
@@ -36301,6 +36301,7 @@ exports['src::mindmap'] = (() => {
             method_resize = include('src::mindmap.resize');
             method_layout = include('src::mindmap.layout');
             method_refresh = include('src::mindmap.refresh');
+            method_getCheckedNodes = include('src::mindmap.nodes.checked');
             method_disableAllNodeCheckSelectionModes = include('src::mindmap.nodes.selectionMode.check.disable');
             method_checkNode = include('src::mindmap.node.check');
             method_uncheckNode = include('src::mindmap.node.uncheck');
@@ -36378,6 +36379,11 @@ exports['src::mindmap'] = (() => {
                 refresh(...args) {
 
                     return method_refresh.apply(this, args);
+
+                }
+                getCheckedNodes(...args) {
+
+                    return method_getCheckedNodes.apply(this, args);
 
                 }
                 disableAllNodeCheckSelectionModes(...args) {
@@ -36535,7 +36541,7 @@ exports['src::mindmap'] = (() => {
 
             }
 
-            var_class_1657681855154 = class extends main {
+            var_class_1657694206773 = class extends main {
 
                 static get __ZBEE_IS_CLASS__() {
 
@@ -36550,7 +36556,7 @@ exports['src::mindmap'] = (() => {
 
                 get __ZBEE_CURRENT_CLASS__() {
 
-                    return var_class_1657681855154;
+                    return var_class_1657694206773;
                 }
 
                 get __ZBEE_CLASS_NAME__() {
@@ -36560,15 +36566,15 @@ exports['src::mindmap'] = (() => {
 
             };
 
-            main = var_class_1657681855154;
+            main = var_class_1657694206773;
 
-            var_global_main_1657681855154 = main;
+            var_global_main_1657694206773 = main;
 
-            var_init_locked_1657681855154 = true;
+            var_init_locked_1657694206773 = true;
         }
 
 
-        return new var_global_main_1657681855154(config);
+        return new var_global_main_1657694206773(config);
     };
 
 })();
@@ -40977,6 +40983,88 @@ exports['src::mindmap.node.root'] = (() => {
 
 
         return main.call(this);
+    };
+
+})();
+
+exports['src::mindmap.nodes.checked'] = (() => {
+
+
+
+
+
+
+
+    const var_current_scope_1657694206805 = new Map();
+
+    return function(node) {
+
+
+
+
+
+        if (!var_current_scope_1657694206805.has(this)) {
+
+            var_current_scope_1657694206805.set(this, (() => {
+                const getDescendantNodes = include('src::mindmap.nodes.descendant').bind(this);
+                const getRootNode = include('src::mindmap.node.root').bind(this);
+                const data = include('src::mindmap.data').bind(this);
+
+
+                /**
+                 * 
+                 * 关闭所有节点选择模式
+                 * 
+                 * @import getDescendantNodes from mindmap.nodes.descendant scoped
+                 * 
+                 * @import getRootNode from mindmap.node.root scoped
+                 * 
+                 * @import data from ..data scoped
+                 * 
+                 * @param {mixed} node 节点
+                 * 
+                 */
+
+                function main() {
+
+                    return getCheckedNodes(getRootNode());
+                }
+
+                function getCheckedNodes(node) {
+
+                    let {
+                        children
+                    } = node,
+                    checkedNodes = [];
+
+                    for (let childNode of children) {
+
+                        checkedNodes.push(...getCheckedNodes(childNode));
+                    }
+
+                    if (node.checked) {
+
+                        return [{
+                            node: data(node),
+                            children: checkedNodes
+                        }];
+                    }
+
+                    return checkedNodes;
+                }
+
+
+
+                return main;
+
+            })());
+        }
+
+        const main = var_current_scope_1657694206805.get(this);
+
+
+
+        return main.call(this, node);
     };
 
 })();
