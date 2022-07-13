@@ -40939,7 +40939,7 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
 
 
 
-    const var_current_scope_1657617200887 = new Map();
+    const var_current_scope_1657676385594 = new Map();
 
     return function(node) {
 
@@ -40947,9 +40947,9 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
 
 
 
-        if (!var_current_scope_1657617200887.has(this)) {
+        if (!var_current_scope_1657676385594.has(this)) {
 
-            var_current_scope_1657617200887.set(this, (() => {
+            var_current_scope_1657676385594.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
                 const getDescendantNodes = include('src::mindmap.nodes.descendant').bind(this);
 
@@ -40974,7 +40974,13 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
 
                         node.checkSelectionMode = true;
 
-                        getDescendantNodes(node).forEach(node => node.checkSelectionMode = true);
+                        getDescendantNodes(node).forEach(node => {
+
+                            node.checkSelectionMode = true;
+
+                            node.checked = true;
+
+                        });
 
                         return true;
                     }
@@ -40990,7 +40996,7 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1657617200887.get(this);
+        const main = var_current_scope_1657676385594.get(this);
 
 
 
