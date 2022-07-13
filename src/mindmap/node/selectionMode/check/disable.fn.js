@@ -17,7 +17,13 @@
 
     node.checkSelectionMode = false ;
 
-    getDescendantNodes(node).forEach(node => node.checkSelectionMode = false) ;
+    getDescendantNodes(node).forEach(node => {
+
+        node.checkSelectionMode = false ;
+
+        node.checked = false ;
+
+    }) ;
 
     return true ;
  }
