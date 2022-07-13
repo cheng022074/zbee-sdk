@@ -7,16 +7,37 @@
  * 
  * @import getRootNode from mindmap.node.root scoped
  * 
+ * @import data from ..data scoped
+ * 
  * @param {mixed} node 节点
  * 
  */  
+ 
+ function main(){
 
- let rootNode = getRootNode() ;
+    return getCheckedNodes(getRootNode()) ;
+ }
 
-return [
-    rootNode,
-    ...getDescendantNodes(rootNode)
-]
-.filter(({
-    checked
-}) => checked);
+ function getCheckedNodes(node){
+
+    let {
+        children
+    } = node,
+    checkedNodes = [];
+
+    for(let childNode of children){
+
+        checkedNodes.push(...getCheckedNodes(childNode)) ;
+    }
+
+    if(node.checked){
+
+        return [{
+            node:data(node),
+            children:checkedNodes
+        }] ;
+    }
+
+    return checkedNodes ;
+ }
+
