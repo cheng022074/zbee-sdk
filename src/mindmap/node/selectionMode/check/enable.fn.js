@@ -17,6 +17,8 @@
 
     node.checkSelectionMode = true ;
 
+    node.checked = true ;
+
     getDescendantNodes(node).forEach(node => {
 
       node.checkSelectionMode = true ;
