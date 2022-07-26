@@ -9,6 +9,8 @@
  * 
  * @param {mixed} node 节点
  * 
+ * @param {boolean} [checked = false] 节点初始选中状态
+ * 
  */  
 
  node = from(node) ;
@@ -17,13 +19,13 @@
 
     node.checkSelectionMode = true ;
 
-    node.checked = true ;
+    node.checked = checked ;
 
     getDescendantNodes(node).forEach(node => {
 
       node.checkSelectionMode = true ;
 
-      node.checked = true ;
+      node.checked = checked ;
 
     }) ;
 
