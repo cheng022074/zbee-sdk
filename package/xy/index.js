@@ -41256,21 +41256,21 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
 
 
 
-    const var_current_scope_1658386771405 = new Map();
+    const var_current_scope_1658816759958 = new Map();
 
-    return function(node) {
-
-
+    return function(node, checked = false) {
 
 
 
-        if (!var_current_scope_1658386771405.has(this)) {
 
-            var_current_scope_1658386771405.set(this, (() => {
+
+        if (!var_current_scope_1658816759958.has(this)) {
+
+            var_current_scope_1658816759958.set(this, (() => {
                 const from = include('src::mindmap.node.from').bind(this);
                 const getDescendantNodes = include('src::mindmap.nodes.descendant').bind(this);
 
-                function main(node) {
+                function main(node, checked) {
 
 
                     /**
@@ -41283,6 +41283,8 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
                      * 
                      * @param {mixed} node 节点
                      * 
+                     * @param {boolean} [checked = false] 节点初始选中状态
+                     * 
                      */
 
                     node = from(node);
@@ -41291,13 +41293,13 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
 
                         node.checkSelectionMode = true;
 
-                        node.checked = true;
+                        node.checked = checked;
 
                         getDescendantNodes(node).forEach(node => {
 
                             node.checkSelectionMode = true;
 
-                            node.checked = true;
+                            node.checked = checked;
 
                         });
 
@@ -41315,11 +41317,11 @@ exports['src::mindmap.node.selectionMode.check.enable'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1658386771405.get(this);
+        const main = var_current_scope_1658816759958.get(this);
 
 
 
-        return main.call(this, node);
+        return main.call(this, node, checked);
     };
 
 })();
