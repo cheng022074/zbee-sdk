@@ -183,6 +183,11 @@
                   getChildNodes(node){
 
                      return me.getChildNodes(node) ;
+                  },
+
+                  getDescendantNodes(node){
+
+                     return me.getDescendantNodes(node) ;
                   }
 
                } ;

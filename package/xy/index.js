@@ -37155,11 +37155,11 @@ exports['src::mindmap.constructor'] = (() => {
 
     let createReader, isObject, isArray, emptyFn, isNumber, isString, get;
 
-    let var_init_locked_1658386771252;
+    let var_init_locked_1659946257047;
 
 
 
-    const var_current_scope_1658386771252 = new Map();
+    const var_current_scope_1659946257047 = new Map();
 
     return function({
         reader,
@@ -37174,7 +37174,7 @@ exports['src::mindmap.constructor'] = (() => {
     }) {
 
 
-        if (!var_init_locked_1658386771252) {
+        if (!var_init_locked_1659946257047) {
 
             createReader = include('src::data.reader.json');
             isObject = include('src::is.object.simple');
@@ -37184,15 +37184,15 @@ exports['src::mindmap.constructor'] = (() => {
             isString = include('src::is.string');
             get = include('src::function.get');
 
-            var_init_locked_1658386771252 = true;
+            var_init_locked_1659946257047 = true;
         }
 
 
 
 
-        if (!var_current_scope_1658386771252.has(this)) {
+        if (!var_current_scope_1659946257047.has(this)) {
 
-            var_current_scope_1658386771252.set(this, (() => {
+            var_current_scope_1659946257047.set(this, (() => {
                 const create = include('src::mindmap.node.create').bind(this);
                 const setHidden = include('src::mindmap.node.field.hidden').bind(this);
                 const getHidden = include('src::mindmap.node.field.hidden.get').bind(this);
@@ -37396,6 +37396,11 @@ exports['src::mindmap.constructor'] = (() => {
                                     getChildNodes(node) {
 
                                         return me.getChildNodes(node);
+                                    },
+
+                                    getDescendantNodes(node) {
+
+                                        return me.getDescendantNodes(node);
                                     }
 
                                 };
@@ -37506,7 +37511,7 @@ exports['src::mindmap.constructor'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1658386771252.get(this);
+        const main = var_current_scope_1659946257047.get(this);
 
 
 
