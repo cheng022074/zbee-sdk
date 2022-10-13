@@ -46374,17 +46374,17 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
 
 
 
-    const var_current_scope_1631848645415 = new Map();
+    const var_current_scope_1665643341490 = new Map();
 
-    return function() {
-
-
+    return function(isCancel = false) {
 
 
 
-        if (!var_current_scope_1631848645415.has(this)) {
 
-            var_current_scope_1631848645415.set(this, (() => {
+
+        if (!var_current_scope_1665643341490.has(this)) {
+
+            var_current_scope_1665643341490.set(this, (() => {
                 const getDescendantNodes = include('src::mindmap.layout.nodes.descendant').bind(this);
                 const getParentNode = include('src::mindmap.layout.node.parent').bind(this);
                 const insertBefore = include('src::mindmap.node.insert.before').bind(this);
@@ -46392,7 +46392,7 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
                 const append = include('src::mindmap.node.append').bind(this);
                 const reset = include('src::mindmap.node.size.reset').bind(this);
 
-                function main() {
+                function main(isCancel) {
 
 
                     /**
@@ -46410,6 +46410,8 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
                      * @import append from mindmap.node.append scoped
                      * 
                      * @import reset from mindmap.node.size.reset scoped
+                     * 
+                     * @param {boolean} [isCancel = false] 是否取消拖放
                      * 
                      */
 
@@ -46461,25 +46463,28 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
 
                     placeholderNode.parentNodeId = null;
 
-                    reset(draggingNode);
+                    if (!isCancel) {
 
-                    switch (dragOperation) {
+                        reset(draggingNode);
 
-                        case 'append':
+                        switch (dragOperation) {
 
-                            append(draggingNode, dragOperationNode);
+                            case 'append':
 
-                            break;
+                                append(draggingNode, dragOperationNode);
 
-                        case 'insertBefore':
+                                break;
 
-                            insertBefore(draggingNode, dragOperationNode);
+                            case 'insertBefore':
 
-                            break;
+                                insertBefore(draggingNode, dragOperationNode);
 
-                        case 'insertAfter':
+                                break;
 
-                            insertAfter(draggingNode, dragOperationNode);
+                            case 'insertAfter':
+
+                                insertAfter(draggingNode, dragOperationNode);
+                        }
                     }
 
                     return true;
@@ -46491,11 +46496,11 @@ exports['src::mindmap.layout.node.drag.end'] = (() => {
             })());
         }
 
-        const main = var_current_scope_1631848645415.get(this);
+        const main = var_current_scope_1665643341490.get(this);
 
 
 
-        return main.call(this);
+        return main.call(this, isCancel);
     };
 
 })();

@@ -15,7 +15,7 @@
  * 
  * @import reset from mindmap.node.size.reset scoped
  * 
- * @parm {boolean} [isOperation = true] 是否动作
+ * @param {boolean} [isCancel = false] 是否取消拖放
  * 
  */
 
@@ -67,7 +67,7 @@ placeholderNode.hidden = true ;
 
 placeholderNode.parentNodeId = null ;
 
-if(isOperation){
+if(!isCancel){
 
     reset(draggingNode) ;
 
