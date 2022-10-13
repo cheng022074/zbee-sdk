@@ -15,6 +15,8 @@
  * 
  * @import reset from mindmap.node.size.reset scoped
  * 
+ * @parm {boolean} [isOperation = true] 是否动作
+ * 
  */
 
 let me = this,
@@ -65,25 +67,28 @@ placeholderNode.hidden = true ;
 
 placeholderNode.parentNodeId = null ;
 
-reset(draggingNode) ;
+if(isOperation){
 
-switch(dragOperation){
+    reset(draggingNode) ;
 
-    case 'append':
+    switch(dragOperation){
 
-        append(draggingNode , dragOperationNode) ;
+        case 'append':
 
-        break ;
+            append(draggingNode , dragOperationNode) ;
 
-    case 'insertBefore':
+            break ;
 
-        insertBefore(draggingNode , dragOperationNode) ;
+        case 'insertBefore':
 
-        break ;
+            insertBefore(draggingNode , dragOperationNode) ;
 
-    case 'insertAfter':
+            break ;
 
-        insertAfter(draggingNode , dragOperationNode) ;
+        case 'insertAfter':
+
+            insertAfter(draggingNode , dragOperationNode) ;
+    }
 }
 
 return true ;
